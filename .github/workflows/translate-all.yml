@@ -48,7 +48,7 @@ on:
         default: false
         type: boolean
       canary_source_path:
-        description: Source page used by the non-publishing translation canary.
+        description: Comma/newline-separated source page(s) used by the non-publishing translation canary.
         required: true
         default: channels/line.md
         type: string

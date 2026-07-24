@@ -836,6 +836,70 @@ class I18NScriptTests(unittest.TestCase):
             self.assertEqual(1, result.pending_count)
             self.assertTrue(result.shard_files[0].as_posix().endswith("/docs/guide/setup.mdx"))
 
+    def test_pending_manifest_canary_supports_multiple_configured_source_pages(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            shutil.copytree(FIXTURES / "pending-docs" / "docs", tmp_path / "docs")
+
+            result = pending.build_pending_manifest(
+                docs_root=tmp_path / "docs",
+                openclaw_sync_dir=tmp_path / ".openclaw-sync",
+                locale="fr",
+                locale_slug="fr",
+                mode="full",
+                shard_index=0,
+                shard_total=1,
+                pending_limit=1,
+                canary_source_path="guide/setup.mdx,index.md",
+            )
+
+            self.assertEqual(2, result.total_pending_count)
+            self.assertEqual(2, result.pending_count)
+            self.assertEqual(
+                ["guide/setup.mdx", "index.md"],
+                [file.relative_to((tmp_path / "docs").resolve()).as_posix() for file in result.shard_files],
+            )
+
+    def test_pending_manifest_canary_rejects_duplicate_configured_source_pages(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            shutil.copytree(FIXTURES / "pending-docs" / "docs", tmp_path / "docs")
+
+            with self.assertRaisesRegex(SystemExit, "configured canary sources must be unique"):
+                pending.build_pending_manifest(
+                    docs_root=tmp_path / "docs",
+                    openclaw_sync_dir=tmp_path / ".openclaw-sync",
+                    locale="fr",
+                    locale_slug="fr",
+                    mode="full",
+                    shard_index=0,
+                    shard_total=1,
+                    pending_limit=1,
+                    canary_source_path="index.md,index.md",
+                )
+
+    def test_pending_manifest_canary_rejects_empty_configured_source_pages(self) -> None:
+        with self.assertRaisesRegex(SystemExit, "configured canary sources must not be empty"):
+            pending.parse_canary_source_paths(",\n,")
+
+    def test_pending_manifest_canary_rejects_duplicate_resolved_source_pages(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            shutil.copytree(FIXTURES / "pending-docs" / "docs", tmp_path / "docs")
+
+            with self.assertRaisesRegex(SystemExit, "configured canary sources must resolve to unique paths"):
+                pending.build_pending_manifest(
+                    docs_root=tmp_path / "docs",
+                    openclaw_sync_dir=tmp_path / ".openclaw-sync",
+                    locale="fr",
+                    locale_slug="fr",
+                    mode="full",
+                    shard_index=0,
+                    shard_total=1,
+                    pending_limit=1,
+                    canary_source_path="index.md,./index.md",
+                )
+
     def test_pending_manifest_canary_rejects_missing_configured_source_page(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)

@@ -81,6 +81,15 @@ def validate_pending_limit(value: str) -> int:
     return limit
 
 
+def parse_canary_source_paths(value: str) -> list[str]:
+    paths = [item.strip() for line in value.splitlines() for item in line.split(",") if item.strip()]
+    if not paths:
+        raise SystemExit("configured canary sources must not be empty")
+    if len(paths) != len(set(paths)):
+        raise SystemExit("configured canary sources must be unique")
+    return paths
+
+
 def build_pending_manifest(
     docs_root: Path,
     openclaw_sync_dir: Path,
@@ -120,16 +129,21 @@ def build_pending_manifest(
     shard_files = [file for index, file in enumerate(pending_files) if index % shard_total == shard_index]
     if pending_limit:
         if canary_source_path:
-            canary_source = (docs_root / canary_source_path).resolve()
-            try:
-                canary_source.relative_to(docs_root.resolve())
-            except ValueError as exc:
-                raise SystemExit(f"configured canary source must stay under docs: {canary_source_path}") from exc
-            if canary_source not in shard_files:
-                raise SystemExit(f"configured canary source is not pending in this shard: {canary_source_path}")
-            # Prefer a user-visible page with known glossary coverage so the
-            # canary proves both translation and the deployed page content.
-            shard_files = [canary_source]
+            canary_sources: list[Path] = []
+            for source_path in parse_canary_source_paths(canary_source_path):
+                canary_source = (docs_root / source_path).resolve()
+                try:
+                    canary_source.relative_to(docs_root.resolve())
+                except ValueError as exc:
+                    raise SystemExit(f"configured canary source must stay under docs: {source_path}") from exc
+                if canary_source not in shard_files:
+                    raise SystemExit(f"configured canary source is not pending in this shard: {source_path}")
+                if canary_source in canary_sources:
+                    raise SystemExit("configured canary sources must resolve to unique paths")
+                canary_sources.append(canary_source)
+            # A diagnostic canary may exercise a bounded explicit page set in
+            # one non-publishing job; every path still passes the normal gates.
+            shard_files = canary_sources
         else:
             # Full canary publishes a real one-page probe before expensive batches,
             # so choose the smallest deterministic sample to cap token and review cost.
