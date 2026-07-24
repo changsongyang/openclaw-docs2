@@ -96,7 +96,8 @@ Stores your API token + cached registry URL.
 
 ### `star <skill>` / `unstar <skill>`
 
-- Adds/removes a skill from your highlights.
+- Adds/removes a skill from your Bookmarks. Command names remain `star` and
+  `unstar` for compatibility.
 - Calls `POST /api/v1/stars/<slug>` and `DELETE /api/v1/stars/<slug>`.
 - `--yes` skips confirmation.
 
@@ -269,7 +270,7 @@ clawhub scan download @scope/demo --version 2.0.0 --kind plugin --output report.
 #### GitHub Actions
 
 ClawHub ships an official reusable workflow at
-[`/.github/workflows/skill-publish.yml`](https://github.com/openclaw/clawhub/blob/306035cad779533e212a1fafd4c9938ea4c0b70e/.github/workflows/skill-publish.yml)
+[`/.github/workflows/skill-publish.yml`](https://github.com/openclaw/clawhub/blob/0f84533e9c93e7b4f712c4d4cdb071e1f435baea/.github/workflows/skill-publish.yml)
 for skill repos and catalog repos.
 
 Typical catalog setup:
@@ -716,7 +717,7 @@ Notes:
 #### GitHub Actions
 
 ClawHub also ships an official reusable workflow at
-[`/.github/workflows/package-publish.yml`](https://github.com/openclaw/clawhub/blob/306035cad779533e212a1fafd4c9938ea4c0b70e/.github/workflows/package-publish.yml)
+[`/.github/workflows/package-publish.yml`](https://github.com/openclaw/clawhub/blob/0f84533e9c93e7b4f712c4d4cdb071e1f435baea/.github/workflows/package-publish.yml)
 for plugin repos.
 
 Typical caller setup:
