@@ -1,22 +1,22 @@
 ---
 read_when:
     - Sie möchten Amazon-Bedrock-Modelle mit OpenClaw verwenden
-    - Sie müssen AWS-Anmeldedaten und die Region für Modellaufrufe einrichten
+    - Sie müssen AWS-Anmeldedaten und die Region für Modellaufrufe einrichten.
 summary: Amazon-Bedrock-Modelle (Converse API) mit OpenClaw verwenden
 title: Amazon Bedrock
 x-i18n:
-    generated_at: "2026-07-24T04:02:09Z"
+    generated_at: "2026-07-24T22:27:21Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: adbc97fd903fe61119c19ce2f14b1744d5a0c849f89cbf45237fb37935e812cd
+    source_hash: 9cbc9534c0d06e0d5642b8d167c633c16880908812b97adbbf9c6bd6c5511603
     source_path: providers/bedrock.md
     workflow: 16
 ---
 
 OpenClaw kann **Amazon Bedrock**-Modelle über seinen Streaming-Provider **Bedrock Converse**
-verwenden. Die Bedrock-Authentifizierung verwendet die **AWS SDK-Standard-Anmeldedatenkette**,
+verwenden. Die Bedrock-Authentifizierung verwendet die **Standard-Anmeldedatenkette des AWS SDK**,
 keinen API-Schlüssel.
 
 | Eigenschaft | Wert                                                       |
@@ -88,7 +88,7 @@ Wählen Sie Ihre bevorzugte Authentifizierungsmethode und führen Sie die Einric
     </Steps>
 
     <Tip>
-    Bei der Authentifizierung über Umgebungsmarker (`AWS_ACCESS_KEY_ID`, `AWS_PROFILE` oder `AWS_BEARER_TOKEN_BEDROCK`) aktiviert OpenClaw den impliziten Bedrock-Provider für die Modellerkennung automatisch und ohne zusätzliche Konfiguration.
+    Bei der Authentifizierung über Umgebungsmarker (`AWS_ACCESS_KEY_ID`, `AWS_PROFILE` oder `AWS_BEARER_TOKEN_BEDROCK`) aktiviert OpenClaw den impliziten Bedrock-Provider für die Modellerkennung automatisch, ohne dass eine zusätzliche Konfiguration erforderlich ist.
     </Tip>
 
   </Tab>
@@ -98,7 +98,7 @@ Wählen Sie Ihre bevorzugte Authentifizierungsmethode und führen Sie die Einric
 
     <Steps>
       <Step title="Erkennung explizit aktivieren">
-        Bei Verwendung von IMDS kann OpenClaw die AWS-Authentifizierung nicht allein anhand von Umgebungsmarkern erkennen. Daher müssen Sie sie explizit aktivieren:
+        Bei Verwendung von IMDS kann OpenClaw die AWS-Authentifizierung nicht allein anhand von Umgebungsmarkern erkennen. Daher müssen Sie sie ausdrücklich aktivieren:
 
         ```bash
         openclaw config set plugins.entries.amazon-bedrock.config.discovery.enabled true
@@ -106,14 +106,14 @@ Wählen Sie Ihre bevorzugte Authentifizierungsmethode und führen Sie die Einric
         ```
       </Step>
       <Step title="Optional einen Umgebungsmarker für den automatischen Modus hinzufügen">
-        Wenn zusätzlich die automatische Erkennung über Umgebungsmarker funktionieren soll (beispielsweise für `openclaw status`-Oberflächen):
+        Wenn außerdem der Pfad zur automatischen Erkennung über Umgebungsmarker funktionieren soll (beispielsweise für `openclaw status`-Oberflächen):
 
         ```bash
         export AWS_PROFILE=default
         export AWS_REGION=us-east-1
         ```
 
-        Sie benötigen **keinen** vorgetäuschten API-Schlüssel.
+        Sie benötigen **keinen** fingierten API-Schlüssel.
       </Step>
       <Step title="Erkennung der Modelle überprüfen">
         ```bash
@@ -134,7 +134,7 @@ Wählen Sie Ihre bevorzugte Authentifizierungsmethode und führen Sie die Einric
     </Warning>
 
     <Note>
-    Sie benötigen `AWS_PROFILE=default` nur, wenn Sie ausdrücklich einen Umgebungsmarker für den automatischen Modus oder Statusoberflächen verwenden möchten. Der eigentliche Bedrock-Laufzeitpfad für die Authentifizierung verwendet die AWS SDK-Standardkette. Daher funktioniert die Authentifizierung über eine IMDS-Instanzrolle auch ohne Umgebungsmarker.
+    Sie benötigen `AWS_PROFILE=default` nur, wenn Sie ausdrücklich einen Umgebungsmarker für den automatischen Modus oder Statusoberflächen verwenden möchten. Der eigentliche Authentifizierungspfad der Bedrock-Laufzeit verwendet die Standardkette des AWS SDK, sodass die Authentifizierung über IMDS-Instanzrollen auch ohne Umgebungsmarker funktioniert.
     </Note>
 
   </Tab>
@@ -142,25 +142,25 @@ Wählen Sie Ihre bevorzugte Authentifizierungsmethode und führen Sie die Einric
 
 ## Automatische Modellerkennung
 
-OpenClaw kann Bedrock-Modelle automatisch erkennen, die **Streaming**
-und **Textausgabe** unterstützen. Die Erkennung verwendet `bedrock:ListFoundationModels` und
+OpenClaw kann Bedrock-Modelle, die **Streaming**
+und **Textausgabe** unterstützen, automatisch erkennen. Die Erkennung verwendet `bedrock:ListFoundationModels` und
 `bedrock:ListInferenceProfiles`; die Ergebnisse werden zwischengespeichert (Standard: 1 Stunde).
 
 So wird der implizite Provider aktiviert:
 
-- Wenn `plugins.entries.amazon-bedrock.config.discovery.enabled` auf `true` gesetzt ist,
-  versucht OpenClaw die Erkennung auch dann, wenn kein AWS-Umgebungsmarker vorhanden ist.
-- Wenn `plugins.entries.amazon-bedrock.config.discovery.enabled` nicht gesetzt ist,
+- Wenn `plugins.entries.amazon-bedrock.config.discovery.enabled` auf `true`
+  gesetzt ist, versucht OpenClaw die Erkennung auch dann, wenn kein AWS-Umgebungsmarker vorhanden ist.
+- Wenn `plugins.entries.amazon-bedrock.config.discovery.enabled` nicht festgelegt ist,
   fügt OpenClaw den impliziten Bedrock-Provider nur dann automatisch hinzu,
   wenn einer der folgenden AWS-Authentifizierungsmarker erkannt wird:
   `AWS_BEARER_TOKEN_BEDROCK`, `AWS_ACCESS_KEY_ID` +
   `AWS_SECRET_ACCESS_KEY` oder `AWS_PROFILE`.
-- Der eigentliche Bedrock-Laufzeitpfad für die Authentifizierung verwendet weiterhin die AWS SDK-Standardkette. Daher können
-  eine gemeinsame Konfiguration, SSO und die Authentifizierung über eine IMDS-Instanzrolle auch dann funktionieren, wenn für die Erkennung
-  `enabled: true` zur expliziten Aktivierung erforderlich war.
+- Der eigentliche Authentifizierungspfad der Bedrock-Laufzeit verwendet weiterhin die Standardkette des AWS SDK, sodass
+  die gemeinsame Konfiguration, SSO und die Authentifizierung über IMDS-Instanzrollen auch dann funktionieren können, wenn für die Erkennung
+  `enabled: true` zur Aktivierung erforderlich war.
 
 <Note>
-Bei expliziten `models.providers["amazon-bedrock"]`-Einträgen kann OpenClaw die Bedrock-Authentifizierung über Umgebungsmarker weiterhin frühzeitig anhand von AWS-Umgebungsmarkern wie `AWS_BEARER_TOKEN_BEDROCK` auflösen, ohne das vollständige Laden der Laufzeitauthentifizierung zu erzwingen. Der eigentliche Authentifizierungspfad für Modellaufrufe verwendet weiterhin die AWS SDK-Standardkette.
+Bei expliziten `models.providers["amazon-bedrock"]`-Einträgen kann OpenClaw die Bedrock-Authentifizierung über Umgebungsmarker weiterhin frühzeitig anhand von AWS-Umgebungsmarkern wie `AWS_BEARER_TOKEN_BEDROCK` auflösen, ohne das vollständige Laden der Laufzeitauthentifizierung zu erzwingen. Der eigentliche Authentifizierungspfad für Modellaufrufe verwendet weiterhin die Standardkette des AWS SDK.
 </Note>
 
 <AccordionGroup>
@@ -195,21 +195,21 @@ Bei expliziten `models.providers["amazon-bedrock"]`-Einträgen kann OpenClaw die
     | `providerFilter` | (alle) | Gleicht Namen von Bedrock-Providern ab (beispielsweise `anthropic`, `amazon`). |
     | `refreshInterval` | `3600` | Cache-Dauer in Sekunden. Setzen Sie den Wert auf `0`, um die Zwischenspeicherung zu deaktivieren. |
     | `defaultContextWindow` | `32000` | Für erkannte Modelle ohne bekannte Token-Limits verwendetes Kontextfenster (überschreiben Sie den Wert, wenn Ihnen die Limits Ihres Modells bekannt sind). |
-    | `defaultMaxTokens` | `4096` | Für erkannte Modelle ohne bekannte Token-Limits verwendete maximale Anzahl an Ausgabe-Token (überschreiben Sie den Wert, wenn Ihnen die Limits Ihres Modells bekannt sind). |
+    | `defaultMaxTokens` | `4096` | Maximale Anzahl von Ausgabe-Token für erkannte Modelle ohne bekannte Token-Limits (überschreiben Sie den Wert, wenn Ihnen die Limits Ihres Modells bekannt sind). |
 
   </Accordion>
 
   <Accordion title="Kontextfenster und maximale Token-Limits">
     Die Bedrock-APIs `ListFoundationModels` und `GetFoundationModel` geben keine
-    Metadaten zu Token-Limits zurück, sondern nur Modell-ID, Name, Modalitäten und
-    Lebenszyklusstatus. OpenClaw enthält eine Nachschlagetabelle mit bekannten Kontextfenstern und
-    Ausgabelimits für verbreitete Bedrock-Modelle (Claude, Nova, Llama, Mistral, DeepSeek
+    Metadaten zu Token-Limits zurück, sondern nur Modell-ID, Name, Modalitäten und Lebenszyklusstatus.
+    OpenClaw enthält eine Nachschlagetabelle mit bekannten Kontextfenstern und Ausgabelimits
+    für gängige Bedrock-Modelle (Claude, Nova, Llama, Mistral, DeepSeek
     und weitere), damit Sitzungsverwaltung, Compaction-Schwellenwerte und
-    die Erkennung von Kontextüberläufen bei diesen Modellen korrekt funktionieren.
+    die Erkennung von Kontextüberläufen für diese Modelle ordnungsgemäß funktionieren.
 
-    Für erkannte Modelle, die nicht in der Tabelle enthalten sind, werden ersatzweise `defaultContextWindow`
-    und `defaultMaxTokens` verwendet. Wenn für ein von Ihnen verwendetes Modell keine genauen Limits
-    vorhanden sind, überschreiben Sie diese mit einem expliziten
+    Erkannte Modelle, die nicht in der Tabelle enthalten sind, greifen auf `defaultContextWindow`
+    und `defaultMaxTokens` zurück. Wenn für ein von Ihnen verwendetes Modell keine genauen Limits vorliegen,
+    überschreiben Sie diese mit einem expliziten
     `models.providers["amazon-bedrock"].models`-Eintrag.
 
   </Accordion>
@@ -240,7 +240,7 @@ aws iam add-role-to-instance-profile \
   --instance-profile-name EC2-Bedrock-Access \
   --role-name EC2-Bedrock-Access
 
-# 2. Der EC2-Instanz zuweisen
+# 2. Ihrer EC2-Instanz zuweisen
 aws ec2 associate-iam-instance-profile \
   --instance-id i-xxxxx \
   --iam-instance-profile Name=EC2-Bedrock-Access
@@ -264,37 +264,37 @@ openclaw models list
   <Accordion title="Inferenzprofile">
     OpenClaw erkennt **regionale und globale Inferenzprofile** zusammen mit
     Basismodellen. Wenn ein Profil einem bekannten Basismodell zugeordnet ist,
-    übernimmt es die Fähigkeiten dieses Modells (Kontextfenster, maximale Token-Anzahl,
-    Schlussfolgern, Bildverarbeitung), und die korrekte Bedrock-Anfrageregion wird
+    übernimmt das Profil die Fähigkeiten dieses Modells (Kontextfenster, maximale Token-Anzahl,
+    Reasoning, Bildverarbeitung), und die richtige Bedrock-Anfrageregion wird
     automatisch eingefügt. Dadurch funktionieren regionsübergreifende Claude-Profile ohne manuelle
     Provider-Überschreibungen. Globale regionsübergreifende Profile (`global.*`) werden
-    in `openclaw models list` zuerst aufgeführt, da sie in der Regel eine höhere Kapazität
-    und automatisches Failover bieten.
+    in `openclaw models list` zuerst aufgeführt, da sie im Allgemeinen eine höhere Kapazität
+    und automatische Ausfallsicherheit bieten.
 
-    Inferenzprofil-IDs sehen wie `us.anthropic.claude-opus-4-6-v1` (regional)
+    Inferenzprofil-IDs sehen beispielsweise wie `us.anthropic.claude-opus-4-6-v1` (regional)
     oder `anthropic.claude-opus-4-6-v1` (global) aus. Wenn das zugrunde liegende Modell bereits
     in den Erkennungsergebnissen enthalten ist, übernimmt das Profil dessen vollständigen Funktionsumfang;
     andernfalls gelten sichere Standardwerte.
 
     Es ist keine zusätzliche Konfiguration erforderlich. Solange die Erkennung aktiviert ist und der IAM-
-    Prinzipal über `bedrock:ListInferenceProfiles` verfügt, erscheinen Profile zusammen mit
-    Basismodellen in `openclaw models list`.
+    Principal über `bedrock:ListInferenceProfiles` verfügt, werden Profile neben
+    Basismodellen in `openclaw models list` angezeigt.
 
   </Accordion>
 
-  <Accordion title="Service-Tier">
-    Einige Bedrock-Modelle unterstützen einen `service_tier`-Parameter zur Optimierung von Kosten
-    oder Latenz. Die folgenden Tiers sind verfügbar:
+  <Accordion title="Service-Stufe">
+    Einige Bedrock-Modelle unterstützen einen `service_tier`-Parameter zur Optimierung der Kosten
+    oder Latenz. Die folgenden Stufen sind verfügbar:
 
-    | Tier | Beschreibung |
+    | Stufe | Beschreibung |
     |------|-------------|
-    | `default` | Standardmäßiger Bedrock-Tier |
+    | `default` | Standardmäßige Bedrock-Stufe |
     | `flex` | Vergünstigte Verarbeitung für Workloads, die eine längere Latenz tolerieren können |
     | `priority` | Priorisierte Verarbeitung für latenzempfindliche Workloads |
-    | `reserved` | Reservierte Kapazität für Workloads im stabilen Betrieb |
+    | `reserved` | Reservierte Kapazität für Workloads im Dauerbetrieb |
 
     Legen Sie `serviceTier` (oder `service_tier`) über `agents.defaults.params` für
-    Bedrock-Modellanfragen oder je Modell in
+    Bedrock-Modellanfragen oder modellspezifisch in
     `agents.defaults.models["<model-key>"].params` fest:
 
     ```json5
@@ -307,7 +307,7 @@ openclaw models list
           models: {
             "amazon-bedrock/mistral.mistral-large-3-675b-instruct": {
               params: {
-                serviceTier: "priority", // Überschreibung je Modell
+                serviceTier: "priority", // modellspezifische Überschreibung
               },
             },
           },
@@ -317,40 +317,54 @@ openclaw models list
     ```
 
     Gültige Werte sind `default`, `flex`, `priority` und `reserved`. Claude
-    Fable 5 und Sonnet 5 unterstützen nur die Stufe `default`; OpenClaw warnt und
-    ignoriert für diese Modelle angeforderte Werte von `flex`, `priority` oder `reserved`. Bei
+    Fable 5, Opus 5 und Sonnet 5 unterstützen nur die Stufe `default`; OpenClaw warnt und
+    ignoriert `flex`, `priority` oder `reserved`, wenn diese für jene Modelle angefordert werden. Bei
     anderen Modellen unterstützt nicht jedes Modell jede Stufe – eine nicht unterstützte Stufe
     führt zu einem Bedrock-Validierungsfehler, dessen Fehlermeldung
-    irreführend sein kann (zum Beispiel „Die angegebene Modellkennung ist ungültig“,
-    statt die Stufe als Ursache zu nennen). Wenn dieser Fehler auftritt, prüfen Sie,
+    irreführend sein kann (zum Beispiel „The provided model identifier is invalid“,
+    statt die Stufe als Problem zu benennen). Wenn dieser Fehler angezeigt wird, prüfen Sie,
     ob das Modell die angeforderte Stufe unterstützt.
 
   </Accordion>
 
-  <Accordion title="Temperatur bei Claude Opus 4.7 und 4.8">
-    Bedrock lehnt den Parameter `temperature` für Claude Opus 4.7 und Opus
-    4.8 ab. OpenClaw lässt `temperature` automatisch bei jeder passenden Bedrock-
-    Referenz weg, einschließlich Foundation-Modell-IDs, benannter Inferenzprofile und Anwendungs-
+  <Accordion title="Temperatur bei Claude Opus 5, 4.8 und 4.7">
+    Bedrock lehnt den Parameter `temperature` für Claude Opus 5, Opus 4.8
+    und Opus 4.7 ab. OpenClaw lässt `temperature` automatisch bei jeder passenden Bedrock-
+    Referenz weg, einschließlich Foundation-Model-IDs, benannter Inferenzprofile, Anwendungs-
     Inferenzprofile, deren zugrunde liegendes Modell über
-    `bedrock:GetInferenceProfile` zu Opus 4.7/4.8 aufgelöst wird, sowie gepunkteter Varianten von `opus-4.7`/`opus-4.8`
+    `bedrock:GetInferenceProfile` zu Opus 5/4.8/4.7 aufgelöst wird, sowie gepunkteter `opus-4.7`-/`opus-4.8`-Varianten
     mit optionalen Regionspräfixen (`us.`, `eu.`, `ap.`, `apac.`, `au.`, `jp.`,
-    `global.`). Es ist keine Konfigurationsoption erforderlich, und das Weglassen gilt sowohl
-    für das Objekt mit den Anfrageoptionen als auch für das Payload-Feld `inferenceConfig`.
+    `global.`). Es ist keine Konfigurationsoption erforderlich, und das Weglassen gilt sowohl für
+    das Anfrageoptionsobjekt als auch für das Nutzlastfeld `inferenceConfig`.
+  </Accordion>
+
+  <Accordion title="Claude Opus 5">
+    Verwenden Sie `amazon-bedrock/anthropic.claude-opus-5` am Bedrock-Endpunkt der Messages-API
+    oder ein regionales/globales Inferenzprofil wie
+    `global.anthropic.claude-opus-5`, wenn es in der Bedrock-Erkennung erscheint.
+    OpenClaw verwendet das Kontextfenster mit 1.000.000 Token, das Ausgabelimit
+    von 128.000 Token, Bildeingaben, Prompt-Caching, ablehnungssicheres Streaming und native
+    `xhigh`-/`max`-Aufwandsstufen.
+
+    Adaptives Denken verwendet standardmäßig `high`. `/think off` deaktiviert das Denken, während
+    `/think xhigh|max` adaptives Denken aktiviert lässt. OpenClaw lässt benutzerdefinierte
+    Sampling-Parameter und nicht unterstützte, von der Voreinstellung abweichende Servicestufen weg.
+
   </Accordion>
 
   <Accordion title="Claude Fable 5">
-    Verwenden Sie `amazon-bedrock/anthropic.claude-fable-5` in `us-east-1` oder
-    regionale Inferenz-IDs wie `us.anthropic.claude-fable-5`.
-    OpenClaw wendet das 1M-Kontextfenster, das Ausgabelimit von 128K, das stets aktive
-    adaptive Denken und die unterstützte Zuordnung des Aufwands von Fable an. `/think off` und
-    `/think minimal` werden `low` zugeordnet; Temperatur und Steuerelemente für die erzwungene Werkzeugauswahl
-    werden weggelassen, entsprechend der Route von Opus 4.7/4.8. Die Streaming-Ausgabe wird zurückgehalten,
-    bis Bedrock einen Endstatus zurückgibt, damit Ablehnungen während des Streams keinen
-    Teiltext offenlegen.
+    Verwenden Sie `amazon-bedrock/anthropic.claude-fable-5` in `us-east-1` oder die
+    regionalen Inferenz-IDs wie `us.anthropic.claude-fable-5`.
+    OpenClaw verwendet Fables Kontextfenster mit 1M Token, das Ausgabelimit von 128K Token, stets
+    aktives adaptives Denken und die unterstützte Zuordnung der Aufwandsstufen. `/think off` und
+    `/think minimal` werden `low` zugeordnet; Temperatur und Steuerelemente zur erzwungenen Werkzeugauswahl
+    werden weggelassen, entsprechend der Opus-4.7/4.8-Route. Die Streaming-Ausgabe wird zurückgehalten,
+    bis Bedrock einen endgültigen Status zurückgibt, damit Ablehnungen während des Streamings
+    keinen Teiltext offenlegen.
 
-    AWS erfordert eine ausdrückliche Zustimmung zur Datenspeicherung über `provider_data_share`,
-    bevor Fable verfügbar ist. Prompts und Vervollständigungen werden mit Anthropic geteilt und
-    zu Vertrauens- und Sicherheitszwecken bis zu 30 Tage gespeichert. Prüfen und konfigurieren Sie
+    AWS erfordert eine ausdrückliche Einwilligung zur Datenspeicherung gemäß `provider_data_share`, bevor
+    Fable verfügbar ist. Prompts und Vervollständigungen werden mit Anthropic geteilt und
+    für Vertrauens- und Sicherheitszwecke bis zu 30 Tage aufbewahrt. Prüfen und konfigurieren Sie
     die [Bedrock-Datenspeicherung](https://docs.aws.amazon.com/bedrock/latest/userguide/data-retention.html),
     bevor Sie das Modell aktivieren.
 
@@ -358,26 +372,26 @@ openclaw models list
 
   <Accordion title="Claude Mythos 5">
     Claude Mythos 5 ist über Bedrock nur für Konten mit der
-    erforderlichen Genehmigung für eingeschränkten Zugriff verfügbar. OpenClaw erkennt das Foundation-Modell
+    erforderlichen Genehmigung für eingeschränkten Zugriff verfügbar. OpenClaw erkennt das Foundation Model
     `anthropic.claude-mythos-5` sowie regionale oder globale Inferenzprofile wie
     `us.anthropic.claude-mythos-5`.
 
-    OpenClaw wendet das Kontextfenster mit 1.000.000 Token, das Ausgabelimit
+    OpenClaw verwendet das Kontextfenster mit 1.000.000 Token, das Ausgabelimit
     von 128.000 Token, Bildeingaben, Prompt-Caching, ablehnungssicheres Streaming und native
-    Aufwandsstufen an. Adaptives Denken ist immer aktiviert: `/think off` und
-    `/think minimal` werden `low` zugeordnet, während `xhigh` und `max` verfügbar bleiben.
-    Benutzerdefinierte Sampling-Werte und Werte für die erzwungene Werkzeugauswahl werden weggelassen.
+    Aufwandsstufen. Adaptives Denken ist immer aktiviert: `/think off` und
+    `/think minimal` werden `low` zugeordnet, während `xhigh` und `max` weiterhin verfügbar sind.
+    Benutzerdefiniertes Sampling und Werte für die erzwungene Werkzeugauswahl werden weggelassen.
 
   </Accordion>
 
   <Accordion title="Claude Sonnet 5">
     AWS dokumentiert Sonnet 5 sowohl für die
-    Endpunkte [`bedrock-runtime` und `bedrock-mantle`](https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-sonnet-5.html).
-    OpenClaw erkennt das Bedrock-Foundation-Modell
+    [Endpunkte `bedrock-runtime` und `bedrock-mantle`](https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-sonnet-5.html).
+    OpenClaw erkennt das Bedrock Foundation Model
     `anthropic.claude-sonnet-5` sowie regionale oder globale Inferenzprofile wie
-    `us.anthropic.claude-sonnet-5`. Es wendet das Kontextfenster mit 1.000.000 Token,
+    `us.anthropic.claude-sonnet-5`. Es verwendet das Kontextfenster mit 1.000.000 Token,
     das Ausgabelimit von 128.000 Token, Bildeingaben, native Aufwandsstufen,
-    Prompt-Caching und ablehnungssicheres Streaming an.
+    Prompt-Caching und ablehnungssicheres Streaming.
 
     Bedrock lässt adaptives Denken für Sonnet 5 aktiviert. OpenClaw verwendet standardmäßig
     `high`; `/think off` und `/think minimal` werden `low` zugeordnet, da diese Route
@@ -388,10 +402,10 @@ openclaw models list
 
   <Accordion title="Schutzmechanismen">
     Sie können [Amazon Bedrock Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html)
-    auf alle Aufrufe von Bedrock-Modellen anwenden, indem Sie der Plugin-Konfiguration
-    `amazon-bedrock` ein Objekt `guardrail` hinzufügen. Mit Schutzmechanismen können Sie Inhaltsfilterung,
-    die Ablehnung von Themen, Wortfilter, Filter für vertrauliche Informationen und Prüfungen
-    der kontextbezogenen Fundierung durchsetzen.
+    auf alle Bedrock-Modellaufrufe anwenden, indem Sie der
+    Plugin-Konfiguration `amazon-bedrock` ein `guardrail`-Objekt hinzufügen. Mit Schutzmechanismen können Sie Inhaltsfilterung,
+    die Ablehnung bestimmter Themen, Wortfilter, Filter für vertrauliche Informationen und Prüfungen
+    der kontextuellen Fundierung erzwingen.
 
     ```json5
     {
@@ -415,20 +429,20 @@ openclaw models list
     `guardrailIdentifier` und `guardrailVersion` sind erforderlich.
 
     | Option | Beschreibung |
-    | ------ | ------------ |
+    | ------ | ----------- |
     | `guardrailIdentifier` | Schutzmechanismus-ID (z. B. `abc123`) oder vollständiger ARN (z. B. `arn:aws:bedrock:us-east-1:123456789012:guardrail/abc123`). |
     | `guardrailVersion` | Veröffentlichte Versionsnummer oder `"DRAFT"` für den Arbeitsentwurf. |
-    | `streamProcessingMode` | `"sync"` oder `"async"` für die Auswertung des Schutzmechanismus während des Streamings. Wenn die Option weggelassen wird, verwendet Bedrock den Standardwert. |
-    | `trace` | `"enabled"` oder `"enabled_full"` zum Debuggen; für die Produktion weglassen oder auf `"disabled"` setzen. |
+    | `streamProcessingMode` | `"sync"` oder `"async"` für die Auswertung des Schutzmechanismus während des Streamings. Wenn dies weggelassen wird, verwendet Bedrock seine Voreinstellung. |
+    | `trace` | `"enabled"` oder `"enabled_full"` zum Debuggen; für den Produktivbetrieb weglassen oder auf `"disabled"` setzen. |
 
     <Warning>
-    Der vom Gateway verwendete IAM-Principal muss zusätzlich zu den standardmäßigen Aufrufberechtigungen über die Berechtigung `bedrock:ApplyGuardrail` verfügen.
+    Der vom Gateway verwendete IAM-Prinzipal muss zusätzlich zu den standardmäßigen Aufrufberechtigungen über die Berechtigung `bedrock:ApplyGuardrail` verfügen.
     </Warning>
 
   </Accordion>
 
   <Accordion title="Einbettungen für die Speichersuche">
-    Bedrock kann auch als Einbettungs-Provider für die
+    Bedrock kann außerdem als Einbettungs-Provider für die
     [Speichersuche](/de/concepts/memory-search) dienen. Dies wird getrennt vom
     Inferenz-Provider konfiguriert – setzen Sie `memory.search.provider` auf `"bedrock"`:
 
@@ -437,19 +451,19 @@ openclaw models list
       memory: {
         search: {
           provider: "bedrock",
-          model: "amazon.titan-embed-text-v2:0", // Standardwert
+          model: "amazon.titan-embed-text-v2:0", // Voreinstellung
         },
       },
     }
     ```
 
-    Bedrock-Einbettungen verwenden dieselbe AWS-SDK-Anmeldedatenkette wie die Inferenz (Instanz-
-    rollen, SSO, Zugriffsschlüssel, gemeinsame Konfiguration und Webidentität). Es ist kein API-Schlüssel
+    Bedrock-Einbettungen verwenden dieselbe AWS-SDK-Anmeldedatenkette wie die Inferenz (Instanzrollen,
+    SSO, Zugriffsschlüssel, gemeinsame Konfiguration und Webidentität). Es ist kein API-Schlüssel
     erforderlich.
 
     Zu den unterstützten Einbettungsmodellen gehören Amazon Titan Embed (v1, v2), Amazon Nova
-    Embed, Cohere Embed (v3, v4) und TwelveLabs Marengo. Die vollständige Modellliste
-    und die Dimensionsoptionen finden Sie in der
+    Embed, Cohere Embed (v3, v4) und TwelveLabs Marengo. Eine vollständige Modellliste und
+    Dimensionsoptionen finden Sie in der
     [Referenz zur Speicherkonfiguration – Bedrock](/de/reference/memory-config#bedrock-embedding-config).
 
   </Accordion>
@@ -458,13 +472,13 @@ openclaw models list
     - Bedrock erfordert, dass der **Modellzugriff** in Ihrem AWS-Konto/Ihrer AWS-Region aktiviert ist.
     - Die automatische Erkennung benötigt die Berechtigungen `bedrock:ListFoundationModels` und
       `bedrock:ListInferenceProfiles`.
-    - Wenn Sie den automatischen Modus verwenden, setzen Sie auf dem Gateway-Host eine der unterstützten
-      AWS-Authentifizierungs-Umgebungsmarkierungen. Wenn Sie eine IMDS-/Shared-Config-Authentifizierung ohne Umgebungsmarkierungen bevorzugen, setzen Sie
+    - Wenn Sie den automatischen Modus verwenden, setzen Sie auf dem
+      Gateway-Host eine der unterstützten AWS-Authentifizierungs-Umgebungsmarkierungen. Wenn Sie die IMDS-/Shared-Config-Authentifizierung ohne Umgebungsmarkierungen bevorzugen, setzen Sie
       `plugins.entries.amazon-bedrock.config.discovery.enabled: true`.
     - OpenClaw zeigt die Anmeldedatenquelle in dieser Reihenfolge an: `AWS_BEARER_TOKEN_BEDROCK`,
-      dann `AWS_ACCESS_KEY_ID` + `AWS_SECRET_ACCESS_KEY`, dann `AWS_PROFILE`, anschließend die
+      dann `AWS_ACCESS_KEY_ID` + `AWS_SECRET_ACCESS_KEY`, dann `AWS_PROFILE`, dann die
       standardmäßige AWS-SDK-Kette.
-    - Die Unterstützung für logisches Denken hängt vom Modell ab; prüfen Sie die Bedrock-Modellkarte auf
+    - Die Unterstützung für Schlussfolgerungen hängt vom Modell ab; prüfen Sie die Bedrock-Modellkarte auf
       aktuelle Funktionen.
     - Wenn Sie einen verwalteten Schlüsselfluss bevorzugen, können Sie auch einen OpenAI-kompatiblen
       Proxy vor Bedrock platzieren und ihn stattdessen als OpenAI-Provider konfigurieren.
