@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de minimax-plugin
 summary: Voegt ondersteuning voor de modelproviders MiniMax en MiniMax Portal toe aan OpenClaw.
-title: MiniMax-Plugin
+title: MiniMax-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:19:38Z"
+    generated_at: "2026-07-27T05:42:27Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Voegt ondersteuning voor de modelproviders MiniMax en MiniMax Portal toe aan Ope
 ## Distributie
 
 - Pakket: `@openclaw/minimax-provider`
-- Installatieroute: inbegrepen in OpenClaw
+- Installatieroute: inbegrepen bij OpenClaw
 
 ## Oppervlak
 

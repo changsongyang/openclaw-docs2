@@ -1,10 +1,10 @@
 ---
 read_when:
-    - tts-local-cli pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: Metinden konuşmaya sağlayıcı desteği ekler.
+    - tts-local-cli pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+summary: Metin okuma sağlayıcısı desteği ekler.
 title: TTS Yerel CLI Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:32:30Z"
+    generated_at: "2026-07-27T00:12:44Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# TTS Yerel CLI Plugin’i
+# TTS Yerel CLI Plugin
 
-Metin okuma sağlayıcısı desteği ekler.
+Metinden konuşmaya sağlayıcı desteği ekler.
 
 ## Dağıtım
 

@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de groq-plugin
 summary: Voegt ondersteuning voor de Groq-modelprovider toe aan OpenClaw.
-title: Groq-Plugin
+title: Groq-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:05:54Z"
+    generated_at: "2026-07-27T05:59:39Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

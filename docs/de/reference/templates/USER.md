@@ -4,7 +4,7 @@ read_when:
 summary: Benutzerprofildatensatz
 title: BENUTZER-Vorlage
 x-i18n:
-    generated_at: "2026-07-24T05:17:08Z"
+    generated_at: "2026-07-26T18:46:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# USER.md – Über die Person, der Sie helfen
+# USER.md – Über Ihren Menschen
 
-_Erfahren Sie mehr über die Person, der Sie helfen. Aktualisieren Sie diese Angaben fortlaufend._
+_Erfahren Sie mehr über die Person, der Sie helfen. Aktualisieren Sie diese Datei fortlaufend._
 
 - **Name:**
 - **Anrede:**
@@ -26,7 +26,7 @@ _Erfahren Sie mehr über die Person, der Sie helfen. Aktualisieren Sie diese Ang
 
 ## Kontext
 
-_(Was ist dieser Person wichtig? An welchen Projekten arbeitet sie? Was stört sie? Was bringt sie zum Lachen? Ergänzen Sie diese Angaben im Laufe der Zeit.)_
+_(Was ist der Person wichtig? An welchen Projekten arbeitet sie? Was stört sie? Was bringt sie zum Lachen? Ergänzen Sie diese Informationen im Laufe der Zeit.)_
 
 ---
 

@@ -4,7 +4,7 @@ read_when:
 summary: एजेंट द्वारा कॉल किए जा सकने वाले टूल जोड़ता है।
 title: ब्राउज़र Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:27:30Z"
+    generated_at: "2026-07-27T18:17:44Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,9 +23,9 @@ x-i18n:
 - पैकेज: `@openclaw/browser-plugin`
 - इंस्टॉल मार्ग: OpenClaw में शामिल
 
-## सतह
+## उपलब्ध सतह
 
-अनुबंध: `tools`; कौशल
+अनुबंध: `tools`; Skills
 
 ## संबंधित दस्तावेज़
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sesli arama Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: Twilio, Telnyx ve Plivo telefon aramaları için OpenClaw sesli arama Plugin'i.
+    - Sesli arama pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+summary: Twilio, Telnyx ve Plivo telefon aramaları için OpenClaw sesli arama plugini.
 title: Sesli Arama Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:27:26Z"
+    generated_at: "2026-07-27T00:09:22Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -25,7 +25,7 @@ Twilio, Telnyx ve Plivo telefon aramaları için OpenClaw sesli arama plugin'i.
 
 ## Yüzey
 
-sözleşmeler: `tools`; beceriler
+sözleşmeler: `tools`; skills
 
 ## İlgili belgeler
 

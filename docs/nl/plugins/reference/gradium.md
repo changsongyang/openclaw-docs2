@@ -4,7 +4,7 @@ read_when:
 summary: Voegt ondersteuning voor tekst-naar-spraakproviders toe.
 title: Gradium-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:18:50Z"
+    generated_at: "2026-07-27T05:42:01Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Lobster pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: Türü belirlenmiş işlem hatları ve devam ettirilebilir onaylar için Lobster iş akışı aracı plugini.
-title: Lobster Plugin'i
+    - Lobster pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+summary: Tür güvenli işlem hatları ve devam ettirilebilir onaylar için Lobster iş akışı aracı Plugin'i.
+title: Lobster Plugin
 x-i18n:
-    generated_at: "2026-07-16T17:25:51Z"
+    generated_at: "2026-07-26T23:52:55Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Lobster Plugin
+# Lobster plugin
 
-Türü belirlenmiş işlem hatları ve sürdürülebilir onaylar için Lobster iş akışı aracı Plugin'i.
+Türü belirlenmiş işlem hatları ve sürdürülebilir onaylar için Lobster iş akışı aracı plugini.
 
 ## Dağıtım
 

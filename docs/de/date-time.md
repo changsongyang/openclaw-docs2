@@ -2,10 +2,10 @@
 read_when:
     - Sie ändern, wie Zeitstempel dem Modell oder den Benutzern angezeigt werden
     - Sie debuggen die Zeitformatierung in Nachrichten oder in der Ausgabe des System-Prompts
-summary: Datums- und Zeitverarbeitung über Envelopes, Prompts, Tools und Konnektoren hinweg
+summary: Datums- und Zeitverarbeitung in Envelopes, Prompts, Tools und Konnektoren
 title: Datum und Uhrzeit
 x-i18n:
-    generated_at: "2026-07-24T05:01:31Z"
+    generated_at: "2026-07-26T18:56:38Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,7 +15,7 @@ x-i18n:
     workflow: 16
 ---
 
-OpenClaw verwendet **hostlokale Zeit für Transport-Zeitstempel** und fügt **nur die Zeitzone** in den System-Prompt ein.
+OpenClaw verwendet **die lokale Zeit des Hosts für Transportzeitstempel** und fügt **nur die Zeitzone** in den System-Prompt ein.
 Provider-Zeitstempel bleiben erhalten, damit Tools ihre nativen Semantiken beibehalten. Wenn der Agent die aktuelle
 Uhrzeit benötigt, führt er das Tool `session_status` aus.
 
@@ -44,9 +44,9 @@ Der Zeitstempel des Umschlags ist **standardmäßig hostlokal**, unabhängig von
 
 | Schlüssel             | Werte                                                | Verhalten                                                                                                                                                                       |
 | --------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `envelopeTimezone`  | `local` (Standard), `utc`, `user`, expliziter IANA-Name | `user` verwendet `agents.defaults.userTimezone` (Host-Zeitzone, wenn nicht festgelegt). Ein expliziter IANA-Name (z. B. `"America/Chicago"`) legt eine feste Zone fest; nicht erkannte Namen greifen auf UTC zurück. |
-| `envelopeTimestamp` | `on` (Standard), `off`                                | `off` entfernt absolute Zeitstempel aus Umschlagkopfzeilen, direkten Agent-Prompt-Präfixen und eingebetteten Modelleingabe-Präfixen.                                                       |
-| `envelopeElapsed`   | `on` (Standard), `off`                                | `off` entfernt das Suffix für die verstrichene Zeit (im Stil von `+30s` / `+2m`), das die Zeit seit der vorherigen Nachricht in der Sitzung anzeigt.                                                               |
+| `envelopeTimezone`  | `local` (Standard), `utc`, `user`, expliziter IANA-Name | `user` verwendet `agents.defaults.userTimezone` (Zeitzone des Hosts, wenn nicht festgelegt). Ein expliziter IANA-Name (z. B. `"America/Chicago"`) legt eine feste Zone fest; nicht erkannte Namen fallen auf UTC zurück. |
+| `envelopeTimestamp` | `on` (Standard), `off`                                | `off` entfernt absolute Zeitstempel aus Umschlag-Headern, direkten Präfixen des Agent-Prompts und eingebetteten Präfixen der Modelleingabe.                                                       |
+| `envelopeElapsed`   | `on` (Standard), `off`                                | `off` entfernt das Suffix für die verstrichene Zeit (im Stil von `+30s` / `+2m`), das die Zeit seit der vorherigen Nachricht in der Sitzung angibt.                                                               |
 
 ### Beispiele
 
@@ -71,20 +71,20 @@ Der Zeitstempel des Umschlags ist **standardmäßig hostlokal**, unabhängig von
 ## System-Prompt: aktuelles Datum und aktuelle Uhrzeit
 
 Der System-Prompt enthält einen Abschnitt **Aktuelles Datum und aktuelle Uhrzeit**, der **nur die Zeitzone**
-enthält (keine Uhrzeit oder kein Zeitformat), damit das Prompt-Caching stabil bleibt:
+(keine Uhrzeit und kein Zeitformat) enthält, damit das Prompt-Caching stabil bleibt:
 
 ```
 Zeitzone: America/Chicago
 ```
 
-Die Zone ist `agents.defaults.userTimezone`, wenn dies konfiguriert ist, andernfalls die Host-Zeitzone.
+Die Zone ist `agents.defaults.userTimezone`, wenn sie konfiguriert ist, andernfalls die Zeitzone des Hosts.
 Der Prompt weist den Agenten außerdem an, das Tool `session_status` auszuführen, wenn er das
-aktuelle Datum, die aktuelle Uhrzeit oder den Wochentag benötigt.
+aktuelle Datum, die aktuelle Uhrzeit oder den aktuellen Wochentag benötigt.
 
 ## Systemereigniszeilen (standardmäßig lokal)
 
 Systemereignisse in der Warteschlange, die in den Agentenkontext eingefügt werden, erhalten einen Zeitstempel als Präfix, der dieselbe
-Auswahl `envelopeTimezone` wie Nachrichtenumschläge verwendet (Standard: hostlokal).
+Auswahl über `envelopeTimezone` wie Nachrichtenumschläge verwendet (Standard: hostlokal).
 
 ```
 System: [2026-01-12 12:19:17 PST] Modell gewechselt.
@@ -103,31 +103,31 @@ System: [2026-01-12 12:19:17 PST] Modell gewechselt.
 }
 ```
 
-- `userTimezone` legt die **benutzerlokale Zeitzone** für den Prompt-Kontext (und für `envelopeTimezone: "user"`) fest.
-- `timeFormat` steuert die **12-/24-Stunden-Anzeige** in Prompt-bezogenen Zeitangaben. `auto` folgt den Betriebssystemeinstellungen.
+- `userTimezone` legt die **lokale Zeitzone des Benutzers** für den Prompt-Kontext (und für `envelopeTimezone: "user"`) fest.
+- `timeFormat` steuert die **12-/24-Stunden-Anzeige** für Uhrzeiten im Prompt. `auto` folgt den Betriebssystemeinstellungen.
 
 ## Erkennung des Zeitformats (automatisch)
 
 Bei `timeFormat: "auto"` prüft OpenClaw die Betriebssystemeinstellung (macOS und Windows)
-und greift andernfalls auf die Gebietsschemaformatierung zurück. Der erkannte Wert wird **prozessbezogen zwischengespeichert**,
+und greift andernfalls auf die Formatierung des Gebietsschemas zurück. Der erkannte Wert wird **prozessbezogen zwischengespeichert**,
 um wiederholte Systemaufrufe zu vermeiden.
 
-## Tool-Nutzdaten und Konnektoren (unverarbeitete Provider-Zeit und normalisierte Felder)
+## Tool-Nutzdaten und Konnektoren (unverarbeitete Provider-Zeit + normalisierte Felder)
 
 Kanal-Tools geben **Provider-native Zeitstempel** zurück und fügen zur Konsistenz normalisierte Felder hinzu:
 
-- `timestampMs`: Epochenzeit in Millisekunden (UTC)
-- `timestampUtc`: UTC-Zeichenfolge im ISO-8601-Format
+- `timestampMs`: Epoch-Millisekunden (UTC)
+- `timestampUtc`: ISO-8601-UTC-Zeichenfolge
 
-Unverarbeitete Provider-Felder bleiben erhalten, damit nichts verloren geht.
+Die unverarbeiteten Provider-Felder bleiben erhalten, damit nichts verloren geht.
 
-- Discord: UTC-Zeitstempel im ISO-Format
-- Slack: epochenzeitähnliche Zeichenfolgen aus der API
+- Discord: ISO-Zeitstempel in UTC
+- Slack: Epoch-ähnliche Zeichenfolgen aus der API
 - Telegram/WhatsApp: providerspezifische numerische/ISO-Zeitstempel
 
-Wenn Sie lokale Zeit benötigen, konvertieren Sie sie nachgelagert mithilfe der bekannten Zeitzone.
+Wenn Sie die lokale Zeit benötigen, konvertieren Sie sie nachgelagert mithilfe der bekannten Zeitzone.
 
-## Verwandte Dokumentation
+## Zugehörige Dokumentation
 
 - [System-Prompt](/de/concepts/system-prompt)
 - [Zeitzonen](/de/concepts/timezone)

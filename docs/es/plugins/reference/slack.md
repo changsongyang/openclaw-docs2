@@ -4,7 +4,7 @@ read_when:
 summary: Plugin del canal de Slack de OpenClaw para canales, mensajes directos, comandos y eventos de la aplicación.
 title: Plugin de Slack
 x-i18n:
-    generated_at: "2026-07-16T11:54:10Z"
+    generated_at: "2026-07-26T04:46:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

@@ -2,9 +2,9 @@
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin ‏groq هستید
 summary: پشتیبانی از ارائه‌دهنده مدل Groq را به OpenClaw اضافه می‌کند.
-title: Plugin Groq
+title: Plugin گروک
 x-i18n:
-    generated_at: "2026-07-16T16:55:29Z"
+    generated_at: "2026-07-27T15:55:24Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -29,4 +29,4 @@ x-i18n:
 
 ## مستندات مرتبط
 
-- [Groq](/fa/providers/groq)
+- [groq](/fa/providers/groq)

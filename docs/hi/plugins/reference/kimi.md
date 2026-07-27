@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw में Kimi और Kimi Coding मॉडल प्रदाता का समर्थन जोड़ता है।
 title: Kimi Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:40:51Z"
+    generated_at: "2026-07-27T19:39:14Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,17 +16,17 @@ x-i18n:
 
 # Kimi Plugin
 
-OpenClaw में Kimi और Kimi Coding मॉडल प्रदाता का समर्थन जोड़ता है।
+OpenClaw में Kimi और Kimi Coding मॉडल प्रदाता के लिए समर्थन जोड़ता है।
 
 ## वितरण
 
 - पैकेज: `@openclaw/kimi-provider`
 - इंस्टॉल मार्ग: npm; ClawHub: `clawhub:@openclaw/kimi-provider`
 
-## उपलब्ध सतह
+## सतह
 
 प्रदाता: `kimi`, `kimi-coding`
 
 ## संबंधित दस्तावेज़
 
-- [kimi](/hi/providers/moonshot)
+- [Kimi](/hi/providers/moonshot)

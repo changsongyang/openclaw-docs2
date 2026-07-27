@@ -1,10 +1,10 @@
 ---
 read_when:
     - sms Plugin のインストール、設定、または監査を行っている場合
-summary: OpenClawテキストメッセージ用のTwilio SMSチャンネルPlugin。
-title: SMS Plugin
+summary: OpenClaw テキストメッセージ用 Twilio SMS チャネル Plugin。
+title: Sms Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:59:55Z"
+    generated_at: "2026-07-26T09:37:53Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,16 +16,16 @@ x-i18n:
 
 # SMS Plugin
 
-OpenClawのテキストメッセージ用Twilio SMSチャンネルPlugin。
+OpenClaw テキストメッセージ用の Twilio SMS チャネル Plugin。
 
 ## 配布
 
 - パッケージ: `@openclaw/sms`
 - インストール経路: npm、ClawHub: `clawhub:@openclaw/sms`
 
-## サーフェス
+## 対応範囲
 
-チャンネル: `sms`
+チャネル: `sms`
 
 ## 関連ドキュメント
 

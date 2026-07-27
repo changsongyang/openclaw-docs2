@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das reef-Plugin
+    - Sie installieren, konfigurieren oder prüfen das reef-Plugin.
 summary: Abgesicherter Ende-zu-Ende-verschlüsselter Claw-Kanal.
 title: Reef-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:04:47Z"
+    generated_at: "2026-07-26T18:03:10Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Reef-Plugin
 
-Geschützter Ende-zu-Ende-verschlüsselter Claw-Kanal.
+Abgesicherter, Ende-zu-Ende-verschlüsselter Claw-Kanal.
 
 ## Distribution
 
@@ -29,4 +29,4 @@ Kanäle: `reef`
 
 ## Zugehörige Dokumentation
 
-- [reef](/channels/reef)
+- [reef](/de/channels/reef)

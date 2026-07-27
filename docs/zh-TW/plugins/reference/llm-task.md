@@ -4,7 +4,7 @@ read_when:
 summary: 可從工作流程呼叫、用於結構化任務的通用純 JSON LLM 工具。
 title: LLM 任務外掛
 x-i18n:
-    generated_at: "2026-07-16T11:49:05Z"
+    generated_at: "2026-07-26T08:06:06Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # LLM 任務外掛
 
-通用的純 JSON LLM 工具，可供工作流程呼叫以執行結構化任務。
+供工作流程呼叫、用於結構化任務的通用純 JSON LLM 工具。
 
-## 發行方式
+## 發佈
 
 - 套件：`@openclaw/llm-task`
-- 安裝途徑：隨附於 OpenClaw
+- 安裝途徑：已包含在 OpenClaw 中
 
 ## 介面
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - codex pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - codex pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
 summary: Codex app-server test düzeneği ve yerel oturum kataloğu.
-title: Codex plugin'i
+title: Codex plugini
 x-i18n:
-    generated_at: "2026-07-16T17:43:13Z"
+    generated_at: "2026-07-26T22:54:51Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Codex plugin'i
 
-Codex app-server çalışma düzeneği ve yerel oturum kataloğu.
+Codex app-server test düzeneği ve yerel oturum kataloğu.
 
 ## Dağıtım
 

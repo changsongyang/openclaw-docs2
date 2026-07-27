@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Sie möchten Sicherheitserkenntnisse oder Bedrohungsszenarien beitragen
-    - Überprüfung oder Aktualisierung des Bedrohungsmodells
-summary: So tragen Sie zum OpenClaw-Bedrohungsmodell bei
-title: Mitwirkung am Bedrohungsmodell
+    - Sie möchten Sicherheitsbefunde oder Bedrohungsszenarien beitragen
+    - Überprüfen oder Aktualisieren des Bedrohungsmodells
+summary: So tragen Sie zum Bedrohungsmodell von OpenClaw bei
+title: Zum Bedrohungsmodell beitragen
 x-i18n:
-    generated_at: "2026-07-24T05:21:45Z"
+    generated_at: "2026-07-26T19:14:58Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,10 +15,10 @@ x-i18n:
     workflow: 16
 ---
 
-Das [Bedrohungsmodell](/de/security/THREAT-MODEL-ATLAS) ist ein fortlaufend aktualisiertes Dokument. Beiträge von allen Personen sind willkommen; Vorkenntnisse im Bereich Sicherheit oder MITRE ATLAS sind nicht erforderlich.
+Das [Bedrohungsmodell](/de/security/THREAT-MODEL-ATLAS) ist ein fortlaufend gepflegtes Dokument. Beiträge von allen sind willkommen; Vorkenntnisse im Bereich Sicherheit oder MITRE ATLAS sind nicht erforderlich.
 
 <Note>
-Dieser Abschnitt dient dazu, das Bedrohungsmodell zu ergänzen, nicht dazu, aktive Schwachstellen zu melden. Wenn Sie eine ausnutzbare Schwachstelle gefunden haben, befolgen Sie stattdessen die Anweisungen zur verantwortungsvollen Offenlegung auf der [Trust-Seite](https://trust.openclaw.ai).
+Dieser Abschnitt dient dazu, das Bedrohungsmodell zu ergänzen, nicht dazu, aktuelle Schwachstellen zu melden. Wenn Sie eine ausnutzbare Schwachstelle gefunden haben, befolgen Sie stattdessen die Anweisungen zur verantwortungsvollen Offenlegung auf der [Trust-Seite](https://trust.openclaw.ai).
 </Note>
 
 ## Möglichkeiten zur Mitwirkung
@@ -28,47 +28,47 @@ Dieser Abschnitt dient dazu, das Bedrohungsmodell zu ergänzen, nicht dazu, akti
 - Das Angriffsszenario und wie es ausgenutzt werden könnte.
 - Welche Komponenten betroffen sind (CLI, Gateway, Kanäle, ClawHub, MCP-Server usw.).
 - Ihre Einschätzung des Schweregrads (niedrig / mittel / hoch / kritisch).
-- Links zu relevanten Forschungsarbeiten, CVEs oder Praxisbeispielen.
+- Links zu einschlägiger Forschung, CVEs oder realen Beispielen.
 
 Die Maintainer weisen während der Überprüfung die ATLAS-Zuordnung, die Bedrohungs-ID und die Risikostufe zu.
 
-**Eine Gegenmaßnahme vorschlagen.** Erstellen Sie ein Issue oder einen PR mit einem Verweis auf die Bedrohung. Formulieren Sie den Vorschlag konkret und umsetzbar: „Absenderbezogene Ratenbegrenzung auf 10 Nachrichten/Minute am Gateway“ ist hilfreicher als „Ratenbegrenzung implementieren“.
+**Eine Gegenmaßnahme vorschlagen.** Erstellen Sie ein Issue oder einen PR mit einem Verweis auf die Bedrohung. Formulieren Sie den Vorschlag konkret und umsetzbar: „Absenderspezifische Ratenbegrenzung auf 10 Nachrichten/Minute am Gateway“ ist hilfreicher als „Ratenbegrenzung implementieren“.
 
-**Eine Angriffskette vorschlagen.** Angriffsketten zeigen, wie mehrere Bedrohungen zu einem realistischen Szenario kombiniert werden können. Beschreiben Sie die Schritte und wie ein Angreifer sie verketten würde; eine kurze Schilderung ist besser als eine formale Vorlage.
+**Eine Angriffskette vorschlagen.** Angriffsketten zeigen, wie mehrere Bedrohungen zu einem realistischen Szenario kombiniert werden. Beschreiben Sie die Schritte und wie ein Angreifer sie miteinander verknüpfen würde; eine kurze Schilderung ist besser als eine formale Vorlage.
 
 **Vorhandene Inhalte korrigieren oder verbessern.** Tippfehler, Klarstellungen, veraltete Informationen, bessere Beispiele: PRs sind willkommen, ein Issue ist nicht erforderlich.
 
 ## Framework-Referenz
 
-Bedrohungen werden [MITRE ATLAS](https://atlas.mitre.org/) (Adversarial Threat Landscape for AI Systems) zugeordnet, einem Framework für KI-/ML-spezifische Bedrohungen wie Prompt-Injection, Werkzeugmissbrauch und die Ausnutzung von Agenten. Für einen Beitrag müssen Sie ATLAS nicht kennen; die Maintainer ordnen Einreichungen während der Überprüfung zu.
+Bedrohungen werden [MITRE ATLAS](https://atlas.mitre.org/) (Adversarial Threat Landscape for AI Systems) zugeordnet, einem Framework für KI-/ML-spezifische Bedrohungen wie Prompt-Injection, Werkzeugmissbrauch und die Ausnutzung von Agenten. Sie müssen ATLAS nicht kennen, um einen Beitrag zu leisten; die Maintainer ordnen Einreichungen während der Überprüfung zu.
 
-**Bedrohungs-IDs.** Jede Bedrohung erhält eine ID wie `T-EXEC-003`, die während der Überprüfung von den Maintainern vergeben wird.
+**Bedrohungs-IDs.** Jede Bedrohung erhält eine ID wie `T-EXEC-003`, die während der Überprüfung von den Maintainern zugewiesen wird.
 
-| Code    | Kategorie                                  |
-| ------- | ------------------------------------------ |
-| RECON   | Aufklärung – Informationsbeschaffung       |
-| ACCESS  | Erstzugriff – Zugang erlangen              |
-| EXEC    | Ausführung – schädliche Aktionen ausführen |
-| PERSIST | Persistenz – Zugriff aufrechterhalten      |
-| EVADE   | Umgehung von Schutzmaßnahmen – Erkennung vermeiden |
+| Code    | Kategorie                                      |
+| ------- | ---------------------------------------------- |
+| RECON   | Aufklärung – Informationsbeschaffung           |
+| ACCESS  | Erstzugriff – Zugang erlangen                   |
+| EXEC    | Ausführung – schädliche Aktionen ausführen     |
+| PERSIST | Persistenz – Zugriff aufrechterhalten          |
+| EVADE   | Umgehung von Abwehrmaßnahmen – Erkennung vermeiden |
 | DISC    | Erkundung – Informationen über die Umgebung gewinnen |
-| EXFIL   | Exfiltration – Daten entwenden             |
-| IMPACT  | Auswirkung – Schaden oder Störung          |
+| EXFIL   | Exfiltration – Daten stehlen                   |
+| IMPACT  | Auswirkung – Schäden oder Störungen verursachen |
 
 **Risikostufen.** Wenn Sie sich bei der Stufe unsicher sind, beschreiben Sie einfach die Auswirkungen; die Maintainer nehmen die Bewertung vor.
 
-| Stufe          | Bedeutung                                                        |
-| -------------- | ---------------------------------------------------------------- |
-| **Kritisch**   | Vollständige Kompromittierung des Systems oder hohe Wahrscheinlichkeit + kritische Auswirkungen |
-| **Hoch**       | Erheblicher Schaden wahrscheinlich oder mittlere Wahrscheinlichkeit + kritische Auswirkungen |
-| **Mittel**     | Moderates Risiko oder geringe Wahrscheinlichkeit + hohe Auswirkungen |
-| **Niedrig**    | Unwahrscheinlich und begrenzte Auswirkungen                      |
+| Stufe         | Bedeutung                                                        |
+| ------------- | ---------------------------------------------------------------- |
+| **Kritisch**  | Vollständige Kompromittierung des Systems oder hohe Wahrscheinlichkeit + kritische Auswirkungen |
+| **Hoch**      | Erhebliche Schäden wahrscheinlich oder mittlere Wahrscheinlichkeit + kritische Auswirkungen |
+| **Mittel**    | Mittleres Risiko oder geringe Wahrscheinlichkeit + hohe Auswirkungen |
+| **Niedrig**   | Unwahrscheinlich und begrenzte Auswirkungen                      |
 
 ## Überprüfungsprozess
 
 1. **Triage** – neue Einreichungen werden innerhalb von 48 Stunden überprüft.
-2. **Bewertung** – Maintainer prüfen die Umsetzbarkeit, weisen die ATLAS-Zuordnung und die Bedrohungs-ID zu und validieren die Risikostufe.
-3. **Dokumentation** – Prüfung von Formatierung und Vollständigkeit.
+2. **Bewertung** – die Maintainer prüfen die Umsetzbarkeit, weisen die ATLAS-Zuordnung und die Bedrohungs-ID zu und validieren die Risikostufe.
+3. **Dokumentation** – Überprüfung von Formatierung und Vollständigkeit.
 4. **Zusammenführung** – Aufnahme in das Bedrohungsmodell und die Visualisierung.
 
 ## Ressourcen

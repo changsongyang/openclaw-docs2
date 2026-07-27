@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin deepseek
-summary: Añade compatibilidad con el proveedor de modelos DeepSeek en OpenClaw.
+    - Se está instalando, configurando o auditando el plugin deepseek
+summary: Añade compatibilidad con el proveedor de modelos DeepSeek a OpenClaw.
 title: Plugin de DeepSeek
 x-i18n:
-    generated_at: "2026-07-16T11:47:04Z"
+    generated_at: "2026-07-26T05:14:21Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Añade compatibilidad con el proveedor de modelos DeepSeek a OpenClaw.
 ## Distribución
 
 - Paquete: `@openclaw/deepseek-provider`
-- Método de instalación: npm; ClawHub: `clawhub:@openclaw/deepseek-provider`
+- Ruta de instalación: npm; ClawHub: `clawhub:@openclaw/deepseek-provider`
 
 ## Superficie
 
@@ -29,4 +29,4 @@ proveedores: `deepseek`; contratos: `usageProviders`
 
 ## Documentación relacionada
 
-- [deepseek](/es/providers/deepseek)
+- [DeepSeek](/es/providers/deepseek)

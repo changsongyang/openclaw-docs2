@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin de Alibaba
+    - Está instalando, configurando o auditando el plugin alibaba
 summary: Añade compatibilidad con proveedores de generación de vídeo.
 title: Plugin de Alibaba
 x-i18n:
-    generated_at: "2026-07-16T11:49:13Z"
+    generated_at: "2026-07-26T05:20:15Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -29,4 +29,4 @@ contratos: `videoGenerationProviders`
 
 ## Documentación relacionada
 
-- [Alibaba](/es/providers/alibaba)
+- [alibaba](/es/providers/alibaba)

@@ -4,7 +4,7 @@ read_when:
 summary: پشتیبانی از ارائه‌دهنده مدل Mistral را به OpenClaw اضافه می‌کند.
 title: Plugin میسترال
 x-i18n:
-    generated_at: "2026-07-16T16:56:27Z"
+    generated_at: "2026-07-27T15:56:20Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

@@ -1,10 +1,10 @@
 ---
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin پیامک هستید
-summary: Plugin کانال پیامک Twilio برای پیام‌های متنی OpenClaw.
-title: Plugin پیامک
+summary: Plugin کانال SMS ‏Twilio برای پیام‌های متنی OpenClaw.
+title: پلاگین پیامک
 x-i18n:
-    generated_at: "2026-07-16T17:03:57Z"
+    generated_at: "2026-07-27T15:45:02Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

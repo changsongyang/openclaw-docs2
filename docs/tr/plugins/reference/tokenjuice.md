@@ -1,10 +1,10 @@
 ---
 read_when:
-    - tokenjuice pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: exec ve bash aracı sonuçlarını tokenjuice indirgeyicileriyle sıkıştırır.
-title: Tokenjuice Plugin'i
+    - Tokenjuice pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+summary: Exec ve bash aracı sonuçlarını tokenjuice indirgeyicileriyle sıkıştırır.
+title: Tokenjuice plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:27:13Z"
+    generated_at: "2026-07-27T00:09:11Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Tokenjuice plugin'i
+# Tokenjuice plugin’i
 
-exec ve bash aracı sonuçlarını tokenjuice indirgeyicileriyle sıkıştırır.
+exec ve bash araç sonuçlarını tokenjuice indirgeyicileriyle sıkıştırır.
 
 ## Dağıtım
 

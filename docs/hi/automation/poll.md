@@ -2,7 +2,7 @@
 summary: /cli/message पर रीडायरेक्ट करें
 title: मतदान
 x-i18n:
-    generated_at: "2026-07-19T07:56:20Z"
+    generated_at: "2026-07-27T19:06:42Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -12,7 +12,7 @@ x-i18n:
     workflow: 16
 ---
 
-यह पृष्ठ स्थानांतरित हो गया है। पोल दस्तावेज़, जिसमें `openclaw message poll` फ़्लैग और प्रति-चैनल सीमाएँ शामिल हैं, [संदेश टूल](/hi/cli/message) में उपलब्ध है।
+यह पृष्ठ स्थानांतरित हो गया है। पोल दस्तावेज़, जिनमें `openclaw message poll` फ़्लैग और प्रति-चैनल सीमाएँ शामिल हैं, अब [संदेश टूल](/hi/cli/message) में उपलब्ध हैं।
 
 ## संबंधित
 

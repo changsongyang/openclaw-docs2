@@ -1,10 +1,10 @@
 ---
 read_when:
-    - vercel-ai-gateway pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+    - vercel-ai-gateway pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a Vercel AI Gateway model sağlayıcısı desteği ekler.
-title: Vercel AI Gateway plugin'i
+title: Vercel AI Gateway Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:32:36Z"
+    generated_at: "2026-07-26T23:29:11Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Vercel AI Gateway plugin’i
+# Vercel AI Gateway Plugin'i
 
-OpenClaw’a Vercel AI Gateway model sağlayıcısı desteği ekler.
+OpenClaw'a Vercel AI Gateway model sağlayıcısı desteği ekler.
 
 ## Dağıtım
 

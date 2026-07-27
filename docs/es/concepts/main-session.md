@@ -1,12 +1,12 @@
 ---
 read_when:
-    - Quieres entender dónde «vive» tu agente
-    - Se espera el mismo contexto tanto si se escribe en Telegram, WhatsApp o la web
-    - Quieres que tu agente sepa qué ocurre en los grupos y los hilos secundarios
-summary: 'Una conversación continua en todos tus canales: la opción predeterminada del agente personal'
+    - Quiere comprender dónde «vive» su agente
+    - Esperas el mismo contexto tanto si escribes en Telegram, WhatsApp o la web
+    - Quiere que su agente sepa qué sucede en los grupos y los hilos secundarios
+summary: 'Una conversación continua en todos tus canales: la configuración predeterminada del agente personal'
 title: La sesión principal
 x-i18n:
-    generated_at: "2026-07-19T13:34:34Z"
+    generated_at: "2026-07-26T05:05:31Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,41 +17,41 @@ x-i18n:
 ---
 
 OpenClaw es, ante todo, un agente personal. De forma predeterminada, cada mensaje directo que
-se le envía —desde Telegram, WhatsApp, iMessage, mensajes directos de Slack, la aplicación web, cualquier lugar—
+se le envía —desde Telegram, WhatsApp, iMessage, mensajes directos de Slack, la aplicación web o cualquier otro lugar—
 llega a **una única conversación continua**: la sesión principal. Se puede preguntar algo desde el
-teléfono, continuar desde el portátil y el agente tendrá el mismo contexto en ambos
+teléfono y continuar desde el portátil, y el agente tendrá el mismo contexto en ambos
 lugares. Hay un solo cerebro, y aquí es donde piensa.
 
-Internamente, la sesión principal es una sesión normal con la clave
+En segundo plano, la sesión principal es una sesión normal con la clave
 `agent:<agentId>:main` (por ejemplo, `agent:main:main`). Lo que la hace especial
-es que el ámbito predeterminado de los mensajes directos los concentra todos en ella y que
-el resto del sistema la trata como la raíz del agente: los Heartbeats la activan,
-el trabajo en segundo plano le comunica sus resultados y la actividad de otros lugares converge en ella.
+es que el ámbito predeterminado de los mensajes directos agrupa en ella todos los mensajes directos, y que
+el resto del sistema la trata como la raíz del agente: los heartbeats la activan,
+el trabajo en segundo plano le comunica sus resultados y la actividad de otros lugares fluye hacia ella.
 
 ## Inicio
 
 En la aplicación web, la sesión principal es la página **Inicio**, la primera entrada de la
-barra lateral. La fila de identidad de la parte superior corresponde al agente (se puede hacer clic en ella para abrir el menú
-del agente); Inicio es donde se conversa con él. Las sesiones que se bifurcan de la
-conversación principal aparecen en **Hilos**, los chats grupales en **Grupos** y
-las sesiones de programación o CLI en **Programación**.
+barra lateral. La fila de identidad de la parte superior corresponde al agente (al hacer clic en ella se abre el menú
+del agente); Inicio es donde se conversa con él. Las sesiones que se bifurcan de la conversación
+principal aparecen en **Hilos**, los chats grupales en **Grupos** y
+las sesiones de programación/CLI en **Programación**.
 
-## Qué converge en la sesión principal
+## Qué fluye hacia la sesión principal
 
 La sesión principal no es solo un registro de chat; es el lugar donde converge el
 mundo del agente:
 
-- **Actividad de los grupos.** Las sesiones de grupos y salas permanecen aisladas (véase más abajo), pero,
+- **Actividad de grupos.** Las sesiones de grupos y salas permanecen aisladas (véase más adelante), pero
   con el ámbito predeterminado de los mensajes directos, la sesión principal las observa automáticamente.
   La actividad se acumula como avisos compactos —agrupados por conversación, nunca
-  una activación por mensaje— y el agente los ve la próxima vez que se ejecuta: al
-  recibir el siguiente mensaje o durante un Heartbeat programado. El agente también puede leer las
-  sesiones que observa, por lo que funciona preguntar «¿qué me perdí en el grupo familiar?».
+  una activación por mensaje— y el agente los ve la próxima vez que se ejecuta: con
+  el siguiente mensaje o en un heartbeat programado. El agente también puede leer las
+  sesiones que observa, por lo que «¿qué me perdí en el grupo familiar?» funciona.
 - **Trabajo en segundo plano.** Los subagentes y las sesiones generadas comunican sus resultados
   a la sesión que los inició, por lo que el trabajo que el agente inició desde
   Inicio comunica sus resultados a Inicio.
-- **Heartbeats.** Los Heartbeats programados se dirigen a la sesión principal, lo que
-  convierte los avisos en espera en información conocida incluso cuando no se ha escrito nada.
+- **Heartbeats.** Los heartbeats programados se dirigen a la sesión principal, lo que
+  convierte los avisos en espera en conocimiento incluso cuando no se ha escrito nada.
 
 ## Memoria entre restablecimientos y conversaciones
 
@@ -59,32 +59,32 @@ La conversación continua está limitada por la ventana de contexto del modelo, 
 la continuidad proviene de las capas que la rodean:
 
 - `MEMORY.md`, la memoria a largo plazo seleccionada por el agente, se carga en cada
-  sesión nueva. Las notas diarias (`memory/YYYY-MM-DD.md`) pueden buscarse bajo demanda,
-  y las recientes vuelven a cargarse después de un `/new` o `/reset`. Antes de la Compaction,
+  sesión nueva. Las notas diarias (`memory/YYYY-MM-DD.md`) se pueden buscar cuando sea necesario
+  y las recientes se vuelven a cargar después de un `/new` o `/reset`. Antes de la Compaction,
   el agente guarda los hechos duraderos en las notas diarias para que las conversaciones largas
   no los pierdan silenciosamente.
-- **La recuperación de memoria entre conversaciones** permite que el agente recuerde contenido de
-  sus otras sesiones privadas. En configuraciones personales —con el
-  `session.dmScope` global resolviéndose como `main` y sin anulaciones del ámbito de mensajes directos por vinculación—
-  está habilitada de forma predeterminada; cualquier aislamiento configurado para los mensajes directos la desactiva, salvo que se
-  habilite explícitamente. Véase [Configuración de la memoria](/es/reference/memory-config).
+- **Recuperación de memoria entre conversaciones** permite al agente recordar contenido de
+  sus otras sesiones privadas. En configuraciones personales —cuando el
+  `session.dmScope` global se resuelve como `main` sin anulaciones de mensajes directos por vinculación—
+  está habilitada de forma predeterminada; cualquier aislamiento de mensajes directos configurado la desactiva, salvo que se
+  habilite explícitamente. Véase [Configuración de memoria](/es/reference/memory-config).
 
 ## Una sesión continua con historial duradero
 
-La sesión principal continúa a través de restablecimientos y de la Compaction, en lugar de
+La sesión principal avanza mediante restablecimientos y Compaction, en lugar de
 hacer que el modelo mantenga todo su historial a la vez:
 
-- De forma predeterminada, no hay ningún restablecimiento automático; la Compaction mantiene limitado el contexto activo
-  mientras conserva la sesión continua. Los restablecimientos diarios y por inactividad son
+- De forma predeterminada, no hay ningún restablecimiento automático; la Compaction mantiene acotado el contexto activo
+  a la vez que conserva la sesión continua. Los restablecimientos diarios y por inactividad son
   opcionales (véase [Gestión de sesiones](/es/concepts/session)). Con `/new` y `/reset`,
-  el final de la conversación que termina se guarda en las notas diarias de memoria, y la
+  la parte final de la conversación que termina se guarda en notas de memoria diarias, y la
   siguiente sesión vuelve a cargar las notas recientes. El restablecimiento asigna un nuevo identificador de sesión activa, pero
   mantiene la transcripción anterior de SQLite disponible para búsquedas con la misma clave de la sesión
   principal.
-- Cuando la conversación se acerca al límite de la ventana de contexto, la Compaction la resume
+- Cuando la conversación se aproxima a la ventana de contexto, la Compaction la resume
   y continúa en el mismo lugar; el historial de la transcripción permanece en el almacén de sesiones.
-- Las listas de sesiones muestran la conversación activa actual, no todos los identificadores
-  históricos de sesiones que hay tras ella.
+- Las listas de sesiones muestran la conversación activa actual, no todos los identificadores de
+  sesiones históricas que contiene.
 - Cuando la base de datos física, el WAL y los artefactos de sesión del almacén por agente
   superan el presupuesto de disco (10 GB de forma predeterminada), OpenClaw extrae el historial
   no referenciado más antiguo a un archivo comprimido verificado antes de eliminar sus
@@ -92,8 +92,8 @@ hacer que el modelo mantenga todo su historial a la vez:
 
 ## Cuando se prefiere el aislamiento
 
-La sesión principal compartida es la opción predeterminada adecuada para un agente con el que solo conversa
-una persona. Si varias personas pueden enviar mensajes al agente, deben aislarse los mensajes directos:
+La sesión principal compartida es la opción predeterminada adecuada para un agente con el que solo
+conversa una persona. Si varias personas pueden enviar mensajes al agente, se deben aislar los mensajes directos:
 
 ```json5
 {
@@ -103,8 +103,8 @@ una persona. Si varias personas pueden enviar mensajes al agente, deben aislarse
 }
 ```
 
-Con un ámbito aislado, cada remitente obtiene su propia sesión, se deshabilita la observación de grupos
-desde la sesión principal y la recuperación de memoria entre conversaciones
+Con un ámbito aislante, cada remitente obtiene su propia sesión, la observación de grupos
+desde la sesión principal se deshabilita y la recuperación de memoria entre conversaciones
 se desactiva de forma predeterminada. `openclaw security audit` recomienda el aislamiento cuando detecta
 varios remitentes de mensajes directos. La matriz completa de ámbitos, la vinculación de identidades y las anulaciones
 por ruta se describen en [Gestión de sesiones](/es/concepts/session) y

@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de web-readability-plugin
-summary: Leesbare artikelinhoud extraheren uit lokale HTML-responsen van webophaalacties.
+summary: Leesbare artikelinhoud extraheren uit lokale HTML-antwoorden op webophaalverzoeken.
 title: Plugin voor webleesbaarheid
 x-i18n:
-    generated_at: "2026-07-16T16:08:14Z"
+    generated_at: "2026-07-27T05:27:46Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Web Readability-plugin
 
-Extraheer leesbare artikelinhoud uit lokale HTML-responsen voor webophalingen.
+Extraheer leesbare artikelinhoud uit lokale HTML-reacties van webophaalacties.
 
 ## Distributie
 
 - Pakket: `@openclaw/web-readability-plugin`
-- Installatieroute: opgenomen in OpenClaw
+- Installatieroute: inbegrepen bij OpenClaw
 
 ## Oppervlak
 

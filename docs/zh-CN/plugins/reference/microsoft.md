@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安装、配置或审计 microsoft 插件
-summary: 新增文本转语音提供商支持。
+summary: 添加文本转语音提供商支持。
 title: Microsoft 插件
 x-i18n:
-    generated_at: "2026-07-16T11:50:54Z"
+    generated_at: "2026-07-26T05:56:20Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -20,8 +20,8 @@ x-i18n:
 
 ## 分发
 
-- 包：`@openclaw/microsoft-speech`
-- 安装方式：OpenClaw 内置
+- 软件包：`@openclaw/microsoft-speech`
+- 安装方式：内置于 OpenClaw
 
 ## 接口
 

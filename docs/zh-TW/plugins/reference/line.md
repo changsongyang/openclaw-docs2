@@ -4,7 +4,7 @@ read_when:
 summary: 用於 LINE Bot API 聊天的 OpenClaw LINE 頻道外掛。
 title: LINE 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:54:26Z"
+    generated_at: "2026-07-26T08:28:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 
 適用於 LINE Bot API 聊天的 OpenClaw LINE 頻道外掛。
 
-## 發布方式
+## 發布
 
 - 套件：`@openclaw/line`
 - 安裝途徑：npm；ClawHub

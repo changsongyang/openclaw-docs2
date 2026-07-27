@@ -4,12 +4,12 @@ read_when:
 summary: Chrome ब्राउज़र अतिथि के रूप में Microsoft Teams मीटिंग में शामिल हों।
 title: Microsoft Teams मीटिंग Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:41:17Z"
+    generated_at: "2026-07-27T18:20:42Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 680b56f3d868bde40d70ab460ac7e7dfccdaa34982120655cf74ed52843457e5
+    source_hash: 4fe361095a48d470ec1cd940c9739a87e622bb635c3df482211dfc3832d39949
     source_path: plugins/reference/teams-meetings.md
     workflow: 16
 ---
@@ -25,8 +25,8 @@ Chrome ब्राउज़र अतिथि के रूप में Micro
 
 ## सतह
 
-अनुबंध: `tools`
+अनुबंध: `tools`, `transcriptSourceProviders`
 
 ## संबंधित दस्तावेज़
 
-- [teams-meetings](/plugins/teams-meetings)
+- [teams-meetings](/hi/plugins/teams-meetings)

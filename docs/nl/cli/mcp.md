@@ -1,51 +1,51 @@
 ---
 read_when:
-    - Codex, Claude Code of een andere MCP-client verbinden met kanalen die door OpenClaw worden ondersteund
-    - Wordt `openclaw mcp serve` uitgevoerd
+    - Codex, Claude Code of een andere MCP-client verbinden met door OpenClaw ondersteunde kanalen
+    - '`openclaw mcp serve` uitvoeren'
     - Door OpenClaw opgeslagen MCP-serverdefinities beheren
 sidebarTitle: MCP
 summary: Stel OpenClaw-kanaalgesprekken beschikbaar via MCP en beheer opgeslagen MCP-serverdefinities
 title: MCP
 x-i18n:
-    generated_at: "2026-07-16T15:35:39Z"
+    generated_at: "2026-07-27T05:05:21Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: f62657954709e3f25eb7031dafca9c4050f2420443587f76ce2b2db23f187987
+    source_hash: ee6146bbc0181d10997336094d1bd693d0afb0985f1febef8e8c6b0d6e656cf9
     source_path: cli/mcp.md
     workflow: 16
 ---
 
 `openclaw mcp` heeft twee taken:
 
-- OpenClaw als een MCP-server uitvoeren met `openclaw mcp serve`
+- OpenClaw uitvoeren als een MCP-server met `openclaw mcp serve`
 - door OpenClaw beheerde definities van uitgaande MCP-servers beheren met `list`, `show`, `status`, `doctor`, `probe`, `add`, `set`, `configure`, `tools`, `login`, `logout`, `reload` en `unset`
 
-Bij `serve` fungeert OpenClaw als een MCP-server. Bij de andere subopdrachten fungeert OpenClaw als een clientregister voor MCP-servers die de eigen runtimes later kunnen gebruiken.
+`serve` is OpenClaw dat als een MCP-server fungeert. Bij de andere subopdrachten fungeert OpenClaw als een clientregister voor MCP-servers die de eigen runtimes later kunnen gebruiken.
 
 <Note>
   `list`, `show`, `set` en `unset` lezen en schrijven alleen door OpenClaw beheerde `mcp.servers`-vermeldingen in de OpenClaw-configuratie. Ze bevatten geen mcporter-servers uit `config/mcporter.json`; gebruik `mcporter list` voor dat register.
 </Note>
 
-Gebruik [`openclaw acp`](/nl/cli/acp) wanneer OpenClaw zelf een sessie voor een programmeerharnas moet hosten en die runtime via ACP moet routeren.
+Gebruik [`openclaw acp`](/nl/cli/acp) wanneer OpenClaw zelf een sessie met een programmeerharnas moet hosten en die runtime via ACP moet routeren.
 
 ## Kies het juiste MCP-pad
 
 | Doel                                                                | Gebruik                                                                  | Waarom                                                                                                             |
 | ------------------------------------------------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | Een externe MCP-client OpenClaw-kanaalgesprekken laten lezen/verzenden | `openclaw mcp serve`                                                 | OpenClaw is de MCP-server en stelt door de Gateway ondersteunde gesprekken beschikbaar via stdio.                                 |
-| MCP-servers van derden opslaan voor door OpenClaw beheerde agentuitvoeringen        | `openclaw mcp add`, `set`, `configure`, `tools`, `login`             | OpenClaw is het clientregister voor MCP-servers en projecteert die servers later naar geschikte runtimes.               |
+| MCP-servers van derden opslaan voor door OpenClaw beheerde agentuitvoeringen        | `openclaw mcp add`, `set`, `configure`, `tools`, `login`             | OpenClaw is het clientregister voor MCP en projecteert die servers later naar geschikte runtimes.               |
 | Een opgeslagen server controleren zonder een agentbeurt uit te voeren                  | `openclaw mcp status`, `doctor`, `probe`                             | `status` en `doctor` inspecteren de configuratie; `probe` opent een live MCP-verbinding en vermeldt de mogelijkheden.               |
-| MCP-configuratie vanuit een browser bewerken                                      | Control UI `/settings/mcp` (alias `/mcp`)                            | De pagina toont de inventaris, inschakeling, OAuth-/filtersamenvattingen, opdrachthints en een editor met het bereik `mcp`.         |
-| Codex app-server een afgebakende native MCP-server geven                    | `mcp.servers.<name>.codex`                                           | Het blok `codex` beïnvloedt alleen de threadprojectie van Codex app-server en wordt verwijderd voordat de native configuratie wordt doorgegeven. |
+| MCP-configuratie vanuit een browser bewerken                                      | Control UI `/settings/mcp` (alias `/mcp`)                            | De pagina toont de inventaris, activering, OAuth-/filtersamenvattingen, opdrachttips en een editor met het bereik `mcp`.         |
+| Codex app-server een afgebakende native MCP-server geven                    | `mcp.servers.<name>.codex`                                           | Het blok `codex` is alleen van invloed op de threadprojectie van Codex app-server en wordt verwijderd voordat de native configuratie wordt overgedragen. |
 | Door ACP gehoste harnassessies uitvoeren                                     | [`openclaw acp`](/nl/cli/acp) en [ACP-agenten](/nl/tools/acp-agents-setup) | De ACP-brugmodus accepteert geen injectie van MCP-servers per sessie; configureer in plaats daarvan Gateway-/Plugin-bruggen.     |
 
 <Tip>
-Als je niet zeker weet welk pad je nodig hebt, begin dan met `openclaw mcp status --verbose`. Hiermee zie je wat OpenClaw heeft opgeslagen zonder MCP-servers te starten.
+Als je niet zeker weet welk pad je nodig hebt, begin dan met `openclaw mcp status --verbose`. Dit toont wat OpenClaw heeft opgeslagen zonder MCP-servers te starten.
 </Tip>
 
-## OpenClaw als een MCP-server
+## OpenClaw als MCP-server
 
 Dit is het pad `openclaw mcp serve`.
 
@@ -87,9 +87,9 @@ Gebruik in plaats daarvan [`openclaw acp`](/nl/cli/acp) wanneer OpenClaw zelf de
     - oudere transcriptiegeschiedenis wordt gelezen met `messages_read`
     - Claude-pushmeldingen bestaan alleen zolang de MCP-sessie actief is
     - wanneer de client de verbinding verbreekt, wordt de brug afgesloten en verdwijnt de livewachtrij
-    - eenmalige agentingangen zoals `openclaw agent` en `openclaw infer model run` sluiten alle gebundelde MCP-runtimes die ze openen af zodra het antwoord is voltooid, zodat herhaalde gescripte uitvoeringen geen onderliggende stdio-MCP-processen opstapelen
-    - stdio-MCP-servers die door OpenClaw worden gestart (gebundeld of door de gebruiker geconfigureerd), worden bij het afsluiten als een procesboom beëindigd, zodat subprocessen die door de server zijn gestart niet blijven bestaan nadat de bovenliggende stdio-client is afgesloten
-    - bij het verwijderen of opnieuw instellen van een sessie worden de MCP-clients van die sessie via het gedeelde opschoningspad voor runtimes opgeruimd, zodat er geen achtergebleven stdio-verbindingen aan een verwijderde sessie gekoppeld blijven
+    - eenmalige agentingangspunten zoals `openclaw agent` en `openclaw infer model run` beëindigen alle gebundelde MCP-runtimes die ze openen zodra het antwoord is voltooid, zodat herhaalde gescripte uitvoeringen geen onderliggende stdio-MCP-processen opstapelen
+    - door OpenClaw gestarte stdio-MCP-servers (gebundeld of door de gebruiker geconfigureerd) worden bij afsluiting als procesboom beëindigd, zodat door de server gestarte onderliggende subprocessen niet blijven bestaan nadat de bovenliggende stdio-client is afgesloten
+    - door een sessie te verwijderen of opnieuw in te stellen, worden de MCP-clients van die sessie via het gedeelde runtime-opruimpad verwijderd, zodat er geen achterblijvende stdio-verbindingen aan een verwijderde sessie gekoppeld blijven
 
   </Accordion>
 </AccordionGroup>
@@ -111,16 +111,16 @@ Momenteel gedraagt `auto` zich hetzelfde als `on`. Er is nog geen detectie van c
 
 ### Wat serve beschikbaar stelt
 
-De brug gebruikt bestaande routeringsmetadata van Gateway-sessies om door kanalen ondersteunde gesprekken beschikbaar te stellen. Een gesprek verschijnt wanneer OpenClaw al een sessiestatus heeft met een bekende route, zoals:
+De brug gebruikt bestaande routeringsmetadata voor Gateway-sessies om door kanalen ondersteunde gesprekken beschikbaar te stellen. Een gesprek verschijnt wanneer OpenClaw al een sessiestatus heeft met een bekende route, zoals:
 
 - `channel`
 - metadata van ontvanger of bestemming
-- optionele `accountId`
-- optionele `threadId`
+- optioneel `accountId`
+- optioneel `threadId`
 
 Dit biedt MCP-clients één plek om:
 
-- recente gerouteerde gesprekken weer te geven
+- recente gerouteerde gesprekken te vermelden
 - recente transcriptiegeschiedenis te lezen
 - op nieuwe inkomende gebeurtenissen te wachten
 - een antwoord via dezelfde route terug te sturen
@@ -144,7 +144,7 @@ Dit biedt MCP-clients één plek om:
     openclaw mcp serve --url wss://gateway-host:18789 --password-file ~/.openclaw/gateway.password
     ```
   </Tab>
-  <Tab title="Uitgebreid / Claude uit">
+  <Tab title="Uitgebreide uitvoer / Claude uit">
     ```bash
     openclaw mcp serve --verbose
     openclaw mcp serve --claude-channel-mode off
@@ -156,25 +156,25 @@ Dit biedt MCP-clients één plek om:
 
 <AccordionGroup>
   <Accordion title="conversations_list">
-    Geeft recente, door sessies ondersteunde gesprekken weer die al routeringsmetadata in de sessiestatus van de Gateway hebben.
+    Vermeldt recente, door sessies ondersteunde gesprekken waarvoor al routeringsmetadata in de Gateway-sessiestatus aanwezig is.
 
     Filters: `limit` (max. 500), `search`, `channel`, `includeDerivedTitles`, `includeLastMessage`.
 
   </Accordion>
   <Accordion title="conversation_get">
-    Retourneert één gesprek op basis van `session_key` via een rechtstreekse zoekactie naar een Gateway-sessie.
+    Retourneert één gesprek op basis van `session_key` via een rechtstreekse zoekopdracht naar een Gateway-sessie.
   </Accordion>
   <Accordion title="messages_read">
     Leest recente transcriptieberichten voor één door een sessie ondersteund gesprek. `limit` is standaard 20, maximaal 200.
   </Accordion>
   <Accordion title="attachments_fetch">
-    Extraheert niet-tekstuele inhoudsblokken van berichten uit één transcriptiebericht. Dit is een metadataweergave van transcriptie-inhoud, geen zelfstandige duurzame blobopslag voor bijlagen.
+    Extraheert berichtinhoudsblokken zonder tekst uit één transcriptiebericht. Dit is een metadataweergave van transcriptie-inhoud, geen zelfstandige duurzame blobopslag voor bijlagen.
   </Accordion>
   <Accordion title="events_poll">
-    Leest in de wachtrij geplaatste livegebeurtenissen vanaf een numerieke cursor. `limit` maximaal 200.
+    Leest livegebeurtenissen die sinds een numerieke cursor in de wachtrij staan. `limit` maximaal 200.
   </Accordion>
   <Accordion title="events_wait">
-    Pollt langdurig totdat de volgende overeenkomende gebeurtenis in de wachtrij binnenkomt of een time-out verstrijkt (standaard 30s, maximaal 300s).
+    Voert een long poll uit totdat de volgende overeenkomende gebeurtenis in de wachtrij binnenkomt of een time-out verloopt (standaard 30s, maximaal 300s).
 
     Gebruik dit wanneer een algemene MCP-client bijna-realtimelevering nodig heeft zonder een Claude-specifiek pushprotocol.
 
@@ -190,10 +190,10 @@ Dit biedt MCP-clients één plek om:
 
   </Accordion>
   <Accordion title="permissions_list_open">
-    Geeft openstaande goedkeuringsverzoeken voor exec/Plugin weer die de brug heeft waargenomen sinds deze verbinding maakte met de Gateway.
+    Vermeldt openstaande goedkeuringsverzoeken voor uitvoering/Plugins die de brug heeft waargenomen sinds deze verbinding maakte met de Gateway.
   </Accordion>
   <Accordion title="permissions_respond">
-    Handelt één openstaand goedkeuringsverzoek voor exec/Plugin af met:
+    Handelt één openstaand goedkeuringsverzoek voor uitvoering/Plugins af met:
 
     - `allow-once`
     - `allow-always`
@@ -216,9 +216,9 @@ Huidige gebeurtenistypen:
 - `claude_permission_request`
 
 <Warning>
-- de wachtrij is alleen live; deze begint wanneer de MCP-brug wordt gestart
-- `events_poll` en `events_wait` spelen oudere Gateway-geschiedenis niet uit zichzelf opnieuw af
-- een duurzame achterstand moet worden gelezen met `messages_read`
+- de wachtrij bevat alleen livegegevens; deze begint wanneer de MCP-brug start
+- `events_poll` en `events_wait` spelen oudere Gateway-geschiedenis niet zelf opnieuw af
+- de duurzame achterstand moet worden gelezen met `messages_read`
 
 </Warning>
 
@@ -243,14 +243,14 @@ Wanneer de Claude-kanaalmodus is ingeschakeld, kondigt de server experimentele C
 - `notifications/claude/channel`
 - `notifications/claude/channel/permission`
 
-Huidig gedrag van de brug:
+Huidig bruggedrag:
 
-- inkomende `user`-transcriptieberichten worden doorgestuurd als `notifications/claude/channel`
+- inkomende transcriptieberichten van `user` worden doorgestuurd als `notifications/claude/channel`
 - Claude-machtigingsverzoeken die via MCP worden ontvangen, worden in het geheugen bijgehouden
-- als de opdrachteigenaar in het gekoppelde gesprek later `yes <id>` of `no <id>` verzendt (`<id>` is de aanvraag-id van 5 letters, zonder `l`), zet de brug dit om naar `notifications/claude/channel/permission`
-- deze meldingen gelden alleen voor de live sessie; als de MCP-client de verbinding verbreekt, is er geen pushdoel
+- als de opdrachteigenaar in het gekoppelde gesprek later `yes <id>` of `no <id>` verzendt (`<id>` is de aanvraag-id van 5 letters, zonder `l`), zet de brug dit om in `notifications/claude/channel/permission`
+- deze meldingen bestaan alleen tijdens de livesessie; als de MCP-client de verbinding verbreekt, is er geen pushdoel
 
-Dit is bewust clientspecifiek. Algemene MCP-clients moeten vertrouwen op de standaard pollinghulpmiddelen.
+Dit is bewust clientspecifiek. Algemene MCP-clients moeten de standaard pollinghulpmiddelen gebruiken.
 
 ### MCP-clientconfiguratie
 
@@ -274,7 +274,7 @@ Voorbeeldconfiguratie voor een stdio-client:
 }
 ```
 
-Begin voor de meeste generieke MCP-clients met het standaard tooloppervlak en negeer de Claude-modus. Schakel de Claude-modus alleen in voor clients die de Claude-specifieke meldingsmethoden daadwerkelijk begrijpen.
+Begin voor de meeste generieke MCP-clients met het standaardtooloppervlak en negeer de Claude-modus. Schakel de Claude-modus alleen in voor clients die de Claude-specifieke meldingsmethoden daadwerkelijk begrijpen.
 
 ### Opties
 
@@ -303,7 +303,7 @@ Begin voor de meeste generieke MCP-clients met het standaard tooloppervlak en ne
 </ParamField>
 
 <Tip>
-Geef waar mogelijk de voorkeur aan `--token-file` of `--password-file` boven geheimen in de opdrachtregel.
+Geef waar mogelijk de voorkeur aan `--token-file` of `--password-file` boven geheimen die rechtstreeks zijn opgegeven.
 </Tip>
 
 ### Beveiligings- en vertrouwensgrens
@@ -312,24 +312,24 @@ De bridge verzint geen routering. Deze stelt alleen gesprekken beschikbaar die d
 
 Dat betekent:
 
-- toelatingslijsten voor afzenders, koppeling en vertrouwen op kanaalniveau blijven onderdeel van de onderliggende OpenClaw-kanaalconfiguratie
+- afzender-toelatingslijsten, koppeling en vertrouwen op kanaalniveau blijven onderdeel van de onderliggende OpenClaw-kanaalconfiguratie
 - `messages_send` kan alleen antwoorden via een bestaande opgeslagen route
 - de goedkeuringsstatus is alleen live/in het geheugen beschikbaar voor de huidige bridgesessie
-- bridge-authenticatie moet dezelfde Gateway-token- of wachtwoordcontroles gebruiken die je voor elke andere externe Gateway-client zou vertrouwen
+- bridge-authenticatie moet dezelfde token- of wachtwoordcontroles van de Gateway gebruiken die je voor elke andere externe Gateway-client zou vertrouwen
 
-Als een gesprek in `conversations_list` ontbreekt, ligt dat doorgaans niet aan de MCP-configuratie. De oorzaak is ontbrekende of onvolledige routeringsmetadata in de onderliggende Gateway-sessie.
+Als een gesprek ontbreekt in `conversations_list`, ligt de gebruikelijke oorzaak niet bij de MCP-configuratie. Er ontbreken dan route-metagegevens in de onderliggende Gateway-sessie of deze zijn onvolledig.
 
 ### Testen
 
-OpenClaw levert een deterministische Docker-rooktest voor deze bridge:
+OpenClaw wordt geleverd met een deterministische Docker-smoketest voor deze bridge:
 
 ```bash
 pnpm test:docker:mcp-channels
 ```
 
-Die rooktest voert één container uit: de test vult de gespreksstatus, start de Gateway, start vervolgens `openclaw mcp serve` als een stdio-subproces en stuurt dit aan als MCP-client. De test verifieert gespreksdetectie, het lezen van transcripten, het lezen van bijlagemetadata, het gedrag van de wachtrij voor livegebeurtenissen en kanaal- en toestemmingsmeldingen in Claude-stijl via de echte stdio-MCP-bridge. Routering voor uitgaande verzending (`messages_send` waarbij de opgeslagen gespreksroute opnieuw wordt gebruikt) wordt afzonderlijk gedekt door unittests in `src/mcp/channel-server.test.ts`.
+Deze smoketest voert één container uit: de gesprekstoestand wordt vooraf ingevuld, de Gateway wordt gestart en vervolgens wordt `openclaw mcp serve` als een stdio-subproces gestart en aangestuurd als MCP-client. De test verifieert het vinden van gesprekken, het lezen van transcripten, het lezen van metagegevens van bijlagen, het gedrag van de live-gebeurteniswachtrij en kanaal- en toestemmingsmeldingen in Claude-stijl via de echte stdio-MCP-bridge. Routering voor uitgaande verzending (`messages_send` waarbij de opgeslagen gespreksroute opnieuw wordt gebruikt) wordt afzonderlijk gedekt door unittests in `src/mcp/channel-server.test.ts`.
 
-Dit is de snelste manier om te bewijzen dat de bridge werkt zonder een echt Telegram-, Discord- of iMessage-account in de testuitvoering op te nemen.
+Dit is de snelste manier om te bewijzen dat de bridge werkt zonder een echt Telegram-, Discord- of iMessage-account aan de testrun te koppelen.
 
 Zie [Testen](/nl/help/testing) voor een bredere testcontext.
 
@@ -337,18 +337,18 @@ Zie [Testen](/nl/help/testing) voor een bredere testcontext.
 
 <AccordionGroup>
   <Accordion title="Geen gesprekken geretourneerd">
-    Dit betekent doorgaans dat de Gateway-sessie nog niet routeerbaar is. Controleer of de onderliggende sessie opgeslagen routeringsmetadata bevat voor kanaal/provider, ontvanger en optioneel account/thread.
+    Dit betekent meestal dat de Gateway-sessie nog niet routeerbaar is. Controleer of in de onderliggende sessie metagegevens zijn opgeslagen voor kanaal/provider, ontvanger en optioneel account/threadroute.
   </Accordion>
   <Accordion title="events_poll of events_wait mist oudere berichten">
-    Dit is te verwachten. De livewachtrij begint wanneer de bridge verbinding maakt. Lees oudere transcriptgeschiedenis met `messages_read`.
+    Dit is te verwachten. De live-wachtrij begint wanneer de bridge verbinding maakt. Lees oudere transcriptgeschiedenis met `messages_read`.
   </Accordion>
-  <Accordion title="Claude-meldingen verschijnen niet">
+  <Accordion title="Claude-meldingen worden niet weergegeven">
     Controleer al het volgende:
 
-    - de client heeft de stdio-MCP-sessie opengehouden
+    - de client hield de stdio-MCP-sessie open
     - `--claude-channel-mode` is `on` of `auto`
     - de client begrijpt de Claude-specifieke meldingsmethoden daadwerkelijk
-    - het inkomende bericht is ontvangen nadat de bridge verbinding maakte
+    - het inkomende bericht kwam binnen nadat de bridge verbinding had gemaakt
 
   </Accordion>
   <Accordion title="Goedkeuringen ontbreken">
@@ -361,46 +361,46 @@ Zie [Testen](/nl/help/testing) voor een bredere testcontext.
 Dit is het pad voor `openclaw mcp list`, `show`, `status`, `doctor`, `probe`, `add`, `set`,
 `configure`, `tools`, `login`, `logout`, `reload` en `unset`.
 
-Deze opdrachten stellen OpenClaw niet via MCP beschikbaar. Ze beheren door OpenClaw beheerde MCP-serverdefinities onder `mcp.servers` in de OpenClaw-configuratie. Ze lezen geen mcporter-servers uit `config/mcporter.json`.
+Deze opdrachten stellen OpenClaw niet beschikbaar via MCP. Ze beheren door OpenClaw beheerde MCP-serverdefinities onder `mcp.servers` in de OpenClaw-configuratie. Ze lezen geen mcporter-servers uit `config/mcporter.json`.
 
-Die opgeslagen definities zijn bedoeld voor runtimes die OpenClaw later start of configureert, zoals ingebedde OpenClaw en andere runtime-adapters. OpenClaw slaat de definities centraal op, zodat die runtimes geen eigen dubbele lijsten met MCP-servers hoeven bij te houden.
+Deze opgeslagen definities zijn bedoeld voor runtimes die OpenClaw later start of configureert, zoals ingebedde OpenClaw en andere runtime-adapters. OpenClaw slaat de definities centraal op, zodat deze runtimes geen eigen dubbele lijsten met MCP-servers hoeven bij te houden.
 
 <AccordionGroup>
   <Accordion title="Belangrijk gedrag">
     - deze opdrachten lezen of schrijven alleen de OpenClaw-configuratie
     - `status`, `list`, `show`, `doctor` zonder `--probe`, `set`, `configure`, `tools`, `logout`, `reload` en `unset` maken geen verbinding met de doel-MCP-server
-    - `login` voert de MCP OAuth-netwerkstroom uit voor de geconfigureerde HTTP-server en slaat de resulterende lokale aanmeldgegevens op
-    - `status --verbose` toont informatie over het opgeloste transport, de authenticatie, time-out, filters en parallelle toolaanroepen zonder verbinding te maken
-    - `doctor` controleert opgeslagen definities op lokale installatieproblemen, zoals ontbrekende stdio-opdrachten, ongeldige werkmappen, ontbrekende TLS-bestanden, uitgeschakelde servers, letterlijke gevoelige header-/omgevingswaarden en onvolledige OAuth-autorisatie
-    - `doctor --probe` voegt hetzelfde bewijs van een liveverbinding toe als `probe` nadat de statische controles zijn geslaagd
-    - `probe` maakt verbinding met de geselecteerde server of alle geconfigureerde servers, geeft tools weer en rapporteert mogelijkheden/diagnostiek
-    - `add` bouwt een definitie op uit vlaggen en voert een test uit voordat deze wordt opgeslagen, tenzij `--no-probe` is ingesteld of eerst OAuth-autorisatie nodig is
+    - `login` voert de MCP OAuth-netwerkflow uit voor de geconfigureerde HTTP-server en slaat de resulterende lokale inloggegevens op
+    - `status --verbose` toont hints voor het opgeloste transport, authenticatie, de time-out, het filter en parallelle toolaanroepen zonder verbinding te maken
+    - `doctor` controleert opgeslagen definities op lokale configuratieproblemen, zoals ontbrekende stdio-opdrachten, ongeldige werkmappen, ontbrekende TLS-bestanden, uitgeschakelde servers, letterlijke gevoelige header-/omgevingswaarden en onvolledige OAuth-autorisatie
+    - `doctor --probe` voegt hetzelfde live-verbindingsbewijs toe als `probe` nadat de statische controles zijn geslaagd
+    - `probe` maakt verbinding met de geselecteerde server of alle geconfigureerde servers, vermeldt tools en rapporteert mogelijkheden/diagnostiek
+    - `add` bouwt een definitie op basis van vlaggen en voert vóór het opslaan een probe uit, tenzij `--no-probe` is ingesteld of eerst OAuth-autorisatie nodig is
     - runtime-adapters bepalen tijdens de uitvoering welke transportvormen ze daadwerkelijk ondersteunen
     - `enabled: false` houdt een server opgeslagen, maar sluit deze uit van detectie door de ingebedde runtime
-    - `timeout` en `connectTimeout` stellen time-outs per server in seconden in voor verzoeken en verbindingen
+    - `requestTimeoutMs` en `connectionTimeoutMs` stellen per server time-outs voor verzoeken en verbindingen in milliseconden in
     - `supportsParallelToolCalls: true` markeert servers die adapters gelijktijdig kunnen aanroepen
     - HTTP-servers kunnen statische headers, OAuth-aanmelding, beheer van TLS-verificatie en paden naar mTLS-certificaten/-sleutels gebruiken
-    - ingebedde OpenClaw stelt geconfigureerde MCP-tools beschikbaar in normale toolprofielen voor `coding` en `messaging`; `minimal` verbergt ze nog steeds en `tools.deny: ["bundle-mcp"]` schakelt ze expliciet uit
-    - `toolFilter.include` en `toolFilter.exclude` per server filteren gedetecteerde MCP-tools voordat ze OpenClaw-tools worden
-    - servers die resources of prompts adverteren, stellen ook hulptools beschikbaar voor het weergeven/lezen van resources en het weergeven/ophalen van prompts; die gegenereerde hulpnamen (`resources_list`, `resources_read`, `prompts_list`, `prompts_get`) gebruiken hetzelfde insluitings-/uitsluitingsfilter
+    - ingebedde OpenClaw stelt geconfigureerde MCP-tools beschikbaar in de normale toolprofielen `coding` en `messaging`; `minimal` verbergt ze nog steeds en `tools.deny: ["bundle-mcp"]` schakelt ze expliciet uit
+    - `toolFilter.include` en `toolFilter.exclude` per server filteren gevonden MCP-tools voordat ze OpenClaw-tools worden
+    - servers die resources of prompts aankondigen, stellen ook hulpprogrammatools beschikbaar voor het vermelden/lezen van resources en het vermelden/ophalen van prompts; deze gegenereerde hulpprogrammanamen (`resources_list`, `resources_read`, `prompts_list`, `prompts_get`) gebruiken hetzelfde opname-/uitsluitingsfilter
     - dynamische wijzigingen in de MCP-toollijst maken de gecachte catalogus voor die sessie ongeldig; bij de volgende detectie/het volgende gebruik wordt deze vanaf de server vernieuwd
-    - herhaalde fouten bij MCP-toolrequests of in het protocol onderbreken die server kortstondig, zodat één defecte server niet de hele beurt verbruikt
-    - sessiegebonden gebundelde MCP-runtimes worden na `mcp.sessionIdleTtlMs` milliseconden inactiviteit opgeruimd (standaard 10 minuten; stel `0` in om dit uit te schakelen) en eenmalige ingebedde uitvoeringen ruimen ze aan het einde van de uitvoering op
+    - herhaalde fouten in MCP-toolaanvragen/het protocol pauzeren die server kort, zodat één defecte server niet de hele beurt verbruikt
+    - sessiegebonden gebundelde MCP-runtimes worden na 10 minuten inactiviteit opgeruimd en eenmalige ingebedde uitvoeringen ruimen ze aan het einde van de uitvoering op
 
   </Accordion>
 </AccordionGroup>
 
-Runtime-adapters kunnen dit gedeelde register normaliseren naar de vorm die hun downstreamclient verwacht. Ingebedde OpenClaw gebruikt bijvoorbeeld rechtstreeks OpenClaw-waarden voor `transport`, terwijl Claude Code en Gemini CLI-eigen waarden voor `type` ontvangen, zoals `http`, `sse` of `stdio`.
+Runtime-adapters kunnen dit gedeelde register normaliseren naar de vorm die hun downstreamclient verwacht. Ingebedde OpenClaw gebruikt bijvoorbeeld OpenClaw-waarden van `transport` rechtstreeks, terwijl Claude Code en Gemini CLI-eigen waarden van `type` ontvangen, zoals `http`, `sse` of `stdio`.
 
-Codex-app-server respecteert ook een optioneel `codex`-blok op elke server. Dit is
-OpenClaw-projectiemetadata, uitsluitend voor Codex-app-serverthreads; deze wijzigt geen
+Codex app-server respecteert ook een optioneel `codex`-blok op elke server. Dit zijn
+OpenClaw-projectiemetagegevens die uitsluitend voor Codex app-server-threads bestemd zijn; ze wijzigen geen
 ACP-sessies, generieke Codex-harnasconfiguratie of andere runtime-adapters.
 Gebruik een niet-lege `codex.agents` om een server alleen naar specifieke OpenClaw-
-agent-id's te projecteren. Lege, blanco of ongeldige agentlijsten worden door de configuratie-
-validatie geweigerd en door het runtimeprojectiepad weggelaten in plaats van
+agent-id's te projecteren. Lege, blanco of ongeldige agentlijsten worden door de configuratievalidatie
+afgewezen en door het runtime-projectiepad weggelaten in plaats van
 globaal te worden. Gebruik `codex.defaultToolsApprovalMode` (`auto`, `prompt` of `approve`)
-om de native `default_tools_approval_mode` van Codex voor een vertrouwde server uit te voeren.
-OpenClaw verwijdert de `codex`-metadata voordat de native `mcp_servers`-
+om de systeemeigen `default_tools_approval_mode` van Codex uit te voeren voor een vertrouwde server.
+OpenClaw verwijdert de metagegevens van `codex` voordat de systeemeigen `mcp_servers`-
 configuratie aan Codex wordt doorgegeven.
 
 ### Opgeslagen MCP-serverdefinities
@@ -425,18 +425,18 @@ Opmerkingen:
 
 - `list` sorteert servernamen.
 - `show` zonder naam toont het volledige geconfigureerde MCP-serverobject.
-- `status` classificeert geconfigureerde transporten zonder verbinding te maken. `--verbose` bevat opgeloste details over starten, time-outs, OAuth, filters en parallelle aanroepen.
-- `doctor` voert statische controles uit zonder verbinding te maken. Voeg `--probe` toe wanneer de opdracht ook moet verifiëren dat ingeschakelde servers verbinding maken.
-- `probe` maakt verbinding en rapporteert aantallen tools, ondersteuning voor resources/prompts, ondersteuning voor lijstwijzigingen en diagnostiek.
+- `status` classificeert geconfigureerde transporten zonder verbinding te maken. `--verbose` bevat opgeloste details over starten, time-outs, OAuth, filters en parallelle aanroepen, ook wanneer opgeslagen OAuth-tokens aanvullende autorisatie vereisen. Stdio-argumenten die inloggegevens bevatten, worden in tekst- en JSON-uitvoer geredigeerd.
+- `doctor` voert statische controles uit zonder verbinding te maken. Voeg `--probe` toe wanneer de opdracht ook moet verifiëren dat ingeschakelde servers verbinding kunnen maken.
+- `probe` maakt verbinding en rapporteert het aantal tools, ondersteuning voor resources/prompts en lijstwijzigingen, en diagnostiek.
 - `add` accepteert stdio-vlaggen zoals `--command`, `--arg`, `--env` en `--cwd`, of HTTP-vlaggen zoals `--url`, `--transport`, `--header`, `--auth oauth`, TLS-, time-out- en toolselectievlaggen.
 - `set` verwacht één JSON-objectwaarde op de opdrachtregel.
-- `configure` werkt de inschakeling, toolfilters, time-outs, OAuth, TLS en informatie voor parallelle toolaanroepen bij zonder de volledige serverdefinitie te vervangen. Voeg `--probe` toe om de bijgewerkte server te verifiëren voordat deze wordt opgeslagen.
-- `tools` werkt toolfilters per server bij. Insluitings-/uitsluitingsvermeldingen zijn MCP-toolnamen en eenvoudige `*`-globpatronen.
-- `login` voert de OAuth-stroom uit voor HTTP-servers die met `auth: "oauth"` zijn geconfigureerd. De eerste uitvoering toont een autorisatie-URL; voer de opdracht na goedkeuring opnieuw uit met `--code`.
-- `logout` wist opgeslagen OAuth-aanmeldgegevens voor de genoemde server zonder de opgeslagen serverdefinitie te verwijderen.
-- `reload` verwijdert gecachte MCP-runtimes in het proces alleen voor het huidige CLI-proces. Gateway- of agentprocessen in een ander proces hebben nog steeds hun eigen herlaad- of herstartpad nodig.
-- Gebruik `transport: "streamable-http"` voor Streamable HTTP MCP-servers. `openclaw mcp set` normaliseert voor compatibiliteit ook de CLI-eigen `type: "http"` naar dezelfde canonieke configuratievorm.
-- `unset` mislukt als de genoemde server niet bestaat.
+- `configure` werkt inschakeling, toolfilters, time-outs, OAuth, TLS en hints voor parallelle toolaanroepen bij zonder de volledige serverdefinitie te vervangen. Voeg `--probe` toe om de bijgewerkte server vóór het opslaan te verifiëren.
+- `tools` werkt toolfilters per server bij. Opname-/uitsluitingsitems zijn MCP-toolnamen en eenvoudige `*`-globs.
+- `login` voert de OAuth-flow uit voor HTTP-servers die zijn geconfigureerd met `auth: "oauth"`. De eerste uitvoering toont een autorisatie-URL; voer de opdracht na goedkeuring opnieuw uit met `--code`.
+- `logout` wist opgeslagen OAuth-inloggegevens voor de benoemde server zonder de opgeslagen serverdefinitie te verwijderen.
+- `reload` verwijdert gecachte MCP-runtimes in het proces uitsluitend voor het huidige CLI-proces. Gateway- of agentprocessen in een ander proces hebben nog steeds hun eigen herlaad- of herstartpad nodig.
+- Gebruik `transport: "streamable-http"` voor Streamable HTTP MCP-servers. `openclaw mcp set` normaliseert ook CLI-eigen `type: "http"` naar dezelfde canonieke configuratievorm voor compatibiliteit.
+- `unset` mislukt als de benoemde server niet bestaat.
 
 Voorbeelden:
 
@@ -459,7 +459,7 @@ openclaw mcp unset context7
 
 ### Veelgebruikte serverrecepten
 
-Deze voorbeelden slaan alleen serverdefinities op. Voer daarna `openclaw mcp doctor --probe` uit om te verifiëren dat de server start en tools beschikbaar stelt.
+Deze voorbeelden slaan alleen serverdefinities op. Voer daarna `openclaw mcp doctor --probe` uit om te bewijzen dat de server start en tools beschikbaar stelt.
 
 <Tabs>
   <Tab title="Bestandssysteem">
@@ -473,7 +473,7 @@ Deze voorbeelden slaan alleen serverdefinities op. Voer daarna `openclaw mcp doc
     openclaw mcp doctor files --probe
     ```
 
-    Beperk bestandssysteemservers tot de kleinste mappenstructuur die de agent moet kunnen lezen of bewerken.
+    Beperk bestandssysteemservers tot de kleinste directorystructuur die de agent moet kunnen lezen of bewerken.
 
   </Tab>
   <Tab title="Geheugen">
@@ -501,7 +501,7 @@ Deze voorbeelden slaan alleen serverdefinities op. Voer daarna `openclaw mcp doc
     `doctor` controleert of `cwd` bestaat en of de opdracht vanuit de geconfigureerde omgeving kan worden gevonden.
 
   </Tab>
-  <Tab title="Externe HTTP">
+  <Tab title="HTTP op afstand">
     ```bash
     openclaw mcp add docs \
       --url https://mcp.example.com/mcp \
@@ -514,13 +514,13 @@ Deze voorbeelden slaan alleen serverdefinities op. Voer daarna `openclaw mcp doc
     openclaw mcp doctor docs --probe
     ```
 
-    Gebruik OAuth wanneer de externe server dit ondersteunt. Als de server statische headers vereist, leg letterlijke bearertokens dan niet vast in een commit.
+    Gebruik OAuth wanneer de externe server dit ondersteunt. Als de server statische headers vereist, leg dan geen letterlijke bearer-tokens vast in een commit.
 
   </Tab>
   <Tab title="Desktop/CUA">
     ```bash
     openclaw mcp set cua-driver '{"command":"cua-driver","args":["mcp"]}'
-    openclaw mcp tools cua-driver --include 'list_apps,observe,click,type'
+    openclaw mcp tools cua-driver --include 'list_apps,get_window_state,click,type_text'
     openclaw mcp doctor cua-driver --probe
     ```
 
@@ -531,7 +531,7 @@ Deze voorbeelden slaan alleen serverdefinities op. Voer daarna `openclaw mcp doc
 
 ### Structuren van JSON-uitvoer
 
-Gebruik `--json` voor scripts en dashboards. Verzamelingen velden kunnen in de loop van de tijd groeien, dus consumers moeten onbekende sleutels negeren.
+Gebruik `--json` voor scripts en dashboards. Veldensets kunnen in de loop van de tijd groeien, dus consumers moeten onbekende sleutels negeren.
 
 <AccordionGroup>
   <Accordion title="status --json">
@@ -549,6 +549,7 @@ Gebruik `--json` voor scripts en dashboards. Verzamelingen velden kunnen in de l
           "auth": "oauth",
           "authStatus": {
             "hasTokens": true,
+            "requiresAuthorization": false,
             "hasClientInformation": true,
             "hasCodeVerifier": false,
             "hasDiscoveryState": true,
@@ -586,7 +587,7 @@ Gebruik `--json` voor scripts en dashboards. Verzamelingen velden kunnen in de l
     }
     ```
 
-    `doctor --json` wordt afgesloten met een niet-nulstatus wanneer een ingeschakelde, gecontroleerde server een probleem op `error`-niveau heeft. Problemen van het type `warning` en `info` worden gemeld, maar zorgen er op zichzelf niet voor dat de opdracht mislukt.
+    `doctor --json` wordt afgesloten met een niet-nulstatus wanneer een ingeschakelde, gecontroleerde server een probleem op `error`-niveau heeft. Problemen met `warning` en `info` worden gemeld, maar laten de opdracht op zichzelf niet mislukken.
 
   </Accordion>
   <Accordion title="probe --json">
@@ -610,7 +611,7 @@ Gebruik `--json` voor scripts en dashboards. Verzamelingen velden kunnen in de l
     }
     ```
 
-    `probe --json` opent een live MCP-clientsessie en drukt het resultaat rechtstreeks af; anders dan bij `status`/`doctor` heeft de uitvoer geen `path`-veld op het hoogste niveau. De sleutels `resources` en `prompts` zijn alleen aanwezig wanneer de server die mogelijkheid daadwerkelijk adverteert (een server zonder prompts laat de sleutel `prompts` weg in plaats van `false` te rapporteren). Gebruik `probe` als bewijs van bereikbaarheid en mogelijkheden, niet voor controles van statische configuratie.
+    `probe --json` opent een live MCP-clientsessie en drukt het resultaat rechtstreeks af; in tegenstelling tot `status`/`doctor` heeft de uitvoer geen `path`-veld op het hoogste niveau. De sleutels `resources` en `prompts` zijn alleen aanwezig wanneer de server die mogelijkheid daadwerkelijk aanbiedt (een server zonder prompts laat de sleutel `prompts` weg in plaats van `false` te rapporteren). Gebruik `probe` als bewijs van bereikbaarheid en mogelijkheden, niet voor statische configuratie-audits.
 
   </Accordion>
 </AccordionGroup>
@@ -628,8 +629,8 @@ Voorbeeld van een configuratiestructuur:
       "docs": {
         "url": "https://mcp.example.com",
         "transport": "streamable-http",
-        "timeout": 20,
-        "connectTimeout": 5,
+        "requestTimeoutMs": 20000,
+        "connectionTimeoutMs": 5000,
         "supportsParallelToolCalls": true,
         "auth": "oauth",
         "oauth": {
@@ -652,36 +653,35 @@ Voorbeeld van een configuratiestructuur:
 
 Start een lokaal onderliggend proces en communiceert via stdin/stdout.
 
-| Veld                       | Beschrijving                              |
-| -------------------------- | ----------------------------------------- |
-| `command`                  | Uitvoerbaar bestand om te starten (vereist) |
-| `args`                     | Reeks opdrachtregelargumenten             |
-| `env`                      | Extra omgevingsvariabelen                 |
-| `cwd` / `workingDirectory` | Werkmap voor het proces                   |
+| Veld                       | Beschrijving                               |
+| -------------------------- | ------------------------------------------ |
+| `command`         | Te starten uitvoerbaar bestand (vereist)   |
+| `args`         | Array met opdrachtregelargumenten          |
+| `env`         | Extra omgevingsvariabelen                  |
+| `cwd` / `workingDirectory` | Werkdirectory voor het proces |
 
 <Warning>
-**Veiligheidsfilter voor stdio-omgevingsvariabelen**
+**Veiligheidsfilter voor de stdio-omgeving**
 
-OpenClaw weigert vóór het starten van een stdio-MCP-server omgevingssleutels voor het opstarten van interpreters, het kapen van loaders en shellinitialisatie, zelfs als ze in het `env`-blok van een server staan. Hiervoor wordt hetzelfde beveiligingsbeleid voor de hostomgeving gebruikt als voor andere door OpenClaw gestarte processen: bekende opstart-hooks voor interpreters worden geblokkeerd (bijvoorbeeld `NODE_OPTIONS`, `PYTHONSTARTUP`, `PERL5OPT`, `RUBYOPT`, `BASHOPTS`, `KSH_ENV`), evenals voorvoegsels voor het injecteren van gedeelde bibliotheken en functies (`DYLD_*`, `LD_*`, `BASH_FUNC_*`) en vergelijkbare variabelen voor runtimebesturing. Bij het opstarten worden deze stilzwijgend verwijderd en wordt een waarschuwing gelogd, zodat ze geen impliciete prelude kunnen injecteren, de interpreter kunnen vervangen, een debugger kunnen inschakelen of de dynamische linker voor het stdio-proces kunnen kapen. Dankzij een expliciete toelatingslijst blijven gewone MCP-omgevingsvariabelen voor referenties bruikbaar (`GITHUB_TOKEN`, `GH_TOKEN`, `GITLAB_TOKEN`, `NPM_TOKEN`, `NODE_AUTH_TOKEN`, `DATABASE_URL`, `MONGODB_URI`, `REDIS_URL`, `AMQP_URL`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`, `AZURE_CLIENT_ID`, `AZURE_CLIENT_SECRET`), samen met gewone proxy- en serverspecifieke omgevingsvariabelen (`HTTP_PROXY`, aangepaste `*_API_KEY`, enzovoort). Andere `AWS_*`-sleutels, zoals `AWS_CONFIG_FILE` en `AWS_SHARED_CREDENTIALS_FILE`, blijven geblokkeerd omdat ze naar referentiebestanden verwijzen in plaats van rechtstreeks een referentiewaarde te bevatten.
+OpenClaw weigert omgevingssleutels voor het opstarten van interpreters, het kapen van loaders en shellinitialisatie voordat een stdio-MCP-server wordt gestart, zelfs als ze in het `env`-blok van een server staan. Hiervoor wordt hetzelfde beveiligingsbeleid voor de hostomgeving gebruikt als voor andere processen die door OpenClaw worden gestart: bekende hooks voor het opstarten van interpreters worden geblokkeerd (bijvoorbeeld `NODE_OPTIONS`, `PYTHONSTARTUP`, `PERL5OPT`, `RUBYOPT`, `BASHOPTS`, `KSH_ENV`), evenals prefixen voor het injecteren van gedeelde bibliotheken en functies (`DYLD_*`, `LD_*`, `BASH_FUNC_*`) en vergelijkbare variabelen voor runtimebesturing. Bij het opstarten worden deze stilzwijgend verwijderd en wordt een waarschuwing gelogd, zodat ze geen impliciete prelude kunnen injecteren, de interpreter kunnen vervangen, een debugger kunnen inschakelen of de dynamische linker voor het stdio-proces kunnen kapen. Dankzij een expliciete toelatingslijst blijven gewone omgevingsvariabelen voor MCP-referenties bruikbaar (`GITHUB_TOKEN`, `GH_TOKEN`, `GITLAB_TOKEN`, `NPM_TOKEN`, `NODE_AUTH_TOKEN`, `DATABASE_URL`, `MONGODB_URI`, `REDIS_URL`, `AMQP_URL`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`, `AZURE_CLIENT_ID`, `AZURE_CLIENT_SECRET`), samen met gewone proxy- en serverspecifieke omgevingsvariabelen (`HTTP_PROXY`, aangepaste `*_API_KEY`, enzovoort). Andere `AWS_*`-sleutels, zoals `AWS_CONFIG_FILE` en `AWS_SHARED_CREDENTIALS_FILE`, blijven geblokkeerd omdat ze naar bestanden met referenties verwijzen in plaats van rechtstreeks een referentiewaarde te bevatten.
 
-Als je MCP-server echt een van de geblokkeerde variabelen nodig heeft, stel je deze in voor het hostproces van de Gateway in plaats van onder `env` van de stdio-server.
+Als je MCP-server werkelijk een van de geblokkeerde variabelen nodig heeft, stel je deze in voor het Gateway-hostproces in plaats van onder `env` van de stdio-server.
 </Warning>
 
 ### SSE-/HTTP-transport
 
 Maakt via HTTP Server-Sent Events verbinding met een externe MCP-server.
 
-| Veld                           | Beschrijving                                                              |
-| ------------------------------ | ------------------------------------------------------------------------- |
-| `url`                          | HTTP- of HTTPS-URL van de externe server (vereist)                        |
-| `headers`                      | Optionele sleutel-waardetoewijzing van HTTP-headers (bijvoorbeeld auth-tokens) |
-| `connectionTimeoutMs`          | Verbindingstime-out per server in ms (optioneel)                          |
-| `connectTimeout`               | Verbindingstime-out per server in seconden (optioneel)                    |
-| `timeout` / `requestTimeoutMs` | Time-out voor MCP-verzoeken per server in seconden of ms                  |
-| `auth: "oauth"`                | Gebruik MCP-OAuth-referenties die door `openclaw mcp login` zijn opgeslagen |
-| `sslVerify`                    | Stel alleen in op false voor expliciet vertrouwde privé-HTTPS-eindpunten  |
-| `clientCert` / `clientKey`     | Paden naar mTLS-clientcertificaat en -sleutel                             |
-| `supportsParallelToolCalls`    | Aanwijzing dat gelijktijdige aanroepen veilig zijn voor deze server       |
+| Veld                        | Beschrijving                                                         |
+| --------------------------- | -------------------------------------------------------------------- |
+| `url`          | HTTP- of HTTPS-URL van de externe server (vereist)                   |
+| `headers`          | Optionele sleutel-waardetoewijzing van HTTP-headers (bijvoorbeeld authenticatietokens) |
+| `connectionTimeoutMs`          | Verbindingstime-out per server in ms (optioneel)                     |
+| `requestTimeoutMs`          | Time-out voor MCP-verzoeken per server in milliseconden              |
+| `auth: "oauth"`          | Gebruik MCP-OAuth-referenties die door `openclaw mcp login` zijn opgeslagen |
+| `sslVerify`          | Stel alleen in op false voor expliciet vertrouwde privé-HTTPS-eindpunten |
+| `clientCert` / `clientKey` | Paden naar het mTLS-clientcertificaat en de sleutel         |
+| `supportsParallelToolCalls`          | Aanwijzing dat gelijktijdige aanroepen veilig zijn voor deze server  |
 
 Voorbeeld:
 
@@ -692,7 +692,7 @@ Voorbeeld:
       "remote-tools": {
         "url": "https://mcp.example.com",
         "auth": "oauth",
-        "timeout": 20,
+        "requestTimeoutMs": 20000,
         "headers": {
           "Authorization": "Bearer <token>"
         }
@@ -702,43 +702,49 @@ Voorbeeld:
 }
 ```
 
-Gevoelige waarden in `url` (gebruikersinfo) en `headers` worden in logboeken en statusuitvoer geredigeerd. `openclaw mcp doctor` waarschuwt wanneer `headers`- of `env`-items die gevoelig lijken letterlijke waarden bevatten, zodat operators die waarden uit vastgelegde configuratie kunnen verwijderen.
+Gevoelige waarden in `url` (gebruikersinformatie) en `headers` worden in logboeken en statusuitvoer geredigeerd. `openclaw mcp doctor` waarschuwt wanneer `headers`- of `env`-vermeldingen die gevoelig lijken, letterlijke waarden bevatten, zodat operators die waarden uit vastgelegde configuratie kunnen verplaatsen.
 
 ### OAuth-workflow
 
-OAuth is bedoeld voor HTTP-MCP-servers die de MCP-OAuth-stroom adverteren. Statische `Authorization`-headers worden voor een server genegeerd zolang `auth: "oauth"` is ingeschakeld. Referenties die door `openclaw mcp login` zijn opgeslagen, werken met ingebedde MCP, CLI-runners en de lokale Codex-appserver.
+OAuth is bedoeld voor HTTP-MCP-servers die de MCP-OAuth-flow aanbieden. Statische `Authorization`-headers worden voor een server genegeerd zolang `auth: "oauth"` is ingeschakeld. Referenties die door `openclaw mcp login` zijn opgeslagen, werken met ingebedde MCP, CLI-runners en de lokale Codex-appserver.
 
-Totdat referenties beschikbaar zijn, laat OpenClaw alleen die MCP-server weg uit de agentruntime, in plaats van de agentbeurt te laten mislukken. De operator, of een agent met shelltoegang, kan vervolgens `openclaw mcp login <name>` uitvoeren en de server tijdens een latere beurt gebruiken.
+Native MCP-OAuth-sessies bevinden zich in de gedeelde SQLite-database die alleen voor de eigenaar toegankelijk is op `<state-dir>/state/openclaw.sqlite` (`mcp_oauth_stores`). De rij kan toegangs- en vernieuwingstokens, geheimen voor dynamische clientregistratie, ontdekkingsmetadata en de tijdelijke PKCE-verifier bevatten. Vernieuwen, inloggen en uitloggen gebruiken dezelfde SQLite-lease, zodat parallelle OpenClaw-processen niet één vernieuwingstoken kunnen gebruiken of een uitgelogde sessie opnieuw tot leven kunnen brengen.
 
-Wanneer een externe MCP-service al wordt ondersteund door een afzonderlijk OpenClaw-auth-profiel dat kan vernieuwen, kun je optioneel `oauth.authProfileId` instellen. OpenClaw vernieuwt een van beide bronnen van referenties vóór de runtimeprojectie en geeft alleen het huidige toegangstoken door aan de onderliggende MCP-client.
+Upgrades vanuit de buiten gebruik gestelde `<state-dir>/mcp-oauth/*.json`-opslag worden alleen door `openclaw doctor --fix` afgehandeld. Runtimecode leest of schrijft die bestanden nooit en valt er ook nooit op terug.
+
+Totdat referenties beschikbaar zijn, laat OpenClaw alleen die MCP-server weg uit de runtime van de agent in plaats van de agentbeurt te laten mislukken. De operator, of een agent met shelltoegang, kan vervolgens `openclaw mcp login <name>` uitvoeren en de server in een latere beurt gebruiken.
+
+Als een server een token weigert met `insufficient_scope`, behoudt OpenClaw het aangevraagde bereik en vraagt het om `openclaw mcp login <name>` in plaats van een vernieuwing te herhalen die geen nieuw bereik kan verlenen. Die aanmelding start een nieuw autorisatieverzoek, terwijl het vorige token behouden blijft totdat vervangende referenties zijn opgeslagen.
+
+Wanneer een externe MCP-service al wordt ondersteund door een afzonderlijk OpenClaw-authenticatieprofiel dat kan vernieuwen, kun je optioneel `oauth.authProfileId` instellen. OpenClaw vernieuwt een van beide referentiebronnen vóór de runtimeprojectie en geeft alleen het actuele toegangstoken door aan de onderliggende MCP-client.
 
 <Steps>
   <Step title="De server opslaan">
-    Voeg de server toe of werk deze bij met `auth: "oauth"` en eventuele optionele OAuth-metagegevens.
+    Voeg de server toe of werk deze bij met `auth: "oauth"` en eventuele optionele OAuth-metadata.
 
     ```bash
     openclaw mcp set docs '{"url":"https://mcp.example.com/mcp","transport":"streamable-http","auth":"oauth","oauth":{"scope":"docs.read"}}'
     ```
 
-    Sla voor een bearer die door een auth-profiel wordt ondersteund de profielkoppeling op:
+    Sla voor een bearer-token dat door een auth-profiel wordt ondersteund de profielkoppeling op:
 
     ```bash
     openclaw mcp set docs '{"url":"https://mcp.example.com/mcp","transport":"streamable-http","auth":"oauth","oauth":{"authProfileId":"docs:mcp"}}'
     ```
 
   </Step>
-  <Step title="Aanmelden starten">
+  <Step title="Aanmelding starten">
     Voer de aanmelding uit om het autorisatieverzoek te maken.
 
     ```bash
     openclaw mcp login docs
     ```
 
-    OpenClaw drukt de autorisatie-URL af en slaat de tijdelijke OAuth-verificatiestatus op in de OpenClaw-statusmap.
+    OpenClaw toont de autorisatie-URL en slaat de tijdelijke OAuth-verificatiestatus op in gedeelde SQLite.
 
   </Step>
   <Step title="Voltooien met de code">
-    Nadat je in de browser toestemming hebt gegeven, geef je de geretourneerde code terug aan OpenClaw.
+    Geef na goedkeuring in de browser de geretourneerde code door aan OpenClaw.
 
     ```bash
     openclaw mcp login docs --code abc123
@@ -746,7 +752,7 @@ Wanneer een externe MCP-service al wordt ondersteund door een afzonderlijk OpenC
 
   </Step>
   <Step title="Autorisatie controleren">
-    Gebruik status of doctor om te bevestigen dat tokens aanwezig zijn.
+    Gebruik status of doctor om te bevestigen dat tokens aanwezig zijn en geen aanvullende autorisatie vereisen. Als status `authorization-required` meldt of doctor om aanvullende autorisatie vraagt, voer je `openclaw mcp login <name>` opnieuw uit.
 
     ```bash
     openclaw mcp status --verbose
@@ -754,8 +760,8 @@ Wanneer een externe MCP-service al wordt ondersteund door een afzonderlijk OpenC
     ```
 
   </Step>
-  <Step title="Referenties wissen">
-    Uitloggen verwijdert opgeslagen OAuth-referenties, maar behoudt de opgeslagen serverdefinitie.
+  <Step title="Inloggegevens wissen">
+    Afmelden verwijdert opgeslagen OAuth-inloggegevens, maar behoudt de opgeslagen serverdefinitie.
 
     ```bash
     openclaw mcp logout docs
@@ -764,26 +770,25 @@ Wanneer een externe MCP-service al wordt ondersteund door een afzonderlijk OpenC
   </Step>
 </Steps>
 
-Als de provider tokens roteert of de autorisatiestatus vastloopt, voer je `openclaw mcp logout <name>` uit en herhaal je vervolgens `login`. `logout` kan referenties voor een opgeslagen HTTP-server wissen, zelfs nadat `auth: "oauth"` uit de configuratie is verwijderd, zolang de servernaam en URL de vermelding in de referentieopslag nog steeds identificeren.
+Als de provider tokens roteert of de autorisatiestatus vastloopt, voer je `openclaw mcp logout <name>` uit en herhaal je vervolgens `login`. `logout` kan inloggegevens voor een opgeslagen HTTP-server wissen, zelfs nadat `auth: "oauth"` uit de configuratie is verwijderd, zolang de servernaam en URL de vermelding in de opslag voor inloggegevens nog identificeren.
 
 ### Streamable HTTP-transport
 
 `streamable-http` is een aanvullende transportoptie naast `sse` en `stdio`. Deze gebruikt HTTP-streaming voor bidirectionele communicatie met externe MCP-servers.
 
-| Veld                           | Beschrijving                                                                           |
-| ------------------------------ | -------------------------------------------------------------------------------------- |
-| `url`                          | HTTP- of HTTPS-URL van de externe server (vereist)                                     |
-| `transport`                    | Stel in op `"streamable-http"` om dit transport te selecteren; indien weggelaten gebruikt OpenClaw `sse` |
-| `headers`                      | Optionele sleutel-waardetoewijzing van HTTP-headers (bijvoorbeeld authenticatietokens) |
-| `connectionTimeoutMs`          | Verbindingstime-out per server in ms (optioneel)                                       |
-| `connectTimeout`               | Verbindingstime-out per server in seconden (optioneel)                                 |
-| `timeout` / `requestTimeoutMs` | Time-out voor MCP-verzoeken per server in seconden of ms                               |
-| `auth: "oauth"`                | Gebruik MCP OAuth-referenties die zijn opgeslagen door `openclaw mcp login`              |
-| `sslVerify`                    | Stel alleen in op false voor expliciet vertrouwde privé-HTTPS-eindpunten                |
-| `clientCert` / `clientKey`     | Paden naar het mTLS-clientcertificaat en de sleutel                                    |
-| `supportsParallelToolCalls`    | Geeft aan dat gelijktijdige aanroepen veilig zijn voor deze server                     |
+| Veld                        | Beschrijving                                                                           |
+| --------------------------- | -------------------------------------------------------------------------------------- |
+| `url`                       | HTTP- of HTTPS-URL van de externe server (vereist)                                     |
+| `transport`                 | Stel in op `"streamable-http"` om dit transport te selecteren; bij weglating gebruikt OpenClaw `sse` |
+| `headers`                   | Optionele sleutel-waardetoewijzing van HTTP-headers (bijvoorbeeld auth-tokens)         |
+| `connectionTimeoutMs`       | Verbindingstime-out per server in ms (optioneel)                                       |
+| `requestTimeoutMs`          | Time-out per MCP-verzoek per server in milliseconden                                   |
+| `auth: "oauth"`             | Gebruik MCP OAuth-inloggegevens die zijn opgeslagen door `openclaw mcp login`          |
+| `sslVerify`                 | Stel alleen in op false voor expliciet vertrouwde privé-HTTPS-eindpunten               |
+| `clientCert` / `clientKey`  | Paden naar het mTLS-clientcertificaat en de sleutel                                    |
+| `supportsParallelToolCalls` | Geeft aan dat gelijktijdige aanroepen veilig zijn voor deze server                     |
 
-De OpenClaw-configuratie gebruikt `transport: "streamable-http"` als de canonieke spelling. CLI-native MCP-waarden voor `type: "http"` worden geaccepteerd wanneer ze via `openclaw mcp set` worden opgeslagen en worden door `openclaw doctor --fix` in bestaande configuraties hersteld, maar `transport` is wat het ingebedde OpenClaw rechtstreeks gebruikt.
+De OpenClaw-configuratie gebruikt `transport: "streamable-http"` als de canonieke spelling. CLI-eigen MCP-waarden voor `type: "http"` worden geaccepteerd wanneer ze via `openclaw mcp set` worden opgeslagen en door `openclaw doctor --fix` in bestaande configuratie worden hersteld, maar `transport` is wat ingebed OpenClaw rechtstreeks gebruikt.
 
 Voorbeeld:
 
@@ -794,8 +799,8 @@ Voorbeeld:
       "streaming-tools": {
         "url": "https://mcp.example.com/stream",
         "transport": "streamable-http",
-        "connectTimeout": 10,
-        "timeout": 30,
+        "connectionTimeoutMs": 10000,
+        "requestTimeoutMs": 30000,
         "headers": {
           "Authorization": "Bearer <token>"
         }
@@ -806,35 +811,35 @@ Voorbeeld:
 ```
 
 <Note>
-Registeropdrachten starten de kanaalbridge niet. Alleen `probe` en `doctor --probe` openen een live MCP-clientsessie om te bewijzen dat de doelserver bereikbaar is.
+Registeropdrachten starten de kanaalbridge niet. Alleen `probe` en `doctor --probe` openen een actieve MCP-clientsessie om te bewijzen dat de doelserver bereikbaar is.
 </Note>
 
 ## Control UI
 
-De Control UI in de browser bevat een speciale pagina met MCP-instellingen op `/settings/mcp`; het eerdere pad `/mcp` blijft als alias bestaan. De pagina toont aantallen geconfigureerde servers, samenvattingen van ingeschakelde servers, OAuth en filters, transportrijen per server, bedieningselementen om servers in of uit te schakelen, algemene CLI-opdrachten en een editor met een beperkt bereik voor de configuratiesectie `mcp`.
+De Control UI in de browser bevat een speciale MCP-instellingenpagina op `/settings/mcp`; het eerdere pad `/mcp` blijft een alias. De pagina toont aantallen geconfigureerde servers, samenvattingen van ingeschakelde servers/OAuth/filters, transportrijen per server, bedieningselementen voor in- en uitschakelen, algemene CLI-opdrachten en een editor met beperkt bereik voor de configuratiesectie `mcp`.
 
-Gebruik de pagina voor wijzigingen door operators en een snel overzicht. Gebruik `openclaw mcp doctor --probe` of `openclaw mcp probe` wanneer je live bewijs van de server nodig hebt.
+Gebruik de pagina voor wijzigingen door operators en een snelle inventarisatie. Gebruik `openclaw mcp doctor --probe` of `openclaw mcp probe` wanneer je live bewijs van de server nodig hebt.
 
-Werkstroom voor operators:
+Operatorworkflow:
 
 1. Open de Control UI en kies **MCP**.
-2. Bekijk de overzichtskaarten voor het totale aantal, ingeschakelde servers, OAuth en gefilterde servers.
-3. Gebruik elke serverrij voor informatie over transport, authenticatie, filters, time-outs en opdrachten.
-4. Schakel de server in of uit wanneer je een definitie wilt behouden maar deze van runtime-detectie wilt uitsluiten.
+2. Bekijk de overzichtskaarten voor het totale aantal, ingeschakelde, OAuth- en gefilterde servers.
+3. Gebruik elke serverrij voor aanwijzingen over transport, auth, filters, time-outs en opdrachten.
+4. Schakel de activering om wanneer je een definitie wilt behouden maar deze van runtimedetectie wilt uitsluiten.
 5. Bewerk de configuratiesectie `mcp` met beperkt bereik voor structurele wijzigingen, zoals nieuwe servers, headers, TLS, OAuth-metadata of toolfilters.
 6. Kies **Save** om alleen de configuratie op te slaan, of **Save & Publish** om deze via het configuratiepad van de Gateway toe te passen.
-7. Voer `openclaw mcp doctor --probe` uit wanneer je live bewijs nodig hebt dat de bewerkte server start en tools weergeeft.
+7. Voer `openclaw mcp doctor --probe` uit wanneer je live bewijs nodig hebt dat de bewerkte server start en tools vermeldt.
 
 Opmerkingen:
 
 - opdrachtfragmenten plaatsen servernamen tussen aanhalingstekens, zodat ongebruikelijke namen in een shell kopieerbaar blijven
-- weergegeven URL-achtige waarden worden vóór het renderen geredigeerd wanneer ze ingesloten referenties bevatten
+- weergegeven URL-achtige waarden worden vóór weergave geredigeerd wanneer ze ingebedde inloggegevens bevatten
 - de pagina start zelf geen MCP-transporten
-- actieve runtimes hebben mogelijk `openclaw mcp reload`, publicatie van de Gateway-configuratie of een herstart van het proces nodig, afhankelijk van welk proces eigenaar is van de MCP-clients
+- actieve runtimes kunnen `openclaw mcp reload`, publicatie van de Gateway-configuratie of een procesherstart vereisen, afhankelijk van welk proces eigenaar is van de MCP-clients
 
 ## MCP Apps
 
-OpenClaw kan tools renderen die de stabiele [MCP Apps-extensie](https://modelcontextprotocol.io/extensions/apps) implementeren. Apps zijn opt-in, omdat hun HTML afkomstig is van de geconfigureerde MCP-server en zij vanaf diezelfde server om voor de app zichtbare tools of resources kunnen vragen.
+OpenClaw kan tools weergeven die de stabiele [MCP Apps-extensie](https://modelcontextprotocol.io/extensions/apps) implementeren. Apps zijn opt-in omdat hun HTML afkomstig is van de geconfigureerde MCP-server en om voor de app zichtbare tools of resources van diezelfde server kan vragen.
 
 Schakel de hostbridge in:
 
@@ -842,9 +847,9 @@ Schakel de hostbridge in:
 openclaw config set mcp.apps.enabled true --strict-json
 ```
 
-Herstart de Gateway nadat je deze instelling hebt gewijzigd. Wanneer deze is ingeschakeld, start OpenClaw een HTTP(S)-listener die uitsluitend voor de sandbox is bedoeld, op de Gateway-poort plus één (voor de standaard-Gateway: `18790`). De Control UI laadt Apps vanaf die afzonderlijke origin; de listener biedt nooit de Control UI, geauthenticeerde Gateway-routes of gebruikersgegevens aan.
+Herstart de Gateway nadat je deze instelling hebt gewijzigd. Wanneer deze is ingeschakeld, start OpenClaw een HTTP(S)-listener die uitsluitend voor de sandbox is bedoeld, op de Gateway-poort plus één (voor de standaard-Gateway, `18790`). De Control UI laadt Apps vanaf die afzonderlijke origin; de listener bedient nooit de Control UI, geauthenticeerde Gateway-routes of gebruikersgegevens.
 
-Directe Gateway-verbindingen hebben toegang tot beide poorten nodig. Als een reverse proxy of TLS-terminator de Control UI beschikbaar stelt, geef Apps dan een eigen openbare origin en stuur alleen die origin via een proxy door naar de sandboxlistener:
+Rechtstreekse Gateway-verbindingen hebben toegang tot beide poorten nodig. Als een reverse proxy of TLS-terminator de Control UI beschikbaar stelt, geef je Apps een eigen openbare origin en stuur je alleen die origin via een proxy door naar de sandboxlistener:
 
 ```json5
 {
@@ -858,7 +863,7 @@ Directe Gateway-verbindingen hebben toegang tot beide poorten nodig. Als een rev
 }
 ```
 
-De sandbox-origin moet verschillen van de origin van de Control UI. Host daarop geen andere geauthenticeerde of gevoelige inhoud.
+De sandbox-origin moet verschillen van de origin van de Control UI. Host er geen andere geauthenticeerde of gevoelige inhoud op.
 
 De officiële eenvoudige React-demo kan bijvoorbeeld als volgt worden geconfigureerd:
 
@@ -879,11 +884,15 @@ De officiële eenvoudige React-demo kan bijvoorbeeld als volgt worden geconfigur
 Gedrag en beveiligingsgrenzen:
 
 - OpenClaw kondigt de extensie `io.modelcontextprotocol/ui` alleen aan wanneer Apps zijn ingeschakeld.
-- Alleen resources van `ui://` met exact het MIME-type `text/html;profile=mcp-app` worden gerenderd.
-- UI-resources zijn beperkt tot 2 MiB, worden achter een dubbele iframe-proxy op een afzonderlijke buitenste origin geplaatst, in een ondoorzichtige binnenste App-origin geladen en beperkt door een CSP die is afgeleid van de resourcemetadata.
-- Tools die uitsluitend voor Apps zijn bedoeld (`_meta.ui.visibility: ["app"]`), blijven buiten de lijst met modeltools. Apps kunnen alleen voor de app zichtbare tools op hun eigen server aanroepen die ook voldoen aan het effectieve OpenClaw-toolbeleid voor de uitvoering die de weergave heeft gemaakt.
-- Aan een origin gebonden App-machtigingen, zoals camera, microfoon en geolocatie, worden niet verleend zolang binnenste App-documenten ondoorzichtige origins gebruiken voor isolatie tussen Apps.
-- App-HTML, volledige toolargumenten en onbewerkte resultaten bevinden zich in een begrensde weergavelease van tien minuten in het geheugen en worden niet naar schijf geschreven of naar metadata voor transcriptvoorbeelden gekopieerd. Het transcript slaat alleen een begrensde server-, tool- en resourcebeschrijving op die aan de oorspronkelijke toolaanroep-ID is gekoppeld. Na een herstart van de Gateway kan de Control UI die beschrijving verifiëren aan de hand van het geauthenticeerde sessietranscript en de resource `ui://` opnieuw ophalen; gereconstrueerde weergaven zijn alleen-lezen totdat een nieuwe uitvoering actuele toolmachtigingen vastlegt.
+- Alleen resources van `ui://` met exact het MIME-type `text/html;profile=mcp-app` worden weergegeven.
+- UI-resources zijn beperkt tot 2 MiB, worden achter een proxy met dubbele iframe op een speciale buitenste origin geplaatst, in een ondoorzichtige binnenste App-origin geladen en beperkt door CSP die is afgeleid van de resourcemetadata.
+- Tools die uitsluitend voor Apps zijn bedoeld (`_meta.ui.visibility: ["app"]`), blijven buiten de toollijsten van het model. Apps kunnen alleen voor de app zichtbare tools op hun eigen server aanroepen die ook voldoen aan het effectieve OpenClaw-toolbeleid voor de uitvoering die de weergave heeft gemaakt.
+- Aan de origin gebonden App-machtigingen, zoals camera, microfoon en geolocatie, worden niet verleend zolang binnenste App-documenten ondoorzichtige origins gebruiken voor isolatie tussen Apps.
+- App-HTML, volledige toolargumenten en onbewerkte resultaten bevinden zich in een begrensde weergavelease van tien minuten in het geheugen en worden niet naar schijf geschreven of naar metadata voor transcriptvoorbeelden gekopieerd. Het transcript slaat alleen een begrensde server-/tool-/resourcedescriptor op die aan de oorspronkelijke toolaanroep-ID is gekoppeld. Na een herstart van de Gateway kan de Control UI die descriptor verifiëren aan de hand van het geauthenticeerde sessietranscript en de resource `ui://` opnieuw ophalen; opnieuw samengestelde weergaven zijn alleen-lezen totdat een nieuwe uitvoering de huidige toolmachtigingen vaststelt.
+- In kanaalgesprekken voegt de laatste geslaagde App-weergave in een beurt één actie in de stijl van **Open App** toe aan het uiteindelijke antwoord van de assistent. Telegram-DM's gebruiken een systeemeigen Mini App-knop; Slack en Discord geven dezelfde overdraagbare actie weer als een link. Andere kanalen behouden de oorspronkelijke antwoordtekst en voegen een begrijpelijke HTTPS-link toe.
+- Startlinks voor kanalen zijn alleen beschikbaar wanneer Gateway-blootstelling via Tailscale een gepubliceerde HTTPS-origin heeft voorbereid. `gateway.tailscale.mode: "serve"` is alleen bereikbaar vanaf het tailnet; `"funnel"` is bereikbaar vanaf het openbare internet. Een extern beheerde Funnel die door `gateway.tailscale.preserveFunnel` wordt behouden, wordt eveneens als via internet bereikbaar beschouwd. Zie [Tailscale](/nl/gateway/tailscale).
+- Starttickets zijn ondoorzichtig, worden alleen aangemaakt tijdens het samenstellen van het uiteindelijke kanaalantwoord en verlopen na maximaal twee minuten of wanneer de onderliggende weergavelease verloopt, afhankelijk van wat het eerst gebeurt. De URL bevat geen bearer-inloggegevens van de Gateway, sessiesleutels, weergavemetadata, App-HTML, toolinvoer of toolresultaten.
+- Als er geen gepubliceerde origin of ticketcapaciteit beschikbaar is, de weergave of het ticket is verlopen, of het transport geen systeemeigen bedieningselementen kan weergeven, blijft de oorspronkelijke assistenttekst beschikbaar. De Control UI behoudt het bestaande inline App-canvas en ontvangt geen dubbele startactie.
 - `openclaw security audit` waarschuwt zolang de bridge is ingeschakeld. Schakel deze uit met `openclaw config set mcp.apps.enabled false --strict-json` wanneer deze niet nodig is.
 
 ## Huidige beperkingen
@@ -892,7 +901,7 @@ Deze pagina documenteert de bridge zoals die momenteel wordt geleverd.
 
 Huidige beperkingen:
 
-- gespreksdetectie is afhankelijk van bestaande routemetadata van Gateway-sessies
+- gespreksdetectie is afhankelijk van bestaande metadata van Gateway-sessieroutes
 - geen generiek pushprotocol naast de Claude-specifieke adapter
 - nog geen tools voor het bewerken van berichten of het toevoegen van reacties
 - HTTP/SSE/streamable-http-transport maakt verbinding met één externe server; nog geen gemultiplexte upstream

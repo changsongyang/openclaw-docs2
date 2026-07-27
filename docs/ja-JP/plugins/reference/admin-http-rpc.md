@@ -1,10 +1,10 @@
 ---
 read_when:
-    - admin-http-rpc Plugin をインストール、設定、または監査しています
+    - admin-http-rpc Plugin のインストール、設定、または監査を行う場合
 summary: OpenClaw 管理用 HTTP RPC エンドポイント。
 title: 管理 HTTP RPC Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:02:54Z"
+    generated_at: "2026-07-26T09:42:21Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# 管理 HTTP RPC Plugin
+# Admin HTTP RPC Plugin
 
-OpenClaw 管理 HTTP RPC エンドポイント。
+OpenClaw 管理用 HTTP RPC エンドポイント。
 
 ## 配布
 

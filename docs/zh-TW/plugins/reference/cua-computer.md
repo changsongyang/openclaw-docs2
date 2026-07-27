@@ -4,7 +4,7 @@ read_when:
 summary: 適用於 Windows 與 Linux 節點主機的實驗性 cua-driver 電腦控制功能。
 title: Cua Computer 外掛
 x-i18n:
-    generated_at: "2026-07-21T22:40:35Z"
+    generated_at: "2026-07-26T07:27:35Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## 發行方式
 
 - 套件：`@openclaw/cua-computer`
-- 安裝方式：隨附於 OpenClaw
+- 安裝途徑：內含於 OpenClaw
 
 ## 介面
 

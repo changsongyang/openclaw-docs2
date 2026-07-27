@@ -1,12 +1,12 @@
 ---
 read_when:
     - Sie möchten einen Websuch-Provider, der keinen API-Schlüssel erfordert
-    - Sie möchten DuckDuckGo für `web_search` verwenden
-    - Sie möchten einen ausdrücklich ausgewählten Such-Provider ohne API-Schlüssel
+    - Sie möchten DuckDuckGo für web_search verwenden
+    - Sie möchten einen explizit ausgewählten Such-Provider ohne API-Schlüssel
 summary: DuckDuckGo-Websuche – schlüsselfreier Provider (experimentell, HTML-basiert)
 title: DuckDuckGo-Suche
 x-i18n:
-    generated_at: "2026-07-24T05:01:40Z"
+    generated_at: "2026-07-26T18:51:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,21 +16,21 @@ x-i18n:
     workflow: 16
 ---
 
-OpenClaw unterstützt DuckDuckGo als **schlüsselfreien** `web_search`-Provider. Es ist weder ein API-Schlüssel noch ein Konto erforderlich.
+OpenClaw unterstützt DuckDuckGo als **schlüsselfreien** `web_search`-Provider. Es sind weder ein API-Schlüssel noch ein Konto erforderlich.
 
 <Warning>
-  DuckDuckGo ist eine **experimentelle, inoffizielle** Integration, die die JavaScript-freien HTML-Suchseiten von DuckDuckGo ausliest – sie verwendet keine offizielle API. Rechnen Sie mit gelegentlichen Ausfällen aufgrund von Bot-Abfrageseiten oder HTML-Änderungen.
+  DuckDuckGo ist eine **experimentelle, inoffizielle** Integration, die DuckDuckGos JavaScript-freie HTML-Suchseiten ausliest – keine offizielle API. Durch Bot-Challenge-Seiten oder HTML-Änderungen kann es gelegentlich zu Ausfällen kommen.
 </Warning>
 
 ## Einrichtung
 
-DuckDuckGo wird niemals automatisch ausgewählt, da die automatische Erkennung nur Provider mit verwendbaren Anmeldedaten berücksichtigt. Legen Sie ihn ausdrücklich fest:
+DuckDuckGo wird nie automatisch ausgewählt, da die automatische Erkennung nur Provider mit verwendbaren Anmeldedaten berücksichtigt. Legen Sie den Provider explizit fest:
 
 <Steps>
   <Step title="Konfigurieren">
     ```bash
     openclaw configure --section web
-    # Wählen Sie "duckduckgo" als Provider aus
+    # "duckduckgo" als Provider auswählen
     ```
   </Step>
 </Steps>
@@ -88,22 +88,22 @@ DuckDuckGo-Regionscode (z. B. `us-en`, `uk-en`, `de-de`).
 SafeSearch-Stufe.
 </ParamField>
 
-Die Tool-Parameter `region` und `safeSearch` überschreiben die obigen Plugin-Konfigurationswerte für die jeweilige Suchanfrage.
+Die Tool-Parameter `region` und `safeSearch` überschreiben die obigen Plugin-Konfigurationswerte für jede Suchanfrage einzeln.
 
 ## Hinweise
 
-- **Kein API-Schlüssel** – funktioniert, sobald DuckDuckGo als `web_search`-Provider ausgewählt ist.
-- **Experimentell** – liest die JavaScript-freien HTML-Suchseiten von DuckDuckGo aus und verwendet keine offizielle API oder kein offizielles SDK. Die Ergebnisse hängen von der Seitenstruktur ab, die sich ohne Vorankündigung ändern kann.
-- **Risiko von Bot-Abfragen** – DuckDuckGo kann bei intensiver oder automatisierter Nutzung CAPTCHAs anzeigen oder Anfragen blockieren.
-- **Nur ausdrückliche Auswahl** – die automatische Erkennung von OpenClaw berücksichtigt nur Provider mit verwendbaren Anmeldedaten. Daher wird ein schlüsselfreier Provider wie DuckDuckGo niemals automatisch ausgewählt; Sie müssen `provider: "duckduckgo"` festlegen.
-- **SafeSearch verwendet standardmäßig `moderate`**, wenn keine Konfiguration erfolgt.
+- **Kein API-Schlüssel** – funktioniert, sobald DuckDuckGo als `web_search`-Provider ausgewählt wurde.
+- **Experimentell** – liest DuckDuckGos JavaScript-freie HTML-Suchseiten aus und verwendet keine offizielle API oder kein offizielles SDK. Die Ergebnisse hängen von der Seitenstruktur ab, die sich ohne Vorankündigung ändern kann.
+- **Risiko von Bot-Challenges** – DuckDuckGo kann bei intensiver oder automatisierter Nutzung CAPTCHAs anzeigen oder Anfragen blockieren.
+- **Nur explizite Auswahl** – die automatische Erkennung von OpenClaw berücksichtigt nur Provider mit verwendbaren Anmeldedaten. Daher wird ein schlüsselfreier Provider wie DuckDuckGo nie automatisch ausgewählt; Sie müssen `provider: "duckduckgo"` festlegen.
+- **SafeSearch verwendet standardmäßig `moderate`**, wenn es nicht konfiguriert ist.
 
 <Tip>
-  Erwägen Sie für den Produktionseinsatz [Brave Search](/de/tools/brave-search) (kostenloses Kontingent verfügbar) oder einen anderen API-gestützten Provider.
+  Für den Produktionseinsatz empfiehlt sich [Brave Search](/de/tools/brave-search) (kostenlose Tarifstufe verfügbar) oder ein anderer API-basierter Provider.
 </Tip>
 
 ## Verwandte Themen
 
-- [Übersicht zur Websuche](/de/tools/web) – alle Provider und die automatische Erkennung
-- [Brave Search](/de/tools/brave-search) – strukturierte Ergebnisse mit kostenlosem Kontingent
+- [Übersicht zur Websuche](/de/tools/web) – alle Provider und automatische Erkennung
+- [Brave Search](/de/tools/brave-search) – strukturierte Ergebnisse mit kostenloser Tarifstufe
 - [Exa Search](/de/tools/exa-search) – neuronale Suche mit Inhaltsextraktion

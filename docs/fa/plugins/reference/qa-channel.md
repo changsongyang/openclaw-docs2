@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin کانال تضمین کیفیت هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin ‏qa-channel هستید
 summary: سطح کانال تضمین کیفیت را برای ارسال و دریافت پیام‌های OpenClaw اضافه می‌کند.
-title: Plugin کانال تضمین کیفیت
+title: Plugin کانال QA
 x-i18n:
-    generated_at: "2026-07-16T17:29:39Z"
+    generated_at: "2026-07-27T15:32:53Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## توزیع
 
 - بسته: `@openclaw/qa-channel`
-- مسیر نصب: فقط دریافت کد منبع
+- مسیر نصب: فقط نسخهٔ دریافت‌شده از کد منبع
 
 ## سطح
 

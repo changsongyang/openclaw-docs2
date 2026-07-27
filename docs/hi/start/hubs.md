@@ -1,10 +1,10 @@
 ---
 read_when:
-    - आप दस्तावेज़ों का पूरा मानचित्र चाहते हैं
-summary: वे हब जो प्रत्येक OpenClaw दस्तावेज़ से लिंक होते हैं
+    - आप दस्तावेज़ीकरण का संपूर्ण मानचित्र चाहते हैं
+summary: हर OpenClaw दस्तावेज़ से लिंक करने वाले हब
 title: दस्तावेज़ हब
 x-i18n:
-    generated_at: "2026-07-16T17:19:53Z"
+    generated_at: "2026-07-27T18:34:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,10 +15,10 @@ x-i18n:
 ---
 
 <Note>
-यदि आप OpenClaw के लिए नए हैं, तो [आरंभ करना](/hi/start/getting-started) से शुरुआत करें।
+यदि आप OpenClaw में नए हैं, तो [आरंभ करना](/hi/start/getting-started) से शुरुआत करें।
 </Note>
 
-हर पृष्ठ खोजने के लिए इन हब का उपयोग करें, जिनमें गहन विवरण और वे संदर्भ दस्तावेज़ भी शामिल हैं जो बाएँ नेविगेशन में दिखाई नहीं देते।
+हर पृष्ठ को खोजने के लिए इन हब का उपयोग करें, जिनमें गहन विवरण और वे संदर्भ दस्तावेज़ भी शामिल हैं जो बाएँ नेविगेशन में दिखाई नहीं देते।
 
 ## यहाँ से शुरू करें
 
@@ -31,7 +31,7 @@ x-i18n:
 - [सहायता](/hi/help)
 - [दस्तावेज़ निर्देशिका](/hi/start/docs-directory)
 - [कॉन्फ़िगरेशन](/hi/gateway/configuration)
-- [कॉन्फ़िगरेशन के उदाहरण](/hi/gateway/configuration-examples)
+- [कॉन्फ़िगरेशन उदाहरण](/hi/gateway/configuration-examples)
 - [OpenClaw सहायक](/hi/start/openclaw)
 - [प्रदर्शनी](/hi/start/showcase)
 - [पृष्ठभूमि-कथा](/hi/start/lore)
@@ -40,29 +40,29 @@ x-i18n:
 
 - [Docker](/hi/install/docker)
 - [Nix](/hi/install/nix)
-- [अपडेट / रोलबैक](/hi/install/updating)
+- [अपडेट करना / रोलबैक](/hi/install/updating)
 - [Bun कार्यप्रवाह (प्रायोगिक)](/hi/install/bun)
 
 ## मुख्य अवधारणाएँ
 
 - [आर्किटेक्चर](/hi/concepts/architecture)
-- [विशेषताएँ](/hi/concepts/features)
+- [सुविधाएँ](/hi/concepts/features)
 - [नेटवर्क हब](/hi/network)
 - [एजेंट रनटाइम](/hi/concepts/agent)
 - [एजेंट कार्यक्षेत्र](/hi/concepts/agent-workspace)
 - [मेमोरी](/hi/concepts/memory)
 - [एजेंट लूप](/hi/concepts/agent-loop)
-- [स्ट्रीमिंग + चंकिंग](/hi/concepts/streaming)
+- [स्ट्रीमिंग + खंडन](/hi/concepts/streaming)
 - [बहु-एजेंट रूटिंग](/hi/concepts/multi-agent)
 - [Compaction](/hi/concepts/compaction)
 - [सत्र](/hi/concepts/session)
-- [सत्र छँटाई](/hi/concepts/session-pruning)
+- [सत्र की छँटाई](/hi/concepts/session-pruning)
 - [सत्र टूल](/hi/concepts/session-tool)
 - [कतार](/hi/concepts/queue)
 - [स्लैश कमांड](/hi/tools/slash-commands)
 - [RPC अडैप्टर](/hi/reference/rpc)
 - [TypeBox स्कीमा](/hi/concepts/typebox)
-- [समय-क्षेत्र प्रबंधन](/hi/concepts/timezone)
+- [समय क्षेत्र प्रबंधन](/hi/concepts/timezone)
 - [उपस्थिति](/hi/concepts/presence)
 - [खोज + ट्रांसपोर्ट](/hi/gateway/discovery)
 - [Bonjour](/hi/gateway/bonjour)
@@ -86,12 +86,12 @@ x-i18n:
 - [WebChat](/hi/web/webchat)
 - [WhatsApp](/hi/channels/whatsapp)
 - [स्थान पार्सिंग](/hi/channels/location)
-- [Webhook](/hi/automation/cron-jobs#webhooks)
+- [Webhooks](/hi/automation/cron-jobs#webhooks)
 - [Gmail Pub/Sub](/hi/automation/cron-jobs#gmail-pubsub-integration)
 
 ## Gateway + संचालन
 
-- [Gateway रनबुक](/hi/gateway)
+- [Gateway संचालन पुस्तिका](/hi/gateway)
 - [नेटवर्क मॉडल](/hi/network#core-model)
 - [Gateway पेयरिंग](/hi/gateway/pairing)
 - [Gateway लॉक](/hi/gateway/gateway-lock)
@@ -117,9 +117,9 @@ x-i18n:
 - [Exec टूल](/hi/tools/exec)
 - [PDF टूल](/hi/tools/pdf)
 - [उन्नत मोड](/hi/tools/elevated)
-- [Cron जॉब](/hi/automation/cron-jobs)
+- [Cron कार्य](/hi/automation/cron-jobs)
 - [स्वचालन](/hi/automation)
-- [विचार + विस्तृत विवरण](/hi/tools/thinking)
+- [चिंतन + विस्तृत विवरण](/hi/tools/thinking)
 - [मॉडल](/hi/concepts/models)
 - [उप-एजेंट](/hi/tools/subagents)
 - [एजेंट प्रेषण CLI](/hi/tools/agent-send)
@@ -128,11 +128,11 @@ x-i18n:
 - [ब्राउज़र (Linux समस्या निवारण)](/hi/tools/browser-linux-troubleshooting)
 - [मतदान](/hi/cli/message)
 
-## Node, मीडिया, वॉइस
+## Nodes, मीडिया, आवाज़
 
-- [Node का अवलोकन](/hi/nodes)
+- [Nodes का अवलोकन](/hi/nodes)
 - [कैमरा](/hi/nodes/camera)
-- [चित्र](/hi/nodes/images)
+- [छवियाँ](/hi/nodes/images)
 - [ऑडियो](/hi/nodes/audio)
 - [स्थान कमांड](/hi/nodes/location-command)
 - [वॉइस वेक](/hi/nodes/voicewake)
@@ -150,19 +150,19 @@ x-i18n:
 
 ## macOS सहयोगी ऐप (उन्नत)
 
-- [macOS डेवलपमेंट सेटअप](/hi/platforms/mac/dev-setup)
+- [macOS विकास सेटअप](/hi/platforms/mac/dev-setup)
 - [macOS मेनू बार](/hi/platforms/mac/menu-bar)
 - [macOS वॉइस वेक](/hi/platforms/mac/voicewake)
 - [macOS वॉइस ओवरले](/hi/platforms/mac/voice-overlay)
 - [macOS WebChat](/hi/platforms/mac/webchat)
-- [macOS कैनवास](/hi/platforms/mac/canvas)
-- [macOS चाइल्ड प्रक्रिया](/hi/platforms/mac/child-process)
+- [macOS Canvas](/hi/platforms/mac/canvas)
+- [macOS चाइल्ड प्रोसेस](/hi/platforms/mac/child-process)
 - [macOS स्वास्थ्य](/hi/platforms/mac/health)
 - [macOS आइकन](/hi/platforms/mac/icon)
 - [macOS लॉगिंग](/hi/platforms/mac/logging)
 - [macOS अनुमतियाँ](/hi/platforms/mac/permissions)
 - [macOS रिमोट](/hi/platforms/mac/remote)
-- [macOS साइनिंग](/hi/platforms/mac/signing)
+- [macOS हस्ताक्षरण](/hi/platforms/mac/signing)
 - [macOS Gateway (launchd)](/hi/platforms/mac/bundled-gateway)
 - [macOS XPC](/hi/platforms/mac/xpc)
 - [macOS Skills](/hi/platforms/mac/skills)
@@ -173,7 +173,7 @@ x-i18n:
 - [Plugins का अवलोकन](/hi/tools/plugin)
 - [Plugins बनाना](/hi/plugins/building-plugins)
 - [Plugin हुक](/hi/plugins/hooks)
-- [Plugin मैनिफ़ेस्ट](/hi/plugins/manifest)
+- [Plugin मेनिफ़ेस्ट](/hi/plugins/manifest)
 - [एजेंट टूल](/hi/plugins/building-plugins#registering-agent-tools)
 - [Plugin बंडल](/hi/plugins/bundles)
 - [ClawHub](/hi/clawhub)

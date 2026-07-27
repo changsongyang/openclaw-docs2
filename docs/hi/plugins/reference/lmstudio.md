@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप lmstudio Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: OpenClaw में LM Studio मॉडल प्रदाता समर्थन जोड़ता है।
+summary: OpenClaw में LM Studio मॉडल प्रदाता का समर्थन जोड़ता है।
 title: LM Studio Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:16:08Z"
+    generated_at: "2026-07-27T19:39:27Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,9 +21,9 @@ OpenClaw में LM Studio मॉडल प्रदाता का समर
 ## वितरण
 
 - पैकेज: `@openclaw/lmstudio-provider`
-- इंस्टॉल करने का तरीका: OpenClaw में शामिल है
+- इंस्टॉल मार्ग: OpenClaw में शामिल
 
-## उपलब्ध सतह
+## सतह
 
 प्रदाता: `lmstudio`; अनुबंध: `memoryEmbeddingProviders`
 

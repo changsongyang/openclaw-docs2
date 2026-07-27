@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de Lobster-plugin
-summary: Lobster-workflowtoolplugin voor getypeerde pipelines en hervatbare goedkeuringen.
-title: Lobster-Plugin
+summary: Lobster-workflowtoolplugin voor getypeerde pijplijnen en hervatbare goedkeuringen.
+title: Lobster-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:19:16Z"
+    generated_at: "2026-07-27T05:59:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Lobster-Plugin
+# Lobster-plugin
 
-Lobster-workflowtoolplugin voor getypeerde pipelines en hervatbare goedkeuringen.
+Lobster-workflowtoolplugin voor getypeerde pijplijnen en hervatbare goedkeuringen.
 
 ## Distributie
 

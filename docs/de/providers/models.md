@@ -1,11 +1,11 @@
 ---
 read_when:
     - Sie möchten einen Modell-Provider auswählen
-    - Sie möchten kurze Einrichtungsbeispiele für die LLM-Authentifizierung und Modellauswahl
+    - Sie möchten Beispiele für die schnelle Einrichtung der LLM-Authentifizierung und Modellauswahl.
 summary: Von OpenClaw unterstützte Modell-Provider (LLMs)
 title: Schnellstart für Modell-Provider
 x-i18n:
-    generated_at: "2026-07-24T05:13:43Z"
+    generated_at: "2026-07-26T18:43:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,11 +15,11 @@ x-i18n:
     workflow: 16
 ---
 
-Wählen Sie einen Provider aus, authentifizieren Sie sich und legen Sie anschließend das Standardmodell auf `provider/model` fest.
+Wählen Sie einen Provider aus, authentifizieren Sie sich und legen Sie anschließend das Standardmodell als `provider/model` fest.
 
 ## Schnellstart (zwei Schritte)
 
-1. Authentifizieren Sie sich beim Provider (normalerweise über `openclaw onboard`).
+1. Authentifizieren Sie sich beim Provider (in der Regel über `openclaw onboard`).
 2. Legen Sie das Standardmodell fest:
 
 ```json5
@@ -28,12 +28,12 @@ Wählen Sie einen Provider aus, authentifizieren Sie sich und legen Sie anschlie
 }
 ```
 
-## Unterstützte Provider (Auswahl für den Einstieg)
+## Unterstützte Provider (Einstiegsauswahl)
 
 - [Alibaba Model Studio](/de/providers/alibaba)
 - [Amazon Bedrock](/de/providers/bedrock)
 - [Anthropic (API + Claude CLI)](/de/providers/anthropic)
-- [Baseten (Inkling + Modell-APIs)](/providers/baseten)
+- [Baseten (Inkling + Modell-APIs)](/de/providers/baseten)
 - [BytePlus (International)](/de/concepts/model-providers#byteplus-international)
 - [Chutes](/de/providers/chutes)
 - [Cloudflare AI Gateway](/de/providers/cloudflare-ai-gateway)
@@ -64,9 +64,9 @@ Den vollständigen Provider-Katalog und die erweiterte Konfiguration finden Sie 
 
 ## Zusätzliche Provider-Varianten
 
-- `anthropic-vertex` – installieren Sie `@openclaw/anthropic-vertex-provider`, um implizite Anthropic-Unterstützung auf Google Vertex zu erhalten, wenn Vertex-Anmeldedaten verfügbar sind; keine separate Authentifizierungsoption beim Onboarding
+- `anthropic-vertex` – installieren Sie `@openclaw/anthropic-vertex-provider`, um implizite Anthropic-Unterstützung auf Google Vertex zu erhalten, wenn Vertex-Zugangsdaten verfügbar sind; keine separate Authentifizierungsoption beim Onboarding
 - `copilot-proxy` – lokale VS-Code-Copilot-Proxy-Bridge; verwenden Sie `openclaw onboard --auth-choice copilot-proxy`
-- `google-gemini-cli` – inoffizieller OAuth-Ablauf der Gemini CLI; erfordert eine lokale Installation von `gemini` (`brew install gemini-cli` oder `npm install -g @google/gemini-cli`); Standardmodell `google-gemini-cli/gemini-3-flash-preview`; verwenden Sie `openclaw onboard --auth-choice google-gemini-cli` oder `openclaw models auth login --provider google-gemini-cli --set-default`
+- `google-gemini-cli` – inoffizieller Gemini-CLI-OAuth-Ablauf; erfordert eine lokale Installation von `gemini` (`brew install gemini-cli` oder `npm install -g @google/gemini-cli`); Standardmodell `google-gemini-cli/gemini-3-flash-preview`; verwenden Sie `openclaw onboard --auth-choice google-gemini-cli` oder `openclaw models auth login --provider google-gemini-cli --set-default`
 
 ## Verwandte Themen
 

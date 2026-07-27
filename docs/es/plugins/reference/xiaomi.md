@@ -4,7 +4,7 @@ read_when:
 summary: Añade compatibilidad con Xiaomi y con el proveedor de modelos Xiaomi Token Plan en OpenClaw.
 title: Plugin de Xiaomi
 x-i18n:
-    generated_at: "2026-07-16T11:55:15Z"
+    generated_at: "2026-07-26T04:49:21Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Añade compatibilidad con Xiaomi y con el proveedor de modelos Xiaomi Token Plan
 ## Distribución
 
 - Paquete: `@openclaw/xiaomi-provider`
-- Ruta de instalación: incluido en OpenClaw
+- Ruta de instalación: incluida en OpenClaw
 
 ## Superficie
 

@@ -4,7 +4,7 @@ read_when:
 summary: 为 OpenClaw 添加 GitHub Copilot 模型提供商支持。
 title: GitHub Copilot 插件
 x-i18n:
-    generated_at: "2026-07-16T11:49:22Z"
+    generated_at: "2026-07-26T06:53:28Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## 分发
 
 - 软件包：`@openclaw/github-copilot-provider`
-- 安装方式：OpenClaw 内置
+- 安装方式：内置于 OpenClaw
 
 ## 接口
 

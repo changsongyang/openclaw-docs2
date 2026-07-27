@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw में Qwen, Qwen Cloud, Model Studio, DashScope, Qwen Token Plan और Bailian Token Plan मॉडल प्रदाताओं के लिए समर्थन जोड़ता है।
 title: Qwen Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:18:15Z"
+    generated_at: "2026-07-27T18:20:26Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ OpenClaw में Qwen, Qwen Cloud, Model Studio, DashScope, Qwen Token Plan �
 - पैकेज: `@openclaw/qwen-provider`
 - इंस्टॉल मार्ग: npm; ClawHub: `clawhub:@openclaw/qwen-provider`
 
-## उपलब्ध सतह
+## उपलब्ध इंटरफ़ेस
 
 प्रदाता: `qwen`, `qwencloud`, `modelstudio`, `dashscope`, `qwen-token-plan`, `bailian-token-plan`; अनुबंध: `mediaUnderstandingProviders`, `videoGenerationProviders`
 

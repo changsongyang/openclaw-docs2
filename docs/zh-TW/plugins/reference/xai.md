@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 xai 外掛
-summary: 為 OpenClaw 新增 xAI 模型提供者支援。
+summary: 新增 OpenClaw 對 xAI 模型供應商的支援。
 title: xAI 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:54:33Z"
+    generated_at: "2026-07-26T08:44:06Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,16 +16,16 @@ x-i18n:
 
 # xAI 外掛
 
-為 OpenClaw 新增 xAI 模型供應商支援。
+為 OpenClaw 新增 xAI 模型提供者支援。
 
-## 發布方式
+## 發行方式
 
 - 套件：`@openclaw/xai-plugin`
-- 安裝方式：隨 OpenClaw 內附
+- 安裝途徑：隨附於 OpenClaw
 
 ## 介面
 
-供應商：`xai`；合約：`imageGenerationProviders`、`mediaUnderstandingProviders`、`realtimeTranscriptionProviders`、`realtimeVoiceProviders`、`speechProviders`、`tools`、`videoGenerationProviders`、`webSearchProviders`
+提供者：`xai`；合約：`imageGenerationProviders`、`mediaUnderstandingProviders`、`realtimeTranscriptionProviders`、`realtimeVoiceProviders`、`speechProviders`、`tools`、`videoGenerationProviders`、`webSearchProviders`
 
 ## 相關文件
 

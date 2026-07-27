@@ -4,7 +4,7 @@ read_when:
 summary: 用于类型化流水线和可恢复审批的 Lobster 工作流工具插件。
 title: Lobster 插件
 x-i18n:
-    generated_at: "2026-07-16T11:50:42Z"
+    generated_at: "2026-07-26T06:52:20Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Lobster 插件
 
-用于类型化管道和可恢复审批的 Lobster 工作流工具插件。
+用于类型化流水线和可恢复审批的 Lobster 工作流工具插件。
 
 ## 分发
 

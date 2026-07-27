@@ -1,10 +1,10 @@
 ---
 read_when:
-    - linux-canvas pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+    - linux-canvas pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw Linux masaüstü uygulaması için Canvas işleme köprüsü.
-title: Linux Canvas Plugin'i
+title: Linux Canvas plugini
 x-i18n:
-    generated_at: "2026-07-16T17:25:42Z"
+    generated_at: "2026-07-27T00:08:18Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Linux Canvas Plugin
+# Linux Canvas plugin'i
 
 OpenClaw Linux masaüstü uygulaması için Canvas işleme köprüsü.
 
@@ -25,4 +25,4 @@ OpenClaw Linux masaüstü uygulaması için Canvas işleme köprüsü.
 
 ## Yüzey
 
-Plugin
+plugin

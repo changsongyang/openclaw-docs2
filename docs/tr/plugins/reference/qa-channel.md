@@ -1,10 +1,10 @@
 ---
 read_when:
     - qa-channel pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: OpenClaw mesajlarını göndermek ve almak için QA Kanalı yüzeyini ekler.
-title: QA Kanalı plugin'i
+summary: OpenClaw mesajlarını gönderip almak için QA Kanalı yüzeyini ekler.
+title: QA Kanalı Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:46:09Z"
+    generated_at: "2026-07-26T23:28:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ OpenClaw mesajlarını göndermek ve almak için QA Channel yüzeyini ekler.
 ## Dağıtım
 
 - Paket: `@openclaw/qa-channel`
-- Kurulum yolu: yalnızca kaynak kod deposundan
+- Kurulum yolu: yalnızca kaynak kod deposu
 
 ## Yüzey
 

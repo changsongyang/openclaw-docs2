@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Sie müssen Gateway-Protokolle aus der Ferne verfolgen (ohne SSH)
-    - Sie möchten JSON-Protokollzeilen für Tools
-summary: CLI-Referenz für `openclaw logs` (Gateway-Protokolle per RPC verfolgen)
+    - Sie müssen Gateway-Protokolle remote verfolgen (ohne SSH)
+    - Sie möchten JSON-Protokollzeilen für Werkzeuge
+summary: CLI-Referenz für `openclaw logs` (Gateway-Protokolle per RPC fortlaufend anzeigen)
 title: Protokolle
 x-i18n:
-    generated_at: "2026-07-24T03:42:28Z"
+    generated_at: "2026-07-26T17:42:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,7 +17,7 @@ x-i18n:
 
 # `openclaw logs`
 
-Gateway-Dateiprotokolle über RPC fortlaufend anzeigen. Funktioniert im Remote-Modus.
+Gateway-Dateiprotokolle über RPC fortlaufend ausgeben. Funktioniert im Remote-Modus.
 
 ## Optionen
 
@@ -26,7 +26,7 @@ Gateway-Dateiprotokolle über RPC fortlaufend anzeigen. Funktioniert im Remote-M
 - `--follow`: dem Protokollstream folgen
 - `--interval <ms>`: Abfrageintervall beim Folgen (Standard: `1000`)
 - `--json`: zeilengetrennte JSON-Ereignisse ausgeben
-- `--plain`: Nur-Text-Ausgabe ohne formatierte Darstellung
+- `--plain`: reine Textausgabe ohne formatierte Darstellung
 - `--no-color`: ANSI-Farben deaktivieren
 - `--local-time`: Zeitstempel in Ihrer lokalen Zeitzone darstellen (Standard)
 - `--utc`: Zeitstempel in UTC darstellen
@@ -36,9 +36,9 @@ Gateway-Dateiprotokolle über RPC fortlaufend anzeigen. Funktioniert im Remote-M
 - `--url <url>`: Gateway-WebSocket-URL
 - `--token <token>`: Gateway-Token
 - `--timeout <ms>`: Zeitüberschreitung in ms (Standard: `30000`)
-- `--expect-final`: bei einem agentengestützten Gateway-Aufruf auf eine abschließende Antwort warten
+- `--expect-final`: auf eine abschließende Antwort warten, wenn der Gateway-Aufruf von einem Agenten ausgeführt wird
 
-Durch die Übergabe von `--url` werden automatisch angewendete Anmeldedaten aus der Konfiguration übersprungen. Geben Sie `--token` ausdrücklich an, wenn das Ziel-Gateway eine Authentifizierung erfordert.
+Die Übergabe von `--url` überspringt automatisch angewendete Anmeldedaten aus der Konfiguration; geben Sie `--token` ausdrücklich an, wenn das Ziel-Gateway eine Authentifizierung erfordert.
 
 ## Beispiele
 
@@ -58,16 +58,16 @@ openclaw logs --url ws://127.0.0.1:18789 --token "$OPENCLAW_GATEWAY_TOKEN"
 ```
 
 Das ausgewählte Stammprofil entspricht der rotierenden Datei des Gateways: Das Standardprofil
-verwendet `openclaw-YYYY-MM-DD.log`, benannte Profile hingegen
-`openclaw-<profile>-YYYY-MM-DD.log` (zum Beispiel
+verwendet `openclaw-YYYY-MM-DD.log`, während benannte Profile
+`openclaw-<profile>-YYYY-MM-DD.log` verwenden (zum Beispiel
 `openclaw-dev-YYYY-MM-DD.log`).
 
 ## Fallback- und Wiederherstellungsverhalten
 
-- Wenn das implizite lokale Loopback-Gateway eine Kopplung anfordert, die Verbindung beim Aufbau schließt oder eine Zeitüberschreitung auftritt, bevor `logs.tail` antwortet, greift `openclaw logs` automatisch auf das konfigurierte Gateway-Dateiprotokoll zurück. Explizite `--url`-Ziele verwenden diesen Fallback niemals.
-- `--follow` greift nach einem RPC-Fehler des impliziten lokalen Gateways nicht auf diese konfigurierte Datei zurück – eine veraltete, parallel vorhandene Datei könnte bei der fortlaufenden Live-Anzeige irreführend sein. Unter Linux wird stattdessen, sofern verfügbar, anhand der PID das aktive benutzerspezifische systemd-Journal des Gateways verwendet (die ausgewählte Quelle wird ausgegeben); andernfalls werden die Verbindungsversuche zum aktiven Gateway fortgesetzt.
-- Während `--follow` lösen vorübergehende Verbindungsabbrüche (WebSocket-Schließung, Zeitüberschreitung, Verbindungsabbruch) eine automatische Neuverbindung mit exponentiellem Backoff aus: bis zu 8 Wiederholungsversuche mit maximal 30s zwischen den Versuchen. Bei jedem erneuten Versuch wird eine Warnung auf stderr ausgegeben, und sobald eine Abfrage erfolgreich ist, wird einmalig ein Hinweis vom Typ `[logs] gateway reconnected` ausgegeben. Im Modus `--json` werden beide als `{"type":"notice"}`-Datensätze auf stderr ausgegeben. Nicht behebbare Fehler (Authentifizierungsfehler, ungültige Konfiguration) führen weiterhin zum sofortigen Beenden.
-- Im Modus `--follow --json` werden Übergänge zwischen Protokollquellen als `{"type":"meta"}`-Datensätze ausgegeben. Verfolgen Sie Cursor getrennt nach `sourceKind`: Ein Stream kann von der Gateway-Dateiausgabe (`sourceKind: "file"`) zum Fallback auf das lokale Journal (`sourceKind: "journal"`, `localFallback: true`, mit `service.pid`/`service.unit`) und nach der Wiederherstellung zurück zur Gateway-Dateiausgabe wechseln. Gehen Sie nicht davon aus, dass während der gesamten Sitzung eine einzige stabile Quelle oder ein einziger Cursor verwendet wird, und berücksichtigen Sie überlappende Zeilen, wenn bei der Wiederherstellung der Cursor der Gateway-Datei erneut abgespielt wird.
+- Wenn das implizite lokale Loopback-Gateway eine Kopplung anfordert, die Verbindung während des Aufbaus schließt oder eine Zeitüberschreitung eintritt, bevor `logs.tail` antwortet, greift `openclaw logs` automatisch auf die konfigurierte Gateway-Protokolldatei zurück. Explizite `--url`-Ziele verwenden diesen Fallback niemals.
+- `--follow` greift nach einem RPC-Fehler des impliziten lokalen Gateways nicht auf diese konfigurierte Datei zurück – eine veraltete, parallel vorhandene Datei könnte eine aktive fortlaufende Ausgabe verfälschen. Unter Linux wird stattdessen, sofern verfügbar, anhand der PID das aktive Gateway-Journal des Benutzer-systemd verwendet (die ausgewählte Quelle wird ausgegeben); andernfalls wird die Verbindung zum aktiven Gateway weiterhin erneut versucht.
+- Während `--follow` lösen vorübergehende Verbindungsabbrüche (Schließen des WebSockets, Zeitüberschreitung, Verbindungsabbruch) eine automatische Wiederverbindung mit exponentiellem Backoff aus: bis zu 8 Wiederholungsversuche, mit höchstens 30s zwischen den Versuchen. Bei jedem Wiederholungsversuch wird eine Warnung an stderr ausgegeben, und sobald eine Abfrage erfolgreich ist, wird einmalig ein `[logs] gateway reconnected`-Hinweis ausgegeben. Im `--json`-Modus werden beide als `{"type":"notice"}`-Datensätze an stderr ausgegeben. Nicht behebbare Fehler (Authentifizierungsfehler, fehlerhafte Konfiguration) führen weiterhin zum sofortigen Beenden.
+- Im `--follow --json`-Modus werden Wechsel der Protokollquelle als `{"type":"meta"}`-Datensätze ausgegeben. Verfolgen Sie Cursor für jede `sourceKind` separat: Ein Stream kann von der Ausgabe der Gateway-Datei (`sourceKind: "file"`) zum Fallback auf das lokale Journal (`sourceKind: "journal"`, `localFallback: true`, mit `service.pid`/`service.unit`) und nach der Wiederherstellung zurück zur Ausgabe der Gateway-Datei wechseln. Gehen Sie nicht davon aus, dass während der gesamten Sitzung eine stabile Quelle oder ein stabiler Cursor verwendet wird, und tolerieren Sie überlappende Zeilen, wenn bei der Wiederherstellung der Cursor der Gateway-Datei erneut abgespielt wird.
 
 ## Verwandte Themen
 

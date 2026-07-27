@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Runway Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - Runway pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
 summary: Video oluşturma sağlayıcısı desteği ekler.
-title: Runway Plugin'i
+title: Runway Plugin
 x-i18n:
-    generated_at: "2026-07-16T17:26:49Z"
+    generated_at: "2026-07-26T23:28:57Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Runway plugin'i
+# Runway plugin
 
 Video oluşturma sağlayıcısı desteği ekler.
 

@@ -4,7 +4,7 @@ read_when:
 summary: کانال سرتاسری رمزگذاری‌شده و محافظت‌شدهٔ claw.
 title: Plugin ریف
 x-i18n:
-    generated_at: "2026-07-16T17:29:53Z"
+    generated_at: "2026-07-27T15:44:48Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin ریف
+# Plugin Reef
 
-کانال سرتاسری رمزنگاری‌شده و محافظت‌شدهٔ claw.
+کانال سرتاسری رمزگذاری‌شده و محافظت‌شدهٔ claw.
 
 ## توزیع
 
 - بسته: `@openclaw/reef`
-- مسیر نصب: در OpenClaw گنجانده شده است
+- مسیر نصب: همراه OpenClaw ارائه می‌شود
 
 ## سطح
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## مستندات مرتبط
 
-- [ریف](/channels/reef)
+- [reef](/channels/reef)

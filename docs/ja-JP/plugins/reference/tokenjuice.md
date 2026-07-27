@@ -1,10 +1,10 @@
 ---
 read_when:
-    - tokenjuice Plugin のインストール、設定、または監査を行っています
-summary: tokenjuice リデューサーを使用して、exec および bash ツールの結果を圧縮します。
+    - tokenjuice Plugin をインストール、設定、または監査している場合
+summary: tokenjuice reducer を使用して exec および bash ツールの結果を圧縮します。
 title: Tokenjuice Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:00:22Z"
+    generated_at: "2026-07-26T10:13:21Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Tokenjuice Plugin
+# Tokenjuice plugin
 
-tokenjuice reducer を使用して exec および bash ツールの結果を圧縮します。
+tokenjuice reducer を使用して exec および bash ツールの結果を Compaction します。
 
 ## 配布
 

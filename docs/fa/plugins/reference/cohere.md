@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin ‏cohere هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin مربوط به cohere هستید
 summary: Plugin ارائه‌دهنده Cohere برای OpenClaw.
-title: Plugin کوهیر
+title: Plugin ‏Cohere
 x-i18n:
-    generated_at: "2026-07-16T16:59:32Z"
+    generated_at: "2026-07-27T15:42:53Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Plugin Cohere
 
-Plugin ارائه‌دهنده Cohere برای OpenClaw.
+Plugin ارائه‌دهنده Cohere در OpenClaw.
 
 ## توزیع
 
 - بسته: `@openclaw/cohere-provider`
-- مسیر نصب: همراه OpenClaw ارائه می‌شود؛ npm؛ ClawHub: `clawhub:@openclaw/cohere-provider`
+- روش نصب: همراه OpenClaw؛ npm؛ ClawHub: `clawhub:@openclaw/cohere-provider`
 
 ## سطح
 
@@ -29,4 +29,4 @@ Plugin ارائه‌دهنده Cohere برای OpenClaw.
 
 ## مستندات مرتبط
 
-- [cohere](/fa/providers/cohere)
+- [Cohere](/fa/providers/cohere)

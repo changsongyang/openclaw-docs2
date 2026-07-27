@@ -1,10 +1,10 @@
 ---
 read_when:
-    - 你正在安装、配置或审计 Synology Chat 插件
+    - 你正在安装、配置或审计 synology-chat 插件
 summary: 用于 OpenClaw 渠道和私信的 Synology Chat 渠道插件。
 title: Synology Chat 插件
 x-i18n:
-    generated_at: "2026-07-16T11:52:01Z"
+    generated_at: "2026-07-26T06:53:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## 分发
 
 - 软件包：`@openclaw/synology-chat`
-- 安装途径：npm；ClawHub
+- 安装方式：npm；ClawHub
 
 ## 接口
 

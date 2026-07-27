@@ -1,10 +1,10 @@
 ---
 read_when:
-    - WhatsApp pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+    - WhatsApp pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: WhatsApp Web sohbetleri için OpenClaw WhatsApp kanal Plugin'i.
-title: WhatsApp plugini
+title: WhatsApp Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:47:25Z"
+    generated_at: "2026-07-26T23:54:02Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -25,7 +25,7 @@ WhatsApp Web sohbetleri için OpenClaw WhatsApp kanal plugin'i.
 
 ## Yüzey
 
-kanallar: `whatsapp`; sözleşmeler: `tools`; beceriler
+kanallar: `whatsapp`; sözleşmeler: `tools`; Skills
 
 ## İlgili belgeler
 

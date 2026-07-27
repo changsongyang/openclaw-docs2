@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Se está instalando, configurando o auditando el plugin cua-computer.
-summary: Control informático experimental mediante cua-driver para hosts Node de Windows y Linux.
+    - Está instalando, configurando o auditando el plugin cua-computer
+summary: Control informático experimental mediante cua-driver para hosts Node con Windows y Linux.
 title: Plugin Cua Computer
 x-i18n:
-    generated_at: "2026-07-21T22:40:17Z"
+    generated_at: "2026-07-26T04:47:41Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin Cua Computer
 
-Control informático experimental mediante cua-driver para hosts Node de Windows y Linux.
+Control informático experimental mediante cua-driver para hosts de Node con Windows y Linux.
 
 ## Distribución
 

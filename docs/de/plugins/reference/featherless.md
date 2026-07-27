@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder überprüfen das featherless-Plugin.
+    - Sie installieren, konfigurieren oder überprüfen das featherless-Plugin
 summary: OpenClaw-Provider-Plugin für Featherless AI.
 title: Featherless-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:00:34Z"
+    generated_at: "2026-07-26T17:58:45Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw Cohere 提供商插件。
 title: Cohere 插件
 x-i18n:
-    generated_at: "2026-07-16T11:44:29Z"
+    generated_at: "2026-07-26T06:25:58Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ OpenClaw Cohere 提供商插件。
 ## 分发
 
 - 软件包：`@openclaw/cohere-provider`
-- 安装方式：OpenClaw 内置；npm；ClawHub：`clawhub:@openclaw/cohere-provider`
+- 安装途径：内置于 OpenClaw；npm；ClawHub：`clawhub:@openclaw/cohere-provider`
 
 ## 接口
 

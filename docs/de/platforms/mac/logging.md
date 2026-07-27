@@ -1,11 +1,11 @@
 ---
 read_when:
     - macOS-Protokolle erfassen oder die Protokollierung privater Daten untersuchen
-    - Debugging von Problemen mit dem Lebenszyklus der Sprachaktivierung und Sitzung
-summary: 'OpenClaw-Protokollierung: rotierendes Diagnose-Dateiprotokoll + einheitliche Datenschutz-Flags für Protokolle'
+    - Fehlersuche bei Problemen mit dem Lebenszyklus von Sprachaktivierung und Sitzungen
+summary: 'OpenClaw-Protokollierung: rotierende Diagnoseprotokolldatei + einheitliche Datenschutzoptionen für Protokolle'
 title: macOS-Protokollierung
 x-i18n:
-    generated_at: "2026-07-24T03:59:41Z"
+    generated_at: "2026-07-26T17:57:31Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,21 +17,21 @@ x-i18n:
 
 # Protokollierung (macOS)
 
-## Rotierende Diagnoseprotokolldatei (Debug-Bereich)
+## Rotierende Diagnose-Dateiprotokolle (Debug-Bereich)
 
-Die macOS-App protokolliert über swift-log (standardmäßig einheitliche Protokollierung) und kann für eine dauerhafte Erfassung (`DiagnosticsFileLog`) zusätzlich in eine rotierende lokale Protokolldatei schreiben.
+Die macOS-App protokolliert über swift-log (standardmäßig einheitliche Protokollierung) und kann für eine dauerhafte Erfassung (`DiagnosticsFileLog`) zusätzlich ein rotierendes lokales Dateiprotokoll schreiben.
 
 - Aktivieren: **Debug pane -> Logs -> App logging -> "Write rolling diagnostics log (JSONL)"** (standardmäßig deaktiviert).
 - Ausführlichkeit: Auswahlfeld **Debug pane -> Logs -> App logging -> Verbosity**.
 - Speicherort: `~/Library/Logs/OpenClaw/diagnostics.jsonl`.
-- Rotation: erfolgt bei 5 MB; bis zu 5 Sicherungen mit den Suffixen `.1`...`.5` (die älteste wird gelöscht).
+- Rotation: rotiert bei 5 MB; bis zu 5 Sicherungen mit den Suffixen `.1`...`.5` (die älteste wird gelöscht).
 - Löschen: **Debug pane -> Logs -> App logging -> "Clear"** löscht die aktive Datei und alle Sicherungen.
 
 Behandeln Sie die Datei als vertraulich; geben Sie sie nicht ohne vorherige Prüfung weiter.
 
 ## Private Daten in der einheitlichen Protokollierung unter macOS
 
-Die einheitliche Protokollierung schwärzt die meisten Nutzdaten, sofern ein Subsystem nicht `privacy -off` aktiviert. Dies wird über eine plist-Datei in `/Library/Preferences/Logging/Subsystems/` gesteuert, deren Schlüssel der Name des Subsystems ist. Nur neue Protokolleinträge übernehmen das Flag. Aktivieren Sie es daher, bevor Sie ein Problem reproduzieren. Hintergrund: [Datenschutz-Eigenheiten der macOS-Protokollierung](https://steipete.me/posts/2025/logging-privacy-shenanigans).
+Die einheitliche Protokollierung schwärzt die meisten Nutzdaten, sofern ein Subsystem `privacy -off` nicht ausdrücklich aktiviert. Dies wird durch eine nach Subsystemnamen gegliederte plist-Datei unter `/Library/Preferences/Logging/Subsystems/` gesteuert. Nur neue Protokolleinträge berücksichtigen die Einstellung; aktivieren Sie sie daher, bevor Sie ein Problem reproduzieren. Hintergrund: [Eigenheiten des Datenschutzes bei der macOS-Protokollierung](https://steipete.me/posts/2025/logging-privacy-shenanigans).
 
 ## Für OpenClaw aktivieren (`ai.openclaw`)
 
@@ -54,13 +54,13 @@ EOF
 sudo install -m 644 -o root -g wheel /tmp/ai.openclaw.plist /Library/Preferences/Logging/Subsystems/ai.openclaw.plist
 ```
 
-Es ist kein Neustart erforderlich; logd übernimmt die Datei schnell, aber nur neue Protokollzeilen enthalten private Nutzdaten. Zeigen Sie die ausführlichere Ausgabe mit `./scripts/clawlog.sh --category WebChat --last 5m` an (`--last`/`-l` legt den Zeitraum fest, standardmäßig `5m`; `--category`/`-c` filtert nach Kategorie).
+Ein Neustart ist nicht erforderlich; logd übernimmt die Datei schnell, aber nur neue Protokollzeilen enthalten private Nutzdaten. Zeigen Sie die ausführlichere Ausgabe mit `./scripts/clawlog.sh --category WebChat --last 5m` an (`--last`/`-l` legt den Zeitraum fest, standardmäßig `5m`; `--category`/`-c` filtert nach Kategorie).
 
-## Nach dem Debugging deaktivieren
+## Nach der Fehlersuche deaktivieren
 
-- Entfernen Sie die Außerkraftsetzung: `sudo rm /Library/Preferences/Logging/Subsystems/ai.openclaw.plist`.
-- Führen Sie optional `sudo log config --reload` aus, damit logd die Außerkraftsetzung sofort verwirft.
-- Diese Oberfläche kann Telefonnummern und Nachrichteninhalte enthalten; belassen Sie die plist-Datei nur so lange, wie sie aktiv benötigt wird.
+- Entfernen Sie die Überschreibung: `sudo rm /Library/Preferences/Logging/Subsystems/ai.openclaw.plist`.
+- Führen Sie optional `sudo log config --reload` aus, damit logd die Überschreibung sofort verwirft.
+- Diese Oberfläche kann Telefonnummern und Nachrichteninhalte enthalten; behalten Sie die plist-Datei nur so lange bei, wie sie aktiv benötigt wird.
 
 ## Verwandte Themen
 

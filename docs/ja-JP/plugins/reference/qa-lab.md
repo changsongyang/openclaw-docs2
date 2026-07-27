@@ -1,10 +1,10 @@
 ---
 read_when:
-    - qa-lab Plugin のインストール、設定、または監査を行っています
+    - qa-lab Plugin のインストール、設定、または監査を行う場合
 summary: プライベートデバッガー UI とシナリオランナーを備えた OpenClaw QA ラボ Plugin。
 title: QA Lab Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:59:32Z"
+    generated_at: "2026-07-26T09:54:02Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

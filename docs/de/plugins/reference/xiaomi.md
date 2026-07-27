@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das Xiaomi-Plugin.
-summary: Fügt Unterstützung für die Modell-Provider Xiaomi und Xiaomi Token Plan zu OpenClaw hinzu.
+    - Sie installieren, konfigurieren oder prüfen das xiaomi-Plugin.
+summary: Fügt OpenClaw Unterstützung für die Modell-Provider Xiaomi und Xiaomi Token Plan hinzu.
 title: Xiaomi-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:01:59Z"
+    generated_at: "2026-07-26T18:00:29Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Xiaomi-Plugin
 
-Fügt OpenClaw Unterstützung für Xiaomi und den Modell-Provider Xiaomi Token Plan hinzu.
+Fügt Unterstützung für Xiaomi sowie den Modell-Provider Xiaomi Token Plan zu OpenClaw hinzu.
 
 ## Distribution
 

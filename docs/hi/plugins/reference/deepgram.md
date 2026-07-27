@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप deepgram Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: मीडिया को समझने वाले प्रदाता के लिए समर्थन जोड़ता है। रीयल-टाइम ट्रांसक्रिप्शन प्रदाता के लिए समर्थन जोड़ता है।
+summary: मीडिया समझ प्रदाता समर्थन जोड़ता है। रीयल-टाइम ट्रांसक्रिप्शन प्रदाता समर्थन जोड़ता है।
 title: Deepgram Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:17:12Z"
+    generated_at: "2026-07-27T18:17:46Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ x-i18n:
 - पैकेज: `@openclaw/deepgram-provider`
 - इंस्टॉल मार्ग: OpenClaw में शामिल
 
-## सतह
+## सरफ़ेस
 
 अनुबंध: `mediaUnderstandingProviders`, `realtimeTranscriptionProviders`
 

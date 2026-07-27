@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 Nostr 外掛
-summary: 用於 NIP-04 加密私訊的 OpenClaw Nostr 頻道外掛。
+summary: 適用於 NIP-04 加密私訊的 OpenClaw Nostr 頻道外掛。
 title: Nostr 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:55:09Z"
+    generated_at: "2026-07-26T08:06:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Nostr 外掛
 
-用於 NIP-04 加密私人訊息的 OpenClaw Nostr 頻道外掛。
+適用於 NIP-04 加密私訊的 OpenClaw Nostr 頻道外掛。
 
-## 發佈
+## 發布
 
 - 套件：`@openclaw/nostr`
-- 安裝管道：npm；ClawHub
+- 安裝途徑：npm；ClawHub
 
 ## 介面
 

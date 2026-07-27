@@ -1,11 +1,11 @@
 ---
 read_when:
     - Sie benötigen gezielte Debug-Protokolle, ohne die globalen Protokollierungsstufen zu erhöhen
-    - Sie müssen subsystem-spezifische Protokolle für den Support erfassen
+    - Sie müssen subsystem­spezifische Protokolle für den Support erfassen
 summary: Diagnose-Flags für gezielte Debug-Protokolle
 title: Diagnose-Flags
 x-i18n:
-    generated_at: "2026-07-24T03:46:41Z"
+    generated_at: "2026-07-26T17:46:16Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -22,25 +22,25 @@ Diagnose-Flags aktivieren zusätzliche Protokollierung für ein Subsystem, ohne
 
 - Bei Flags wird die Groß-/Kleinschreibung nicht berücksichtigt. Sie werden aus `diagnostics.flags` in der
   Konfiguration sowie der Umgebungsüberschreibung `OPENCLAW_DIAGNOSTICS` aufgelöst, dedupliziert und in Kleinbuchstaben umgewandelt.
-- `name.*` entspricht `name` selbst und allem unter `name.` (zum Beispiel
+- `name.*` entspricht `name` selbst und allem unter `name.` (beispielsweise
   entspricht `telegram.*` dem Wert `telegram.http`).
 - `*` oder `all` aktiviert jedes Flag.
-- Starten Sie das Gateway neu, nachdem Sie `diagnostics.flags` in der Konfiguration geändert haben; es wird nicht
-  dynamisch neu geladen.
+- Starten Sie das Gateway nach einer Änderung von `diagnostics.flags` in der Konfiguration neu; die Änderung wird nicht
+  zur Laufzeit neu geladen.
 
 ## Bekannte Flags
 
 | Flag                  | Aktiviert                                                 |
 | --------------------- | --------------------------------------------------------- |
 | `telegram.http`       | Protokollierung von HTTP-Fehlern der Telegram Bot API     |
-| `brave.http`          | Protokollierung von Brave-Search-Anfragen, -Antworten und -Cache |
-| `profiler`            | Antwortphasen-Profiler und Codex-App-Server-Profiler (beide) |
-| `reply.profiler`      | Nur Antwortphasen-Profiler                                |
-| `codex.profiler`      | Nur Codex-App-Server-Profiler                             |
+| `brave.http`          | Protokollierung von Anfragen, Antworten und Cache-Vorgängen bei Brave Search |
+| `profiler`            | Profiler für die Antwortphase und Codex-App-Server-Profiler (beide) |
+| `reply.profiler`      | Nur den Profiler für die Antwortphase                     |
+| `codex.profiler`      | Nur den Codex-App-Server-Profiler                          |
 | `health`              | Debugdetails zu Gateway-Zustandsprüfung, Konto und Bindung |
 | `ingress.timing`      | Zeitmessungen für das Laden von Sitzungen, die Modellauswahl und den Modellkatalog |
-| `plugin.load-profile` | Zeitmessungen für das synchrone Laden von Plugin-Modulen  |
-| `timeline`            | Strukturiertes JSONL-Zeitleistenartefakt (siehe unten)    |
+| `plugin.load-profile` | Zeitmessungen für das synchrone Laden von Plugin-Modulen   |
+| `timeline`            | Strukturiertes JSONL-Zeitleistenartefakt (siehe unten)     |
 
 ## Über die Konfiguration aktivieren
 
@@ -68,34 +68,34 @@ Mehrere Flags:
 OPENCLAW_DIAGNOSTICS=telegram.http,brave.http
 ```
 
-Werte werden an Kommas oder Leerzeichen getrennt. Besondere Werte:
+Werte werden an Kommas oder Leerraum getrennt. Sonderwerte:
 
 | Wert                        | Wirkung                                  |
 | --------------------------- | ---------------------------------------- |
-| `0`, `false`, `off`, `none` | Deaktiviert alle Flags und überschreibt auch die Konfiguration |
-| `1`, `true`, `all`, `*`     | Aktiviert jedes Flag                     |
+| `0`, `false`, `off`, `none` | Alle Flags deaktivieren und dabei auch die Konfiguration überschreiben |
+| `1`, `true`, `all`, `*`     | Jedes Flag aktivieren                    |
 
-`OPENCLAW_DIAGNOSTICS=0` deaktiviert für diesen Prozess Flags aus der Umgebung und der Konfiguration.
-Dies ist nützlich, um vorübergehend ein in der Konfiguration aktiviertes Profiler-Flag stummzuschalten,
+`OPENCLAW_DIAGNOSTICS=0` deaktiviert für diesen
+Prozess Flags sowohl aus der Umgebung als auch aus der Konfiguration. Dies ist nützlich, um ein in der Konfiguration aktiv gebliebenes Profiler-Flag vorübergehend zu unterdrücken,
 ohne die Datei zu bearbeiten.
 
 ## Profiler-Flags
 
-Profiler-Flags steuern leichtgewichtige Zeitmessspannen; im deaktivierten Zustand verursachen sie keinen Mehraufwand.
+Profiler-Flags steuern leichtgewichtige Zeitmessungsabschnitte; im deaktivierten Zustand verursachen sie keinen Mehraufwand.
 
-Alle durch Profiler-Flags gesteuerten Spannen für einen Gateway-Lauf aktivieren:
+Alle durch Profiler-Flags gesteuerten Abschnitte für einen Gateway-Lauf aktivieren:
 
 ```bash
 OPENCLAW_DIAGNOSTICS=profiler openclaw gateway run
 ```
 
-Nur Profiler-Spannen für die Antwortweiterleitung aktivieren:
+Nur Profiler-Abschnitte für die Antwortverteilung aktivieren:
 
 ```bash
 OPENCLAW_DIAGNOSTICS=reply.profiler openclaw gateway run
 ```
 
-Nur Profiler-Spannen für Start, Werkzeuge und Threads des Codex-App-Servers aktivieren:
+Nur Profiler-Abschnitte für Start, Werkzeuge und Threads des Codex-App-Servers aktivieren:
 
 ```bash
 OPENCLAW_DIAGNOSTICS=codex.profiler openclaw gateway run
@@ -104,7 +104,7 @@ OPENCLAW_DIAGNOSTICS=codex.profiler openclaw gateway run
 `profiler` aktiviert sowohl den Antwort-Profiler als auch den Codex-Profiler; verwenden Sie die
 bereichsspezifischen Flag-Namen, um nur einen davon zu aktivieren.
 
-Alternativ legen Sie dies in der Konfiguration fest:
+Alternativ in der Konfiguration festlegen:
 
 ```json
 {
@@ -114,14 +114,14 @@ Alternativ legen Sie dies in der Konfiguration fest:
 }
 ```
 
-Starten Sie das Gateway nach dem Ändern von Konfigurations-Flags neu. Um ein Profiler-Flag zu deaktivieren,
-entfernen Sie es aus `diagnostics.flags` und starten Sie neu oder starten Sie den Prozess mit
+Starten Sie das Gateway nach einer Änderung der Konfigurations-Flags neu. Um ein Profiler-Flag zu deaktivieren,
+entfernen Sie es aus `diagnostics.flags` und führen Sie einen Neustart durch, oder starten Sie den Prozess mit
 `OPENCLAW_DIAGNOSTICS=0`, um für diesen Lauf jedes Diagnose-Flag zu überschreiben.
 
 ## Zeitleistenartefakte
 
-Das Flag `timeline` (Alias: `diagnostics.timeline`) schreibt strukturierte Zeitmessereignisse für Start
-und Laufzeit als JSONL für externe QA-Testsysteme:
+Das Flag `timeline` (Alias: `diagnostics.timeline`) schreibt strukturierte Zeitmessungsereignisse für Start
+und Laufzeit als JSONL für externe QA-Testumgebungen:
 
 ```bash
 OPENCLAW_DIAGNOSTICS=timeline \
@@ -129,7 +129,7 @@ OPENCLAW_DIAGNOSTICS_TIMELINE_PATH=/tmp/openclaw-timeline.jsonl \
 openclaw gateway run
 ```
 
-Alternativ aktivieren Sie es in der Konfiguration:
+Alternativ in der Konfiguration aktivieren:
 
 ```json
 {
@@ -139,25 +139,24 @@ Alternativ aktivieren Sie es in der Konfiguration:
 }
 ```
 
-Der Ausgabepfad stammt immer aus `OPENCLAW_DIAGNOSTICS_TIMELINE_PATH`, auch
-wenn das Flag selbst in der Konfiguration festgelegt ist; es gibt keinen Konfigurationsschlüssel für den Pfad.
-Wenn `timeline` nur über die Konfiguration aktiviert wird, fehlen die frühesten Spannen beim Laden der Konfiguration,
-da OpenClaw die Konfiguration zu diesem Zeitpunkt noch nicht gelesen hat; nachfolgende Startspannen
+Der Ausgabepfad stammt immer aus `OPENCLAW_DIAGNOSTICS_TIMELINE_PATH`, selbst
+wenn das Flag selbst in der Konfiguration festgelegt ist; für den Pfad gibt es keinen Konfigurationsschlüssel.
+Wenn `timeline` nur über die Konfiguration aktiviert ist, fehlen die frühesten Abschnitte zum Laden der Konfiguration,
+da OpenClaw die Konfiguration zu diesem Zeitpunkt noch nicht gelesen hat; nachfolgende Startabschnitte
 werden normal erfasst.
 
 `OPENCLAW_DIAGNOSTICS=1`, `=all` und `=*` aktivieren ebenfalls die Zeitleiste, da sie
 jedes Flag aktivieren. Verwenden Sie vorzugsweise das bereichsspezifische Flag `timeline`, wenn Sie nur das
 JSONL-Artefakt und nicht jedes andere Diagnose-Flag benötigen.
 
-Messwerte zur Ereignisschleifenverzögerung in der Zeitleiste benötigen zusätzlich zu
-`timeline` eine weitere explizite Aktivierung: Legen Sie zusätzlich zur Aktivierung der Zeitleiste
-`OPENCLAW_DIAGNOSTICS_EVENT_LOOP=1` (oder `on`/`true`/`yes`) fest.
+Für Ereignisschleifen-Verzögerungsmessungen in der Zeitleiste ist zusätzlich zu
+`timeline` eine weitere explizite Aktivierung erforderlich: Legen Sie zusätzlich zur Aktivierung der Zeitleiste `OPENCLAW_DIAGNOSTICS_EVENT_LOOP=1` (oder `on`/`true`/`yes`) fest.
 
-Zeitleistendatensätze verwenden den Umschlag `openclaw.diagnostics.v1` und können
-Prozess-IDs, Phasennamen, Spannennamen, Dauern, Plugin-IDs, Anzahlen von Abhängigkeiten,
-Messwerte zur Ereignisschleifenverzögerung, Namen von Provider-Operationen, den Beendigungszustand
-von Kindprozessen sowie Namen und Meldungen von Startfehlern enthalten. Behandeln Sie Zeitleistendateien als lokale
-Diagnoseartefakte und prüfen Sie sie, bevor Sie sie außerhalb Ihres Rechners weitergeben.
+Zeitleisteneinträge verwenden die `openclaw.diagnostics.v1`-Hülle und können
+Prozess-IDs, Phasennamen, Abschnittsnamen, Zeitdauern, Plugin-IDs, Anzahlen von Abhängigkeiten,
+Ereignisschleifen-Verzögerungsmessungen, Namen von Provider-Vorgängen, den Beendigungsstatus von Unterprozessen
+sowie Namen und Meldungen von Startfehlern enthalten. Behandeln Sie Zeitleistendateien als lokale
+Diagnoseartefakte; prüfen Sie sie, bevor Sie sie außerhalb Ihres Rechners weitergeben.
 
 ## Speicherort der Protokolle
 
@@ -170,14 +169,14 @@ Flags schreiben Protokolle in die standardmäßige Diagnoseprotokolldatei. Stand
 Benannte Profile verwenden `/tmp/openclaw/openclaw-<profile>-YYYY-MM-DD.log`; beispielsweise
 verwendet `--dev` den Wert `openclaw-dev-YYYY-MM-DD.log`.
 
-Wenn Sie `logging.file` festlegen, wird stattdessen dieser Pfad verwendet. Protokolle liegen im JSONL-Format vor (ein JSON-
+Wenn Sie `logging.file` festlegen, verwenden Sie stattdessen diesen Pfad. Protokolle liegen im JSONL-Format vor (ein JSON-
 Objekt pro Zeile). Die Schwärzung wird weiterhin gemäß `logging.redactSensitive` angewendet.
-Unter [Protokollierung](/de/logging) finden Sie das vollständige Modell für Pfadauflösung, Rotation und
-Schwärzung von Protokollen.
+Unter [Protokollierung](/de/logging) finden Sie das vollständige Modell zur Auflösung von Protokollpfaden, Rotation und
+Schwärzung.
 
 ## Protokolle extrahieren
 
-Neueste Protokolldatei des aktiven Profils lesen:
+Die neueste Protokolldatei des aktiven Profils lesen:
 
 ```bash
 openclaw logs --plain
@@ -185,19 +184,19 @@ openclaw logs --plain
 openclaw --profile work logs --plain
 ```
 
-Nach Telegram-HTTP-Diagnosen filtern:
+Nach HTTP-Diagnosen für Telegram filtern:
 
 ```bash
 openclaw logs --plain --limit 5000 | rg "telegram http error"
 ```
 
-Nach Brave-Search-HTTP-Diagnosen filtern:
+Nach HTTP-Diagnosen für Brave Search filtern:
 
 ```bash
 openclaw logs --plain --limit 5000 | rg "brave http"
 ```
 
-Oder während der Reproduktion fortlaufend verfolgen:
+Oder während der Reproduktion fortlaufend ausgeben:
 
 ```bash
 openclaw logs --follow --plain | rg "telegram http error"
@@ -208,15 +207,15 @@ Verwenden Sie für entfernte Gateways stattdessen `openclaw logs --follow` (sieh
 
 ## Hinweise
 
-- Wenn `logging.level` höher als `warn` festgelegt ist, können durch Flags gesteuerte Protokolle
-  unterdrückt werden. Der Standardwert `info` ist ausreichend.
-- `brave.http` protokolliert Anfrage-URLs und Abfrageparameter von Brave Search, Antwortstatus
-  und -zeitmessung sowie Treffer-, Fehlschlag- und Schreibereignisse des Caches. Es protokolliert weder den API-Schlüssel
-  (der als Anfrage-Header gesendet wird) noch Antwortinhalte, Suchanfragen können jedoch
+- Wenn `logging.level` höher als `warn` eingestellt ist, können durch Flags gesteuerte Protokolle
+  unterdrückt werden. Der Standardwert `info` ist geeignet.
+- `brave.http` protokolliert URLs und Abfrageparameter von Brave-Search-Anfragen, Status und Zeitmessung
+  der Antworten sowie Treffer-, Fehltreffer- und Schreibereignisse des Caches. Der API-Schlüssel
+  (der als Anfrage-Header gesendet wird) und Antwortinhalte werden nicht protokolliert, Suchanfragen können jedoch
   vertraulich sein.
-- Flags können gefahrlos aktiviert bleiben; sie beeinflussen nur das Protokollvolumen des
+- Flags können bedenkenlos aktiviert bleiben; sie beeinflussen nur das Protokollvolumen des
   jeweiligen Subsystems.
-- Unter [/logging](/de/logging) erfahren Sie, wie Sie Protokollziele, -stufen und Schwärzung ändern.
+- Verwenden Sie [/logging](/de/logging), um Protokollziele, Protokollstufen und Schwärzung zu ändern.
 
 ## Verwandte Themen
 

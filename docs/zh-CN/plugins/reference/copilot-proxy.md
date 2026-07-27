@@ -4,7 +4,7 @@ read_when:
 summary: 为 OpenClaw 添加 Copilot Proxy 模型提供商支持。
 title: Copilot Proxy 插件
 x-i18n:
-    generated_at: "2026-07-16T11:49:33Z"
+    generated_at: "2026-07-26T06:51:26Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -20,8 +20,8 @@ x-i18n:
 
 ## 分发
 
-- 软件包：`@openclaw/copilot-proxy`
-- 安装方式：内置于 OpenClaw
+- 包：`@openclaw/copilot-proxy`
+- 安装方式：包含在 OpenClaw 中
 
 ## 接口
 

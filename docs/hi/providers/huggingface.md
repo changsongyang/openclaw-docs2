@@ -1,11 +1,11 @@
 ---
 read_when:
     - आप OpenClaw के साथ Hugging Face Inference का उपयोग करना चाहते हैं
-    - आपको HF टोकन एनवायरनमेंट वेरिएबल या CLI प्रमाणीकरण विकल्प चाहिए
+    - आपको HF टोकन एनवायरनमेंट वेरिएबल या CLI प्रमाणीकरण विकल्प की आवश्यकता है
 summary: Hugging Face Inference सेटअप (प्रमाणीकरण + मॉडल चयन)
-title: Hugging Face (अनुमान)
+title: Hugging Face (इन्फ़रेंस)
 x-i18n:
-    generated_at: "2026-07-19T09:44:44Z"
+    generated_at: "2026-07-27T18:25:44Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,15 +15,15 @@ x-i18n:
     workflow: 16
 ---
 
-[Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers) एक टोकन के अंतर्गत कई होस्ट किए गए मॉडल (DeepSeek, Llama और अन्य) के लिए OpenAI-संगत चैट पूर्णता राउटर उपलब्ध कराता है। OpenClaw केवल **चैट पूर्णता एंडपॉइंट** से संचार करता है; टेक्स्ट-से-इमेज, एम्बेडिंग या स्पीच के लिए सीधे [HF इन्फ़रेंस क्लाइंट](https://huggingface.co/docs/api-inference/quicktour) का उपयोग करें।
+[Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers) एक टोकन के अंतर्गत कई होस्ट किए गए मॉडल (DeepSeek, Llama और अन्य) के लिए OpenAI-संगत चैट कम्प्लीशन्स राउटर उपलब्ध कराता है। OpenClaw केवल **चैट कम्प्लीशन्स एंडपॉइंट** से संचार करता है; टेक्स्ट-टू-इमेज, एम्बेडिंग या स्पीच के लिए सीधे [HF इन्फ़रेंस क्लाइंट](https://huggingface.co/docs/api-inference/quicktour) का उपयोग करें।
 
 | गुण          | मान                                                                                                                         |
 | ------------ | --------------------------------------------------------------------------------------------------------------------------- |
-| प्रदाता आईडी | `huggingface`                                                                                                          |
-| Plugin       | बंडल किया हुआ (डिफ़ॉल्ट रूप से सक्षम, इंस्टॉल करने का कोई चरण नहीं)                                                        |
-| प्रमाणीकरण एनवायरनमेंट वेरिएबल | `HUGGINGFACE_HUB_TOKEN` या `HF_TOKEN` (सूक्ष्म अनुमतियों वाला टोकन)                                      |
+| प्रोवाइडर आईडी | `huggingface`                                                                                                         |
+| Plugin       | बंडल किया गया (डिफ़ॉल्ट रूप से सक्षम, इंस्टॉल करने का कोई चरण नहीं)                                                         |
+| प्रमाणीकरण एनवायरनमेंट वेरिएबल | `HUGGINGFACE_HUB_TOKEN` या `HF_TOKEN` (सूक्ष्म अनुमतियों वाला टोकन)                                  |
 | API          | OpenAI-संगत (`https://router.huggingface.co/v1`)                                                                                            |
-| बिलिंग       | एकल HF टोकन; [मूल्य निर्धारण](https://huggingface.co/docs/inference-providers/pricing) निःशुल्क स्तर के साथ प्रदाता की दरों का पालन करता है |
+| बिलिंग       | एक HF टोकन; [मूल्य निर्धारण](https://huggingface.co/docs/inference-providers/pricing) मुफ़्त टियर के साथ प्रोवाइडर की दरों का अनुसरण करता है |
 
 ## आरंभ करना
 
@@ -37,7 +37,7 @@ x-i18n:
 
   </Step>
   <Step title="ऑनबोर्डिंग चलाएँ">
-    प्रदाता ड्रॉपडाउन में **Hugging Face** चुनें, फिर संकेत मिलने पर अपनी API कुंजी दर्ज करें:
+    प्रोवाइडर ड्रॉपडाउन में **Hugging Face** चुनें, फिर संकेत मिलने पर अपनी API कुंजी दर्ज करें:
 
     ```bash
     openclaw onboard --auth-choice huggingface-api-key
@@ -45,7 +45,7 @@ x-i18n:
 
   </Step>
   <Step title="डिफ़ॉल्ट मॉडल चुनें">
-    **Default Hugging Face model** ड्रॉपडाउन में कोई मॉडल चुनें। आपका टोकन मान्य होने पर सूची Inference API से लोड होती है; अन्यथा OpenClaw नीचे दी गई अंतर्निहित कैटलॉग दिखाता है। आपका चयन `agents.defaults.model.primary` के रूप में सहेजा जाता है:
+    **Default Hugging Face model** ड्रॉपडाउन में कोई मॉडल चुनें। आपका टोकन मान्य होने पर सूची Inference API से लोड होती है; अन्यथा OpenClaw नीचे दिया गया अंतर्निहित कैटलॉग दिखाता है। आपका चयन `agents.defaults.model.primary` के रूप में सहेजा जाता है:
 
     ```json5
     {
@@ -78,7 +78,7 @@ openclaw onboard --non-interactive \
 
 ## मॉडल आईडी
 
-मॉडल संदर्भ `huggingface/<org>/<model>` प्रारूप (Hub-शैली की आईडी) का उपयोग करते हैं। OpenClaw की अंतर्निहित कैटलॉग:
+मॉडल संदर्भ `huggingface/<org>/<model>` प्रारूप (Hub-शैली की आईडी) का उपयोग करते हैं। OpenClaw का अंतर्निहित कैटलॉग:
 
 | मॉडल          | संदर्भ (`huggingface/` उपसर्ग के साथ) |
 | ------------- | -------------------------------- |
@@ -87,14 +87,14 @@ openclaw onboard --non-interactive \
 | GPT-OSS 120B  | `openai/gpt-oss-120b`            |
 
 <Tip>
-आपका टोकन मान्य होने पर OpenClaw ऑनबोर्डिंग और Gateway स्टार्टअप के समय **GET** `https://router.huggingface.co/v1/models` से अन्य सभी मॉडल भी खोजता है, इसलिए आपकी कैटलॉग में ऊपर दिए गए तीन मॉडलों से कहीं अधिक मॉडल शामिल हो सकते हैं। आप किसी भी मॉडल आईडी में `:fastest` या `:cheapest` जोड़ सकते हैं; HF का राउटर अनुरूप इन्फ़रेंस प्रदाता पर रूट करता है। [Inference Provider settings](https://hf.co/settings/inference-providers) में अपना डिफ़ॉल्ट प्रदाता क्रम सेट करें।
+आपका टोकन मान्य होने पर OpenClaw ऑनबोर्डिंग के समय और Gateway के आरंभ होने पर **GET** `https://router.huggingface.co/v1/models` से अन्य सभी मॉडल भी खोजता है, इसलिए आपके कैटलॉग में ऊपर दिए गए तीन मॉडलों से कहीं अधिक मॉडल शामिल हो सकते हैं। आप किसी भी मॉडल आईडी के अंत में `:fastest` या `:cheapest` जोड़ सकते हैं; HF का राउटर अनुरूप इन्फ़रेंस प्रोवाइडर तक रूट करता है। [Inference Provider settings](https://hf.co/settings/inference-providers) में अपना डिफ़ॉल्ट प्रोवाइडर क्रम सेट करें।
 </Tip>
 
 ## उन्नत कॉन्फ़िगरेशन
 
 <AccordionGroup>
   <Accordion title="मॉडल खोज और ऑनबोर्डिंग ड्रॉपडाउन">
-    OpenClaw निम्न तरीके से मॉडल खोजता है:
+    OpenClaw निम्न अनुरोध से मॉडल खोजता है:
 
     ```bash
     GET https://router.huggingface.co/v1/models
@@ -103,9 +103,9 @@ openclaw onboard --non-interactive \
 
     प्रतिक्रिया OpenAI-शैली की होती है: `{ "object": "list", "data": [ { "id": "Qwen/Qwen3-8B", "owned_by": "Qwen", ... }, ... ] }`।
 
-    कॉन्फ़िगर की गई कुंजी (ऑनबोर्डिंग, `HUGGINGFACE_HUB_TOKEN` या `HF_TOKEN`) के साथ इंटरैक्टिव सेटअप के दौरान **Default Hugging Face model** ड्रॉपडाउन इस एंडपॉइंट से भरा जाता है। Gateway स्टार्टअप कैटलॉग को रीफ़्रेश करने के लिए यही कॉल दोहराता है। खोजे गए मॉडलों को ऊपर दी गई अंतर्निहित कैटलॉग के साथ मर्ज किया जाता है (आईडी मेल खाने पर कॉन्टेक्स्ट विंडो और लागत जैसे मेटाडेटा के लिए इसका उपयोग होता है)। यदि अनुरोध विफल हो जाता है, कोई डेटा नहीं लौटाता या कोई कुंजी सेट नहीं है, तो OpenClaw केवल अंतर्निहित कैटलॉग का उपयोग करता है।
+    कॉन्फ़िगर की गई कुंजी (ऑनबोर्डिंग, `HUGGINGFACE_HUB_TOKEN` या `HF_TOKEN`) के साथ, इंटरैक्टिव सेटअप के दौरान **Default Hugging Face model** ड्रॉपडाउन में इस एंडपॉइंट से प्राप्त मॉडल भरे जाते हैं। Gateway आरंभ होने पर कैटलॉग को रीफ़्रेश करने के लिए वही कॉल दोहराई जाती है। खोजे गए मॉडलों को ऊपर दिए गए अंतर्निहित कैटलॉग के साथ मर्ज किया जाता है (आईडी मेल खाने पर कॉन्टेक्स्ट विंडो और लागत जैसे मेटाडेटा के लिए इसका उपयोग होता है)। यदि अनुरोध विफल होता है, कोई डेटा नहीं लौटाता या कोई कुंजी सेट नहीं है, तो OpenClaw केवल अंतर्निहित कैटलॉग का उपयोग करता है।
 
-    प्रदाता को हटाए बिना खोज अक्षम करें:
+    प्रोवाइडर हटाए बिना खोज अक्षम करें:
 
     ```bash
     openclaw config set plugins.entries.huggingface.config.discovery.enabled false
@@ -114,8 +114,8 @@ openclaw onboard --non-interactive \
   </Accordion>
 
   <Accordion title="मॉडल नाम, उपनाम और नीति प्रत्यय">
-    - **API से नाम:** खोजे गए मॉडल उपलब्ध होने पर API के `name`, `title` या `display_name` का उपयोग करते हैं; अन्यथा OpenClaw मॉडल आईडी से नाम प्राप्त करता है (उदाहरण के लिए, `deepseek-ai/DeepSeek-R1` "DeepSeek R1" बन जाता है)।
-    - **प्रदर्शन नाम बदलें:** कॉन्फ़िगरेशन में प्रत्येक मॉडल के लिए कस्टम लेबल सेट करें:
+    - **API से नाम:** उपलब्ध होने पर खोजे गए मॉडल API के `name`, `title` या `display_name` का उपयोग करते हैं; अन्यथा OpenClaw मॉडल आईडी से नाम प्राप्त करता है (उदाहरण के लिए, `deepseek-ai/DeepSeek-R1` "DeepSeek R1" बन जाता है)।
+    - **प्रदर्शित नाम बदलें:** कॉन्फ़िगरेशन में प्रत्येक मॉडल के लिए कस्टम लेबल सेट करें:
 
     ```json5
     {
@@ -130,16 +130,16 @@ openclaw onboard --non-interactive \
     }
     ```
 
-    - **नीति प्रत्यय:** `:fastest` और `:cheapest` HF राउटर की परंपराएँ हैं, OpenClaw इन्हें दोबारा नहीं लिखता: प्रत्यय को मॉडल आईडी के भाग के रूप में ज्यों का त्यों भेजा जाता है और HF का राउटर अनुरूप इन्फ़रेंस प्रदाता चुनता है। यदि आप प्रत्येक प्रत्यय के लिए अलग उपनाम चाहते हैं, तो प्रत्येक प्रकार को `models.providers.huggingface.models` के अंतर्गत (या `model.primary` में) अलग प्रविष्टि के रूप में जोड़ें।
-    - **कॉन्फ़िगरेशन मर्ज:** कॉन्फ़िगरेशन मर्ज करते समय `models.providers.huggingface.models` की मौजूदा प्रविष्टियाँ (उदाहरण के लिए, `models.json` में) रखी जाती हैं, इसलिए वहाँ सेट किए गए कस्टम `name`, `alias` या मॉडल विकल्प रीस्टार्ट के बाद भी बने रहते हैं।
+    - **नीति प्रत्यय:** `:fastest` और `:cheapest` HF राउटर के नियम हैं, इन्हें OpenClaw पुनर्लिखित नहीं करता: प्रत्यय को मॉडल आईडी के भाग के रूप में ज्यों का त्यों भेजा जाता है और HF का राउटर अनुरूप इन्फ़रेंस प्रोवाइडर चुनता है। यदि आप प्रत्येक प्रत्यय के लिए अलग उपनाम चाहते हैं, तो प्रत्येक वेरिएंट को `models.providers.huggingface.models` के अंतर्गत (या `model.primary` में) अलग प्रविष्टि के रूप में जोड़ें।
+    - **कॉन्फ़िगरेशन मर्ज:** कॉन्फ़िगरेशन मर्ज के दौरान `models.providers.huggingface.models` की मौजूदा प्रविष्टियाँ (उदाहरण के लिए, `models.json` में) रखी जाती हैं, इसलिए वहाँ सेट किए गए कस्टम `name`, `alias` या मॉडल विकल्प पुनः आरंभ होने के बाद भी बने रहते हैं।
 
   </Accordion>
 
   <Accordion title="एनवायरनमेंट और डेमन सेटअप">
-    यदि Gateway डेमन (launchd/systemd) के रूप में चलता है, तो सुनिश्चित करें कि `HUGGINGFACE_HUB_TOKEN` या `HF_TOKEN` उस प्रक्रिया के लिए उपलब्ध हो (उदाहरण के लिए, `~/.openclaw/.env` में या `env.shellEnv` के माध्यम से)।
+    यदि Gateway डेमन (launchd/systemd) के रूप में चलता है, तो सुनिश्चित करें कि उस प्रोसेस के लिए `HUGGINGFACE_HUB_TOKEN` या `HF_TOKEN` उपलब्ध हो (उदाहरण के लिए, `~/.openclaw/.env` में या `env.shellEnv` के माध्यम से)।
 
     <Note>
-    OpenClaw `HUGGINGFACE_HUB_TOKEN` और `HF_TOKEN` दोनों को स्वीकार करता है। यदि दोनों सेट हैं, तो `HUGGINGFACE_HUB_TOKEN` को प्राथमिकता मिलती है।
+    OpenClaw, `HUGGINGFACE_HUB_TOKEN` और `HF_TOKEN` दोनों स्वीकार करता है। यदि दोनों सेट हैं, तो `HUGGINGFACE_HUB_TOKEN` को प्राथमिकता मिलती है।
     </Note>
 
   </Accordion>
@@ -163,7 +163,7 @@ openclaw onboard --non-interactive \
     ```
   </Accordion>
 
-  <Accordion title="कॉन्फ़िगरेशन: सबसे सस्ते और सबसे तेज़ प्रकारों के साथ DeepSeek">
+  <Accordion title="कॉन्फ़िगरेशन: सबसे सस्ते और सबसे तेज़ वेरिएंट के साथ DeepSeek">
     ```json5
     {
       agents: {
@@ -204,7 +204,7 @@ openclaw onboard --non-interactive \
 
 <CardGroup cols={2}>
   <Card title="मॉडल चयन" href="/hi/concepts/model-providers" icon="layers">
-    सभी प्रदाताओं, मॉडल संदर्भों और फ़ेलओवर व्यवहार का अवलोकन।
+    सभी प्रोवाइडर, मॉडल संदर्भ और फ़ेलओवर व्यवहार का अवलोकन।
   </Card>
   <Card title="मॉडल चयन" href="/hi/concepts/models" icon="brain">
     मॉडल चुनने और कॉन्फ़िगर करने का तरीका।

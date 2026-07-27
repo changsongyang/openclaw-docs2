@@ -4,7 +4,7 @@ read_when:
 summary: 添加智能体可调用的工具。
 title: 浏览器插件
 x-i18n:
-    generated_at: "2026-07-16T11:44:14Z"
+    generated_at: "2026-07-26T05:55:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,9 +21,9 @@ x-i18n:
 ## 分发
 
 - 软件包：`@openclaw/browser-plugin`
-- 安装方式：OpenClaw 内置
+- 安装方式：随 OpenClaw 提供
 
-## 功能接口
+## 接口
 
 契约：`tools`；Skills
 

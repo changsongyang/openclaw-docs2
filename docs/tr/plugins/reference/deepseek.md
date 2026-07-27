@@ -1,10 +1,10 @@
 ---
 read_when:
-    - deepseek pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+    - deepseek Plugin'ini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a DeepSeek model sağlayıcısı desteği ekler.
-title: DeepSeek plugin'i
+title: DeepSeek Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:24:49Z"
+    generated_at: "2026-07-26T23:27:56Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# DeepSeek plugini
+# DeepSeek plugin'i
 
 OpenClaw'a DeepSeek model sağlayıcısı desteği ekler.
 

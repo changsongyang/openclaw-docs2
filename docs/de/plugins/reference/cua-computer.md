@@ -1,10 +1,10 @@
 ---
 read_when:
     - Sie installieren, konfigurieren oder prüfen das Plugin cua-computer.
-summary: Experimentelle cua-driver-Computersteuerung für Windows- und Linux-Node-Hosts.
+summary: Experimentelle Computersteuerung mit cua-driver für Windows- und Linux-Node-Hosts.
 title: Cua-Computer-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:00:14Z"
+    generated_at: "2026-07-26T17:58:23Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Cua-Computer-Plugin
 
-Experimentelle Computersteuerung über cua-driver für Windows- und Linux-Node-Hosts.
+Experimentelle Computersteuerung mit cua-driver für Windows- und Linux-Node-Hosts.
 
 ## Distribution
 

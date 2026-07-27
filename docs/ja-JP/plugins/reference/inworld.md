@@ -1,10 +1,10 @@
 ---
 read_when:
-    - inworld Plugin のインストール、設定、または監査を行っている場合
-summary: Inworld ストリーミング音声合成（MP3、OGG_OPUS、PCM テレフォニー）。
+    - inworld Pluginをインストール、設定、または監査しています
+summary: Inworld のストリーミングテキスト読み上げ（MP3、OGG_OPUS、PCM テレフォニー）。
 title: Inworld Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:55:01Z"
+    generated_at: "2026-07-26T09:12:57Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # Inworld Plugin
 
-Inworld ストリーミング音声合成（MP3、OGG_OPUS、PCM テレフォニー）。
+Inworld のストリーミングテキスト読み上げ（MP3、OGG_OPUS、PCM テレフォニー）。
 
 ## 配布
 
 - パッケージ: `@openclaw/inworld-speech`
-- インストール経路: npm、ClawHub: `clawhub:@openclaw/inworld-speech`
+- インストール方法: npm、ClawHub: `clawhub:@openclaw/inworld-speech`
 
-## 提供インターフェース
+## サーフェス
 
 コントラクト: `speechProviders`
 

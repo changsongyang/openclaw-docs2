@@ -1,10 +1,10 @@
 ---
 read_when:
-    - building-extensions की विरासती लिंक
-summary: वर्तमान Plugin निर्माण गाइड पर रीडायरेक्ट करता है
+    - building-extensions की लीगेसी लिंक
+summary: वर्तमान Plugin निर्माण मार्गदर्शिका पर रीडायरेक्ट करता है
 title: Plugin बनाना (रीडायरेक्ट)
 x-i18n:
-    generated_at: "2026-07-19T09:23:37Z"
+    generated_at: "2026-07-27T18:07:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

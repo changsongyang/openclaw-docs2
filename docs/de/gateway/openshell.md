@@ -1,12 +1,12 @@
 ---
 read_when:
-    - Sie möchten cloudverwaltete Sandboxes anstelle von lokalem Docker.
+    - Sie möchten cloudverwaltete Sandboxes anstelle von lokalem Docker verwenden
     - Sie richten das OpenShell-Plugin ein
-    - Sie müssen zwischen dem Spiegel- und dem Remote-Arbeitsbereichsmodus wählen
+    - Sie müssen zwischen dem Spiegel- und dem Remote-Arbeitsbereichsmodus wählen.
 summary: Verwenden Sie OpenShell als verwaltetes Sandbox-Backend für OpenClaw-Agenten
 title: OpenShell
 x-i18n:
-    generated_at: "2026-07-24T03:52:10Z"
+    generated_at: "2026-07-26T17:50:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ Remote-Umgebungen bereitstellt und Befehle über SSH ausführt.
 Das Plugin verwendet denselben SSH-Transport und dieselbe Remote-Dateisystem-Bridge wie das
 generische [SSH-Backend](/de/gateway/sandboxing#ssh-backend) und ergänzt den OpenShell-
 Lebenszyklus (`sandbox create/get/delete/ssh-config`) sowie einen optionalen `mirror`-
-Arbeitsbereich-Synchronisierungsmodus.
+Workspace-Synchronisierungsmodus.
 
 ## Voraussetzungen
 
@@ -31,7 +31,7 @@ Arbeitsbereich-Synchronisierungsmodus.
 - `openshell`-CLI in `PATH` (oder ein benutzerdefinierter Pfad über
   `plugins.entries.openshell.config.command`)
 - Ein OpenShell-Konto mit Sandbox-Zugriff
-- Auf dem Host ausgeführtes OpenClaw Gateway
+- OpenClaw Gateway wird auf dem Host ausgeführt
 
 ## Schnellstart
 
@@ -66,86 +66,86 @@ openclaw plugins install @openclaw/openshell-sandbox
 ```
 
 Starten Sie das Gateway neu. Beim nächsten Agent-Durchlauf erstellt OpenClaw eine OpenShell-
-Sandbox und leitet die Werkzeugausführung durch sie. Überprüfen Sie dies mit:
+Sandbox und leitet die Tool-Ausführung durch sie. Überprüfen Sie dies mit:
 
 ```bash
 openclaw sandbox list
 openclaw sandbox explain
 ```
 
-## Arbeitsbereichsmodi
+## Workspace-Modi
 
-Dies ist die wichtigste Entscheidung bei OpenShell.
+Dies ist die wichtigste OpenShell-Entscheidung.
 
 ### mirror (Standard)
 
-`plugins.entries.openshell.config.mode: "mirror"` hält den **lokalen Arbeitsbereich
+`plugins.entries.openshell.config.mode: "mirror"` hält den **lokalen Workspace
 kanonisch**:
 
-- Vor `exec` synchronisiert OpenClaw den lokalen Arbeitsbereich mit der Sandbox.
-- Nach `exec` synchronisiert OpenClaw den Remote-Arbeitsbereich zurück auf den lokalen Host.
-- Dateiwerkzeuge verwenden die Sandbox-Bridge, aber der lokale Arbeitsbereich bleibt
-  zwischen den Durchläufen die maßgebliche Datenquelle.
+- Vor `exec` synchronisiert OpenClaw den lokalen Workspace in die Sandbox.
+- Nach `exec` synchronisiert OpenClaw den Remote-Workspace zurück auf das lokale System.
+- Datei-Tools verwenden die Sandbox-Bridge, aber das lokale System bleibt zwischen
+  Durchläufen die maßgebliche Datenquelle.
 
-Am besten für Entwicklungsabläufe geeignet: Lokale Änderungen außerhalb von OpenClaw werden bei der
-nächsten Ausführung übernommen, und die Sandbox verhält sich ähnlich wie das Docker-Backend.
+Optimal für Entwicklungsabläufe: Lokale Änderungen außerhalb von OpenClaw erscheinen bei der
+nächsten Ausführung, und die Sandbox verhält sich ähnlich wie das Docker-Backend.
 
-Nachteil: Upload- und Download-Aufwand bei jedem Ausführungsdurchlauf.
+Nachteil: Upload- und Download-Kosten bei jedem Ausführungsdurchlauf.
 
 ### remote
 
-`mode: "remote"` macht den **OpenShell-Arbeitsbereich kanonisch**:
+`mode: "remote"` macht den **OpenShell-Workspace kanonisch**:
 
-- Bei der ersten Erstellung der Sandbox überträgt OpenClaw den lokalen Arbeitsbereich
-  einmalig in den Remote-Arbeitsbereich.
+- Bei der ersten Erstellung der Sandbox initialisiert OpenClaw den Remote-Workspace einmalig
+  aus dem lokalen Workspace.
 - Danach arbeiten `exec`, `read`, `write`, `edit` und `apply_patch`
-  direkt im Remote-Arbeitsbereich. OpenClaw synchronisiert Remote-Änderungen
-  **nicht** zurück auf den lokalen Host.
-- Medienzugriffe während der Prompt-Verarbeitung funktionieren weiterhin (Datei-/Medienwerkzeuge lesen über die
+  direkt im Remote-Workspace. OpenClaw synchronisiert Remote-Änderungen **nicht**
+  zurück auf das lokale System.
+- Medienzugriffe zur Prompt-Zeit funktionieren weiterhin (Datei-/Medien-Tools lesen über die
   Sandbox-Bridge).
 
-Am besten für langlebige Agents und CI geeignet: geringerer Aufwand pro Durchlauf, und lokale
-Änderungen auf dem Host können den Remote-Zustand nicht unbemerkt überschreiben.
+Optimal für lang laufende Agents und CI: geringerer Aufwand pro Durchlauf, und hostlokale
+Änderungen können den Remote-Zustand nicht unbemerkt überschreiben.
 
 <Warning>
-Dateiänderungen auf dem Host außerhalb von OpenClaw sind nach der initialen Übertragung für die Remote-Sandbox nicht sichtbar. Führen Sie `openclaw sandbox recreate` aus, um die Daten erneut zu übertragen.
+Änderungen an Dateien auf dem Host außerhalb von OpenClaw sind nach der anfänglichen Initialisierung für die Remote-Sandbox nicht sichtbar. Führen Sie `openclaw sandbox recreate` aus, um sie neu zu initialisieren.
 </Warning>
 
 ### Modus auswählen
 
-|                            | `mirror`                         | `remote`                         |
-| -------------------------- | ------------------------------------------ | ------------------------------------------ |
-| **Kanonischer Arbeitsbereich** | Lokaler Host                           | Remote-OpenShell                           |
-| **Synchronisierungsrichtung**  | Bidirektional (bei jeder Ausführung)   | Einmalige Übertragung                      |
-| **Aufwand pro Durchlauf**      | Höher (Upload + Download)               | Niedriger (direkte Remote-Operationen)     |
-| **Lokale Änderungen sichtbar?** | Ja, bei der nächsten Ausführung       | Nein, bis zur Neuerstellung                |
-| **Am besten geeignet für**     | Entwicklungsabläufe                    | Langlebige Agents, CI                      |
+|                          | `mirror`                   | `remote`                  |
+| ------------------------ | -------------------------- | ------------------------- |
+| **Kanonischer Workspace**  | Lokaler Host                 | Remote-OpenShell          |
+| **Synchronisierungsrichtung**       | Bidirektional (bei jeder Ausführung) | Einmalige Initialisierung             |
+| **Aufwand pro Durchlauf**    | Höher (Upload + Download) | Niedriger (direkte Remote-Operationen) |
+| **Lokale Änderungen sichtbar?** | Ja, bei der nächsten Ausführung          | Nein, bis zur Neuerstellung        |
+| **Optimal für**             | Entwicklungsabläufe      | Lang laufende Agents, CI   |
 
 ## Konfigurationsreferenz
 
 Die gesamte OpenShell-Konfiguration befindet sich unter `plugins.entries.openshell.config`:
 
-| Schlüssel                  | Typ                      | Standardwert  | Beschreibung                                                                           |
-| -------------------------- | ------------------------ | ------------- | -------------------------------------------------------------------------------------- |
-| `mode`         | `"mirror"` oder `"remote"` | `"mirror"` | Synchronisierungsmodus des Arbeitsbereichs                                      |
-| `command`         | `string`       | `"openshell"` | Pfad oder Name der `openshell`-CLI                                        |
-| `from`         | `string`       | `"openclaw"` | Sandbox-Quelle für die erstmalige Erstellung                                     |
-| `gateway`         | `string`       | nicht gesetzt | Name des OpenShell-Gateways (`--gateway` auf oberster Ebene)               |
-| `gatewayEndpoint`         | `string`       | nicht gesetzt | Endpunkt des OpenShell-Gateways (`--gateway-endpoint` auf oberster Ebene)           |
-| `policy`         | `string`       | nicht gesetzt | OpenShell-Richtlinien-ID für die Sandbox-Erstellung                               |
-| `providers`         | `string[]`       | `[]` | Bei der Sandbox-Erstellung zugeordnete Provider-Namen (dedupliziert, ein `--provider`-Flag pro Eintrag) |
-| `gpu`         | `boolean`       | `false` | GPU-Ressourcen anfordern (`--gpu`)                                     |
-| `autoProviders`         | `boolean`       | `true` | Bei der Erstellung `--auto-providers` übergeben (oder `--no-auto-providers`, wenn falsch) |
-| `remoteWorkspaceDir`         | `string`       | `"/sandbox"` | Primärer beschreibbarer Arbeitsbereich innerhalb der Sandbox                      |
-| `remoteAgentWorkspaceDir`         | `string`       | `"/agent"` | Einhängepfad des Agent-Arbeitsbereichs (schreibgeschützt, wenn der Arbeitsbereichszugriff nicht `rw` ist) |
-| `timeoutSeconds`         | `number`       | `120` | Zeitlimit für Operationen der `openshell`-CLI                              |
+| Schlüssel                       | Typ                     | Standard       | Beschreibung                                                                            |
+| ------------------------- | ------------------------ | ------------- | -------------------------------------------------------------------------------------- |
+| `mode`                    | `"mirror"` oder `"remote"` | `"mirror"`    | Workspace-Synchronisierungsmodus                                                                    |
+| `command`                 | `string`                 | `"openshell"` | Pfad oder Name der `openshell`-CLI                                                    |
+| `from`                    | `string`                 | `"openclaw"`  | Sandbox-Quelle für die erstmalige Erstellung                                                   |
+| `gateway`                 | `string`                 | nicht gesetzt         | OpenShell-Gateway-Name (`--gateway` auf oberster Ebene)                                         |
+| `gatewayEndpoint`         | `string`                 | nicht gesetzt         | OpenShell-Gateway-Endpunkt (`--gateway-endpoint` auf oberster Ebene)                            |
+| `policy`                  | `string`                 | nicht gesetzt         | OpenShell-Richtlinien-ID für die Sandbox-Erstellung                                               |
+| `providers`               | `string[]`               | `[]`          | Bei der Sandbox-Erstellung angehängte Provider-Namen (dedupliziert, ein `--provider`-Flag pro Eintrag) |
+| `gpu`                     | `boolean`                | `false`       | GPU-Ressourcen anfordern (`--gpu`)                                                        |
+| `autoProviders`           | `boolean`                | `true`        | Bei der Erstellung `--auto-providers` (oder `--no-auto-providers`, wenn falsch) übergeben            |
+| `remoteWorkspaceDir`      | `string`                 | `"/sandbox"`  | Primärer beschreibbarer Workspace innerhalb der Sandbox                                          |
+| `remoteAgentWorkspaceDir` | `string`                 | `"/agent"`    | Einhängepfad des Agent-Workspace (schreibgeschützt, wenn der Workspace-Zugriff nicht `rw` ist)               |
+| `timeoutSeconds`          | `number`                 | `120`         | Zeitüberschreitung für `openshell`-CLI-Operationen                                                 |
 
 `remoteWorkspaceDir` und `remoteAgentWorkspaceDir` müssen absolute Pfade sein und
-innerhalb der verwalteten Stammverzeichnisse `/sandbox` oder `/agent` liegen; andere absolute Pfade werden
+innerhalb der verwalteten Stammverzeichnisse `/sandbox` oder `/agent` bleiben; andere absolute Pfade werden
 abgelehnt.
 
-Sandbox-spezifische Einstellungen (`mode`, `scope`, `workspaceAccess`) befinden sich wie bei jedem Backend unter
-`agents.defaults.sandbox`. Die vollständige Übersicht finden Sie unter
+Einstellungen auf Sandbox-Ebene (`mode`, `scope`, `workspaceAccess`) befinden sich wie bei jedem Backend unter
+`agents.defaults.sandbox`. Die vollständige Matrix finden Sie unter
 [Sandboxing](/de/gateway/sandboxing).
 
 ## Beispiele
@@ -250,19 +250,19 @@ Sandbox-spezifische Einstellungen (`mode`, `scope`, `workspaceAccess`) befinden 
 # Alle Sandbox-Laufzeitumgebungen auflisten (Docker + OpenShell)
 openclaw sandbox list
 
-# Wirksame Richtlinie prüfen
+# Effektive Richtlinie prüfen
 openclaw sandbox explain
 
-# Neu erstellen (löscht den Remote-Arbeitsbereich und überträgt ihn bei der nächsten Verwendung erneut)
+# Neu erstellen (löscht den Remote-Workspace, initialisiert ihn bei der nächsten Verwendung neu)
 openclaw sandbox recreate --all
 ```
 
-Im `remote`-Modus ist die Neuerstellung besonders wichtig: Sie löscht den kanonischen
-Remote-Arbeitsbereich für diesen Geltungsbereich, und bei der nächsten Verwendung wird ein neuer aus dem
-lokalen Arbeitsbereich übertragen. Im `mirror`-Modus setzt die Neuerstellung hauptsächlich die Remote-Ausführungsumgebung
-zurück, da der lokale Arbeitsbereich kanonisch bleibt.
+Für den `remote`-Modus ist die Neuerstellung besonders wichtig: Sie löscht den kanonischen
+Remote-Workspace für diesen Geltungsbereich, und bei der nächsten Verwendung wird ein neuer aus dem
+lokalen Workspace initialisiert. Im `mirror`-Modus setzt die Neuerstellung hauptsächlich die Remote-Ausführungsumgebung
+zurück, da das lokale System kanonisch bleibt.
 
-Führen Sie nach Änderungen an folgenden Einstellungen eine Neuerstellung durch:
+Erstellen Sie nach Änderungen an folgenden Einstellungen neu:
 
 - `agents.defaults.sandbox.backend`
 - `plugins.entries.openshell.config.from`
@@ -271,10 +271,10 @@ Führen Sie nach Änderungen an folgenden Einstellungen eine Neuerstellung durch
 
 ## Sicherheitshärtung
 
-Die Dateisystem-Bridge des Mirror-Modus fixiert das lokale Stammverzeichnis des Arbeitsbereichs und prüft
-vor jedem Lesen, Schreiben, Erstellen eines Verzeichnisses, Entfernen und
-Umbenennen erneut die kanonischen Pfade (über realpath), wobei symbolische Links innerhalb des Pfads abgelehnt werden. Das Austauschen eines symbolischen Links oder ein erneut eingehängter Arbeitsbereich
-kann den Dateizugriff nicht aus dem gespiegelten Verzeichnisbaum heraus umleiten.
+Die Dateisystem-Bridge des Mirror-Modus fixiert das lokale Workspace-Stammverzeichnis und überprüft
+kanonische Pfade (über realpath) vor jedem Lesen, Schreiben, Erstellen eines Verzeichnisses, Entfernen und
+Umbenennen erneut und lehnt symbolische Links innerhalb des Pfades ab. Ein Austausch eines symbolischen Links oder ein neu eingehängter Workspace
+kann Dateizugriffe nicht außerhalb des gespiegelten Verzeichnisbaums umleiten.
 
 ## Aktuelle Einschränkungen
 
@@ -288,20 +288,20 @@ kann den Dateizugriff nicht aus dem gespiegelten Verzeichnisbaum heraus umleiten
 
 1. OpenClaw führt `sandbox get` für den Sandbox-Namen aus (mit allen konfigurierten
    `--gateway`/`--gateway-endpoint`); schlägt dies fehl, wird mit
-   `sandbox create` eine Sandbox erstellt. Dabei werden `--name`, `--from`, `--policy`, sofern festgelegt, `--gpu`,
-   sofern aktiviert, `--auto-providers`/`--no-auto-providers` sowie ein
-   `--provider`-Flag pro konfiguriertem Provider übergeben.
+   `sandbox create` eine Sandbox erstellt, wobei `--name`, `--from`, `--policy`, sofern gesetzt, `--gpu`,
+   sofern aktiviert, `--auto-providers`/`--no-auto-providers` und ein
+   `--provider`-Flag pro konfiguriertem Provider übergeben werden.
 2. OpenClaw führt `sandbox ssh-config` für den Sandbox-Namen aus, um die SSH-
    Verbindungsdetails abzurufen.
-3. Der Core schreibt die SSH-Konfiguration in eine temporäre Datei und öffnet über
-   dieselbe Remote-Dateisystem-Bridge wie das generische SSH-Backend eine SSH-Sitzung.
-4. Im `mirror`-Modus: Vor der Ausführung vom lokalen zum Remote-Arbeitsbereich synchronisieren, ausführen und anschließend zurücksynchronisieren.
-5. Im `remote`-Modus: Bei der Erstellung einmalig übertragen und anschließend direkt im Remote-
-   Arbeitsbereich arbeiten.
+3. Der Core schreibt die SSH-Konfiguration in eine temporäre Datei und öffnet eine SSH-Sitzung über
+   dieselbe Remote-Dateisystem-Bridge wie das generische SSH-Backend.
+4. Im `mirror`-Modus: vor der Ausführung lokal nach remote synchronisieren, ausführen, anschließend zurücksynchronisieren.
+5. Im `remote`-Modus: bei der Erstellung einmalig initialisieren und anschließend direkt im Remote-
+   Workspace arbeiten.
 
 ## Verwandte Themen
 
 - [Sandboxing](/de/gateway/sandboxing) – Modi, Geltungsbereiche und Backend-Vergleich
-- [Sandbox vs. Werkzeugrichtlinie vs. Erweitert](/de/gateway/sandbox-vs-tool-policy-vs-elevated) – Fehlersuche bei blockierten Werkzeugen
-- [Multi-Agent-Sandbox und Werkzeuge](/de/tools/multi-agent-sandbox-tools) – Agent-spezifische Überschreibungen
+- [Sandbox vs. Tool-Richtlinie vs. Erhöht](/de/gateway/sandbox-vs-tool-policy-vs-elevated) – Fehlerbehebung bei blockierten Tools
+- [Multi-Agent-Sandbox und Tools](/de/tools/multi-agent-sandbox-tools) – Agent-spezifische Überschreibungen
 - [Sandbox-CLI](/de/cli/sandbox) – `openclaw sandbox`-Befehle

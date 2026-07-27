@@ -1,13 +1,13 @@
 ---
 read_when:
-    - Sie möchten, dass OpenClaw wiederverwendbare Abläufe aus abgeschlossenen Unterhaltungen lernt
-    - Sie entscheiden, ob autonome Skill-Vorschläge aktiviert werden sollen
-    - Sie müssen Sicherheit, Kosten, Voraussetzungen oder Fehlerbehebung beim selbstständigen Lernen verstehen
+    - Sie möchten, dass OpenClaw wiederverwendbare Abläufe aus abgeschlossenen Unterhaltungen erlernt
+    - Sie entscheiden, ob Sie autonome Skill-Vorschläge aktivieren möchten
+    - Sie benötigen Informationen zu Sicherheit, Kosten, Voraussetzungen oder Fehlerbehebung beim selbstständigen Lernen.
 sidebarTitle: Self-learning
-summary: Lassen Sie OpenClaw aus Korrekturen und umfangreichen abgeschlossenen Arbeiten wiederverwendbare Skills vorschlagen
+summary: OpenClaw soll aus Korrekturen und umfangreichen abgeschlossenen Arbeiten wiederverwendbare Skills vorschlagen
 title: Selbstlernend
 x-i18n:
-    generated_at: "2026-07-24T05:21:09Z"
+    generated_at: "2026-07-26T18:50:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,20 +17,20 @@ x-i18n:
     workflow: 16
 ---
 
-Selbstlernen ermöglicht es OpenClaw, nützliche Erkenntnisse aus Unterhaltungen in ausstehende
-[Skill-Workshop](/de/tools/skill-workshop)-Vorschläge umzuwandeln. Dabei werden weder Modellgewichte
+Durch Selbstlernen kann OpenClaw nützliche Erkenntnisse aus Unterhaltungen in ausstehende
+[Skill-Workshop](/de/tools/skill-workshop)-Vorschläge umwandeln. Dabei werden weder Modellgewichte
 trainiert noch aktive Skills bearbeitet oder das Agentenverhalten unbemerkt geändert. Jedes erlernte
-Verfahren bleibt ausstehend, bis es von einer Bedienperson geprüft und angewendet wird.
+Verfahren bleibt ausstehend, bis es von einer zuständigen Person geprüft und angewendet wird.
 
 Selbstlernen ist **standardmäßig deaktiviert**. Aktivieren Sie es nur, wenn ein zusätzlicher
-Modelllauf im Hintergrund und eine Überprüfung des Transkripts für Ihren Arbeitsbereich angemessen sind.
+Modelllauf im Hintergrund und eine Prüfung des Transkripts für Ihren Workspace angemessen sind.
 
 ## Selbstlernen aktivieren
 
-Öffnen Sie in der Control UI **Plugins → Workshop** und aktivieren Sie **Selbstlernen**. Die
-Änderung wird sofort wirksam. Wenn ein anderer Konfigurationsschreiber die
-Datei aktualisiert hat, aktualisiert die Control UI den Konfigurations-Snapshot und versucht die Umschaltung erneut, ohne
-die Seite oder den Gateway neu zu laden.
+Öffnen Sie in der Control UI **Plugins → Workshop** und aktivieren Sie **Self-learning**. Die
+Änderung wird sofort wirksam. Wenn ein anderer Konfigurationsschreiber die Datei aktualisiert hat,
+aktualisiert die Control UI den Konfigurations-Snapshot und versucht erneut, den Schalter umzulegen,
+ohne die Seite oder den Gateway neu zu laden.
 
 Verwenden Sie die CLI:
 
@@ -63,62 +63,62 @@ funktionieren weiterhin, während das Selbstlernen deaktiviert ist.
 
 ## Frühere Sitzungen manuell prüfen
 
-Die manuelle Überprüfung des Verlaufs ist die konservative Alternative zur autonomen Erfassung.
-Öffnen Sie **Plugins → Workshop** in der Control UI und wählen Sie **Skill-Ideen finden**.
+Die manuelle Verlaufsprüfung ist die konservative Alternative zur autonomen Erfassung.
+Öffnen Sie in der Control UI **Plugins → Workshop** und wählen Sie **Find skill ideas**.
 Dadurch wird `skills.workshop.autonomous.enabled` nicht geändert.
 
 Jeder Scan:
 
 - beginnt mit den neuesten ungeprüften Sitzungen und arbeitet sich rückwärts vor;
 - prüft bis zu 20 umfangreiche Sitzungen mit mindestens sechs Modelldurchläufen;
-- überspringt Cron-, Heartbeat-, Hook-, Subagent-, ACP-, Plugin-eigene und interne Prüfungs-
-  sitzungen;
-- schwärzt erkannte Geheimnisse und begrenzt das Transkriptpaket, bevor es
-  an das konfigurierte Modell des ausgewählten Agenten gesendet wird;
-- wendet dieselben strengen Maßstäbe wie die autonome Erfahrungsprüfung an; und
+- überspringt Cron-, Heartbeat-, Hook-, Subagenten-, ACP-, Plugin-eigene und interne
+  Prüfungssitzungen;
+- schwärzt erkannte Secrets und begrenzt das Transkriptpaket, bevor es an das
+  konfigurierte Modell des ausgewählten Agenten gesendet wird;
+- wendet denselben hohen Maßstab wie die autonome Erfahrungsprüfung an; und
 - kann höchstens drei ausstehende Vorschläge erstellen oder überarbeiten, niemals aktive Skills.
 
-Der Workshop meldet die kumulative Sitzungsanzahl, den abgedeckten Zeitraum und die gefundenen Ideen.
-Wählen Sie **Frühere Arbeit scannen** für das nächste ältere Zeitfenster. Wenn der Cursor den
-Anfang des geeigneten Verlaufs erreicht, ändert sich die Aktion zu **Neue Arbeit scannen**.
-OpenClaw speichert nur Cursor- und Abdeckungsmetadaten in der gemeinsamen Zustandsdatenbank;
+Der Workshop meldet die kumulierte Anzahl der Sitzungen, den abgedeckten Zeitraum und die gefundenen Ideen.
+Wählen Sie **Scan earlier work** für das nächste ältere Zeitfenster. Wenn der Cursor den
+Anfang des relevanten Verlaufs erreicht, ändert sich die Aktion zu **Scan new work**.
+OpenClaw speichert ausschließlich Cursor- und Abdeckungsmetadaten in der gemeinsamen Zustandsdatenbank;
 es erstellt kein zweites Transkriptarchiv.
 
 Sitzungen werden nur gescannt, wenn OpenClaw ihre Eigentümerschaft nachweisen und
-Inhalte externer Hooks ausschließen kann. Nach einem Upgrade kann das aktuelle Transkript von vor dem Upgrade
-lokal klassifiziert werden, aber rotierte Transkripte von vor dem Upgrade ohne Herkunftsnachweis
-pro Lauf werden übersprungen. Neue Transkripte behalten diesen Herkunftsnachweis auch nach der Rotation.
+Inhalte externer Hooks ausschließen kann. Nach einem Upgrade kann das aktuelle Transkript von
+vor dem Upgrade lokal klassifiziert werden, aber rotierte Transkripte von vor dem Upgrade ohne
+Herkunftsnachweis pro Lauf werden übersprungen. Neue Transkripte behalten diesen Herkunftsnachweis bei der Rotation.
 
-Manuelle Scans verursachen weiterhin Kosten beim Modell-Provider und senden geeignete Unterhaltungs-
-inhalte an den konfigurierten Provider. Verwenden Sie sie nur, wenn diese Prüfung den
-Datenschutz- und Datenverarbeitungsanforderungen des Arbeitsbereichs entspricht.
+Manuelle Scans verursachen weiterhin Kosten beim Modell-Provider und senden relevante Gesprächsinhalte
+an den konfigurierten Provider. Verwenden Sie sie nur, wenn diese Prüfung den Datenschutz- und
+Datenverarbeitungsanforderungen des Workspace entspricht.
 
 ## Was OpenClaw lernen kann
 
-Das Selbstlernen umfasst zwei konservative Wege:
+Das Selbstlernen umfasst zwei konservative Pfade:
 
 1. **Direkte Anweisungen und Korrekturen.** OpenClaw erkennt dauerhafte Formulierungen
-   wie „von nun an“, „beim nächsten Mal“ sowie Korrekturen eines fehlgeschlagenen Ansatzes.
-   Wenn das Selbstlernen aktiviert ist, kann es diese Signale in ausstehende Vorschläge
-   umwandeln, ohne auf eine weitere Eingabeaufforderung zu warten. Dieser deterministische Weg kann zusammengehörige
-   Anweisungen in bis zu drei Vorschlägen gruppieren, einen beschreibbaren Arbeitsbereichs-Skill adressieren
+   wie „von nun an“, „beim nächsten Mal“ und Korrekturen eines fehlgeschlagenen Ansatzes.
+   Bei aktiviertem Selbstlernen kann es diese Signale in ausstehende Vorschläge umwandeln,
+   ohne auf einen weiteren Prompt zu warten. Dieser deterministische Pfad kann zusammengehörige
+   Anweisungen in bis zu drei Vorschlägen bündeln, auf einen beschreibbaren Workspace-Skill abzielen
    oder einen eigenen zugehörigen ausstehenden Vorschlag überarbeiten. Er wird auch nach fehlgeschlagenen Durchläufen
-   ausgeführt, da er die Anweisungen des Benutzers erfasst, statt den Abschluss zu bewerten.
+   ausgeführt, da er die Anweisungen des Benutzers erfasst, statt den Abschluss zu beurteilen.
 2. **Erfahrungsprüfung.** Nach einem erfolgreichen, umfangreichen Vordergrunddurchlauf
    kann OpenClaw die abgeschlossene Arbeit auf eine wiederverwendbare Wiederherstellungstechnik oder
-   ein stabiles Verfahren prüfen, das künftig mindestens zwei Modell- oder Werkzeug-
-   hin- und Rückläufe vermeiden würde.
+   ein stabiles Verfahren prüfen, das mindestens zwei künftige Modell- oder Tool-Rundläufe
+   überflüssig machen würde.
 
 Geeignete Kandidaten sind unter anderem:
 
-- eine zuverlässige Wiederherstellung nach wiederholten Werkzeug- oder Modellfehlern;
+- eine zuverlässige Wiederherstellung nach wiederholten Tool- oder Modellfehlern;
 - eine nicht offensichtliche Reihenfolgebedingung, die einen wiederkehrenden Fehler verhindert hat;
-- ein stabiler mehrstufiger Arbeitsablauf, der wiederholte Erkundung erforderte; oder
-- eine wiederverwendbare Vorabprüfung, die mehrere zukünftige Aufrufe vermeiden würde.
+- ein stabiler mehrstufiger Workflow, der wiederholte Erkundung erforderte; oder
+- eine wiederverwendbare Vorabprüfung, die mehrere künftige Aufrufe vermeiden würde.
 
-Die Prüfung sollte bei routinemäßig erfolgreicher Arbeit, einmaligen Anfragen,
+Bei routinemäßigen erfolgreichen Arbeiten, einmaligen Anfragen,
 persönlichen Fakten, einfachen Präferenzen, vorübergehenden Umgebungsfehlern, allgemeinen
-Ratschlägen, unbelegten negativen Behauptungen und Geheimnissen von einem Vorschlag absehen.
+Ratschlägen, unbelegten negativen Behauptungen und Secrets sollte die prüfende Instanz auf einen Vorschlag verzichten.
 
 ## Wann die Erfahrungsprüfung ausgeführt wird
 
@@ -126,72 +126,71 @@ Die Erfahrungsprüfung wird bewusst verzögert und begrenzt:
 
 - Der Vordergrunddurchlauf muss erfolgreich abgeschlossen werden.
 - Der aktuelle Durchlauf muss mindestens zehn Modelliterationen enthalten.
-- Cron-, Heartbeat-, Speicher-, Überlauf-, Hook-, Subagent- und Prüfungssitzungen sind
+- Cron-, Heartbeat-, Speicher-, Überlauf-, Hook-, Subagenten- und Prüfungssitzungen sind
   ausgeschlossen.
-- Für den Vordergrundlauf müssen ein Provider und ein Modell aufgelöst worden sein und er muss tatsächlich
+- Für den Vordergrundlauf müssen ein Provider und ein Modell aufgelöst worden sein, und er muss tatsächlich
   Zugriff auf `skill_workshop` gehabt haben.
-- OpenClaw wartet nach Abschluss 30 Sekunden. Ein späterer Vordergrundabschluss in
-  derselben Sitzung startet diese Ruhephase erneut.
+- OpenClaw wartet nach dem Abschluss 30 Sekunden. Ein späterer Abschluss im Vordergrund in
+  derselben Sitzung startet diese Ruhephase neu.
 - Wenn noch ein Agenten- oder Antwortlauf aktiv ist, wartet die Prüfung weitere 30 Sekunden.
 - Es wird jeweils nur eine Erfahrungsprüfung ausgeführt.
 - Die verzögerte Prüfung ist prozesslokale Gateway-Arbeit. Der Gateway muss während
-  des Leerlauffensters weiterlaufen; einmalige lokale und CLI-gestützte Laufzeitumgebungen bewahren
-  nicht genügend Kontext zu Verlauf und Werkzeugverfügbarkeit auf, um sie einzuplanen.
+  des gesamten Leerlauffensters aktiv bleiben; einmalige lokale und CLI-gestützte Laufzeiten behalten
+  nicht genügend Kontext zu Verlauf und Tool-Verfügbarkeit, um sie einzuplanen.
 
-Die Antwort im Vordergrund wird niemals durch das Lernen verzögert. Ein fehlgeschlagener oder ungeeigneter
-Durchlauf startet keine Erfahrungsprüfung, direkte Benutzerkorrekturen können jedoch
+Die Vordergrundantwort wird durch das Lernen niemals verzögert. Ein fehlgeschlagener oder ungeeigneter
+Durchlauf startet keine Erfahrungsprüfung. Direkte Benutzerkorrekturen können jedoch
 weiterhin als Vorschlag angeboten werden, wenn die Autonomie deaktiviert ist.
 
-## Was die Prüfung erhält
+## Was die prüfende Instanz erhält
 
-Die Hintergrundprüfung erhält nur den aktuellen Durchlauf, beginnend mit dessen
-neuester Benutzernachricht. Der gerenderte Verlauf ist auf 60,000 Zeichen begrenzt;
-falls erforderlich, behält OpenClaw die erste Nachricht und die neuesten Erkenntnisse bei und
+Die prüfende Instanz im Hintergrund erhält nur den aktuellen Durchlauf, beginnend mit dessen
+neuester Benutzernachricht. Der gerenderte Verlauf ist auf 60,000 Zeichen begrenzt.
+Falls erforderlich, behält OpenClaw die erste Nachricht und die neuesten Nachweise bei und
 kennzeichnet den ausgelassenen Mittelteil.
 
-Die Prüfung verwendet den aufgelösten Provider und das aufgelöste Modell erneut. Sie verwendet das Authentifizierungsprofil
-des Vordergrundlaufs erneut, wenn diese Identität verfügbar ist, und deaktiviert Modell-Fallbacks. Die
-Prüfung startet daher einen zusätzlichen Modelllauf beim konfigurierten Provider.
-Dieser Lauf kann mehr als eine Provider-Anfrage stellen, wenn er einen
-Vorschlag untersucht oder entwirft. Die Preis- und Datenverarbeitungsbedingungen des Providers gelten genauso wie für den
-Vordergrunddurchlauf.
+Die prüfende Instanz verwendet den aufgelösten Provider und das aufgelöste Modell erneut. Sie verwendet das
+Authentifizierungsprofil des Vordergrundlaufs erneut, wenn diese Identität verfügbar ist, und deaktiviert
+Modell-Fallbacks. Die Prüfung startet daher einen zusätzlichen Modelllauf beim konfigurierten Provider.
+Dieser Lauf kann mehr als eine Provider-Anfrage auslösen, wenn er einen Vorschlag prüft oder entwirft.
+Es gelten dieselben Preis- und Datenverarbeitungsbedingungen des Providers wie für den Vordergrunddurchlauf.
 
-Vor dem Start lädt OpenClaw die aktuelle Laufzeitkonfiguration neu und prüft erneut die
-wirksame Sandbox- und Werkzeugrichtlinie für die ursprüngliche Unterhaltung. Wenn der Lauf in einer
-Sandbox ausgeführt wird, die Richtlinie `skill_workshop` nicht mehr zulässt oder erforderliche Laufzeitfakten
-fehlen, schlägt die Prüfung sicher geschlossen fehl und erstellt nichts.
+Vor dem Start lädt OpenClaw die aktuelle Laufzeitkonfiguration neu und prüft die
+wirksame Sandbox- und Tool-Richtlinie für die ursprüngliche Unterhaltung erneut. Wenn der Lauf
+in einer Sandbox ausgeführt wird, die Richtlinie `skill_workshop` nicht mehr zulässt oder erforderliche Laufzeitinformationen
+fehlen, bricht die Prüfung sicher ab und erstellt nichts.
 
 <Warning>
-  Das Aktivieren des Selbstlernens erlaubt, geeignete Unterhaltungsinhalte einschließlich Werkzeug-
-  eingaben und -ergebnissen des aktuellen Durchlaufs für eine zusätzliche Prüfung an den ausgewählten Modell-
-  Provider zu senden. Aktivieren Sie es nicht in einem Arbeitsbereich, in dem
-  diese Prüfung gegen Anforderungen an die Datenverarbeitung verstoßen würde.
+  Die Aktivierung des Selbstlernens erlaubt, relevante Gesprächsinhalte einschließlich Tool-
+  Eingaben und Ergebnissen des aktuellen Durchlaufs für eine zusätzliche Prüfung an den ausgewählten
+  Modell-Provider zu senden. Aktivieren Sie es nicht in einem Workspace, in dem
+  diese Prüfung gegen Datenverarbeitungsanforderungen verstoßen würde.
 </Warning>
 
 ## Sicherheit von Vorschlägen
 
-Die Prüfung wird in einer isolierten Sitzung mit einer bewusst eingeschränkten Werkzeug-
-oberfläche ausgeführt:
+Die prüfende Instanz wird in einer isolierten Sitzung mit einer bewusst eingeschränkten Tool-
+Oberfläche ausgeführt:
 
-- Sie kann nur Workshop-Vorschläge auflisten oder untersuchen und einen
+- Sie kann nur Workshop-Vorschläge auflisten oder prüfen und einen
   ausstehenden Vorschlag erstellen oder überarbeiten.
-- Sie kann keinen aktiven Skill aktualisieren, einen Vorschlag anwenden, ablehnen oder unter Quarantäne stellen,
-  keine Nachricht senden und keine allgemeinen Agentenwerkzeuge verwenden.
-- Ein Mutationsbudget wird von allen Modellwiederholungen gemeinsam genutzt, sodass eine Prüfung höchstens
+- Sie kann keinen aktiven Skill aktualisieren, keinen Vorschlag anwenden, ablehnen oder unter Quarantäne stellen,
+  keine Nachricht senden und keine allgemeinen Agenten-Tools verwenden.
+- Ein gemeinsames Mutationsbudget gilt für alle Modellwiederholungen, sodass eine Prüfung höchstens
   einen Vorschlag erstellen oder überarbeiten kann.
 - Der geprüfte Verlauf wird als nicht vertrauenswürdiger Nachweis behandelt, nicht als Anweisungen
   für den Hintergrundagenten.
-- Der Skill Workshop scannt Vorschlagsinhalte und lehnt erkannte Klartext-
+- Der Skill Workshop scannt Vorschlagsinhalte und lehnt erkannte wörtliche
   Zugangsdaten ab, bevor der Vorschlagsstatus geschrieben wird.
 
 Die normalen Workshop-Grenzwerte gelten weiterhin, einschließlich `maxPending`, `maxSkillBytes`,
-Einschränkungen für Unterstützungsdateien, Scannerprüfungen und Schreibvorgängen ausschließlich im Arbeitsbereich. Die
-Einstellung `approvalPolicy: "auto"` gewährt der Hintergrundprüfung keinen Zugriff
+Beschränkungen für Unterstützungsdateien, Scanner-Prüfungen und ausschließlich Workspace-bezogener Schreibvorgänge. Die
+Einstellung `approvalPolicy: "auto"` gewährt der prüfenden Instanz im Hintergrund keinen Zugriff
 auf Lebenszyklusaktionen.
 
 ## Erlernte Vorschläge prüfen
 
-Das Selbstlernen erzeugt dieselben ausstehenden Vorschläge wie die manuelle Verwendung des Workshops.
+Das Selbstlernen erzeugt dieselben ausstehenden Vorschläge wie die manuelle Verwendung des Workshop.
 Prüfen Sie sie vor der Anwendung:
 
 ```bash
@@ -200,7 +199,7 @@ openclaw skills workshop inspect <proposal-id>
 openclaw skills workshop apply <proposal-id>
 ```
 
-Überarbeiten, verwerfen oder isolieren Sie Vorschläge, die nützlich, aber noch nicht bereit sind:
+Überarbeiten, verwerfen oder isolieren Sie Vorschläge, die nützlich, aber noch nicht einsatzbereit sind:
 
 ```bash
 openclaw skills workshop revise <proposal-id> --proposal ./PROPOSAL.md
@@ -208,21 +207,20 @@ openclaw skills workshop reject <proposal-id> --reason "Zu spezifisch"
 openclaw skills workshop quarantine <proposal-id> --reason "Sicherheitsprüfung erforderlich"
 ```
 
-Das Anwenden ist der einzige Vorgang, der einen aktiven `SKILL.md` schreibt. Siehe
-[Skill Workshop](/de/tools/skill-workshop) für das vollständige Lebenszyklus- und Speicher-
-modell.
+Das Anwenden ist der einzige Vorgang, der einen aktiven `SKILL.md` schreibt. Unter
+[Skill Workshop](/de/tools/skill-workshop) finden Sie das vollständige Lebenszyklus- und Speichermodell.
 
 ## Konfiguration
 
-| Einstellung                                | Standard | Auswirkung auf das Selbstlernen                                                                                                  |
+| Einstellung                                | Standard | Auswirkung auf das Selbstlernen                                                                                                   |
 | ------------------------------------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | `skills.workshop.autonomous.enabled`       | `false`  | Aktiviert die Erfassung direkter Korrekturen und die verzögerte Erfahrungsprüfung.                                                 |
-| `skills.workshop.approvalPolicy`           | `"auto"` | Steuert Genehmigungsaufforderungen für normale, vom Agenten initiierte Lebenszyklusaktionen; erweitert nicht die Berechtigungen der Hintergrundprüfung. |
-| `skills.workshop.maxPending`               | `50`     | Begrenzt ausstehende und unter Quarantäne gestellte Vorschläge pro Arbeitsbereich.                                                 |
+| `skills.workshop.approvalPolicy`           | `"auto"` | Steuert Bestätigungsaufforderungen für normale, vom Agenten initiierte Lebenszyklusaktionen; erweitert nicht die Berechtigungen der prüfenden Instanz im Hintergrund. |
+| `skills.workshop.maxPending`               | `50`     | Begrenzt ausstehende und isolierte Vorschläge pro Workspace.                                                                      |
 | `skills.workshop.maxSkillBytes`            | `40000`  | Begrenzt die Größe des Vorschlagstexts in Byte.                                                                                    |
-| `skills.workshop.allowSymlinkTargetWrites` | `false`  | Wirkt sich nur auf das Anwendungsverhalten aus; das Selbstlernen selbst schreibt den Vorschlagsstatus, keine aktiven Skill-Ziele.  |
+| `skills.workshop.allowSymlinkTargetWrites` | `false`  | Wirkt sich nur auf das Anwenden aus; das Selbstlernen selbst schreibt den Vorschlagsstatus, keine aktiven Skill-Ziele.             |
 
-Das vollständige Schema, Wertebereiche und zugehörige Skill-Einstellungen finden Sie unter
+Das vollständige Schema, die Wertebereiche und zugehörige Skill-Einstellungen finden Sie unter
 [Skills-Konfiguration](/de/tools/skills-config#workshop-skills-workshop).
 
 ## Fehlerbehebung
@@ -234,21 +232,21 @@ Prüfen Sie alle folgenden Punkte:
 1. `skills.workshop.autonomous.enabled` ist in der aktiven Gateway-Konfiguration auf `true` gesetzt.
 2. Der Durchlauf war erfolgreich und umfasste nach der neuesten
    Benutzernachricht mindestens zehn Modelliterationen.
-3. Die Unterhaltung war ein normaler Vordergrundlauf, kein geplanter, Speicher-,
-   Hook- oder Subagent-Lauf.
+3. Die Unterhaltung war ein normaler Vordergrundlauf und kein geplanter,
+   Speicher-, Hook- oder Subagentenlauf.
 4. Der ursprüngliche Lauf hatte Zugriff auf `skill_workshop` und wurde nicht in einer Sandbox ausgeführt.
-5. Das System blieb lange genug inaktiv, damit die verzögerte Prüfung stattfinden konnte.
+5. Das System blieb lange genug im Leerlauf, damit die verzögerte Prüfung stattfinden konnte.
 6. Der lang laufende Gateway-Prozess blieb während des Leerlauffensters aktiv; ein
    einmaliger lokaler Befehl wartet nicht auf die verzögerte Prüfung.
 
 Auch eine geeignete Prüfung erzeugt möglicherweise keinen Vorschlag. Ein Verzicht ist das erwartete
-Ergebnis, wenn die Erkenntnisse die Anforderungen an ein wiederverwendbares Verfahren nicht erfüllen.
+Ergebnis, wenn die Nachweise den Maßstab für ein wiederverwendbares Verfahren nicht erfüllen.
 
-### Doctor meldet, dass das Workshop-Werkzeug ausgeblendet ist
+### Doctor meldet, dass das Workshop-Tool ausgeblendet ist
 
 Wenn das Selbstlernen aktiviert ist, prüft `openclaw doctor`, ob die wirksame
-Werkzeugrichtlinie des Standardagenten `skill_workshop` zulässt. Nehmen Sie die gemeldete Änderung an
-`tools.allow` oder `tools.alsoAllow` vor oder deaktivieren Sie das Selbstlernen.
+Tool-Richtlinie des Standardagenten `skill_workshop` zulässt. Nehmen Sie die gemeldete
+Änderung an `tools.allow` oder `tools.alsoAllow` vor oder deaktivieren Sie das Selbstlernen.
 
 ### Es erscheinen zu viele Vorschläge mit geringem Nutzen
 
@@ -258,14 +256,14 @@ Deaktivieren Sie das Selbstlernen und verwenden Sie weiterhin `/learn` oder ausd
 openclaw config set skills.workshop.autonomous.enabled false --strict-json
 ```
 
-Ausstehende Vorschläge können auch nach der Deaktivierung der Funktion weiterhin geprüft werden. Das Deaktivieren
-des Selbstlernens wendet sie nicht an, lehnt sie nicht ab und löscht sie nicht.
+Ausstehende Vorschläge bleiben nach der Deaktivierung der Funktion prüfbar. Durch die Deaktivierung
+des Selbstlernens werden sie weder angewendet noch abgelehnt oder gelöscht.
 
 ## Verwandte Themen
 
-- [Skill Workshop](/de/tools/skill-workshop) zur Prüfung, Genehmigung und
+- [Skill Workshop](/de/tools/skill-workshop) für die Prüfung, Genehmigung und
   Speicherung von Vorschlägen
-- [Skills erstellen](/de/tools/creating-skills) für manuell erstellte Skills und die
-  Struktur von `SKILL.md`
+- [Skills erstellen](/de/tools/creating-skills) für manuell erstellte Skills und
+  die Struktur von `SKILL.md`
 - [Skills-Konfiguration](/de/tools/skills-config) für alle Einstellungen von `skills.*`
-- [Skills-CLI](/de/cli/skills) für Workshop- und Kuratorbefehle
+- [Skills-CLI](/de/cli/skills) für Workshop- und Kuratorenbefehle

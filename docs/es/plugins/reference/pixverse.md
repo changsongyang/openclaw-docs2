@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin pixverse
-summary: Plugin del proveedor de generación de vídeo PixVerse para OpenClaw.
+summary: Plugin proveedor de generación de video PixVerse para OpenClaw.
 title: Plugin de PixVerse
 x-i18n:
-    generated_at: "2026-07-16T11:49:33Z"
+    generated_at: "2026-07-26T04:46:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin de PixVerse
 
-Plugin proveedor de generación de vídeo PixVerse para OpenClaw.
+Plugin proveedor de generación de vídeo de PixVerse para OpenClaw.
 
 ## Distribución
 

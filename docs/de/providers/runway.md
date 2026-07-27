@@ -1,12 +1,12 @@
 ---
 read_when:
     - Sie möchten die Runway-Videogenerierung in OpenClaw verwenden
-    - Sie müssen den Runway-API-Schlüssel bzw. die Umgebungsvariablen einrichten
-    - Sie möchten Runway als standardmäßigen Video-Provider festlegen
+    - Sie müssen den Runway-API-Schlüssel bzw. die Umgebungsvariable einrichten
+    - Sie möchten Runway zum standardmäßigen Video-Provider machen
 summary: Einrichtung der Runway-Videogenerierung in OpenClaw
 title: Runway
 x-i18n:
-    generated_at: "2026-07-24T05:14:11Z"
+    generated_at: "2026-07-26T18:44:21Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,17 +16,17 @@ x-i18n:
     workflow: 16
 ---
 
-OpenClaw wird mit einem gebündelten `runway`-Provider für die gehostete Videogenerierung ausgeliefert, der standardmäßig aktiviert und für den `videoGenerationProviders`-Vertrag registriert ist.
+OpenClaw enthält einen gebündelten `runway`-Provider für gehostete Videogenerierung, der standardmäßig aktiviert und für den `videoGenerationProviders`-Vertrag registriert ist.
 
-| Eigenschaft          | Wert                                                              |
-| -------------------- | ----------------------------------------------------------------- |
-| Provider-ID          | `runway`                                                |
-| Plugin               | gebündelt, `enabledByDefault: true`                                     |
-| Authentifizierungs-Umgebungsvariablen | `RUNWAYML_API_SECRET` (kanonisch) oder `RUNWAY_API_KEY` |
-| Onboarding-Flag      | `--auth-choice runway-api-key`                                                |
-| Direktes CLI-Flag    | `--runway-api-key <key>`                                                |
-| API                  | Aufgabenbasierte Videogenerierung von Runway (`GET /v1/tasks/{id}`-Polling) |
-| Standardmodell       | `runway/gen4.5`                                                |
+| Eigenschaft        | Wert                                                             |
+| --------------- | ----------------------------------------------------------------- |
+| Provider-ID     | `runway`                                                          |
+| Plugin          | gebündelt, `enabledByDefault: true`                                 |
+| Umgebungsvariablen für die Authentifizierung   | `RUNWAYML_API_SECRET` (kanonisch) oder `RUNWAY_API_KEY`             |
+| Onboarding-Flag | `--auth-choice runway-api-key`                                    |
+| Direktes CLI-Flag | `--runway-api-key <key>`                                          |
+| API             | Aufgabenbasierte Videogenerierung von Runway (`GET /v1/tasks/{id}`-Polling) |
+| Standardmodell   | `runway/gen4.5`                                                   |
 
 ## Erste Schritte
 
@@ -36,31 +36,31 @@ OpenClaw wird mit einem gebündelten `runway`-Provider für die gehostete Videog
     openclaw onboard --auth-choice runway-api-key
     ```
   </Step>
-  <Step title="Runway als standardmäßigen Video-Provider festlegen">
+  <Step title="Runway als Standard-Provider für Videos festlegen">
     ```bash
     openclaw config set agents.defaults.mediaModels.video.primary "runway/gen4.5"
     ```
   </Step>
-  <Step title="Video generieren">
+  <Step title="Ein Video generieren">
     Bitten Sie den Agenten, ein Video zu generieren. Runway wird automatisch verwendet.
   </Step>
 </Steps>
 
 ## Unterstützte Modi und Modelle
 
-Der Provider stellt sieben Runway-Modelle bereit, die auf drei Modi verteilt sind. Dieselbe Modell-ID kann für mehr als einen Modus verwendet werden (beispielsweise funktioniert `gen4.5` sowohl für Text-zu-Video als auch für Bild-zu-Video).
+Der Provider stellt sieben Runway-Modelle in drei Modi bereit. Dieselbe Modell-ID kann für mehrere Modi verwendet werden (beispielsweise funktioniert `gen4.5` sowohl für Text-zu-Video als auch für Bild-zu-Video).
 
-| Modus          | Modelle                                                                | Referenzeingabe           |
-| -------------- | ---------------------------------------------------------------------- | ------------------------- |
-| Text-zu-Video  | `gen4.5` (Standard), `veo3.1`, `veo3.1_fast`, `veo3` | Keine                     |
-| Bild-zu-Video  | `gen4.5`, `gen4_turbo`, `gen3a_turbo`, `veo3.1`, `veo3.1_fast`, `veo3` | 1 lokales oder entferntes Bild |
-| Video-zu-Video | `gen4_aleph`                                                    | 1 lokales oder entferntes Video |
+| Modus           | Modelle                                                                 | Referenzeingabe         |
+| -------------- | ---------------------------------------------------------------------- | ----------------------- |
+| Text-zu-Video  | `gen4.5` (Standard), `veo3.1`, `veo3.1_fast`, `veo3`                    | Keine                    |
+| Bild-zu-Video | `gen4.5`, `gen4_turbo`, `gen3a_turbo`, `veo3.1`, `veo3.1_fast`, `veo3` | 1 lokales oder entferntes Bild |
+| Video-zu-Video | `gen4_aleph`                                                           | 1 lokales oder entferntes Video |
 
 Lokale Bild- und Videoreferenzen werden über Daten-URIs unterstützt.
 
-| Seitenverhältnisse        | Zulässige Werte                             |
-| ------------------------- | ------------------------------------------- |
-| Text-zu-Video             | `16:9`, `9:16`      |
+| Seitenverhältnisse         | Zulässige Werte                              |
+| --------------------- | ------------------------------------------- |
+| Text-zu-Video         | `16:9`, `9:16`                              |
 | Bild- und Videobearbeitung | `1:1`, `16:9`, `9:16`, `3:4`, `4:3`, `21:9` |
 
 <Warning>
@@ -68,7 +68,7 @@ Lokale Bild- und Videoreferenzen werden über Daten-URIs unterstützt.
 </Warning>
 
 <Note>
-  Die Auswahl einer Runway-Modell-ID aus der falschen Spalte führt zu einem ausdrücklichen Fehler, bevor die API-Anfrage OpenClaw verlässt. Der Provider validiert `model` in `extensions/runway/video-generation-provider.ts` anhand der Zulassungsliste des Modus (`TEXT_ONLY_MODELS`, `IMAGE_MODELS`, `VIDEO_MODELS`).
+  Wenn eine Runway-Modell-ID aus der falschen Spalte ausgewählt wird, wird ein eindeutiger Fehler ausgegeben, bevor die API-Anfrage OpenClaw verlässt. Der Provider validiert `model` anhand der Positivliste des Modus (`TEXT_ONLY_MODELS`, `IMAGE_MODELS`, `VIDEO_MODELS`) in `extensions/runway/video-generation-provider.ts`.
 </Note>
 
 ## Konfiguration
@@ -107,6 +107,6 @@ Lokale Bild- und Videoreferenzen werden über Daten-URIs unterstützt.
     Gemeinsame Tool-Parameter, Provider-Auswahl und asynchrones Verhalten.
   </Card>
   <Card title="Konfigurationsreferenz" href="/de/gateway/config-agents#agent-defaults" icon="gear">
-    Standardeinstellungen des Agenten einschließlich des Modells für die Videogenerierung.
+    Standardeinstellungen des Agenten einschließlich des Videogenerierungsmodells.
   </Card>
 </CardGroup>

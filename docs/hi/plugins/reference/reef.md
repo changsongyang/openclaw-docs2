@@ -4,7 +4,7 @@ read_when:
 summary: सुरक्षित एंड-टू-एंड एन्क्रिप्टेड क्लॉ चैनल।
 title: Reef Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:33:36Z"
+    generated_at: "2026-07-27T18:48:18Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Reef plugin
+# Reef Plugin
 
 सुरक्षित एंड-टू-एंड एन्क्रिप्टेड क्लॉ चैनल।
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## संबंधित दस्तावेज़
 
-- [reef](/channels/reef)
+- [reef](/hi/channels/reef)

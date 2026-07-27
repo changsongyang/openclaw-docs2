@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Sie möchten Gradium für die Text-zu-Sprache-Umwandlung verwenden
-    - Sie benötigen einen Gradium-API-Schlüssel, eine Stimme oder eine Direktiven-Token-Konfiguration
+    - Sie möchten Gradium für Text-to-Speech verwenden
+    - Sie benötigen die Konfiguration eines Gradium-API-Schlüssels, einer Stimme oder eines Direktiven-Tokens
 summary: Gradium-Text-to-Speech in OpenClaw verwenden
 title: Gradium
 x-i18n:
-    generated_at: "2026-07-24T05:19:02Z"
+    generated_at: "2026-07-26T19:12:08Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,12 +17,12 @@ x-i18n:
 
 [Gradium](https://gradium.ai) ist ein Text-to-Speech-Provider für OpenClaw. Er erzeugt standardmäßige Audioantworten (WAV), mit Sprachnachrichten kompatible Opus-Ausgaben und 8-kHz-u-law-Audio für Telefonie-Oberflächen.
 
-| Eigenschaft    | Wert                                 |
-| -------------- | ------------------------------------ |
-| Provider-ID    | `gradium`                   |
+| Eigenschaft   | Wert                                 |
+| ------------- | ------------------------------------ |
+| Provider-ID   | `gradium`                            |
 | Authentifizierung | `GRADIUM_API_KEY` oder Konfiguration `apiKey` |
-| Basis-URL      | `https://api.gradium.ai` (Standard)        |
-| Standardstimme | `Emma` (`YTpq7expH9539ERJ`) |
+| Basis-URL     | `https://api.gradium.ai` (Standard)   |
+| Standardstimme | `Emma` (`YTpq7expH9539ERJ`)          |
 
 ## Plugin installieren
 
@@ -79,17 +79,17 @@ Erstellen Sie einen Gradium-API-Schlüssel und stellen Sie ihn anschließend üb
 }
 ```
 
-| Schlüssel                              | Typ    | Beschreibung                                                                                            |
+| Schlüssel                              | Typ    | Beschreibung                                                                                             |
 | -------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------- |
-| `tts.providers.gradium.apiKey`                    | string | Aufgelöster API-Schlüssel. Unterstützt `${ENV}` und Secret-Referenzen.                       |
-| `tts.providers.gradium.baseUrl`                    | string | HTTPS-URL der Gradium-API unter `api.gradium.ai`. Abschließende Schrägstriche werden entfernt. Standard: `https://api.gradium.ai`. |
-| `tts.providers.gradium.speakerVoiceId`                    | string | Standardmäßig verwendete Stimm-ID, wenn keine Direktivenüberschreibung vorhanden ist.                  |
+| `tts.providers.gradium.apiKey`         | string | Aufgelöster API-Schlüssel. Unterstützt `${ENV}` und Geheimnisreferenzen.                                                    |
+| `tts.providers.gradium.baseUrl`        | string | HTTPS-URL der Gradium-API unter `api.gradium.ai`. Nachgestellte Schrägstriche werden entfernt. Standard: `https://api.gradium.ai`. |
+| `tts.providers.gradium.speakerVoiceId` | string | Standardmäßige Stimmen-ID, die verwendet wird, wenn keine Überschreibung durch eine Direktive vorhanden ist.                                            |
 
 Das Ausgabeformat wird automatisch anhand der Zieloberfläche ausgewählt (siehe [Ausgabe](#output)) und kann in `openclaw.json` nicht konfiguriert werden.
 
 ## Stimmen
 
-| Name               | Stimm-ID           |
+| Name               | Stimmen-ID         |
 | ------------------ | ------------------ |
 | Arthur             | `3jUdJyOi9pgbxBTK` |
 | Christina          | `2H4HY2CBNyJHBCrP` |
@@ -101,7 +101,7 @@ Das Ausgabeformat wird automatisch anhand der Zieloberfläche ausgewählt (siehe
 
 ### Stimme pro Nachricht überschreiben
 
-Wenn die aktive Sprachrichtlinie Stimmüberschreibungen zulässt, können Sie die Stimme inline mit einem Direktiven-Token wechseln (alle folgenden Varianten sind gleichwertig und erwarten eine Provider-native Stimm-ID):
+Wenn die aktive Sprachausgaberichtlinie das Überschreiben von Stimmen erlaubt, wechseln Sie die Stimme direkt im Text mit einem Direktiven-Token (alle folgenden Varianten sind gleichwertig und erwarten eine providerspezifische Stimmen-ID):
 
 ```text
 /voice:LFZvm12tW_z0xfGo
@@ -111,21 +111,21 @@ Wenn die aktive Sprachrichtlinie Stimmüberschreibungen zulässt, können Sie di
 /gradiumvoice:LFZvm12tW_z0xfGo
 ```
 
-Wenn die Sprachrichtlinie Stimmüberschreibungen deaktiviert, wird die Direktive verarbeitet, aber ignoriert.
+Wenn die Sprachausgaberichtlinie das Überschreiben von Stimmen deaktiviert, wird die Direktive verarbeitet, aber ignoriert.
 
 ## Ausgabe
 
 Das Ausgabeformat wird anhand der Zieloberfläche ausgewählt; der Provider synthetisiert keine anderen Formate.
 
-| Ziel           | Format      | Dateierweiterung | Abtastrate | Sprachkompatibilitäts-Flag |
-| -------------- | ----------- | ---------------- | ---------- | -------------------------- |
-| Standardaudio  | `wav` | `.wav` | Provider   | nein                       |
-| Sprachnachricht | `opus` | `.opus` | Provider   | ja                         |
-| Telefonie      | `ulaw_8000` | nicht zutreffend | 8 kHz      | nicht zutreffend           |
+| Ziel           | Format      | Dateiendung | Abtastrate  | Sprachnachrichten-kompatibles Flag |
+| -------------- | ----------- | ----------- | ----------- | --------------------------------- |
+| Standardaudio  | `wav`       | `.wav`   | Provider    | nein                              |
+| Sprachnachricht | `opus`      | `.opus`  | Provider    | ja                                |
+| Telefonie      | `ulaw_8000` | k. A.      | 8 kHz       | k. A.                             |
 
 ## Reihenfolge der automatischen Auswahl
 
-Unter den konfigurierten TTS-Providern hat Gradium bei der automatischen Auswahl die Position `30`. Unter [Text-to-Speech](/de/tools/tts) erfahren Sie, wie OpenClaw den aktiven Provider auswählt, wenn `tts.provider` nicht festgelegt ist.
+Unter den konfigurierten TTS-Providern hat Gradium die automatische Auswahlreihenfolge `30`. Unter [Text-to-Speech](/de/tools/tts) erfahren Sie, wie OpenClaw den aktiven Provider auswählt, wenn `tts.provider` nicht festgelegt ist.
 
 ## Verwandte Themen
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Je installeert, configureert of controleert de nvidia-Plugin
+    - Je installeert, configureert of controleert de nvidia-plugin
 summary: Voegt ondersteuning voor de NVIDIA-modelprovider toe aan OpenClaw.
 title: NVIDIA-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:16:34Z"
+    generated_at: "2026-07-27T06:00:19Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Voegt ondersteuning voor de NVIDIA-modelprovider toe aan OpenClaw.
 ## Distributie
 
 - Pakket: `@openclaw/nvidia-provider`
-- Installatieroute: inbegrepen bij OpenClaw
+- Installatieroute: opgenomen in OpenClaw
 
 ## Oppervlak
 

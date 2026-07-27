@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Se está instalando, configurando o auditando el plugin cloudflare-ai-gateway
+    - Está instalando, configurando o auditando el plugin cloudflare-ai-gateway
 summary: Añade compatibilidad con el proveedor de modelos Cloudflare AI Gateway en OpenClaw.
 title: Plugin de Cloudflare AI Gateway
 x-i18n:
-    generated_at: "2026-07-16T11:50:23Z"
+    generated_at: "2026-07-26T04:47:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Añade compatibilidad con el proveedor de modelos Cloudflare AI Gateway a OpenCl
 ## Distribución
 
 - Paquete: `@openclaw/cloudflare-ai-gateway-provider`
-- Método de instalación: npm; ClawHub: `clawhub:@openclaw/cloudflare-ai-gateway-provider`
+- Ruta de instalación: npm; ClawHub: `clawhub:@openclaw/cloudflare-ai-gateway-provider`
 
 ## Superficie
 
@@ -29,4 +29,4 @@ proveedores: `cloudflare-ai-gateway`
 
 ## Documentación relacionada
 
-- [cloudflare-ai-gateway](/es/providers/cloudflare-ai-gateway)
+- [Cloudflare AI Gateway](/es/providers/cloudflare-ai-gateway)

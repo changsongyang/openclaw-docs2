@@ -1,10 +1,10 @@
 ---
 read_when:
     - longcat pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: OpenClaw LongCat sağlayıcı Plugin'i.
+summary: OpenClaw LongCat sağlayıcı plugini.
 title: LongCat Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:30:50Z"
+    generated_at: "2026-07-27T00:11:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# LongCat plugini
+# LongCat plugin’i
 
-OpenClaw LongCat sağlayıcı plugini.
+OpenClaw LongCat sağlayıcı plugin’i.
 
 ## Dağıtım
 

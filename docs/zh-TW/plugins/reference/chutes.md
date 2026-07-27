@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 Chutes 外掛
-summary: 新增對 OpenClaw 的 Chutes 模型供應商支援。
+summary: 新增 OpenClaw 對 Chutes 模型供應商的支援。
 title: Chutes 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:51:10Z"
+    generated_at: "2026-07-26T08:27:45Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,16 +16,16 @@ x-i18n:
 
 # Chutes 外掛
 
-新增 Chutes 模型提供者對 OpenClaw 的支援。
+新增對 OpenClaw 的 Chutes 模型供應商支援。
 
-## 發佈
+## 發行
 
 - 套件：`@openclaw/chutes-provider`
-- 安裝管道：npm；ClawHub：`clawhub:@openclaw/chutes-provider`
+- 安裝途徑：npm；ClawHub：`clawhub:@openclaw/chutes-provider`
 
 ## 介面
 
-提供者：`chutes`
+供應商：`chutes`
 
 ## 相關文件
 

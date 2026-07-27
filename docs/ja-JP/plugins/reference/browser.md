@@ -1,10 +1,10 @@
 ---
 read_when:
-    - ブラウザーPluginをインストール、設定、または監査しています
-summary: エージェントから呼び出し可能なツールを追加します。
-title: ブラウザーPlugin
+    - ブラウザ Plugin をインストール、設定、または監査しています
+summary: エージェントから呼び出せるツールを追加します。
+title: ブラウザ Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:03:12Z"
+    generated_at: "2026-07-26T09:11:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Browser Plugin
+# ブラウザー Plugin
 
 エージェントから呼び出し可能なツールを追加します。
 
 ## 配布
 
 - パッケージ: `@openclaw/browser-plugin`
-- インストール方法: OpenClaw に同梱
+- インストール経路: OpenClaw に同梱
 
 ## サーフェス
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## 関連ドキュメント
 
-- [ブラウザ](/ja-JP/tools/browser)
+- [ブラウザー](/ja-JP/tools/browser)

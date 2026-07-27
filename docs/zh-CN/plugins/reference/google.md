@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安装、配置或审计 google 插件
-summary: 为 OpenClaw 添加 Google、Google Gemini CLI 和 Google Vertex 模型提供商支持。
+summary: 为 OpenClaw 添加对 Google、Google Gemini CLI 和 Google Vertex 模型提供商的支持。
 title: Google 插件
 x-i18n:
-    generated_at: "2026-07-16T11:49:38Z"
+    generated_at: "2026-07-26T06:17:55Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

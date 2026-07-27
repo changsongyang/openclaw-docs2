@@ -1,10 +1,10 @@
 ---
 read_when:
-    - onepassword Plugin のインストール、設定、または監査を行っています
-summary: 承認ポリシーとSQLite監査履歴を備えた、厳選された1Passwordシークレットブローカー。
-title: Onepassword Plugin
+    - onepassword Plugin をインストール、設定、または監査している場合
+summary: 承認ポリシーと SQLite 監査履歴を備えた、厳選された 1Password シークレットブローカー。
+title: 1Password Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:05:53Z"
+    generated_at: "2026-07-26T09:13:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,9 +21,9 @@ x-i18n:
 ## 配布
 
 - パッケージ: `@openclaw/onepassword`
-- インストール経路: OpenClaw に同梱
+- インストール方法: OpenClaw に同梱
 
-## サーフェス
+## 提供機能
 
 コントラクト: `tools`
 

@@ -4,7 +4,7 @@ read_when:
 summary: Añade compatibilidad con el proveedor de modelos LM Studio en OpenClaw.
 title: Plugin de LM Studio
 x-i18n:
-    generated_at: "2026-07-16T11:52:29Z"
+    generated_at: "2026-07-26T05:14:45Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

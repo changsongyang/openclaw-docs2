@@ -4,7 +4,7 @@ read_when:
 summary: 新增 OpenClaw 對 Z.AI 模型供應商的支援。
 title: Z.AI 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:51:42Z"
+    generated_at: "2026-07-26T07:52:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Z.AI 外掛
 
-為 OpenClaw 新增 Z.AI 模型供應商支援。
+為 OpenClaw 新增 Z.AI 模型提供者支援。
 
 ## 發佈
 
@@ -25,7 +25,7 @@ x-i18n:
 
 ## 介面
 
-供應商：`zai`；合約：`mediaUnderstandingProviders`、`usageProviders`
+提供者：`zai`；合約：`mediaUnderstandingProviders`、`usageProviders`
 
 ## 相關文件
 

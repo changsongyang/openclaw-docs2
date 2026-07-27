@@ -1,10 +1,10 @@
 ---
 read_when:
-    - exa Plugin のインストール、設定、または監査を行う場合。
-summary: ウェブ検索プロバイダーのサポートを追加します。
+    - exa Plugin のインストール、設定、または監査を行っている場合
+summary: Web 検索プロバイダーのサポートを追加します。
 title: Exa Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:04:01Z"
+    generated_at: "2026-07-26T10:12:12Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

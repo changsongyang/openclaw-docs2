@@ -1,13 +1,13 @@
 ---
 read_when:
-    - Sie müssen Core-Hilfsfunktionen aus einem Plugin aufrufen (TTS, STT, Bildgenerierung, Websuche, Gateway, Unteragent, Nodes)
+    - Sie müssen zentrale Hilfsfunktionen aus einem Plugin aufrufen (TTS, STT, Bildgenerierung, Websuche, Gateway, Subagent, Nodes)
     - Sie möchten verstehen, was `api.runtime` bereitstellt
     - Sie greifen aus Plugin-Code auf Konfigurations-, Agenten- oder Medien-Hilfsfunktionen zu
 sidebarTitle: Runtime helpers
 summary: api.runtime -- die injizierten Laufzeit-Hilfsfunktionen, die Plugins zur Verfügung stehen
 title: Hilfsfunktionen für die Plugin-Laufzeit
 x-i18n:
-    generated_at: "2026-07-24T20:38:46Z"
+    generated_at: "2026-07-26T18:31:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,11 +17,11 @@ x-i18n:
     workflow: 16
 ---
 
-Referenz für das `api.runtime`-Objekt, das bei der Registrierung in jedes Plugin injiziert wird. Verwenden Sie diese Hilfsfunktionen, anstatt Host-Interna direkt zu importieren.
+Referenz für das Objekt `api.runtime`, das bei der Registrierung in jedes Plugin injiziert wird. Verwenden Sie diese Hilfsfunktionen, anstatt Host-Interna direkt zu importieren.
 
 <CardGroup cols={2}>
-  <Card title="Channel-Plugins" href="/de/plugins/sdk-channel-plugins">
-    Schritt-für-Schritt-Anleitung, die diese Hilfsfunktionen im Kontext von Channel-Plugins verwendet.
+  <Card title="Kanal-Plugins" href="/de/plugins/sdk-channel-plugins">
+    Schritt-für-Schritt-Anleitung, die diese Hilfsfunktionen im Kontext von Kanal-Plugins verwendet.
   </Card>
   <Card title="Provider-Plugins" href="/de/plugins/sdk-provider-plugins">
     Schritt-für-Schritt-Anleitung, die diese Hilfsfunktionen im Kontext von Provider-Plugins verwendet.
@@ -34,38 +34,38 @@ register(api) {
 }
 ```
 
-`api.runtime.version` ist die aktuelle Produktversion von OpenClaw und stammt aus dem gemeinsamen Versionsresolver, sodass Plugins denselben Wert sehen, den die CLI meldet.
+`api.runtime.version` ist die aktuelle OpenClaw-Produktversion. Sie stammt aus der gemeinsamen Versionsauflösung, sodass Plugins denselben Wert sehen, den die CLI meldet.
 
 ## Laden und Schreiben der Konfiguration
 
-Bevorzugen Sie die Konfiguration, die bereits an den aktiven Aufrufpfad übergeben wurde, beispielsweise `api.config` während der Registrierung oder ein `cfg`-Argument in Channel-/Provider-Callbacks. Dadurch wird ein einzelner Prozess-Snapshot durch den Arbeitsablauf weitergereicht, anstatt die Konfiguration in häufig ausgeführten Pfaden erneut zu parsen.
+Bevorzugen Sie eine Konfiguration, die bereits an den aktiven Aufrufpfad übergeben wurde, beispielsweise `api.config` während der Registrierung oder ein `cfg`-Argument bei Kanal-/Provider-Callbacks. Dadurch fließt ein einziger Prozess-Snapshot durch die Verarbeitung, statt die Konfiguration in häufig ausgeführten Pfaden erneut zu parsen.
 
 Verwenden Sie `api.runtime.config.current()` nur, wenn ein langlebiger Handler den aktuellen Prozess-Snapshot benötigt und dieser Funktion keine Konfiguration übergeben wurde. Der zurückgegebene Wert ist schreibgeschützt; klonen Sie ihn oder verwenden Sie vor der Bearbeitung eine Mutationshilfsfunktion.
 
-Tool-Factories erhalten `ctx.runtimeConfig` sowie `ctx.getRuntimeConfig()`. Verwenden Sie den Getter im `execute`-Callback eines langlebigen Tools, wenn sich die Konfiguration nach Erstellung der Tool-Definition ändern kann.
+Tool-Factories erhalten `ctx.runtimeConfig` sowie `ctx.getRuntimeConfig()`. Verwenden Sie den Getter innerhalb des `execute`-Callbacks eines langlebigen Tools, wenn sich die Konfiguration nach der Erstellung der Tool-Definition ändern kann.
 
-Persistieren Sie Änderungen mit `api.runtime.config.mutateConfigFile(...)` oder `api.runtime.config.replaceConfigFile(...)`. Jeder Schreibvorgang muss eine explizite `afterWrite`-Richtlinie auswählen:
+Persistieren Sie Änderungen mit `api.runtime.config.mutateConfigFile(...)` oder `api.runtime.config.replaceConfigFile(...)`. Jeder Schreibvorgang muss eine explizite `afterWrite`-Richtlinie wählen:
 
-- `afterWrite: { mode: "auto" }` überlässt die Entscheidung dem Planer für Gateway-Neuladungen.
-- `afterWrite: { mode: "restart", reason: "..." }` erzwingt einen sauberen Neustart, wenn der Schreibende weiß, dass ein Hot Reload unsicher ist.
-- `afterWrite: { mode: "none", reason: "..." }` unterdrückt das automatische Neuladen bzw. den automatischen Neustart nur, wenn der Aufrufer die Folgemaßnahme übernimmt.
+- `afterWrite: { mode: "auto" }` überlässt die Entscheidung dem Planer für das Neuladen des Gateway.
+- `afterWrite: { mode: "restart", reason: "..." }` erzwingt einen sauberen Neustart, wenn der schreibende Code weiß, dass ein Hot Reload unsicher ist.
+- `afterWrite: { mode: "none", reason: "..." }` unterdrückt automatisches Neuladen bzw. Neustarten nur, wenn der Aufrufer für die Folgemaßnahme verantwortlich ist.
 
-Die Mutationshilfsfunktionen geben `afterWrite` sowie eine typisierte `followUp`-Zusammenfassung zurück, sodass Aufrufer protokollieren oder testen können, ob sie einen Neustart angefordert haben. Das Gateway bestimmt weiterhin, wann dieser Neustart tatsächlich erfolgt.
+Die Mutationshilfsfunktionen geben `afterWrite` sowie eine typisierte `followUp`-Zusammenfassung zurück, damit Aufrufer protokollieren oder testen können, ob sie einen Neustart angefordert haben. Wann dieser Neustart tatsächlich erfolgt, bleibt in der Verantwortung des Gateway.
 
 Verwenden Sie `current()`, ein übergebenes `cfg`, `mutateConfigFile(...)` oder
 `replaceConfigFile(...)` für den Zugriff auf die Laufzeitkonfiguration und für Schreibvorgänge.
 
-Bevorzugen Sie bei direkten SDK-Importen die gezielten Konfigurations-Unterpfade gegenüber dem allgemeinen `openclaw/plugin-sdk/config-runtime`-Kompatibilitäts-Barrel: `config-contracts` für Typen, `runtime-config-snapshot` für aktuelle Prozess-Snapshots und `config-mutation` für Schreibvorgänge. Lesen Sie eintragsspezifische Werte aus `api.pluginConfig`; verwenden Sie einen bereitgestellten Tool-Kontext nur für dessen laufzeitweiten Konfigurations-Snapshot und führen Sie Plugin-spezifische Zusammenführungen an dieser Grenze durch. Tests gebündelter Plugins sollten diese gezielten Unterpfade direkt mocken, anstatt das allgemeine Kompatibilitäts-Barrel zu mocken.
+Bevorzugen Sie bei direkten SDK-Importen die spezifischen Konfigurations-Unterpfade gegenüber dem breiten `openclaw/plugin-sdk/config-runtime`-Kompatibilitäts-Barrel: `config-contracts` für Typen, `runtime-config-snapshot` für aktuelle Prozess-Snapshots und `config-mutation` für Schreibvorgänge. Lesen Sie auf den Eintrag begrenzte Werte aus `api.pluginConfig`; verwenden Sie einen bereitgestellten Tool-Kontext nur für dessen laufzeitweiten Konfigurations-Snapshot und führen Sie Plugin-spezifische Zusammenführungen weiterhin an dieser Grenze durch. Tests gebündelter Plugins sollten diese spezifischen Unterpfade direkt mocken, statt das breite Kompatibilitäts-Barrel zu mocken.
 
-Interner OpenClaw-Laufzeitcode folgt demselben Ansatz: Die Konfiguration wird einmal an der CLI-, Gateway- oder Prozessgrenze geladen und anschließend weitergereicht. Erfolgreiche Mutationsschreibvorgänge aktualisieren den Prozess-Laufzeit-Snapshot und erhöhen dessen interne Revision; langlebige Caches sollten den laufzeiteigenen Cache-Schlüssel verwenden, anstatt die Konfiguration lokal zu serialisieren. Ein Scanner für langlebige Laufzeitmodule toleriert keine umgebungsabhängigen `loadConfig()`-Aufrufe; verwenden Sie ein übergebenes `cfg`, ein Anfrage-`context.getRuntimeConfig()` oder `getRuntimeConfig()` an einer expliziten Prozessgrenze.
+Interner OpenClaw-Laufzeitcode folgt demselben Prinzip: Laden Sie die Konfiguration einmal an der CLI-, Gateway- oder Prozessgrenze und reichen Sie diesen Wert anschließend weiter. Erfolgreiche Mutationsschreibvorgänge aktualisieren den Prozess-Laufzeit-Snapshot und erhöhen dessen interne Revision; langlebige Caches sollten den laufzeiteigenen Cache-Schlüssel verwenden, statt die Konfiguration lokal zu serialisieren. Für langlebige Laufzeitmodule gibt es einen Scanner ohne Toleranz für kontextlose `loadConfig()`-Aufrufe; verwenden Sie ein übergebenes `cfg`, ein Anfrage-`context.getRuntimeConfig()` oder `getRuntimeConfig()` an einer expliziten Prozessgrenze.
 
-Ausführungspfade von Providern und Channels müssen den aktiven Laufzeitkonfigurations-Snapshot verwenden, nicht einen Datei-Snapshot, der zum Zurücklesen oder Bearbeiten der Konfiguration zurückgegeben wurde. Datei-Snapshots bewahren Quellwerte wie SecretRef-Markierungen für die Benutzeroberfläche und Schreibvorgänge; Provider-Callbacks benötigen die aufgelöste Laufzeitansicht. Wenn eine Hilfsfunktion entweder mit dem aktiven Quell-Snapshot oder mit dem aktiven Laufzeit-Snapshot aufgerufen werden kann, leiten Sie den Zugriff vor dem Lesen von Anmeldedaten über `selectApplicableRuntimeConfig()`.
+Ausführungspfade von Providern und Kanälen müssen den aktiven Snapshot der Laufzeitkonfiguration verwenden, nicht einen Datei-Snapshot, der zum Zurücklesen oder Bearbeiten der Konfiguration zurückgegeben wurde. Datei-Snapshots bewahren Quellwerte wie SecretRef-Markierungen für die Benutzeroberfläche und Schreibvorgänge; Provider-Callbacks benötigen die aufgelöste Laufzeitansicht. Wenn eine Hilfsfunktion entweder mit dem aktiven Quell-Snapshot oder dem aktiven Laufzeit-Snapshot aufgerufen werden kann, leiten Sie ihn vor dem Lesen von Anmeldedaten durch `selectApplicableRuntimeConfig()`.
 
-## Wiederverwendbare Laufzeit-Dienstprogramme
+## Wiederverwendbare Laufzeitdienstprogramme
 
-Verwenden Sie eingehende `botLoopProtection`-Fakten für eingehende Nachrichten, die von Bots verfasst wurden. Der Core wendet den gemeinsamen gleitenden In-Memory-Zeitfensterschutz vor Sitzungserfassung und Dispatch an, ohne die Richtlinie an einen einzelnen Channel zu binden. Der Schutz verfolgt `(scopeId, conversationId, participant pair)`-Schlüssel, zählt beide Richtungen eines Paars gemeinsam, aktiviert nach Überschreitung des Zeitfensterbudgets eine Abkühlphase und entfernt inaktive Einträge bei Gelegenheit.
+Verwenden Sie eingehende `botLoopProtection`-Fakten für eingehende, von Bots verfasste Nachrichten. Der Kern wendet vor dem Sitzungsdatensatz und der Weiterleitung die gemeinsame gleitende In-Memory-Fenstersperre an, ohne die Richtlinie an einen einzelnen Kanal zu binden. Die Sperre verfolgt `(scopeId, conversationId, participant pair)`-Schlüssel, zählt beide Richtungen eines Paares gemeinsam, wendet nach Überschreitung des Fensterbudgets eine Abkühlzeit an und entfernt inaktive Einträge bei Gelegenheit.
 
-Channel-Plugins, die dieses Verhalten für Betreibende verfügbar machen, sollten für Basisbudgets bevorzugt die gemeinsame `channels.defaults.botLoopProtection`-Struktur verwenden und anschließend Channel-/Provider-spezifische Überschreibungen darauf anwenden. Die gemeinsame Konfiguration verwendet Sekunden, da sie benutzerseitig sichtbar ist:
+Kanal-Plugins, die dieses Verhalten für Betreiber verfügbar machen, sollten für Basisbudgets bevorzugt die gemeinsame `channels.defaults.botLoopProtection`-Struktur verwenden und anschließend kanal-/providerspezifische Überschreibungen ergänzen. Die gemeinsame Konfiguration verwendet Sekunden, da sie benutzerseitig sichtbar ist:
 
 ```typescript
 type ChannelBotLoopProtectionConfig = {
@@ -76,7 +76,7 @@ type ChannelBotLoopProtectionConfig = {
 };
 ```
 
-Übergeben Sie normalisierte Bot-Paar-Fakten zusammen mit dem aufgelösten Turn. Der Core löst Standardwerte, Einheitenumrechnung und die `enabled`-Semantik auf:
+Übergeben Sie normalisierte Bot-Paar-Fakten zusammen mit dem aufgelösten Turn. Der Kern löst Standardwerte, Einheitenumrechnung und die Semantik von `enabled` auf:
 
 ```typescript
 return {
@@ -98,8 +98,8 @@ return {
 };
 ```
 
-Verwenden Sie `openclaw/plugin-sdk/pair-loop-guard-runtime` nur für benutzerdefinierte
-Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen Runner für eingehende Antworten laufen.
+Verwenden Sie `openclaw/plugin-sdk/pair-loop-guard-runtime` nur direkt für benutzerdefinierte
+Ereignisschleifen zwischen zwei Parteien, die nicht durch den gemeinsamen Runner für eingehende Antworten laufen.
 
 ## Laufzeit-Namespaces
 
@@ -124,14 +124,14 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
       model,
     });
 
-    // Ein benutzerdefiniertes Denkniveau anhand des aktiven Provider-Profils validieren
+    // Ein benutzerseitig angegebenes Denkniveau anhand des aktiven Provider-Profils validieren
     const policy = api.runtime.agent.resolveThinkingPolicy({ provider, model });
     const level = api.runtime.agent.normalizeThinkingLevel("extra high");
     if (level && policy.levels.some((entry) => entry.id === level)) {
-      // Denkniveau an einen eingebetteten Lauf übergeben
+      // Niveau an einen eingebetteten Lauf übergeben
     }
 
-    // Agenten-Timeout abrufen
+    // Zeitüberschreitung des Agenten abrufen
     const timeoutMs = api.runtime.agent.resolveAgentTimeoutMs(cfg);
 
     // Sicherstellen, dass der Workspace vorhanden ist
@@ -147,13 +147,13 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
     });
     ```
 
-    `runEmbeddedAgent(...)` ist die neutrale Hilfsfunktion zum Starten eines normalen OpenClaw-Agenten-Turns aus Plugin-Code. Sie verwendet dieselbe Provider-/Modellauflösung und Auswahl des Agenten-Harness wie durch Channels ausgelöste Antworten.
+    `runEmbeddedAgent(...)` ist die neutrale Hilfsfunktion zum Starten eines normalen OpenClaw-Agenten-Turns aus Plugin-Code. Sie verwendet dieselbe Provider-/Modellauflösung und Auswahl des Agenten-Harness wie durch Kanäle ausgelöste Antworten.
 
-    `runEmbeddedPiAgent(...)` bleibt als veralteter Kompatibilitätsalias für bestehende Plugins erhalten. Neuer Code sollte `runEmbeddedAgent(...)` verwenden.
+    `runEmbeddedPiAgent(...)` bleibt als veralteter Kompatibilitätsalias für vorhandene Plugins bestehen. Neuer Code sollte `runEmbeddedAgent(...)` verwenden.
 
-    `resolveCliBackendDispatchEligibility({ provider, model, agentId, authProfileId, config, agentDir, workspaceDir })` stellt Aufrufern, die eingebettete Läufe für `cliBackendDispatch: "subscription-auth"` aktivieren, die Dispatch-Entscheidung des eingebetteten Runners für das CLI-Backend bereit (Route, die deklarierte `subscriptionAuthDispatch`-Fähigkeit des Backends, gespeicherter Anmeldedatenmodus – unter Beachtung eines explizit festgelegten `authProfileId`). Es gibt `{ provider }` zurück, wenn der Lauf über das CLI-Backend ausgeführt würde, und `undefined`, wenn er beim direkten Passthrough verbleibt, sodass Aufrufer Timeouts für den Lauf einplanen können, der tatsächlich ausgeführt wird.
+    `resolveCliBackendDispatchEligibility({ provider, model, agentId, authProfileId, config, agentDir, workspaceDir })` stellt Aufrufern, die eingebettete Läufe für `cliBackendDispatch: "subscription-auth"` aktivieren, die Entscheidung des eingebetteten Runners über die Weiterleitung an das CLI-Backend zur Verfügung (Route, die deklarierte `subscriptionAuthDispatch`-Fähigkeit des Backends, gespeicherter Anmeldedatenmodus – unter Berücksichtigung eines explizit festgelegten `authProfileId`). Die Funktion gibt `{ provider }` zurück, wenn der Lauf über das CLI-Backend ausgeführt würde, und `undefined`, wenn er beim direkten Durchreichen bleibt, sodass Aufrufer Zeitüberschreitungen für den Lauf bemessen können, der tatsächlich ausgeführt wird.
 
-    `resolveThinkingPolicy(...)` gibt die vom Provider/Modell unterstützten Denkniveaus sowie einen optionalen Standardwert zurück. Provider-Plugins verwalten das modellspezifische Profil über ihre Thinking-Hooks, daher sollten Tool-Plugins diese Laufzeithilfsfunktion aufrufen, anstatt Provider-Listen zu importieren oder zu duplizieren.
+    `resolveThinkingPolicy(...)` gibt die vom Provider/Modell unterstützten Denkniveaus und den optionalen Standardwert zurück. Provider-Plugins verwalten das modellspezifische Profil über ihre Thinking-Hooks. Daher sollten Tool-Plugins diese Laufzeithilfsfunktion aufrufen, statt Provider-Listen zu importieren oder zu duplizieren.
 
     `normalizeThinkingLevel(...)` konvertiert Benutzereingaben wie `on`, `x-high` oder `extra high` in das kanonisch gespeicherte Niveau, bevor es anhand der aufgelösten Richtlinie geprüft wird.
 
@@ -162,7 +162,7 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
     ```typescript
     const entry = api.runtime.agent.session.getSessionEntry({ agentId, sessionKey });
     for (const { sessionKey, entry } of api.runtime.agent.session.listSessionEntries({ agentId })) {
-      // Sitzungszeilen durchlaufen, ohne von der veralteten sessions.json-Struktur abhängig zu sein.
+      // Sitzungszeilen durchlaufen, ohne von der alten sessions.json-Struktur abhängig zu sein.
     }
     await api.runtime.agent.session.patchSessionEntry({
       agentId,
@@ -192,35 +192,35 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
     );
     ```
 
-    Bevorzugen Sie `getSessionEntry(...)`, `listSessionEntries(...)`, `patchSessionEntry(...)` oder `upsertSessionEntry(...)` für Sitzungsabläufe. Diese Hilfsfunktionen adressieren Sitzungen über die Agenten-/Sitzungsidentität, sodass Plugins nicht von der veralteten `sessions.json`-Speicherstruktur abhängen. Verwenden Sie `preserveActivity: true` für reine Metadaten-Patches, die die Sitzungsaktivität nicht aktualisieren sollen, und `replaceEntry: true` nur, wenn der Callback einen vollständigen Eintrag zurückgibt und gelöschte Felder gelöscht bleiben müssen. Doctor- und Migrationspfade können `fallbackEntry`, `skipMaintenance` und `requireWriteSuccess` für eine einzelne atomare Reparatur des kanonischen Speichers kombinieren.
+    Bevorzugen Sie `getSessionEntry(...)`, `listSessionEntries(...)`, `patchSessionEntry(...)` oder `upsertSessionEntry(...)` für Sitzungsabläufe. Diese Hilfsfunktionen adressieren Sitzungen anhand der Agenten-/Sitzungsidentität, sodass Plugins nicht von der alten `sessions.json`-Speicherstruktur abhängen. Verwenden Sie `preserveActivity: true` für reine Metadaten-Patches, die die Sitzungsaktivität nicht aktualisieren sollen, und `replaceEntry: true` nur, wenn der Callback einen vollständigen Eintrag zurückgibt und gelöschte Felder gelöscht bleiben müssen. Doctor- und Migrationspfade können `fallbackEntry`, `skipMaintenance` und `requireWriteSuccess` für eine einzelne atomare Reparatur des kanonischen Speichers kombinieren.
 
-    `createSessionEntry(...)` erstellt eine neue kanonische Sitzungszeile und ein Transkript. Die vertrauenswürdige `initialEntry`-Oberfläche ist bewusst eng gefasst: ein nicht leeres `agentHarnessId`, ein optionales `modelSelectionLocked: true` und ein optionales `pluginExtensions`. Die injizierte Laufzeit akzeptiert über `registerAgentHarness(...)` ausschließlich Harness-IDs, die dem aufrufenden Plugin gehören; dies ist eine Eigentumsinvariante und keine Sandbox zwischen prozessinternen Plugins. Eine bereits vorhandene Zeile wird abgelehnt; `label` und `spawnedCwd` sind eigenständige Erstellungsfelder und keine vertrauenswürdigen Eintrags-Patches.
+    `createSessionEntry(...)` erstellt eine neue kanonische Sitzungszeile und ein Transkript. Die vertrauenswürdige `initialEntry`-Oberfläche ist bewusst eng gefasst: ein nicht leeres `agentHarnessId`, optionales `modelSelectionLocked: true` und optionales `pluginExtensions`. Die injizierte Laufzeit akzeptiert über `registerAgentHarness(...)` ausschließlich Harness-IDs, die dem aufrufenden Plugin gehören; dies ist eine Eigentumsinvariante und keine Sandbox zwischen prozessinternen Plugins. Eine bereits vorhandene Zeile wird abgelehnt; `label` und `spawnedCwd` sind separate Erstellungsfelder und keine Patches vertrauenswürdiger Einträge.
 
-    Während der Erstellung wird die Mutationssperre für den Sitzungslebenszyklus über `afterCreate` gehalten, sodass neue Arbeit auf den Abschluss der Plugin-eigenen Initialisierung wartet und bereits zuvor zugelassene Arbeit die Erstellung fehlschlagen lässt. Der Callback erhält einen Klon des erstellten Zustands. Wenn er einen Patch zurückgibt, darf dieser Patch ausschließlich `pluginExtensions` enthalten, und dessen Wert ist das vollständige endgültige `pluginExtensions`-Feld. Ein Fehler im Callback oder bei der endgültigen Persistierung setzt die unveränderte neue Zeile und das Transkript zurück; ein geschützter Rollback bewahrt eine Zeile, die zwischenzeitlich geändert oder beansprucht wurde. `recoverMatchingInitialEntry: true` dient ausschließlich zum erneuten Versuch einer unterbrochenen Initialisierung, wenn die persistierten vertrauenswürdigen Felder exakt übereinstimmen, und die Wiederherstellung erfordert, dass `afterCreate` einen endgültigen Patch zurückgibt.
+    Die Erstellung hält den Mutationszaun des Sitzungslebenszyklus über `afterCreate`, sodass neue Arbeit wartet, bis die Plugin-eigene Initialisierung abgeschlossen ist, während bereits zuvor zugelassene Arbeit zum Fehlschlagen der Erstellung führt. Der Callback erhält einen Klon des erstellten Zustands. Wenn er einen Patch zurückgibt, darf dieser Patch ausschließlich `pluginExtensions` enthalten; sein Wert ist das vollständige endgültige Feld `pluginExtensions`. Ein Fehler des Callbacks oder der abschließenden Persistierung setzt die unveränderte neue Zeile und das Transkript zurück; ein geschütztes Rollback bewahrt eine parallel geänderte oder beanspruchte Zeile. `recoverMatchingInitialEntry: true` dient ausschließlich dazu, eine unterbrochene Initialisierung erneut zu versuchen, wenn die persistierten vertrauenswürdigen Felder exakt übereinstimmen; die Wiederherstellung erfordert, dass `afterCreate` einen abschließenden Patch zurückgibt.
 
-    Verwenden Sie `runWithWorkAdmission(...)`, wenn ein Plugin Arbeit an einer persistierten Sitzung beginnt. Der Callback lehnt archivierte oder gleichzeitig ersetzte Sitzungen ab, koordiniert Archivierungs-, Zurücksetzungs- und Löschmutationen bis zum Abschluss und erhält ein `AbortSignal`, das an den Agentenlauf weitergegeben werden muss. Ein Harness kann über sein experimentelles `delegatedExecutionPluginIds`-Registrierungsfeld explizit vertrauenswürdige Ausführungsdelegierte benennen. Delegierte können nur eine exakt vorhandene, modellgesperrte Sitzung zulassen und ausführen; sämtliche Sitzungsmutationen bleiben auf den Eigentümer des Harness beschränkt. Siehe [Agenten-Harness-Plugins](/de/plugins/sdk-agent-harness#delegated-execution).
+    Verwenden Sie `runWithWorkAdmission(...)`, wenn ein Plugin Arbeit an einer persistierten Sitzung startet. Der Callback lehnt archivierte oder parallel ersetzte Sitzungen ab, koordiniert Archivierungs-, Zurücksetzungs- und Löschmutationen bis zum Abschluss und erhält ein `AbortSignal`, das an den Agentenlauf weitergegeben werden muss. Ein Harness kann über sein experimentelles Registrierungsfeld `delegatedExecutionPluginIds` explizit vertrauenswürdige Ausführungsdelegierte benennen. Delegierte können ausschließlich eine exakt vorhandene, modellgesperrte Sitzung zulassen und ausführen; alle Sitzungsmutationen bleiben auf den Eigentümer des Harness beschränkt. Siehe [Agenten-Harness-Plugins](/de/plugins/sdk-agent-harness#delegated-execution).
 
-    Wartungs- und Reparatur-Plugins können `deleteSessionEntry(...)` für einen einzelnen bereichsgebundenen Sitzungseintrag, `cleanupSessionLifecycleArtifacts(...)` für lebenszyklusverwaltete temporäre Sitzungen und `resolveSessionStoreBackupPaths(...)` vor der Änderung eines Speichers verwenden. Übergeben Sie `expectedSessionId` und `expectedUpdatedAt`, wenn das Löschen nicht mit einer gleichzeitigen Sitzungsaktualisierung kollidieren darf; verwenden Sie `expectedSessionId: null`, wenn der frühere Snapshot keine Sitzungs-ID enthielt. Diese Hilfsfunktionen sind eng begrenzte Reparatur-/Lebenszyklus-Schnittstellen und keine allgemeine API zum Löschen von Speichern.
+    Wartungs- und Reparatur-Plugins können `deleteSessionEntry(...)` für einen einzelnen sitzungsbezogenen Eintrag, `cleanupSessionLifecycleArtifacts(...)` für vom Lebenszyklus verwaltete temporäre Sitzungen und `resolveSessionStoreBackupPaths(...)` vor der Änderung eines Speichers verwenden. Übergeben Sie `expectedSessionId` und `expectedUpdatedAt`, wenn eine Löschung nicht mit einer gleichzeitigen Sitzungsaktualisierung konkurrieren darf; verwenden Sie `expectedSessionId: null`, wenn der frühere Snapshot keine Sitzungs-ID enthielt. Diese Hilfsfunktionen sind eng begrenzte Reparatur-/Lebenszyklus-Schnittstellen und keine allgemeine API zum Löschen von Speichern.
 
-    `resolveStorePath(...)` und `updateSessionStoreEntry(...)` vervollständigen die Sitzungshilfsfunktionen: `resolveStorePath` ermittelt den Pfad des Sitzungsspeichers für einen bestimmten Gültigkeitsbereich, und `updateSessionStoreEntry({ storePath, sessionKey, update })` aktualisiert einen Eintrag direkt über den Speicherpfad, wenn der Aufrufer diesen bereits kennt.
+    `resolveStorePath(...)` und `updateSessionStoreEntry(...)` vervollständigen die Sitzungshilfsfunktionen: `resolveStorePath` ermittelt den Pfad des Sitzungsspeichers für einen bestimmten Geltungsbereich, und `updateSessionStoreEntry({ storePath, sessionKey, update })` aktualisiert einen Eintrag direkt anhand des Speicherpfads, wenn dieser dem Aufrufer bereits bekannt ist.
 
-    `loadTranscriptEventsSync(...)` steht für synchrone Doctor- und Reparaturpfade zur Verfügung, die die asynchrone Transkript-Laufzeit nicht verwenden können. Die Funktion gibt unverarbeitete `SessionStoreTranscriptEvent`-Datensätze zurück. Normaler Plugin-Laufzeitcode sollte `openclaw/plugin-sdk/session-transcript-runtime` bevorzugen.
+    `loadTranscriptEventsSync(...)` steht für synchrone Doctor- und Reparaturpfade zur Verfügung, die die asynchrone Transkript-Laufzeit nicht verwenden können. Die Funktion gibt rohe `SessionStoreTranscriptEvent`-Datensätze zurück. Normaler Plugin-Laufzeitcode sollte `openclaw/plugin-sdk/session-transcript-runtime` bevorzugen.
 
-    `formatSqliteSessionFileMarker(...)`, `parseSqliteSessionFileMarker(...)` und `sqliteSessionFileMarkerMatchesSession(...)` sind Übergangshilfsfunktionen für Code, der noch ein Legacy-Feld namens `sessionFile` empfängt. Eine geparste SQLite-Markierung bezeichnet ein aktives SQLite-Transkriptziel; sie ist kein Dateisystempfad. Neue APIs sollten eine typisierte Sitzungsidentität anstelle von Markierungszeichenfolgen übertragen.
+    `formatSqliteSessionFileMarker(...)`, `parseSqliteSessionFileMarker(...)` und `sqliteSessionFileMarkerMatchesSession(...)` sind Übergangshilfsfunktionen für Code, der noch ein Legacy-Feld namens `sessionFile` empfängt. Eine geparste SQLite-Markierung bezeichnet ein aktives SQLite-Transkriptziel; sie ist kein Dateisystempfad. Neue APIs sollten statt Markierungszeichenfolgen eine typisierte Sitzungsidentität übermitteln.
 
-    Importieren Sie für Lese- und Schreibvorgänge an Transkripten `openclaw/plugin-sdk/session-transcript-runtime` und verwenden Sie `resolveSessionTranscriptIdentity(...)`, `resolveSessionTranscriptTarget(...)`, `readSessionTranscriptEvents(...)`, `readSessionTranscriptRawDelta(...)`, `readSessionTranscriptVisibleMessageDelta(...)`, `readVisibleSessionTranscriptMessageEntries(...)`, `appendSessionTranscriptMessageByIdentity(...)`, `publishSessionTranscriptUpdateByIdentity(...)` oder `withSessionTranscriptWriteLock(...)` mit `{ agentId, sessionKey, sessionId }`. Mit diesen APIs können Plugins ein Transkript identifizieren, unverarbeitete Ereignisse oder sichtbare, verzweigungssichere Nachrichteneinträge lesen, Nachrichten anhängen, Aktualisierungen veröffentlichen und zugehörige Vorgänge unter derselben Transkript-Schreibsperre ausführen, ohne von aktiven Transkriptdateipfaden abhängig zu sein. `readVisibleSessionTranscriptMessageEntries(...)` gibt geordnete Lesemetadaten zurück; das Feld `seq` ist kein fortsetzbarer Cursor.
+    Importieren Sie für das Lesen und Schreiben von Transkripten `openclaw/plugin-sdk/session-transcript-runtime` und verwenden Sie `resolveSessionTranscriptIdentity(...)`, `resolveSessionTranscriptTarget(...)`, `readSessionTranscriptEvents(...)`, `readSessionTranscriptRawDelta(...)`, `readSessionTranscriptVisibleMessageDelta(...)`, `readVisibleSessionTranscriptMessageEntries(...)`, `appendSessionTranscriptMessageByIdentity(...)`, `publishSessionTranscriptUpdateByIdentity(...)` oder `withSessionTranscriptWriteLock(...)` mit `{ agentId, sessionKey, sessionId }`. Mit diesen APIs können Plugins ein Transkript identifizieren, rohe Ereignisse oder sichtbare, verzweigungssichere Nachrichteneinträge lesen, Nachrichten anhängen, Aktualisierungen veröffentlichen und zugehörige Vorgänge unter derselben Transkript-Schreibsperre ausführen, ohne von Pfaden aktiver Transkriptdateien abhängig zu sein. `readVisibleSessionTranscriptMessageEntries(...)` gibt geordnete Lesemetadaten zurück; das Feld `seq` ist kein fortsetzbarer Cursor.
 
-    `appendSessionTranscriptMessageByIdentity(...)` ist eine Low-Level-Funktion zum Anhängen einer bereits kanonischen Nachricht. Plugins dürfen keine Benutzerzeilen mit Medieninhalten und `MediaPath`, `MediaPaths`, `MediaUrl`, `MediaUrls`, `MediaType` oder `MediaTypes` auf oberster Ebene erzeugen. Der Kanaleingang sollte geordnete Fakten über `MsgContext.media` übergeben und die Persistierung des Benutzerzugs dem Host überlassen. Eine vom Host vorbereitete persistierte Benutzernachricht enthält kanonische geordnete Fakten unter `message.__openclaw.media`; die generische Anhänge-API leitet parallele Legacy-Arrays weder ab noch repariert sie diese.
+    `appendSessionTranscriptMessageByIdentity(...)` ist eine Low-Level-Funktion zum Anhängen einer bereits kanonischen Nachricht. Plugins dürfen keine medienhaltigen Benutzerzeilen mit `MediaPath`, `MediaPaths`, `MediaUrl`, `MediaUrls`, `MediaType` oder `MediaTypes` auf oberster Ebene erzeugen. Der Kanaleingang sollte geordnete Fakten über `MsgContext.media` übergeben und die Persistierung des Benutzerzugs dem Host überlassen. Eine vom Host vorbereitete persistierte Benutzernachricht enthält kanonische geordnete Fakten unter `message.__openclaw.media`; die generische API zum Anhängen leitet keine parallelen Legacy-Arrays ab und repariert sie auch nicht.
 
-    `readSessionTranscriptRawDelta(...)` gibt ein begrenztes Ergebnis vom Typ `page`, `reset` oder `missing` zurück. Übergeben Sie den opaken `page.cursor` an den nächsten Aufruf. Reine Anhängevorgänge behalten den Cursor bei, während das Ersetzen des Transkripts `reset` mit einem neuen Bootstrap-Cursor zurückgibt. Seiten umfassen standardmäßig 1.000 Ereignisse und 1.000.000 serialisierte Byte; Aufrufer können bis zu 10.000 Ereignisse und 64 MiB anfordern. Wenn bereits das nächste Ereignis `maxBytes` überschreitet, ist die Seite leer und meldet `requiredBytes`; versuchen Sie es erneut mit mindestens diesem Byte-Limit, sofern es nicht größer als 64 MiB ist. Größere Einzelereignisse erfordern die API zum vollständigen Lesen. Ein Cursor bezeichnet nur eine Position und gewährt niemals Zugriff auf eine andere Sitzung.
+    `readSessionTranscriptRawDelta(...)` gibt ein begrenztes Ergebnis vom Typ `page`, `reset` oder `missing` zurück. Übergeben Sie den opaken `page.cursor` beim nächsten Aufruf. Reine Anhängevorgänge behalten den Cursor bei, während das Ersetzen des Transkripts `reset` mit einem neuen Bootstrap-Cursor zurückgibt. Seiten umfassen standardmäßig 1.000 Ereignisse und 1.000.000 serialisierte Bytes; Aufrufer können bis zu 10.000 Ereignisse und 64 MiB anfordern. Wenn bereits das nächste Ereignis `maxBytes` überschreitet, ist die Seite leer und meldet `requiredBytes`; versuchen Sie es erneut mit mindestens diesem Byte-Limit, sofern es nicht größer als 64 MiB ist. Größere Einzelereignisse erfordern die API zum vollständigen Lesen. Ein Cursor kennzeichnet ausschließlich eine Position und gewährt niemals Zugriff auf eine andere Sitzung.
 
-    `readSessionTranscriptVisibleMessageDelta(...)` bietet dieselbe begrenzte Bootstrap-und-Fortsetzungsstruktur für die hostverwaltete aktive Nachrichtenprojektion. Die Funktion gibt Nachrichten von der ältesten zur neuesten zurück, sodass Kontext-Engines den anfänglichen Verlauf vollständig verarbeiten und den opaken Cursor als ihre Fortschrittsmarke persistieren können. Speichern Sie den Cursor unverändert und geben Sie ihn unverändert zurück; er ist ein Fortsetzungshinweis und kein Autorisierungsnachweis. Lineare Anhängevorgänge werden nach der zuletzt zurückgegebenen Nachricht fortgesetzt. Das Ersetzen des Transkripts, ein Cursor, dessen Anker den aktiven Zweig verlassen hat oder innerhalb dieses Zweigs verschoben wurde, fehlerhafte Cursor und sitzungsübergreifende Cursor geben `reset` mit einem neuen Bootstrap-Cursor zurück. Die Standardwerte und Obergrenzen für Anzahl und Byte entsprechen denen der Rohdaten-Delta-API. Während die aktive Projektion nach einer Verzweigungsänderung neu aufgebaut wird, lautet das Ergebnis `unavailable` mit dem Grund `projection_rebuilding`; versuchen Sie es später erneut, anstatt auf eine aktive Transkriptdatei zurückzugreifen.
+    `readSessionTranscriptVisibleMessageDelta(...)` stellt dieselbe begrenzte Bootstrap-und-Fortsetzungsstruktur für die hostverwaltete Projektion aktiver Nachrichten bereit. Die Funktion gibt Nachrichten von der ältesten bis zur neuesten zurück, sodass Kontext-Engines den anfänglichen Verlauf vollständig abarbeiten und den opaken Cursor als ihre Fortschrittsmarke persistieren können. Speichern Sie den Cursor unverändert und geben Sie ihn unverändert zurück; er ist ein Fortsetzungshinweis und kein Autorisierungsnachweis. Lineare Anhängevorgänge werden nach der zuletzt zurückgegebenen Nachricht fortgesetzt. Das Ersetzen des Transkripts, ein Cursor, dessen Anker den aktiven Zweig verlassen hat oder innerhalb dieses Zweigs verschoben wurde, fehlerhafte Cursor und sitzungsübergreifende Cursor geben `reset` mit einem neuen Bootstrap-Cursor zurück. Die Standardwerte und Obergrenzen für Anzahl und Bytes entsprechen der Rohdaten-Delta-API. Während die aktive Projektion nach einer Zweigänderung neu aufgebaut wird, lautet das Ergebnis `unavailable` mit dem Grund `projection_rebuilding`; versuchen Sie es später erneut, statt auf eine aktive Transkriptdatei zurückzugreifen.
 
-    Die Legacy-Hilfsfunktionen für den gesamten Speicher und für aktive Transkriptdateien werden nicht mehr aus dem Plugin-SDK exportiert. Verwenden Sie die bereichsgebundenen Eintragshilfsfunktionen für Sitzungsmetadaten und die Hilfsfunktionen zur Transkriptidentität für aktive Transkriptvorgänge. Archivierungs-/Support-Workflows, die Dateiartefakte benötigen, sollten ihre dedizierten Archivschnittstellen anstelle der Laufzeit-APIs für aktive Sitzungen verwenden.
+    Die Legacy-Hilfsfunktionen für den gesamten Speicher und aktive Transkriptdateien werden nicht mehr aus dem Plugin-SDK exportiert. Verwenden Sie die auf Einträge begrenzten Hilfsfunktionen für Sitzungsmetadaten und die Hilfsfunktionen zur Transkriptidentität für Vorgänge mit aktiven Transkripten. Archivierungs-/Support-Workflows, die Dateiartefakte benötigen, sollten ihre dedizierten Archivschnittstellen statt der Laufzeit-APIs aktiver Sitzungen verwenden.
 
   </Accordion>
   <Accordion title="api.runtime.agent.defaults">
-    Konstanten für das Standardmodell und den Standard-Provider:
+    Konstanten für Standardmodell und -Provider:
 
     ```typescript
     const model = api.runtime.agent.defaults.model; // z. B. "gpt-5.6-sol"
@@ -231,7 +231,7 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
 
   <Accordion title="api.runtime.llm">
     Führen Sie eine hostverwaltete Textvervollständigung aus, ohne interne Provider-Komponenten zu importieren oder
-    die Vorbereitung von OpenClaw-Modell, Authentifizierung und Basis-URL zu duplizieren.
+    die Vorbereitung von OpenClaw für Modell, Authentifizierung und Basis-URL zu duplizieren.
 
     ```typescript
     const result = await api.runtime.llm.complete({
@@ -243,8 +243,8 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
     });
     ```
 
-    Die Provider-Orchestrierung kann außerdem den Lebenszyklus des konfigurierten lokalen Dienstes
-    übernehmen, bevor eine HTTP-Anfrage gesendet wird:
+    Die Provider-Orchestrierung kann außerdem den konfigurierten Lebenszyklus des lokalen Dienstes
+    übernehmen, bevor eine HTTP-Anfrage gestellt wird:
 
     ```typescript
     const lease = await api.runtime.llm.acquireLocalService(
@@ -256,7 +256,7 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
       signal,
     );
     try {
-      // Senden und verarbeiten Sie die Provider-Anfrage vollständig.
+      // Senden Sie die Provider-Anfrage und verarbeiten Sie sie vollständig.
     } finally {
       await lease?.release();
     }
@@ -264,29 +264,29 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
 
     `acquireLocalService(...)` ist ein stabiler, generischer SDK-Vertrag für Provider-Dienste.
     Der Host ermittelt die Prozesskonfiguration aus
-    `models.providers.<providerId>.localService`; Aufrufer können keinen
-    Befehl, keine Argumente, keine Umgebung und keine Lebenszyklusrichtlinie angeben. Prozesserzeugung,
-    Bereitschaft, Diagnose und Richtlinie für das Beenden bei Inaktivität bleiben hostintern.
+    `models.providers.<providerId>.localService`; Aufrufer können weder einen
+    Befehl noch Argumente, eine Umgebung oder eine Lebenszyklusrichtlinie angeben. Prozesserzeugung,
+    Bereitschaft, Diagnose und die Richtlinie zum Beenden bei Inaktivität bleiben hostintern.
 
-    Übergeben Sie die genaue konfigurierte Provider-ID und die aufgelöste Basis-URL der Anfrage. Ersetzen Sie
-    Aliasse nicht durch eine Adapter-ID: Unterschiedliche Aliasse können auf unterschiedliche
-    lokale GPU-Hosts verweisen. Der Host lehnt Endpunkte ab, die nicht mit der konfigurierten
-    Provider-Basis-URL übereinstimmen, abgesehen von der durch Ollama- und LM-Studio-Adapter verwendeten
-    `/v1`-Normalisierung. Der Host verwaltet die Serialisierung des Starts, Bereitschaftsprüfungen,
+    Übergeben Sie die exakte konfigurierte Provider-ID und die aufgelöste Basis-URL der Anfrage. Ersetzen Sie
+    Aliasse nicht durch eine Adapter-ID: Separate Aliasse können auf separate
+    lokale GPU-Hosts verweisen. Der Host weist Endpunkte zurück, die nicht mit der konfigurierten
+    Basis-URL des Providers übereinstimmen, abgesehen von der von Ollama- und LM-
+    Studio-Adaptern verwendeten Normalisierung `/v1`. Der Host verwaltet die Serialisierung des Starts, Bereitschaftsprüfungen,
     Anfrage-Leases, Abbruchbehandlung und das Herunterfahren bei Inaktivität.
 
-    Die Hilfsfunktion verwendet denselben Vorbereitungsablauf für einfache Vervollständigungen wie die
-    integrierte OpenClaw-Laufzeit sowie den hostverwalteten Snapshot der Laufzeitkonfiguration. Kontext-Engines
+    Die Hilfsfunktion verwendet denselben Vorbereitungspfad für einfache Vervollständigungen wie die integrierte
+    OpenClaw-Laufzeit sowie den hostverwalteten Snapshot der Laufzeitkonfiguration. Kontext-Engines
     erhalten eine sitzungsgebundene `llm.complete`-Fähigkeit, sodass Modellaufrufe den Agenten
     der aktiven Sitzung verwenden und nicht stillschweigend auf den Standardagenten zurückfallen. Das
-    Ergebnis enthält die Zuordnung zu Provider, Modell und Agent sowie normalisierte Angaben zu Token-
-    und Cache-Nutzung und, sofern verfügbar, geschätzten Kosten.
+    Ergebnis enthält die Zuordnung zu Provider, Modell und Agent sowie normalisierte Token-,
+    Cache- und geschätzte Kostennutzung, sofern verfügbar.
 
     Setzen Sie `reasoning`, um einen Reasoning-Aufwand für das ausgewählte Modell anzufordern. Der
-    Host normalisiert die kanonischen Denkstufen (`off`, `minimal`, `low`,
+    Host normalisiert vor dem Senden der Vervollständigung die kanonischen Denkstufen (`off`, `minimal`, `low`,
     `medium`, `high`, `xhigh`, `adaptive`, `max` und `ultra`) für den ausgewählten
-    Provider und das ausgewählte Modell, bevor die Vervollständigung weitergeleitet wird. `adaptive` wird zu
-    `medium`; `max` und `ultra` werden zu `max`, sofern unterstützt, andernfalls zu `xhigh`.
+    Provider und das Modell. `adaptive` wird zu
+    `medium`; `max` und `ultra` werden, sofern unterstützt, zu `max`, andernfalls zu `xhigh`.
 
     <Warning>
     Modellüberschreibungen erfordern die Zustimmung des Betreibers über `plugins.entries.<id>.llm.allowModelOverride: true` in der Konfiguration. Verwenden Sie `plugins.entries.<id>.llm.allowedModels`, um vertrauenswürdige Plugins auf bestimmte kanonische `provider/model`-Ziele zu beschränken. Agentenübergreifende Vervollständigungen erfordern `plugins.entries.<id>.llm.allowAgentIdOverride: true`.
@@ -294,8 +294,8 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
 
   </Accordion>
   <Accordion title="api.runtime.gateway">
-    Rufen Sie prozessintern eine andere Gateway-Methode auf und behalten Sie dabei die vertrauenswürdige Laufzeitidentität
-    des aktuellen Plugins bei. Dies ist für gebündelte oder vertrauenswürdige offizielle Plugins vorgesehen, die Plugin-eigene
+    Rufen Sie prozessintern eine andere Gateway-Methode auf und bewahren Sie dabei die vertrauenswürdige Laufzeitidentität
+    des aktuellen Plugins. Dies ist für gebündelte oder vertrauenswürdige offizielle Plugins vorgesehen, die Plugin-eigene
     Gateway-Fähigkeiten kombinieren, ohne eine Loopback-WebSocket-Verbindung zu öffnen.
 
     ```typescript
@@ -308,27 +308,27 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
     }
     ```
 
-    Anfragen verwenden den Gültigkeitsbereich `operator.write` und gewähren keinen Administrator-Gültigkeitsbereich. Aufrufe von beliebigen externen
-    Plugins werden abgelehnt. Fehlgeschlagene Methoden lösen einen `GatewayClientRequestError` aus und bewahren dabei strukturierte
-    `details`, Metadaten für Wiederholungsversuche und den Gateway-Fehlercode für Wiederherstellungsabläufe. Verwenden Sie `isAvailable()`,
-    bevor Sie diesen Pfad in Tools auswählen, die auch in eigenständigen Agentenprozessen ausgeführt werden können.
+    Anfragen verwenden den Geltungsbereich `operator.write` und gewähren keinen Administrator-Geltungsbereich. Aufrufe beliebiger externer
+    Plugins werden abgelehnt. Fehlgeschlagene Methoden lösen einen `GatewayClientRequestError` aus und bewahren strukturierte
+    `details`-, Wiederholungsmetadaten und den Gateway-Fehlercode für Wiederherstellungsabläufe. Verwenden Sie `isAvailable()`,
+    bevor Sie diesen Pfad aus Tools auswählen, die auch in eigenständigen Agentenprozessen ausgeführt werden können.
 
   </Accordion>
   <Accordion title="api.runtime.subagent">
-    Starten und verwalten Sie Subagentenläufe im Hintergrund.
+    Starten und verwalten Sie im Hintergrund ausgeführte Subagentenläufe.
 
     ```typescript
-    // Einen Subagentenlauf starten
+    // Starten Sie einen Subagentenlauf
     const { runId } = await api.runtime.subagent.run({
       sessionKey: "agent:main:subagent:search-helper",
-      message: "Erweitern Sie diese Anfrage zu gezielten Folgesuchen.",
+      message: "Erweitern Sie diese Abfrage zu gezielten weiterführenden Suchen.",
       toolsAlsoAllow: ["my_plugin_progress"],
       provider: "openai", // optionale Überschreibung
       model: "gpt-5.6-sol", // optionale Überschreibung
       deliver: false,
     });
 
-    // Auf den Abschluss warten
+    // Auf Abschluss warten
     const result = await api.runtime.subagent.waitForRun({ runId, timeoutMs: 30000 });
 
     // Sitzungsnachrichten lesen
@@ -347,9 +347,9 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
     Modellüberschreibungen (`provider`/`model`) erfordern die Zustimmung des Betreibers über `plugins.entries.<id>.subagent.allowModelOverride: true` in der Konfiguration. Nicht vertrauenswürdige Plugins können weiterhin Subagenten ausführen, Überschreibungsanfragen werden jedoch abgelehnt.
     </Warning>
 
-    `toolsAlsoAllow` fügt der normalen Tool-Oberfläche des Workers exakt benannte Tools hinzu, die eindeutig dem aufrufenden Plugin gehören und von ihm registriert wurden. Die Laufzeit lehnt Kern-Tools und Namen ab, die mit einem anderen Plugin geteilt werden. Profile und Tool-Richtlinien des Betreibers gelten weiterhin, einschließlich expliziter Zulassungs- und Sperrlisten.
+    `toolsAlsoAllow` fügt der normalen Tool-Oberfläche des Workers exakt benannte, eindeutig dem aufrufenden Plugin zugeordnete Tools hinzu. Die Laufzeit lehnt Core-Tools sowie Namen ab, die mit einem anderen Plugin geteilt werden. Profile und Tool-Richtlinien des Betreibers gelten weiterhin, einschließlich expliziter Zulassungs- und Sperrlisten.
 
-    `deleteSession(...)` kann Sitzungen löschen, die dasselbe Plugin über `api.runtime.subagent.run(...)` erstellt hat. Das Löschen beliebiger Benutzer- oder Betreibersitzungen erfordert weiterhin eine Gateway-Anfrage mit Administrator-Gültigkeitsbereich.
+    `deleteSession(...)` kann Sitzungen löschen, die dasselbe Plugin über `api.runtime.subagent.run(...)` erstellt hat. Das Löschen beliebiger Benutzer- oder Betreibersitzungen erfordert weiterhin eine Gateway-Anfrage mit Administrator-Geltungsbereich.
 
   </Accordion>
   <Accordion title="api.runtime.sandbox">
@@ -374,19 +374,19 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
     Das Ergebnis gibt an, ob diese Sitzung in einer Sandbox ausgeführt wird, ob ihr Arbeitsbereich
     nicht verfügbar, schreibgeschützt oder beschreibbar ist, sowie optional `confinementError`,
     wenn die effektive Docker-, Tool-, Sitzungs-, Browser- oder erhöhte Richtlinie
-    aus diesem Arbeitsbereich ausbrechen kann. Verwenden Sie dies für hostverwaltete Delegierungsentscheidungen, die
-    einem Worker nicht mehr Berechtigungen gewähren dürfen als seinem Aufrufer. Es handelt sich um eine
-    Attestierungshilfe und nicht um einen Ersatz für die Prüfung der eigenen Autorisierung des Aufrufers.
+    diesen Arbeitsbereich verlassen kann. Verwenden Sie dies für hostverwaltete Delegierungsentscheidungen, die
+    einem Worker nicht mehr Berechtigungen gewähren dürfen als seinem Aufrufer. Es handelt sich um eine Hilfsfunktion
+    zur Bestätigung, nicht um einen Ersatz für die Prüfung der eigenen Autorisierung des Aufrufers.
 
     `prepareWorkspaceAuthority(...)` führt dieselbe Richtlinienprüfung durch und
-    bereitet außerdem die Docker-Sandbox für `workspaceDir` vor. Die Funktion lehnt einen aktiven Container ab,
-    dessen Hash der Live-Konfiguration nicht mit den angeforderten Mounts oder der Richtlinie übereinstimmt. Übergeben Sie
-    nur exakte Tool-Namen, deren registrierte Implementierungen das aufrufende Plugin
-    einschränkt; Platzhalterpräfixe belegen keine Tool-Eigentümerschaft.
+    bereitet zusätzlich die Docker-Sandbox für `workspaceDir` vor. Die Funktion lehnt einen aktiven Container ab,
+    dessen Hash der laufenden Konfiguration nicht mit den angeforderten Einbindungen oder der Richtlinie übereinstimmt. Übergeben Sie
+    ausschließlich exakte Tool-Namen, deren registrierte Implementierungen das aufrufende Plugin
+    einschränkt; Platzhalterpräfixe belegen keine Tool-Zuordnung.
 
   </Accordion>
   <Accordion title="api.runtime.nodes">
-    Listen Sie verbundene Nodes auf und rufen Sie einen vom Node gehosteten Befehl aus vom Gateway geladenem Plugin-Code oder aus Plugin-CLI-Befehlen auf. Verwenden Sie dies, wenn ein Plugin lokale Aufgaben auf einem gekoppelten Gerät übernimmt, beispielsweise eine Browser- oder Audio-Bridge auf einem anderen Mac.
+    Listen Sie verbundene Nodes auf und rufen Sie einen auf einem Node gehosteten Befehl aus vom Gateway geladenem Plugin-Code oder aus Plugin-CLI-Befehlen auf. Verwenden Sie dies, wenn ein Plugin lokale Arbeit auf einem gekoppelten Gerät verwaltet, beispielsweise eine Browser- oder Audio-Bridge auf einem anderen Mac.
 
     ```typescript
     const { nodes } = await api.runtime.nodes.list({ connected: true });
@@ -400,30 +400,30 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
     ```
 
     `nodes.list(...)` enthält die von jedem verbundenen Node angekündigten
-    `nodePluginTools`-Deskriptoren, wenn dieser Node dem Agenten Plugin- oder MCP-gestützte
-    Tools bereitstellt. Diese Deskriptoren bilden den aktuellen Verbindungsstatus ab: Das Gateway
-    entfernt sie, wenn der Node die Verbindung trennt, und ein Node kann sie nach Änderungen am
-    lokalen Plugin-/MCP-Inventar durch `node.pluginTools.update` ersetzen.
+    `nodePluginTools`-Deskriptoren, wenn dieser Node Plugin- oder MCP-gestützte
+    Tools für den Agent bereitstellt. Diese Deskriptoren bilden den aktuellen Verbindungsstatus ab: Der Gateway
+    verwirft sie, wenn der Node die Verbindung trennt, und ein Node kann sie nach Änderungen am lokalen Plugin-/MCP-Bestand
+    durch `node.pluginTools.update` ersetzen.
 
-    Innerhalb des Gateways wird diese Runtime prozessintern ausgeführt. In Plugin-CLI-Befehlen ruft sie das konfigurierte Gateway über RPC auf, sodass Befehle wie `openclaw googlemeet recover-tab` gekoppelte Nodes vom Terminal aus prüfen können. Node-Befehle durchlaufen weiterhin die normale Gateway-Node-Kopplung, Befehls-Positivlisten, Richtlinien von Plugins für Node-Aufrufe sowie die lokale Befehlsverarbeitung des Nodes.
+    Innerhalb des Gateway läuft diese Runtime prozessintern. In Plugin-CLI-Befehlen ruft sie den konfigurierten Gateway über RPC auf, sodass Befehle wie `openclaw googlemeet recover-tab` gekoppelte Nodes über das Terminal prüfen können. Node-Befehle durchlaufen weiterhin die normale Node-Kopplung des Gateway, Befehls-Positivlisten, Richtlinien für Plugin-Node-Aufrufe und die lokale Befehlsverarbeitung des Node.
 
-    Plugins, die auf Nodes gehostete Agenten-Tools bereitstellen, können `agentTool.defaultPlatforms` für ungefährliche Befehle festlegen, die standardmäßig in die Positivliste aufgenommen werden sollen. Lassen Sie es weg, wenn Betreiber dies mit `gateway.nodes.commands.allow` ausdrücklich aktivieren müssen. Gefährliche Befehle auf dem Node-Host sollten mit `api.registerNodeInvokePolicy(...)` eine Richtlinie für Node-Aufrufe registrieren; die Richtlinie wird im Gateway nach den Prüfungen der Befehls-Positivliste und vor der Weiterleitung des Befehls an den Node ausgeführt. Dadurch verwenden direkte `node.invoke`-Aufrufe, auf Nodes gehostete Plugin-Tools und übergeordnete Plugin-Tools denselben Durchsetzungspfad.
+    Plugins, die auf Nodes gehostete Agent-Tools bereitstellen, können `agentTool.defaultPlatforms` für ungefährliche Befehle festlegen, die standardmäßig in die Positivliste aufgenommen werden sollen. Lassen Sie die Option weg, wenn Betreiber die Befehle explizit über `gateway.nodes.commands.allow` aktivieren müssen. Gefährliche auf Nodes gehostete Befehle sollten mit `api.registerNodeInvokePolicy(...)` eine Richtlinie für Node-Aufrufe registrieren; die Richtlinie wird im Gateway nach der Prüfung der Befehls-Positivliste und vor der Weiterleitung des Befehls an den Node ausgeführt, sodass direkte `node.invoke`-Aufrufe, auf Nodes gehostete Plugin-Tools und übergeordnete Plugin-Tools denselben Durchsetzungspfad verwenden.
 
     <Warning>
-    Das optionale Feld `scopes` fordert für den Aufruf Gateway-Betreiberbereiche an. OpenClaw berücksichtigt es nur für gebündelte Plugins und vertrauenswürdige Installationen offizieller Plugins; Anforderungen anderer Plugins erweitern die Berechtigungen des Aufrufs nicht. Verwenden Sie es nur, wenn ein vertrauenswürdiges Plugin einen Node-Befehl mit einem strengeren Gateway-Bereich wie `operator.admin` aufrufen muss.
+    Das optionale Feld `scopes` fordert Gateway-Betreiberbereiche für den Aufruf an. OpenClaw berücksichtigt es nur für gebündelte Plugins und vertrauenswürdige Installationen offizieller Plugins; Anforderungen anderer Plugins erweitern die Berechtigungen des Aufrufs nicht. Verwenden Sie es nur, wenn ein vertrauenswürdiges Plugin einen Node-Befehl mit einem strengeren Gateway-Bereich wie `operator.admin` aufrufen muss.
     </Warning>
 
   </Accordion>
   <Accordion title="api.runtime.tasks">
-    Binden Sie den Zustand von Task Flow und Task Run an einen vorhandenen OpenClaw-Sitzungsschlüssel oder einen vertrauenswürdigen Tool-Kontext.
+    Bindet den Zustand von Task Flow und Task Run an einen vorhandenen OpenClaw-Sitzungsschlüssel oder einen vertrauenswürdigen Tool-Kontext.
 
-    - `api.runtime.tasks.managedFlows` unterstützt Mutationen: Task Flows erstellen, fortsetzen und abbrechen.
+    - `api.runtime.tasks.managedFlows` unterstützt Änderungen: Task Flows erstellen, fortsetzen und abbrechen.
     - `api.runtime.tasks.flows` und `api.runtime.tasks.runs` sind schreibgeschützte DTO-Ansichten für Auflistungen und Statusabfragen; beide stellen `bindSession(...)` / `fromToolContext(...)` sowie `get`, `list`, `findLatest` und `resolve` bereit.
 
     Task Flow verfolgt den dauerhaften Zustand mehrstufiger Workflows. Es ist kein Planer:
     Verwenden Sie Cron oder `api.session.workflow.scheduleSessionTurn(...)` für zukünftige
-    Aktivierungen und anschließend `managedFlows` im geplanten Durchlauf, wenn diese Arbeit
-    Flow-Zustand, untergeordnete Tasks, Wartevorgänge oder Abbruchmöglichkeiten benötigt.
+    Aktivierungen und anschließend `managedFlows` während des geplanten Durchlaufs, wenn diese Arbeit
+    Ablaufzustand, untergeordnete Aufgaben, Wartephasen oder Abbruchmöglichkeiten benötigt.
 
     ```typescript
     const taskFlow = api.runtime.tasks.managedFlows.fromToolContext(ctx);
@@ -450,7 +450,7 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
     });
     ```
 
-    Verwenden Sie `bindSession({ sessionKey, requesterOrigin })`, wenn Sie bereits über einen vertrauenswürdigen OpenClaw-Sitzungsschlüssel aus Ihrer eigenen Bindungsschicht verfügen. Binden Sie ihn nicht aus unverarbeiteten Benutzereingaben.
+    Verwenden Sie `bindSession({ sessionKey, requesterOrigin })`, wenn Sie bereits über einen vertrauenswürdigen OpenClaw-Sitzungsschlüssel aus Ihrer eigenen Bindungsschicht verfügen. Stellen Sie keine Bindung anhand ungeprüfter Benutzereingaben her.
 
   </Accordion>
   <Accordion title="api.runtime.tts">
@@ -463,7 +463,7 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
       cfg: api.config,
     });
 
-    // Für Telefonie optimierte TTS
+    // Für Telefonie optimiertes TTS
     const telephonyClip = await api.runtime.tts.textToSpeechTelephony({
       text: "Hallo von OpenClaw",
       cfg: api.config,
@@ -494,7 +494,7 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
     const { text } = await api.runtime.mediaUnderstanding.transcribeAudioFile({
       filePath: "/tmp/inbound-audio.ogg",
       cfg: api.config,
-      mime: "audio/ogg", // optional, falls der MIME-Typ nicht abgeleitet werden kann
+      mime: "audio/ogg", // optional, wenn MIME nicht abgeleitet werden kann
     });
 
     // Ein Video beschreiben
@@ -503,14 +503,14 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
       cfg: api.config,
     });
 
-    // Generische Dateianalyse
+    // Allgemeine Dateianalyse
     const result = await api.runtime.mediaUnderstanding.runFile({
       filePath: "/tmp/inbound-file.pdf",
       cfg: api.config,
     });
 
     // Strukturierte Bildextraktion über einen bestimmten Provider/ein bestimmtes Modell.
-    // Fügen Sie mindestens ein Bild ein; Texteingaben dienen als ergänzender Kontext.
+    // Mindestens ein Bild einfügen; Texteingaben dienen als ergänzender Kontext.
     const evidence = await api.runtime.mediaUnderstanding.extractStructuredWithModel({
       provider: "codex",
       model: "gpt-5.6-sol",
@@ -521,9 +521,9 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
           fileName: "receipt.png",
           mime: "image/png",
         },
-        { type: "text", text: "Bevorzugen Sie den gedruckten Gesamtbetrag gegenüber handschriftlichen Notizen." },
+        { type: "text", text: "Bevorzuge den gedruckten Gesamtbetrag gegenüber handschriftlichen Notizen." },
       ],
-      instructions: "Extrahieren Sie den Händler, den Gesamtbetrag und durchsuchbare Tags.",
+      instructions: "Anbieter, Gesamtbetrag und durchsuchbare Tags extrahieren.",
       schemaName: "receipt.evidence",
       jsonSchema: {
         type: "object",
@@ -548,7 +548,7 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
 
     ```typescript
     const result = await api.runtime.imageGeneration.generate({
-      prompt: "Ein Roboter, der einen Sonnenuntergang malt",
+      prompt: "Ein Roboter malt einen Sonnenuntergang",
       cfg: api.config,
     });
 
@@ -557,7 +557,7 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
 
   </Accordion>
   <Accordion title="api.runtime.videoGeneration">
-    Videoerzeugung entsprechend der Struktur der Bilderzeugung.
+    Videoerzeugung, entsprechend der Struktur der Bilderzeugung.
 
     ```typescript
     const result = await api.runtime.videoGeneration.generate({
@@ -570,11 +570,11 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
 
   </Accordion>
   <Accordion title="api.runtime.musicGeneration">
-    Musikerzeugung entsprechend der Struktur der Bilderzeugung.
+    Musikerzeugung, entsprechend der Struktur der Bilderzeugung.
 
     ```typescript
     const result = await api.runtime.musicGeneration.generate({
-      prompt: "Ein beschwingter Lo-Fi-Track für eine Programmiersitzung",
+      prompt: "Ein schwungvoller Lo-Fi-Titel für eine Programmiersitzung",
       cfg: api.config,
     });
 
@@ -590,7 +590,7 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
 
     const result = await api.runtime.webSearch.search({
       config: api.config,
-      args: { query: "OpenClaw Plugin-SDK", count: 5 },
+      args: { query: "OpenClaw Plugin SDK", count: 5 },
     });
     ```
 
@@ -622,7 +622,7 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
   </Accordion>
   <Accordion title="api.runtime.config">
     Aktueller Snapshot der Runtime-Konfiguration und transaktionale Konfigurationsschreibvorgänge. Bevorzugen Sie
-    die Konfiguration, die bereits an den aktiven Aufrufpfad übergeben wurde; verwenden Sie
+    eine Konfiguration, die bereits an den aktiven Aufrufpfad übergeben wurde; verwenden Sie
     `current()` nur, wenn der Handler den Prozess-Snapshot direkt benötigt.
 
     ```typescript
@@ -635,9 +635,10 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
     });
     ```
 
-    `mutateConfigFile(...)` und `replaceConfigFile(...)` geben einen `followUp`-Wert
-    zurück, beispielsweise `{ mode: "restart", requiresRestart: true, reason }`,
-    der die Absicht des Schreibers erfasst, ohne dem Gateway die Kontrolle über den Neustart zu entziehen.
+    `mutateConfigFile(...)` und `replaceConfigFile(...)` geben einen `followUp`-Wert zurück,
+    beispielsweise `{ mode: "restart", requiresRestart: true, reason }`,
+    der die Absicht des Schreibers erfasst, ohne dem
+    Gateway die Kontrolle über den Neustart zu entziehen.
 
   </Accordion>
   <Accordion title="api.runtime.system">
@@ -658,13 +659,13 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
     const hint = api.runtime.system.formatNativeDependencyHint(pkg);
     ```
 
-    `runHeartbeatOnce(...)` führt sofort einen einzelnen Heartbeat-Zyklus aus und umgeht dabei den normalen Koaleszenz-Timer. Übergeben Sie `{ heartbeat: { target: "last" } }`, um die Zustellung an den zuletzt aktiven Kanal zu erzwingen, anstatt die standardmäßige `target: "none"`-Unterdrückung zu verwenden.
+    `runHeartbeatOnce(...)` führt sofort einen einzelnen Heartbeat-Zyklus aus und umgeht dabei den normalen Zusammenführungstimer. Übergeben Sie `{ heartbeat: { target: "last" } }`, um die Zustellung an den zuletzt aktiven Kanal statt der standardmäßigen `target: "none"`-Unterdrückung zu erzwingen.
 
-    `runCommandWithTimeout(...)` gibt erfasste `stdout` und `stderr`, optionale
+    `runCommandWithTimeout(...)` gibt die erfassten Werte `stdout` und `stderr`, optionale
     Kürzungsanzahlen, `code`, `signal`, `killed`, `termination` und
-    `noOutputTimedOut` zurück. Ergebnisse bei Zeitüberschreitung und bei Zeitüberschreitung ohne Ausgabe melden `code: 124`,
-    wenn der untergeordnete Prozess keinen von null verschiedenen Exit-Code bereitstellt. Signalbedingte Beendigungen
-    ohne Zeitüberschreitung können dennoch `code: null` zurückgeben. Verwenden Sie daher `termination` und
+    `noOutputTimedOut` zurück. Ergebnisse bei Zeitüberschreitung und Zeitüberschreitung ohne Ausgabe melden `code: 124`,
+    wenn der untergeordnete Prozess keinen von null abweichenden Exit-Code liefert. Signalbedingte Beendigungen ohne Zeitüberschreitung
+    können dennoch `code: null` zurückgeben; verwenden Sie daher `termination` und
     `noOutputTimedOut`, um die Gründe für Zeitüberschreitungen zu unterscheiden.
 
   </Accordion>
@@ -696,7 +697,7 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
     ```typescript
     const auth = await api.runtime.modelAuth.getApiKeyForModel({ model, cfg });
 
-    // Anforderungsbereite Authentifizierung, einschließlich Provider-Laufzeitaustausch (z. B. OAuth-Aktualisierung)
+    // Für Anfragen bereite Authentifizierung, einschließlich Provider-Runtime-Austauschvorgängen (z. B. OAuth-Aktualisierung)
     const runtimeAuth = await api.runtime.modelAuth.getRuntimeAuthForModel({ model, cfg });
 
     const providerAuth = await api.runtime.modelAuth.resolveApiKeyForProvider({
@@ -753,42 +754,42 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
     );
     ```
 
-    Schlüsselbasierte Speicher überstehen Neustarts und werden anhand der zur Laufzeit gebundenen Plugin-ID isoliert. Verwenden Sie `registerIfAbsent(...)` für atomare Deduplizierungsansprüche: Die Methode gibt `true` zurück, wenn der Schlüssel fehlte oder abgelaufen war und registriert wurde, oder `false`, wenn bereits ein aktiver Wert vorhanden ist, ohne dessen Wert, Erstellungszeit oder TTL zu überschreiben. Verwenden Sie `deleteIf(...)`, wenn eine Bereinigung nur den zuvor beobachteten Wert entfernen darf; das synchrone Prädikat und die Löschung werden in einer einzigen SQLite-Transaktion ausgeführt. Grenzwerte: `maxEntries` pro Namensraum, 50,000 aktive Zeilen pro Plugin, JSON-Werte unter 64KB und optionaler TTL-Ablauf. Standardmäßig entfernt ein Schreibvorgang beim Erreichen eines der Zeilengrenzwerte die ältesten aktiven Zeilen aus dem Namensraum, in den geschrieben wird; gleichgeordnete Namensräume werden für diesen Schreibvorgang nicht verdrängt, und der Schreibvorgang schlägt weiterhin fehl, wenn der Namensraum nicht genügend Zeilen freigeben kann. Legen Sie `overflowPolicy: "reject-new"` für dauerhafte Eigentumsdatensätze fest, die niemals verdrängt werden dürfen: Neue Schlüssel schlagen bei beiden Grenzwerten fehl, während vorhandene Schlüssel weiterhin aktualisiert werden können.
+    Schlüsselbasierte Speicher überstehen Neustarts und werden anhand der Runtime-gebundenen Plugin-ID isoliert. Verwenden Sie `registerIfAbsent(...)` für atomare Deduplizierungsansprüche: Es gibt `true` zurück, wenn der Schlüssel fehlte oder abgelaufen war und registriert wurde, oder `false`, wenn bereits ein aktiver Wert vorhanden ist, ohne dessen Wert, Erstellungszeit oder TTL zu überschreiben. Verwenden Sie `deleteIf(...)`, wenn die Bereinigung nur den zuvor beobachteten Wert entfernen darf; das synchrone Prädikat und die Löschung werden in einer SQLite-Transaktion ausgeführt. Grenzwerte: `maxEntries` pro Namespace, 50,000 aktive Zeilen pro Plugin, JSON-Werte unter 64KB und optionaler TTL-Ablauf. Standardmäßig entfernt ein Schreibvorgang beim Erreichen eines der beiden Zeilenlimits die ältesten aktiven Zeilen aus dem gerade beschriebenen Namespace; gleichgeordnete Namespaces werden für diesen Schreibvorgang nicht geräumt, und der Schreibvorgang schlägt weiterhin fehl, wenn der Namespace nicht genügend Zeilen freigeben kann. Legen Sie `overflowPolicy: "reject-new"` für dauerhafte Eigentümerschaftsdatensätze fest, die niemals geräumt werden dürfen: Neue Schlüssel schlagen bei beiden Limits fehl, während vorhandene Schlüssel weiterhin aktualisiert werden können.
 
-    `openSyncKeyedStore<T>(...)` gibt dieselbe Speicherstruktur mit synchronen Methoden zurück (`register`, `registerIfAbsent`, `deleteIf`, `lookup`, `consume`, `clear` geben alle Werte direkt statt als Promises zurück) und ist für Aufrufer vorgesehen, die nicht warten können.
+    `openSyncKeyedStore<T>(...)` gibt dieselbe Speicherstruktur mit synchronen Methoden zurück (`register`, `registerIfAbsent`, `deleteIf`, `lookup`, `consume`, `clear` geben alle Werte direkt statt Promises zurück), für Aufrufer, die nicht warten können.
 
-    `openBlobStore<TMetadata>(...)` speichert begrenzte Binärnutzlasten ohne Base64 oder Datei-Sidecars in gemeinsam genutztem SQLite. Dies erfordert Byte- und Zeilengrenzwerte pro Eintrag und pro Namensraum, kopiert Byte-Arrays an der API-Grenze und listet Metadaten auf, ohne jedes BLOB zu laden. `register(...)` ist ein explizites Upsert, auch für abgelaufene Schlüssel. `registerIfAbsent(...)` ermöglicht eine kollisionssichere Erstellung: Ein abgelaufener Schlüssel bleibt belegt, bis sein Eigentümer ihn mit `deleteExpiredKey(key)` oder `deleteExpired()` beansprucht. Dadurch bleiben Metadaten erhalten, die erforderlich sind, um zugehörige benannte Artefakte nach dem SQLite-Commit zu entfernen. Jede Zeile mit einer TTL ist temporär und wird selbst vor ihrem Ablauf von Sicherung und Wiederherstellung ausgeschlossen; lassen Sie die TTL für einen dauerhaften, wiederherstellbaren Zustand weg. Host-Sicherungen begrenzen jedes BLOB auf 100 MiB, jedes Plugin auf 512 MiB physisch gespeicherter BLOBs und jedes Plugin auf 50,000 physisch gespeicherte Zeilen, einschließlich abgelaufener Zeilen, die auf eine Bereinigung durch den Eigentümer warten. Verwenden Sie `registerIfAbsent(...)` mit `overflowPolicy: "reject-new"`, wenn externe Materialisierungen durch Ersetzung oder Verdrängung nicht unbemerkt verwaisen dürfen.
+    `openBlobStore<TMetadata>(...)` speichert begrenzte binäre Nutzdaten in gemeinsam genutztem SQLite ohne Base64 oder Datei-Sidecars. Es erfordert Byte- und Zeilenlimits pro Eintrag und pro Namespace, kopiert Byte-Arrays an der API-Grenze und listet Metadaten auf, ohne jeden BLOB zu laden. `register(...)` ist ein explizites Upsert, auch für abgelaufene Schlüssel. `registerIfAbsent(...)` ermöglicht kollisionssichere Erstellung: Ein abgelaufener Schlüssel bleibt belegt, bis sein Eigentümer ihn mit `deleteExpiredKey(key)` oder `deleteExpired()` beansprucht. Dadurch bleiben die Metadaten erhalten, die zum Entfernen zugehöriger benannter Artefakte nach dem SQLite-Commit erforderlich sind. Jede Zeile mit einer TTL ist temporär und wird selbst vor ihrem Ablauf von Sicherung und Wiederherstellung ausgeschlossen; lassen Sie die TTL für dauerhaften, wiederherstellbaren Zustand weg. Host-Sicherungen begrenzen jeden BLOB auf 100 MiB, jedes Plugin auf 512 MiB physisch gespeicherter BLOBs und jedes Plugin auf 50,000 physisch gespeicherte Zeilen, einschließlich abgelaufener Zeilen, die auf die Bereinigung durch den Eigentümer warten. Verwenden Sie `registerIfAbsent(...)` mit `overflowPolicy: "reject-new"`, wenn externe Materialisierungen durch Ersetzung oder Räumung nicht unbemerkt verwaisen dürfen.
 
-    `openChannelIngressQueue<TPayload>(...)` öffnet eine persistierte Eingangswarteschlange im Geltungsbereich des aufrufenden Plugins, um eingehende Ereignisse zu puffern, die über Neustarts hinweg mindestens einmal verarbeitet werden müssen. Wenn die Wiederherstellung veralteter Ansprüche `shouldRecover` verwendet, geben Sie außerdem `shouldRecoverCorrupt` an, falls beschädigte beanspruchte Nutzlasten unter Quarantäne gestellt werden sollen: Die von der Nutzlast unabhängige Anspruchsidentität ermöglicht es dem Plugin, die Richtlinien des aktiven Eigentümers und der Lane beizubehalten, bevor die Warteschlange die Zeile mit einem Tombstone markiert.
+    `openChannelIngressQueue<TPayload>(...)` öffnet eine persistierte Eingangswarteschlange mit Gültigkeitsbereich für das aufrufende Plugin, um eingehende Ereignisse zu puffern, die über Neustarts hinweg mindestens einmal verarbeitet werden müssen. Wenn die Wiederherstellung veralteter Ansprüche `shouldRecover` verwendet, geben Sie außerdem `shouldRecoverCorrupt` an, falls beschädigte beanspruchte Nutzdaten unter Quarantäne gestellt werden sollen: Die von den Nutzdaten unabhängige Anspruchsidentität ermöglicht es dem Plugin, aktive Eigentümer- und Lane-Richtlinien beizubehalten, bevor die Warteschlange die Zeile mit einem Tombstone versieht.
 
-    `withLease(...)` serialisiert kooperative Plugin-Arbeit über OpenClaw-Prozesse hinweg. Wählen Sie `database: { scope: "shared" }` für einen globalen Eigentümer oder `{ scope: "agent", agentId }` für eine unabhängige Eigentümerschaft pro Agent. Leiten Sie das `AbortSignal` des Callbacks an jede Operation weiter, die fehlschlagen kann. `assertOwned()` ist ein punktueller Prüfpunkt vor dem Beginn eines weiteren wichtigen Schritts; der Host überprüft die Eigentümerschaft außerdem nach dem Callback. Bei Verlust des Leases oder Abbruch durch den Aufrufer wird das Signal abgebrochen. Erwerbswartezeiten und Heartbeats erfolgen außerhalb kurzer synchroner SQLite-Transaktionen; Plugins erhalten niemals Datenbankpfade oder Handles. Dies ist eine kooperative Abbruchsteuerung, kein Fencing-Token und keine Autorisierung für nicht abgesicherte externe Schreibvorgänge.
+    `withLease(...)` serialisiert kooperative Plugin-Arbeit über OpenClaw-Prozesse hinweg. Wählen Sie `database: { scope: "shared" }` für einen globalen Eigentümer oder `{ scope: "agent", agentId }` für unabhängige Eigentümerschaft pro Agent. Leiten Sie das `AbortSignal` des Callbacks an jeden Vorgang weiter, der fehlschlagen kann. `assertOwned()` ist ein Zeitpunkt-Checkpoint vor dem Start eines weiteren wichtigen Schritts; der Host überprüft die Eigentümerschaft außerdem nach dem Callback. Der Verlust der Lease oder ein Abbruch durch den Aufrufer bricht das Signal ab. Warten auf den Erwerb und Heartbeats erfolgen außerhalb kurzer synchroner SQLite-Transaktionen; Plugins erhalten niemals Datenbankpfade oder Handles. Dies ist eine kooperative Abbruchfunktion, kein Fencing-Token und keine Autorisierung für externe Schreibvorgänge ohne Fencing.
 
-    `openChannelIngressDrain(...)` öffnet den kanalunabhängigen Kern-Worker über dieser Warteschlange (oder erstellt eine Warteschlange, wenn keine angegeben wird). Der Drain verwaltet die Wiederherstellung veralteter Ansprüche, die Serialisierung von Ansprüchen pro Lane, den Abschluss bei Übernahme oder bei Rückkehr des Dispatches, die Wiederholungs-/Dead-Letter-Disposition, optionales Ersetzen vor der Übernahme sowie das Zeitlimit für einen Stillstand zwischen Anspruch und Übernahme. Binden Sie die Anspruchseigentümerschaft mit `turnAdoptionLifecycle` in die Antwortgenerierung ein (über `bindIngressLifecycleToReplyOptions` aus `plugin-sdk/channel-outbound`). Kanal-Plugins verwalten das Einreihen auf der Annahmeseite, die Lane-Ableitung, die Klassifizierung als nicht wiederholbar und alle Autorisierungsrichtlinien für das Ersetzen.
+    `openChannelIngressDrain(...)` öffnet den zentralen kanalunabhängigen Worker über dieser Warteschlange (oder erstellt eine Warteschlange, wenn keine angegeben ist). Der Drain verwaltet die Wiederherstellung veralteter Ansprüche, die Serialisierung von Ansprüchen pro Lane, den Abschluss bei Übernahme oder bei Rückkehr der Verteilung, die Wiederholungs-/Dead-Letter-Disposition, die optionale Ablösung vor der Übernahme und das Zeitlimit für einen Stillstand zwischen Anspruch und Übernahme. Binden Sie die Anspruchseigentümerschaft mit `turnAdoptionLifecycle` in die Antwortgenerierung ein (über `bindIngressLifecycleToReplyOptions` aus `plugin-sdk/channel-outbound`). Kanal-Plugins behalten die annahmeseitige Einreihung, die Lane-Ableitung, die Klassifizierung als nicht wiederholbar und sämtliche Autorisierungsrichtlinien für Ablösungen.
 
     <Warning>
-    `openBlobStore`, `openKeyedStore`, `openSyncKeyedStore`, `withLease`, `openChannelIngressQueue` und `openChannelIngressDrain` sind in dieser Version nur für gebündelte Plugins und vertrauenswürdige offizielle Plugin-Installationen verfügbar.
+    `openBlobStore`, `openKeyedStore`, `openSyncKeyedStore`, `withLease`, `openChannelIngressQueue` und `openChannelIngressDrain` sind in dieser Version nur für gebündelte Plugins und vertrauenswürdige Installationen offizieller Plugins verfügbar.
     </Warning>
 
   </Accordion>
   <Accordion title="api.runtime.channel">
-    Kanalspezifische Laufzeit-Hilfsfunktionen (verfügbar, wenn ein Kanal-Plugin geladen ist). Nach Aufgabenbereich gruppiert:
+    Kanalspezifische Runtime-Hilfsfunktionen (verfügbar, wenn ein Kanal-Plugin geladen ist). Nach Zuständigkeitsbereich gruppiert:
 
     | Gruppe | Zweck |
     | --- | --- |
-    | `text` | Aufteilung (`chunkText`, `chunkMarkdownText`, `resolveChunkMode`), Erkennung von Steuerungsbefehlen, Konvertierung von Markdown-Tabellen. |
-    | `reply` | Gepufferter blockweiser Antwortversand, Umschlagformatierung, Auflösung der effektiven Nachrichten-/Verzögerungskonfiguration für Menschen. |
+    | `text` | Aufteilung (`chunkText`, `chunkMarkdownText`, `resolveChunkMode`), Erkennung von Steuerbefehlen, Konvertierung von Markdown-Tabellen. |
+    | `reply` | Verteilung gepufferter Blockantworten, Umschlagformatierung, Auflösung der effektiven Nachrichten-/Verzögerungskonfiguration für Menschen. |
     | `routing` | `buildAgentSessionKey`, `resolveAgentRoute`. |
-    | `pairing` | `buildPairingReply`, Lesen/Entfernen von Positivlisten, Upserts für Kopplungsanfragen und aus Anfragen abgeleitete Genehmigungseinträge. |
+    | `pairing` | `buildPairingReply`, Lesen/Entfernen aus Zulassungslisten, Upserts von Kopplungsanfragen und aus Anfragen abgeleitete Genehmigungseinträge. |
     | `media` | Herunterladen/Speichern entfernter Medien (siehe unten). |
-    | `activity` | Letzte Kanalaktivität aufzeichnen/lesen. |
+    | `activity` | Letzte Kanalaktivität erfassen/lesen. |
     | `session` | Sitzungsmetadaten aus eingehenden Ereignissen, Aktualisierungen der letzten Route. |
     | `mentions` | Hilfsfunktionen für Erwähnungsrichtlinien (siehe unten). |
-    | `reactions` | Handles für Bestätigungsreaktionen als Verarbeitungsindikatoren für laufende Vorgänge. |
+    | `reactions` | Handles für Bestätigungsreaktionen als Anzeigen laufender Verarbeitung. |
     | `groups` | Auflösung von Gruppenrichtlinie und Erwähnungspflicht. |
     | `debounce` | Entprellung eingehender Nachrichten. |
-    | `commands` | Befehlsautorisierung und Steuerung von Textbefehlen. |
-    | `outbound` | Ausgangsadapter eines Kanals laden. |
-    | `inbound` | Kontext für eingehende Ereignisse erstellen und den gemeinsam genutzten Kern für eingehende Ereignisse/Antworten ausführen. |
+    | `commands` | Befehlsautorisierung und Sperrung von Textbefehlen. |
+    | `outbound` | Ausgehenden Adapter eines Kanals laden. |
+    | `inbound` | Kontext eingehender Ereignisse erstellen und den gemeinsamen Kernel für eingehende Ereignisse/Antworten ausführen. |
     | `threadBindings` | Leerlaufzeitlimit/maximales Alter für gebundene Sitzungsthreads anpassen. |
     | `runtimeContexts` | Prozesslokalen Kontext pro Kanal/Konto/Fähigkeit registrieren, lesen und überwachen. |
 
@@ -803,9 +804,9 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
     });
     ```
 
-    Verwenden Sie `saveRemoteMedia(...)`, wenn eine entfernte URL zu OpenClaw-Medien werden soll. Verwenden Sie `saveResponseMedia(...)`, wenn das Plugin bereits ein `Response` mit Plugin-eigener Authentifizierung sowie eigener Umleitungs- oder Positivlistenbehandlung abgerufen hat. Verwenden Sie `readRemoteMediaBuffer(...)` nur, wenn das Plugin Rohbytes zur Prüfung, Transformation, Entschlüsselung oder zum erneuten Hochladen benötigt. `fetchRemoteMedia(...)` bleibt ein veralteter Kompatibilitätsalias für `readRemoteMediaBuffer(...)`.
+    Verwenden Sie `saveRemoteMedia(...)`, wenn eine entfernte URL zu einem OpenClaw-Medium werden soll. Verwenden Sie `saveResponseMedia(...)`, wenn das Plugin bereits ein `Response` mit Plugin-eigener Authentifizierung, Weiterleitungs- oder Zulassungslistenverarbeitung abgerufen hat. Verwenden Sie `readRemoteMediaBuffer(...)` nur, wenn das Plugin Rohbytes für Inspektion, Transformationen, Entschlüsselung oder erneutes Hochladen benötigt. `fetchRemoteMedia(...)` bleibt ein veralteter Kompatibilitätsalias für `readRemoteMediaBuffer(...)`.
 
-    `api.runtime.channel.mentions` ist die gemeinsam genutzte Schnittstelle für Richtlinien zu eingehenden Erwähnungen für gebündelte Kanal-Plugins, die Laufzeitinjektion verwenden:
+    `api.runtime.channel.mentions` ist die gemeinsame Schnittstelle für Richtlinien eingehender Erwähnungen für gebündelte Kanal-Plugins, die Runtime-Injektion verwenden:
 
     ```typescript
     const mentionMatch = api.runtime.channel.mentions.matchesMentionWithExplicit(text, {
@@ -840,16 +841,16 @@ Ereignisschleifen zwischen zwei Parteien direkt, die nicht über den gemeinsamen
     - `implicitMentionKindWhen`
     - `resolveInboundMentionDecision`
 
-    Verwenden Sie den normalisierten `{ facts, policy }`-Pfad für Erwähnungsentscheidungen.
+    Verwenden Sie für Erwähnungsentscheidungen den normalisierten Pfad `{ facts, policy }`.
 
-    Mehrere Felder unter `reply`, `session` und `inbound` enthalten feldspezifische `@deprecated`-Hinweise, die auf den aktuellen Kernel für Kanalvorgänge oder die Ausgangsadapter des Kanals verweisen; prüfen Sie die Inline-JSDoc der jeweiligen Hilfsfunktion, bevor Sie darauf neuen Code aufbauen.
+    Mehrere Felder unter `reply`, `session` und `inbound` enthalten feldspezifische `@deprecated`-Hinweise, die auf den aktuellen Kernel für Kanalinteraktionen oder Adapter für ausgehende Kanalnachrichten verweisen; prüfen Sie die Inline-JSDoc der jeweiligen Hilfsfunktion, bevor Sie neuen Code darauf aufbauen.
 
   </Accordion>
 </AccordionGroup>
 
-## Speichern von Laufzeitreferenzen
+## Speichern von Runtime-Referenzen
 
-Verwenden Sie `createPluginRuntimeStore`, um die Laufzeitreferenz für die Verwendung außerhalb des `register`-Callbacks zu speichern:
+Verwenden Sie `createPluginRuntimeStore`, um die Runtime-Referenz für die Verwendung außerhalb des Callbacks `register` zu speichern:
 
 <Steps>
   <Step title="Speicher erstellen">
@@ -875,14 +876,14 @@ Verwenden Sie `createPluginRuntimeStore`, um die Laufzeitreferenz für die Verwe
     });
     ```
   </Step>
-  <Step title="Aus anderen Dateien darauf zugreifen">
+  <Step title="Aus anderen Dateien zugreifen">
     ```typescript
     export function getRuntime() {
-      return store.getRuntime(); // throws if not initialized
+      return store.getRuntime(); // löst einen Fehler aus, wenn nicht initialisiert
     }
 
     export function tryGetRuntime() {
-      return store.tryGetRuntime(); // returns null if not initialized
+      return store.tryGetRuntime(); // gibt null zurück, wenn nicht initialisiert
     }
     ```
 
@@ -890,12 +891,12 @@ Verwenden Sie `createPluginRuntimeStore`, um die Laufzeitreferenz für die Verwe
 </Steps>
 
 <Note>
-Bevorzugen Sie `pluginId` für die Identität des Laufzeitspeichers. Die untergeordnete Form `key` ist für seltene Fälle vorgesehen, in denen ein Plugin absichtlich mehr als einen Laufzeit-Slot benötigt.
+Bevorzugen Sie `pluginId` für die Identität des Runtime-Speichers. Die Form `key` auf niedrigerer Ebene ist für seltene Fälle vorgesehen, in denen ein Plugin absichtlich mehr als einen Runtime-Slot benötigt.
 </Note>
 
-## Weitere `api`-Felder der obersten Ebene
+## Weitere Felder auf oberster Ebene unter `api`
 
-Zusätzlich zu `api.runtime` stellt das API-Objekt außerdem Folgendes bereit:
+Neben `api.runtime` stellt das API-Objekt außerdem Folgendes bereit:
 
 <ParamField path="api.id" type="string">
   Plugin-ID.
@@ -910,10 +911,10 @@ Zusätzlich zu `api.runtime` stellt das API-Objekt außerdem Folgendes bereit:
   Pluginspezifische Konfiguration aus `plugins.entries.<id>.config`.
 </ParamField>
 <ParamField path="api.logger" type="PluginLogger">
-  Bereichsspezifischer Logger (`debug`, `info`, `warn`, `error`).
+  Bereichsgebundener Logger (`debug`, `info`, `warn`, `error`).
 </ParamField>
 <ParamField path="api.registrationMode" type="PluginRegistrationMode">
-  Aktueller Lademodus: `"full"` (Live-Aktivierung), `"discovery"` / `"tool-discovery"` (schreibgeschützte Funktionsermittlung), `"setup-only"` (leichtgewichtiger Einrichtungseinstieg), `"setup-runtime"` (Einrichtungsablauf, der zusätzlich den Laufzeit-Kanaleinstieg benötigt) oder `"cli-metadata"` (Erfassung von CLI-Befehlsmetadaten).
+  Aktueller Lademodus: `"full"` (Live-Aktivierung), `"discovery"` / `"tool-discovery"` (schreibgeschützte Funktionserkennung), `"setup-only"` (leichtgewichtiger Einrichtungseinstieg), `"setup-runtime"` (Einrichtungsablauf, der auch den Laufzeit-Kanaleinstieg benötigt) oder `"cli-metadata"` (Erfassung von CLI-Befehlsmetadaten).
 </ParamField>
 <ParamField path="api.resolvePath(input)" type="(string) => string">
   Einen Pfad relativ zum Plugin-Stammverzeichnis auflösen.
@@ -923,4 +924,4 @@ Zusätzlich zu `api.runtime` stellt das API-Objekt außerdem Folgendes bereit:
 
 - [Plugin-Interna](/de/plugins/architecture) — Funktionsmodell und Registry
 - [SDK-Einstiegspunkte](/de/plugins/sdk-entrypoints) — Optionen für `definePluginEntry`
-- [SDK-Übersicht](/de/plugins/sdk-overview) — Unterpfadreferenz
+- [SDK-Überblick](/de/plugins/sdk-overview) — Subpfadreferenz

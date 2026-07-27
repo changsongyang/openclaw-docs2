@@ -1,10 +1,10 @@
 ---
 read_when:
-    - pixverse Plugin のインストール、設定、または監査を行っています
+    - pixverse Pluginのインストール、設定、または監査を行っている場合
 summary: OpenClaw PixVerse 動画生成プロバイダー Plugin。
 title: PixVerse Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:06:13Z"
+    generated_at: "2026-07-26T09:12:35Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# PixVerse plugin
+# PixVerse Plugin
 
-OpenClaw PixVerse 動画生成プロバイダー plugin。
+OpenClaw PixVerse 動画生成プロバイダー Plugin。
 
 ## 配布
 
 - パッケージ: `@openclaw/pixverse-provider`
-- インストール経路: npm; ClawHub: `clawhub:@openclaw/pixverse-provider`
+- インストール経路: npm、ClawHub: `clawhub:@openclaw/pixverse-provider`
 
 ## サーフェス
 

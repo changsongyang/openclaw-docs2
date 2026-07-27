@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das Sprachanruf-Plugin
+    - Sie installieren, konfigurieren oder prüfen das Sprachanruf-Plugin.
 summary: OpenClaw-Sprachanruf-Plugin für Telefonanrufe über Twilio, Telnyx und Plivo.
 title: Sprachanruf-Plugin
 x-i18n:
-    generated_at: "2026-07-24T05:08:31Z"
+    generated_at: "2026-07-26T18:39:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -27,6 +27,6 @@ OpenClaw-Sprachanruf-Plugin für Telefonanrufe über Twilio, Telnyx und Plivo.
 
 Verträge: `tools`; Skills
 
-## Zugehörige Dokumentation
+## Verwandte Dokumentation
 
 - [Sprachanruf](/de/plugins/voice-call)

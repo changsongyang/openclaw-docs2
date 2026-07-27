@@ -1,11 +1,11 @@
 ---
 read_when:
     - आप एक मॉडल प्रदाता चुनना चाहते हैं
-    - आपको समर्थित LLM बैकएंड का संक्षिप्त अवलोकन चाहिए
+    - आपको समर्थित LLM बैकएंड का एक संक्षिप्त अवलोकन चाहिए
 summary: OpenClaw द्वारा समर्थित मॉडल प्रदाता (LLM)
 title: प्रदाता निर्देशिका
 x-i18n:
-    generated_at: "2026-07-19T09:32:20Z"
+    generated_at: "2026-07-27T18:54:08Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -39,7 +39,7 @@ OpenClaw कई LLM प्रदाताओं का उपयोग कर �
 - [Anthropic (API + Claude CLI)](/hi/providers/anthropic)
 - [Arcee AI (Trinity मॉडल)](/hi/providers/arcee)
 - [Azure Speech](/hi/providers/azure-speech)
-- [Baseten (Inkling + मॉडल API)](/providers/baseten)
+- [Baseten (Inkling + मॉडल API)](/hi/providers/baseten)
 - [BytePlus (अंतरराष्ट्रीय)](/hi/concepts/model-providers#byteplus-international)
 - [Cerebras](/hi/providers/cerebras)
 - [Chutes](/hi/providers/chutes)
@@ -59,11 +59,11 @@ OpenClaw कई LLM प्रदाताओं का उपयोग कर �
 - [Gradium](/hi/providers/gradium)
 - [Groq (LPU अनुमान)](/hi/providers/groq)
 - [Hugging Face (अनुमान)](/hi/providers/huggingface)
-- [inferrs (स्थानीय मॉडल)](/hi/providers/inferrs)
+- [Inferrs (स्थानीय मॉडल)](/hi/providers/inferrs)
 - [Kilocode](/hi/providers/kilocode)
 - [LiteLLM (एकीकृत Gateway)](/hi/providers/litellm)
 - [LM Studio (स्थानीय मॉडल)](/hi/providers/lmstudio)
-- [LongCat](/providers/longcat)
+- [LongCat](/hi/providers/longcat)
 - [MiniMax](/hi/providers/minimax)
 - [Mistral](/hi/providers/mistral)
 - [Moonshot AI (Kimi + Kimi Coding)](/hi/providers/moonshot)
@@ -96,7 +96,7 @@ OpenClaw कई LLM प्रदाताओं का उपयोग कर �
 
 ## साझा अवलोकन पृष्ठ
 
-- [अतिरिक्त प्रदाता संस्करण](/hi/providers/models#additional-provider-variants) - Anthropic Vertex, Copilot Proxy और Gemini CLI OAuth
+- [अतिरिक्त प्रदाता प्रकार](/hi/providers/models#additional-provider-variants) - Anthropic Vertex, Copilot Proxy और Gemini CLI OAuth
 - [छवि निर्माण](/hi/tools/image-generation) - साझा `image_generate` टूल, प्रदाता चयन और फ़ेलओवर
 - [संगीत निर्माण](/hi/tools/music-generation) - साझा `music_generate` टूल, प्रदाता चयन और फ़ेलओवर
 - [वीडियो निर्माण](/hi/tools/video-generation) - साझा `video_generate` टूल, प्रदाता चयन और फ़ेलओवर
@@ -112,7 +112,7 @@ OpenClaw कई LLM प्रदाताओं का उपयोग कर �
 
 ## सामुदायिक टूल
 
-- [Claude Max API Proxy](/hi/providers/claude-max-api-proxy) - Claude सदस्यता क्रेडेंशियल के लिए सामुदायिक प्रॉक्सी (उपयोग से पहले Anthropic की नीति/शर्तें सत्यापित करें)
+- [Claude Max API Proxy](/hi/providers/claude-max-api-proxy) - Claude सदस्यता क्रेडेंशियल के लिए सामुदायिक प्रॉक्सी (उपयोग से पहले Anthropic की नीति/शर्तों की पुष्टि करें)
 
 संपूर्ण प्रदाता कैटलॉग (xAI, Groq, Mistral आदि) और उन्नत कॉन्फ़िगरेशन के लिए,
 [मॉडल प्रदाता](/hi/concepts/model-providers) देखें।

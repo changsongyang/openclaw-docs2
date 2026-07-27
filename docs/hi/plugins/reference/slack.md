@@ -4,7 +4,7 @@ read_when:
 summary: चैनलों, DMs, कमांड और ऐप इवेंट के लिए OpenClaw Slack चैनल Plugin।
 title: Slack Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:33:52Z"
+    generated_at: "2026-07-27T18:19:19Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,9 +21,9 @@ x-i18n:
 ## वितरण
 
 - पैकेज: `@openclaw/slack`
-- इंस्टॉल करने का माध्यम: npm; ClawHub
+- इंस्टॉल मार्ग: npm; ClawHub
 
-## उपलब्ध क्षेत्र
+## सतह
 
 चैनल: `slack`; Skills
 

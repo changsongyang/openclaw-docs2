@@ -5,7 +5,7 @@ read_when:
 summary: Baseten-Einrichtung für Inkling und gehostete Modell-APIs
 title: Baseten
 x-i18n:
-    generated_at: "2026-07-24T05:18:31Z"
+    generated_at: "2026-07-26T19:11:40Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,13 +15,13 @@ x-i18n:
     workflow: 16
 ---
 
-[Baseten-Modell-APIs](https://docs.baseten.co/inference/model-apis/overview) bieten gehosteten, OpenAI-kompatiblen Zugriff auf Frontier-Modelle. Das offizielle externe Plugin verwendet authentifizierte Erkennung, sodass OpenClaw dem vollständigen Modellsatz folgt, der für Ihr Baseten-Konto aktiviert ist. Sein Offline-Fallback enthält jede Modell-API, die zum Zeitpunkt der Erstellung dieser OpenClaw-Version verfügbar war.
+[Baseten-Modell-APIs](https://docs.baseten.co/inference/model-apis/overview) bieten gehosteten, OpenAI-kompatiblen Zugriff auf Frontier-Modelle. Das offizielle externe Plugin verwendet authentifizierte Erkennung, sodass OpenClaw den vollständigen Modellsatz übernimmt, der für Ihr Baseten-Konto aktiviert ist. Der Offline-Fallback enthält jede Modell-API, die beim Erstellen dieser OpenClaw-Version verfügbar war.
 
 | Eigenschaft      | Wert                                                     |
 | --------------- | -------------------------------------------------------- |
 | Provider-ID     | `baseten`                                                |
 | Plugin          | offizielles externes Paket (`@openclaw/baseten-provider`) |
-| Auth-Umgebungsvariable | `BASETEN_API_KEY`                                        |
+| Authentifizierungs-Umgebungsvariable | `BASETEN_API_KEY`                                        |
 | Onboarding-Flag | `--auth-choice baseten-api-key`                          |
 | Direktes CLI-Flag | `--baseten-api-key <key>`                                |
 | API             | OpenAI-kompatibel (`openai-completions`)                 |
@@ -39,7 +39,7 @@ openclaw gateway restart
 
 <Steps>
   <Step title="Baseten-Konto und API-Schlüssel erstellen">
-    Für den Basic-Tarif von Baseten fällt keine monatliche Plattformgebühr an; Modell-API-Aufrufe werden nach Nutzung abgerechnet. Erstellen Sie unter [Baseten-API-Schlüsseleinstellungen](https://app.baseten.co/settings/api_keys) einen Schlüssel und prüfen Sie die aktuellen Tarife auf der [Preisseite](https://www.baseten.co/pricing).
+    Für den Basic-Tarif von Baseten fällt keine monatliche Plattformgebühr an; Modell-API-Aufrufe werden nutzungsabhängig berechnet. Erstellen Sie unter [Baseten API key settings](https://app.baseten.co/settings/api_keys) einen Schlüssel und prüfen Sie die aktuellen Preise auf der [Preisseite](https://www.baseten.co/pricing).
   </Step>
   <Step title="Onboarding ausführen">
     <CodeGroup>
@@ -48,13 +48,13 @@ openclaw gateway restart
 openclaw onboard --auth-choice baseten-api-key
 ```
 
-```bash Direktes Flag
+```bash Direct flag
 openclaw onboard --non-interactive \
   --auth-choice baseten-api-key \
   --baseten-api-key "$BASETEN_API_KEY"
 ```
 
-```bash Nur Umgebungsvariable
+```bash Env only
 export BASETEN_API_KEY=...
 ```
 
@@ -66,14 +66,14 @@ export BASETEN_API_KEY=...
     openclaw models list --provider baseten
     ```
 
-    Mit verwendbarer Authentifizierung fordert das Plugin `GET /v1/models` an und listet jedes für das Konto zurückgegebene Modell auf. Ohne Authentifizierung bleibt es offline und verwendet das gebündelte Fallback.
+    Bei verwendbarer Authentifizierung fordert das Plugin `GET /v1/models` an und listet jedes für das Konto zurückgegebene Modell auf. Ohne Authentifizierung bleibt es offline und verwendet den gebündelten Fallback.
 
   </Step>
 </Steps>
 
 ## Inkling
 
-[Inkling von Thinking Machines Lab](https://thinkingmachines.ai/news/introducing-inkling/) ist das Standardmodell. In OpenClaw unterstützt es Text- und Bildeingaben, Tool-Aufrufe, strukturierte Tool-Schemas, konfigurierbaren Reasoning-Aufwand, ein Kontextfenster mit 1.048M Token und bis zu 32k Ausgabe-Token:
+[Inkling von Thinking Machines Lab](https://thinkingmachines.ai/news/introducing-inkling/) ist das Standardmodell. In OpenClaw unterstützt es Text- und Bildeingaben, Tool-Aufrufe, strukturierte Tool-Schemata, konfigurierbaren Reasoning-Aufwand, ein Kontextfenster mit 1.048M Token und bis zu 32k Ausgabe-Token:
 
 ```json5
 {
@@ -89,9 +89,9 @@ Verwenden Sie `/model baseten/thinkingmachines/inkling`, um einen bestehenden Ch
 
 ## Gebündelter Fallback-Katalog
 
-Der authentifizierte Live-Katalog ist maßgeblich. Diese Zeilen sorgen dafür, dass Einrichtung und Modellauswahl bereits vor erfolgreicher Erkennung verwendet werden können:
+Der authentifizierte Live-Katalog ist maßgeblich. Diese Zeilen sorgen dafür, dass Einrichtung und Modellauswahl auch vor erfolgreicher Erkennung nutzbar bleiben:
 
-| Modellreferenz                                     | Eingabe     | Kontext | Max. Ausgabe |
+| Modellreferenz                                     | Eingabe      | Kontext | Max. Ausgabe |
 | -------------------------------------------------- | ----------- | ------: | ---------: |
 | `baseten/deepseek-ai/DeepSeek-V4-Pro`              | Text        |    262k |       262k |
 | `baseten/zai-org/GLM-4.7`                          | Text        |    200k |       200k |
@@ -106,15 +106,15 @@ Der authentifizierte Live-Katalog ist maßgeblich. Diese Zeilen sorgen dafür, d
 | `baseten/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B` | Text        |    202k |       202k |
 | `baseten/openai/gpt-oss-120b`                      | Text        |    128k |       128k |
 
-Alle gebündelten Modelle unterstützen Tool-Aufrufe und Reasoning. OpenClaw ordnet seine Denkstufen Modellen mit nativem `reasoning_effort` zu. Bei den optionalen GLM-, Kimi- und Nemotron-Modellen von Baseten ist das Denken standardmäßig deaktiviert; die meisten bieten eine binäre Aus-/Ein-Steuerung, während GLM 5.2 die Stufen aus, hoch und maximal bietet. OpenClaw übermittelt diese Auswahl über die Baseten-Steuerung `chat_template_args.enable_thinking` und bei GLM 5.2 über den validierten Top-Level-Parameter `reasoning_effort`.
+Alle gebündelten Modelle unterstützen Tool-Aufrufe und Reasoning. OpenClaw ordnet seine Denkstufen Modellen mit nativem `reasoning_effort` zu. Bei den optional aktivierbaren GLM-, Kimi- und Nemotron-Modellen von Baseten ist das Denken standardmäßig deaktiviert; die meisten bieten eine binäre Aus-/Ein-Steuerung, während GLM 5.2 die Stufen Aus, Hoch und Maximum bietet. OpenClaw übermittelt diese Auswahl über Basetens `chat_template_args.enable_thinking`-Steuerung und bei GLM 5.2 über den validierten Top-Level-Parameter `reasoning_effort`.
 
 <Note>
-Baseten kann Modell-APIs unabhängig von OpenClaw-Versionen hinzufügen, entfernen oder ändern. Das Plugin aktualisiert Modell-IDs, Kontextlimits, Ausgabelimits sowie die Preise für Eingabe, zwischengespeicherte Eingabe und Ausgabe über die authentifizierte API und behält dabei die modellspezifische Transport-Richtlinie von OpenClaw bei.
+Baseten kann Modell-APIs unabhängig von OpenClaw-Versionen hinzufügen, entfernen oder ändern. Das Plugin aktualisiert Modell-IDs, Kontextlimits, Ausgabelimits sowie die Preise für Eingabe, zwischengespeicherte Eingabe und Ausgabe über die authentifizierte API, während die modellspezifische OpenClaw-Transportrichtlinie beibehalten wird.
 </Note>
 
 ## Manuelle Konfiguration
 
-Für die meisten Einrichtungen ist nur der API-Schlüssel erforderlich. So legen Sie den Provider ausdrücklich fest:
+Für die meisten Einrichtungen ist nur der API-Schlüssel erforderlich. So legen Sie den Provider explizit fest:
 
 ```json5
 {
@@ -148,7 +148,7 @@ Für die meisten Einrichtungen ist nur der API-Schlüssel erforderlich. So legen
 ```
 
 <Note>
-Wenn der Gateway als Daemon ausgeführt wird (launchd, systemd, Docker), stellen Sie sicher, dass `BASETEN_API_KEY` für diesen Prozess verfügbar ist. Ein Schlüssel, der nur in einer interaktiven Shell exportiert wurde, ist für einen bereits laufenden verwalteten Dienst nicht sichtbar.
+Wenn das Gateway als Daemon ausgeführt wird (launchd, systemd, Docker), stellen Sie sicher, dass `BASETEN_API_KEY` für diesen Prozess verfügbar ist. Ein Schlüssel, der nur in einer interaktiven Shell exportiert wurde, ist für einen bereits ausgeführten verwalteten Dienst nicht sichtbar.
 </Note>
 
 ## Verwandte Themen

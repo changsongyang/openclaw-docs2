@@ -2,9 +2,9 @@
 read_when:
     - आप zalouser Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
 summary: मूल zca-js एकीकरण के माध्यम से OpenClaw Zalo व्यक्तिगत खाता Plugin।
-title: Zalo Personal Plugin
+title: Zalo व्यक्तिगत Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:18:54Z"
+    generated_at: "2026-07-27T19:41:20Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Zalo Personal Plugin
 
-मूल zca-js एकीकरण के माध्यम से OpenClaw Zalo व्यक्तिगत खाता Plugin।
+नेटिव zca-js इंटीग्रेशन के माध्यम से OpenClaw Zalo व्यक्तिगत अकाउंट Plugin।
 
 ## वितरण
 

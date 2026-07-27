@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder überprüfen das tencent-Plugin.
-summary: Fügt Unterstützung für die Modell-Provider Tencent TokenHub und Tencent Tokenplan zu OpenClaw hinzu.
+    - Sie installieren, konfigurieren oder prüfen das tencent-Plugin.
+summary: Fügt OpenClaw Unterstützung für die Modell-Provider Tencent TokenHub und Tencent Tokenplan hinzu.
 title: Tencent-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:05:00Z"
+    generated_at: "2026-07-26T18:03:28Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Tencent-Plugin
 
-Fügt Unterstützung für die Modell-Provider Tencent TokenHub und Tencent Tokenplan zu OpenClaw hinzu.
+Fügt OpenClaw Unterstützung für die Modell-Provider Tencent TokenHub und Tencent Tokenplan hinzu.
 
 ## Distribution
 

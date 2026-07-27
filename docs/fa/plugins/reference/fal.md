@@ -4,7 +4,7 @@ read_when:
 summary: پشتیبانی از ارائه‌دهنده مدل fal را به OpenClaw اضافه می‌کند.
 title: Plugin fal
 x-i18n:
-    generated_at: "2026-07-16T16:55:12Z"
+    generated_at: "2026-07-27T16:58:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## توزیع
 
 - بسته: `@openclaw/fal-provider`
-- مسیر نصب: در OpenClaw گنجانده شده است
+- مسیر نصب: همراه OpenClaw ارائه می‌شود
 
 ## سطح
 

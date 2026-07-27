@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Manuelles Initialisieren eines Arbeitsbereichs
+    - Manuelles Bootstrapping eines Arbeitsbereichs
 summary: Workspace-Vorlage für HEARTBEAT.md
 title: HEARTBEAT.md-Vorlage
 x-i18n:
-    generated_at: "2026-07-24T04:55:38Z"
+    generated_at: "2026-07-26T18:46:21Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # HEARTBEAT.md-Vorlage
 
-`HEARTBEAT.md` befindet sich im Agent-Arbeitsbereich und enthält die regelmäßige Heartbeat-Checkliste. Lassen Sie die Datei leer oder verwenden Sie ausschließlich Leerzeichen, Markdown-Kommentare, ATX-Überschriften, leere Listenstrukturen (`- `, `* [ ]`) oder Codeblock-Markierungen, damit OpenClaw den Heartbeat-Modellaufruf vollständig überspringt (`reason=empty-heartbeat-file`).
+`HEARTBEAT.md` befindet sich im Agent-Arbeitsbereich und enthält die regelmäßige Heartbeat-Checkliste. Lassen Sie die Datei leer oder verwenden Sie ausschließlich Leerzeichen, Markdown-Kommentare, ATX-Überschriften, leere Listenrahmen (`- `, `* [ ]`) oder Codeblockbegrenzungen, damit OpenClaw den Heartbeat-Modellaufruf vollständig überspringt (`reason=empty-heartbeat-file`).
 
 Standardmäßig ausgelieferter Inhalt:
 
@@ -28,9 +28,9 @@ Standardmäßig ausgelieferter Inhalt:
 # Fügen Sie unten eine kurze Checkliste hinzu, wenn der Heartbeat den gemeinsamen Kontext prüfen soll.
 ```
 
-Fügen Sie nur dann unter den Kommentarzeilen eine kurze Checkliste hinzu, wenn die Elemente in einem einzigen Heartbeat-Durchlauf gemeinsam geprüft werden sollen. Halten Sie sie kurz: Heartbeat-Durchläufe lesen diese Datei bei jedem Intervall (standardmäßig alle 30 Minuten), sodass überladene Anweisungen bei jeder Aktivierung Tokens verbrauchen.
+Fügen Sie unterhalb der Kommentarzeilen nur dann eine kurze Checkliste hinzu, wenn die Elemente in einem einzigen Heartbeat-Durchlauf gemeinsam geprüft werden sollen. Halten Sie sie kurz: Heartbeat-Durchläufe lesen diese Datei bei jedem Tick (standardmäßig alle 30 Minuten), sodass umfangreiche Anweisungen bei jedem Aufwachen Tokens verbrauchen.
 
-Erstellen Sie für unabhängig geplante oder ausschließlich bei Fälligkeit auszuführende Prüfungen [Cron-Jobs](/de/automation/cron-jobs). Heartbeat-Notizen unterstützen keine Scheduler-Syntax mehr. Führen Sie `openclaw doctor --fix` aus, um ältere `tasks:`-Blöcke zu konvertieren.
+Erstellen Sie für unabhängig geplante oder nur bei Fälligkeit auszuführende Prüfungen [Cron-Jobs](/de/automation/cron-jobs). Heartbeat-Notizen unterstützen keine Scheduler-Syntax mehr. Führen Sie `openclaw doctor --fix` aus, um ältere `tasks:`-Blöcke zu konvertieren.
 
 ## Verwandte Themen
 

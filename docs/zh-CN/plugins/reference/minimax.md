@@ -4,7 +4,7 @@ read_when:
 summary: 为 OpenClaw 添加 MiniMax 和 MiniMax Portal 模型提供商支持。
 title: MiniMax 插件
 x-i18n:
-    generated_at: "2026-07-16T11:51:08Z"
+    generated_at: "2026-07-26T06:22:20Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # MiniMax 插件
 
-为 OpenClaw 添加 MiniMax、MiniMax Portal 模型提供商支持。
+为 OpenClaw 添加 MiniMax 和 MiniMax Portal 模型提供商支持。
 
 ## 分发
 
 - 软件包：`@openclaw/minimax-provider`
-- 安装方式：OpenClaw 已内置
+- 安装方式：已包含在 OpenClaw 中
 
 ## 接口
 

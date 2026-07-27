@@ -1,11 +1,11 @@
 ---
 read_when:
     - Node ist verbunden, aber Kamera-/Canvas-/Bildschirm-/Exec-Tools schlagen fehl
-    - Sie müssen das mentale Modell für Node-Kopplung im Vergleich zu Genehmigungen verstehen
+    - Sie benötigen das mentale Modell für Node-Kopplung im Vergleich zu Genehmigungen
 summary: Fehlerbehebung bei Node-Kopplung, Anforderungen an den Vordergrund, Berechtigungen und Tool-Fehlern
 title: Node-Fehlerbehebung
 x-i18n:
-    generated_at: "2026-07-24T03:58:09Z"
+    generated_at: "2026-07-26T17:55:59Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -38,14 +38,14 @@ openclaw approvals get --node <idOrNameOrIp>
 Anzeichen für einen fehlerfreien Zustand:
 
 - Der Node ist verbunden und für die Rolle `node` gekoppelt.
-- `nodes describe` enthält die aufgerufene Funktion.
-- Die Ausführungsgenehmigungen zeigen den erwarteten Modus/die erwartete Zulassungsliste.
+- `nodes describe` enthält die aufgerufene Fähigkeit.
+- Die Ausführungsgenehmigungen zeigen den erwarteten Modus bzw. die erwartete Zulassungsliste.
 
-## Anforderungen an den Vordergrund
+## Anforderungen an den Vordergrundbetrieb
 
 `canvas.*`, `camera.*` und `screen.*` funktionieren auf iOS-/Android-Nodes nur im Vordergrund.
 
-Schnelle Prüfung und Behebung:
+Schnelle Prüfung und Fehlerbehebung:
 
 ```bash
 openclaw nodes describe --node <idOrNameOrIp>
@@ -57,20 +57,20 @@ Wenn `NODE_BACKGROUND_UNAVAILABLE` angezeigt wird, bringen Sie die Node-App in d
 
 ## Berechtigungsmatrix
 
-| Funktion                     | iOS                                               | Android                                             | macOS-Node-App                         | Typischer Fehlercode                         |
-| ---------------------------- | ------------------------------------------------- | --------------------------------------------------- | -------------------------------------- | -------------------------------------------- |
-| `camera.snap`, `camera.clip` | Kamera (+ Mikrofon für Clip-Audio)                 | Kamera (+ Mikrofon für Clip-Audio)                   | Kamera (+ Mikrofon für Clip-Audio)     | `*_PERMISSION_REQUIRED`                           |
-| `screen.record`           | Bildschirmaufnahme (+ Mikrofon optional)           | Abfrage zur Bildschirmaufnahme (+ Mikrofon optional) | Bildschirmaufnahme                     | `*_PERMISSION_REQUIRED`                           |
-| `computer.act`           | Nicht verfügbar                                   | Nicht verfügbar                                     | Bedienungshilfen + Bildschirmaufnahme  | `COMPUTER_DISABLED`, `ACCESSIBILITY_REQUIRED`       |
-| `location.get`           | Beim Verwenden oder Immer (abhängig vom Modus)     | Standort im Vorder-/Hintergrund abhängig vom Modus  | Standortberechtigung                   | `LOCATION_PERMISSION_REQUIRED`                           |
-| `system.run`           | Nicht verfügbar (Node-Host-Pfad)                   | Nicht verfügbar (Node-Host-Pfad)                     | Ausführungsgenehmigungen erforderlich  | `SYSTEM_RUN_DENIED`                           |
+| Fähigkeit                    | iOS                                            | Android                                        | macOS-Node-App                              | Typischer Fehlercode                          |
+| ---------------------------- | ---------------------------------------------- | ---------------------------------------------- | ------------------------------------------- | --------------------------------------------- |
+| `camera.snap`, `camera.clip` | Kamera (+ Mikrofon für Audio in Clips)         | Kamera (+ Mikrofon für Audio in Clips)         | Kamera (+ Mikrofon für Audio in Clips)      | `*_PERMISSION_REQUIRED`                       |
+| `screen.record`              | Bildschirmaufnahme (+ optionales Mikrofon)     | Aufforderung zur Bildschirmaufnahme (+ optionales Mikrofon) | Bildschirmaufnahme                          | `*_PERMISSION_REQUIRED`                       |
+| `computer.act`               | Nicht verfügbar                                | Nicht verfügbar                                | Bedienungshilfen + Bildschirmaufnahme       | `COMPUTER_DISABLED`, `ACCESSIBILITY_REQUIRED` |
+| `location.get`               | Beim Verwenden oder Immer (modusabhängig)      | Standortzugriff im Vorder-/Hintergrund je nach Modus | Standortberechtigung                         | `LOCATION_PERMISSION_REQUIRED`                |
+| `system.run`                 | Nicht verfügbar (Pfad des Node-Hosts)          | Nicht verfügbar (Pfad des Node-Hosts)          | Ausführungsgenehmigungen erforderlich       | `SYSTEM_RUN_DENIED`                           |
 
-## Kopplung im Vergleich zu Genehmigungen
+## Kopplung und Genehmigungen
 
-Drei separate Prüfstellen bestimmen, ob ein Node-Befehl erfolgreich ausgeführt wird:
+Drei separate Kontrollstufen bestimmen, ob ein Node-Befehl erfolgreich ausgeführt wird:
 
-1. **Gerätekopplung**: Kann dieser Node eine Verbindung zum Gateway herstellen?
-2. **Gateway-Richtlinie für Node-Befehle**: Ist die RPC-Befehls-ID durch `gateway.nodes.commands.allow` / `gateway.nodes.commands.deny` und die Plattformstandardwerte zulässig?
+1. **Gerätekopplung**: Kann sich dieser Node mit dem Gateway verbinden?
+2. **Gateway-Richtlinie für Node-Befehle**: Ist die RPC-Befehls-ID durch `gateway.nodes.commands.allow` / `gateway.nodes.commands.deny` und die Plattformstandards erlaubt?
 3. **Ausführungsgenehmigungen**: Darf dieser Node einen bestimmten Shell-Befehl lokal ausführen?
 
 Die Node-Kopplung ist eine Identitäts-/Vertrauensprüfung und keine Genehmigungsoberfläche für einzelne Befehle. Für `system.run` befindet sich die Node-spezifische Richtlinie in der Datei mit den Ausführungsgenehmigungen dieses Nodes (`openclaw approvals get --node ...`) und nicht im Kopplungsdatensatz des Gateways.
@@ -88,22 +88,22 @@ openclaw approvals allowlist add --node <idOrNameOrIp> "/usr/bin/uname"
 - In `nodes describe` fehlt ein Befehl: Prüfen Sie die Gateway-Richtlinie für Node-Befehle und ob der Node diesen Befehl beim Verbindungsaufbau tatsächlich deklariert hat.
 - Die Kopplung funktioniert, aber `system.run` schlägt fehl: Korrigieren Sie die Ausführungsgenehmigungen/Zulassungsliste auf diesem Node.
 
-Bei durch Genehmigungen abgesicherten Ausführungen von `host=node` bindet das Gateway die Ausführung außerdem an den vorbereiteten kanonischen Wert `systemRunPlan`. Wenn ein späterer Aufrufer den Befehl, das Arbeitsverzeichnis oder die Sitzungsmetadaten verändert, bevor die genehmigte Ausführung weitergeleitet wird, weist das Gateway die Ausführung wegen einer Abweichung von der Genehmigung zurück, statt den bearbeiteten Nutzdaten zu vertrauen.
+Bei genehmigungsabhängigen `host=node`-Ausführungen bindet das Gateway die Ausführung außerdem an den vorbereiteten kanonischen `systemRunPlan`. Wenn ein späterer Aufrufer den Befehl, das Arbeitsverzeichnis oder die Sitzungsmetadaten ändert, bevor die genehmigte Ausführung weitergeleitet wird, lehnt das Gateway die Ausführung wegen einer Abweichung von der Genehmigung ab, anstatt der bearbeiteten Nutzlast zu vertrauen.
 
 ## Häufige Node-Fehlercodes
 
-| Code                                   | Bedeutung                                                                                                                                                                                                                           |
-| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `NODE_BACKGROUND_UNAVAILABLE`                     | Die App befindet sich im Hintergrund. Bringen Sie sie in den Vordergrund.                                                                                                                                                            |
-| `CAMERA_DISABLED`                     | Der Kameraschalter ist in den Node-Einstellungen deaktiviert.                                                                                                                                                                       |
-| `*_PERMISSION_REQUIRED`                     | Die Betriebssystemberechtigung fehlt oder wurde verweigert.                                                                                                                                                                         |
-| `LOCATION_DISABLED`                     | Der Standortmodus ist deaktiviert.                                                                                                                                                                                                  |
-| `LOCATION_PERMISSION_REQUIRED`                     | Der angeforderte Standortmodus wurde nicht genehmigt.                                                                                                                                                                               |
-| `LOCATION_BACKGROUND_UNAVAILABLE`                     | Die App befindet sich im Hintergrund, aber es liegt nur die Berechtigung „Beim Verwenden“ vor.                                                                                                                                       |
-| `COMPUTER_DISABLED`                     | Aktivieren Sie **Allow Computer Control** in der macOS-App und genehmigen Sie anschließend die Aktualisierung der Kopplung.                                                                                                         |
-| `ACCESSIBILITY_REQUIRED`                     | Gewähren Sie dem aktuellen OpenClaw-App-Bundle in den macOS-Systemeinstellungen Zugriff auf die Bedienungshilfen.                                                                                                                   |
-| `SYSTEM_RUN_DENIED: approval required`                     | Die Ausführungsanforderung benötigt eine ausdrückliche Genehmigung.                                                                                                                                                                  |
-| `SYSTEM_RUN_DENIED: allowlist miss`                     | Der Befehl wird durch den Zulassungslistenmodus blockiert. Auf Windows-Node-Hosts gelten Shell-Wrapper-Formen wie `cmd.exe /c ...` im Zulassungslistenmodus als nicht in der Zulassungsliste enthalten, sofern sie nicht über den Abfrageablauf genehmigt wurden. |
+| Code                                   | Bedeutung                                                                                                                                                                                 |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NODE_BACKGROUND_UNAVAILABLE`          | Die App befindet sich im Hintergrund; bringen Sie sie in den Vordergrund.                                                                                                                  |
+| `CAMERA_DISABLED`                      | Der Kameraschalter ist in den Node-Einstellungen deaktiviert.                                                                                                                              |
+| `*_PERMISSION_REQUIRED`                | Die Betriebssystemberechtigung fehlt oder wurde verweigert.                                                                                                                                |
+| `LOCATION_DISABLED`                    | Der Standortmodus ist deaktiviert.                                                                                                                                                         |
+| `LOCATION_PERMISSION_REQUIRED`         | Der angeforderte Standortmodus wurde nicht genehmigt.                                                                                                                                      |
+| `LOCATION_BACKGROUND_UNAVAILABLE`      | Die App befindet sich im Hintergrund, es liegt jedoch nur die Berechtigung „Beim Verwenden“ vor.                                                                                           |
+| `COMPUTER_DISABLED`                    | Aktivieren Sie **Allow Computer Control** in der macOS-App und genehmigen Sie anschließend die Aktualisierung der Kopplung.                                                                |
+| `ACCESSIBILITY_REQUIRED`               | Gewähren Sie dem aktuellen OpenClaw-App-Bundle in den macOS-Systemeinstellungen Zugriff auf die Bedienungshilfen.                                                                          |
+| `SYSTEM_RUN_DENIED: approval required` | Die Ausführungsanfrage erfordert eine ausdrückliche Genehmigung.                                                                                                                           |
+| `SYSTEM_RUN_DENIED: allowlist miss`    | Der Befehl wird durch den Zulassungslistenmodus blockiert. Auf Windows-Node-Hosts werden Shell-Wrapper-Formen wie `cmd.exe /c ...` im Zulassungslistenmodus als nicht in der Zulassungsliste enthalten behandelt, sofern sie nicht über den Nachfrageablauf genehmigt wurden. |
 
 ## Schnelle Wiederherstellungsschleife
 
@@ -121,14 +121,14 @@ Falls das Problem weiterhin besteht:
 - Erteilen Sie die Betriebssystemberechtigungen erneut.
 - Erstellen Sie die Richtlinie für Ausführungsgenehmigungen neu oder passen Sie sie an.
 
-Prüfen Sie für die Computersteuerung außerdem, ob ein visionsfähiger Agent das Tool `computer` bereitstellt, `screen.snapshot` mit der Berechtigung zur Bildschirmaufnahme erfolgreich ausgeführt wird und `/phone status` die beabsichtigte temporäre oder dauerhafte Gateway-Autorisierung anzeigt. Ein Eintrag vom Typ `gateway.nodes.commands.deny` überschreibt stets `gateway.nodes.commands.allow`.
+Prüfen Sie für die Computersteuerung außerdem, ob ein bildverarbeitungsfähiger Agent das Tool `computer` bereitstellt, ob `screen.snapshot` mit der Berechtigung zur Bildschirmaufnahme erfolgreich ausgeführt wird und ob `/phone status` die gewünschte temporäre oder dauerhafte Gateway-Autorisierung anzeigt. Ein Eintrag `gateway.nodes.commands.deny` überschreibt immer `gateway.nodes.commands.allow`.
 
 ## Verwandte Themen
 
 - [Node-Übersicht](/de/nodes)
 - [Kamera-Nodes](/de/nodes/camera)
 - [Standortbefehl](/de/nodes/location-command)
-- [Computersteuerung](/de/nodes/computer-use)
+- [Computernutzung](/de/nodes/computer-use)
 - [Ausführungsgenehmigungen](/de/tools/exec-approvals)
 - [Gateway-Kopplung](/de/gateway/pairing)
 - [Gateway-Fehlerbehebung](/de/gateway/troubleshooting)

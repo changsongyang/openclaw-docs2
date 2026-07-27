@@ -4,7 +4,7 @@ read_when:
 summary: Voegt ondersteuning voor de Moonshot-modelprovider toe aan OpenClaw.
 title: Moonshot-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:16:09Z"
+    generated_at: "2026-07-27T06:03:41Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

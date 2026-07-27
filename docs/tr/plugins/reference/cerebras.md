@@ -1,10 +1,10 @@
 ---
 read_when:
-    - cerebras pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - cerebras Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a Cerebras model sağlayıcısı desteği ekler.
-title: Cerebras Plugin'i
+title: Cerebras plugini
 x-i18n:
-    generated_at: "2026-07-16T17:24:04Z"
+    generated_at: "2026-07-26T23:27:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Cerebras plugin'i
+# Cerebras Plugin
 
 OpenClaw'a Cerebras model sağlayıcısı desteği ekler.
 

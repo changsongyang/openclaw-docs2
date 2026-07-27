@@ -1,12 +1,12 @@
 ---
 read_when:
-    - به روشی برای نصب، غیر از راه‌اندازی سریع «شروع به کار»، نیاز دارید
+    - به روشی برای نصب غیر از راه‌اندازی سریع «شروع به کار» نیاز دارید
     - می‌خواهید روی یک پلتفرم ابری مستقر کنید
-    - باید به‌روزرسانی، مهاجرت یا حذف نصب کنید
+    - باید به‌روزرسانی، مهاجرت یا حذف نصب انجام دهید
 summary: نصب OpenClaw — اسکریپت نصب، npm/pnpm/bun، از کد منبع، Docker و موارد دیگر
 title: نصب
 x-i18n:
-    generated_at: "2026-07-16T17:07:24Z"
+    generated_at: "2026-07-27T16:41:46Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -19,15 +19,15 @@ x-i18n:
 ## نیازمندی‌های سیستم
 
 - **Node 22.22.3+، 24.15+ یا 25.9+** - Node 24 هدف پیش‌فرض است؛ اسکریپت نصب این مورد را به‌طور خودکار مدیریت می‌کند.
-- **macOS، Linux یا Windows** - کاربران Windows می‌توانند با برنامه بومی Windows Hub، نصب‌کننده CLI در PowerShell یا یک Gateway در WSL2 شروع کنند. به [Windows](/fa/platforms/windows) مراجعه کنید.
+- **macOS، Linux یا Windows** - کاربران Windows می‌توانند کار را با برنامه بومی Windows Hub، نصب‌کننده CLI مبتنی بر PowerShell یا یک Gateway در WSL2 آغاز کنند. به [Windows](/fa/platforms/windows) مراجعه کنید.
 - `pnpm` فقط در صورت ساخت از کد منبع لازم است.
 
 ## روش پیشنهادی: اسکریپت نصب
 
-سریع‌ترین روش نصب. سیستم‌عامل را تشخیص می‌دهد، در صورت نیاز Node را نصب می‌کند، OpenClaw را نصب می‌کند و راه‌اندازی اولیه را آغاز می‌کند.
+سریع‌ترین روش نصب است. سیستم‌عامل را تشخیص می‌دهد، در صورت نیاز Node را نصب می‌کند، OpenClaw را نصب می‌کند و فرایند راه‌اندازی اولیه را اجرا می‌کند.
 
 <Note>
-کاربران دسکتاپ Windows همچنین می‌توانند برنامه همراه بومی [Windows Hub](/fa/platforms/windows#recommended-windows-hub) را نصب کنند که شامل راه‌اندازی، وضعیت ناحیه اعلان، گفت‌وگو، حالت Node و حالت MCP محلی است.
+کاربران دسکتاپ Windows می‌توانند برنامه همراه بومی [Windows Hub](/fa/platforms/windows#recommended-windows-hub) را نیز نصب کنند که شامل راه‌اندازی، وضعیت سینی سیستم، گفت‌وگو، حالت Node و حالت MCP محلی است.
 </Note>
 
 <Tabs>
@@ -58,14 +58,14 @@ x-i18n:
   </Tab>
 </Tabs>
 
-برای مشاهده همه پرچم‌ها و گزینه‌های CI/خودکارسازی، به [جزئیات داخلی نصب‌کننده](/fa/install/installer) مراجعه کنید.
+برای همه پرچم‌ها و گزینه‌های CI/خودکارسازی، به [جزئیات داخلی نصب‌کننده](/fa/install/installer) مراجعه کنید.
 
 ## روش‌های جایگزین نصب
 
 ### نصب‌کننده با پیشوند محلی (`install-cli.sh`)
 
-وقتی می‌خواهید OpenClaw و Node بدون وابستگی به نصب سراسری Node، زیر یک پیشوند محلی مانند
-`~/.openclaw` نگه‌داری شوند، از این روش استفاده کنید:
+زمانی از این روش استفاده کنید که می‌خواهید OpenClaw و Node زیر یک پیشوند محلی مانند
+`~/.openclaw` نگهداری شوند، بدون آنکه به نصب سراسری Node در سیستم وابسته باشید:
 
 ```bash
 curl -fsSL https://openclaw.ai/install-cli.sh | bash
@@ -123,7 +123,7 @@ curl -fsSL https://openclaw.ai/install-cli.sh | bash
 
 ### از کد منبع
 
-برای مشارکت‌کنندگان یا هر کسی که می‌خواهد از یک نسخه محلی کد اجرا کند:
+برای مشارکت‌کنندگان یا هر کسی که می‌خواهد از یک نسخه دریافت‌شده محلی اجرا کند:
 
 ```bash
 git clone https://github.com/openclaw/openclaw.git
@@ -133,9 +133,9 @@ pnpm link --global
 openclaw onboard --install-daemon
 ```
 
-همچنین می‌توانید پیوند را نادیده بگیرید و از داخل مخزن از `pnpm openclaw ...` استفاده کنید. برای مشاهده جریان‌های کاری کامل توسعه، به [راه‌اندازی](/fa/start/setup) مراجعه کنید.
+یا از پیوند صرف‌نظر کنید و `pnpm openclaw ...` را از داخل مخزن به‌کار ببرید. برای جریان‌های کامل توسعه به [راه‌اندازی](/fa/start/setup) مراجعه کنید.
 
-### نصب از شاخه main در GitHub
+### نصب از نسخه شاخه اصلی GitHub
 
 ```bash
 curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash -s -- --install-method git --version main
@@ -148,13 +148,13 @@ curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash -s -
     استقرارهای کانتینری یا بدون رابط گرافیکی.
   </Card>
   <Card title="Podman" href="/fa/install/podman" icon="container">
-    جایگزین کانتینری بدون دسترسی ریشه برای Docker.
+    جایگزین کانتینری بدون دسترسی root برای Docker.
   </Card>
   <Card title="Nix" href="/fa/install/nix" icon="snowflake">
     نصب اعلانی از طریق Nix flake.
   </Card>
   <Card title="Ansible" href="/fa/install/ansible" icon="server">
-    آماده‌سازی خودکار مجموعه‌ای از ماشین‌ها.
+    آماده‌سازی خودکار ناوگان.
   </Card>
   <Card title="Bun" href="/fa/install/bun" icon="zap">
     نصب‌کننده اختیاری وابستگی‌ها و اجراکننده اسکریپت‌های بسته.
@@ -166,21 +166,21 @@ curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash -s -
 ```bash
 openclaw --version      # تأیید کنید CLI در دسترس است
 openclaw doctor         # مشکلات پیکربندی را بررسی کنید
-openclaw gateway status # تأیید کنید Gateway در حال اجرا است
+openclaw gateway status # بررسی کنید Gateway در حال اجرا است
 ```
 
 اگر پس از نصب، راه‌اندازی مدیریت‌شده می‌خواهید:
 
-- macOS: ‏LaunchAgent از طریق `openclaw onboard --install-daemon` یا `openclaw gateway install`
+- macOS: عامل راه‌اندازی LaunchAgent از طریق `openclaw onboard --install-daemon` یا `openclaw gateway install`
 - Linux/WSL2: سرویس کاربری systemd از طریق همان فرمان‌ها
-- Windows بومی: ابتدا Scheduled Task و اگر ایجاد وظیفه رد شد، یک مورد ورود به سیستم در پوشه Startup مخصوص هر کاربر به‌عنوان روش جایگزین
+- Windows بومی: ابتدا Scheduled Task و اگر ایجاد وظیفه مجاز نباشد، یک مورد ورود به سیستم مختص هر کاربر در پوشه Startup به‌عنوان روش جایگزین
 
 ## میزبانی و استقرار
 
-OpenClaw را روی یک سرور ابری یا VPS مستقر کنید. برای انتخاب کامل
-ارائه‌دهنده (DigitalOcean، Hetzner، Hostinger، Fly.io، GCP، Azure، Railway،
-Northflank، Oracle Cloud، Raspberry Pi و موارد دیگر) به [سرور Linux](/fa/vps) مراجعه کنید، یا به‌صورت اعلانی روی
-[Render](/fa/install/render) مستقر کنید.
+OpenClaw را روی سرور ابری یا VPS مستقر کنید. برای گزینش کامل
+ارائه‌دهندگان (DigitalOcean، Hetzner، Hostinger، Fly.io، GCP، Azure، Railway،
+Northflank، Oracle Cloud، Raspberry Pi و موارد دیگر) به [سرور Linux](/fa/vps) مراجعه کنید، یا استقرار را به‌صورت اعلانی روی
+[Render](/fa/install/render) انجام دهید.
 
 <CardGroup cols={3}>
   <Card title="VPS" href="/fa/vps">
@@ -201,7 +201,7 @@ Northflank، Oracle Cloud، Raspberry Pi و موارد دیگر) به [سرور 
     OpenClaw را به‌روز نگه دارید.
   </Card>
   <Card title="مهاجرت" href="/fa/install/migrating" icon="arrow-right">
-    به یک ماشین جدید منتقل شوید.
+    به یک دستگاه جدید منتقل شوید.
   </Card>
   <Card title="حذف نصب" href="/fa/install/uninstall" icon="trash-2">
     OpenClaw را به‌طور کامل حذف کنید.
@@ -210,10 +210,10 @@ Northflank، Oracle Cloud، Raspberry Pi و موارد دیگر) به [سرور 
 
 ## عیب‌یابی: `openclaw` یافت نشد
 
-تقریباً همیشه مشکل از PATH است: پوشه فایل‌های اجرایی سراسری npm در `PATH` پوسته شما قرار ندارد. برای راه‌حل کامل، از جمله مسیر Windows، به [عیب‌یابی Node.js](/fa/install/node#troubleshooting) مراجعه کنید.
+تقریباً همیشه مشکل از PATH است: پوشه باینری سراسری npm در `PATH` پوسته شما قرار ندارد. برای راه‌حل کامل، از جمله مسیر Windows، به [عیب‌یابی Node.js](/fa/install/node#troubleshooting) مراجعه کنید.
 
 ```bash
 node -v           # آیا Node نصب شده است؟
 npm prefix -g     # بسته‌های سراسری کجا هستند؟
-echo "$PATH"      # آیا پوشه فایل‌های اجرایی سراسری در PATH است؟
+echo "$PATH"      # آیا پوشه باینری سراسری در PATH است؟
 ```

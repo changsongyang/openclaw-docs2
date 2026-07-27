@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder überprüfen das Matrix-Plugin
+    - Sie installieren, konfigurieren oder überprüfen das Matrix-Plugin.
 summary: OpenClaw-Matrix-Kanal-Plugin für Räume und Direktnachrichten.
 title: Matrix-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:01:05Z"
+    generated_at: "2026-07-26T17:59:19Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

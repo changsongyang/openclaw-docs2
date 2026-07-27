@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Tarayıcı Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: Ajanların çağırabileceği araçlar ekler.
+    - Tarayıcı Plugin'ini yüklüyor, yapılandırıyor veya denetliyorsunuz
+summary: Aracı tarafından çağrılabilen araçlar ekler.
 title: Tarayıcı plugini
 x-i18n:
-    generated_at: "2026-07-16T17:23:51Z"
+    generated_at: "2026-07-26T22:54:15Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Tarayıcı plugini
+# Tarayıcı Plugin'i
 
-Ajanların çağırabileceği araçlar ekler.
+Aracı tarafından çağrılabilen araçlar ekler.
 
 ## Dağıtım
 
@@ -25,7 +25,7 @@ Ajanların çağırabileceği araçlar ekler.
 
 ## Yüzey
 
-sözleşmeler: `tools`; beceriler
+sözleşmeler: `tools`; Skills
 
 ## İlgili belgeler
 

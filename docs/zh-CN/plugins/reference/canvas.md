@@ -4,7 +4,7 @@ read_when:
 summary: 用于已配对节点的实验性 Canvas 控制和 A2UI 渲染界面。
 title: Canvas 插件
 x-i18n:
-    generated_at: "2026-07-16T11:49:01Z"
+    generated_at: "2026-07-26T06:25:49Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,8 +21,8 @@ x-i18n:
 ## 分发
 
 - 软件包：`@openclaw/canvas-plugin`
-- 安装方式：内置于 OpenClaw
+- 安装方式：已包含在 OpenClaw 中
 
-## 接口
+## 界面
 
 契约：`tools`；Skills

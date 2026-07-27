@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप openai Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: OpenClaw में OpenAI मॉडल प्रदाता का समर्थन जोड़ता है।
+summary: OpenClaw में OpenAI मॉडल प्रदाता के लिए समर्थन जोड़ता है।
 title: OpenAI Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:33:02Z"
+    generated_at: "2026-07-27T18:48:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # OpenAI Plugin
 
-OpenClaw में OpenAI मॉडल प्रदाता का समर्थन जोड़ता है।
+OpenClaw में OpenAI मॉडल प्रदाता समर्थन जोड़ता है।
 
 ## वितरण
 
 - पैकेज: `@openclaw/openai-provider`
 - इंस्टॉल मार्ग: OpenClaw में शामिल
 
-## उपलब्ध सतह
+## सतह
 
 प्रदाता: `openai`; अनुबंध: `imageGenerationProviders`, `mediaUnderstandingProviders`, `memoryEmbeddingProviders`, `realtimeTranscriptionProviders`, `realtimeVoiceProviders`, `speechProviders`, `usageProviders`, `videoGenerationProviders`
 

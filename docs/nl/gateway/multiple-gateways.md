@@ -1,11 +1,11 @@
 ---
 read_when:
     - Meer dan één Gateway op dezelfde machine uitvoeren
-    - Je hebt per Gateway geïsoleerde configuratie, status en poorten nodig
+    - Je hebt per Gateway afzonderlijke configuratie, status en poorten nodig
 summary: Meerdere OpenClaw Gateways op één host uitvoeren (isolatie, poorten en profielen)
 title: Meerdere gateways
 x-i18n:
-    generated_at: "2026-07-16T15:38:38Z"
+    generated_at: "2026-07-27T05:34:08Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,11 +21,11 @@ Voor de meeste configuraties is één Gateway nodig: één Gateway verwerkt meer
 
 De eenvoudigste configuratie voor een reddingsbot:
 
-- Laat de hoofdbot het standaardprofiel gebruiken.
+- Houd de hoofdbot op het standaardprofiel.
 - Voer de reddingsbot uit op `--profile rescue`, met een eigen Telegram-bottoken.
 - Gebruik voor de reddingsbot een andere basispoort, bijvoorbeeld `19789`.
 
-Zo kan de reddingsbot fouten opsporen of configuratiewijzigingen toepassen als de primaire bot niet beschikbaar is. Houd minstens 20 poorten vrij tussen basispoorten, zodat afgeleide browser-/CDP-poorten nooit conflicteren.
+Hierdoor kan de reddingsbot problemen blijven opsporen of configuratiewijzigingen toepassen als de primaire bot niet beschikbaar is. Laat ten minste 20 poorten vrij tussen basispoorten, zodat afgeleide browser-/CDP-poorten nooit conflicteren.
 
 ```bash
 # Reddingsbot (afzonderlijke Telegram-bot, afzonderlijk profiel, poort 19789)
@@ -33,18 +33,18 @@ openclaw --profile rescue onboard
 openclaw --profile rescue gateway install --port 19789
 ```
 
-Als je hoofdbot al actief is, is dit doorgaans alles wat je nodig hebt. Als tijdens de onboarding de reddingsservice al is geïnstalleerd, sla je de laatste `gateway install` over.
+Als je hoofdbot al actief is, is dit doorgaans alles wat je nodig hebt. Als de onboarding de reddingsservice al heeft geïnstalleerd, sla je de laatste `gateway install` over.
 
 Tijdens `openclaw --profile rescue onboard`:
 
-- Gebruik een afzonderlijk Telegram-bottoken dat specifiek voor het reddingsaccount is bedoeld (eenvoudig exclusief voor operators te houden, onafhankelijk van de kanaal-/appinstallatie van de hoofdbot en een eenvoudig herstelpad via DM).
+- Gebruik een afzonderlijk Telegram-bottoken dat specifiek voor het reddingsaccount is bedoeld (eenvoudig uitsluitend voor operators te houden, onafhankelijk van de kanaal-/appinstallatie van de hoofdbot en een eenvoudig herstelpad via DM).
 - Behoud de profielnaam `rescue`.
-- Gebruik een basispoort die minstens 20 hoger is dan die van de hoofdbot.
+- Gebruik een basispoort die ten minste 20 hoger is dan die van de hoofdbot.
 - Accepteer de standaardwerkruimte voor redding, tenzij je er zelf al een beheert.
 
-### Wat `--profile rescue onboard` wijzigt
+### Wat `--profile rescue onboard` verandert
 
-`--profile rescue onboard` voert de normale onboardingprocedure uit, maar schrijft alles naar een afzonderlijk profiel, zodat de reddingsbot het volgende voor zichzelf krijgt:
+`--profile rescue onboard` voert de normale onboardingflow uit, maar schrijft alles naar een afzonderlijk profiel, zodat de reddingsbot een eigen exemplaar krijgt van:
 
 - Profiel-/configuratiebestand
 - Statusmap
@@ -60,11 +60,11 @@ De prompts zijn verder identiek aan die van de normale onboarding.
 Hetzelfde isolatiepatroon werkt voor elk paar of elke groep Gateways op één host: geef elke extra Gateway een eigen benoemd profiel en een eigen basispoort:
 
 ```bash
-# hoofdinstantie (standaardprofiel)
+# hoofdgateway (standaardprofiel)
 openclaw setup
 openclaw gateway --port 18789
 
-# extra Gateway
+# extra gateway
 openclaw --profile ops setup
 openclaw --profile ops gateway --port 19789
 ```
@@ -86,21 +86,21 @@ openclaw gateway install
 openclaw --profile ops gateway install --port 19789
 ```
 
-Gebruik de snelstart voor de reddingsbot voor een terugvalroute voor operators; gebruik het algemene profielpatroon voor meerdere langdurig actieve Gateways voor verschillende kanalen, tenants, werkruimten of operationele rollen.
+Gebruik de snelstart voor de reddingsbot voor een uitwijkkanaal voor operators; gebruik het algemene profielpatroon voor meerdere langdurig actieve Gateways voor verschillende kanalen, tenants, werkruimten of operationele rollen.
 
-## Isolatiechecklist
+## Controlelijst voor isolatie
 
 Houd deze instellingen uniek per Gateway-instantie:
 
-| Instelling                      | Doel                                 |
-| ------------------------------- | ------------------------------------ |
-| `OPENCLAW_CONFIG_PATH`       | Configuratiebestand per instantie    |
+| Instelling                      | Doel                              |
+| ---------------------------- | ------------------------------------ |
+| `OPENCLAW_CONFIG_PATH`       | Configuratiebestand per instantie             |
 | `OPENCLAW_STATE_DIR`         | Sessies, inloggegevens en caches per instantie |
-| `agents.defaults.workspace`  | Hoofdmap van werkruimte per instantie |
+| `agents.defaults.workspace`  | Hoofdmap van werkruimte per instantie          |
 | `gateway.port` (of `--port`) | Uniek per instantie                  |
-| Afgeleide browser-/CDP-poorten  | Zie hieronder                        |
+| Afgeleide browser-/CDP-poorten    | Zie hieronder                            |
 
-Het delen van een van deze onderdelen veroorzaakt conflicten met configuratie, status of poorten. Bij het starten van de Gateway
+Het delen van een van deze instellingen veroorzaakt conflicten met configuratie, status of poorten. Bij het starten van de Gateway
 wordt uniek eigendom van de statusmap afgedwongen, zelfs wanneer
 `OPENCLAW_ALLOW_MULTI_GATEWAY=1` de singleton per configuratie overslaat.
 
@@ -117,7 +117,7 @@ Als je een van deze waarden in de configuratie of omgeving overschrijft, moet je
 ## Opmerkingen over browser/CDP (veelvoorkomende valkuil)
 
 - Stel `browser.cdpUrl` **niet** vast op dezelfde waarde voor meerdere instanties.
-- Elke instantie heeft een eigen browserbesturingspoort en CDP-bereik nodig (afgeleid van de Gateway-poort).
+- Elke instantie heeft een eigen browserbesturingspoort en CDP-bereik nodig (afgeleid van de gatewaypoort).
 - Stel voor expliciete CDP-poorten `browser.profiles.<name>.cdpPort` per instantie in.
 - Gebruik voor Chrome op afstand `browser.profiles.<name>.cdpUrl` (per profiel, per instantie).
 
@@ -145,10 +145,10 @@ openclaw --profile rescue browser status
 ```
 
 - `gateway status --deep` detecteert verouderde launchd-/systemd-/schtasks-services van oudere installaties.
-- Waarschuwingstekst van `gateway probe`, zoals `multiple reachable gateway identities detected`, wordt alleen verwacht wanneer je opzettelijk meer dan één geïsoleerde Gateway uitvoert, of wanneer OpenClaw niet kan vaststellen dat bereikbare probedoelen dezelfde Gateway zijn. Een SSH-tunnel, proxy-URL of geconfigureerde externe URL naar dezelfde Gateway is één Gateway met meerdere transporten, zelfs wanneer de transportpoorten verschillen.
+- Waarschuwingstekst van `gateway probe`, zoals `multiple reachable gateway identities detected`, wordt alleen verwacht wanneer je opzettelijk meer dan één geïsoleerde Gateway uitvoert, of wanneer OpenClaw niet kan aantonen dat bereikbare probedoelen dezelfde Gateway zijn. Een SSH-tunnel, proxy-URL of geconfigureerde externe URL naar dezelfde Gateway is één Gateway met meerdere transporten, zelfs wanneer de transportpoorten verschillen.
 
 ## Gerelateerd
 
-- [Gateway-runbook](/nl/gateway)
+- [Gateway-draaiboek](/nl/gateway)
 - [Gateway-vergrendeling](/nl/gateway/gateway-lock)
 - [Configuratie](/nl/gateway/configuration)

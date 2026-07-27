@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 migrate-hermes 外掛
-summary: 將 Hermes 的設定、記憶、Skills 與支援的認證資訊匯入 OpenClaw。
+summary: 將 Hermes 設定、記憶、Skills 和支援的認證資訊匯入 OpenClaw。
 title: 遷移 Hermes 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:52:53Z"
+    generated_at: "2026-07-26T08:06:20Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # 遷移 Hermes 外掛
 
-將 Hermes 設定、記憶、技能和支援的認證資訊匯入 OpenClaw。
+將 Hermes 設定、記憶、Skills 與支援的認證資訊匯入 OpenClaw。
 
-## 發行方式
+## 發佈
 
 - 套件：`@openclaw/migrate-hermes`
-- 安裝方式：隨附於 OpenClaw
+- 安裝途徑：隨附於 OpenClaw
 
 ## 介面
 

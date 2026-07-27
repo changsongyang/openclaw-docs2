@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Se está instalando, configurando o auditando el plugin exa
+    - Está instalando, configurando o auditando el plugin exa
 summary: Añade compatibilidad con proveedores de búsqueda web.
 title: Plugin de Exa
 x-i18n:
-    generated_at: "2026-07-16T11:47:24Z"
+    generated_at: "2026-07-26T05:22:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin Exa
+# Plugin de Exa
 
 Añade compatibilidad con el proveedor de búsqueda web.
 
 ## Distribución
 
 - Paquete: `@openclaw/exa-plugin`
-- Vía de instalación: npm; ClawHub: `clawhub:@openclaw/exa-plugin`
+- Ruta de instalación: npm; ClawHub: `clawhub:@openclaw/exa-plugin`
 
 ## Superficie
 

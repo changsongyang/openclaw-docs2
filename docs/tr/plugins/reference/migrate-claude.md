@@ -2,9 +2,9 @@
 read_when:
     - migrate-claude pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: Claude Code ve Claude Desktop talimatlarını, MCP sunucularını, becerileri ve güvenli yapılandırmayı OpenClaw'a aktarır.
-title: Claude Plugin'ini taşı
+title: Claude pluginini taşı
 x-i18n:
-    generated_at: "2026-07-16T17:31:04Z"
+    generated_at: "2026-07-26T22:56:12Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Claude pluginini taşıma
 
-Claude Code ve Claude Desktop talimatlarını, MCP sunucularını, Skills'leri ve güvenli yapılandırmayı OpenClaw'a aktarır.
+Claude Code ve Claude Desktop talimatlarını, MCP sunucularını, becerileri ve güvenli yapılandırmayı OpenClaw'a aktarır.
 
 ## Dağıtım
 

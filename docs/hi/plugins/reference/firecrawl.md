@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप firecrawl Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: एजेंट द्वारा कॉल किए जा सकने वाले टूल जोड़ता है। वेब फ़ेच प्रोवाइडर का समर्थन जोड़ता है। वेब सर्च प्रोवाइडर का समर्थन जोड़ता है।
+summary: एजेंट द्वारा कॉल किए जा सकने वाले टूल जोड़ता है। वेब फ़ेच प्रदाता समर्थन जोड़ता है। वेब खोज प्रदाता समर्थन जोड़ता है।
 title: Firecrawl Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:15:01Z"
+    generated_at: "2026-07-27T19:38:41Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ x-i18n:
 - पैकेज: `@openclaw/firecrawl-plugin`
 - इंस्टॉल मार्ग: npm; ClawHub: `clawhub:@openclaw/firecrawl-plugin`
 
-## उपलब्ध इंटरफ़ेस
+## सतह
 
 अनुबंध: `tools`, `webFetchProviders`, `webSearchProviders`
 

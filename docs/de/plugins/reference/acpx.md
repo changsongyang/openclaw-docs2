@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder überprüfen das acpx-Plugin
+    - Sie installieren, konfigurieren oder prüfen das acpx-Plugin.
 summary: OpenClaw-ACP-Runtime-Backend mit Plugin-eigener Sitzungs- und Transportverwaltung.
 title: ACPx-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:02:54Z"
+    generated_at: "2026-07-26T18:01:08Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -31,14 +31,14 @@ Skills
 
 ## Native Pi-Sitzungen
 
-Die gebündelte Runtime erkennt den Sitzungsspeicher von Pi auf dem Gateway und gekoppelten
-Nodes automatisch. Gespeicherte Sitzungen erscheinen in der Sitzungsseitenleiste in der Gruppe **Pi**,
+Die gebündelte Runtime erkennt den Sitzungsspeicher von Pi auf dem Gateway und auf gekoppelten
+Nodes automatisch. Gespeicherte Sitzungen werden in der Sitzungsseitenleiste in der Gruppe **Pi** angezeigt,
 wobei Transkripte aus dem dokumentierten JSONL-Sitzungsformat von Pi schreibgeschützt durchsucht werden können. Der
 Katalog berücksichtigt projektbezogene und globale `settings.json`-Sitzungsverzeichnisse sowie
-`PI_CODING_AGENT_DIR` und `PI_CODING_AGENT_SESSION_DIR`. Relative Pfade werden
-ausgehend vom Verzeichnis aufgelöst, das die zugehörige `settings.json`-Datei enthält.
+`PI_CODING_AGENT_DIR` und `PI_CODING_AGENT_SESSION_DIR`. Relative Pfade werden ausgehend
+vom Verzeichnis aufgelöst, das die jeweilige Datei `settings.json` enthält.
 
-Deaktivieren Sie **Pi Session Catalog** unter **Config > Plugins > ACPX Runtime**, um
+Schalten Sie **Pi Session Catalog** unter **Config > Plugins > ACPX Runtime** aus, um
 die Erkennung zu deaktivieren. Sie ist standardmäßig aktiviert.
 
 <!-- openclaw-plugin-reference:manual-end -->

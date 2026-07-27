@@ -1,12 +1,12 @@
 ---
 read_when:
-    - Sie möchten Exa für web_search verwenden
+    - Sie möchten Exa für `web_search` verwenden
     - Sie benötigen einen EXA_API_KEY
     - Sie möchten neuronale Suche oder Inhaltsextraktion
 summary: Exa-AI-Suche – neuronale Suche und Stichwortsuche mit Inhaltsextraktion
 title: Exa-Suche
 x-i18n:
-    generated_at: "2026-07-24T05:23:32Z"
+    generated_at: "2026-07-26T19:16:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -35,7 +35,7 @@ openclaw gateway restart
     Dashboard einen API-Schlüssel.
   </Step>
   <Step title="Schlüssel speichern">
-    Setzen Sie `EXA_API_KEY` in der Gateway-Umgebung oder konfigurieren Sie den Schlüssel über:
+    Legen Sie `EXA_API_KEY` in der Gateway-Umgebung fest oder konfigurieren Sie ihn über:
 
     ```bash
     openclaw configure --section web
@@ -53,7 +53,7 @@ openclaw gateway restart
       exa: {
         config: {
           webSearch: {
-            apiKey: "exa-...", // optional, wenn EXA_API_KEY gesetzt ist
+            apiKey: "exa-...", // optional, wenn EXA_API_KEY festgelegt ist
             baseUrl: "https://api.exa.ai", // optional; OpenClaw hängt /search an
           },
         },
@@ -70,17 +70,17 @@ openclaw gateway restart
 }
 ```
 
-**Alternative über die Umgebung:** Setzen Sie `EXA_API_KEY` in der Gateway-Umgebung. Bei
-einer Gateway-Installation tragen Sie den Wert in `~/.openclaw/.env` ein. Siehe
+**Alternative über Umgebungsvariable:** Legen Sie `EXA_API_KEY` in der Gateway-Umgebung fest. Bei
+einer Gateway-Installation tragen Sie sie in `~/.openclaw/.env` ein. Siehe
 [Umgebungsvariablen](/de/help/faq#env-vars-and-env-loading).
 
 ## Basis-URL überschreiben
 
-Setzen Sie `plugins.entries.exa.config.webSearch.baseUrl`, um Exa-Suchanfragen
-über einen kompatiblen Proxy oder einen alternativen Endpunkt zu leiten. OpenClaw
-normalisiert reine Hosts, indem es `https://` voranstellt, und hängt `/search` an, sofern
+Legen Sie `plugins.entries.exa.config.webSearch.baseUrl` fest, um Exa-Suchanfragen
+über einen kompatiblen Proxy oder einen alternativen Endpunkt weiterzuleiten. OpenClaw
+normalisiert reine Hosts, indem `https://` vorangestellt wird, und hängt `/search` an, sofern
 der Pfad nicht bereits damit endet. Der aufgelöste Endpunkt ist Teil des
-Such-Cache-Schlüssels, sodass Ergebnisse verschiedener Endpunkte niemals gemeinsam genutzt werden.
+Suchcache-Schlüssels, sodass Ergebnisse verschiedener Endpunkte niemals gemeinsam genutzt werden.
 
 ## Tool-Parameter
 
@@ -89,7 +89,7 @@ Suchanfrage.
 </ParamField>
 
 <ParamField path="count" type="number" default="5">
-Anzahl der zurückzugebenden Ergebnisse (1-100, abhängig von den Beschränkungen des Exa-Suchtyps).
+Anzahl der zurückzugebenden Ergebnisse (1–100, abhängig von den Beschränkungen des Exa-Suchtyps).
 </ParamField>
 
 <ParamField path="type" type="'auto' | 'neural' | 'fast' | 'deep' | 'deep-reasoning' | 'instant'">
@@ -134,33 +134,33 @@ await web_search({
 | `highlights`    | `boolean \| { maxCharacters, query, numSentences, highlightsPerUrl }` | Kernsätze extrahieren            |
 | `summary`       | `boolean \| { query }`                                                | KI-generierte Zusammenfassung    |
 
-Wenn `contents` ausgelassen wird, verwendet Exa standardmäßig `{ highlights: true }`, sodass die Ergebnisse
+Wenn `contents` weggelassen wird, verwendet Exa standardmäßig `{ highlights: true }`, sodass die Ergebnisse
 Auszüge mit Kernsätzen enthalten. Ergebnisbeschreibungen werden zuerst aus Hervorhebungen,
 dann aus der Zusammenfassung und anschließend aus dem vollständigen Text übernommen – je nachdem, was zuerst verfügbar ist. Die Ergebnisse
 behalten außerdem die unverarbeiteten Felder `highlightScores` und `summary` aus der Exa-API-
-Antwort bei, sofern diese verfügbar sind.
+Antwort bei, sofern sie verfügbar sind.
 
 ### Suchmodi
 
-| Modus            | Beschreibung                              |
-| ---------------- | ----------------------------------------- |
-| `auto`           | Exa wählt den besten Modus (Standard)     |
-| `neural`         | Semantische/bedeutungsbasierte Suche      |
-| `fast`           | Schnelle Schlüsselwortsuche               |
-| `deep`           | Gründliche Tiefensuche                    |
-| `deep-reasoning` | Tiefensuche mit Schlussfolgerung           |
-| `instant`        | Schnellste Ergebnisse                     |
+| Modus            | Beschreibung                                 |
+| ---------------- | -------------------------------------------- |
+| `auto`           | Exa wählt den besten Modus (Standard)        |
+| `neural`         | Semantische/bedeutungsbasierte Suche         |
+| `fast`           | Schnelle Schlüsselwortsuche                  |
+| `deep`           | Gründliche Tiefensuche                       |
+| `deep-reasoning` | Tiefensuche mit Schlussfolgerung             |
+| `instant`        | Schnellste Ergebnisse                        |
 
 ## Hinweise
 
 - `count` akzeptiert bis zu 100, abhängig von den Beschränkungen des Exa-Suchtyps.
 - Ergebnisse werden standardmäßig 15 Minuten zwischengespeichert. Konfigurieren Sie die gemeinsamen
   `tools.web.search.cacheTtlMinutes` (Minuten) und
-  `tools.web.search.timeoutSeconds` (standardmäßig 30s), um die Zwischenspeicherung und
+  `tools.web.search.timeoutSeconds` (standardmäßig 30 s), um die Zwischenspeicherung und
   das Anfrage-Timeout für alle `web_search`-Provider einschließlich Exa zu ändern.
 
 ## Verwandte Themen
 
-- [Übersicht zur Websuche](/de/tools/web) -- alle Provider und automatische Erkennung
-- [Brave Search](/de/tools/brave-search) -- strukturierte Ergebnisse mit Länder-/Sprachfiltern
-- [Perplexity Search](/de/tools/perplexity-search) -- strukturierte Ergebnisse mit Domainfilterung
+- [Übersicht zur Websuche](/de/tools/web) – alle Provider und automatische Erkennung
+- [Brave Search](/de/tools/brave-search) – strukturierte Ergebnisse mit Länder-/Sprachfiltern
+- [Perplexity Search](/de/tools/perplexity-search) – strukturierte Ergebnisse mit Domainfilterung

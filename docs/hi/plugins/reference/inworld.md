@@ -4,7 +4,7 @@ read_when:
 summary: Inworld स्ट्रीमिंग टेक्स्ट-टू-स्पीच (MP3, OGG_OPUS, PCM टेलीफ़ोनी)।
 title: Inworld Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:17:35Z"
+    generated_at: "2026-07-27T18:19:22Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,10 +23,10 @@ Inworld स्ट्रीमिंग टेक्स्ट-टू-स्पी
 - पैकेज: `@openclaw/inworld-speech`
 - इंस्टॉल मार्ग: npm; ClawHub: `clawhub:@openclaw/inworld-speech`
 
-## सरफ़ेस
+## सतह
 
 अनुबंध: `speechProviders`
 
 ## संबंधित दस्तावेज़
 
-- [Inworld](/hi/providers/inworld)
+- [inworld](/hi/providers/inworld)

@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw に Venice モデルプロバイダーのサポートを追加します。
 title: Venice Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:00:28Z"
+    generated_at: "2026-07-26T09:38:15Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,11 +21,11 @@ OpenClaw に Venice モデルプロバイダーのサポートを追加します
 ## 配布
 
 - パッケージ: `@openclaw/venice-provider`
-- インストール経路: npm、ClawHub: `clawhub:@openclaw/venice-provider`
+- インストール経路: npm; ClawHub: `clawhub:@openclaw/venice-provider`
 
 ## サーフェス
 
-プロバイダー: `venice`、コントラクト: `usageProviders`
+プロバイダー: `venice`; コントラクト: `usageProviders`
 
 ## 関連ドキュメント
 

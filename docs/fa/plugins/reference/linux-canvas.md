@@ -2,9 +2,9 @@
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin ‏linux-canvas هستید
 summary: پل رندر Canvas برای برنامه دسکتاپ لینوکس OpenClaw.
-title: Plugin Canvas لینوکس
+title: Plugin بوم Linux
 x-i18n:
-    generated_at: "2026-07-16T17:02:19Z"
+    generated_at: "2026-07-27T16:50:58Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## توزیع
 
 - بسته: `@openclaw/linux-canvas`
-- مسیر نصب: همراه OpenClaw ارائه می‌شود
+- مسیر نصب: گنجانده‌شده در OpenClaw
 
 ## سطح
 

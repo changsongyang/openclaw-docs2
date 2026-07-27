@@ -4,7 +4,7 @@ read_when:
 summary: 用于结构化任务的通用纯 JSON LLM 工具，可从工作流中调用。
 title: LLM 任务插件
 x-i18n:
-    generated_at: "2026-07-16T11:45:56Z"
+    generated_at: "2026-07-26T06:26:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,13 +14,13 @@ x-i18n:
     workflow: 16
 ---
 
-# LLM Task 插件
+# LLM 任务插件
 
-用于结构化任务的通用纯 JSON LLM 工具，可从工作流中调用。
+供工作流调用、用于结构化任务的通用纯 JSON LLM 工具。
 
 ## 分发
 
-- 软件包：`@openclaw/llm-task`
+- 包：`@openclaw/llm-task`
 - 安装方式：OpenClaw 内置
 
 ## 接口

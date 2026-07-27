@@ -1,12 +1,12 @@
 ---
 read_when:
-    - Sie möchten die Bilderzeugung mit fal in OpenClaw verwenden
-    - Sie benötigen den Authentifizierungsablauf für FAL_KEY
-    - Sie möchten fal-Standardeinstellungen für image_generate, video_generate oder music_generate
+    - Sie möchten die Bildgenerierung von fal in OpenClaw verwenden
+    - Sie benötigen den Authentifizierungsablauf mit FAL_KEY
+    - Sie möchten fal-Standardeinstellungen für image_generate, video_generate oder music_generate verwenden
 summary: Einrichtung der Bild-, Video- und Musikgenerierung mit fal in OpenClaw
 title: Fal
 x-i18n:
-    generated_at: "2026-07-24T04:04:26Z"
+    generated_at: "2026-07-26T18:02:59Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ OpenClaw enthält einen gebündelten `fal`-Provider für die gehostete Bild-, Vi
 | Eigenschaft | Wert                                                                           |
 | -------- | ------------------------------------------------------------------------------- |
 | Provider | `fal`                                                                           |
-| Authentifizierung | `FAL_KEY` (kanonisch; `FAL_API_KEY` funktioniert auch als Fallback)                   |
+| Authentifizierung     | `FAL_KEY` (kanonisch; `FAL_API_KEY` funktioniert auch als Fallback)                   |
 | API      | fal-Modellendpunkte (`https://fal.run`; Videoaufträge verwenden `https://queue.fal.run`) |
 | Basis-URL | Mit `models.providers.fal.baseUrl` überschreiben                                    |
 
@@ -60,16 +60,16 @@ Der gebündelte `fal`-Provider für die Bildgenerierung verwendet standardmäßi
 
 | Funktion     | Wert                                                              |
 | -------------- | ------------------------------------------------------------------ |
-| Maximale Bildanzahl | 4 pro Anfrage; Krea 2: 1 pro Anfrage                               |
+| Maximale Bildanzahl     | 4 pro Anfrage; Krea 2: 1 pro Anfrage                               |
 | Größenüberschreibungen | `1024x1024`, `1024x1536`, `1536x1024`, `1024x1792`, `1792x1024`    |
-| Seitenverhältnis | Überall außer bei Flux-Bild-zu-Bild unterstützt                    |
-| Auflösung     | `1K`, `2K`, `4K` (modellspezifische Beschränkungen unten)                          |
-| Ausgabeformat | `png` (Standard) oder `jpeg`; Krea 2 lehnt `outputFormat`-Überschreibungen ab |
+| Seitenverhältnis   | Überall außer bei Flux-Bild-zu-Bild unterstützt                    |
+| Auflösung     | `1K`, `2K`, `4K` (modellspezifische Beschränkungen siehe unten)                          |
+| Ausgabeformat  | `png` (Standard) oder `jpeg`; Krea 2 lehnt `outputFormat`-Überschreibungen ab |
 
 Bearbeitungsanfragen (Referenzbilder über die gemeinsamen Parameter `image` / `images`)
-werden an einen modellspezifischen Bearbeitungsendpunkt mit modellspezifischen Referenzbeschränkungen weitergeleitet:
+werden an einen modellspezifischen Bearbeitungsendpunkt mit modellspezifischen Referenzlimits weitergeleitet:
 
-| Modellfamilie              | Modellreferenz nach `fal/`                 | Bearbeitungsendpunkt | Maximale Anzahl an Referenzbildern |
+| Modellfamilie              | Modellreferenz nach `fal/`                 | Bearbeitungsendpunkt     | Maximale Anzahl an Referenzbildern |
 | ------------------------- | -------------------------------------- | ----------------- | -------------------- |
 | Flux und andere fal-Modelle | `fal-ai/flux/dev` (Standard)            | `/image-to-image` | 1                    |
 | GPT Image                 | `openai/gpt-image-*`                   | `/edit`           | 10                   |
@@ -80,34 +80,34 @@ werden an einen modellspezifischen Bearbeitungsendpunkt mit modellspezifischen R
 | Krea 2                    | `krea/v2/{medium,large}/text-to-image` | keiner (Stilreferenzen) | 10 Stilreferenzen  |
 
 <Warning>
-Flux-Bild-zu-Bild-Anfragen unterstützen **keine** `aspectRatio`-Überschreibungen. GPT
-Image- und Nano-Banana-2-Bearbeitungsanfragen verwenden den `/edit`-Endpunkt von fal und akzeptieren
+Flux-Bild-zu-Bild-Anfragen unterstützen **keine** `aspectRatio`-Überschreibungen. Bearbeitungsanfragen für GPT
+Image und Nano Banana 2 verwenden den `/edit`-Endpunkt von fal und akzeptieren
 Hinweise zum Seitenverhältnis. Nano Banana 2 akzeptiert außerdem zusätzliche native breite/hohe Seitenverhältnisse
 wie `4:1`, `1:4`, `8:1` und `1:8`; Krea 2 validiert seine eigene kleinere
-Teilmenge an Seitenverhältnissen. Grok Imagine besitzt eine eigene Liste von Seitenverhältnissen (einschließlich `2:1`,
-`20:9`, `19.5:9` und ihrer Kehrwerte) und akzeptiert nur die Auflösungen `1K`/`2K`;
+Teilmenge von Seitenverhältnissen. Grok Imagine verfügt über eine eigene Liste von Seitenverhältnissen (einschließlich `2:1`,
+`20:9`, `19.5:9` und deren Umkehrungen) und akzeptiert nur die Auflösungen `1K`/`2K`;
 das veraltete Nano Banana und Nano Banana 2 Lite lehnen `resolution`-Überschreibungen ab.
 </Warning>
 
 Krea-2-Modelle verwenden das native Krea-Nutzlastschema von fal. OpenClaw sendet
 `aspect_ratio`, `creativity` und `image_style_references` anstelle der
-generischen `image_size`- / Bearbeitungsendpunkt-Nutzlast, die Flux verwendet. Die Modellreferenzen lauten:
+generischen `image_size`- / Bearbeitungsendpunkt-Nutzlast, die von Flux verwendet wird. Die Modellreferenzen lauten:
 
 - `fal/krea/v2/medium/text-to-image`
 - `fal/krea/v2/large/text-to-image`
 
-Verwenden Sie Medium für schnellere ausdrucksstarke Illustrationen, Anime, Gemälde und künstlerische
-Stile. Verwenden Sie Large für langsamere fotorealistische Darstellungen, unverfälschte Texturen, Filmkörnung und detaillierte
-Optik. Krea verwendet standardmäßig `fal.creativity: "medium"`; unterstützte Werte sind
+Verwenden Sie Medium für schnellere ausdrucksstarke Illustrationen, Anime, Malerei und künstlerische
+Stile. Verwenden Sie Large für langsamere fotorealistische Darstellungen, rohe Texturen, Filmkörnung und detaillierte
+Optiken. Krea verwendet standardmäßig `fal.creativity: "medium"`; unterstützte Werte sind
 `raw`, `low`, `medium` und `high`.
 
-Krea 2 stellt im Anfrageschema von fal das Seitenverhältnis und nicht `image_size` bereit. Bevorzugen Sie
+Krea 2 stellt im Anfrageschema von fal das Seitenverhältnis bereit, nicht `image_size`. Bevorzugen Sie
 `aspectRatio`; OpenClaw ordnet `size` dem nächstgelegenen unterstützten Krea-Seitenverhältnis zu
 und lehnt `resolution` für Krea ab, anstatt es zu verwerfen.
 
-Verwenden Sie `outputFormat: "png"`, wenn Sie eine PNG-Ausgabe von fal-Modellen wünschen, die
-`output_format` bereitstellen. fal deklariert in OpenClaw keine explizite Steuerung für einen transparenten
-Hintergrund, daher wird `background: "transparent"` bei fal-Modellen als ignorierte
+Verwenden Sie `outputFormat: "png"`, wenn Sie für fal-Modelle, die
+`output_format` bereitstellen, eine PNG-Ausgabe wünschen. fal deklariert in OpenClaw keine explizite Steuerung
+für transparente Hintergründe, daher wird `background: "transparent"` bei fal-Modellen als ignorierte
 Überschreibung gemeldet.
 Krea-2-Endpunkte stellen über fal kein `output_format`-Anfragefeld bereit, daher
 lehnt OpenClaw `outputFormat`-Überschreibungen für Krea-Anfragen ab.
@@ -134,8 +134,8 @@ Der gebündelte `fal`-Provider für die Videogenerierung verwendet standardmäß
 | Funktion | Wert                                                              |
 | ---------- | ------------------------------------------------------------------ |
 | Modi      | Text-zu-Video, Einzelbildreferenz, Seedance-Referenz-zu-Video |
-| Laufzeit | Warteschlangengestützter Übermittlungs-/Status-/Ergebnisablauf für lang laufende Aufträge |
-| Zeitüberschreitung | Standardmäßig 20 Minuten pro Auftrag; Statusabfrage alle 5 Sekunden       |
+| Laufzeit    | Warteschlangengestützter Übermittlungs-/Status-/Ergebnisablauf für lang laufende Aufträge       |
+| Zeitüberschreitung    | Standardmäßig 20 Minuten pro Auftrag; Statusabfrage alle 5 Sekunden       |
 
 <AccordionGroup>
   <Accordion title="Verfügbare Videomodelle">
@@ -162,10 +162,10 @@ Der gebündelte `fal`-Provider für die Videogenerierung verwendet standardmäß
     - `fal/bytedance/seedance-2.0/image-to-video`
     - `fal/bytedance/seedance-2.0/reference-to-video`
 
-    MiniMax-Live- und HeyGen-Anfragen senden nur den Prompt sowie optional ein
+    MiniMax-Live- und HeyGen-Anfragen senden nur den Prompt sowie ein optionales
     einzelnes Referenzbild; andere Überschreibungen werden nicht weitergeleitet. Seedance-Modelle
-    akzeptieren `aspectRatio`, `size`, `resolution`, Laufzeiten von 4–15 Sekunden und
-    einen Audioschalter.
+    akzeptieren `aspectRatio`, `size`, `resolution`, Dauern von 4–15 Sekunden und
+    eine Audio-Umschaltoption.
 
   </Accordion>
 
@@ -221,16 +221,16 @@ Der gebündelte `fal`-Provider für die Videogenerierung verwendet standardmäß
 ## Musikgenerierung
 
 Das gebündelte `fal`-Plugin registriert außerdem einen Provider für die Musikgenerierung für das
-gemeinsame `music_generate`-Werkzeug.
+gemeinsame `music_generate`-Tool.
 
 | Funktion    | Wert                                                                                                                    |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | Standardmodell | `fal/fal-ai/minimax-music/v2.6`                                                                                          |
 | Modelle        | `fal-ai/minimax-music/v2.6` (mp3), `fal-ai/ace-step/prompt-to-audio` (wav), `fal-ai/stable-audio-25/text-to-audio` (wav) |
-| Maximale Dauer | 240 Sekunden                                                                                                              |
+| Maximale Dauer  | 240 Sekunden                                                                                                              |
 | Laufzeit       | Synchrone Anfrage mit anschließendem Download der generierten Audiodatei                                                                        |
 
-So verwenden Sie fal als Standard-Provider für Musik:
+Verwenden Sie fal als Standard-Provider für Musik:
 
 ```json5
 {
@@ -244,7 +244,7 @@ So verwenden Sie fal als Standard-Provider für Musik:
 }
 ```
 
-`fal-ai/minimax-music/v2.6` unterstützt explizite Liedtexte und den Instrumentalmodus,
+`fal-ai/minimax-music/v2.6` unterstützt explizite Liedtexte und einen Instrumentalmodus,
 jedoch nicht beides in derselben Anfrage. ACE-Step und Stable Audio sind
 Prompt-zu-Audio-Endpunkte; wählen Sie sie mit der `model`-Überschreibung aus, wenn Sie
 diese Modellfamilien verwenden möchten. ACE-Step lehnt explizite Liedtexte ab; Stable Audio lehnt
@@ -252,7 +252,7 @@ sowohl Liedtexte als auch den Instrumentalmodus ab.
 
 <Tip>
 Die Tabellen und Akkordeons oben behandeln die Modellfamilien, die der gebündelte fal-
-Provider speziell berücksichtigt. Andere IDs von fal-Bildendpunkten können weiterhin als
+Provider gesondert behandelt. Andere Bildendpunkt-IDs von fal können weiterhin als
 Bildmodell ausgewählt werden; sie werden wie Flux behandelt (generische `image_size`-Nutzlast, ein
 Referenzbild über `/image-to-image`).
 </Tip>
@@ -261,15 +261,15 @@ Referenzbild über `/image-to-image`).
 
 <CardGroup cols={2}>
   <Card title="Bildgenerierung" href="/de/tools/image-generation" icon="image">
-    Gemeinsame Parameter des Bildwerkzeugs und Provider-Auswahl.
+    Gemeinsame Parameter des Bild-Tools und Provider-Auswahl.
   </Card>
   <Card title="Videogenerierung" href="/de/tools/video-generation" icon="video">
-    Gemeinsame Parameter des Videowerkzeugs und Provider-Auswahl.
+    Gemeinsame Parameter des Video-Tools und Provider-Auswahl.
   </Card>
   <Card title="Musikgenerierung" href="/de/tools/music-generation" icon="music">
-    Gemeinsame Parameter des Musikwerkzeugs und Provider-Auswahl.
+    Gemeinsame Parameter des Musik-Tools und Provider-Auswahl.
   </Card>
   <Card title="Konfigurationsreferenz" href="/de/gateway/config-agents#agent-defaults" icon="gear">
-    Agentenstandards einschließlich der Auswahl von Bild-, Video- und Musikmodellen.
+    Agent-Standardeinstellungen einschließlich der Auswahl von Bild-, Video- und Musikmodellen.
   </Card>
 </CardGroup>

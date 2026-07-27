@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de Plugin tts-local-cli
 summary: Voegt ondersteuning voor tekst-naar-spraakproviders toe.
-title: Lokale CLI-plugin voor TTS
+title: TTS lokale CLI-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:08:03Z"
+    generated_at: "2026-07-27T06:28:45Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# TTS Local CLI-Plugin
+# TTS Local CLI-plugin
 
 Voegt ondersteuning voor tekst-naar-spraakproviders toe.
 

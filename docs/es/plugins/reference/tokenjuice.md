@@ -4,7 +4,7 @@ read_when:
 summary: Compacta los resultados de las herramientas exec y bash con reductores de Tokenjuice.
 title: Plugin Tokenjuice
 x-i18n:
-    generated_at: "2026-07-16T11:54:53Z"
+    generated_at: "2026-07-26T05:23:07Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

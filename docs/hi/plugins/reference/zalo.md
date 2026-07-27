@@ -4,7 +4,7 @@ read_when:
 summary: बॉट और Webhook चैट के लिए OpenClaw Zalo चैनल Plugin।
 title: Zalo Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:41:31Z"
+    generated_at: "2026-07-27T18:49:20Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Zalo plugin
+# Zalo Plugin
 
-बॉट और Webhook चैट के लिए OpenClaw Zalo चैनल plugin।
+बॉट और Webhook चैट के लिए OpenClaw Zalo चैनल Plugin।
 
 ## वितरण
 
 - पैकेज: `@openclaw/zalo`
-- इंस्टॉल करने का माध्यम: npm; ClawHub
+- इंस्टॉल मार्ग: npm; ClawHub
 
 ## सतह
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## संबंधित दस्तावेज़
 
-- [Zalo](/hi/channels/zalo)
+- [zalo](/hi/channels/zalo)

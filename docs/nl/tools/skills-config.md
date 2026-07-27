@@ -1,25 +1,25 @@
 ---
 read_when:
-    - Laad-, installatie- of gatinggedrag van Skills configureren
+    - Laden, installeren of beschikbaarheid van Skills configureren
     - Zichtbaarheid van Skills per agent instellen
     - Limieten of goedkeuringsbeleid van Skill Workshop aanpassen
 sidebarTitle: Skills config
-summary: Volledige referentie voor het configuratieschema `skills.*`, agenttoelatingslijsten, workshopinstellingen en de verwerking van sandbox-omgevingsvariabelen.
+summary: Volledige referentie voor het `skills.*`-configuratieschema, allowlists voor agents, workshopinstellingen en de verwerking van sandbox-omgevingsvariabelen.
 title: Skills-configuratie
 x-i18n:
-    generated_at: "2026-07-16T16:30:53Z"
+    generated_at: "2026-07-27T05:28:28Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 1633364a7333ba00f5f6c8d6f1f478b65e63bc97de23705e492eb980967ec521
+    source_hash: bc154bdf8a8537095a4d39bc6e86ebfd716e6beacd45def9c8a1c15fcdc93698
     source_path: tools/skills-config.md
     workflow: 16
 ---
 
-De meeste Skills-configuratie bevindt zich onder `skills` in
-`~/.openclaw/openclaw.json`. Agentspecifieke zichtbaarheid bevindt zich onder
-`agents.defaults.skills` en `agents.list[].skills`.
+De meeste Skills-configuratie staat onder `skills` in
+`~/.openclaw/openclaw.json`. Agentspecifieke zichtbaarheid staat onder
+`agents.defaults.skills` en `agents.entries.*.skills`.
 
 ```json5
 {
@@ -29,7 +29,6 @@ De meeste Skills-configuratie bevindt zich onder `skills` in
       extraDirs: ["~/Projects/agent-scripts/skills"],
       allowSymlinkTargets: ["~/Projects/manager/skills"],
       watch: true,
-      watchDebounceMs: 250,
     },
     install: {
       preferBrew: true,
@@ -57,9 +56,9 @@ De meeste Skills-configuratie bevindt zich onder `skills` in
 ```
 
 <Note>
-  Gebruik voor ingebouwde afbeeldingsgeneratie `agents.defaults.imageGenerationModel`
-  samen met de kern-tool `image_generate` in plaats van `skills.entries`. Skill-
-  vermeldingen zijn uitsluitend bedoeld voor aangepaste Skill-workflows of Skill-workflows van derden.
+  Gebruik voor ingebouwde afbeeldingsgeneratie `agents.defaults.mediaModels.image`
+  plus de kern-tool `image_generate` in plaats van `skills.entries`. Skill-
+  vermeldingen zijn alleen bedoeld voor aangepaste Skill-workflows of Skill-workflows van derden.
 </Note>
 
 ## Laden (`skills.load`)
@@ -70,20 +69,16 @@ De meeste Skills-configuratie bevindt zich onder `skills` in
 </ParamField>
 
 <ParamField path="skills.load.allowSymlinkTargets" type="string[]">
-  Vertrouwde werkelijke doelmappen waarnaar via symbolische koppelingen gekoppelde Skill-mappen mogen
-  verwijzen, zelfs als de symbolische koppeling zich buiten de geconfigureerde hoofdmap bevindt. Gebruik dit voor
-  opzettelijke indelingen met naastliggende repository's, zoals
+  Vertrouwde werkelijke doelmappen waarnaar Skill-mappen met symbolische koppelingen mogen
+  verwijzen, zelfs wanneer de symbolische koppeling buiten de geconfigureerde hoofdmap staat. Gebruik dit voor
+  opzettelijke indelingen met naastgelegen repository's, zoals
   `<workspace>/skills/manager -> ~/Projects/manager/skills`. Houd deze lijst
   beperkt — verwijs niet naar brede hoofdmappen zoals `~` of `~/Projects`.
 </ParamField>
 
 <ParamField path="skills.load.watch" type="boolean" default="true">
-  Bewaak Skill-mappen en vernieuw de momentopname van Skills wanneer `SKILL.md`-bestanden
+  Bewaak Skill-mappen en vernieuw de Skills-momentopname wanneer `SKILL.md`-bestanden
   veranderen. Dit omvat geneste bestanden onder gegroepeerde Skill-hoofdmappen.
-</ParamField>
-
-<ParamField path="skills.load.watchDebounceMs" type="number" default="250">
-  Debounce-venster voor gebeurtenissen van de Skill-bewaker, in milliseconden.
 </ParamField>
 
 ## Installatie (`skills.install`)
@@ -93,16 +88,16 @@ De meeste Skills-configuratie bevindt zich onder `skills` in
 </ParamField>
 
 <ParamField path="skills.install.nodeManager" type='"npm" | "pnpm" | "yarn" | "bun"' default='"npm"'>
-  Voorkeur voor de Node-pakketbeheerder bij de installatie van Skills. Dit is alleen van invloed op
-  Skill-installaties — de OpenClaw-CLI en Gateway-runtime vereisen Node omdat de
+  Voorkeur voor de Node-pakketbeheerder bij Skill-installaties. Dit is alleen van invloed op Skill-
+  installaties; de OpenClaw-CLI en Gateway-runtime vereisen Node omdat de
   canonieke statusopslag `node:sqlite` gebruikt. `openclaw setup --node-manager` en
   `openclaw onboard --node-manager` accepteren `npm`, `pnpm` of `bun`; stel
   `"yarn"` rechtstreeks in de configuratie in voor Skill-installaties met Yarn.
 </ParamField>
 
 <ParamField path="skills.install.allowUploadedArchives" type="boolean" default="false">
-  Sta vertrouwde `operator.admin`-Gateway-clients toe om persoonlijke zip-
-  archieven te installeren die via `skills.upload.*` zijn klaargezet. Voor normale ClawHub-installaties is
+  Sta vertrouwde `operator.admin`-Gateway-clients toe om privé-ziparchieven te installeren
+  die via `skills.upload.*` zijn klaargezet. Voor normale ClawHub-installaties is
   deze instelling niet nodig.
 </ParamField>
 
@@ -112,7 +107,7 @@ Gebruik `security.installPolicy` wanneer operators een vertrouwde lokale opdrach
 installaties van Skills en Plugins goed te keuren of te blokkeren met hostspecifiek beleid. Het
 beleid wordt uitgevoerd nadat OpenClaw bronmateriaal heeft klaargezet en voordat de installatie
 of update doorgaat. Het is van toepassing op ClawHub-Skills, geüploade Skills, Git-/lokale
-Skills, installatieprogramma's voor Skill-afhankelijkheden en bronnen voor installatie/update van Plugins.
+Skills, installatieprogramma's voor Skill-afhankelijkheden en installatie-/updatebronnen van Plugins.
 
 ```json5
 {
@@ -143,12 +138,12 @@ Skills, installatieprogramma's voor Skill-afhankelijkheden en bronnen voor insta
 </ParamField>
 
 <ParamField path="security.installPolicy.targets" type='("skill" | "plugin")[]'>
-  Optioneel doelfilter. Wanneer dit wordt weggelaten, is het beleid van toepassing op elk ondersteund
+  Optioneel doelfilter. Wanneer dit wordt weggelaten, geldt het beleid voor elk ondersteund
   doel, zodat nieuwe installaties niet onverwacht standaard worden toegestaan.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.command" type="string">
-  Absoluut pad naar het vertrouwde uitvoerbare beleidsbestand. OpenClaw voert het zonder
+  Absoluut pad naar het vertrouwde uitvoerbare beleidsbestand. OpenClaw voert dit zonder een
   shell uit en valideert het pad vóór gebruik.
 </ParamField>
 
@@ -157,7 +152,7 @@ Skills, installatieprogramma's voor Skill-afhankelijkheden en bronnen voor insta
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.timeoutMs" type="number" default="10000">
-  Maximale werkelijke uitvoeringstijd voor één beleidsbeslissing.
+  Maximale totale uitvoeringstijd voor één beleidsbeslissing.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.noOutputTimeoutMs" type="number" default="timeoutMs">
@@ -175,7 +170,7 @@ Skills, installatieprogramma's voor Skill-afhankelijkheden en bronnen voor insta
 
 <ParamField path="security.installPolicy.exec.passEnv" type="string[]">
   Namen van omgevingsvariabelen die vanuit het OpenClaw-proces naar het
-  beleidsproces worden gekopieerd. Alleen genoemde variabelen worden doorgegeven.
+  beleidsproces worden gekopieerd. Alleen benoemde variabelen worden doorgegeven.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.trustedDirs" type="string[]">
@@ -190,10 +185,10 @@ Skills, installatieprogramma's voor Skill-afhankelijkheden en bronnen voor insta
 <ParamField path="security.installPolicy.exec.allowSymlinkCommand" type="boolean" default="false">
   Staat toe dat het geconfigureerde opdrachtpad een symbolische koppeling is. Het herleide doel
   moet nog steeds aan de overige padcontroles voldoen. Scriptargumenten voor interpreters moeten
-  rechtstreekse reguliere bestanden zijn, geen symbolische koppelingen.
+  directe reguliere bestanden zijn, geen symbolische koppelingen.
 </ParamField>
 
-Het beleid ontvangt via stdin één JSON-object met `protocolVersion: 1`,
+Het beleid ontvangt één JSON-object op stdin met `protocolVersion: 1`,
 `openclawVersion`, `targetType`, `targetName`, `sourcePath`, `sourcePathKind`,
 optionele gestructureerde `source`, gestructureerde `origin` en `request`. Het moet
 één JSON-object naar stdout schrijven: `{ "protocolVersion": 1, "decision": "allow" }`
@@ -201,10 +196,10 @@ of `{ "protocolVersion": 1, "decision": "block", "reason": "..." }`. Een afsluit
 een time-out, ongeldige JSON, ontbrekende velden of niet-ondersteunde protocolversies
 leiden standaard tot blokkering.
 
-OpenClaw voert het installatiebeleid niet uit tijdens het normaal opstarten van de Gateway.
+OpenClaw voert tijdens de normale opstart van de Gateway geen installatiebeleid uit.
 Installaties en updates worden standaard geblokkeerd wanneer het beleid is ingeschakeld maar niet beschikbaar is.
 `openclaw doctor` voert statische validatie uit; `openclaw doctor --deep`
-voert een synthetische installatieproef uit op de geconfigureerde opdracht.
+voert een synthetische installatieproef uit met de geconfigureerde opdracht.
 
 Bij bulksgewijze updates wordt het beleid per doel toegepast: een geblokkeerde update van een Skill of Plugin mislukt
 voor dat doel zonder het beleid uit te schakelen of latere doelen in de
@@ -279,13 +274,13 @@ process.stdin.on("end", () => {
 
 ## Vermeldingen per Skill (`skills.entries`)
 
-Sleutels onder `entries` komen standaard overeen met de `name` van de Skill. Als een Skill
-`metadata.openclaw.skillKey` definieert, gebruik dan in plaats daarvan die sleutel. Zet namen met koppeltekens
+Sleutels onder `entries` komen standaard overeen met de Skill-`name`. Als een Skill
+`metadata.openclaw.skillKey` definieert, gebruik je in plaats daarvan die sleutel. Zet namen met koppeltekens
 tussen aanhalingstekens (JSON5 staat sleutels tussen aanhalingstekens toe).
 
 <ParamField path="skills.entries.<key>.enabled" type="boolean">
-  `false` schakelt de Skill uit, zelfs wanneer deze is gebundeld of geïnstalleerd. De
-  gebundelde Skill `coding-agent` is opt-in — stel deze in op `true` en zorg dat
+  `false` schakelt de Skill uit, zelfs wanneer deze gebundeld of geïnstalleerd is. De
+  gebundelde Skill `coding-agent` vereist expliciete inschakeling — stel deze in op `true` en zorg dat een van
   `claude`, `codex`, `opencode` of een andere ondersteunde CLI is geïnstalleerd en
   geverifieerd.
 </ParamField>
@@ -306,8 +301,8 @@ tussen aanhalingstekens (JSON5 staat sleutels tussen aanhalingstekens toe).
 
 ## Toelatingslijsten voor agents (`agents`)
 
-Gebruik agentconfiguratie wanneer je dezelfde Skill-hoofdmappen van machine/werkruimte wilt, maar
-een andere zichtbare verzameling Skills per agent.
+Gebruik agentconfiguratie wanneer je dezelfde hoofdlocaties voor Skills op de machine/in de werkruimte wilt gebruiken, maar per
+agent een andere zichtbare verzameling Skills wilt instellen.
 
 ```json5
 {
@@ -316,7 +311,7 @@ een andere zichtbare verzameling Skills per agent.
       skills: ["github", "weather"], // gedeelde basis
     },
     list: [
-      { id: "writer" }, // neemt github en weather over
+      { id: "writer" }, // neemt github, weather over
       { id: "docs", skills: ["docs-search"] }, // vervangt de standaardwaarden volledig
       { id: "locked-down", skills: [] }, // geen Skills
     ],
@@ -326,71 +321,71 @@ een andere zichtbare verzameling Skills per agent.
 
 <ParamField path="agents.defaults.skills" type="string[]">
   Gedeelde basistoelatingslijst die wordt overgenomen door agents die
-  `agents.list[].skills` weglaten. Laat deze volledig weg om Skills standaard
+  `agents.entries.*.skills` weglaten. Laat deze volledig weg om Skills standaard
   onbeperkt te laten.
 </ParamField>
 
-<ParamField path="agents.list[].skills" type="string[]">
+<ParamField path="agents.entries.*.skills" type="string[]">
   Expliciete definitieve verzameling Skills voor die agent. Expliciete lijsten **vervangen**
-  overgenomen standaardwaarden — ze worden niet samengevoegd. Stel dit in op `[]` om geen Skills voor
-  die agent beschikbaar te maken.
+  overgenomen standaardwaarden — ze worden niet samengevoegd. Stel dit in op `[]` om voor
+  die agent geen Skills beschikbaar te maken.
 </ParamField>
 
 <Warning>
-  Toelatingslijsten voor agent-Skills zijn een zichtbaarheids- en laadfilter voor OpenClaw-
-  Skill-detectie, prompts, detectie van slash-opdrachten, sandbox-synchronisatie en Skill-
+  Toelatingslijsten voor agent-Skills zijn een zichtbaarheids- en laadfilter voor de detectie van OpenClaw-
+  Skills, prompts, de detectie van slash-opdrachten, sandboxsynchronisatie en Skill-
   momentopnamen. Ze vormen geen autorisatiegrens tijdens shellgebruik. Als een agent
-  `exec` op de host kan uitvoeren, kan die shell nog steeds externe clients uitvoeren of
-  hostbestanden lezen die zichtbaar zijn voor de uitvoeringsgebruiker, waaronder MCP-client-
-  registers zoals `~/.openclaw/skills/config/mcporter.json`. Combineer voor
-  MCP-isolatie per agent toelatingslijsten voor Skills met isolatie via sandbox/OS-gebruiker,
-  weiger hostuitvoering of beperk deze strikt met een toelatingslijst en geef de voorkeur aan referenties per agent
-  op de MCP-server.
+  host-`exec` kan uitvoeren, kan die shell nog steeds externe clients uitvoeren of
+  hostbestanden lezen die zichtbaar zijn voor de uitvoerende gebruiker, waaronder MCP-clientregisters
+  zoals `~/.openclaw/skills/config/mcporter.json`. Combineer voor MCP-isolatie
+  per agent de toelatingslijsten voor Skills met sandbox-/OS-gebruikersisolatie,
+  weiger hostuitvoering of beperk die strikt met een toelatingslijst, en geef de voorkeur aan referenties
+  per agent op de MCP-server.
 </Warning>
 
 ## Workshop (`skills.workshop`)
 
 <ParamField path="skills.workshop.autonomous.enabled" type="boolean" default="false">
-  Wanneer `true`, kan OpenClaw in behandeling zijnde voorstellen maken op basis van duurzame correcties
-  en geslaagd, substantieel voltooid werk beoordelen nadat het systeem
-  inactief wordt. Hierdoor kan na in aanmerking komende beurten een modeluitvoering op de achtergrond worden
-  toegevoegd. Door gebruikers geïnitieerde creatie van skills en `/learn` blijven werken wanneer de instelling `false` is.
+  Wanneer `true`, kan OpenClaw openstaande voorstellen maken op basis van duurzame correcties
+  en kan het geslaagd, substantieel voltooid werk beoordelen nadat het systeem
+  inactief is geworden. Dit kan na geschikte beurten een modeluitvoering op de achtergrond toevoegen. Door de gebruiker gestarte
+  aanmaak van skills en `/learn` blijven werken wanneer de instelling `false` is.
 </ParamField>
 
-Zie [Zelflerend](/tools/self-learning) voor geschiktheid, privacy, kosten,
+Zie [Zelflerend vermogen](/nl/tools/self-learning) voor geschiktheid, privacy, kosten,
 uitsluitend-voorstellenmachtigingen en probleemoplossing.
 
 <ParamField path="skills.workshop.approvalPolicy" type='"pending" | "auto"' default='"auto"'>
   `auto` staat door de agent geïnitieerd toepassen, afwijzen of in quarantaine plaatsen toe zonder een
-  extra goedkeuringsprompt. `pending` vereist goedkeuring door de operator.
+  extra goedkeuringsprompt. `pending` vereist goedkeuring van de operator.
 </ParamField>
 
 <ParamField path="skills.workshop.allowSymlinkTargetWrites" type="boolean" default="false">
-  Sta toe dat toepassen in Skill Workshop via symlinks van workspace-skills schrijft waarvan
-  het werkelijke doel al wordt vertrouwd door `skills.load.allowSymlinkTargets`. Houd
-  dit uitgeschakeld tenzij het toepassen van gegenereerde voorstellen die gedeelde
-  skill-hoofdmap moet wijzigen.
+  Sta toe dat toepassen via Skill Workshop via symlinks naar workspace-skills schrijft waarvan
+  het echte doel al wordt vertrouwd door `skills.load.allowSymlinkTargets`. Laat
+  dit uitgeschakeld, tenzij het toepassen van gegenereerde voorstellen die gedeelde
+  skill-root moet wijzigen.
 </ParamField>
 
 <ParamField path="skills.workshop.maxPending" type="number" default="50">
-  Maximumaantal in behandeling zijnde en in quarantaine geplaatste voorstellen dat per workspace wordt bewaard (toegestaan
+  Maximumaantal openstaande en in quarantaine geplaatste voorstellen dat per workspace wordt bewaard (toegestaan
   bereik: 1-200).
 </ParamField>
 
 <ParamField path="skills.workshop.maxSkillBytes" type="number" default="40000">
-  Maximale grootte van de voorstelinhoud in bytes (toegestaan bereik: 1024-200000). Voorstelbeschrijvingen
-  hebben afzonderlijk een harde limiet van 160 bytes, omdat ze worden weergegeven
-  in uitvoer voor detectie en lijsten.
+  Maximale grootte van de voorsteltekst in bytes (toegestaan bereik: 1024-200000). Beschrijvingen
+  van voorstellen hebben afzonderlijk een harde limiet van 160 bytes, omdat ze worden weergegeven
+  in detectie- en lijstuitvoer.
 </ParamField>
 
 Zie [Skill Workshop](/nl/tools/skill-workshop) voor de levenscyclus van voorstellen, CLI-
-opdrachten, parameters voor agenttools en Gateway-methoden die door deze configuratie worden beheerd.
+opdrachten, parameters van agenttools en Gateway-methoden die door deze configuratie worden beheerd.
 
-## Hoofdmappen van skills met symlinks
+## Skill-roots met symlinks
 
-Standaard vormen de hoofdmappen voor workspace-, project-agent-, extra-dir- en gebundelde skills
+Standaard vormen de skill-roots voor workspace, projectagent, extra directory en gebundelde skills
 insluitingsgrenzen. Een skillmap met een symlink onder `<workspace>/skills`
-die naar buiten de hoofdmap verwijst, wordt overgeslagen met een logbericht.
+die naar buiten de root verwijst, wordt overgeslagen met een logbericht.
 
 Declareer het vertrouwde doel om een opzettelijke symlinkindeling toe te staan:
 
@@ -406,12 +401,12 @@ Declareer het vertrouwde doel om een opzettelijke symlinkindeling toe te staan:
 ```
 
 Met deze configuratie wordt `<workspace>/skills/manager -> ~/Projects/manager/skills`
-geaccepteerd na realpath-resolutie. `extraDirs` scant de naastgelegen repository
-rechtstreeks; `allowSymlinkTargets` behoudt het pad met symlink voor bestaande
+geaccepteerd na realpath-resolutie. `extraDirs` scant de aangrenzende repository
+rechtstreeks; `allowSymlinkTargets` behoudt het pad met de symlink voor bestaande
 indelingen.
 
-Toepassen in Skill Workshop schrijft standaard niet via deze symlinks. Om
-Workshop bij het toepassen skills onder reeds vertrouwde symlinkdoelen te laten wijzigen, moet je dit
+Bij toepassen schrijft Skill Workshop standaard niet via deze symlinks. Om
+Workshop bij toepassen skills onder reeds vertrouwde symlinkdoelen te laten wijzigen, moet je dit
 afzonderlijk inschakelen:
 
 ```json5
@@ -427,16 +422,16 @@ afzonderlijk inschakelen:
 }
 ```
 
-Beheerde `~/.openclaw/skills`- en persoonlijke `~/.agents/skills`-mappen
-accepteren symlinks naar skillmappen al onvoorwaardelijk (insluiting van
-`SKILL.md` per skill blijft van toepassing) — `allowSymlinkTargets` is alleen nodig
-voor hoofdmappen van workspace, extra-dir en project-agent (`<workspace>/.agents/skills`).
+Beheerde `~/.openclaw/skills`- en persoonlijke `~/.agents/skills`-directory's
+accepteren symlinks naar skilldirectory's al onvoorwaardelijk (insluiting per skill via
+`SKILL.md` blijft van toepassing) — `allowSymlinkTargets` is alleen nodig
+voor roots van workspace, extra directory en projectagent (`<workspace>/.agents/skills`).
 
 ## Skills in een sandbox en omgevingsvariabelen
 
 <Warning>
   `skills.entries.<skill>.env` en `apiKey` zijn alleen van toepassing op uitvoeringen op de **host**.
-  Binnen een sandbox hebben ze geen effect — een skill die afhankelijk is van
+  In een sandbox hebben ze geen effect — een skill die afhankelijk is van
   `GEMINI_API_KEY` mislukt met `apiKey not configured`, tenzij de variabele
   afzonderlijk aan de sandbox wordt doorgegeven.
 </Warning>
@@ -459,8 +454,8 @@ Geef geheimen als volgt door aan een Docker-sandbox:
 
 <Note>
   Gebruikers met toegang tot de Docker-daemon kunnen `sandbox.docker.env`-waarden
-  inspecteren via Docker-metagegevens. Gebruik een gekoppeld geheim bestand, een aangepaste image of
-  een ander overdrachtspad wanneer die blootstelling niet acceptabel is.
+  via Docker-metadata inspecteren. Gebruik een gekoppeld geheimenbestand, een aangepaste image of
+  een ander overdrachtspad wanneer die blootstelling niet aanvaardbaar is.
 </Note>
 
 ## Herinnering aan de laadvolgorde
@@ -481,8 +476,8 @@ wijziging detecteert.
 ## Gerelateerd
 
 <CardGroup cols={2}>
-  <Card title="Naslaginformatie over skills" href="/nl/tools/skills" icon="puzzle-piece">
-    Wat skills zijn, de laadvolgorde, toegangsvoorwaarden en de indeling van SKILL.md.
+  <Card title="Skills-referentie" href="/nl/tools/skills" icon="puzzle-piece">
+    Wat skills zijn, de laadvolgorde, toegangscontrole en de SKILL.md-indeling.
   </Card>
   <Card title="Skills maken" href="/nl/tools/creating-skills" icon="hammer">
     Aangepaste workspace-skills schrijven.
@@ -490,10 +485,10 @@ wijziging detecteert.
   <Card title="Skill Workshop" href="/nl/tools/skill-workshop" icon="flask">
     Voorstelwachtrij voor door agents opgestelde skills.
   </Card>
-  <Card title="Zelflerend" href="/tools/self-learning" icon="brain">
-    Voorzichtige opt-invoorstellen op basis van voltooid werk.
+  <Card title="Zelflerend vermogen" href="/nl/tools/self-learning" icon="brain">
+    Voorzichtige, expliciet ingeschakelde voorstellen op basis van voltooid werk.
   </Card>
   <Card title="Slash-opdrachten" href="/nl/tools/slash-commands" icon="terminal">
-    Systeemeigen catalogus met slash-opdrachten en chatrichtlijnen.
+    Catalogus met systeemeigen slash-opdrachten en chatdirectieven.
   </Card>
 </CardGroup>

@@ -4,7 +4,7 @@ read_when:
 summary: 為 OpenClaw 新增 OpenAI 模型供應商支援。
 title: OpenAI 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:53:26Z"
+    generated_at: "2026-07-26T08:06:31Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,14 +18,14 @@ x-i18n:
 
 為 OpenClaw 新增 OpenAI 模型供應商支援。
 
-## 發佈方式
+## 發布方式
 
 - 套件：`@openclaw/openai-provider`
-- 安裝方式：隨 OpenClaw 內含
+- 安裝方式：隨附於 OpenClaw
 
 ## 介面
 
-供應商：`openai`；契約：`imageGenerationProviders`、`mediaUnderstandingProviders`、`memoryEmbeddingProviders`、`realtimeTranscriptionProviders`、`realtimeVoiceProviders`、`speechProviders`、`usageProviders`、`videoGenerationProviders`
+供應商：`openai`；合約：`imageGenerationProviders`、`mediaUnderstandingProviders`、`memoryEmbeddingProviders`、`realtimeTranscriptionProviders`、`realtimeVoiceProviders`、`speechProviders`、`usageProviders`、`videoGenerationProviders`
 
 ## 相關文件
 

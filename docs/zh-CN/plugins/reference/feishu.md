@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安装、配置或审计 Feishu 插件
-summary: 用于聊天和办公工具的 OpenClaw Feishu/Lark 渠道插件（由 @m1heng 社区维护）。
+summary: 用于聊天和办公工具的 OpenClaw Feishu/Lark 渠道插件（由社区成员 @m1heng 维护）。
 title: Feishu 插件
 x-i18n:
-    generated_at: "2026-07-16T11:45:04Z"
+    generated_at: "2026-07-26T06:17:49Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # Feishu 插件
 
-用于聊天和办公工具的 OpenClaw Feishu/Lark 渠道插件（由 @m1heng 社区维护）。
+用于聊天和工作场所工具的 OpenClaw Feishu/Lark 渠道插件（由 @m1heng 社区维护）。
 
 ## 分发
 
 - 软件包：`@openclaw/feishu`
 - 安装途径：npm；ClawHub
 
-## 功能范围
+## 接口
 
 渠道：`feishu`；契约：`tools`；Skills
 

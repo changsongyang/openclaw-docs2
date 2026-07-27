@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das openrouter-Plugin.
-summary: Fügt Unterstützung für den OpenRouter-Modell-Provider zu OpenClaw hinzu.
+    - Sie installieren, konfigurieren oder überprüfen das openrouter-Plugin
+summary: Fügt OpenClaw Unterstützung für den Modell-Provider OpenRouter hinzu.
 title: OpenRouter-Plugin
 x-i18n:
-    generated_at: "2026-07-24T05:08:07Z"
+    generated_at: "2026-07-26T18:38:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

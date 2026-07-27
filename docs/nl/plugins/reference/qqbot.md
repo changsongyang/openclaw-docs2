@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de qqbot-plugin
 summary: OpenClaw QQ Bot-kanaalplugin voor groeps- en privéberichtworkflows.
-title: QQ Bot-Plugin
+title: QQ Bot-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:17:04Z"
+    generated_at: "2026-07-27T06:28:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# QQ Bot-Plugin
+# QQ Bot-plugin
 
-OpenClaw QQ Bot-kanaalplugin voor workflows met groepen en directe berichten.
+OpenClaw QQ Bot-kanaalplugin voor workflows met groepen en privéberichten.
 
 ## Distributie
 

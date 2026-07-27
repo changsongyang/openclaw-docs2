@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw में DeepInfra मॉडल प्रदाता का समर्थन जोड़ता है।
 title: DeepInfra Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:14:25Z"
+    generated_at: "2026-07-27T18:46:17Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,17 +16,17 @@ x-i18n:
 
 # DeepInfra Plugin
 
-OpenClaw में DeepInfra मॉडल प्रदाता के लिए समर्थन जोड़ता है।
+OpenClaw में DeepInfra मॉडल प्रदाता का समर्थन जोड़ता है।
 
 ## वितरण
 
 - पैकेज: `@openclaw/deepinfra-provider`
 - इंस्टॉल मार्ग: npm; ClawHub: `clawhub:@openclaw/deepinfra-provider`
 
-## उपलब्ध सतह
+## सरफ़ेस
 
 प्रदाता: `deepinfra`; अनुबंध: `imageGenerationProviders`, `mediaUnderstandingProviders`, `memoryEmbeddingProviders`, `speechProviders`, `videoGenerationProviders`
 
 ## संबंधित दस्तावेज़
 
-- [DeepInfra](/hi/providers/deepinfra)
+- [deepinfra](/hi/providers/deepinfra)

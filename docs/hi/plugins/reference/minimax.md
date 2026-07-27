@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw में MiniMax और MiniMax Portal मॉडल प्रदाता समर्थन जोड़ता है।
 title: MiniMax Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:41:02Z"
+    generated_at: "2026-07-27T19:39:55Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,16 +14,16 @@ x-i18n:
     workflow: 16
 ---
 
-# MiniMax plugin
+# MiniMax Plugin
 
-OpenClaw में MiniMax, MiniMax Portal मॉडल प्रदाता समर्थन जोड़ता है।
+OpenClaw में MiniMax और MiniMax Portal मॉडल प्रदाता समर्थन जोड़ता है।
 
 ## वितरण
 
 - पैकेज: `@openclaw/minimax-provider`
 - इंस्टॉल मार्ग: OpenClaw में शामिल
 
-## सतह
+## उपलब्ध सतह
 
 प्रदाता: `minimax`, `minimax-portal`; अनुबंध: `imageGenerationProviders`, `mediaUnderstandingProviders`, `musicGenerationProviders`, `speechProviders`, `usageProviders`, `videoGenerationProviders`, `webSearchProviders`
 

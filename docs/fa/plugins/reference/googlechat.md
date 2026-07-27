@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin گوگل‌چت هستید
-summary: Plugin کانال Google Chat در OpenClaw برای فضاها و پیام‌های مستقیم.
-title: Plugin Google Chat
+    - در حال نصب، پیکربندی یا ممیزی پلاگین googlechat هستید
+summary: Plugin کانال Google Chat برای OpenClaw جهت فضاها و پیام‌های مستقیم.
+title: Plugin گوگل چت
 x-i18n:
-    generated_at: "2026-07-16T17:27:33Z"
+    generated_at: "2026-07-27T15:43:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin‏ Google Chat
+# Plugin ‏Google Chat
 
-Plugin کانال Google Chat برای فضاها و پیام‌های مستقیم در OpenClaw.
+Plugin کانال Google Chat در OpenClaw برای فضاها و پیام‌های مستقیم.
 
 ## توزیع
 
 - بسته: `@openclaw/googlechat`
-- مسیر نصب: npm؛ ClawHub
+- روش نصب: npm؛ ClawHub
 
 ## سطح
 

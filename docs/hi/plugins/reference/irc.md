@@ -1,10 +1,10 @@
 ---
 read_when:
-    - आप irc plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
+    - आप irc Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
 summary: OpenClaw संदेश भेजने और प्राप्त करने के लिए IRC चैनल इंटरफ़ेस जोड़ता है।
 title: IRC Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:15:51Z"
+    generated_at: "2026-07-27T18:18:24Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -29,4 +29,4 @@ OpenClaw संदेश भेजने और प्राप्त करन�
 
 ## संबंधित दस्तावेज़
 
-- [irc](/hi/channels/irc)
+- [IRC](/hi/channels/irc)

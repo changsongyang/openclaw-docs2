@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw Baseten प्रदाता Plugin।
 title: Baseten Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:34:58Z"
+    generated_at: "2026-07-27T20:12:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ OpenClaw Baseten प्रदाता Plugin।
 - पैकेज: `@openclaw/baseten-provider`
 - इंस्टॉल करने का माध्यम: npm; ClawHub: `clawhub:@openclaw/baseten-provider`
 
-## सतह
+## उपलब्ध इंटरफ़ेस
 
 प्रदाता: `baseten`
 

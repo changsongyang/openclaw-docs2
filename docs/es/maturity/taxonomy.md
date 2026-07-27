@@ -1,8 +1,8 @@
 ---
-summary: Referencia detallada de las áreas del producto y las comprobaciones que sustentan el cuadro de mando de madurez de OpenClaw.
+summary: Referencia detallada de las áreas del producto y las comprobaciones que sustentan la tabla de evaluación de madurez de OpenClaw.
 title: Taxonomía de madurez
 x-i18n:
-    generated_at: "2026-07-19T02:29:12Z"
+    generated_at: "2026-07-26T05:18:31Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,15 +15,15 @@ x-i18n:
 # Taxonomía de madurez
 
 <div className="maturity-hero maturity-hero-compact">
-  <p className="maturity-kicker">el modelo en el que se basa el cuadro de puntuación</p>
-  <p className="maturity-hero-title">Superficies &gt; categorías &gt; capacidades &gt; evidencia.</p>
+  <p className="maturity-kicker">el modelo en el que se basa el cuadro de evaluación</p>
+  <p className="maturity-hero-title">Superficies &gt; categorías &gt; capacidades &gt; evidencias.</p>
   <p>50 superficies agrupadas en 4 familias, con cada categoría vinculada a la documentación canónica y a los identificadores de cobertura de control de calidad.</p>
-  <p className="maturity-jump-links"><a href="#product-areas">Explorar áreas de producto</a> / <a href="#taxonomy-details">Abrir taxonomía detallada</a> / <a href="/es/maturity/scorecard">Ver puntuaciones</a></p>
+  <p className="maturity-jump-links"><a href="#product-areas">Explorar áreas del producto</a> / <a href="#taxonomy-details">Abrir la taxonomía detallada</a> / <a href="/es/maturity/scorecard">Ver puntuaciones</a></p>
 </div>
 
 ## Cómo leer esta página
 
-Una superficie es un área de producto, como el entorno de ejecución del Gateway, Discord o la aplicación para macOS. Cada superficie contiene categorías, y cada categoría contiene las comprobaciones a nivel de capacidad que cubren los escenarios de control de calidad. Utilice el cuadro de puntuación para evaluar el nivel de una versión; utilice esta página para examinar el modelo subyacente.
+Una superficie es un área del producto, como el entorno de ejecución del Gateway, Discord o la aplicación para macOS. Cada superficie contiene categorías, y cada categoría contiene las comprobaciones a nivel de capacidad que cubren los escenarios de control de calidad. Utilice el cuadro de evaluación para valorar el nivel de una versión; utilice esta página para examinar el modelo subyacente.
 
 ## Niveles de madurez
 
@@ -31,12 +31,12 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <div className="maturity-level-row"><span className="maturity-level-title"><span className="maturity-level-pill maturity-level-experimental"><span className="maturity-level-code">M0</span><span>Planificado</span></span></span><span>Se conoce la dirección, pero no existe ninguna ruta de usuario compatible.</span><span className="maturity-level-promotion">Promoción: existen una incidencia de diseño, un responsable y una superficie objetivo.</span></div>
   <div className="maturity-level-row"><span className="maturity-level-title"><span className="maturity-level-pill maturity-level-experimental"><span className="maturity-level-code">M1</span><span>Experimental</span></span></span><span>Implementado con salvedades, indicadores, compilaciones desde el código fuente o flujos exclusivos para responsables de mantenimiento.</span><span className="maturity-level-promotion">Promoción: un responsable de mantenimiento puede ejecutar el escenario desde la rama principal actual.</span></div>
   <div className="maturity-level-row"><span className="maturity-level-title"><span className="maturity-level-pill maturity-level-alpha"><span className="maturity-level-code">M2</span><span>Alfa</span></span></span><span>Los usuarios reales pueden probarlo, pero se esperan cambios incompatibles y una experiencia de usuario incompleta.</span><span className="maturity-level-promotion">Promoción: configuración documentada, pruebas básicas, salvedades conocidas y al menos una prueba en un entorno real.</span></div>
-  <div className="maturity-level-row"><span className="maturity-level-title"><span className="maturity-level-pill maturity-level-beta"><span className="maturity-level-code">M3</span><span>Beta</span></span></span><span>Existe una ruta pública y el flujo de trabajo principal es utilizable con salvedades acotadas.</span><span className="maturity-level-promotion">Promoción: documentación de instalación y actualización, pruebas de regresión, guía operativa de soporte y prueba satisfactoria del escenario en todo el entorno previsto.</span></div>
-  <div className="maturity-level-row"><span className="maturity-level-title"><span className="maturity-level-pill maturity-level-stable"><span className="maturity-level-code">M4</span><span>Estable</span></span></span><span>Ruta recomendada para usuarios habituales. Los fallos se tratan como regresiones.</span><span className="maturity-level-promotion">Promoción: control de publicación, ruta de diagnóstico y solución de problemas, documentación exhaustiva y pruebas repetidas en entornos reales.</span></div>
-  <div className="maturity-level-row"><span className="maturity-level-title"><span className="maturity-level-pill maturity-level-clawesome"><span className="maturity-level-code">M5</span><span>Clawesome</span></span></span><span>Pulido, agradable, bien instrumentado y competitivo con el mejor flujo de trabajo comparable.</span><span className="maturity-level-promotion">Promoción: nivel estable más aprobación del cuadro de puntuación de usuarios con usuarios representativos.</span></div>
+  <div className="maturity-level-row"><span className="maturity-level-title"><span className="maturity-level-pill maturity-level-beta"><span className="maturity-level-code">M3</span><span>Beta</span></span></span><span>Existe una ruta pública y el flujo de trabajo principal se puede utilizar con salvedades acotadas.</span><span className="maturity-level-promotion">Promoción: documentación de instalación y actualización, pruebas de regresión, manual operativo de soporte y una prueba satisfactoria del escenario en el entorno previsto.</span></div>
+  <div className="maturity-level-row"><span className="maturity-level-title"><span className="maturity-level-pill maturity-level-stable"><span className="maturity-level-code">M4</span><span>Estable</span></span></span><span>Ruta recomendada para usuarios habituales. Los fallos se consideran regresiones.</span><span className="maturity-level-promotion">Promoción: control de versión, ruta de diagnóstico y solución de problemas, documentación amplia y pruebas reiteradas en entornos reales.</span></div>
+  <div className="maturity-level-row"><span className="maturity-level-title"><span className="maturity-level-pill maturity-level-clawesome"><span className="maturity-level-code">M5</span><span>Clawesome</span></span></span><span>Pulido, agradable, bien instrumentado y competitivo frente al mejor flujo de trabajo comparable.</span><span className="maturity-level-promotion">Promoción: nivel estable más la aprobación del cuadro de evaluación de usuarios entre usuarios representativos.</span></div>
 </div>
 
-## Áreas de producto
+## Áreas del producto
 
 <a id="product-areas" />
 
@@ -59,7 +59,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
     </a>
 
     <a className="maturity-surface-link" href="#session-memory-and-context-engine">
-      <span className="maturity-surface-title">Motor de sesión, memoria y contexto</span>
+      <span className="maturity-surface-title">Motor de sesiones, memoria y contexto</span>
       <span className="maturity-surface-meta"><span className="maturity-level-pill maturity-level-beta"><span className="maturity-level-code">M3</span><span>Beta</span></span><span>9 áreas - 79% completado</span></span>
     </a>
 
@@ -89,7 +89,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
     </a>
 
     <a className="maturity-surface-link" href="#automation-cron-hooks-tasks-polling">
-      <span className="maturity-surface-title">Automatización: cron, hooks, tareas y sondeo</span>
+      <span className="maturity-surface-title">Automatización: Cron, hooks, tareas y sondeo</span>
       <span className="maturity-surface-meta"><span className="maturity-level-pill maturity-level-beta"><span className="maturity-level-code">M3</span><span>Beta</span></span><span>6 áreas - 79% completado</span></span>
     </a>
 
@@ -240,7 +240,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
     </a>
 
     <a className="maturity-surface-link" href="#feishu-qq-bot-wechat-yuanbao-zalo-zalo-personal-regional-channels">
-      <span className="maturity-surface-title">Feishu, QQ Bot, WeChat, Yuanbao, Zalo, Zalo Personal, canales regionales</span>
+      <span className="maturity-surface-title">Feishu, QQ Bot, WeChat, Yuanbao, Zalo, Zalo Personal y canales regionales</span>
       <span className="maturity-surface-meta"><span className="maturity-level-pill maturity-level-alpha"><span className="maturity-level-code">M2</span><span>Alfa</span></span><span>4 áreas - 58% completado</span></span>
     </a>
 
@@ -263,7 +263,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
     </a>
 
     <a className="maturity-surface-link" href="#openai-and-codex-provider-path">
-      <span className="maturity-surface-title">Ruta de proveedor de OpenAI y Codex</span>
+      <span className="maturity-surface-title">Ruta de proveedores de OpenAI y Codex</span>
       <span className="maturity-surface-meta"><span className="maturity-level-pill maturity-level-beta"><span className="maturity-level-code">M3</span><span>Beta</span></span><span>5 áreas - 79% completado</span></span>
     </a>
 
@@ -298,7 +298,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
     </a>
 
     <a className="maturity-surface-link" href="#long-tail-hosted-providers">
-      <span className="maturity-surface-title">Proveedores alojados de larga cola</span>
+      <span className="maturity-surface-title">Proveedores alojados de nicho</span>
       <span className="maturity-surface-meta"><span className="maturity-level-pill maturity-level-alpha"><span className="maturity-level-code">M2</span><span>Alfa</span></span><span>3 áreas - 68% completado</span></span>
     </a>
 
@@ -315,7 +315,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="CLI - M4 Estable - 7 áreas">
     <a id="cli" />
 
-    Las rutas normales de configuración y reparación están documentadas en la documentación de instalación, la CLI y el Gateway. Las rutas específicas de Windows se registran en las filas Windows mediante WSL2 y Windows nativo.
+    Las rutas normales de configuración y reparación están documentadas en la documentación de instalación, CLI y Gateway. Las rutas específicas de Windows se registran en las filas de Windows mediante WSL2 y Windows nativo.
 
     <div className="maturity-surface-rollup"><span>Cobertura experimental - 4%</span><span>Calidad estable - 83%</span><span>Integridad estable - 90%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 6</span></span></div>
 
@@ -387,7 +387,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-stable"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-stable">Estable</span><span>90%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "90%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Estado](/es/cli/status), [Salud](/es/cli/health), [Registros](/es/cli/logs), [Diagnósticos](/es/gateway/diagnostics)
+    [Estado](/es/cli/status), [Salud](/es/cli/health), [Registros](/es/cli/logs), [Diagnóstico](/es/gateway/diagnostics)
 
     </div>
       </div>
@@ -423,12 +423,12 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
 
   </Accordion>
 
-  <Accordion title="Entorno de ejecución del Gateway - M4 Estable - 13 áreas">
+  <Accordion title="Entorno de ejecución del Gateway - M4 estable - 13 áreas">
     <a id="gateway-runtime" />
 
     La arquitectura central, la autenticación, el emparejamiento, la documentación del protocolo, la documentación del daemon y las guías operativas de la CLI son amplias y están actualizadas.
 
-    <div className="maturity-surface-rollup"><span>Cobertura Experimental - 6%</span><span>Calidad Estable - 81%</span><span>Integridad Estable - 89%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 12</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 6%</span><span>Calidad estable - 81%</span><span>Integridad estable - 89%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 12</span></span></div>
 
     <div className="maturity-category-list">
       <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
@@ -449,7 +449,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">API HTTP</span>
-          <span>4 capacidades / con soporte LTS</span>
+          <span>4 capacidades / con compatibilidad LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>25%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "25%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-stable"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-stable">Estable</span><span>90%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "90%" }} /></span></span></div>
@@ -463,7 +463,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Superficie web alojada</span>
-          <span>4 capacidades / con soporte LTS</span>
+          <span>4 capacidades / con compatibilidad LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-stable"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-stable">Estable</span><span>89%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "89%" }} /></span></span></div>
@@ -477,7 +477,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">API RPC y eventos del Gateway</span>
-          <span>20 capacidades / con soporte LTS</span>
+          <span>20 capacidades / con compatibilidad LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>9%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "9%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-stable"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-stable">Estable</span><span>90%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "90%" }} /></span></span></div>
@@ -491,7 +491,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Autenticación y emparejamiento de dispositivos</span>
-          <span>10 capacidades / con soporte LTS</span>
+          <span>10 capacidades / con compatibilidad LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>75%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "75%" }} /></span></span></div>
@@ -504,15 +504,15 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Acceso y descubrimiento de red</span>
-          <span>6 capacidades / con soporte LTS</span>
+          <span className="maturity-category-title">Acceso y detección de red</span>
+          <span>6 capacidades / con compatibilidad LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>75%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "75%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-stable"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-stable">Estable</span><span>89%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "89%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Índice](/es/gateway/index), [Descubrimiento](/es/gateway/discovery), [Protocolo](/es/gateway/protocol)
+    [Índice](/es/gateway/index), [Detección](/es/gateway/discovery), [Protocolo](/es/gateway/protocol)
 
     </div>
       </div>
@@ -533,7 +533,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Estado, diagnóstico y reparación</span>
-          <span>7 capacidades / con soporte LTS</span>
+          <span>7 capacidades / con compatibilidad LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>75%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "75%" }} /></span></span></div>
@@ -547,7 +547,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Compatibilidad del protocolo</span>
-          <span>7 capacidades / con soporte LTS</span>
+          <span>7 capacidades / con compatibilidad LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>75%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "75%" }} /></span></span></div>
@@ -618,12 +618,12 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
 
   </Accordion>
 
-  <Accordion title="Runtime de agentes - M3 Beta - 9 áreas">
+  <Accordion title="Runtime del agente - Beta M3 - 9 áreas">
     <a id="agent-runtime" />
 
     El bucle principal, los modelos, el enrutamiento de proveedores y la transmisión de herramientas son elementos de primera clase, pero el comportamiento de los proveedores cambia semanalmente y requiere pruebas de escenarios en cada versión.
 
-    <div className="maturity-surface-rollup"><span>Cobertura Experimental - 33%</span><span>Calidad Beta - 78%</span><span>Integridad Beta - 79%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 6</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 33%</span><span>Calidad beta - 78%</span><span>Integridad beta - 79%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 6</span></span></div>
 
     <div className="maturity-category-list">
       <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
@@ -657,7 +657,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Ejecución mediante proveedores alojados</span>
+          <span className="maturity-category-title">Ejecución de proveedores alojados</span>
           <span>5 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>20%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "20%" }} /></span></span></div>
@@ -685,7 +685,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Selección de modelos y entornos de ejecución</span>
+          <span className="maturity-category-title">Selección de modelo y entorno de ejecución</span>
           <span>4 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>25%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "25%" }} /></span></span></div>
@@ -699,7 +699,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Autenticación de proveedores</span>
+          <span className="maturity-category-title">Autenticación del proveedor</span>
           <span>10 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>24%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "24%" }} /></span></span></div>
@@ -749,7 +749,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Entorno aislado frente a política de herramientas frente a modo elevado](/es/gateway/sandbox-vs-tool-policy-vs-elevated), [Bucle del agente](/es/concepts/agent-loop), [Subagentes](/es/tools/subagents)
+    [Entorno aislado frente a política de herramientas frente a privilegios elevados](/es/gateway/sandbox-vs-tool-policy-vs-elevated), [Bucle del agente](/es/concepts/agent-loop), [Subagentes](/es/tools/subagents)
 
     </div>
       </div>
@@ -760,12 +760,12 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Motor de sesiones, memoria y contexto - M3 Beta - 9 áreas">
     <a id="session-memory-and-context-engine" />
 
-    Documentación sólida e implementación activa. La madurez depende de la durabilidad de las transcripciones, la calidad de Compaction y la paridad entre clientes.
+    Documentación sólida e implementación activa. La madurez depende de la durabilidad de las transcripciones, la calidad de la Compaction y la paridad entre clientes.
 
-    <div className="maturity-surface-rollup"><span>Cobertura Experimental - 30%</span><span>Calidad Beta - 77%</span><span>Integridad Beta - 79%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 6</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 30%</span><span>Calidad beta - 77%</span><span>Completitud beta - 79%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 6</span></span></div>
 
     <div className="maturity-category-list">
-      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
+      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Completitud</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Gestión de sesiones y transcripciones mediante la CLI</span>
@@ -838,8 +838,8 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Indicaciones principales y contexto</span>
-          <span>2 capacidades / compatibles con LTS</span>
+          <span className="maturity-category-title">Prompts principales y contexto</span>
+          <span>2 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>38%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "38%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
@@ -867,7 +867,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Enrutamiento de sesiones</span>
-          <span>2 capacidades / compatibles con LTS</span>
+          <span>2 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>25%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "25%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
@@ -899,15 +899,15 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Marco de canales - M3 Beta - 8 áreas">
     <a id="channel-framework" />
 
-    Muchos canales comparten los contratos de entrega y enrutamiento del Gateway, pero su comportamiento varía según las restricciones de la API ascendente y de las políticas de las cuentas.
+    Muchos canales comparten los contratos de entrega y enrutamiento del Gateway, pero el comportamiento de los canales varía según la API de origen y las restricciones de las políticas de las cuentas.
 
-    <div className="maturity-surface-rollup"><span>Cobertura experimental - 13%</span><span>Calidad beta - 76%</span><span>Integridad beta - 79%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 5</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 13%</span><span>Calidad Beta - 76%</span><span>Integridad Beta - 79%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 5</span></span></div>
 
     <div className="maturity-category-list">
       <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Comandos de acciones y aprobaciones de canales</span>
+          <span className="maturity-category-title">Comandos y aprobaciones de acciones de canal</span>
           <span>5 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -963,7 +963,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Archivos multimedia adjuntos y datos enriquecidos del canal</span>
+          <span className="maturity-category-title">Archivos multimedia adjuntos y datos enriquecidos de canales</span>
           <span>4 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -1006,7 +1006,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Estado de salud y controles del operador</span>
-          <span>4 capacidades / compatibles con LTS</span>
+          <span>4 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
@@ -1024,16 +1024,16 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Observabilidad - M3 Beta - 5 áreas">
     <a id="observability" />
 
-    Existen documentos sobre OTel, Prometheus, registros y diagnósticos. Se necesita una revisión pública de madurez sobre «qué deben comprobar primero los operadores».
+    Existen documentos sobre OTel, Prometheus, registro y diagnóstico. Se necesita una revisión pública de madurez sobre «qué deberían consultar primero los operadores».
 
-    <div className="maturity-surface-rollup"><span>Cobertura experimental - 18%</span><span>Calidad beta - 75%</span><span>Completitud beta - 79%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 3</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura Experimental - 18%</span><span>Calidad Beta - 75%</span><span>Integridad Beta - 79%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 3</span></span></div>
 
     <div className="maturity-category-list">
-      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Completitud</span><span>Documentación</span></div>
+      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Estado y reparación</span>
-          <span>12 capacidades / compatibles con LTS</span>
+          <span>12 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>28%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "28%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
@@ -1047,7 +1047,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Registro</span>
-          <span>5 capacidades / compatibles con LTS</span>
+          <span>5 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>68%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "68%" }} /></span></span></div>
@@ -1082,14 +1082,14 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Hooks](/es/plugins/hooks), [Opentelemetry](/es/gateway/opentelemetry), [Registro](/es/logging), [Subrutas del SDK](/es/plugins/sdk-subpaths), [Otel para diagnósticos](/es/plugins/reference/diagnostics-otel), [Prometheus](/es/gateway/prometheus), [Prometheus para diagnósticos](/es/plugins/reference/diagnostics-prometheus)
+    [Hooks](/es/plugins/hooks), [Opentelemetry](/es/gateway/opentelemetry), [Registro](/es/logging), [Subrutas del SDK](/es/plugins/sdk-subpaths), [Diagnósticos de Otel](/es/plugins/reference/diagnostics-otel), [Prometheus](/es/gateway/prometheus), [Diagnósticos de Prometheus](/es/plugins/reference/diagnostics-prometheus)
 
     </div>
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Diagnósticos de sesión</span>
-          <span>4 capacidades / con compatibilidad LTS</span>
+          <span>4 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>68%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "68%" }} /></span></span></div>
@@ -1107,12 +1107,12 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Aplicación web del Gateway - M3 Beta - 6 áreas">
     <a id="gateway-web-app" />
 
-    La interfaz web está documentada con flujos de emparejamiento, chat, PWA, conversación, notificaciones push y Gateway remoto. Se promoverá después de completar las evaluaciones de compatibilidad entre navegadores y con PWA móviles.
+    La interfaz web está documentada con flujos de emparejamiento, chat, PWA, Talk, notificaciones push y Gateway remoto. Promover después de completar las evaluaciones para varios navegadores y PWA móviles.
 
-    <div className="maturity-surface-rollup"><span>Cobertura experimental - 4%</span><span>Calidad beta - 74%</span><span>Completitud beta - 79%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 4%</span><span>Calidad beta - 74%</span><span>Integridad beta - 79%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
     <div className="maturity-category-list">
-      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Completitud</span><span>Documentación</span></div>
+      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Conversación en tiempo real en el navegador</span>
@@ -1193,7 +1193,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Interfaz de control](/es/web/control-ui), [Estado](/es/gateway/health), [Protocolo](/es/gateway/protocol), [Panel de control](/es/web/dashboard)
+    [Interfaz de control](/es/web/control-ui), [Estado](/es/gateway/health), [Protocolo](/es/gateway/protocol), [Panel](/es/web/dashboard)
 
     </div>
       </div>
@@ -1204,7 +1204,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Plugins - M3 Beta - 9 áreas">
     <a id="plugins" />
 
-    Existen documentación amplia y pruebas internas sólidas del entorno de ejecución sobre manifiestos, detección, carga, arquitectura de proveedores y herramientas, y límites de aprobación. Mantenga la fila en beta hasta que sean más sólidas las pruebas sobre la API y las subrutas públicas del SDK, así como sobre la distribución externa.
+    Existen documentación amplia y pruebas internas sólidas del entorno de ejecución en manifiestos, detección, carga, arquitectura de proveedores y herramientas, y límites de aprobación. Mantenga la fila en beta hasta que sean más sólidas las pruebas de la API y las subrutas públicas del SDK, así como de la distribución externa.
 
     <div className="maturity-surface-rollup"><span>Cobertura experimental - 12%</span><span>Calidad beta - 72%</span><span>Completitud beta - 79%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 7</span></span></div>
 
@@ -1213,7 +1213,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Creación y empaquetado de plugins</span>
-          <span>8 capacidades / con soporte LTS</span>
+          <span>8 capacidades / compatibles con LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>68%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "68%" }} /></span></span></div>
@@ -1227,14 +1227,14 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Plugins incluidos</span>
-          <span>5 capacidades / con soporte LTS</span>
+          <span>5 capacidades / compatibles con LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>68%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "68%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Inventario de plugins](/es/plugins/plugin-inventory), [Plugins](/es/cli/plugins), [Detalles internos de la arquitectura](/es/plugins/architecture-internals)
+    [Inventario de plugins](/es/plugins/plugin-inventory), [Plugins](/es/cli/plugins), [Aspectos internos de la arquitectura](/es/plugins/architecture-internals)
 
     </div>
       </div>
@@ -1262,7 +1262,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Arquitectura](/es/plugins/architecture), [Detalles internos de la arquitectura](/es/plugins/architecture-internals), [Plugins](/es/cli/plugins)
+    [Arquitectura](/es/plugins/architecture), [Aspectos internos de la arquitectura](/es/plugins/architecture-internals), [Plugins](/es/cli/plugins)
 
     </div>
       </div>
@@ -1343,15 +1343,15 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Seguridad, autenticación, emparejamiento y secretos - M3 Beta - 6 áreas">
     <a id="security-auth-pairing-and-secrets" />
 
-    Existen buena documentación y superficies de refuerzo. Promuévase después de que las ejecuciones periódicas de escenarios de actualización y seguridad demuestren que no hay regresiones en la configuración.
+    Existen buena documentación y superficies de protección. Promuévalo después de que las ejecuciones periódicas de escenarios de actualización y seguridad demuestren que no hay regresiones de configuración.
 
-    <div className="maturity-surface-rollup"><span>Cobertura Experimental - 16%</span><span>Calidad Beta - 72%</span><span>Integridad Beta - 79%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 5</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 16%</span><span>Calidad beta - 72%</span><span>Integridad beta - 79%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 5</span></span></div>
 
     <div className="maturity-category-list">
       <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Política de aprobación y medidas de protección de herramientas</span>
+          <span className="maturity-category-title">Política de aprobación y protecciones de herramientas</span>
           <span>2 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>50%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "50%" }} /></span></span></div>
@@ -1415,7 +1415,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Manifiesto](/es/plugins/manifest), [Solicitudes de permisos de plugins](/es/plugins/plugin-permission-requests), [Administración de plugins](/es/plugins/manage-plugins), [Comprobaciones de auditoría](/es/gateway/security/audit-checks)
+    [Manifiesto](/es/plugins/manifest), [Solicitudes de permisos de plugins](/es/plugins/plugin-permission-requests), [Administrar plugins](/es/plugins/manage-plugins), [Comprobaciones de auditoría](/es/gateway/security/audit-checks)
 
     </div>
       </div>
@@ -1437,10 +1437,10 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
 
   </Accordion>
 
-  <Accordion title="Automatización: Cron, hooks, tareas y sondeo - M3 Beta - 6 áreas">
+  <Accordion title="Automatización: cron, hooks, tareas, sondeo - M3 Beta - 6 áreas">
     <a id="automation-cron-hooks-tasks-polling" />
 
-    Está documentado y se puede utilizar, pero las pruebas de escenarios deben abarcar la entrega desatendida, los reintentos y la visibilidad de los fallos.
+    Está documentada y se puede usar, pero las pruebas de escenarios deben abarcar la entrega desatendida, los reintentos y la visibilidad de los fallos.
 
     <div className="maturity-surface-rollup"><span>Cobertura Experimental - 2%</span><span>Calidad Beta - 72%</span><span>Integridad Beta - 79%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
@@ -1484,7 +1484,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Hooks](/es/automation/hooks), [Hooks](/es/cli/hooks), [Hooks](/es/plugins/hooks), [Solicitudes de permisos de plugins](/es/plugins/plugin-permission-requests), [Subrutas del SDK](/es/plugins/sdk-subpaths)
+    [Hooks](/es/automation/hooks), [Hooks](/es/cli/hooks), [Hooks](/es/plugins/hooks), [Solicitudes de permisos de Plugins](/es/plugins/plugin-permission-requests), [Subrutas del SDK](/es/plugins/sdk-subpaths)
 
     </div>
       </div>
@@ -1537,15 +1537,15 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Comprensión y generación de contenido multimedia - M2 Alfa - 6 áreas">
     <a id="media-understanding-and-media-generation" />
 
-    Existe una amplia superficie de capacidades, pero las diferencias entre proveedores, los límites de archivos y la paridad entre el Node y la aplicación impiden que sea estable por ahora.
+    Existe una amplia superficie de capacidades, pero la variación entre proveedores, los límites de archivos y la paridad entre Node y la aplicación hacen que todavía no sea estable.
 
     <div className="maturity-surface-rollup"><span>Cobertura Experimental - 2%</span><span>Calidad Alfa - 64%</span><span>Integridad Alfa - 68%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
     <div className="maturity-category-list">
-      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Completitud</span><span>Documentación</span></div>
+      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Recepción y acceso a medios</span>
+          <span className="maturity-category-title">Recepción y acceso a contenido multimedia</span>
           <span>8 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -1553,13 +1553,13 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>68%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "68%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Descripción general de medios](/es/tools/media-overview), [Comprensión de medios](/es/nodes/media-understanding), [Operaciones seguras con archivos](/es/gateway/security/secure-file-operations), [PDF](/es/tools/pdf), [Generación de imágenes](/es/tools/image-generation), [QR](/es/cli/qr), [LINE](/es/channels/line), [WhatsApp](/es/channels/whatsapp)
+    [Descripción general de contenido multimedia](/es/tools/media-overview), [Comprensión de contenido multimedia](/es/nodes/media-understanding), [Operaciones seguras con archivos](/es/gateway/security/secure-file-operations), [PDF](/es/tools/pdf), [Generación de imágenes](/es/tools/image-generation), [QR](/es/cli/qr), [LINE](/es/channels/line), [WhatsApp](/es/channels/whatsapp)
 
     </div>
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Gestión de medios en canales</span>
+          <span className="maturity-category-title">Gestión de contenido multimedia en canales</span>
           <span>5 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -1567,13 +1567,13 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>68%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "68%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Imágenes](/es/nodes/images), [Descripción general de medios](/es/tools/media-overview), [Discord](/es/channels/discord)
+    [Imágenes](/es/nodes/images), [Descripción general de contenido multimedia](/es/tools/media-overview), [Discord](/es/channels/discord)
 
     </div>
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Configuración de medios</span>
+          <span className="maturity-category-title">Configuración de contenido multimedia</span>
           <span>1 capacidad</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -1581,7 +1581,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>68%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "68%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Descripción general de medios](/es/tools/media-overview), [Generación de imágenes](/es/tools/image-generation), [Manifiesto](/es/plugins/manifest), [Arnés de Codex](/es/plugins/codex-harness)
+    [Descripción general de contenido multimedia](/es/tools/media-overview), [Generación de imágenes](/es/tools/image-generation), [Manifiesto](/es/plugins/manifest), [Entorno de pruebas de Codex](/es/plugins/codex-harness)
 
     </div>
       </div>
@@ -1595,13 +1595,13 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>68%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "68%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Texto a voz](/es/tools/tts), [Descripción general de medios](/es/tools/media-overview), [Discord](/es/channels/discord)
+    [Texto a voz](/es/tools/tts), [Descripción general de contenido multimedia](/es/tools/media-overview), [Discord](/es/channels/discord)
 
     </div>
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Comprensión de medios</span>
+          <span className="maturity-category-title">Comprensión de contenido multimedia</span>
           <span>12 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>7%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "7%" }} /></span></span></div>
@@ -1609,13 +1609,13 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>69%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "69%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Audio](/es/nodes/audio), [Comprensión de medios](/es/nodes/media-understanding), [Descripción general de medios](/es/tools/media-overview), [WhatsApp](/es/channels/whatsapp), [Imágenes](/es/nodes/images), [Inferencia](/es/cli/infer), [PDF](/es/tools/pdf)
+    [Audio](/es/nodes/audio), [Comprensión de contenido multimedia](/es/nodes/media-understanding), [Descripción general de contenido multimedia](/es/tools/media-overview), [WhatsApp](/es/channels/whatsapp), [Imágenes](/es/nodes/images), [Inferencia](/es/cli/infer), [PDF](/es/tools/pdf)
 
     </div>
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Generación de medios</span>
+          <span className="maturity-category-title">Generación de contenido multimedia</span>
           <span>17 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>5%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "5%" }} /></span></span></div>
@@ -1623,7 +1623,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>69%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "69%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Generación de imágenes](/es/tools/image-generation), [Descripción general de medios](/es/tools/media-overview), [Skills](/es/tools/skills), [Generación de música](/es/tools/music-generation), [Generación de vídeo](/es/tools/video-generation)
+    [Generación de imágenes](/es/tools/image-generation), [Descripción general de contenido multimedia](/es/tools/media-overview), [Skills](/es/tools/skills), [Generación de música](/es/tools/music-generation), [Generación de vídeo](/es/tools/video-generation)
 
     </div>
       </div>
@@ -1634,12 +1634,12 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Voz y conversación en tiempo real - M2 Alfa - 6 áreas">
     <a id="voice-and-realtime-talk" />
 
-    Existen múltiples implementaciones en la interfaz de control, las aplicaciones y los proveedores. Se necesitan tablas de puntuación de latencia, modos de fallo y configuración antes de la beta.
+    Existen varias implementaciones en la interfaz de control, las aplicaciones y los proveedores. Se necesitan cuadros de evaluación de latencia, modos de fallo y configuración antes de la fase beta.
 
-    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 61%</span><span>Completitud alfa - 68%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 61%</span><span>Integridad alfa - 68%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
     <div className="maturity-category-list">
-      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Completitud</span><span>Documentación</span></div>
+      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Proveedores de conversación</span>
@@ -1731,7 +1731,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="TUI - M2 Alfa - 5 áreas">
     <a id="tui" />
 
-    Presente en la documentación y el código fuente, pero menos visible como flujo de trabajo principal del usuario. Necesita una definición explícita de los escenarios.
+    Presente en la documentación y el código fuente, pero menos visible como flujo de trabajo principal para el usuario. Necesita una definición explícita de los escenarios.
 
     <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 59%</span><span>Integridad alfa - 66%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
@@ -1795,7 +1795,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Seguridad del renderizado y la salida</span>
+          <span className="maturity-category-title">Seguridad de la renderización y la salida</span>
           <span>4 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -1814,9 +1814,9 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="ClawHub - M2 Alfa - 4 áreas">
     <a id="clawhub" />
 
-    Existen documentación pública y un concepto de ecosistema. Se necesitan cuadros de mando de instalación, confianza, actualización, reversión y compatibilidad.
+    Existen documentación pública y un concepto de ecosistema. Se necesitan tablas de evaluación para la instalación, la confianza, las actualizaciones, la reversión y la compatibilidad.
 
-    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 58%</span><span>Integridad alfa - 62%</span><span><span className="maturity-lts maturity-lts-none">Ninguna</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 58%</span><span>Integridad alfa - 62%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
     <div className="maturity-category-list">
       <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
@@ -1883,15 +1883,15 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="SDK de aplicaciones de OpenClaw - M2 Alfa - 6 áreas">
     <a id="openclaw-app-sdk" />
 
-    El SDK de aplicaciones de OpenClaw es un contrato diferenciado para aplicaciones externas, independiente del entorno de ejecución del Gateway y del SDK de plugins. La puntuación actual muestra una ruta `@openclaw/sdk` real con carencias en torno al empaquetado público, el descubrimiento automático, las aprobaciones, los auxiliares y la compatibilidad.
+    El SDK de aplicaciones de OpenClaw es un contrato diferenciado para aplicaciones externas, independiente del entorno de ejecución de Gateway y del SDK de plugins. La puntuación actual muestra una ruta `@openclaw/sdk` real con carencias en el empaquetado público, el descubrimiento automático, las aprobaciones, las funciones auxiliares y la compatibilidad.
 
-    <div className="maturity-surface-rollup"><span>Cobertura experimental - 3%</span><span>Calidad alfa - 54%</span><span>Integridad alfa - 53%</span><span><span className="maturity-lts maturity-lts-none">Ninguna</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 3%</span><span>Calidad alfa - 54%</span><span>Integridad alfa - 53%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
     <div className="maturity-category-list">
       <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">API de cliente</span>
+          <span className="maturity-category-title">API del cliente</span>
           <span>4 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -1919,7 +1919,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Conversaciones del agente</span>
+          <span className="maturity-category-title">Conversaciones de agentes</span>
           <span>6 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -1982,19 +1982,19 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
 ### Plataforma
 
 <AccordionGroup>
-  <Accordion title="Host del Gateway en Linux - M4 estable - 5 áreas">
+  <Accordion title="Host Linux del Gateway - M4 Estable - 5 áreas">
     <a id="linux-gateway-host" />
 
     Se recomienda el entorno de ejecución Node, se documenta el servicio de usuario de systemd y la orientación sobre VPS/contenedores es amplia.
 
-    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad beta - 75%</span><span>Integridad estable - 89%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 4</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura Experimental - 0%</span><span>Calidad Beta - 75%</span><span>Integridad Estable - 89%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 4</span></span></div>
 
     <div className="maturity-category-list">
       <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Configuración y actualizaciones del host</span>
-          <span>4 capacidades / con compatibilidad LTS</span>
+          <span>4 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>75%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "75%" }} /></span></span></div>
@@ -2007,8 +2007,8 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Entorno de ejecución y control del servicio del Gateway</span>
-          <span>6 capacidades / con compatibilidad LTS</span>
+          <span className="maturity-category-title">Entorno de ejecución del Gateway y control del servicio</span>
+          <span>6 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>75%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "75%" }} /></span></span></div>
@@ -2022,7 +2022,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Acceso remoto y seguridad</span>
-          <span>6 capacidades / con compatibilidad LTS</span>
+          <span>6 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>75%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "75%" }} /></span></span></div>
@@ -2049,7 +2049,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Destinos de despliegue</span>
+          <span className="maturity-category-title">Destinos de implementación</span>
           <span>3 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -2057,7 +2057,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-stable"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-stable">Estable</span><span>89%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "89%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Vps](/es/vps), [Docker](/es/install/docker), [Hetzner](/es/install/hetzner), [Digitalocean](/es/install/digitalocean), [Kubernetes](/es/install/kubernetes), [Podman](/es/install/podman)
+    [VPS](/es/vps), [Docker](/es/install/docker), [Hetzner](/es/install/hetzner), [DigitalOcean](/es/install/digitalocean), [Kubernetes](/es/install/kubernetes), [Podman](/es/install/podman)
 
     </div>
       </div>
@@ -2068,12 +2068,12 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Host del Gateway en macOS - M4 estable - 7 áreas">
     <a id="macos-gateway-host" />
 
-    Se documentan la ruta del servicio LaunchAgent, los modos local/remoto del Gateway, la instalación de la CLI y la integración con la aplicación.
+    Se documentan la ruta del servicio LaunchAgent, los modos local y remoto del Gateway, la instalación de la CLI y la integración con la aplicación.
 
-    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad beta - 74%</span><span>Integridad estable - 88%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad beta - 74%</span><span>Completitud estable - 88%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
     <div className="maturity-category-list">
-      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
+      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Completitud</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Configuración de la CLI</span>
@@ -2084,13 +2084,13 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-stable"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-stable">Estable</span><span>88%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "88%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Macos](/es/platforms/macos), [Gateway incluido](/es/platforms/mac/bundled-gateway), [Instalador](/es/install/installer), [Node](/es/install/node)
+    [macOS](/es/platforms/macos), [Gateway integrado](/es/platforms/mac/bundled-gateway), [Instalador](/es/install/installer), [Node](/es/install/node)
 
     </div>
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Integración con el Gateway local</span>
+          <span className="maturity-category-title">Integración del Gateway local</span>
           <span>9 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -2098,7 +2098,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-stable"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-stable">Estable</span><span>88%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "88%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Macos](/es/platforms/macos), [Gateway incluido](/es/platforms/mac/bundled-gateway), [Remoto](/es/platforms/mac/remote), [Índice](/es/gateway/index), [Gateway](/es/cli/gateway), [Bonjour](/es/gateway/bonjour)
+    [macOS](/es/platforms/macos), [Gateway integrado](/es/platforms/mac/bundled-gateway), [Remoto](/es/platforms/mac/remote), [Índice](/es/gateway/index), [Gateway](/es/cli/gateway), [Bonjour](/es/gateway/bonjour)
 
     </div>
       </div>
@@ -2126,7 +2126,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-stable"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-stable">Estable</span><span>88%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "88%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Macos](/es/platforms/macos), [Gateway incluido](/es/platforms/mac/bundled-gateway), [Gateway](/es/cli/gateway), [Índice](/es/gateway/index), [Actualizar](/es/cli/update), [Actualización](/es/install/updating), [Desinstalación](/es/install/uninstall), [Solución de problemas](/es/gateway/troubleshooting)
+    [macOS](/es/platforms/macos), [Gateway integrado](/es/platforms/mac/bundled-gateway), [Gateway](/es/cli/gateway), [Índice](/es/gateway/index), [Actualización](/es/cli/update), [Cómo actualizar](/es/install/updating), [Desinstalación](/es/install/uninstall), [Solución de problemas](/es/gateway/troubleshooting)
 
     </div>
       </div>
@@ -2140,7 +2140,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-stable"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-stable">Estable</span><span>88%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "88%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Gateway incluido](/es/platforms/mac/bundled-gateway), [Macos](/es/platforms/macos), [Gateway](/es/cli/gateway), [Diagnóstico](/es/gateway/doctor), [Solución de problemas](/es/gateway/troubleshooting)
+    [Gateway integrado](/es/platforms/mac/bundled-gateway), [macOS](/es/platforms/macos), [Gateway](/es/cli/gateway), [Doctor](/es/gateway/doctor), [Solución de problemas](/es/gateway/troubleshooting)
 
     </div>
       </div>
@@ -2154,7 +2154,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-stable"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-stable">Estable</span><span>88%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "88%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Macos](/es/platforms/macos), [Remoto](/es/platforms/mac/remote)
+    [macOS](/es/platforms/macos), [Remoto](/es/platforms/mac/remote)
 
     </div>
       </div>
@@ -2186,7 +2186,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Captura multimedia</span>
+          <span className="maturity-category-title">Captura de contenido multimedia</span>
           <span>1 capacidad</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -2242,7 +2242,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Configuración</span>
+          <span className="maturity-category-title">Ajustes</span>
           <span>1 capacidad</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -2288,12 +2288,12 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Aplicación para iOS - M4 estable - 8 áreas">
     <a id="ios-app" />
 
-    Existe una distribución oficial mediante la App Store, se documentan las notificaciones push respaldadas por retransmisión y la aplicación para iOS se documenta como un nodo complementario normal para los usuarios.
+    Existe una distribución oficial en la App Store, las notificaciones push respaldadas por retransmisión están documentadas y la aplicación para iOS se documenta como un nodo complementario normal para los usuarios.
 
-    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad estable - 80%</span><span>Integridad estable - 80%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad estable - 80%</span><span>Completitud estable - 80%</span><span><span className="maturity-lts maturity-lts-none">Ninguna</span></span></div>
 
     <div className="maturity-category-list">
-      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Completitud</span><span>Documentación</span></div>
+      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Contenido multimedia y uso compartido</span>
@@ -2380,7 +2380,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Notificaciones y segundo plano</span>
+          <span className="maturity-category-title">Notificaciones y actividad en segundo plano</span>
           <span>1 capacidad</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -2402,7 +2402,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-stable"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-stable">Estable</span><span>80%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "80%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [iOS](/es/platforms/ios), [Conversación](/es/nodes/talk)
+    [iOS](/es/platforms/ios), [Habla](/es/nodes/talk)
 
     </div>
       </div>
@@ -2410,12 +2410,12 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
 
   </Accordion>
 
-  <Accordion title="Alojamiento con Docker y Podman - Beta M3 - 4 áreas">
+  <Accordion title="Alojamiento con Docker y Podman - M3 Beta - 4 áreas">
     <a id="docker-and-podman-hosting" />
 
-    Existe documentación de instalación y estas son rutas de despliegue habituales. Promover después de que las pruebas de humo periódicas de las versiones capturen el comportamiento de las actualizaciones y los volúmenes.
+    Existe documentación de instalación y estas son rutas de despliegue habituales. Promover cuando las pruebas de humo periódicas de cada versión registren el comportamiento de las actualizaciones y los volúmenes.
 
-    <div className="maturity-surface-rollup"><span>Cobertura experimental - 7%</span><span>Calidad beta - 71%</span><span>Completitud beta - 79%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura Experimental - 7%</span><span>Calidad Beta - 71%</span><span>Integridad Beta - 79%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
     <div className="maturity-category-list">
       <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
@@ -2443,7 +2443,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Podman](/es/install/podman), [Entorno de ejecución de máquina virtual Docker](/es/install/docker-vm-runtime), [Docker](/es/install/docker), [Hetzner](/es/install/hetzner), [Hostinger](/es/install/hostinger)
+    [Podman](/es/install/podman), [Entorno de ejecución de máquinas virtuales de Docker](/es/install/docker-vm-runtime), [Docker](/es/install/docker), [Hetzner](/es/install/hetzner), [Hostinger](/es/install/hostinger)
 
     </div>
       </div>
@@ -2457,7 +2457,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Docker](/es/install/docker), [Entorno de ejecución de máquina virtual Docker](/es/install/docker-vm-runtime), [Validación completa de la versión](/es/reference/full-release-validation)
+    [Docker](/es/install/docker), [Entorno de ejecución de máquinas virtuales de Docker](/es/install/docker-vm-runtime), [Validación completa de la versión](/es/reference/full-release-validation)
 
     </div>
       </div>
@@ -2471,7 +2471,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Docker](/es/install/docker), [Entorno de ejecución de máquina virtual Docker](/es/install/docker-vm-runtime)
+    [Docker](/es/install/docker), [Entorno de ejecución de máquinas virtuales de Docker](/es/install/docker-vm-runtime)
 
     </div>
       </div>
@@ -2482,7 +2482,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Windows mediante WSL2 - M3 Beta - 6 áreas">
     <a id="windows-via-wsl2" />
 
-    Ruta recomendada para Windows con orientación sobre systemd y servicios de usuario, y documentación de la cadena de arranque. Promover después de obtener repetidamente cuadros de puntuación de instalación y actualización.
+    Ruta recomendada para Windows con orientación sobre systemd y servicios de usuario, además de documentación sobre la cadena de arranque. Promover después de evaluaciones repetidas de instalación y actualización.
 
     <div className="maturity-surface-rollup"><span>Cobertura experimental - 6%</span><span>Calidad alfa - 69%</span><span>Integridad beta - 79%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 5</span></span></div>
 
@@ -2491,7 +2491,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Configuración de WSL</span>
-          <span>6 capacidades / con compatibilidad LTS</span>
+          <span>6 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>67%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "67%" }} /></span></span></div>
@@ -2505,7 +2505,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">CLI</span>
-          <span>8 capacidades / con compatibilidad LTS</span>
+          <span>8 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>67%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "67%" }} /></span></span></div>
@@ -2519,7 +2519,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Ciclo de vida del servicio Gateway</span>
-          <span>10 capacidades / con compatibilidad LTS</span>
+          <span>10 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>67%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "67%" }} /></span></span></div>
@@ -2533,7 +2533,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Acceso y exposición del Gateway</span>
-          <span>11 capacidades / con compatibilidad LTS</span>
+          <span>11 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>67%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "67%" }} /></span></span></div>
@@ -2579,12 +2579,12 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Raspberry Pi y dispositivos Linux pequeños - M3 Beta - 4 áreas">
     <a id="raspberry-pi-and-small-linux-devices" />
 
-    Existe documentación de la plataforma y la ruta del Gateway se basa en Linux. Se necesitan pruebas de humo de la versión específicas del hardware para alcanzar un nivel superior.
+    Existe documentación de la plataforma y la ruta del Gateway se basa en Linux. Se necesitan pruebas de humo de la versión específicas para el hardware para avanzar a un nivel superior.
 
-    <div className="maturity-surface-rollup"><span>Cobertura Experimental - 0%</span><span>Calidad Alfa - 67%</span><span>Integridad Beta - 79%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 67%</span><span>Completitud beta - 79%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
     <div className="maturity-category-list">
-      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
+      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Completitud</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Configuración y compatibilidad</span>
@@ -2637,7 +2637,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Raspberry Pi](/es/install/raspberry-pi), [Linux](/es/platforms/linux), [Estado del sistema](/es/gateway/health), [Diagnóstico](/es/gateway/diagnostics)
+    [Raspberry Pi](/es/install/raspberry-pi), [Linux](/es/platforms/linux), [Estado](/es/gateway/health), [Diagnóstico](/es/gateway/diagnostics)
 
     </div>
       </div>
@@ -2648,12 +2648,12 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Aplicación complementaria para macOS - M3 Beta - 8 áreas">
     <a id="macos-companion-app" />
 
-    Cuenta con una completa aplicación para la barra de menús, permisos, modo Node, Canvas, activación por voz, WebChat y modo remoto. Aún evoluciona con demasiada rapidez para considerarla estable.
+    Existe una completa aplicación para la barra de menús, con permisos, modo Node, Canvas, activación por voz, WebChat y modo remoto. Sigue evolucionando con demasiada rapidez como para considerarla estable.
 
-    <div className="maturity-surface-rollup"><span>Cobertura Experimental - 0%</span><span>Calidad Alfa - 66%</span><span>Integridad Beta - 78%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 66%</span><span>Completitud beta - 78%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
     <div className="maturity-category-list">
-      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
+      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Completitud</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Canvas</span>
@@ -2692,7 +2692,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>78%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "78%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Barra de menús](/es/platforms/mac/menu-bar), [Icono](/es/platforms/mac/icon), [macOS](/es/platforms/macos), [Estado del sistema](/es/platforms/mac/health), [Registro](/es/platforms/mac/logging), [Acceso remoto](/es/platforms/mac/remote)
+    [Barra de menús](/es/platforms/mac/menu-bar), [Icono](/es/platforms/mac/icon), [macOS](/es/platforms/macos), [Estado](/es/platforms/mac/health), [Registro](/es/platforms/mac/logging), [Remoto](/es/platforms/mac/remote)
 
     </div>
       </div>
@@ -2720,7 +2720,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>78%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "78%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Acceso remoto](/es/platforms/mac/remote), [macOS](/es/platforms/macos), [Acceso remoto](/es/gateway/remote)
+    [Remoto](/es/platforms/mac/remote), [macOS](/es/platforms/macos), [Remoto](/es/gateway/remote)
 
     </div>
       </div>
@@ -2773,23 +2773,23 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Windows nativo - M2 Alfa - 4 áreas">
     <a id="native-windows" />
 
-    Los flujos principales de CLI/Gateway funcionan, pero la documentación sigue recomendando WSL2 para disfrutar de la experiencia completa y enumera las salvedades del uso nativo.
+    Los flujos principales de la CLI y el Gateway funcionan, pero la documentación aún recomienda WSL2 para disfrutar de la experiencia completa y enumera las salvedades del uso nativo.
 
-    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 58%</span><span>Integridad alfa - 66%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 1</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 58%</span><span>Completitud alfa - 66%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 1</span></span></div>
 
     <div className="maturity-category-list">
-      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
+      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Completitud</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">CLI</span>
-          <span>9 capacidades / con soporte LTS</span>
+          <span>9 capacidades / compatible con LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>54%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "54%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>64%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "64%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Índice](/es/install/index), [Instalador](/es/install/installer), [Windows](/es/platforms/windows), [Primeros pasos](/es/start/getting-started), [Incorporación](/es/cli/onboard)
+    [Índice](/es/install/index), [Instalador](/es/install/installer), [Windows](/es/platforms/windows), [Primeros pasos](/es/start/getting-started), [Configuración inicial](/es/cli/onboard)
 
     </div>
       </div>
@@ -2842,12 +2842,12 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Alojamiento en Kubernetes - M2 Alfa - 4 áreas">
     <a id="kubernetes-hosting" />
 
-    El alojamiento en Kubernetes es una vía de despliegue en clúster independiente basada en Kustomize. La puntuación actual muestra una vía de despliegue mínima real con carencias en torno a la CI específica de Kubernetes, el empaquetado de ingress/TLS/NetworkPolicy, la copia de seguridad y restauración, y el refuerzo de la exposición en producción.
+    El alojamiento en Kubernetes es una ruta diferenciada de despliegue en clúster basada en Kustomize. La puntuación actual muestra una ruta de despliegue mínima real, con carencias en torno a la CI específica de Kubernetes, el empaquetado de ingress/TLS/NetworkPolicy, la copia de seguridad y restauración, y el refuerzo de la exposición en producción.
 
-    <div className="maturity-surface-rollup"><span>Cobertura Experimental - 0%</span><span>Calidad Alfa - 55%</span><span>Completitud Alfa - 61%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura Experimental - 0%</span><span>Calidad Alfa - 55%</span><span>Integridad Alfa - 61%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
     <div className="maturity-category-list">
-      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Completitud</span><span>Documentación</span></div>
+      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Configuración del despliegue</span>
@@ -2908,12 +2908,12 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
 
   </Accordion>
 
-  <Accordion title="Vía de instalación de Nix - M1 Experimental - 5 áreas">
+  <Accordion title="Ruta de instalación de Nix - M1 Experimental - 5 áreas">
     <a id="nix-install-path" />
 
     Flujo de instalación opcional. Necesita una promesa de soporte más clara antes de ascender a alfa/beta.
 
-    <div className="maturity-surface-rollup"><span>Cobertura Experimental - 0%</span><span>Calidad Experimental - 41%</span><span>Completitud Experimental - 44%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura Experimental - 0%</span><span>Calidad Experimental - 41%</span><span>Integridad Experimental - 44%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
     <div className="maturity-category-list">
       <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
@@ -2994,7 +2994,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Superficies complementarias de watchOS - M1 Experimental - 5 áreas">
     <a id="watchos-companion-surfaces" />
 
-    El código fuente contiene superficies de la aplicación/extensión para Watch; la documentación pública aún no las presenta como una función para el usuario.
+    El código fuente incluye superficies de aplicación/extensión para Watch; la documentación pública aún no las presenta como una función para el usuario.
 
     <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad experimental - 41%</span><span>Completitud experimental - 44%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
@@ -3058,7 +3058,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Interfaz de la aplicación para el reloj</span>
+          <span className="maturity-category-title">Interfaz de la aplicación para Watch</span>
           <span>3 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -3077,7 +3077,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Aplicación complementaria para Linux - M0 Planificada - 5 áreas">
     <a id="linux-companion-app" />
 
-    La documentación indica que las aplicaciones complementarias nativas para Linux están planificadas; actualmente, Gateway es la vía compatible para Linux.
+    La documentación indica que están previstas aplicaciones complementarias nativas para Linux; actualmente, Gateway es la vía compatible con Linux.
 
     <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad experimental - 19%</span><span>Integridad experimental - 21%</span><span><span className="maturity-lts maturity-lts-none">Ninguna</span></span></div>
 
@@ -3135,7 +3135,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>21%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "21%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Linux](/es/platforms/linux), [Aprobaciones de ejecución](/es/tools/exec-approvals), [Secretos](/es/gateway/secrets), [Índice](/es/nodes/index), [Ejecución](/es/tools/exec), [Habla](/es/nodes/talk), [Cámara](/es/nodes/camera)
+    [Linux](/es/platforms/linux), [Aprobaciones de ejecución](/es/tools/exec-approvals), [Secretos](/es/gateway/secrets), [Índice](/es/nodes/index), [Ejecución](/es/tools/exec), [Conversación](/es/nodes/talk), [Cámara](/es/nodes/camera)
 
     </div>
       </div>
@@ -3160,12 +3160,12 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Aplicación complementaria nativa para Windows - M0 Planificada - 5 áreas">
     <a id="native-windows-companion-app" />
 
-    Solo planificada.
+    Solo está planificada.
 
     <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad experimental - 19%</span><span>Integridad experimental - 21%</span><span><span className="maturity-lts maturity-lts-none">Ninguna</span></span></div>
 
     <div className="maturity-category-list">
-      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
+      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Completitud</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Instalación y actualizaciones</span>
@@ -3182,7 +3182,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Conexión al Gateway</span>
+          <span className="maturity-category-title">Conexión con el Gateway</span>
           <span>3 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -3224,7 +3224,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Herramientas y permisos de escritorio</span>
+          <span className="maturity-category-title">Herramientas de escritorio y permisos</span>
           <span>10 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -3248,7 +3248,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Discord - M4 estable - 6 áreas">
     <a id="discord" />
 
-    Documentación detallada y amplia cobertura de funciones. Las rutas de voz/delegación deben seguir puntuándose por separado como beta/alfa.
+    Documentación detallada y amplia cobertura de funcionalidades. Las rutas de voz/delegación deben seguir puntuándose por separado como beta/alfa.
 
     <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad beta - 73%</span><span>Integridad estable - 87%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 4</span></span></div>
 
@@ -3278,7 +3278,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-stable"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-stable">Estable</span><span>87%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "87%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Discord](/es/channels/discord), [Vinculación](/es/channels/pairing), [Grupos de acceso](/es/channels/access-groups), [Grupos](/es/channels/groups)
+    [Discord](/es/channels/discord), [Emparejamiento](/es/channels/pairing), [Grupos de acceso](/es/channels/access-groups), [Grupos](/es/channels/groups)
 
     </div>
       </div>
@@ -3345,7 +3345,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Telegram - M3 Beta - 5 áreas">
     <a id="telegram" />
 
-    El canal principal tiene la madurez suficiente para un uso habitual, pero la experiencia de usuario de alta variabilidad y los casos extremos de contenido multimedia necesitan pruebas periódicas de escenarios.
+    El canal principal tiene la madurez suficiente para su uso habitual, pero la experiencia de usuario altamente variable y los casos extremos con contenido multimedia necesitan pruebas periódicas de escenarios.
 
     <div className="maturity-surface-rollup"><span>Cobertura Experimental - 0%</span><span>Calidad Alfa - 68%</span><span>Integridad Beta - 78%</span><span><span className="maturity-lts maturity-lts-full">Completo - 5</span></span></div>
 
@@ -3361,7 +3361,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>78%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "78%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Telegram](/es/channels/telegram), [Configurar canales](/es/gateway/config-channels), [Canales](/es/cli/channels)
+    [Telegram](/es/channels/telegram), [Configuración de canales](/es/gateway/config-channels), [Canales](/es/cli/channels)
 
     </div>
       </div>
@@ -3375,7 +3375,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>78%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "78%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Telegram](/es/channels/telegram), [Emparejamiento](/es/channels/pairing), [Grupos de acceso](/es/channels/access-groups), [Grupos](/es/channels/groups), [Multiagente](/es/concepts/multi-agent)
+    [Telegram](/es/channels/telegram), [Vinculación](/es/channels/pairing), [Grupos de acceso](/es/channels/access-groups), [Grupos](/es/channels/groups), [Multiagente](/es/concepts/multi-agent)
 
     </div>
       </div>
@@ -3428,7 +3428,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Slack - M3 Beta - 5 áreas">
     <a id="slack" />
 
-    Documentación de canal y superficie de enrutamiento de primera clase. Necesita cuadros de mando de escenarios de instalación y administración del espacio de trabajo.
+    Documentación de canal y superficie de enrutamiento de primera clase. Necesita tablas de puntuación de escenarios de instalación y administración del espacio de trabajo.
 
     <div className="maturity-surface-rollup"><span>Cobertura Experimental - 0%</span><span>Calidad Alfa - 66%</span><span>Integridad Beta - 78%</span><span><span className="maturity-lts maturity-lts-full">Completo - 5</span></span></div>
 
@@ -3436,7 +3436,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Configuración y operaciones del canal</span>
+          <span className="maturity-category-title">Configuración y operaciones de canales</span>
           <span>10 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -3511,7 +3511,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="iMessage y BlueBubbles - M3 Beta - 5 áreas">
     <a id="imessage-and-bluebubbles" />
 
-    El funcionamiento compatible de iMessage se realiza mediante imsg en un host de Mensajes de macOS con una sesión iniciada; las configuraciones heredadas de BlueBubbles requieren migración. Mantenga visibles las advertencias sobre los permisos de macOS, el contenedor SSH, SIP/API privada y la migración.
+    La compatibilidad con iMessage funciona mediante imsg en un host de Mensajes de macOS con una sesión iniciada; las configuraciones heredadas de BlueBubbles requieren migración. Mantenga visibles las advertencias sobre los permisos de macOS, el contenedor SSH, SIP/API privada y la migración.
 
     <div className="maturity-surface-rollup"><span>Cobertura Experimental - 0%</span><span>Calidad Alfa - 66%</span><span>Integridad Beta - 78%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
@@ -3519,7 +3519,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Configuración y operaciones del canal</span>
+          <span className="maturity-category-title">Configuración y operaciones de canales</span>
           <span>11 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -3527,7 +3527,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>78%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "78%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [iMessage con BlueBubbles](/es/announcements/bluebubbles-imessage), [iMessage desde BlueBubbles](/es/channels/imessage-from-bluebubbles), [Configuración de canales](/es/gateway/config-channels), [iMessage](/es/channels/imessage)
+    [iMessage de BlueBubbles](/es/announcements/bluebubbles-imessage), [iMessage desde BlueBubbles](/es/channels/imessage-from-bluebubbles), [Configuración de canales](/es/gateway/config-channels), [iMessage](/es/channels/imessage)
 
     </div>
       </div>
@@ -3594,7 +3594,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="WhatsApp - M3 Beta - 5 áreas">
     <a id="whatsapp" />
 
-    La ruta principal es importante y está documentada; la volatilidad de Baileys y de las sesiones en el componente upstream la mantiene por debajo de Estable.
+    La ruta principal es importante y está documentada; la volatilidad de Baileys y de las sesiones en el proyecto upstream la mantiene por debajo de Estable.
 
     <div className="maturity-surface-rollup"><span>Cobertura Experimental - 0%</span><span>Calidad Alfa - 66%</span><span>Integridad Beta - 78%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
@@ -3610,7 +3610,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>78%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "78%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [WhatsApp](/es/channels/whatsapp), [Configuración de canales](/es/gateway/config-channels), [WhatsApp](/es/plugins/reference/whatsapp), [Automatización de QA E2E](/es/concepts/qa-e2e-automation), [Doctor](/es/gateway/doctor)
+    [WhatsApp](/es/channels/whatsapp), [Configuración de canales](/es/gateway/config-channels), [WhatsApp](/es/plugins/reference/whatsapp), [Automatización de control de calidad E2E](/es/concepts/qa-e2e-automation), [Doctor](/es/gateway/doctor)
 
     </div>
       </div>
@@ -3624,7 +3624,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>78%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "78%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [WhatsApp](/es/channels/whatsapp), [Canales de configuración](/es/gateway/config-channels), [Automatización de QA E2E](/es/concepts/qa-e2e-automation), [Emparejamiento](/es/channels/pairing)
+    [WhatsApp](/es/channels/whatsapp), [Canales de configuración](/es/gateway/config-channels), [Automatización de control de calidad E2E](/es/concepts/qa-e2e-automation), [Emparejamiento](/es/channels/pairing)
 
     </div>
       </div>
@@ -3638,7 +3638,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>78%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "78%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [WhatsApp](/es/channels/whatsapp), [Mensajes grupales](/es/channels/group-messages)
+    [WhatsApp](/es/channels/whatsapp), [Mensajes de grupo](/es/channels/group-messages)
 
     </div>
       </div>
@@ -3677,9 +3677,9 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Matrix - M2 Alfa - 6 áreas">
     <a id="matrix" />
 
-    Compatible mediante el plugin incluido. Requiere tarjetas de puntuación para el puente, la autenticación y el ciclo de vida de las salas.
+    Compatible mediante un plugin incluido. Necesita tablas de puntuación para el puente, la autenticación y el ciclo de vida de las salas.
 
-    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 60%</span><span>Completitud alfa - 67%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura Experimental - 0%</span><span>Calidad Alfa - 60%</span><span>Integridad Alfa - 67%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
     <div className="maturity-category-list">
       <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
@@ -3804,7 +3804,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>66%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "66%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Google Chat](/es/channels/googlechat), [Emparejamiento](/es/channels/pairing), [Grupos de acceso](/es/channels/access-groups), [Configuración de canales](/es/gateway/config-channels), [Protección contra bucles de bots](/es/channels/bot-loop-protection), [Enrutamiento de canales](/es/channels/channel-routing)
+    [Google Chat](/es/channels/googlechat), [Vinculación](/es/channels/pairing), [Grupos de acceso](/es/channels/access-groups), [Configuración de canales](/es/gateway/config-channels), [Protección contra bucles de bots](/es/channels/bot-loop-protection), [Enrutamiento de canales](/es/channels/channel-routing)
 
     </div>
       </div>
@@ -3832,7 +3832,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>66%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "66%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Google Chat](/es/channels/googlechat), [Mensaje](/es/cli/message), [Comprensión multimedia](/es/nodes/media-understanding), [Superficie de credenciales Secretref](/es/reference/secretref-credential-surface)
+    [Google Chat](/es/channels/googlechat), [Mensaje](/es/cli/message), [Comprensión de contenido multimedia](/es/nodes/media-understanding), [Superficie de credenciales Secretref](/es/reference/secretref-credential-surface)
 
     </div>
       </div>
@@ -3846,7 +3846,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>66%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "66%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Google Chat](/es/channels/googlechat), [Mensaje](/es/cli/message), [Comprensión multimedia](/es/nodes/media-understanding), [Superficie de credenciales Secretref](/es/reference/secretref-credential-surface), [Reacciones](/es/tools/reactions), [Comandos de barra diagonal](/es/tools/slash-commands), [Configuración de agentes](/es/gateway/config-agents), [Refactorización del ciclo de vida de los mensajes](/es/concepts/message-lifecycle-refactor)
+    [Google Chat](/es/channels/googlechat), [Mensaje](/es/cli/message), [Comprensión de contenido multimedia](/es/nodes/media-understanding), [Superficie de credenciales Secretref](/es/reference/secretref-credential-surface), [Reacciones](/es/tools/reactions), [Comandos de barra](/es/tools/slash-commands), [Configuración de agentes](/es/gateway/config-agents), [Refactorización del ciclo de vida de los mensajes](/es/concepts/message-lifecycle-refactor)
 
     </div>
       </div>
@@ -3857,12 +3857,12 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Microsoft Teams - M2 Alfa - 5 áreas">
     <a id="microsoft-teams" />
 
-    Los flujos empresariales de autenticación y administración requieren pruebas explícitas de los escenarios.
+    Los flujos empresariales de autenticación y administración necesitan pruebas explícitas de escenarios.
 
-    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 59%</span><span>Completitud alfa - 66%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 59%</span><span>Integridad alfa - 66%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
     <div className="maturity-category-list">
-      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Completitud</span><span>Documentación</span></div>
+      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Configuración y operaciones del canal</span>
@@ -3887,7 +3887,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>66%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "66%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Microsoft Teams](/es/channels/msteams), [Emparejamiento](/es/channels/pairing), [Grupos de acceso](/es/channels/access-groups)
+    [Microsoft Teams](/es/channels/msteams), [Vinculación](/es/channels/pairing), [Grupos de acceso](/es/channels/access-groups)
 
     </div>
       </div>
@@ -3929,7 +3929,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>66%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "66%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Microsoft Teams](/es/channels/msteams), [Aprobaciones de ejecución avanzadas](/es/tools/exec-approvals-advanced)
+    [Microsoft Teams](/es/channels/msteams), [Aprobaciones avanzadas de ejecución](/es/tools/exec-approvals-advanced)
 
     </div>
       </div>
@@ -4004,7 +4004,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Controles nativos y aprobaciones</span>
+          <span className="maturity-category-title">Controles y aprobaciones nativos</span>
           <span>3 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -4025,13 +4025,13 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
 
     Cobertura regional importante, pero el nivel de soporte público debe calibrarse según el tipo de cuenta, la aprobación del proveedor y las pruebas de los mantenedores.
 
-    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 55%</span><span>Integridad alfa - 58%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 55%</span><span>Completitud alfa - 58%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
     <div className="maturity-category-list">
-      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
+      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Completitud</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Configuración y operaciones de canales</span>
+          <span className="maturity-category-title">Configuración y operaciones del canal</span>
           <span>6 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -4053,7 +4053,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>54%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "54%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    No hay documentación vinculada
+    No hay documentación enlazada
 
     </div>
       </div>
@@ -4067,7 +4067,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>54%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "54%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    No hay documentación vinculada
+    No hay documentación enlazada
 
     </div>
       </div>
@@ -4081,7 +4081,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>54%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "54%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    No hay documentación enlazada
+    No hay documentación vinculada
 
     </div>
       </div>
@@ -4092,7 +4092,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Mattermost, LINE, IRC, Nextcloud Talk, Nostr, Twitch, Tlon, Synology Chat - M2 Alfa - 4 áreas">
     <a id="mattermost-line-irc-nextcloud-talk-nostr-twitch-tlon-synology-chat" />
 
-    Existen superficies compatibles, pero es probable que la madurez varíe según la cobertura del proyecto original y de los mantenedores. Evaluarlas individualmente más adelante.
+    Existen superficies compatibles, pero es probable que la madurez varíe según la cobertura del proyecto original y de los responsables de mantenimiento. Puntuar cada una individualmente más adelante.
 
     <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 53%</span><span>Completitud alfa - 54%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
@@ -4108,7 +4108,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>54%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "54%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    No hay documentación enlazada
+    No hay documentación vinculada
 
     </div>
       </div>
@@ -4122,7 +4122,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>54%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "54%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    No hay documentación enlazada
+    No hay documentación vinculada
 
     </div>
       </div>
@@ -4136,7 +4136,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>54%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "54%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    No hay documentación enlazada
+    No hay documentación vinculada
 
     </div>
       </div>
@@ -4150,7 +4150,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>54%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "54%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    No hay documentación enlazada
+    No hay documentación vinculada
 
     </div>
       </div>
@@ -4161,12 +4161,12 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Canal de llamadas de voz - M1 Experimental - 5 áreas">
     <a id="voice-call-channel" />
 
-    Ruta opcional/de Plugin con comportamiento complejo en tiempo real. Necesita una tarjeta de puntuación de escenarios antes de la beta pública.
+    Ruta opcional/de Plugin con comportamiento complejo en tiempo real. Necesita una tabla de evaluación de escenarios antes de la beta pública.
 
-    <div className="maturity-surface-rollup"><span>Cobertura Experimental - 0%</span><span>Calidad Experimental - 41%</span><span>Exhaustividad Experimental - 44%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura Experimental - 0%</span><span>Calidad Experimental - 41%</span><span>Completitud Experimental - 44%</span><span><span className="maturity-lts maturity-lts-none">Ninguna</span></span></div>
 
     <div className="maturity-category-list">
-      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Exhaustividad</span><span>Documentación</span></div>
+      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Completitud</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Configuración y operaciones del canal</span>
@@ -4249,7 +4249,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Automatización del navegador, ejecución y herramientas de entorno aislado - M3 Beta - 3 áreas">
     <a id="browser-automation-exec-and-sandbox-tools" />
 
-    Las herramientas principales están documentadas, pero la seguridad del host y la experiencia de usuario de los permisos deben mantenerse bajo revisión activa en la tabla de evaluación.
+    Las herramientas principales están documentadas, pero la seguridad del host y la experiencia de usuario de los permisos deben permanecer bajo revisión activa en la tabla de evaluación.
 
     <div className="maturity-surface-rollup"><span>Cobertura experimental - 21%</span><span>Calidad Beta - 75%</span><span>Integridad Beta - 79%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 2</span></span></div>
 
@@ -4272,28 +4272,28 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Invocación y ejecución de herramientas</span>
-          <span>6 capacidades / con soporte LTS</span>
+          <span>6 capacidades / compatibles con LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>50%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "50%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Ejecución](/es/tools/exec), [Proceso en segundo plano](/es/gateway/background-process), [API HTTP de invocación de herramientas](/es/gateway/tools-invoke-http-api), [Ámbitos del operador](/es/gateway/operator-scopes), [Protocolo](/es/gateway/protocol), [Aprobaciones de ejecución](/es/tools/exec-approvals), [Aprobaciones avanzadas de ejecución](/es/tools/exec-approvals-advanced), [Elevado](/es/tools/elevated)
+    [Exec](/es/tools/exec), [Proceso en segundo plano](/es/gateway/background-process), [Invocación de la API HTTP de herramientas](/es/gateway/tools-invoke-http-api), [Ámbitos del operador](/es/gateway/operator-scopes), [Protocolo](/es/gateway/protocol), [Aprobaciones de Exec](/es/tools/exec-approvals), [Aprobaciones avanzadas de Exec](/es/tools/exec-approvals-advanced), [Elevado](/es/tools/elevated)
 
     </div>
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Política de sandbox y herramientas</span>
-          <span>6 capacidades / con soporte LTS</span>
+          <span>6 capacidades / compatibles con LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-alpha"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-alpha">Alfa</span><span>68%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "68%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Aislamiento mediante sandbox](/es/gateway/sandboxing), [Sandbox frente a política de herramientas frente a modo elevado](/es/gateway/sandbox-vs-tool-policy-vs-elevated), [Herramientas de sandbox multiagente](/es/tools/multi-agent-sandbox-tools), [Referencia del entorno de Codex](/es/plugins/codex-harness-reference), [Herramientas de configuración](/es/gateway/config-tools)
+    [Aislamiento en sandbox](/es/gateway/sandboxing), [Sandbox frente a política de herramientas frente a modo elevado](/es/gateway/sandbox-vs-tool-policy-vs-elevated), [Herramientas de sandbox multiagente](/es/tools/multi-agent-sandbox-tools), [Referencia del arnés de Codex](/es/plugins/codex-harness-reference), [Herramientas de configuración](/es/gateway/config-tools)
 
     </div>
       </div>
@@ -4301,10 +4301,10 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
 
   </Accordion>
 
-  <Accordion title="Ruta del proveedor OpenAI y Codex - M3 Beta - 5 áreas">
+  <Accordion title="Ruta del proveedor de OpenAI y Codex - M3 Beta - 5 áreas">
     <a id="openai-and-codex-provider-path" />
 
-    Documentación detallada, ruta de OAuth/suscripción, voz en tiempo real, imágenes y comportamiento de compatibilidad. Los cambios frecuentes del proveedor impiden que alcance el estado Estable sin pruebas de la tarjeta de puntuación de la versión.
+    Documentación detallada, ruta de OAuth/suscripción, voz en tiempo real, imágenes y comportamiento de compatibilidad. Los cambios frecuentes del proveedor impiden alcanzar el estado Estable sin pruebas de la matriz de evaluación de la versión.
 
     <div className="maturity-surface-rollup"><span>Cobertura experimental - 26%</span><span>Calidad beta - 74%</span><span>Integridad beta - 79%</span><span><span className="maturity-lts maturity-lts-partial">Parcial - 3</span></span></div>
 
@@ -4313,21 +4313,21 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Modelo y autenticación</span>
-          <span>6 capacidades / con soporte LTS</span>
+          <span>6 capacidades / compatibles con LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>44%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "44%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [OpenAI](/es/providers/openai), [Entorno de Codex](/es/plugins/codex-harness), [Modelos](/es/concepts/models), [OAuth](/es/concepts/oauth), [Referencia del entorno de Codex](/es/plugins/codex-harness-reference), [Supervisión de la autenticación](/es/gateway/authentication)
+    [OpenAI](/es/providers/openai), [Arnés de Codex](/es/plugins/codex-harness), [Modelos](/es/concepts/models), [OAuth](/es/concepts/oauth), [Referencia del arnés de Codex](/es/plugins/codex-harness-reference), [Supervisión de la autenticación](/es/gateway/authentication)
 
     </div>
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Compatibilidad de respuestas y herramientas</span>
-          <span>4 capacidades / con soporte LTS</span>
+          <span>4 capacidades / compatibles con LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>40%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "40%" }} /></span></span></div>
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
@@ -4340,7 +4340,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Infraestructura nativa de Codex</span>
+          <span className="maturity-category-title">Entorno nativo de Codex</span>
           <span>2 capacidades / con soporte LTS</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>44%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "44%" }} /></span></span></div>
@@ -4348,7 +4348,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Infraestructura de Codex](/es/plugins/codex-harness), [Entorno de ejecución de la infraestructura de Codex](/es/plugins/codex-harness-runtime), [Referencia de la infraestructura de Codex](/es/plugins/codex-harness-reference), [Plugins nativos de Codex](/es/plugins/codex-native-plugins)
+    [Entorno de Codex](/es/plugins/codex-harness), [Entorno de ejecución de Codex Harness](/es/plugins/codex-harness-runtime), [Referencia de Codex Harness](/es/plugins/codex-harness-reference), [Plugins nativos de Codex](/es/plugins/codex-native-plugins)
 
     </div>
       </div>
@@ -4387,7 +4387,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Herramientas de búsqueda web - M3 Beta - 4 áreas">
     <a id="web-search-tools" />
 
-    Existen varios proveedores y documentos. Se necesitan pruebas de cuotas, errores y SSRF para cada familia de proveedores.
+    Existen varios proveedores y documentos. Se necesitan pruebas de cuota, errores y SSRF para cada familia de proveedores.
 
     <div className="maturity-surface-rollup"><span>Cobertura experimental - 9%</span><span>Calidad beta - 74%</span><span>Integridad beta - 79%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
@@ -4403,7 +4403,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Web](/es/tools/web), [Brave Search](/es/tools/brave-search), [Tavily](/es/tools/tavily), [Exa Search](/es/tools/exa-search), [Firecrawl](/es/tools/firecrawl), [Perplexity Search](/es/tools/perplexity-search), [Duckduckgo Search](/es/tools/duckduckgo-search), [Searxng Search](/es/tools/searxng-search), [Gemini Search](/es/tools/gemini-search), [Grok Search](/es/tools/grok-search), [Kimi Search](/es/tools/kimi-search), [Minimax Search](/es/tools/minimax-search), [Ollama Search](/es/tools/ollama-search), [Subrutas del SDK](/es/plugins/sdk-subpaths), [Descripción general del SDK](/es/plugins/sdk-overview), [Manifiesto](/es/plugins/manifest)
+    [Web](/es/tools/web), [Búsqueda de Brave](/es/tools/brave-search), [Tavily](/es/tools/tavily), [Búsqueda de Exa](/es/tools/exa-search), [Firecrawl](/es/tools/firecrawl), [Búsqueda de Perplexity](/es/tools/perplexity-search), [Búsqueda de DuckDuckGo](/es/tools/duckduckgo-search), [Búsqueda de SearXNG](/es/tools/searxng-search), [Búsqueda de Gemini](/es/tools/gemini-search), [Búsqueda de Grok](/es/tools/grok-search), [Búsqueda de Kimi](/es/tools/kimi-search), [Búsqueda de Minimax](/es/tools/minimax-search), [Búsqueda de Ollama](/es/tools/ollama-search), [Subrutas del SDK](/es/plugins/sdk-subpaths), [Descripción general del SDK](/es/plugins/sdk-overview), [Manifiesto](/es/plugins/manifest)
 
     </div>
       </div>
@@ -4417,7 +4417,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Web](/es/tools/web), [Obtención web](/es/tools/web-fetch), [Preguntas frecuentes](/es/help/faq), [Costes de uso de la API](/es/reference/api-usage-costs), [Brave Search](/es/tools/brave-search), [Perplexity Search](/es/tools/perplexity-search), [Tavily](/es/tools/tavily), [Firecrawl](/es/tools/firecrawl)
+    [Web](/es/tools/web), [Obtención web](/es/tools/web-fetch), [Preguntas frecuentes](/es/help/faq), [Costes de uso de la API](/es/reference/api-usage-costs), [Búsqueda de Brave](/es/tools/brave-search), [Búsqueda de Perplexity](/es/tools/perplexity-search), [Tavily](/es/tools/tavily), [Firecrawl](/es/tools/firecrawl)
 
     </div>
       </div>
@@ -4431,13 +4431,13 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>79%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "79%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Web](/es/tools/web), [Obtención web](/es/tools/web-fetch), [Firecrawl](/es/tools/firecrawl), [Searxng Search](/es/tools/searxng-search)
+    [Web](/es/tools/web), [Obtención web](/es/tools/web-fetch), [Firecrawl](/es/tools/firecrawl), [Búsqueda de SearXNG](/es/tools/searxng-search)
 
     </div>
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Disponibilidad y obtención de herramientas</span>
+          <span className="maturity-category-title">Disponibilidad de herramientas y obtención</span>
           <span>11 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>25%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "25%" }} /></span></span></div>
@@ -4536,15 +4536,15 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
 
   </Accordion>
 
-  <Accordion title="Ruta del proveedor de Google - M3 Beta - 5 áreas">
+  <Accordion title="Ruta del proveedor Google - M3 Beta - 5 áreas">
     <a id="google-provider-path" />
 
-    Proveedor de primera clase con interfaces de modelos y en tiempo real. Necesita una puntuación independiente para Live/Talk.
+    Proveedor de primera clase con superficies de modelos y en tiempo real. Necesita una puntuación independiente para Live/Talk.
 
-    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 66%</span><span>Completitud beta - 78%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 66%</span><span>Integridad beta - 78%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
     <div className="maturity-category-list">
-      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Completitud</span><span>Documentación</span></div>
+      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Configuración y credenciales del proveedor</span>
@@ -4569,7 +4569,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>78%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "78%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Google](/es/providers/google), [Proveedores de modelos](/es/concepts/model-providers), [Google](/es/plugins/reference/google), [Búsqueda de Gemini](/es/tools/gemini-search)
+    [Google](/es/providers/google), [Proveedores de modelos](/es/concepts/model-providers), [Google](/es/plugins/reference/google), [Búsqueda con Gemini](/es/tools/gemini-search)
 
     </div>
       </div>
@@ -4622,12 +4622,12 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Ruta del proveedor OpenRouter - M3 Beta - 4 áreas">
     <a id="openrouter-provider-path" />
 
-    La ruta unificada del proveedor está documentada y es útil, pero el comportamiento específico de cada modelo varía.
+    La ruta unificada del proveedor está documentada y es valiosa, pero el comportamiento específico de cada modelo varía.
 
-    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 66%</span><span>Completitud beta - 78%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 66%</span><span>Integridad beta - 78%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
     <div className="maturity-category-list">
-      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Completitud</span><span>Documentación</span></div>
+      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Configuración y autenticación del proveedor</span>
@@ -4672,7 +4672,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Generación multimedia y voz</span>
+          <span className="maturity-category-title">Generación de contenido multimedia y voz</span>
           <span>7 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -4680,7 +4680,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
         <div><span className="maturity-score maturity-score-beta"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-beta">Beta</span><span>78%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "78%" }} /></span></span></div>
         <div className="maturity-category-docs">
 
-    [Openrouter](/es/providers/openrouter), [Generación de imágenes](/es/tools/image-generation), [Generación de música](/es/tools/music-generation), [Descripción general de multimedia](/es/tools/media-overview), [Generación de vídeo](/es/tools/video-generation), [Tts](/es/tools/tts)
+    [Openrouter](/es/providers/openrouter), [Generación de imágenes](/es/tools/image-generation), [Generación de música](/es/tools/music-generation), [Descripción general de contenido multimedia](/es/tools/media-overview), [Generación de vídeo](/es/tools/video-generation), [Tts](/es/tools/tts)
 
     </div>
       </div>
@@ -4691,9 +4691,9 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Herramientas de generación de imágenes, vídeo y música - M2 Alfa - 5 áreas">
     <a id="image-video-and-music-generation-tools" />
 
-    La capacidad está disponible en distintos proveedores, pero la calidad, la latencia y la compatibilidad de los parámetros varían demasiado como para alcanzar la fase beta sin pruebas específicas de cada proveedor.
+    La capacidad existe en distintos proveedores, pero la calidad, la latencia y la compatibilidad de los parámetros varían demasiado como para alcanzar la fase beta sin pruebas específicas para cada proveedor.
 
-    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 61%</span><span>Integridad alfa - 68%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura Experimental - 0%</span><span>Calidad Alfa - 61%</span><span>Integridad Alfa - 68%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
     <div className="maturity-category-list">
       <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
@@ -4774,7 +4774,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
   <Accordion title="Proveedores de modelos locales: Ollama, vLLM, SGLang, LM Studio - M2 Alfa - 5 áreas">
     <a id="local-model-providers-ollama-vllm-sglang-lm-studio" />
 
-    Útil y documentado, pero la variabilidad del entorno es alta.
+    Útil y documentado, pero la variabilidad entre entornos es alta.
 
     <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 61%</span><span>Integridad alfa - 68%</span><span><span className="maturity-lts maturity-lts-none">Ninguno</span></span></div>
 
@@ -4782,7 +4782,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Configuración, ciclo de vida y diagnóstico de proveedores</span>
+          <span className="maturity-category-title">Configuración, ciclo de vida y diagnóstico del proveedor</span>
           <span>12 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -4824,7 +4824,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Memoria e incrustaciones locales</span>
+          <span className="maturity-category-title">Memoria local e incorporaciones</span>
           <span>5 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -4838,7 +4838,7 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
       </div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
-          <span className="maturity-category-title">Seguridad de red y controles de prompts</span>
+          <span className="maturity-category-title">Seguridad de la red y controles de prompts</span>
           <span>2 capacidades</span>
         </div>
         <div><span className="maturity-score maturity-score-experimental"><span className="maturity-score-label"><span className="maturity-level-pill maturity-level-experimental">Experimental</span><span>0%</span></span><span className="maturity-meter" aria-hidden="true"><span style={{ width: "0%" }} /></span></span></div>
@@ -4854,15 +4854,15 @@ Una superficie es un área de producto, como el entorno de ejecución del Gatewa
 
   </Accordion>
 
-  <Accordion title="Proveedores alojados de larga cola - M2 Alfa - 3 áreas">
+  <Accordion title="Proveedores alojados de menor uso - M2 Alfa - 3 áreas">
     <a id="long-tail-hosted-providers" />
 
-    Existen muchas páginas de documentación y referencia; la puntuación debe generarse a partir de los metadatos de los proveedores y la cobertura de pruebas de humo en vivo.
+    Existen muchas páginas de documentación y referencia; la puntuación debe generarse a partir de los metadatos de los proveedores y la cobertura de pruebas rápidas en vivo.
 
-    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 61%</span><span>Completitud alfa - 68%</span><span><span className="maturity-lts maturity-lts-none">Ninguna</span></span></div>
+    <div className="maturity-surface-rollup"><span>Cobertura experimental - 0%</span><span>Calidad alfa - 61%</span><span>Integridad alfa - 68%</span><span><span className="maturity-lts maturity-lts-none">Ninguna</span></span></div>
 
     <div className="maturity-category-list">
-      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Completitud</span><span>Documentación</span></div>
+      <div className="maturity-category-row maturity-category-row-header"><span>Área</span><span>Cobertura</span><span>Calidad</span><span>Integridad</span><span>Documentación</span></div>
       <div className="maturity-category-row">
         <div className="maturity-category-area">
           <span className="maturity-category-title">Proveedores de LLM alojados</span>

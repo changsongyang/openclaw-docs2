@@ -1,10 +1,10 @@
 ---
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin مرورگر هستید
-summary: ابزارهایی قابل‌فراخوانی توسط عامل اضافه می‌کند.
+summary: ابزارهای قابل فراخوانی توسط عامل را اضافه می‌کند.
 title: Plugin مرورگر
 x-i18n:
-    generated_at: "2026-07-16T16:58:44Z"
+    generated_at: "2026-07-27T14:23:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

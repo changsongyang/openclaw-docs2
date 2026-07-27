@@ -2,9 +2,9 @@
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin longcat هستید
 summary: Plugin ارائه‌دهنده LongCat برای OpenClaw.
-title: Plugin لانگ‌کت
+title: Plugin LongCat
 x-i18n:
-    generated_at: "2026-07-16T16:55:59Z"
+    generated_at: "2026-07-27T16:58:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin LongCat
+# Plugin ‏LongCat
 
-Plugin ارائه‌دهنده LongCat در OpenClaw.
+Plugin ارائه‌دهنده LongCat برای OpenClaw.
 
 ## توزیع
 
 - بسته: `@openclaw/longcat-provider`
-- روش نصب: npm؛ ClawHub: `clawhub:@openclaw/longcat-provider`
+- مسیر نصب: npm؛ ClawHub: `clawhub:@openclaw/longcat-provider`
 
 ## سطح
 

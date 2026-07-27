@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin مربوط به Chutes هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin ‏Chutes هستید
 summary: پشتیبانی از ارائه‌دهنده مدل Chutes را به OpenClaw اضافه می‌کند.
 title: Plugin Chutes
 x-i18n:
-    generated_at: "2026-07-16T16:54:29Z"
+    generated_at: "2026-07-27T15:54:14Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

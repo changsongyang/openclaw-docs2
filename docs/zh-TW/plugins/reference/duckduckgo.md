@@ -4,7 +4,7 @@ read_when:
 summary: 新增網頁搜尋提供者支援。
 title: DuckDuckGo 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:51:49Z"
+    generated_at: "2026-07-26T07:58:48Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # DuckDuckGo 外掛
 
-新增網頁搜尋供應商支援。
+新增網路搜尋提供者支援。
 
-## 發佈
+## 發行方式
 
 - 套件：`@openclaw/duckduckgo-plugin`
-- 安裝方式：隨附於 OpenClaw
+- 安裝途徑：隨附於 OpenClaw
 
 ## 介面
 

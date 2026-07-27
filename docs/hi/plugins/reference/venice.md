@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw में Venice मॉडल प्रदाता का समर्थन जोड़ता है।
 title: Venice Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:18:18Z"
+    generated_at: "2026-07-27T18:49:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Venice Plugin
 
-OpenClaw में Venice मॉडल प्रदाता का समर्थन जोड़ता है।
+OpenClaw में Venice मॉडल प्रदाता समर्थन जोड़ता है।
 
 ## वितरण
 

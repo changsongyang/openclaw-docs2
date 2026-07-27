@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de arcee-plugin
 summary: Voegt ondersteuning voor de Arcee-modelprovider toe aan OpenClaw.
-title: Arcee-Plugin
+title: Arcee-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:17:00Z"
+    generated_at: "2026-07-27T05:25:42Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Arcee-Plugin
+# Arcee-plugin
 
 Voegt ondersteuning voor de Arcee-modelprovider toe aan OpenClaw.
 

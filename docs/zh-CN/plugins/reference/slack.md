@@ -4,7 +4,7 @@ read_when:
 summary: 用于频道、私信、命令和应用事件的 OpenClaw Slack 渠道插件。
 title: Slack 插件
 x-i18n:
-    generated_at: "2026-07-16T11:51:56Z"
+    generated_at: "2026-07-26T06:18:38Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## 分发
 
 - 软件包：`@openclaw/slack`
-- 安装渠道：npm；ClawHub
+- 安装途径：npm；ClawHub
 
 ## 功能范围
 

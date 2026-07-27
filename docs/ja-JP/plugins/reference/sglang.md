@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw に SGLang モデルプロバイダーのサポートを追加します。
 title: SGLang Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:00:17Z"
+    generated_at: "2026-07-26T10:25:42Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,12 +21,12 @@ OpenClaw に SGLang モデルプロバイダーのサポートを追加します
 ## 配布
 
 - パッケージ: `@openclaw/sglang-provider`
-- インストール方法: OpenClaw に同梱
+- インストール経路: OpenClaw に同梱
 
-## 提供機能
+## サーフェス
 
 プロバイダー: `sglang`
 
 ## 関連ドキュメント
 
-- [sglang](/ja-JP/providers/sglang)
+- [SGLang](/ja-JP/providers/sglang)

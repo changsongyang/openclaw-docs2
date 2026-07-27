@@ -1,10 +1,10 @@
 ---
 read_when:
-    - elevenlabs Plugin'ini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - elevenlabs Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: Medya anlama sağlayıcısı desteği ekler. Gerçek zamanlı transkripsiyon sağlayıcısı desteği ekler. Metinden konuşmaya sağlayıcısı desteği ekler.
 title: Elevenlabs Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:43:42Z"
+    generated_at: "2026-07-26T23:52:13Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Elevenlabs plugin
+# Elevenlabs plugin'i
 
 Medya anlama sağlayıcısı desteği ekler. Gerçek zamanlı transkripsiyon sağlayıcısı desteği ekler. Metinden konuşmaya sağlayıcısı desteği ekler.
 

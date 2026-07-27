@@ -4,7 +4,7 @@ read_when:
 summary: Fügt Unterstützung für Text-to-Speech-Provider hinzu.
 title: Gradium-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:33:16Z"
+    generated_at: "2026-07-26T18:30:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

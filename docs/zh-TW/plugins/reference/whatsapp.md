@@ -4,7 +4,7 @@ read_when:
 summary: 用於 WhatsApp Web 聊天的 OpenClaw WhatsApp 頻道外掛。
 title: WhatsApp 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:54:26Z"
+    generated_at: "2026-07-26T08:29:58Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 
 適用於 WhatsApp Web 聊天的 OpenClaw WhatsApp 頻道外掛。
 
-## 發佈
+## 發布
 
 - 套件：`@openclaw/whatsapp`
 - 安裝途徑：ClawHub：`clawhub:@openclaw/whatsapp`；npm

@@ -1,11 +1,11 @@
 ---
 read_when:
     - DigitalOcean पर OpenClaw सेट अप करना
-    - OpenClaw के लिए एक सरल सशुल्क VPS की तलाश है
+    - OpenClaw के लिए एक साधारण सशुल्क VPS की तलाश है
 summary: DigitalOcean Droplet पर OpenClaw होस्ट करें
 title: DigitalOcean
 x-i18n:
-    generated_at: "2026-07-19T08:46:28Z"
+    generated_at: "2026-07-27T19:59:40Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,7 +15,7 @@ x-i18n:
     workflow: 16
 ---
 
-DigitalOcean Droplet पर एक स्थायी OpenClaw Gateway चलाएँ (1 GB Basic प्लान के लिए लगभग $6/माह)।
+DigitalOcean Droplet पर एक स्थायी OpenClaw Gateway चलाएँ (1 GB Basic प्लान के लिए ~$6/माह)।
 
 DigitalOcean एक सरल सशुल्क VPS विकल्प है। सस्ते या निःशुल्क विकल्पों के लिए:
 
@@ -25,7 +25,7 @@ DigitalOcean एक सरल सशुल्क VPS विकल्प है�
 ## पूर्वापेक्षाएँ
 
 - DigitalOcean खाता ([साइनअप](https://cloud.digitalocean.com/registrations/new))
-- SSH कुंजी युग्म (या पासवर्ड प्रमाणीकरण का उपयोग करने की सहमति)
+- SSH कुंजी युग्म (या पासवर्ड प्रमाणीकरण का उपयोग करने की इच्छा)
 - लगभग 20 मिनट
 
 ## सेटअप
@@ -60,7 +60,7 @@ DigitalOcean एक सरल सशुल्क VPS विकल्प है�
     # OpenClaw इंस्टॉल करें
     curl -fsSL https://openclaw.ai/install.sh | bash
 
-    # वह गैर-रूट उपयोगकर्ता बनाएँ जिसके स्वामित्व में OpenClaw की स्थिति और सेवाएँ होंगी।
+    # वह गैर-रूट उपयोगकर्ता बनाएँ जो OpenClaw की स्थिति और सेवाओं का स्वामी होगा।
     adduser openclaw
     usermod -aG sudo openclaw
     loginctl enable-linger openclaw
@@ -78,7 +78,7 @@ DigitalOcean एक सरल सशुल्क VPS विकल्प है�
     openclaw onboard --install-daemon
     ```
 
-    विज़ार्ड आपको मॉडल प्रमाणीकरण, चैनल सेटअप, Gateway टोकन जनरेशन और डेमन इंस्टॉलेशन (systemd उपयोगकर्ता सेवा) की प्रक्रिया से गुज़ारता है।
+    विज़ार्ड आपको मॉडल प्रमाणीकरण, चैनल सेटअप, Gateway टोकन जनरेशन और डेमन इंस्टॉलेशन (systemd उपयोगकर्ता सेवा) की प्रक्रिया पूरी कराता है।
 
   </Step>
 
@@ -100,8 +100,8 @@ DigitalOcean एक सरल सशुल्क VPS विकल्प है�
     ```
   </Step>
 
-  <Step title="Control UI एक्सेस करें">
-    Gateway डिफ़ॉल्ट रूप से लूपबैक से बाइंड होता है। इनमें से कोई एक विकल्प चुनें।
+  <Step title="Control UI तक पहुँचें">
+    Gateway डिफ़ॉल्ट रूप से लूपबैक से बाइंड होता है। इनमें से एक विकल्प चुनें।
 
     **विकल्प A: SSH टनल (सबसे सरल)**
 
@@ -121,9 +121,9 @@ DigitalOcean एक सरल सशुल्क VPS विकल्प है�
     openclaw gateway restart
     ```
 
-    फिर अपने टेलनेट पर किसी भी डिवाइस से `https://<magicdns>/` खोलें।
+    फिर अपने टेलनेट के किसी भी डिवाइस से `https://<magicdns>/` खोलें।
 
-    Tailscale Serve टेलनेट पहचान हेडर के माध्यम से Control UI और WebSocket ट्रैफ़िक को प्रमाणित करता है, जिसमें यह माना जाता है कि Gateway होस्ट स्वयं विश्वसनीय है। इसके बावजूद HTTP API एंडपॉइंट Gateway के सामान्य प्रमाणीकरण मोड (टोकन/पासवर्ड) का पालन करते हैं। Serve पर स्पष्ट साझा-गुप्त क्रेडेंशियल आवश्यक बनाने के लिए, `gateway.auth.allowTailscale: false` सेट करें और `gateway.auth.mode: "token"` या `"password"` का उपयोग करें।
+    Tailscale Serve टेलनेट पहचान हेडर के माध्यम से Control UI और WebSocket ट्रैफ़िक को प्रमाणित करता है, जिसमें यह माना जाता है कि Gateway होस्ट स्वयं विश्वसनीय है। इसके बावजूद, HTTP API एंडपॉइंट Gateway के सामान्य प्रमाणीकरण मोड (टोकन/पासवर्ड) का पालन करते हैं। Serve पर स्पष्ट साझा-गुप्त क्रेडेंशियल आवश्यक करने के लिए, `gateway.auth.allowTailscale: false` सेट करें और `gateway.auth.mode: "token"` या `"password"` का उपयोग करें।
 
     **विकल्प C: टेलनेट बाइंड (Serve के बिना)**
 
@@ -141,7 +141,7 @@ DigitalOcean एक सरल सशुल्क VPS विकल्प है�
 
 OpenClaw की स्थिति यहाँ रहती है:
 
-- `~/.openclaw/` -- `openclaw.json`, चैनल/प्रदाता क्रेडेंशियल, प्रति-एजेंट `auth-profiles.json`, और सत्र डेटा।
+- `~/.openclaw/` -- `openclaw.json`, चैनल/प्रदाता क्रेडेंशियल, प्रति-एजेंट `auth-profiles.json` और सत्र डेटा।
 - `~/.openclaw/workspace/` -- एजेंट वर्कस्पेस (SOUL.md, मेमोरी, आर्टिफ़ैक्ट)।
 
 ये Droplet रीबूट के बाद भी बने रहते हैं। पोर्टेबल स्नैपशॉट लेने के लिए:
@@ -150,15 +150,15 @@ OpenClaw की स्थिति यहाँ रहती है:
 openclaw backup create
 ```
 
-DigitalOcean स्नैपशॉट पूरे Droplet का बैकअप लेते हैं; `openclaw backup create` को अलग-अलग होस्ट पर पोर्ट किया जा सकता है।
+DigitalOcean स्नैपशॉट पूरे Droplet का बैकअप लेते हैं; `openclaw backup create` को होस्ट के बीच स्थानांतरित किया जा सकता है।
 
 ## 1 GB RAM के लिए सुझाव
 
-$6 वाले Droplet में केवल 1 GB RAM है। सुचारू संचालन के लिए:
+$6 वाले Droplet में केवल 1 GB RAM होती है। सुचारू संचालन बनाए रखने के लिए:
 
-- सुनिश्चित करें कि ऊपर दिया गया स्वैप चरण `/etc/fstab` में हो, ताकि वह रीबूट के बाद भी बना रहे।
-- स्थानीय मॉडल के बजाय API-आधारित मॉडल (Claude, GPT) को प्राथमिकता दें -- स्थानीय LLM इनफ़रेंस 1 GB में फ़िट नहीं होता।
-- यदि बड़े प्रॉम्प्ट पर OOM त्रुटियाँ आती हैं, तो `agents.defaults.model.primary` को किसी छोटे मॉडल पर सेट करें।
+- सुनिश्चित करें कि ऊपर दिया गया स्वैप चरण `/etc/fstab` में है, ताकि वह रीबूट के बाद भी बना रहे।
+- स्थानीय मॉडल के बजाय API-आधारित मॉडल (Claude, GPT) को प्राथमिकता दें -- स्थानीय LLM अनुमान 1 GB में नहीं समाता।
+- यदि बड़े प्रॉम्प्ट पर OOM होता है, तो `agents.defaults.model.primary` को किसी छोटे मॉडल पर सेट करें।
 - `free -h` और `htop` से निगरानी करें।
 
 ## समस्या निवारण
@@ -167,7 +167,7 @@ $6 वाले Droplet में केवल 1 GB RAM है। सुचा�
 
 **पोर्ट पहले से उपयोग में है** -- प्रक्रिया खोजने के लिए `lsof -i :18789` चलाएँ, फिर उसे रोकें।
 
-**मेमोरी समाप्त** -- `free -h` से सत्यापित करें कि स्वैप सक्रिय है। यदि फिर भी OOM त्रुटियाँ आती हैं, तो स्थानीय मॉडल के बजाय API-आधारित मॉडल (Claude, GPT) पर स्विच करें या 2 GB Droplet में अपग्रेड करें।
+**मेमोरी समाप्त हो गई** -- `free -h` से सत्यापित करें कि स्वैप सक्रिय है। यदि फिर भी OOM हो रहा है, तो स्थानीय मॉडल के बजाय API-आधारित मॉडल (Claude, GPT) पर स्विच करें या 2 GB Droplet में अपग्रेड करें।
 
 ## अगले चरण
 

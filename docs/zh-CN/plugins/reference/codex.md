@@ -4,7 +4,7 @@ read_when:
 summary: Codex app-server harness 和原生会话目录。
 title: Codex 插件
 x-i18n:
-    generated_at: "2026-07-16T11:49:22Z"
+    generated_at: "2026-07-26T06:17:18Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ Codex app-server harness 和原生会话目录。
 - 软件包：`@openclaw/codex`
 - 安装途径：npm；ClawHub
 
-## 接口面
+## 接口
 
 契约：`mediaUnderstandingProviders`、`migrationProviders`、`tools`、`webSearchProviders`
 

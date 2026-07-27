@@ -3,9 +3,10 @@ redirect: /install/oracle
 summary: تغییر مسیر به /install/oracle
 title: Oracle Cloud (پلتفرم)
 x-i18n:
-    generated_at: "2026-07-12T10:22:46Z"
+    generated_at: "2026-07-27T14:17:22Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
+    prompt_version: 32
     provider: openai
     source_hash: 3905efb00e4fdfea9d255496abb035d88af01766d0c02443fed999547b880066
     source_path: platforms/oracle.md
@@ -14,7 +15,7 @@ x-i18n:
 
 این صفحه به [Oracle Cloud](/fa/install/oracle) منتقل شده است.
 
-## مطالب مرتبط
+## مرتبط
 
 - [نمای کلی نصب](/fa/install)
 - [میزبانی VPS](/fa/vps)

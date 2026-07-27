@@ -1,10 +1,10 @@
 ---
 read_when:
-    - आप longcat plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
+    - आप longcat Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
 summary: OpenClaw LongCat प्रदाता Plugin।
 title: LongCat Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:16:17Z"
+    generated_at: "2026-07-27T21:30:27Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ OpenClaw LongCat प्रदाता Plugin।
 ## वितरण
 
 - पैकेज: `@openclaw/longcat-provider`
-- इंस्टॉल करने का माध्यम: npm; ClawHub: `clawhub:@openclaw/longcat-provider`
+- इंस्टॉल मार्ग: npm; ClawHub: `clawhub:@openclaw/longcat-provider`
 
 ## सतह
 
@@ -29,4 +29,4 @@ OpenClaw LongCat प्रदाता Plugin।
 
 ## संबंधित दस्तावेज़
 
-- [longcat](/providers/longcat)
+- [longcat](/hi/providers/longcat)

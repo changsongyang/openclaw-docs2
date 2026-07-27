@@ -1,10 +1,10 @@
 ---
 read_when:
     - zalo Plugin のインストール、設定、または監査を行っています
-summary: ボットおよびWebhookチャット向けのOpenClaw ZaloチャンネルPlugin。
+summary: bot および Webhook チャット向けの OpenClaw Zalo チャネル Plugin。
 title: Zalo Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:57:34Z"
+    generated_at: "2026-07-26T09:38:28Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # Zalo Plugin
 
-ボットおよび Webhook チャット用の OpenClaw Zalo チャンネル Plugin。
+ボットおよび Webhook チャット向けの OpenClaw Zalo チャンネル Plugin。
 
 ## 配布
 
 - パッケージ: `@openclaw/zalo`
 - インストール経路: npm、ClawHub
 
-## 提供機能
+## 対応範囲
 
 チャンネル: `zalo`
 

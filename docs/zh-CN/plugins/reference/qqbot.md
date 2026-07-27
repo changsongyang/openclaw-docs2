@@ -4,7 +4,7 @@ read_when:
 summary: 用于群组和私信工作流的 OpenClaw QQ Bot 渠道插件。
 title: QQ Bot 插件
 x-i18n:
-    generated_at: "2026-07-16T11:51:35Z"
+    generated_at: "2026-07-26T06:57:49Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,9 +21,9 @@ x-i18n:
 ## 分发
 
 - 软件包：`@openclaw/qqbot`
-- 安装方式：npm；ClawHub
+- 安装途径：npm；ClawHub
 
-## 功能范围
+## 接口
 
 渠道：`qqbot`；契约：`tools`；Skills
 

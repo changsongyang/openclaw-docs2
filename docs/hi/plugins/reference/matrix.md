@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप Matrix Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: रूम और सीधे संदेशों के लिए OpenClaw Matrix चैनल Plugin।
+summary: रूम और डायरेक्ट मैसेज के लिए OpenClaw Matrix चैनल Plugin।
 title: Matrix Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:30:58Z"
+    generated_at: "2026-07-27T18:19:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,9 +21,9 @@ x-i18n:
 ## वितरण
 
 - पैकेज: `@openclaw/matrix`
-- इंस्टॉल करने का तरीका: ClawHub: `clawhub:@openclaw/matrix`; npm
+- इंस्टॉल करने का माध्यम: ClawHub: `clawhub:@openclaw/matrix`; npm
 
-## सतह
+## उपलब्ध इंटरफ़ेस
 
 चैनल: `matrix`
 

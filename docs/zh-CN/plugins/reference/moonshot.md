@@ -1,10 +1,10 @@
 ---
 read_when:
-    - 你正在安装、配置或审计 Moonshot 插件
+    - 你正在安装、配置或审计 moonshot 插件
 summary: 为 OpenClaw 添加 Moonshot 模型提供商支持。
 title: Moonshot 插件
 x-i18n:
-    generated_at: "2026-07-16T11:50:46Z"
+    generated_at: "2026-07-26T06:53:56Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -20,7 +20,7 @@ x-i18n:
 
 ## 分发
 
-- 软件包：`@openclaw/moonshot-provider`
+- 包：`@openclaw/moonshot-provider`
 - 安装方式：npm；ClawHub：`clawhub:@openclaw/moonshot-provider`
 
 ## 接口

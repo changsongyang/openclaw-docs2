@@ -3,7 +3,7 @@ redirect: /plugins/adding-capabilities
 summary: Weiterleitung zu /plugins/adding-capabilities
 title: Funktionen hinzufügen (Weiterleitung)
 x-i18n:
-    generated_at: "2026-07-24T05:01:25Z"
+    generated_at: "2026-07-26T18:51:17Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

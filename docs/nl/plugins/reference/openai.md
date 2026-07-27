@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de openai-plugin
-summary: Voegt ondersteuning voor OpenAI-modelproviders toe aan OpenClaw.
+summary: Voegt ondersteuning voor de OpenAI-modelprovider toe aan OpenClaw.
 title: OpenAI-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:16:36Z"
+    generated_at: "2026-07-27T05:27:09Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# OpenAI-Plugin
+# OpenAI-plugin
 
 Voegt ondersteuning voor de OpenAI-modelprovider toe aan OpenClaw.
 

@@ -1,13 +1,13 @@
 ---
 read_when:
-    - Fouten opsporen om te achterhalen waarom een agent op een bepaalde manier antwoordde, faalde of tools aanriep
+    - Fouten opsporen waarom een agent op een bepaalde manier antwoordde, faalde of tools aanriep
     - Een ondersteuningsbundel voor een OpenClaw-sessie exporteren
     - Promptcontext, toolaanroepen, runtimefouten of gebruiksmetadata onderzoeken
     - Trajectregistratie uitschakelen
-summary: Geanonimiseerde trajectbundels exporteren om fouten in een OpenClaw-agentsessie op te sporen
+summary: Geanonimiseerde trajectbundels exporteren voor foutopsporing in een OpenClaw-agentsessie
 title: Trajectbundels
 x-i18n:
-    generated_at: "2026-07-16T16:32:40Z"
+    generated_at: "2026-07-27T06:17:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,7 +17,7 @@ x-i18n:
     workflow: 16
 ---
 
-Trajectoryregistratie is OpenClaws vluchtrecorder per sessie. Deze registreert een
+Trajectregistratie is de vluchtrecorder per sessie van OpenClaw. Deze registreert een
 gestructureerde tijdlijn voor elke agentuitvoering, waarna `/export-trajectory` de
 huidige sessie verpakt in een geredigeerde supportbundel met:
 
@@ -27,12 +27,11 @@ huidige sessie verpakt in een geredigeerde supportbundel met:
 - Welke modellen, plugins, Skills en runtime-instellingen actief waren
 - Gebruiks- en promptcachemetadata die de provider heeft geretourneerd
 
-Begin voor een breed Gateway-supportrapport in plaats daarvan met
-[`/diagnostics`](/nl/gateway/diagnostics#chat-command); dit verzamelt de
-opgeschoonde Gateway-bundel en kan voor OpenAI Codex-harness-sessies na
-goedkeuring Codex-feedback naar OpenAI verzenden. Gebruik `/export-trajectory`
-wanneer je de gedetailleerde tijdlijn per sessie met prompts, tools en het
-transcript nodig hebt.
+Begin voor een algemeen supportrapport over de Gateway in plaats daarvan met
+[`/diagnostics`](/nl/gateway/diagnostics#chat-command); hiermee wordt de
+opgeschoonde Gateway-bundel verzameld en kan, voor OpenAI Codex-harnesssessies,
+na goedkeuring Codex-feedback naar OpenAI worden verzonden. Gebruik `/export-trajectory`
+wanneer je de gedetailleerde tijdlijn per sessie van prompts, tools en het transcript nodig hebt.
 
 ## Snel aan de slag
 
@@ -42,27 +41,27 @@ Verzend in de actieve sessie (alias `/trajectory`):
 /export-trajectory
 ```
 
-OpenClaw schrijft de bundel onder de werkruimte:
+OpenClaw schrijft de bundel naar de werkruimte:
 
 ```text
 .openclaw/trajectory-exports/openclaw-trajectory-<session>-<timestamp>/
 ```
 
-Geef een relatieve naam voor de uitvoermap op om deze te overschrijven:
+Geef een relatieve naam voor de uitvoermap door om deze te overschrijven:
 
 ```text
 /export-trajectory bug-1234
 ```
 
-De naam wordt binnen `.openclaw/trajectory-exports/` opgelost. Absolute paden en
+De naam wordt binnen `.openclaw/trajectory-exports/` omgezet. Absolute paden en
 `~`-paden worden geweigerd.
 
-Trajectorybundels kunnen prompts, modelberichten, toolschema's, toolresultaten,
-runtimegebeurtenissen en lokale paden bevatten. Daarom doorloopt de chatopdracht
-altijd uitvoeringsgoedkeuring. Keur de export eenmaal goed wanneer je de bundel
-wilt maken; gebruik niet alles toestaan. In groepschats stuurt OpenClaw de
-goedkeuringsprompt en het exportresultaat privé naar de eigenaar, in plaats van
-trajectorydetails terug te plaatsen in de gedeelde ruimte.
+Trajectbundels kunnen prompts, modelberichten, toolschema's, toolresultaten,
+runtimegebeurtenissen en lokale paden bevatten. Daarom verloopt de chatopdracht
+altijd via uitvoeringsgoedkeuring. Keur de export één keer goed wanneer je de
+bundel wilt maken; gebruik niet alles toestaan. In groepschats stuurt OpenClaw
+de goedkeuringsprompt en het exportresultaat privé naar de eigenaar, in plaats
+van trajectdetails in de gedeelde ruimte te plaatsen.
 
 Voer voor lokale inspectie of supportworkflows de onderliggende CLI-opdracht
 rechtstreeks uit:
@@ -73,17 +72,16 @@ openclaw sessions export-trajectory --session-key "agent:main:telegram:direct:12
 
 Andere vlaggen: `--output <path>` (mapnaam binnen
 `.openclaw/trajectory-exports`), `--store <path>` (overschrijving van de sessieopslag),
-`--agent <id>` (agent-id voor opslagresolutie), `--json` (gestructureerde uitvoer).
+`--agent <id>` (agent-id voor opslagomzetting), `--json` (gestructureerde uitvoer).
 
 ## Toegang
 
-Trajectoryexport is een eigenaarsopdracht. De afzender moet slagen voor de
-normale autorisatiecontroles voor opdrachten en voor de eigenaarscontrole van
-het kanaal.
+Trajectexport is een eigenaarsopdracht. De afzender moet slagen voor de normale
+autorisatiecontroles voor opdrachten en voor de eigenaarscontrole van het kanaal.
 
 ## Wat wordt geregistreerd
 
-Trajectoryregistratie is standaard ingeschakeld voor OpenClaw-agentuitvoeringen.
+Trajectregistratie is standaard ingeschakeld voor agentuitvoeringen van OpenClaw.
 
 Runtimegebeurtenissen omvatten:
 
@@ -91,14 +89,14 @@ Runtimegebeurtenissen omvatten:
 - `trace.metadata`
 - `context.compiled`
 - `prompt.submitted`
-- `model.fallback_step`, inclusief het bronmodel, volgende model, reden/details van de fout, positie in de keten en of de keten doorging, slaagde of uitgeput raakte
+- `model.fallback_step`, inclusief het bronmodel, het volgende model, de reden/details van de fout, de positie in de keten en of de keten is doorgegaan, geslaagd of uitgeput
 - `model.completed`
 - `trace.artifacts`
 - `session.ended`
 
-Transcriptgebeurtenissen worden gereconstrueerd uit de actieve sessietak:
+Transcriptgebeurtenissen worden gereconstrueerd vanuit de actieve sessietak:
 gebruikersberichten, assistentberichten, toolaanroepen, toolresultaten,
-compactions, modelwijzigingen, labels en aangepaste sessievermeldingen.
+Compaction-bewerkingen, modelwijzigingen, labels en aangepaste sessie-items.
 
 Gebeurtenissen worden als JSON Lines geschreven met deze schemamarkering:
 
@@ -111,31 +109,31 @@ Gebeurtenissen worden als JSON Lines geschreven met deze schemamarkering:
 
 ## Bundelbestanden
 
-| Bestand                  | Inhoud                                                                                         |
-| ------------------------ | ---------------------------------------------------------------------------------------------- |
-| `manifest.json`       | Bundelschema, bronbestanden, aantallen gebeurtenissen en lijst met gegenereerde bestanden      |
-| `events.jsonl`       | Geordende tijdlijn van runtime- en transcriptgebeurtenissen                                    |
-| `session-branch.json`       | Geredigeerde actieve transcripttak en sessieheader                                              |
+| Bestand               | Inhoud                                                                                               |
+| --------------------- | ---------------------------------------------------------------------------------------------------- |
+| `manifest.json`       | Bundelschema, bronbestanden, aantallen gebeurtenissen en lijst met gegenereerde bestanden            |
+| `events.jsonl`        | Geordende tijdlijn van runtime en transcript                                                         |
+| `session-branch.json` | Geredigeerde actieve transcripttak en sessiekoptekst                                                 |
 | `metadata.json`       | OpenClaw-versie, besturingssysteem/runtime, model, configuratiemomentopname, plugins, Skills en promptmetadata |
-| `artifacts.json`       | Eindstatus, fouten, gebruik, promptcache, aantal compactions, assistenttekst en toolmetadata    |
-| `prompts.json`       | Ingediende prompts en geselecteerde details over de opbouw van prompts                          |
-| `system-prompt.txt`       | Laatst gecompileerde systeemprompt, indien geregistreerd                                        |
-| `tools.json`       | Tooldefinities die naar het model zijn verzonden, indien geregistreerd                         |
+| `artifacts.json`      | Eindstatus, fouten, gebruik, promptcache, aantal Compaction-bewerkingen, assistenttekst en toolmetadata |
+| `prompts.json`        | Ingediende prompts en geselecteerde details over het opbouwen van prompts                            |
+| `system-prompt.txt`   | Meest recente gecompileerde systeemprompt, indien geregistreerd                                      |
+| `tools.json`          | Tooldefinities die naar het model zijn verzonden, indien geregistreerd                               |
 
-`manifest.json` vermeldt welke bestanden in een bepaalde bundel aanwezig
+`manifest.json` vermeldt de bestanden die in een bepaalde bundel aanwezig
 zijn; sommige bestanden worden weggelaten wanneer de sessie de bijbehorende
 runtimegegevens niet heeft geregistreerd.
 
 ## Opslag van registraties
 
-Runtime-trajectorygebeurtenissen worden samen met de sessie opgeslagen in de
-SQLite-database per agent. Bij het exporteren van een trajectory wordt een
-geredigeerde JSONL-supportbundel gegenereerd; de actieve runtimeregistratie is
-geen JSONL-zijbestand naast de sessie.
+Runtimegebeurtenissen van trajecten worden samen met de sessie opgeslagen in de
+SQLite-database per agent. Bij het exporteren van een traject wordt een
+geredigeerde JSONL-supportbundel aangemaakt; de actieve runtimeregistratie is
+geen JSONL-nevenbestand naast de sessie.
 
 Verouderde `.trajectory.jsonl`- en `.trajectory-path.json`-bestanden kunnen nog
-voorkomen door oudere releases of expliciete exports naar verouderde bestanden.
-Sessieonderhoud behandelt die bestanden als opruimdoelen; actieve registratie
+voorkomen uit oudere releases of expliciete exports naar verouderde bestanden.
+Sessieonderhoud behandelt die bestanden als opschoondoelen; actieve registratie
 schrijft databaserijen.
 
 ## Registratie uitschakelen
@@ -144,33 +142,33 @@ schrijft databaserijen.
 export OPENCLAW_TRAJECTORY=0
 ```
 
-Dit schakelt runtime-trajectoryregistratie uit voordat OpenClaw wordt gestart.
-`/export-trajectory` kan de transcripttak nog steeds exporteren, maar gegevens die
-alleen tijdens runtime beschikbaar zijn, zoals gecompileerde context,
-providerartefacten en promptmetadata, kunnen ontbreken.
+Hiermee wordt de runtimetrajectregistratie uitgeschakeld voordat OpenClaw wordt
+gestart. `/export-trajectory` kan de transcripttak nog steeds exporteren, maar
+gegevens die alleen tijdens runtime beschikbaar zijn, zoals gecompileerde
+context, providerartefacten en promptmetadata, kunnen ontbreken.
 
-## Time-out voor flush aanpassen
+## Time-out voor wegschrijven aanpassen
 
-OpenClaw flusht runtime-trajectoryrijen tijdens het opruimen van de agent. De
+OpenClaw schrijft runtimetrajectrijen weg tijdens het opruimen van de agent. De
 standaardtime-out voor opruimen is 10,000 ms. Stel op langzame schijven of bij
-grote opslagvolumes `OPENCLAW_TRAJECTORY_FLUSH_TIMEOUT_MS` in voordat je OpenClaw start:
+grote opslagplaatsen `OPENCLAW_TRAJECTORY_FLUSH_TIMEOUT_MS` in voordat OpenClaw wordt gestart:
 
 ```bash
 export OPENCLAW_TRAJECTORY_FLUSH_TIMEOUT_MS=30000
 ```
 
 Dit bepaalt wanneer OpenClaw een `openclaw-trajectory-flush`-time-out registreert en
-doorgaat; het wijzigt de maximale trajectorygrootte niet. Stel
-`OPENCLAW_AGENT_CLEANUP_TIMEOUT_MS` in om alle opruimstappen van de agent aan te passen die geen
-expliciete time-out doorgeven.
+doorgaat; het wijzigt de maximale trajectgroottes niet. Stel
+`OPENCLAW_AGENT_CLEANUP_TIMEOUT_MS` in om alle opruimstappen van agents aan te passen waarvoor
+geen expliciete time-out wordt doorgegeven.
 
 ## Privacy en limieten
 
-Trajectorybundels zijn bedoeld voor support en foutopsporing, niet voor
-openbare publicatie. OpenClaw redigeert gevoelige waarden voordat
-exportbestanden worden geschreven:
+Trajectbundels zijn bedoeld voor support en foutopsporing, niet voor openbare
+publicatie. OpenClaw redigeert gevoelige waarden voordat exportbestanden worden
+geschreven:
 
-- referenties en bekende payloadvelden die op geheimen lijken
+- aanmeldgegevens en bekende payloadvelden die op geheimen lijken
 - afbeeldingsgegevens
 - lokale statuspaden
 - werkruimtepaden, vervangen door `$WORKSPACE_DIR`
@@ -178,7 +176,7 @@ exportbestanden worden geschreven:
 
 De exportfunctie begrenst ook de invoergrootte:
 
-- runtimeregistratie: de actieve registratie is een voortschrijdend venster met een maximum van 10 MiB, waarbij de oudste gebeurtenissen worden verwijderd om ruimte te maken voor nieuwe; bij export worden bestaande verouderde runtimezijbestanden tot 50 MiB geaccepteerd
+- runtimeregistratie: de actieve registratie is een voortschrijdend venster met een maximum van 10 MiB, waarbij de oudste gebeurtenissen worden verwijderd om ruimte te maken voor nieuwe; bij export worden bestaande verouderde runtime-nevenbestanden tot 50 MiB geaccepteerd
 - sessiebestanden: 50 MiB
 - runtimegebeurtenissen per export: 200,000
 - totaal aantal geëxporteerde gebeurtenissen: 250,000
@@ -192,17 +190,17 @@ beste vermogen en kan niet elk toepassingsspecifiek geheim herkennen.
 Als de export geen runtimegebeurtenissen bevat:
 
 - controleer of OpenClaw zonder `OPENCLAW_TRAJECTORY=0` is gestart
-- voer nog een bericht uit in de sessie en exporteer opnieuw
-- controleer `manifest.json` op `runtimeEventCount`
+- voer nog een bericht uit in de sessie en exporteer vervolgens opnieuw
+- inspecteer `manifest.json` op `runtimeEventCount`
 
 Als de opdracht het uitvoerpad weigert:
 
 - gebruik een relatieve naam zoals `bug-1234`
 - geef `/tmp/...` of `~/...` niet door
-- bewaar de export binnen `.openclaw/trajectory-exports/`
+- houd de export binnen `.openclaw/trajectory-exports/`
 
-Als de export mislukt met een groottefout, heeft de sessie of het zijbestand de
-bovenstaande veiligheidslimieten voor export overschreden. Start een nieuwe
+Als de export mislukt met een groottefout, heeft de sessie of het nevenbestand
+de bovenstaande veiligheidslimieten voor export overschreden. Start een nieuwe
 sessie of exporteer een kleinere reproductie.
 
 ## Gerelateerd

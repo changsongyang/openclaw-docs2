@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw Linux 桌面應用程式的 Canvas 算繪橋接器。
 title: Linux Canvas 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:48:56Z"
+    generated_at: "2026-07-26T08:35:16Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,9 +16,9 @@ x-i18n:
 
 # Linux Canvas 外掛
 
-適用於 OpenClaw Linux 桌面應用程式的 Canvas 算繪橋接器。
+OpenClaw Linux 桌面應用程式的 Canvas 算繪橋接器。
 
-## 發行方式
+## 發行
 
 - 套件：`@openclaw/linux-canvas`
 - 安裝途徑：隨附於 OpenClaw

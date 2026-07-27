@@ -1,55 +1,56 @@
 ---
 read_when:
-    - Refactoring van de levenscyclus van ACP-sessies of het opruimen van ACPX-processen
-    - Probleemoplossing voor verweesde ACPX-processen, hergebruik van PID's en veilige opschoning bij meerdere Gateways
+    - De levenscyclus van ACP-sessies of het opruimen van ACPX-processen refactoren
+    - Foutopsporing voor verweesde ACPX-processen, hergebruik van PID's of veilige opschoning met meerdere Gateways
     - De zichtbaarheid van sessions_list wijzigen voor gestarte ACP- of subagentsessies
     - Eigenaarschapsmetadata ontwerpen voor achtergrondtaken, ACP-sessies of procesleases
 sidebarTitle: ACP lifecycle refactor
 summary: Migratieplan om het eigenaarschap van ACP-sessies en ACPX-processen expliciet te maken
 title: Refactor van de ACP-levenscyclus
 x-i18n:
-    generated_at: "2026-07-12T09:22:24Z"
+    generated_at: "2026-07-27T06:32:13Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
+    prompt_version: 32
     provider: openai
-    source_hash: b7f4ee447e0b436601c68251c26c1b897a642f6a8b1886d18647b62817996792
+    source_hash: bda66f0acc93216c3d9386ca3ebf7f544efd306cd7f53386391f0c48e5dc8f06
     source_path: refactor/acp.md
     workflow: 16
 ---
 
 De ACP-levenscyclus werkt momenteel, maar te veel ervan wordt achteraf afgeleid.
-Procesopschoning reconstrueert eigenaarschap aan de hand van PID's, opdrachtteksten, wrapperpaden
-en de actuele procestabel. Sessiezichtbaarheid reconstrueert eigenaarschap
-aan de hand van sessiesleutelteksten plus aanvullende `sessions.list({ spawnedBy })`-zoekacties.
-Dat maakt gerichte oplossingen mogelijk, maar zorgt er ook voor dat randgevallen gemakkelijk worden gemist:
-hergebruik van PID's, aangehaalde opdrachten, kleinkindprocessen van adapters, statusmappen voor meerdere Gateways,
+Procesopruiming reconstrueert eigenaarschap uit PID's, opdrachtreeksen, wrapper-
+paden en de live procestabel. Sessiezichtbaarheid reconstrueert eigenaarschap
+uit sessiesleutelreeksen plus secundaire `sessions.list({ spawnedBy })`-zoekopdrachten.
+Daardoor zijn gerichte oplossingen mogelijk, maar kunnen randgevallen ook gemakkelijk worden gemist:
+hergebruik van PID's, opdrachten tussen aanhalingstekens, kleinkindprocessen van adapters, statusroots met meerdere Gateways,
 `cancel` versus `close`, en zichtbaarheid van `tree` versus `all` worden allemaal afzonderlijke
-plekken waar dezelfde eigenaarschapsregels opnieuw moeten worden afgeleid.
+plaatsen waar dezelfde eigenaarschapsregels opnieuw moeten worden achterhaald.
 
-Deze refactor maakt eigenaarschap expliciet. Het doel is geen nieuw ACP-productoppervlak,
-maar een veiliger intern contract voor het bestaande gedrag van ACP en ACPX.
+Deze refactor maakt eigenaarschap een eersteklasconcept. Het doel is geen nieuw ACP-product-
+oppervlak, maar een veiliger intern contract voor het bestaande ACP- en ACPX-gedrag.
 
 ## Doelen
 
-- Opschoning stuurt nooit een signaal naar een proces tenzij actueel bewijs overeenkomt met een
+- Opruiming stuurt nooit een signaal naar een proces tenzij actueel live bewijs overeenkomt met een
   lease die eigendom is van OpenClaw.
-- `cancel`, `close` en opschoning bij het opstarten hebben afzonderlijke levenscyclusintenties.
+- `cancel`, `close` en opruiming bij het opstarten hebben verschillende intenties voor de levenscyclus.
 - `sessions_list`, `sessions_history`, `sessions_send` en statuscontroles gebruiken
-  hetzelfde sessiemodel op basis van eigenaarschap door de aanvrager.
+  hetzelfde model voor sessies die eigendom zijn van de aanvrager.
 - Installaties met meerdere Gateways kunnen elkaars ACPX-wrappers niet opruimen.
 - Oude ACPX-sessierecords blijven tijdens de migratie werken.
-- De runtime blijft eigendom van de plugin; de kern krijgt geen kennis van ACPX-pakketdetails.
+- De runtime blijft eigendom van de plugin; core krijgt geen kennis van ACPX-pakketdetails.
 
-## Niet-doelen
+## Geen doelen
 
-- ACPX vervangen of het openbare `/acp`-opdrachtoppervlak wijzigen.
-- Leveranciersspecifiek gedrag van ACP-adapters naar de kern verplaatsen.
-- Van gebruikers eisen dat ze vóór een upgrade handmatig statusgegevens opschonen.
-- `cancel` herbruikbare ACP-sessies laten sluiten.
+- ACPX vervangen of het openbare opdrachtoppervlak van `/acp` wijzigen.
+- Leveranciersspecifiek gedrag van ACP-adapters naar core verplaatsen.
+- Van gebruikers vereisen dat ze vóór een upgrade handmatig de status opruimen.
+- Herbruikbare ACP-sessies laten sluiten door `cancel`.
 
 ## Doelmodel
 
-### Identiteit van Gateway-instanties
+### Identiteit van Gateway-instantie
 
 Elk Gateway-proces moet een stabiele runtime-instantie-id hebben:
 
@@ -58,12 +59,12 @@ type GatewayInstanceId = string;
 ```
 
 Deze kan bij het opstarten van de Gateway worden gegenereerd en gedurende de levensduur van
-die installatie in de status worden opgeslagen. Het is geen beveiligingsgeheim, maar een eigendomsonderscheider
-die wordt gebruikt om te voorkomen dat de ACP-processen van de ene Gateway worden verward met de processen van een andere Gateway.
+die installatie in de status worden opgeslagen. Het is geen beveiligingsgeheim, maar een onderscheidingskenmerk voor eigenaarschap dat wordt gebruikt
+om te voorkomen dat de ACP-processen van de ene Gateway worden verward met de processen van een andere Gateway.
 
 ### Eigenaarschap van ACP-sessies
 
-Elke gestarte ACP-sessie moet genormaliseerde eigenaarschapsmetagegevens bevatten:
+Elke gestarte ACP-sessie moet genormaliseerde eigenaarschapsmetadata hebben:
 
 ```ts
 type AcpSessionOwner = {
@@ -78,8 +79,8 @@ type AcpSessionOwner = {
 };
 ```
 
-De Gateway moet deze velden retourneren voor sessierijen waarin ze bekend zijn.
-Zichtbaarheidsfiltering moet een zuivere controle op metagegevens van rijen zijn:
+De Gateway moet deze velden retourneren voor sessierijen waar ze bekend zijn.
+Zichtbaarheidsfiltering moet een zuivere controle op rijmetadata zijn:
 
 ```ts
 canSeeSessionRow({
@@ -90,13 +91,13 @@ canSeeSessionRow({
 });
 ```
 
-Hiermee verdwijnen verborgen aanvullende `sessions.list({ spawnedBy })`-aanroepen uit
-zichtbaarheidscontroles. Een gestart ACP-kindproces voor een andere agent is eigendom van de aanvrager omdat
-de rij dat aangeeft, niet omdat een tweede zoekopdracht het toevallig vindt.
+Dit verwijdert verborgen secundaire `sessions.list({ spawnedBy })`-aanroepen uit
+zichtbaarheidscontroles. Een gestart ACP-kindproces van een andere agent is eigendom van de aanvrager omdat
+dit in de rij staat, niet omdat een tweede query het toevallig vindt.
 
 ### ACPX-procesleases
 
-Elke gegenereerde wrapperstart moet een leaserecord maken:
+Elke gegenereerde wrapperstart moet een leaserecord aanmaken:
 
 ```ts
 type AcpxProcessLease = {
@@ -113,29 +114,28 @@ type AcpxProcessLease = {
 };
 ```
 
-Het wrapperproces moet de lease-id en Gateway-instantie-id in zijn
-omgeving ontvangen:
+Het wrapperproces ontvangt de lease-id en Gateway-instantie-id als overdraagbare
+argumenten:
 
 ```sh
-OPENCLAW_ACPX_LEASE_ID=...
-OPENCLAW_GATEWAY_INSTANCE_ID=...
+--openclaw-acpx-lease-id ... --openclaw-gateway-instance-id ...
 ```
 
-Wanneer het platform dit toestaat, moet verificatie de voorkeur geven aan actuele procesmetagegevens
-die niet door aanhalingstekens in opdrachten kunnen worden verward:
+Wanneer het platform dit toestaat, moet verificatie de voorkeur geven aan live procesmetadata
+die niet door aanhalingstekens in opdrachten kan worden verward:
 
-- de hoofd-PID bestaat nog
-- het actuele wrapperpad bevindt zich onder `wrapperRoot`
-- de procesgroep komt overeen met de lease wanneer die beschikbaar is
-- de omgeving bevat de verwachte lease-id wanneer die leesbaar is
-- de opdrachthash of het pad naar het uitvoerbare bestand komt overeen met de lease
+- root-PID bestaat nog
+- live wrapperpad bevindt zich onder `wrapperRoot`
+- procesgroep komt overeen met de lease wanneer deze beschikbaar is
+- argumenten bevatten de verwachte lease-id
+- opdrachthash of pad naar uitvoerbaar bestand komt overeen met de lease
 
-Als het actuele proces niet kan worden geverifieerd, wordt de opschoning uit veiligheidsoverwegingen afgebroken.
+Als het live proces niet kan worden geverifieerd, wordt opruiming veiligheidshalve afgebroken.
 
 ## Levenscycluscontroller
 
-Introduceer één ACPX-levenscycluscontroller die eigenaar is van procesleases en het
-opschoningsbeleid:
+Introduceer één ACPX-levenscycluscontroller die eigenaar is van procesleases en het opruimings-
+beleid:
 
 ```ts
 interface AcpxLifecycleController {
@@ -155,12 +155,12 @@ interface AcpxLifecycleController {
 of adapterprocessen niet opruimen.
 
 `closeSession` mag opruimen, maar alleen nadat het sessierecord is geladen,
-de lease is geladen en is geverifieerd dat de actuele procesboom nog steeds bij die
+de lease is geladen en is geverifieerd dat de live processtructuur nog bij die
 lease hoort.
 
-`reapStartupOrphans` begint bij open leases in de status. Het mag de procestabel
-gebruiken om afstammelingen te vinden, maar het moet niet eerst willekeurige opdrachten scannen
-die op ACP lijken en vervolgens besluiten dat die waarschijnlijk van ons zijn.
+`reapStartupOrphans` begint bij open leases in de status. Het mag de proces-
+tabel gebruiken om afstammelingen te vinden, maar het moet niet eerst willekeurige op ACP lijkende
+opdrachten scannen en vervolgens besluiten dat die waarschijnlijk van ons zijn.
 
 ## Wrappercontract
 
@@ -168,18 +168,18 @@ Gegenereerde wrappers moeten klein blijven. Ze moeten:
 
 - de adapter starten in een procesgroep waar dit wordt ondersteund
 - normale beëindigingssignalen doorsturen naar de procesgroep
-- het overlijden van het bovenliggende proces detecteren
-- bij overlijden van het bovenliggende proces SIGTERM verzenden en vervolgens de wrapper actief houden totdat de
-  terugval naar SIGKILL wordt uitgevoerd
-- de hoofd-PID en procesgroep-id terugmelden aan de levenscycluscontroller wanneer
+- overlijden van het bovenliggende proces detecteren
+- bij overlijden van het bovenliggende proces SIGTERM sturen en vervolgens de wrapper actief houden totdat de SIGKILL-
+  terugval wordt uitgevoerd
+- root-PID en procesgroep-id terugrapporteren aan de levenscycluscontroller wanneer
   die beschikbaar zijn
 
-Wrappers moeten niet over sessiebeleid beslissen. Ze dwingen alleen lokale opschoning van de procesboom
-af voor hun eigen adaptergroep.
+Wrappers mogen niet over sessiebeleid beslissen. Ze dwingen alleen lokale opruiming van de processtructuur
+voor hun eigen adaptergroep af.
 
 ## Contract voor sessiezichtbaarheid
 
-Zichtbaarheid moet genormaliseerd eigenaarschap van rijen gebruiken:
+Zichtbaarheid moet genormaliseerd rijeigenaarschap gebruiken:
 
 ```ts
 type SessionVisibilityInput = {
@@ -205,62 +205,62 @@ Regels:
 - `agent`: alleen dezelfde agent, tenzij een expliciete eigenaarsrelatie aangeeft dat de rij
   bij de aanvrager hoort.
 
-Hierdoor worden `tree` en `all` monotoon: `all` mag een eigen kindproces dat
-`tree` zou tonen niet verbergen.
+Dit maakt `tree` en `all` monotoon: `all` mag geen eigen kindproces verbergen dat
+`tree` wel zou tonen.
 
 ## Migratieplan
 
 ### Fase 1: identiteit en leases toevoegen
 
 - Voeg `gatewayInstanceId` toe aan de Gateway-status.
-- Voeg een ACPX-leaseregister toe onder de ACPX-statusmap.
+- Voeg een ACPX-leasestore toe onder de ACPX-statusmap.
 - Schrijf een lease voordat een gegenereerde wrapper wordt gestart.
 - Sla `leaseId` op in nieuwe ACPX-sessierecords.
 - Behoud bestaande PID- en opdrachtvelden voor oude records.
 
-### Fase 2: opschoning met leases als uitgangspunt
+### Fase 2: opruiming met leases als uitgangspunt
 
-- Wijzig opschoning bij sluiten zodat eerst `leaseId` wordt geladen.
-- Verifieer actueel proceseigenaarschap aan de hand van de lease voordat signalen worden verzonden.
-- Behoud de huidige terugval op hoofd-PID en wrappermap alleen voor verouderde records.
-- Markeer leases als `closed` na geverifieerde opschoning.
-- Markeer leases als `lost` wanneer het proces vóór de opschoning is verdwenen.
+- Wijzig opruiming bij sluiten zodat eerst `leaseId` wordt geladen.
+- Verifieer eigenaarschap van het live proces aan de hand van de lease voordat een signaal wordt gestuurd.
+- Behoud de huidige terugval op root-PID en wrapperroot alleen voor verouderde records.
+- Markeer leases als `closed` na geverifieerde opruiming.
+- Markeer leases als `lost` wanneer het proces vóór de opruiming verdwenen is.
 
-### Fase 3: opschoning bij opstarten met leases als uitgangspunt
+### Fase 3: opruiming bij opstarten met leases als uitgangspunt
 
-- Opschoning bij het opstarten scant open leases.
-- Verifieer voor elke lease het hoofdproces en verzamel afstammelingen.
-- Ruim geverifieerde bomen op, beginnend bij de kinderen.
-- Laat oude leases met status `closed` en `lost` verlopen met een begrensde bewaartermijn.
-- Behoud het scannen naar opdrachtmarkeringen alleen als tijdelijke terugval voor verouderde records, waar mogelijk
-  afgeschermd door de wrappermap en Gateway-instantie.
+- Opruiming bij het opstarten scant open leases.
+- Verifieer voor elke lease het rootproces en verzamel afstammelingen.
+- Ruim geverifieerde structuren op, te beginnen bij de kindprocessen.
+- Laat oude `closed`- en `lost`-leases verlopen met een begrensde bewaartermijn.
+- Behoud het scannen van opdrachtmarkeringen alleen als tijdelijke terugval voor verouderde records, waar mogelijk beschermd door
+  wrapperroot en Gateway-instantie.
 
-### Fase 4: rijen met sessie-eigenaarschap
+### Fase 4: rijen voor sessie-eigenaarschap
 
-- Voeg eigenaarschapsmetagegevens toe aan Gateway-sessierijen.
-- Leer ACPX, subagents, achtergrondtaken en schrijvers van sessieopslag om
+- Voeg eigenaarschapsmetadata toe aan Gateway-sessierijen.
+- Leer schrijvers van ACPX, subagents, achtergrondtaken en sessiestores om
   `ownerSessionKey` of `spawnedBy` in te vullen.
-- Zet controles van sessiezichtbaarheid om naar het gebruik van metagegevens van rijen.
-- Verwijder aanvullende `sessions.list({ spawnedBy })`-zoekacties tijdens zichtbaarheidscontroles.
+- Zet controles voor sessiezichtbaarheid om zodat ze rijmetadata gebruiken.
+- Verwijder secundaire `sessions.list({ spawnedBy })`-zoekopdrachten tijdens zichtbaarheidscontroles.
 
 ### Fase 5: verouderde heuristieken verwijderen
 
 Na één releaseperiode:
 
-- vertrouw niet langer op opgeslagen teksten van hoofdopdrachten voor niet-verouderde ACPX-opschoning
-- verwijder scans naar opdrachtmarkeringen bij het opstarten
-- verwijder terugvalzoekacties in lijsten voor zichtbaarheid
-- behoud defensief gedrag waarbij opschoning uit veiligheidsoverwegingen wordt afgebroken bij ontbrekende of niet-verifieerbare leases
+- stop met vertrouwen op opgeslagen rootopdrachtreeksen voor niet-verouderde ACPX-opruiming
+- verwijder scans van opdrachtmarkeringen bij het opstarten
+- verwijder terugvalzoekopdrachten in lijsten voor zichtbaarheid
+- behoud defensief, veiligheidshalve afbrekend gedrag voor ontbrekende of niet-verifieerbare leases
 
 ## Tests
 
-Voeg twee tabelgestuurde testsuites toe.
+Voeg twee tabelgestuurde suites toe.
 
-Simulator voor proceslevenscycli:
+Simulator voor proceslevenscyclus:
 
 - PID hergebruikt door een niet-gerelateerd proces
-- PID hergebruikt door de wrappermap van een andere Gateway
-- opgeslagen wrapperopdracht bevat shell-aanhalingstekens, actuele `ps`-opdracht niet
+- PID hergebruikt door de wrapperroot van een andere Gateway
+- opgeslagen wrapperopdracht is door de shell tussen aanhalingstekens geplaatst, live `ps`-opdracht niet
 - adapterkindproces stopt, kleinkindproces blijft in de procesgroep
 - SIGTERM-terugval bij overlijden van bovenliggend proces bereikt SIGKILL
 - proceslijst niet beschikbaar
@@ -274,33 +274,33 @@ Matrix voor sessiezichtbaarheid:
 - rij van dezelfde agent
 - rij van een andere agent
 - door de aanvrager beheerde gestarte ACP-rij van een andere agent
-- aanvrager in een sandbox beperkt tot `tree`
-- lijst-, geschiedenis-, verzend- en statusacties
+- aanvrager in sandbox beperkt tot `tree`
+- acties voor lijst, geschiedenis, verzenden en status
 
-De belangrijke invariant: een door de aanvrager beheerd gestart kindproces is overal zichtbaar
-waar de geconfigureerde zichtbaarheid de sessieboom van de aanvrager omvat, en `all` is niet
-minder capabel dan `tree`.
+De belangrijke invariant: een door de aanvrager beheerd gestart kindproces is overal zichtbaar waar
+de geconfigureerde zichtbaarheid de sessiestructuur van de aanvrager omvat, en `all` is niet
+minder krachtig dan `tree`.
 
 ## Compatibiliteitsopmerkingen
 
 Oude sessierecords hebben mogelijk geen `leaseId`. Ze moeten het verouderde
-opschoningspad gebruiken dat bij twijfel uit veiligheidsoverwegingen wordt afgebroken:
+veiligheidshalve afbrekende opruimingspad gebruiken:
 
-- vereis een actueel hoofdproces
-- vereis eigenaarschap van de wrappermap wanneer een gegenereerde wrapper wordt verwacht
-- vereis overeenstemming van opdrachten voor hoofdprocessen zonder wrapper
-- stuur nooit een signaal uitsluitend op basis van verouderde opgeslagen PID-metagegevens
+- vereis een live rootproces
+- vereis eigenaarschap van de wrapperroot wanneer een gegenereerde wrapper wordt verwacht
+- vereis overeenstemming van opdrachten voor roots zonder wrapper
+- stuur nooit een signaal uitsluitend op basis van verouderde opgeslagen PID-metadata
 
-Als een verouderd record niet kan worden geverifieerd, laat het dan ongemoeid. Opschoning van leases bij het opstarten en
-de volgende releaseperiode moeten de terugval uiteindelijk overbodig maken.
+Als een verouderd record niet kan worden geverifieerd, laat het dan met rust. Opruiming van leases bij het opstarten en
+de volgende releaseperiode moeten de terugval uiteindelijk uitfaseren.
 
 ## Succescriteria
 
-- Het sluiten van een oude of verouderde ACPX-sessie kan geen proces van een andere Gateway beëindigen.
-- Het overlijden van het bovenliggende proces laat geen hardnekkige kleinkindprocessen van adapters actief.
+- Het sluiten van een oude of verouderde ACPX-sessie kan het proces van een andere Gateway niet beëindigen.
+- Overlijden van het bovenliggende proces laat geen hardnekkige kleinkindprocessen van adapters actief.
 - `cancel` breekt de actieve beurt af zonder herbruikbare sessies te sluiten.
-- `sessions_list` kan door de aanvrager beheerde ACP-kindprocessen van andere agents tonen onder zowel
+- `sessions_list` kan ACP-kindprocessen van andere agents die eigendom zijn van de aanvrager tonen onder zowel
   `tree` als `all`.
-- Opschoning bij het opstarten wordt aangestuurd door leases, niet door brede scans van opdrachtteksten.
-- De gerichte matrix-tests voor processen en zichtbaarheid dekken elk randgeval dat
-  voorheen eenmalige oplossingen tijdens reviews vereiste.
+- Opruiming bij het opstarten wordt aangestuurd door leases, niet door brede scans van opdrachtreeksen.
+- De gerichte tests voor de proces- en zichtbaarheidsmatrix dekken elk randgeval
+  waarvoor voorheen eenmalige reviewoplossingen nodig waren.

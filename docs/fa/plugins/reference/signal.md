@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin مربوط به Signal هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin سیگنال هستید
 summary: سطح کانال Signal را برای ارسال و دریافت پیام‌های OpenClaw اضافه می‌کند.
-title: Plugin سیگنال
+title: Plugin ‏Signal
 x-i18n:
-    generated_at: "2026-07-16T16:57:15Z"
+    generated_at: "2026-07-27T14:25:19Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin سیگنال
+# Plugin Signal
 
 سطح کانال Signal را برای ارسال و دریافت پیام‌های OpenClaw اضافه می‌کند.
 

@@ -4,7 +4,7 @@ read_when:
 summary: Añade compatibilidad con el proveedor de modelos vLLM a OpenClaw.
 title: Plugin de vLLM
 x-i18n:
-    generated_at: "2026-07-16T11:54:39Z"
+    generated_at: "2026-07-26T05:22:27Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Añade compatibilidad con el proveedor de modelos vLLM a OpenClaw.
 ## Distribución
 
 - Paquete: `@openclaw/vllm-provider`
-- Ruta de instalación: incluida en OpenClaw
+- Ruta de instalación: incluido en OpenClaw
 
 ## Superficie
 

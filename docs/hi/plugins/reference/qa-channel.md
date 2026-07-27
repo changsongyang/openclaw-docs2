@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप qa-channel Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: OpenClaw संदेश भेजने और प्राप्त करने के लिए QA चैनल इंटरफ़ेस जोड़ता है।
+summary: OpenClaw संदेश भेजने और प्राप्त करने के लिए QA Channel सतह जोड़ता है।
 title: QA चैनल Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:33:18Z"
+    generated_at: "2026-07-27T19:40:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

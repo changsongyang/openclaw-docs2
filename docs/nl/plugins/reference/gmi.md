@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw-providerplugin voor GMI Cloud.
 title: Gmi-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:14:45Z"
+    generated_at: "2026-07-27T06:27:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Gmi-plugin
 
-OpenClaw GMI Cloud-providerplugin.
+OpenClaw-providerplugin voor GMI Cloud.
 
 ## Distributie
 

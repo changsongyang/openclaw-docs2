@@ -2,11 +2,11 @@
 read_when:
     - Sie benötigen den Überblick über die Netzwerkarchitektur und Sicherheit.
     - Sie debuggen den lokalen Zugriff im Vergleich zum Tailnet-Zugriff oder das Pairing
-    - Sie möchten die kanonische Liste der Netzwerkdokumentation.
+    - Sie möchten die kanonische Liste der Netzwerkdokumentation
 summary: 'Netzwerkzentrale: Gateway-Oberflächen, Kopplung, Erkennung und Sicherheit'
 title: Netzwerk
 x-i18n:
-    generated_at: "2026-07-24T05:07:45Z"
+    generated_at: "2026-07-26T19:02:31Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,20 +16,20 @@ x-i18n:
     workflow: 16
 ---
 
-Dieser Hub verlinkt die zentralen Dokumentationen dazu, wie OpenClaw Geräte über
+Dieser Hub verlinkt die zentrale Dokumentation dazu, wie OpenClaw Geräte über
 localhost, LAN und Tailnet hinweg verbindet, koppelt und absichert.
 
 ## Kernmodell
 
 Die meisten Vorgänge laufen über das Gateway (`openclaw gateway`), einen einzelnen dauerhaft ausgeführten Prozess, der die Kanalverbindungen und die WebSocket-Steuerungsebene verwaltet.
 
-- **Loopback zuerst**: Für Gateway-WS ist standardmäßig `ws://127.0.0.1:18789` festgelegt.
+- **Loopback zuerst**: Der Standardwert für den Gateway-WS ist `ws://127.0.0.1:18789`.
   Bindungen außerhalb von Loopback verweigern den Start ohne einen gültigen Gateway-Authentifizierungspfad:
-  Authentifizierung per gemeinsamem geheimem Token/Passwort oder eine korrekt konfigurierte
+  Authentifizierung mit gemeinsam verwendetem geheimem Token/Passwort oder eine korrekt konfigurierte
   `trusted-proxy`-Bereitstellung außerhalb von Loopback.
 - **Ein Gateway pro Host** wird empfohlen. Führen Sie zur Isolation mehrere Gateways mit isolierten Profilen und Ports aus ([Mehrere Gateways](/de/gateway/multiple-gateways)).
-- **Canvas-Host** wird über denselben Port wie das Gateway bereitgestellt (`/__openclaw__/canvas/`, `/__openclaw__/a2ui/`) und bei einer Bindung über Loopback hinaus durch die Gateway-Authentifizierung geschützt.
-- **Remote-Zugriff** erfolgt üblicherweise über einen SSH-Tunnel oder ein Tailscale-VPN ([Remote-Zugriff](/de/gateway/remote)).
+- **Canvas-Host** wird über denselben Port wie das Gateway bereitgestellt (`/__openclaw__/canvas/`, `/__openclaw__/a2ui/`) und durch die Gateway-Authentifizierung geschützt, wenn die Bindung über Loopback hinaus erfolgt.
+- **Remote-Zugriff** erfolgt normalerweise über einen SSH-Tunnel oder ein Tailscale-VPN ([Remote-Zugriff](/de/gateway/remote)).
 
 Wichtige Referenzen:
 
@@ -48,9 +48,9 @@ Wichtige Referenzen:
 Lokales Vertrauen:
 
 - Direkte lokale Loopback-Verbindungen (ohne weitergeleitete Header oder Proxy-Header) können
-  automatisch zur Kopplung genehmigt werden, damit die Benutzererfahrung auf demselben Host reibungslos bleibt.
-- OpenClaw verfügt außerdem über einen eng begrenzten Pfad für lokale Selbstverbindungen des Backends/Containers für
-  vertrauenswürdige Hilfsabläufe mit gemeinsamem Geheimnis.
+  automatisch für die Kopplung genehmigt werden, um eine reibungslose Benutzerführung auf demselben Host zu gewährleisten.
+- OpenClaw verfügt außerdem über einen eng begrenzten lokalen Selbstverbindungspfad für Backend/Container
+  für vertrauenswürdige Hilfsabläufe mit gemeinsam verwendetem geheimem Schlüssel.
 - Tailnet- und LAN-Clients, einschließlich Tailnet-Bindungen auf demselben Host, erfordern weiterhin
   eine ausdrückliche Genehmigung der Kopplung.
 
@@ -63,8 +63,8 @@ Lokales Vertrauen:
 
 ## Nodes und Transporte
 
-- [Node-Übersicht](/de/nodes)
-- [Bridge-Protokoll (Legacy-Nodes, historisch)](/de/gateway/bridge-protocol)
+- [Nodes im Überblick](/de/nodes)
+- [Bridge-Protokoll (veraltete Nodes, historisch)](/de/gateway/bridge-protocol)
 - [Node-Runbook: iOS](/de/platforms/ios)
 - [Node-Runbook: Android](/de/platforms/android)
 

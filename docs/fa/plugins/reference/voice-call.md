@@ -4,7 +4,7 @@ read_when:
 summary: Plugin تماس صوتی OpenClaw برای تماس‌های تلفنی Twilio، Telnyx و Plivo.
 title: Plugin تماس صوتی
 x-i18n:
-    generated_at: "2026-07-16T17:04:32Z"
+    generated_at: "2026-07-27T16:52:11Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

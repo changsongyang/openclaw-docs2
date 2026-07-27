@@ -4,7 +4,7 @@ read_when:
 summary: WhatsApp Web चैट के लिए OpenClaw WhatsApp चैनल Plugin।
 title: WhatsApp Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:36:18Z"
+    generated_at: "2026-07-27T20:17:02Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

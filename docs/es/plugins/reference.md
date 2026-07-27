@@ -1,11 +1,11 @@
 ---
 read_when:
     - Necesita una página de referencia para un Plugin específico de OpenClaw
-    - Está auditando la cobertura de la documentación de plugins
+    - Se está auditando la cobertura de la documentación de plugins
 summary: Índice generado de páginas de referencia de plugins de OpenClaw
 title: Referencia del Plugin
 x-i18n:
-    generated_at: "2026-07-21T22:39:47Z"
+    generated_at: "2026-07-26T05:21:31Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,7 +15,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Referencia de plugins
+# Referencia de Plugin
 
 Esta página se genera a partir de `extensions/*/package.json` y
 `openclaw.plugin.json`. Vuelva a generarla con:
@@ -24,5 +24,5 @@ Esta página se genera a partir de `extensions/*/package.json` y
 pnpm plugins:inventory:gen
 ```
 
-Use el [inventario de plugins](/es/plugins/plugin-inventory) para explorar las 143
+Use el [inventario de Plugin](/es/plugins/plugin-inventory) para consultar las 143
 páginas de referencia de plugins generadas por distribución, paquete y descripción.

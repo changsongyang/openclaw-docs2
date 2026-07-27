@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Sie möchten die aktuellen OpenClaw-Dokumente über das Terminal durchsuchen
-    - Sie müssen wissen, welche gehostete Such-API die Docs-CLI aufruft
-summary: CLI-Referenz für `openclaw docs` (Live-Dokumentationsindex durchsuchen)
+    - Sie möchten die aktuellen OpenClaw-Dokumente vom Terminal aus durchsuchen
+    - Sie müssen wissen, welche gehostete Such-API die Dokumentations-CLI aufruft
+summary: CLI-Referenz für `openclaw docs` (den Live-Dokumentationsindex durchsuchen)
 title: Dokumentation
 x-i18n:
-    generated_at: "2026-07-24T04:56:42Z"
+    generated_at: "2026-07-26T18:52:23Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,7 +17,7 @@ x-i18n:
 
 # `openclaw docs`
 
-Durchsuchen Sie den Live-Index der OpenClaw-Dokumentation vom Terminal aus.
+Durchsuchen Sie den Live-Index der OpenClaw-Dokumentation über das Terminal.
 
 ## Verwendung
 
@@ -28,9 +28,9 @@ openclaw docs <query...>            # Live-Index der Dokumentation durchsuchen
 
 | Argument     | Beschreibung                                                                        |
 | ------------ | ---------------------------------------------------------------------------------- |
-| `[query...]` | Freiform-Suchabfrage. Abfragen mit mehreren Wörtern werden mit Leerzeichen verbunden und als eine Abfrage gesendet. |
+| `[query...]` | Freie Suchanfrage. Abfragen mit mehreren Wörtern werden mit Leerzeichen verbunden und als eine Abfrage gesendet. |
 
-Ohne Abfrage gibt `openclaw docs` die URL des Dokumentationseinstiegspunkts und einen Beispiel-Suchbefehl aus, anstatt eine Suche auszuführen.
+Ohne Suchanfrage gibt `openclaw docs` die URL des Dokumentationseinstiegspunkts und einen Beispiel-Suchbefehl aus, statt eine Suche durchzuführen.
 
 ## Beispiele
 
@@ -46,23 +46,23 @@ openclaw docs gateway token secretref
 
 ## Ausgabe
 
-In einem Rich-Terminal (TTY) werden die Ergebnisse als Überschrift mit anschließender Aufzählung dargestellt: Seitentitel, verlinkte Dokumentations-URL und ein kurzer Auszug in der nächsten Zeile. Bei leeren Ergebnissen wird „Keine Ergebnisse.“ ausgegeben.
+In einem Rich-Terminal (TTY) werden die Ergebnisse als Überschrift mit anschließender Aufzählung dargestellt: Seitentitel, verlinkte Dokumentations-URL und ein kurzer Ausschnitt in der nächsten Zeile. Bei leeren Ergebnissen wird „Keine Ergebnisse.“ ausgegeben.
 
-Bei einer Ausgabe ohne Rich-Darstellung (über eine Pipe, `--no-color`, Skripte) werden dieselben Daten als Markdown dargestellt:
+Bei einer nicht formatierten Ausgabe (weitergeleitet, `--no-color`, Skripte) werden dieselben Daten als Markdown dargestellt:
 
 ```markdown
 # Dokumentationssuche: <query>
 
-- [Titel](https://docs.openclaw.ai/...) - Auszug
-- [Titel](https://docs.openclaw.ai/...) - Auszug
+- [Titel](https://docs.openclaw.ai/...) - Ausschnitt
+- [Titel](https://docs.openclaw.ai/...) - Ausschnitt
 ```
 
 ## Exit-Codes
 
 | Code | Bedeutung                                                                  |
 | ---- | ------------------------------------------------------------------------ |
-| `0`  | Die Suche war erfolgreich, einschließlich Antworten ohne Ergebnisse.                       |
-| `1`  | Der API-Aufruf der gehosteten Dokumentationssuche ist fehlgeschlagen; stderr gibt die Fehlermeldung aus. |
+| `0`  | Die Suche war erfolgreich, einschließlich Antworten mit null Ergebnissen.                       |
+| `1`  | Der API-Aufruf für die gehostete Dokumentationssuche ist fehlgeschlagen; stderr gibt die Fehlermeldung aus. |
 
 ## Verwandte Themen
 

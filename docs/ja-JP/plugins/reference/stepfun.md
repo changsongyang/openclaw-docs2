@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw に StepFun および StepFun Plan モデルプロバイダーのサポートを追加します。
 title: StepFun Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:06:41Z"
+    generated_at: "2026-07-26T09:44:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,16 +14,16 @@ x-i18n:
     workflow: 16
 ---
 
-# StepFun Plugin
+# StepFun plugin
 
-OpenClaw に StepFun、StepFun Plan モデルプロバイダーのサポートを追加します。
+OpenClaw に StepFun および StepFun Plan モデルプロバイダーのサポートを追加します。
 
 ## 配布
 
 - パッケージ: `@openclaw/stepfun-provider`
-- インストール経路: npm; ClawHub: `clawhub:@openclaw/stepfun-provider`
+- インストール経路: npm、ClawHub: `clawhub:@openclaw/stepfun-provider`
 
-## 対応範囲
+## サーフェス
 
 プロバイダー: `stepfun`、`stepfun-plan`
 

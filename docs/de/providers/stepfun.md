@@ -5,7 +5,7 @@ read_when:
 summary: StepFun-Modelle mit OpenClaw verwenden
 title: StepFun
 x-i18n:
-    generated_at: "2026-07-24T04:04:27Z"
+    generated_at: "2026-07-26T18:02:29Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,13 +15,13 @@ x-i18n:
     workflow: 16
 ---
 
-StepFun wird als externes offizielles Plugin (`@openclaw/stepfun-provider`) mit zwei Provider-IDs ausgeliefert:
+StepFun wird als externes offizielles Plugin (`@openclaw/stepfun-provider`) mit zwei Provider-IDs bereitgestellt:
 
-- `stepfun` für den Standardendpunkt
+- `stepfun` für den Standard-Endpunkt
 - `stepfun-plan` für den Step-Plan-Endpunkt
 
 <Warning>
-Standard und Step Plan sind **separate Provider** mit unterschiedlichen Endpunkten und Präfixen für Modellreferenzen (`stepfun/...` gegenüber `stepfun-plan/...`). Verwenden Sie einen Schlüssel für China mit den `.com`-Endpunkten und einen globalen Schlüssel mit den `.ai`-Endpunkten.
+Standard und Step Plan sind **separate Provider** mit unterschiedlichen Endpunkten und Modellreferenzpräfixen (`stepfun/...` gegenüber `stepfun-plan/...`). Verwenden Sie einen China-Schlüssel mit den `.com`-Endpunkten und einen globalen Schlüssel mit den `.ai`-Endpunkten.
 </Warning>
 
 ## Plugin installieren
@@ -44,28 +44,28 @@ Umgebungsvariable für die Authentifizierung: `STEPFUN_API_KEY`
 
 Standard (`stepfun`):
 
-| Modellreferenz           | Kontext | Max. Ausgabe | Hinweise                       |
-| ------------------------ | ------- | ------------ | ------------------------------ |
-| `stepfun/step-3.5-flash` | 262,144 | 65,536       | Standardmodell                  |
-| `stepfun/step-3.7-flash` | 262,144 | 262,144      | Unterstützt multimodale Bildeingaben |
+| Modellreferenz                | Kontext | Max. Ausgabe | Hinweise                          |
+| ------------------------ | ------- | ---------- | ------------------------------ |
+| `stepfun/step-3.5-flash` | 262,144 | 65,536     | Standardmodell         |
+| `stepfun/step-3.7-flash` | 262,144 | 262,144    | Unterstützung für multimodale Bildeingaben |
 
 Step Plan (`stepfun-plan`):
 
-| Modellreferenz                     | Kontext | Max. Ausgabe | Hinweise                       |
-| ---------------------------------- | ------- | ------------ | ------------------------------ |
-| `stepfun-plan/step-3.5-flash`      | 262,144 | 65,536       | Standardmodell für Step Plan   |
-| `stepfun-plan/step-3.7-flash`      | 262,144 | 262,144      | Unterstützt multimodale Bildeingaben |
-| `stepfun-plan/step-3.5-flash-2603` | 262,144 | 65,536       | Zusätzliches Step-Plan-Modell  |
+| Modellreferenz                          | Kontext | Max. Ausgabe | Hinweise                          |
+| ---------------------------------- | ------- | ---------- | ------------------------------ |
+| `stepfun-plan/step-3.5-flash`      | 262,144 | 65,536     | Standardmodell für Step Plan        |
+| `stepfun-plan/step-3.7-flash`      | 262,144 | 262,144    | Unterstützung für multimodale Bildeingaben |
+| `stepfun-plan/step-3.5-flash-2603` | 262,144 | 65,536     | Zusätzliches Step-Plan-Modell     |
 
 ## Erste Schritte
 
 <Tabs>
   <Tab title="Standard">
-    Am besten für allgemeine Anwendungsfälle über den Standardendpunkt von StepFun geeignet.
+    Am besten für allgemeine Anwendungen über den Standard-Endpunkt von StepFun geeignet.
 
     <Steps>
-      <Step title="Region Ihres Endpunkts auswählen">
-        | Authentifizierungsoption          | Endpunkt                      | Region        |
+      <Step title="Endpunktregion auswählen">
+        | Authentifizierungsoption                    | Endpunkt                     | Region        |
         | -------------------------------- | ----------------------------- | -------------- |
         | `stepfun-standard-api-key-intl` | `https://api.stepfun.ai/v1`  | International |
         | `stepfun-standard-api-key-cn`   | `https://api.stepfun.com/v1` | China          |
@@ -75,7 +75,7 @@ Step Plan (`stepfun-plan`):
         openclaw onboard --auth-choice stepfun-standard-api-key-intl
         ```
 
-        Endpunkt für China:
+        China-Endpunkt:
 
         ```bash
         openclaw onboard --auth-choice stepfun-standard-api-key-cn
@@ -103,8 +103,8 @@ Step Plan (`stepfun-plan`):
     Am besten für den Reasoning-Endpunkt von Step Plan geeignet.
 
     <Steps>
-      <Step title="Region Ihres Endpunkts auswählen">
-        | Authentifizierungsoption       | Endpunkt                                   | Region        |
+      <Step title="Endpunktregion auswählen">
+        | Authentifizierungsoption                 | Endpunkt                                | Region        |
         | ------------------------------ | ------------------------------------------ | -------------- |
         | `stepfun-plan-api-key-intl` | `https://api.stepfun.ai/step_plan/v1`  | International |
         | `stepfun-plan-api-key-cn`   | `https://api.stepfun.com/step_plan/v1` | China          |
@@ -114,7 +114,7 @@ Step Plan (`stepfun-plan`):
         openclaw onboard --auth-choice stepfun-plan-api-key-intl
         ```
 
-        Endpunkt für China:
+        China-Endpunkt:
 
         ```bash
         openclaw onboard --auth-choice stepfun-plan-api-key-cn
@@ -139,7 +139,7 @@ Step Plan (`stepfun-plan`):
   </Tab>
 </Tabs>
 
-Ein einziger Authentifizierungsablauf schreibt der Region entsprechende Profile sowohl für `stepfun` als auch für `stepfun-plan`, sodass beide Oberflächen nach einem einzigen Onboarding-Lauf gemeinsam erkannt werden.
+Ein einzelner Authentifizierungsablauf schreibt regionsspezifische Profile für sowohl `stepfun` als auch `stepfun-plan`, sodass beide Oberflächen nach einem einzigen Onboarding-Durchlauf gemeinsam erkannt werden.
 
 ## Erweiterte Konfiguration
 
@@ -236,7 +236,7 @@ Ein einziger Authentifizierungsablauf schreibt der Region entsprechende Profile 
   <Accordion title="Hinweise">
     - `step-3.7-flash` akzeptiert über OpenClaw Text- und Bildeingaben. Die API von StepFun unterstützt außerdem Video, das in OpenClaw noch keine Modelleingabemodalität ist.
     - Step 3.7 unterstützt den Reasoning-Aufwand `low`, `medium` und `high`. Da das Modell keinen Modus ohne Reasoning besitzt, wird `/think off` auf `low` abgebildet.
-    - `step-3.5-flash-2603` wird derzeit nur auf `stepfun-plan` bereitgestellt.
+    - `step-3.5-flash-2603` ist derzeit nur auf `stepfun-plan` verfügbar.
     - Verwenden Sie `openclaw models list` und `openclaw models set <provider/model>`, um Modelle zu prüfen oder zu wechseln.
 
   </Accordion>

@@ -3,7 +3,7 @@ redirect: /clawhub
 summary: Weiterleitung zu /clawhub
 title: ClawHub (Weiterleitung)
 x-i18n:
-    generated_at: "2026-07-24T05:23:20Z"
+    generated_at: "2026-07-26T19:16:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

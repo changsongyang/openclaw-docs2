@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de Signal-plugin
 summary: Voegt het Signal-kanaal toe voor het verzenden en ontvangen van OpenClaw-berichten.
-title: Signal-Plugin
+title: Signal-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:07:36Z"
+    generated_at: "2026-07-27T05:10:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

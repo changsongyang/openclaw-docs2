@@ -4,7 +4,7 @@ read_when:
 summary: Voegt ondersteuning voor de LM Studio-modelprovider toe aan OpenClaw.
 title: LM Studio-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:15:25Z"
+    generated_at: "2026-07-27T05:42:14Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # LM Studio-plugin
 
-Voegt ondersteuning voor de LM Studio-modelprovider toe aan OpenClaw.
+Voegt ondersteuning voor LM Studio als modelprovider toe aan OpenClaw.
 
 ## Distributie
 

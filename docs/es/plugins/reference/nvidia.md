@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin de NVIDIA
-summary: Añade compatibilidad con el proveedor de modelos de NVIDIA a OpenClaw.
+    - Está instalando, configurando o auditando el plugin nvidia
+summary: Añade compatibilidad con el proveedor de modelos NVIDIA en OpenClaw.
 title: Plugin de NVIDIA
 x-i18n:
-    generated_at: "2026-07-16T11:53:24Z"
+    generated_at: "2026-07-26T05:21:53Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

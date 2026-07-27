@@ -1,11 +1,11 @@
 ---
 read_when:
     - Sie möchten Vercel AI Gateway mit OpenClaw verwenden
-    - Sie benötigen die Umgebungsvariable für den API-Schlüssel oder die CLI-Authentifizierungsoption
+    - Sie benötigen die Umgebungsvariable für den API-Schlüssel oder die Authentifizierungsauswahl der CLI
 summary: Einrichtung des Vercel AI Gateway (Authentifizierung + Modellauswahl)
-title: Vercel AI Gateway
+title: Vercel AI-Gateway
 x-i18n:
-    generated_at: "2026-07-24T05:19:49Z"
+    generated_at: "2026-07-26T19:13:06Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,12 +23,12 @@ Zugriff auf Hunderte von Modellen über einen einzigen Endpunkt.
 | Provider      | `vercel-ai-gateway`                    |
 | Paket         | `@openclaw/vercel-ai-gateway-provider` |
 | Authentifizierung | `AI_GATEWAY_API_KEY`                   |
-| API           | Kompatibel mit Anthropic Messages      |
+| API           | Mit Anthropic Messages kompatibel      |
 | Basis-URL     | `https://ai-gateway.vercel.sh`         |
 | Modellkatalog | Automatisch über `/v1/models` erkannt       |
 
 <Tip>
-OpenClaw erkennt den `/v1/models`-Katalog des Gateway automatisch, sodass sowohl der
+OpenClaw erkennt den `/v1/models`-Katalog des Gateways automatisch, sodass sowohl der
 Chat-Befehl `/models vercel-ai-gateway` als auch
 `openclaw models list --provider vercel-ai-gateway` aktuelle Modellreferenzen
 wie `vercel-ai-gateway/openai/gpt-5.5` und
@@ -77,7 +77,7 @@ openclaw onboard --non-interactive \
 
 ## Kurzschreibweise für Modell-IDs
 
-OpenClaw normalisiert Kurzschreibweisen für Claude-Modellreferenzen zur Laufzeit:
+OpenClaw normalisiert Kurzreferenzen für Claude-Modelle zur Laufzeit:
 
 | Eingabe in Kurzschreibweise          | Normalisierte Modellreferenz                  |
 | ----------------------------------- | --------------------------------------------- |
@@ -85,7 +85,7 @@ OpenClaw normalisiert Kurzschreibweisen für Claude-Modellreferenzen zur Laufzei
 | `vercel-ai-gateway/opus-4.6`        | `vercel-ai-gateway/anthropic/claude-opus-4-6` |
 
 <Tip>
-Verwenden Sie in Ihrer Konfiguration eine der beiden Formen; OpenClaw löst die kanonische
+Verwenden Sie eine der beiden Formen in Ihrer Konfiguration; OpenClaw löst die kanonische
 Referenz `anthropic/...` automatisch auf.
 </Tip>
 
@@ -93,7 +93,7 @@ Referenz `anthropic/...` automatisch auf.
 
 <AccordionGroup>
   <Accordion title="Umgebungsvariable für Daemon-Prozesse">
-    Wenn der OpenClaw Gateway als Daemon (launchd/systemd) ausgeführt wird, stellen Sie sicher,
+    Wenn das OpenClaw Gateway als Daemon (launchd/systemd) ausgeführt wird, stellen Sie sicher,
     dass `AI_GATEWAY_API_KEY` für diesen Prozess verfügbar ist.
 
     <Warning>
@@ -106,16 +106,16 @@ Referenz `anthropic/...` automatisch auf.
   </Accordion>
 
   <Accordion title="Provider-Routing">
-    Vercel AI Gateway leitet jede Anfrage an den Upstream-Provider weiter, der im Präfix der
-    Modellreferenz angegeben ist. Beispielsweise wird `vercel-ai-gateway/anthropic/claude-opus-4.6`
+    Vercel AI Gateway leitet jede Anfrage an den Upstream-Provider weiter, der im
+    Präfix der Modellreferenz angegeben ist. Beispielsweise wird `vercel-ai-gateway/anthropic/claude-opus-4.6`
     über Anthropic, `vercel-ai-gateway/openai/gpt-5.5` über
     OpenAI und `vercel-ai-gateway/moonshotai/kimi-k2.6` über
     MoonshotAI weitergeleitet. Ein `AI_GATEWAY_API_KEY` authentifiziert alle Upstream-Provider.
   </Accordion>
   <Accordion title="Denkstufen">
-    Die Optionen von `/think` richten sich nach dem Präfix des Upstream-Modells, wenn OpenClaw
+    Die Optionen für `/think` richten sich nach dem Präfix des Upstream-Modells, wenn OpenClaw
     es erkennt. `vercel-ai-gateway/anthropic/...` verwendet das Claude-Denkprofil,
-    einschließlich der adaptiven Standardeinstellung für Claude-4.6-Modelle. Vertrauenswürdige
+    einschließlich des adaptiven Standards für Claude-4.6-Modelle. Vertrauenswürdige
     `vercel-ai-gateway/openai/...`-Referenzen (`gpt-5.2` und neuer sowie Codex-
     Varianten bis hinunter zu `gpt-5.1-codex`) stellen `/think xhigh` bereit. Andere mit Namensräumen versehene
     Referenzen behalten die standardmäßigen Reasoning-Stufen bei, sofern ihre Katalogmetadaten

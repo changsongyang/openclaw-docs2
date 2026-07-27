@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das Deepgram-Plugin.
+    - Sie installieren, konfigurieren oder überprüfen das deepgram-Plugin.
 summary: Fügt Unterstützung für Provider zur Medienanalyse hinzu. Fügt Unterstützung für Provider zur Echtzeittranskription hinzu.
 title: Deepgram-Plugin
 x-i18n:
-    generated_at: "2026-07-24T03:58:22Z"
+    generated_at: "2026-07-26T17:57:13Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Deepgram-Plugin
 
-Fügt Unterstützung für Provider zur Medienanalyse hinzu. Fügt Unterstützung für Provider zur Echtzeittranskription hinzu.
+Fügt Unterstützung für Provider zur Medienerkennung hinzu. Fügt Unterstützung für Provider zur Echtzeittranskription hinzu.
 
 ## Distribution
 

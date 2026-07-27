@@ -2,9 +2,9 @@
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin ‏elevenlabs هستید
 summary: پشتیبانی از ارائه‌دهندهٔ درک رسانه را اضافه می‌کند. پشتیبانی از ارائه‌دهندهٔ رونویسی بلادرنگ را اضافه می‌کند. پشتیبانی از ارائه‌دهندهٔ تبدیل متن به گفتار را اضافه می‌کند.
-title: Plugin ElevenLabs
+title: Plugin ‏Elevenlabs
 x-i18n:
-    generated_at: "2026-07-16T17:27:00Z"
+    generated_at: "2026-07-27T15:54:58Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

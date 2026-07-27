@@ -4,7 +4,7 @@ read_when:
 summary: پشتیبانی از ارائه‌دهنده مدل SGLang را به OpenClaw اضافه می‌کند.
 title: Plugin ‏SGLang
 x-i18n:
-    generated_at: "2026-07-16T17:03:55Z"
+    generated_at: "2026-07-27T16:59:24Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## توزیع
 
 - بسته: `@openclaw/sglang-provider`
-- مسیر نصب: در OpenClaw گنجانده شده است
+- روش نصب: همراه OpenClaw ارائه می‌شود
 
 ## سطح
 

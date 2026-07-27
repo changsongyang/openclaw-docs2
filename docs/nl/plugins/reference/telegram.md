@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de Telegram-plugin
-summary: Voegt het Telegram-kanaal toe voor het verzenden en ontvangen van OpenClaw-berichten.
+summary: Voegt de Telegram-kanaalinterface toe voor het verzenden en ontvangen van OpenClaw-berichten.
 title: Telegram-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:17:31Z"
+    generated_at: "2026-07-27T05:16:44Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

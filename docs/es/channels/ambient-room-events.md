@@ -1,13 +1,13 @@
 ---
 read_when:
     - Configuración de salas de grupo o canal siempre activas
-    - Se desea que el agente supervise la conversación de la sala sin publicar automáticamente el texto final
+    - Quieres que el agente supervise la conversación de la sala sin publicar automáticamente el texto final.
     - Depuración de la escritura y el uso de tokens sin mensajes visibles en la sala
 sidebarTitle: Ambient room events
-summary: Permite que las salas de grupo compatibles proporcionen contexto silencioso, a menos que el agente envíe mediante la herramienta de mensajes
+summary: Permitir que las salas de grupo compatibles proporcionen contexto silencioso, a menos que el agente envíe un mensaje con la herramienta de mensajes
 title: Eventos ambientales de la sala
 x-i18n:
-    generated_at: "2026-07-22T10:25:15Z"
+    generated_at: "2026-07-26T05:05:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,11 +17,11 @@ x-i18n:
     workflow: 16
 ---
 
-Los eventos de sala ambientales permiten que OpenClaw procese las conversaciones de grupos o canales en las que no se lo menciona como contexto silencioso. El agente puede actualizar la memoria y el estado de la sesión, pero la sala permanece en silencio a menos que el agente llame explícitamente a la herramienta `message`.
+Los eventos ambientales de sala permiten que OpenClaw procese como contexto discreto las conversaciones de grupos o canales que no lo mencionan. El agente puede actualizar la memoria y el estado de la sesión, pero la sala permanece en silencio a menos que el agente llame explícitamente a la herramienta `message`.
 
-Para chats grupales siempre activos, combine `messages.groupChat.unmentionedInbound: "room_event"` con `messages.groupChat.visibleReplies: "message_tool"`. El agente escucha, decide cuándo resulta útil responder y nunca necesita el antiguo patrón de prompt que consistía en responder `NO_REPLY`.
+Para chats grupales siempre activos, combine `messages.groupChat.unmentionedInbound: "room_event"` con `messages.groupChat.visibleReplies: "message_tool"`. El agente escucha, decide cuándo resulta útil responder y ya no necesita el antiguo patrón de prompt que respondía `NO_REPLY`.
 
-Compatibilidad actual: canales de servidores de Discord, canales y canales privados de Slack, mensajes directos de Slack con varias personas y grupos o supergrupos de Telegram. Los demás canales grupales conservan su comportamiento grupal existente, salvo que la página del canal indique que admiten eventos de sala ambientales.
+Compatibilidad actual: canales de servidores de Discord, canales y canales privados de Slack, mensajes directos de Slack con varias personas y grupos o supergrupos de Telegram. Los demás canales grupales conservan su comportamiento actual, salvo que la página del canal indique que admiten eventos ambientales de sala.
 
 ## Configuración recomendada
 
@@ -39,15 +39,15 @@ Establezca el comportamiento global de los chats grupales:
 }
 ```
 
-A continuación, haga que la sala esté siempre activa deshabilitando el requisito de mención para esa sala. La sala aún debe cumplir su `groupPolicy` habitual, la lista de permitidos de la sala y la lista de remitentes permitidos.
+A continuación, haga que la sala esté siempre activa deshabilitando la exigencia de menciones para esa sala. La sala aún debe cumplir su `groupPolicy`, la lista de permitidos de la sala y la lista de remitentes permitidos habituales.
 
-Después de guardar la configuración, el Gateway aplica en caliente los ajustes de `messages`. Reinicie únicamente cuando la supervisión de archivos o la recarga de la configuración estén deshabilitadas (`gateway.reload.mode: "off"`).
+Después de guardar la configuración, el Gateway aplica en caliente los ajustes de `messages`. Reinícielo únicamente cuando la observación de archivos o la recarga de la configuración estén deshabilitadas (`gateway.reload.mode: "off"`).
 
 ## Qué cambia
 
 Con `messages.groupChat.unmentionedInbound: "room_event"`:
 
-- los mensajes permitidos de grupos o canales sin mención se convierten en eventos de sala silenciosos
+- los mensajes permitidos de grupos o canales que no incluyan una mención se convierten en eventos discretos de sala
 - los mensajes con menciones siguen siendo solicitudes del usuario
 - los comandos de control de texto y los comandos nativos siguen siendo solicitudes del usuario
 - las solicitudes de cancelación o detención siguen siendo solicitudes del usuario
@@ -105,7 +105,7 @@ Utilice la configuración por canal de Discord cuando solo un canal deba ser amb
 
 ## Ejemplo de Slack
 
-Las listas de canales permitidos de Slack priorizan los ID. Utilice ID de canales como `C12345678`, no `#channel-name`. Incluir el canal en `channels.slack.channels` es lo que lo permite (`enabled: false` deshabilita una entrada):
+Las listas de canales permitidos de Slack priorizan los identificadores. Utilice identificadores de canal como `C12345678`, no `#channel-name`. Incluir el canal en `channels.slack.channels` es lo que lo permite (`enabled: false` deshabilita una entrada):
 
 ```json5
 {
@@ -131,7 +131,7 @@ Las listas de canales permitidos de Slack priorizan los ID. Utilice ID de canale
 
 ## Ejemplo de Telegram
 
-En los grupos de Telegram, el bot debe poder ver los mensajes grupales normales. Si `requireMention: false`, deshabilite el modo de privacidad de BotFather o utilice otra configuración de Telegram que entregue al bot todo el tráfico del grupo.
+Para los grupos de Telegram, el bot debe poder ver los mensajes grupales normales. Si `requireMention: false`, deshabilite el modo de privacidad de BotFather o utilice otra configuración de Telegram que entregue al bot todo el tráfico del grupo.
 
 ```json5
 {
@@ -155,7 +155,7 @@ En los grupos de Telegram, el bot debe poder ver los mensajes grupales normales.
 }
 ```
 
-Los ID de grupos de Telegram suelen ser números negativos como `-1001234567890`. Lea `chat.id` desde `openclaw logs --follow`, reenvíe un mensaje del grupo a un bot auxiliar de identificación o inspeccione `getUpdates` de la Bot API.
+Los identificadores de grupos de Telegram suelen ser números negativos como `-1001234567890`. Lea `chat.id` desde `openclaw logs --follow`, reenvíe un mensaje del grupo a un bot auxiliar de identificación o inspeccione `getUpdates` de la API de bots.
 
 ## Política específica del agente
 
@@ -186,31 +186,31 @@ El valor `agents.entries.*.groupChat.unmentionedInbound` específico del agente 
 
 ## Modos de respuesta visible
 
-`messages.groupChat.visibleReplies` utiliza `"automatic"` de forma predeterminada para las solicitudes normales de usuarios en grupos o canales. Mantenga ese valor predeterminado cuando el texto final del asistente deba publicarse de forma visible sin una llamada explícita a la herramienta de mensajes.
+El valor predeterminado de `messages.groupChat.visibleReplies` es `"automatic"` para las solicitudes normales del usuario en grupos o canales. Mantenga ese valor predeterminado cuando el texto final del asistente deba publicarse de forma visible sin una llamada explícita a la herramienta de mensajes.
 
-Para salas ambientales siempre activas, se sigue recomendando `messages.groupChat.visibleReplies: "message_tool"`, especialmente con modelos de última generación que usan herramientas de forma fiable, como GPT-5.6 Sol. Permite que el agente decida cuándo hablar llamando a la herramienta de mensajes. Si el modelo devuelve texto final sin llamar a la herramienta, OpenClaw mantiene ese texto final en privado y registra metadatos de entrega suprimida.
+Para las salas ambientales siempre activas, se sigue recomendando `messages.groupChat.visibleReplies: "message_tool"`, especialmente con modelos de última generación fiables en el uso de herramientas, como GPT-5.6 Sol. Permite que el agente decida cuándo intervenir llamando a la herramienta de mensajes. Si el modelo devuelve texto final sin llamar a la herramienta, OpenClaw mantiene ese texto final en privado y registra metadatos de entrega suprimida.
 
-Los eventos de sala conservan el modo estricto incluso cuando otras solicitudes grupales utilizan respuestas automáticas. Los eventos ambientales de sala sin menciones siempre requieren `message(action=send)` para producir una salida visible.
+Los eventos de sala siguen siendo estrictos incluso cuando otras solicitudes grupales utilizan respuestas automáticas. Los eventos ambientales de sala sin menciones siempre requieren `message(action=send)` para generar una salida visible.
 
 ## Historial
 
-`messages.groupChat.historyLimit` establece el valor global predeterminado del historial grupal (50 cuando no se establece; debe ser un entero positivo). Los canales pueden anularlo con `channels.<channel>.historyLimit`, y algunos canales también admiten límites de historial por cuenta. Establezca `historyLimit: 0` en el nivel del canal para deshabilitar el contexto del historial grupal de ese canal.
+`messages.groupChat.historyLimit` establece el valor global predeterminado del historial de grupos (50 si no se configura; debe ser un entero positivo). Los canales pueden anularlo con `channels.<channel>.historyLimit` y algunos canales también admiten límites de historial por cuenta. Establezca `historyLimit: 0` en el nivel del canal para deshabilitar el contexto del historial grupal de ese canal.
 
-Los canales compatibles con eventos de sala conservan como contexto los mensajes ambientales recientes de la sala. Telegram mantiene una ventana móvil por grupo siempre activa, limitada por `historyLimit`; los turnos de solicitudes del usuario seleccionan las entradas posteriores a la última respuesta registrada del bot, mientras que los turnos de eventos de sala reciben toda la ventana reciente para que el modelo pueda ver sus propias publicaciones recientes. `openclaw doctor --fix` elimina la clave de modo retirada `includeGroupHistoryContext` de Telegram.
+Los canales que admiten eventos de sala conservan como contexto los mensajes ambientales recientes de la sala. Telegram mantiene una ventana móvil por grupo, siempre activa y limitada por `historyLimit`; los turnos de solicitudes del usuario seleccionan las entradas posteriores a la última respuesta registrada del bot, mientras que los turnos de eventos de sala reciben toda la ventana reciente para que el modelo pueda ver sus propias publicaciones recientes. `openclaw doctor --fix` elimina la clave de modo obsoleta `includeGroupHistoryContext` de Telegram.
 
 ## Solución de problemas
 
-Si la sala muestra que se está escribiendo o que hay uso de tokens, pero no aparece ningún mensaje visible:
+Si la sala muestra actividad de escritura o uso de tokens, pero ningún mensaje visible:
 
 1. Confirme que la sala esté permitida por la lista de canales permitidos y la lista de remitentes permitidos.
-2. Confirme que `requireMention: false` esté establecido en el nivel de sala esperado.
+2. Confirme que `requireMention: false` esté configurado en el nivel de sala esperado.
 3. Compruebe si `messages.groupChat.unmentionedInbound` o la anulación del agente es `"room_event"`.
-4. Inspeccione los registros en busca de metadatos de la carga útil final suprimida o `didSendViaMessagingTool: false`.
-5. Para las solicitudes grupales normales, mantenga o restaure `messages.groupChat.visibleReplies: "automatic"` si desea que las respuestas finales se publiquen automáticamente. Para salas ambientales que utilicen `message_tool`, use un modelo o entorno de ejecución que llame a las herramientas de forma fiable.
+4. Inspeccione los registros en busca de metadatos de carga final suprimida o `didSendViaMessagingTool: false`.
+5. Para las solicitudes grupales normales, mantenga o restaure `messages.groupChat.visibleReplies: "automatic"` si desea que las respuestas finales se publiquen automáticamente. Para las salas ambientales que utilicen `message_tool`, emplee un modelo o entorno de ejecución que llame a las herramientas de forma fiable.
 
 Si las salas ambientales de Telegram no se activan en absoluto, compruebe el modo de privacidad de BotFather y verifique que el Gateway esté recibiendo los mensajes grupales normales.
 
-Si las salas ambientales de Slack no se activan, verifique que la clave del canal sea el ID del canal de Slack y que la aplicación tenga el ámbito de historial correspondiente a ese tipo de sala: `channels:history` (pública), `groups:history` (privada) o `mpim:history` (mensajes directos con varias personas).
+Si las salas ambientales de Slack no se activan, verifique que la clave del canal sea el identificador del canal de Slack y que la aplicación disponga del ámbito de historial correspondiente a ese tipo de sala: `channels:history` (pública), `groups:history` (privada) o `mpim:history` (mensajes directos con varias personas).
 
 ## Temas relacionados
 

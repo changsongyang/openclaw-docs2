@@ -4,7 +4,7 @@ read_when:
 summary: 新增 OpenClaw 對 fal 模型供應商的支援。
 title: fal 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:51:52Z"
+    generated_at: "2026-07-26T08:42:55Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # fal 外掛
 
-新增對 OpenClaw 的 fal 模型供應商支援。
+為 OpenClaw 新增 fal 模型供應商支援。
 
-## 發布
+## 發布方式
 
 - 套件：`@openclaw/fal-provider`
-- 安裝方式：隨附於 OpenClaw
+- 安裝途徑：隨附於 OpenClaw
 
 ## 介面
 

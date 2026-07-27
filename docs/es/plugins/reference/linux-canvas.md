@@ -2,9 +2,9 @@
 read_when:
     - Está instalando, configurando o auditando el plugin linux-canvas
 summary: Puente de renderizado de Canvas para la aplicación de escritorio de OpenClaw para Linux.
-title: Plugin Canvas para Linux
+title: Plugin de Canvas para Linux
 x-i18n:
-    generated_at: "2026-07-16T11:48:17Z"
+    generated_at: "2026-07-26T05:22:14Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin de Canvas para Linux
+# Plugin Canvas para Linux
 
 Puente de renderizado de Canvas para la aplicación de escritorio de OpenClaw para Linux.
 
 ## Distribución
 
 - Paquete: `@openclaw/linux-canvas`
-- Vía de instalación: incluido en OpenClaw
+- Ruta de instalación: incluido en OpenClaw
 
 ## Superficie
 

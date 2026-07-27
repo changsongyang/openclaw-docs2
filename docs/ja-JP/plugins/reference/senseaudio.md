@@ -1,10 +1,10 @@
 ---
 read_when:
-    - senseaudio Plugin のインストール、設定、または監査を行っています
+    - senseaudio Plugin をインストール、設定、または監査しています
 summary: メディア理解プロバイダーのサポートを追加します。
 title: Senseaudio Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:56:47Z"
+    generated_at: "2026-07-26T10:13:10Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Senseaudio Plugin
+# Senseaudio plugin
 
 メディア理解プロバイダーのサポートを追加します。
 
@@ -23,7 +23,7 @@ x-i18n:
 - パッケージ: `@openclaw/senseaudio-provider`
 - インストール方法: OpenClaw に同梱
 
-## 公開インターフェース
+## 公開機能
 
 コントラクト: `mediaUnderstandingProviders`
 

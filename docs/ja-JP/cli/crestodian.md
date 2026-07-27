@@ -1,11 +1,11 @@
 ---
 read_when:
-    - 以前の Crestodian ドキュメントへのリンクを開きました
+    - 古い Crestodian ドキュメントのリンクをたどりました
 redirect: /cli/openclaw
-summary: OpenClaw システムエージェントリファレンスにリダイレクトする
+summary: OpenClaw システムエージェントリファレンスへのリダイレクト
 title: Crestodian（リダイレクト）
 x-i18n:
-    generated_at: "2026-07-16T11:29:36Z"
+    generated_at: "2026-07-26T10:08:26Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,4 +15,4 @@ x-i18n:
     workflow: 16
 ---
 
-このページは[OpenClaw のセットアップと修復](/cli/openclaw)に移動しました。
+このページは[OpenClaw のセットアップと修復](/ja-JP/cli/openclaw)に移動しました。

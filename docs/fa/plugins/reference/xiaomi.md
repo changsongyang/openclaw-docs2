@@ -1,10 +1,10 @@
 ---
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin شیائومی هستید
-summary: پشتیبانی از ارائه‌دهندگان مدل Xiaomi و Xiaomi Token Plan را به OpenClaw اضافه می‌کند.
+summary: پشتیبانی از Xiaomi و ارائه‌دهنده مدل Xiaomi Token Plan را به OpenClaw اضافه می‌کند.
 title: Plugin شیائومی
 x-i18n:
-    generated_at: "2026-07-16T17:04:57Z"
+    generated_at: "2026-07-27T14:25:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin شیائومی
 
-پشتیبانی از ارائه‌دهنده مدل Xiaomi و Xiaomi Token Plan را به OpenClaw اضافه می‌کند.
+پشتیبانی از ارائه‌دهنده مدل شیائومی و Xiaomi Token Plan را به OpenClaw اضافه می‌کند.
 
 ## توزیع
 

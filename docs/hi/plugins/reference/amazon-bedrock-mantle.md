@@ -4,7 +4,7 @@ read_when:
 summary: OpenAI-संगत मॉडल रूटिंग के लिए OpenClaw Amazon Bedrock Mantle प्रोवाइडर Plugin।
 title: Amazon Bedrock Mantle Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:12:36Z"
+    generated_at: "2026-07-27T20:12:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,16 +14,16 @@ x-i18n:
     workflow: 16
 ---
 
-# Amazon Bedrock Mantle plugin
+# Amazon Bedrock Mantle Plugin
 
-OpenAI-संगत मॉडल रूटिंग के लिए OpenClaw Amazon Bedrock Mantle प्रदाता plugin।
+OpenAI-संगत मॉडल रूटिंग के लिए OpenClaw Amazon Bedrock Mantle प्रदाता Plugin।
 
 ## वितरण
 
 - पैकेज: `@openclaw/amazon-bedrock-mantle-provider`
 - इंस्टॉल मार्ग: npm; ClawHub
 
-## सरफ़ेस
+## सतह
 
 प्रदाता: `amazon-bedrock-mantle`
 

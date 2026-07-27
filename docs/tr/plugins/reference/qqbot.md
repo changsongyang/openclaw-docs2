@@ -1,10 +1,10 @@
 ---
 read_when:
-    - qqbot pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+    - qqbot Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: Grup ve doğrudan mesaj iş akışları için OpenClaw QQ Bot kanal plugini.
-title: QQ Bot plugin'i
+title: QQ Bot Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:46:18Z"
+    generated_at: "2026-07-27T00:12:18Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -25,7 +25,7 @@ Grup ve doğrudan mesaj iş akışları için OpenClaw QQ Bot kanal plugin'i.
 
 ## Yüzey
 
-kanallar: `qqbot`; sözleşmeler: `tools`; beceriler
+kanallar: `qqbot`; sözleşmeler: `tools`; Skills
 
 ## İlgili belgeler
 

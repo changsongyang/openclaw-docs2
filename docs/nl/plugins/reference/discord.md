@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Je installeert, configureert of controleert de Discord-plugin
-summary: OpenClaw Discord-kanaalplugin voor kanalen, privéberichten, opdrachten en appgebeurtenissen.
-title: Discord-plugin
+    - Je installeert, configureert of controleert de Discord-plugin.
+summary: OpenClaw Discord-kanaalplugin voor kanalen, DM's, opdrachten en app-gebeurtenissen.
+title: Discord-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:14:03Z"
+    generated_at: "2026-07-27T05:15:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Discord-plugin
+# Discord-Plugin
 
 OpenClaw Discord-kanaalplugin voor kanalen, DM's, opdrachten en appgebeurtenissen.
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder überprüfen das Plugin oc-path
-summary: Fügt die OpenClaw-Pfad-CLI für die Adressierung von Workspace-Dateien über oc:// hinzu.
+    - Sie installieren, konfigurieren oder überprüfen das Plugin oc-path.
+summary: Fügt die CLI `openclaw path` für die Adressierung von Workspace-Dateien über `oc://` hinzu.
 title: Oc-Path-Plugin
 x-i18n:
-    generated_at: "2026-07-24T05:07:57Z"
+    generated_at: "2026-07-26T18:38:27Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Oc-Path-Plugin
+# Oc Path-Plugin
 
-Fügt die openclaw-path-CLI für die Adressierung von Workspace-Dateien über oc:// hinzu.
+Fügt die OpenClaw-Pfad-CLI zur Adressierung von Workspace-Dateien über oc:// hinzu.
 
 ## Distribution
 

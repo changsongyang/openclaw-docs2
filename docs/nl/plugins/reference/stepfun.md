@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de stepfun-plugin
-summary: Voegt ondersteuning voor de modelproviders StepFun en StepFun Plan toe aan OpenClaw.
-title: StepFun-Plugin
+summary: Voegt ondersteuning voor de StepFun- en StepFun Plan-modelproviders toe aan OpenClaw.
+title: StepFun-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:07:48Z"
+    generated_at: "2026-07-27T05:42:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# StepFun-plugin
+# StepFun-Plugin
 
-Voegt ondersteuning voor de StepFun- en StepFun Plan-modelproviders toe aan OpenClaw.
+Voegt ondersteuning voor de modelproviders StepFun en StepFun Plan toe aan OpenClaw.
 
 ## Distributie
 
@@ -29,4 +29,4 @@ providers: `stepfun`, `stepfun-plan`
 
 ## Gerelateerde documentatie
 
-- [StepFun](/nl/providers/stepfun)
+- [stepfun](/nl/providers/stepfun)

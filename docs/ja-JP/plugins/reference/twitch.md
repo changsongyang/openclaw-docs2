@@ -1,10 +1,10 @@
 ---
 read_when:
-    - twitch Plugin のインストール、設定、または監査を行っている場合
-summary: チャットおよびモデレーションのワークフロー向けOpenClaw TwitchチャンネルPlugin。
+    - twitch Plugin のインストール、設定、または監査を行っています
+summary: チャットおよびモデレーションのワークフローに対応する OpenClaw Twitch チャンネル Plugin。
 title: Twitch Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:57:14Z"
+    generated_at: "2026-07-26T09:13:59Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Twitch Plugin
 
-チャットおよびモデレーションのワークフロー向けOpenClaw TwitchチャンネルPlugin。
+チャットおよびモデレーションワークフロー向けの OpenClaw Twitch チャンネル Plugin。
 
 ## 配布
 

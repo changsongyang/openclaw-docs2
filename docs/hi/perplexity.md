@@ -1,11 +1,12 @@
 ---
 redirect: /tools/perplexity-search
-summary: /tools/perplexity-search पर पुनर्निर्देशित करें
+summary: /tools/perplexity-search पर रीडायरेक्ट करें
 title: Perplexity खोज
 x-i18n:
-    generated_at: "2026-06-28T23:26:04Z"
-    model: gpt-5.5
+    generated_at: "2026-07-27T20:04:13Z"
+    model: gpt-5.6
     postprocess_version: locale-links-v1
+    prompt_version: 32
     provider: openai
     source_hash: 1c41e7de5f183075e494182024214e3bbd4a93706de42a4ee6933a0c079d8cd0
     source_path: perplexity.md
@@ -16,4 +17,4 @@ x-i18n:
 
 ## संबंधित
 
-- [वेब टूल्स](/hi/tools/web)
+- [वेब टूल](/hi/tools/web)

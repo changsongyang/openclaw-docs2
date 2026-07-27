@@ -4,7 +4,7 @@ read_when:
 summary: Plugin del proveedor LongCat de OpenClaw.
 title: Plugin LongCat
 x-i18n:
-    generated_at: "2026-07-16T11:48:30Z"
+    generated_at: "2026-07-26T05:50:50Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin LongCat
 
-Plugin del proveedor LongCat de OpenClaw.
+Plugin de proveedor LongCat de OpenClaw.
 
 ## Distribución
 
@@ -29,4 +29,4 @@ proveedores: `longcat`
 
 ## Documentación relacionada
 
-- [LongCat](/es/providers/longcat)
+- [longcat](/es/providers/longcat)

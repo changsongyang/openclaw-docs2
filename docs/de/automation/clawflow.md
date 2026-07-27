@@ -1,8 +1,8 @@
 ---
-summary: Weiterleitung zu Task Flow
+summary: Weiterleitung zu TaskFlow
 title: ClawFlow
 x-i18n:
-    generated_at: "2026-07-24T04:46:11Z"
+    generated_at: "2026-07-26T18:18:22Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

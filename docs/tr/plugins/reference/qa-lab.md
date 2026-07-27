@@ -1,10 +1,10 @@
 ---
 read_when:
-    - qa-lab pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: Özel hata ayıklayıcı kullanıcı arayüzü ve senaryo çalıştırıcısı içeren OpenClaw QA laboratuvarı Plugin’i.
-title: QA Lab plugin'i
+    - qa-lab Plugin'ini kuruyor, yapılandırıyor veya denetliyorsunuz
+summary: Özel hata ayıklayıcı kullanıcı arayüzü ve senaryo çalıştırıcısı içeren OpenClaw QA laboratuvarı Plugin'i.
+title: QA Lab Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:26:43Z"
+    generated_at: "2026-07-26T23:53:29Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# QA Lab plugin’i
+# QA Lab plugin'i
 
-Özel hata ayıklayıcı kullanıcı arayüzü ve senaryo çalıştırıcısı içeren OpenClaw QA laboratuvarı plugin’i.
+Özel hata ayıklayıcı kullanıcı arayüzüne ve senaryo çalıştırıcısına sahip OpenClaw QA laboratuvarı plugin'i.
 
 ## Dağıtım
 
 - Paket: `@openclaw/qa-lab`
-- Kurulum yolu: yalnızca kaynak kod deposu çalışma kopyası
+- Kurulum yolu: yalnızca kaynak kod deposu
 
 ## Yüzey
 

@@ -2,41 +2,41 @@
 read_when:
     - De juiste `openclaw`-subopdracht vinden
     - Globale vlaggen of regels voor uitvoeropmaak opzoeken
-summary: 'OpenClaw CLI-index: opdrachtenlijst, globale vlaggen en links naar pagina''s per opdracht'
+summary: 'OpenClaw CLI-index: opdrachtenlijst, globale opties en links naar pagina''s per opdracht'
 title: CLI-referentie
 x-i18n:
-    generated_at: "2026-07-16T15:22:03Z"
+    generated_at: "2026-07-27T06:08:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 22a2e85d4ba33aff3ad369eb3c73b07b4cbe4401c9c5c294180e2629dd2cbaa2
+    source_hash: 0f9694ac6a50a646862edda79d218786808a2e6008eaf9abdac0e634d373c1f7
     source_path: cli/index.md
     workflow: 16
 ---
 
-`openclaw` is het belangrijkste CLI-toegangspunt. Elke kernopdracht heeft een eigen
+`openclaw` is het belangrijkste CLI-ingangspunt. Elke kernopdracht heeft een eigen
 referentiepagina of wordt gedocumenteerd bij de opdracht waarvoor deze een alias is; deze index bevat
-de opdrachten, globale vlaggen en regels voor uitvoeropmaak die voor de hele CLI gelden.
+de opdrachten, globale vlaggen en regels voor uitvoeropmaak die in de hele CLI gelden.
 
 Installatieopdrachten per doel:
 
-- `openclaw setup` en `openclaw onboard` verifiëren eerst inferentie en starten daarna OpenClaw voor de configuratie van Gateway, werkruimte, kanalen, skills en statuscontroles.
+- `openclaw setup` en `openclaw onboard` verifiëren eerst inferentie en starten vervolgens OpenClaw voor het instellen van de Gateway, werkruimte, kanalen, skills en statuscontrole.
 - `openclaw setup --baseline` maakt de basisconfiguratie en werkruimte zonder de begeleide onboardingflow te doorlopen.
 - `openclaw configure` wijzigt specifieke onderdelen van een bestaande installatie: modelauthenticatie, Gateway, kanalen, plugins of skills.
-- `openclaw channels add` configureert kanaalaccounts nadat de basis bestaat; voer uit zonder vlaggen voor begeleide configuratie of met kanaalspecifieke vlaggen voor scripts.
+- `openclaw channels add` configureert kanaalaccounts nadat de basis bestaat; alleen een kanaalselectie gebruikt de begeleide installatie, terwijl vlaggen voor accounts, inloggegevens of kanaalconfiguratie het directe pad voor scripts gebruiken.
 
 ## Opdrachtpagina's
 
 | Gebied                       | Opdrachten                                                                                                                                                                                                                              |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Installatie en onboarding    | [`openclaw`](/cli/openclaw) · [`setup`](/nl/cli/setup) · [`onboard`](/nl/cli/onboard) · [`configure`](/nl/cli/configure) · [`config`](/nl/cli/config) · [`completion`](/nl/cli/completion) · [`doctor`](/nl/cli/doctor) · [`dashboard`](/nl/cli/dashboard) |
-| Herstellen, back-up en migratie | [`backup`](/nl/cli/backup) · [`migrate`](/nl/cli/migrate) · [`reset`](/nl/cli/reset) · [`uninstall`](/nl/cli/uninstall) · [`update`](/nl/cli/update)                                                                                                 |
+| Installatie en onboarding    | [`openclaw`](/nl/cli/openclaw) · [`setup`](/nl/cli/setup) · [`onboard`](/nl/cli/onboard) · [`configure`](/nl/cli/configure) · [`config`](/nl/cli/config) · [`completion`](/nl/cli/completion) · [`doctor`](/nl/cli/doctor) · [`dashboard`](/nl/cli/dashboard) |
+| Herstel, back-up en migratie | [`backup`](/nl/cli/backup) · [`migrate`](/nl/cli/migrate) · [`reset`](/nl/cli/reset) · [`uninstall`](/nl/cli/uninstall) · [`update`](/nl/cli/update)                                                                                                 |
 | Berichten en agents          | [`message`](/nl/cli/message) · [`agent`](/nl/cli/agent) · [`agents`](/nl/cli/agents) · [`attach`](/nl/cli/attach) · [`acp`](/nl/cli/acp) · [`mcp`](/nl/cli/mcp)                                                                                         |
 | Status en sessies            | [`status`](/nl/cli/status) · [`health`](/nl/cli/health) · [`sessions`](/nl/cli/sessions) · [`audit`](/nl/cli/audit)                                                                                                                               |
 | Gateway en logboeken         | [`gateway`](/nl/cli/gateway) · [`logs`](/nl/cli/logs) · [`system`](/nl/cli/system)                                                                                                                                                             |
 | Modellen en inferentie       | [`models`](/nl/cli/models) · [`promos`](/nl/cli/promos) · [`infer`](/nl/cli/infer) · `capability` (alias voor [`infer`](/nl/cli/infer)) · [`memory`](/nl/cli/memory) · [`commitments`](/nl/cli/commitments) · [`wiki`](/nl/cli/wiki)                        |
-| Netwerk en Nodes             | [`directory`](/nl/cli/directory) · [`nodes`](/nl/cli/nodes) · [`devices`](/nl/cli/devices) · [`node`](/nl/cli/node) · [`worker`](/cli/worker)                                                                                                     |
+| Netwerk en Nodes             | [`directory`](/nl/cli/directory) · [`nodes`](/nl/cli/nodes) · [`devices`](/nl/cli/devices) · [`node`](/nl/cli/node) · [`worker`](/nl/cli/worker)                                                                                                     |
 | Runtime en sandbox           | [`approvals`](/nl/cli/approvals) · `exec-policy` (zie [`approvals`](/nl/cli/approvals)) · [`sandbox`](/nl/cli/sandbox) · [`tui`](/nl/cli/tui) · `chat`/`terminal` (aliassen voor [`tui --local`](/nl/cli/tui)) · [`browser`](/nl/cli/browser)             |
 | Automatisering               | [`cron`](/nl/cli/cron) · [`tasks`](/nl/cli/tasks) · [`hooks`](/nl/cli/hooks) · [`webhooks`](/nl/cli/webhooks) · [`transcripts`](/nl/cli/transcripts)                                                                                                 |
 | Detectie en documentatie     | [`dns`](/nl/cli/dns) · [`docs`](/nl/cli/docs)                                                                                                                                                                                               |
@@ -49,13 +49,13 @@ Installatieopdrachten per doel:
 
 | Vlag                    | Doel                                                                                                    |
 | ----------------------- | ------------------------------------------------------------------------------------------------------- |
-| `--dev`                 | Isoleer status onder `~/.openclaw-dev`, gebruik standaard Gateway-poort 19001 en verschuif afgeleide poorten              |
-| `--profile <name>`      | Isoleer status onder `~/.openclaw-<name>` (`OPENCLAW_STATE_DIR`/`OPENCLAW_CONFIG_PATH`)                  |
-| `--container <name>`    | Voer de CLI uit in een actieve Podman-/Docker-container met de naam `<name>` (standaard: omgevingsvariabele `OPENCLAW_CONTAINER`) |
-| `--log-level <level>`   | Overschrijf het globale logniveau voor bestands- en console-uitvoer                                                 |
-| `--no-color`            | Schakel ANSI-kleuren uit (`NO_COLOR=1` wordt ook gerespecteerd)                                                    |
-| `--update`              | Verkorte vorm voor [`openclaw update`](/nl/cli/update); werkt voor zowel broncodecheck-outs als pakketinstallaties    |
-| `-V`, `--version`, `-v` | Toon de versie en sluit af                                                                                  |
+| `--dev`                 | Isoleert de status onder `~/.openclaw-dev`, gebruikt standaard Gateway-poort 19001 en verschuift afgeleide poorten |
+| `--profile <name>`      | Isoleert de status onder `~/.openclaw-<name>` (`OPENCLAW_STATE_DIR`/`OPENCLAW_CONFIG_PATH`)                  |
+| `--container <name>`    | Voert de CLI uit in een actieve Podman-/Docker-container met de naam `<name>` (standaard: omgevingsvariabele `OPENCLAW_CONTAINER`) |
+| `--log-level <level>`   | Overschrijft het globale logniveau voor bestands- en console-uitvoer                                      |
+| `--no-color`            | Schakelt ANSI-kleuren uit (`NO_COLOR=1` wordt ook gerespecteerd)                                     |
+| `--update`              | Verkorte vorm voor [`openclaw update`](/nl/cli/update); werkt voor zowel broncodecheck-outs als pakketinstallaties |
+| `-V`, `--version`, `-v` | Toont de versie en sluit af                                                                             |
 
 ## Uitvoermodi
 
@@ -71,14 +71,14 @@ OpenClaw gebruikt een kreeftenpalet voor CLI-uitvoer:
 
 | Token          | Hex       | Gebruikt voor                         |
 | -------------- | --------- | ------------------------------------ |
-| `accent`       | `#FF5A2D` | Koppen, labels, primaire accenten |
-| `accentBright` | `#FF7A3D` | Opdrachtnamen, nadruk              |
-| `accentDim`    | `#D14A22` | Secundaire accenttekst             |
-| `info`         | `#FF8A5B` | Informatieve waarden               |
-| `success`      | `#2FBF71` | Geslaagde statussen                |
+| `accent`       | `#FF5A2D` | Koppen, labels, primaire accenten    |
+| `accentBright` | `#FF7A3D` | Opdrachtnamen, nadruk                |
+| `accentDim`    | `#D14A22` | Secundaire accenttekst               |
+| `info`         | `#FF8A5B` | Informatieve waarden                 |
+| `success`      | `#2FBF71` | Successtatussen                      |
 | `warn`         | `#FFB020` | Waarschuwingen, optievlaggen, terugvalopties |
-| `error`        | `#E23D2D` | Fouten, mislukkingen               |
-| `muted`        | `#8B7F77` | Minder nadruk, metagegevens        |
+| `error`        | `#E23D2D` | Fouten, mislukkingen                 |
+| `muted`        | `#8B7F77` | Minder nadruk, metagegevens          |
 
 Gezaghebbende bron voor het palet: `packages/terminal-core/src/palette.ts`.
 
@@ -86,7 +86,7 @@ Gezaghebbende bron voor het palet: `packages/terminal-core/src/palette.ts`.
 
 <Accordion title="Volledige opdrachtstructuur">
 
-Dit overzicht omvat kernopdrachten en hun belangrijkste subopdrachten. Door plugins toegevoegde
+Dit overzicht bevat kernopdrachten en hun belangrijkste subopdrachten. Door plugins toegevoegde
 subopdrachten (bijvoorbeeld onder `skills`, `plugins` en `wiki`) ontwikkelen zich
 onafhankelijk; voer `<command> --help` uit voor de gezaghebbende, actuele lijst.
 
@@ -428,9 +428,9 @@ Plugins kunnen aanvullende opdrachten op het hoogste niveau toevoegen, zoals
 
 </Accordion>
 
-## Slash-opdrachten in chats
+## Slashcommands voor chat
 
-Chatberichten ondersteunen `/...`-opdrachten. Zie [slash-opdrachten](/nl/tools/slash-commands).
+Chatberichten ondersteunen `/...`-opdrachten. Zie [slashcommands](/nl/tools/slash-commands).
 
 Hoogtepunten:
 
@@ -441,16 +441,16 @@ Hoogtepunten:
 
 ## Gebruiksregistratie
 
-`openclaw status --usage` en de Control UI tonen het providergebruik en quotum wanneer
-OAuth-/API-referenties beschikbaar zijn. Gegevens komen rechtstreeks van de gebruikseindpunten
-van providers en worden genormaliseerd naar `X% left`. Providers met actuele
-gebruiksvensters: Anthropic, Gemini CLI, GitHub Copilot, MiniMax, OpenAI Codex,
+`openclaw status --usage` en de Control UI tonen het providergebruik/de quotumgegevens wanneer
+OAuth-/API-referenties beschikbaar zijn. De gegevens komen rechtstreeks van de gebruikseindpunten
+van providers en worden genormaliseerd naar `X% left`. Providers met actuele gebruiksperioden:
+Anthropic, Gemini CLI, GitHub Copilot, MiniMax, OpenAI Codex,
 Xiaomi en z.ai.
 
 Zie [Gebruiksregistratie](/nl/concepts/usage-tracking) voor meer informatie.
 
 ## Gerelateerd
 
-- [Slash-opdrachten](/nl/tools/slash-commands)
+- [Slashcommands](/nl/tools/slash-commands)
 - [Configuratie](/nl/gateway/configuration)
 - [Omgeving](/nl/help/environment)

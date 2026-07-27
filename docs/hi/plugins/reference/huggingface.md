@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw में Hugging Face मॉडल प्रदाता का समर्थन जोड़ता है।
 title: Hugging Face Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:15:37Z"
+    generated_at: "2026-07-27T20:13:01Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,9 +21,9 @@ OpenClaw में Hugging Face मॉडल प्रदाता का सम
 ## वितरण
 
 - पैकेज: `@openclaw/huggingface-provider`
-- इंस्टॉल करने का माध्यम: OpenClaw में शामिल
+- इंस्टॉल मार्ग: OpenClaw में शामिल
 
-## उपलब्धता
+## सतह
 
 प्रदाता: `huggingface`
 

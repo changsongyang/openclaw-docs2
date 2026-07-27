@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Dosya aktarım Plugin'ini yüklüyor, yapılandırıyor veya denetliyorsunuz
-summary: Eşleştirilmiş Node'larda özel Node komutları aracılığıyla dosyaları getirir, listeler ve yazar. 16 MB'a kadar ikili dosyalar için node.invoke üzerinden base64 kullanarak bash stdout kesilmesini atlar.
-title: Dosya Aktarımı Plugin'i
+    - Dosya aktarım Plugin'ini kuruyor, yapılandırıyor veya denetliyorsunuz
+summary: Özel Node komutları aracılığıyla eşleştirilmiş Node'larda dosyaları getirin, listeleyin ve yazın. 16 MB'a kadar ikili dosyalar için node.invoke üzerinden base64 kullanarak bash stdout kesilmesini atlar.
+title: Dosya Aktarımı plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:30:08Z"
+    generated_at: "2026-07-26T23:32:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Dosya Aktarımı Plugin’i
+# Dosya Aktarımı Plugin'i
 
-Eşleştirilmiş Node’larda özel Node komutları aracılığıyla dosyaları getirin, listeleyin ve yazın. 16 MB’a kadar ikili dosyalar için node.invoke üzerinden base64 kullanarak bash stdout kesilmesini atlar.
+Eşleştirilmiş Node'larda özel Node komutlarıyla dosyaları alın, listeleyin ve yazın. 16 MB'a kadar ikili dosyalar için node.invoke üzerinden base64 kullanarak bash stdout kırpmasını atlar.
 
 ## Dağıtım
 

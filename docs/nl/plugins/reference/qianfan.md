@@ -4,7 +4,7 @@ read_when:
 summary: Voegt ondersteuning voor de Qianfan-modelprovider toe aan OpenClaw.
 title: Qianfan-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:07:22Z"
+    generated_at: "2026-07-27T06:03:53Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

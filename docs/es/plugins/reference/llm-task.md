@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin llm-task
-summary: Herramienta genérica de LLM que solo usa JSON para tareas estructuradas y que se puede invocar desde flujos de trabajo.
+summary: Herramienta genérica de LLM que solo usa JSON para tareas estructuradas y que puede invocarse desde flujos de trabajo.
 title: Plugin de tareas de LLM
 x-i18n:
-    generated_at: "2026-07-16T11:48:22Z"
+    generated_at: "2026-07-26T04:51:59Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin de tareas de LLM
+# Plugin de tareas LLM
 
-Herramienta genérica de LLM que usa únicamente JSON para tareas estructuradas y que se puede invocar desde flujos de trabajo.
+Herramienta LLM genérica que solo usa JSON para tareas estructuradas y que puede invocarse desde flujos de trabajo.
 
 ## Distribución
 

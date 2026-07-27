@@ -1,8 +1,8 @@
 ---
 summary: /gateway/authentication पर रीडायरेक्ट करें
-title: प्रमाणीकरण की निगरानी
+title: प्रमाणीकरण निगरानी
 x-i18n:
-    generated_at: "2026-07-16T13:12:09Z"
+    generated_at: "2026-07-27T19:06:44Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,5 +16,5 @@ x-i18n:
 
 ## संबंधित
 
-- [स्वचालन समस्या निवारण](/hi/automation/cron-jobs#troubleshooting)
-- [हुक](/hi/automation/hooks)
+- [ऑटोमेशन समस्या निवारण](/hi/automation/cron-jobs#troubleshooting)
+- [हुक्स](/hi/automation/hooks)

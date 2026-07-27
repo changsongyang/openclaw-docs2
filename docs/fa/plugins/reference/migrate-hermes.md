@@ -1,10 +1,10 @@
 ---
 read_when:
-    - شما در حال نصب، پیکربندی یا ممیزی Plugin ‏migrate-hermes هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin migrate-hermes هستید
 summary: پیکربندی، حافظه‌ها، Skills و اعتبارنامه‌های پشتیبانی‌شدهٔ Hermes را به OpenClaw وارد می‌کند.
-title: انتقال Plugin هرمس
+title: مهاجرت Plugin هرمس
 x-i18n:
-    generated_at: "2026-07-16T17:28:38Z"
+    generated_at: "2026-07-27T15:44:18Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# مهاجرت Plugin هرمس
+# مهاجرت Plugin ‏Hermes
 
-پیکربندی، حافظه‌ها، مهارت‌ها و اعتبارنامه‌های پشتیبانی‌شدهٔ هرمس را به OpenClaw وارد می‌کند.
+پیکربندی، حافظه‌ها، مهارت‌ها و اطلاعات احراز هویت پشتیبانی‌شده Hermes را به OpenClaw وارد می‌کند.
 
 ## توزیع
 

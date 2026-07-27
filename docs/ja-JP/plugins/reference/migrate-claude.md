@@ -1,10 +1,10 @@
 ---
 read_when:
-    - migrate-claude Plugin のインストール、設定、または監査を行っている場合に使用します
+    - migrate-claude Plugin をインストール、設定、または監査しています
 summary: Claude Code と Claude Desktop の指示、MCP サーバー、Skills、安全な設定を OpenClaw にインポートします。
-title: Claude Plugin を移行する
+title: Claude Pluginを移行する
 x-i18n:
-    generated_at: "2026-07-16T12:05:22Z"
+    generated_at: "2026-07-26T09:12:22Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

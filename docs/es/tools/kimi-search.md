@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Quieres usar Kimi para `web_search`
+    - Quieres usar Kimi para web_search
     - Necesitas una KIMI_API_KEY o MOONSHOT_API_KEY
 summary: Búsqueda web de Kimi mediante la búsqueda web de Moonshot
 title: Búsqueda de Kimi
 x-i18n:
-    generated_at: "2026-07-20T00:55:57Z"
+    generated_at: "2026-07-26T05:00:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,9 +15,9 @@ x-i18n:
     workflow: 16
 ---
 
-Kimi es un proveedor de `web_search` respaldado por la búsqueda web nativa de Moonshot. Moonshot
-sintetiza una única respuesta con citas integradas, de forma similar a los proveedores
-de respuestas fundamentadas de Gemini y Grok, en lugar de devolver una lista ordenada de resultados.
+Kimi es un proveedor `web_search` respaldado por la búsqueda web nativa de Moonshot. Moonshot
+sintetiza una respuesta con citas en línea, de forma similar a los proveedores de
+respuestas fundamentadas de Gemini y Grok, en lugar de devolver una lista de resultados clasificados.
 
 ## Configuración
 
@@ -27,7 +27,7 @@ de respuestas fundamentadas de Gemini y Grok, en lugar de devolver una lista ord
   </Step>
   <Step title="Almacenar la clave">
     Establezca `KIMI_API_KEY` o `MOONSHOT_API_KEY` en el entorno del Gateway (para una
-    instalación del Gateway, añádala a `~/.openclaw/.env`) o realice la configuración mediante:
+    instalación del Gateway, añádala a `~/.openclaw/.env`) o configure mediante:
 
     ```bash
     openclaw configure --section web
@@ -70,41 +70,41 @@ también se solicita:
 ```
 
 `tools.web.search.provider` se detecta automáticamente a partir de las claves de API disponibles cuando se omite;
-establézcalo explícitamente en `kimi` si hay varias credenciales de búsqueda configuradas.
+establézcalo explícitamente en `kimi` si se configuran varias credenciales de búsqueda.
 
-Configure los valores específicos de Kimi `apiKey`, `baseUrl` y `model` en
+Configure los valores de `apiKey`, `baseUrl` y `model` específicos de Kimi en
 `plugins.entries.moonshot.config.webSearch`.
 
-Valores predeterminados: `baseUrl` usa `https://api.moonshot.ai/v1` cuando se omite; `model`
-usa `kimi-k2.6`.
+Valores predeterminados: `baseUrl` utiliza `https://api.moonshot.ai/v1` cuando se omite y `model`
+utiliza `kimi-k2.6`.
 
 Si el tráfico de chat utiliza el host de China (`models.providers.moonshot.baseUrl`:
-`https://api.moonshot.cn/v1`), la `web_search` de Kimi reutiliza automáticamente ese host
-cuando su propio `baseUrl` no está establecido, para que las claves `.cn` no accedan por error al
+`https://api.moonshot.cn/v1`), el `web_search` de Kimi reutiliza automáticamente ese host
+cuando no se ha establecido su propio `baseUrl`, para que las claves `.cn` no lleguen accidentalmente al
 endpoint internacional (que devuelve HTTP 401 para esas claves). Establezca un
-`baseUrl` explícito de Kimi para anular esta herencia.
+`baseUrl` de Kimi explícito para anular esta herencia.
 
 ## Requisito de fundamentación
 
 OpenClaw solo devuelve un resultado de `web_search` de Kimi después de que la respuesta de Moonshot
-incluya evidencia nativa de fundamentación de búsqueda web, como una repetición de llamada a la herramienta
+incluya evidencia de fundamentación mediante la búsqueda web nativa, como una reproducción de llamada a la herramienta
 `$web_search`, `search_results` o URL de citas. Si Kimi responde directamente sin
 fundamentación (por ejemplo, «No puedo navegar por Internet»), OpenClaw devuelve un
 error `kimi_web_search_ungrounded` en lugar de tratar ese texto como un resultado de
 búsqueda. Vuelva a intentar la consulta, cambie a un proveedor estructurado como Brave o utilice
-`web_fetch` / la herramienta del navegador cuando ya disponga de una URL de destino.
+`web_fetch` / la herramienta de navegador cuando ya disponga de una URL de destino.
 
 ## Parámetros de la herramienta
 
-| Parámetro                                                       | Compatible                                                                                                                |
+| Parámetro                                                       | Compatibilidad                                                                                                                |
 | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | `query`                                                         | Sí                                                                                                                      |
 | `count`                                                         | Se acepta por compatibilidad entre proveedores, pero se ignora: Kimi siempre devuelve una respuesta sintetizada, no una lista de N resultados |
 | `country`, `language`, `freshness`, `date_after`, `date_before` | No                                                                                                                       |
 
-## Relacionado
+## Temas relacionados
 
 - [Descripción general de la búsqueda web](/es/tools/web) - todos los proveedores y la detección automática
-- [Moonshot AI](/es/providers/moonshot) - documentación del modelo de Moonshot y del proveedor Kimi Coding
+- [Moonshot AI](/es/providers/moonshot) - documentación del modelo Moonshot y del proveedor Kimi Coding
 - [Búsqueda de Gemini](/es/tools/gemini-search) - respuestas sintetizadas por IA mediante la fundamentación de Google
 - [Búsqueda de Grok](/es/tools/grok-search) - respuestas sintetizadas por IA mediante la fundamentación de xAI

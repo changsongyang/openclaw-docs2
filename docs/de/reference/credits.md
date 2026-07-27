@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie möchten die Hintergrundgeschichte des Projekts oder die Mitwirkenden erfahren
+    - Sie möchten die Hintergrundgeschichte des Projekts oder die Mitwirkenden würdigen.
 summary: Projektursprung, Mitwirkende und Lizenz.
 title: Danksagungen
 x-i18n:
-    generated_at: "2026-07-24T05:20:12Z"
+    generated_at: "2026-07-26T19:13:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -30,9 +30,9 @@ OpenClaw = CLAW + TARDIS: Jeder Weltraumhummer braucht eine Zeit- und Raummaschi
 
 ## Lizenz
 
-MIT, Copyright OpenClaw Foundation. Hinweise zu Drittanbieterkomponenten für eingebundenen oder angepassten Code befinden sich in `THIRD_PARTY_NOTICES.md`.
+MIT, Copyright OpenClaw Foundation. Hinweise zu Drittanbietern für eingebundenen oder angepassten Code befinden sich unter `THIRD_PARTY_NOTICES.md`.
 
-> „Wir spielen alle nur mit unseren eigenen Prompts.“ (Eine KI, vermutlich berauscht von Tokens)
+> „Wir spielen alle nur mit unseren eigenen Prompts.“ (Eine KI, wahrscheinlich im Tokenrausch)
 
 ## Verwandte Themen
 

@@ -1,10 +1,10 @@
 ---
 read_when:
     - Sie installieren, konfigurieren oder prüfen das Plugin diagnostics-otel.
-summary: OpenClaw-Diagnoseexporter für OpenTelemetry-Metriken, -Traces und -Protokolle.
+summary: OpenClaw-Diagnosexporter für OpenTelemetry für Metriken, Traces und Protokolle.
 title: OpenTelemetry-Diagnose-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:46:48Z"
+    generated_at: "2026-07-26T18:37:49Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # OpenTelemetry-Plugin für Diagnosen
 
-OpenClaw-OpenTelemetry-Exporter für Diagnosen, Metriken, Traces und Protokolle.
+OpenClaw-Diagnoseexporter für OpenTelemetry für Metriken, Traces und Protokolle.
 
 ## Distribution
 

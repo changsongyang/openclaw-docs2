@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das moonshot-Plugin.
+    - Sie installieren, konfigurieren oder prüfen das moonshot-Plugin
 summary: Fügt Unterstützung für den Moonshot-Modell-Provider zu OpenClaw hinzu.
 title: Moonshot-Plugin
 x-i18n:
-    generated_at: "2026-07-24T05:07:56Z"
+    generated_at: "2026-07-26T18:38:26Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Moonshot-Plugin
 
-Fügt OpenClaw Unterstützung für den Moonshot-Modell-Provider hinzu.
+Fügt Unterstützung für den Moonshot-Modell-Provider zu OpenClaw hinzu.
 
 ## Distribution
 

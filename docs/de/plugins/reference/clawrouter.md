@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder überprüfen das clawrouter-Plugin
-summary: Fügt Unterstützung für den ClawRouter-Modell-Provider zu OpenClaw hinzu.
+    - Sie installieren, konfigurieren oder prüfen das clawrouter-Plugin.
+summary: Fügt OpenClaw Unterstützung für den ClawRouter-Modell-Provider hinzu.
 title: ClawRouter-Plugin
 x-i18n:
-    generated_at: "2026-07-24T05:07:04Z"
+    generated_at: "2026-07-26T18:37:31Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # ClawRouter-Plugin
 
-Fügt Unterstützung für den ClawRouter-Modell-Provider zu OpenClaw hinzu.
+Fügt OpenClaw Unterstützung für den ClawRouter-Modell-Provider hinzu.
 
 ## Distribution
 

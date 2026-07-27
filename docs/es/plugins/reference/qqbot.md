@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin qqbot
+    - Se está instalando, configurando o auditando el plugin qqbot
 summary: Plugin de canal del bot de QQ de OpenClaw para flujos de trabajo de grupos y mensajes directos.
 title: Plugin de bot de QQ
 x-i18n:
-    generated_at: "2026-07-16T11:53:50Z"
+    generated_at: "2026-07-26T05:51:19Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Plugin QQ Bot
 
-Plugin de canal QQ Bot de OpenClaw para flujos de trabajo de grupos y mensajes directos.
+Plugin del canal QQ Bot de OpenClaw para flujos de trabajo de grupos y mensajes directos.
 
 ## Distribución
 
 - Paquete: `@openclaw/qqbot`
-- Método de instalación: npm; ClawHub
+- Ruta de instalación: npm; ClawHub
 
 ## Superficie
 

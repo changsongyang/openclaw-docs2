@@ -1,15 +1,15 @@
 ---
 read_when:
-    - OpenClaw'ı yeni başlayanlara tanıtma
-summary: OpenClaw, herhangi bir işletim sisteminde çalışan, yapay zekâ ajanlarına yönelik çok kanallı bir Gateway'dir.
+    - OpenClaw'u yeni başlayanlara tanıtma
+summary: OpenClaw, herhangi bir işletim sisteminde çalışan, yapay zekâ ajanları için çok kanallı bir gateway'dir.
 title: OpenClaw
 x-i18n:
-    generated_at: "2026-07-16T17:11:34Z"
+    generated_at: "2026-07-27T00:02:41Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: fe97e7299be4855fd9af21838e0626b5a5c8aafe46d982859e9033f0efec2443
+    source_hash: 0ce948d12d4b4fcbde2597f9b33f50b99c4f677b69e0f5d72677b2f6683291f3
     source_path: index.md
     workflow: 16
 ---
@@ -31,11 +31,12 @@ x-i18n:
     />
 </p>
 
-> _"PUL PUL DÖKÜL! PUL PUL DÖKÜL!"_ — Muhtemelen bir uzay ıstakozu
+> _"PUL PUL DÖK! PUL PUL DÖK!"_ — Muhtemelen bir uzay ıstakozu
 
 <p align="center">
-  <strong>Discord, Google Chat, iMessage, Matrix, Microsoft Teams, Signal, Slack, Telegram, WhatsApp, Zalo ve daha fazlasındaki yapay zekâ ajanları için her işletim sisteminde çalışan Gateway.</strong><br />
-  Mesaj gönderin, cebinizden bir ajan yanıtı alın. Kanal pluginleri, WebChat ve mobil nodelar genelinde tek bir Gateway çalıştırın.
+  <strong>Discord, Google Chat, iMessage, Matrix, Microsoft Teams, Signal, Slack, Telegram, WhatsApp, Zalo ve daha fazlasındaki yapay zekâ ajanları için tüm işletim sistemlerinde çalışan Gateway.</strong><br />
+  Mesaj gönderin, cebinizden bir ajan yanıtı alın. Kanal plugin'leri, WebChat ve mobil Node'lar genelinde tek bir Gateway çalıştırın.<br />
+  Kâr amacı gütmeyen <a href="https://openclaw.org">OpenClaw Vakfı</a> tarafından açık olarak geliştirilmektedir.
 </p>
 
 <Columns>
@@ -49,7 +50,7 @@ x-i18n:
     Her yerden sohbet etmek için Discord, Signal, Telegram, WhatsApp ve daha fazlasını bağlayın.
   </Card>
   <Card title="Denetim Arayüzünü Açın" href="/tr/web/control-ui" icon="layout-dashboard">
-    Sohbet, yapılandırma ve oturumlar için tarayıcı panosunu açın.
+    Sohbet, yapılandırma ve oturumlar için tarayıcı kontrol panelini başlatın.
   </Card>
 </Columns>
 
@@ -60,10 +61,10 @@ bu merkez bağlantılarını kullanın.
 
 <Columns>
   <Card title="Başlayın" href="/tr" icon="rocket">
-    Genel bakış, vitrin, ilk adımlar ve kurulum kılavuzları.
+    Genel bakış, tanıtım, ilk adımlar ve kurulum kılavuzları.
   </Card>
   <Card title="Kurulum" href="/tr/install" icon="download">
-    Kurulum yolları, güncellemeler, konteynerler, barındırma ve gelişmiş kurulum.
+    Kurulum yolları, güncellemeler, kapsayıcılar, barındırma ve gelişmiş kurulum.
   </Card>
   <Card title="Kanallar" href="/tr/channels" icon="messages-square">
     Mesajlaşma kanalları, eşleştirme, yönlendirme, erişim grupları ve kanal kalite güvencesi.
@@ -72,53 +73,53 @@ bu merkez bağlantılarını kullanın.
     Mimari, oturumlar, bağlam, bellek ve çoklu ajan yönlendirmesi.
   </Card>
   <Card title="Yetenekler" href="/tr/tools" icon="wand-sparkles">
-    Araçlar, Skills, Cron, webhooklar ve otomasyon yetenekleri.
+    Araçlar, Skills, cron, webhook'lar ve otomasyon yetenekleri.
   </Card>
-  <Card title="ClawHub" href="/tr/clawhub" icon="store">
-    Plugin pazarı, yayımlama, seçki oluşturma ve güven kılavuzu.
+  <Card title="ClawHub" href="/clawhub" icon="store">
+    Plugin pazarı, yayımlama, seçki oluşturma ve güven rehberliği.
   </Card>
   <Card title="Modeller" href="/tr/providers" icon="brain">
     Sağlayıcılar, model yapılandırması, yük devretme ve yerel model hizmetleri.
   </Card>
   <Card title="Platformlar" href="/tr/platforms" icon="monitor-smartphone">
-    macOS, Windows, iOS, Android, nodelar ve web yüzeyleri.
+    macOS, Windows, iOS, Android, Node'lar ve web yüzeyleri.
   </Card>
   <Card title="Gateway ve Operasyonlar" href="/tr/gateway" icon="server">
     Gateway yapılandırması, güvenlik, tanılama ve operasyonlar.
   </Card>
-  <Card title="Referans" href="/tr/cli" icon="terminal">
-    CLI referansı, şemalar, RPC, sürüm notları ve şablonlar.
+  <Card title="Başvuru" href="/tr/cli" icon="terminal">
+    CLI başvurusu, şemalar, RPC, sürüm notları ve şablonlar.
   </Card>
   <Card title="Yardım" href="/tr/help" icon="life-buoy">
-    Sorun giderme, sık sorulan sorular, testler, tanılama ve ortam kontrolleri.
+    Sorun giderme, sık sorulan sorular, test, tanılama ve ortam denetimleri.
   </Card>
 </Columns>
 
 ## OpenClaw nedir?
 
-OpenClaw, favori sohbet uygulamalarınızı — Discord, Google Chat, iMessage, Matrix, Microsoft Teams, Signal, Slack, Telegram, WhatsApp, Zalo ve daha fazlasını kanal pluginleri aracılığıyla — yapay zekâ kodlama ajanlarına bağlayan **kendi sunucunuzda barındırılan bir gateway'dir**. Kendi makinenizde (veya bir sunucuda) tek bir Gateway işlemi çalıştırırsınız; bu işlem, mesajlaşma uygulamalarınız ile her zaman erişilebilir bir yapay zekâ asistanı arasında köprü olur.
+OpenClaw; favori sohbet uygulamalarınızı — Discord, Google Chat, iMessage, Matrix, Microsoft Teams, Signal, Slack, Telegram, WhatsApp, Zalo ve kanal plugin'leri aracılığıyla daha fazlasını — yapay zekâ kodlama ajanlarına bağlayan, **kendi sunucunuzda barındırılan bir gateway'dir**. Kendi makinenizde (veya bir sunucuda) tek bir Gateway işlemi çalıştırırsınız ve bu işlem, mesajlaşma uygulamalarınız ile her zaman kullanılabilir bir yapay zekâ asistanı arasında köprü olur.
 
-**Kimler için?** Verilerinin denetiminden vazgeçmeden veya barındırılan bir hizmete bağımlı kalmadan, her yerden mesaj gönderebilecekleri kişisel bir yapay zekâ asistanı isteyen geliştiriciler ve ileri düzey kullanıcılar için.
+**Kimler içindir?** Verilerinin denetiminden vazgeçmeden veya barındırılan bir hizmete bağımlı olmadan, her yerden mesaj gönderebilecekleri kişisel bir yapay zekâ asistanı isteyen geliştiriciler ve ileri düzey kullanıcılar için.
 
 **Onu farklı kılan nedir?**
 
 - **Kendi sunucunuzda barındırılır**: donanımınızda, kurallarınıza göre çalışır
-- **Çok kanallı**: tek bir Gateway, yapılandırılmış tüm kanal pluginlerine aynı anda hizmet verir
+- **Çok kanallı**: tek bir Gateway, yapılandırılan tüm kanal plugin'lerine aynı anda hizmet verir
 - **Ajan odaklı**: araç kullanımı, oturumlar, bellek ve çoklu ajan yönlendirmesiyle kodlama ajanları için geliştirilmiştir
-- **Açık kaynaklı**: MIT lisanslı ve topluluk odaklıdır
+- **Açık kaynaklı**: MIT lisanslı, topluluk odaklı
 
-**Nelere ihtiyacınız var?** Node 24.15+ (önerilir), uyumluluk için Node 22 LTS (`22.22.3+`) veya Node 25.9+, seçtiğiniz sağlayıcıdan bir API anahtarı ve 5 dakika. En iyi kalite ve güvenlik için mevcut en güçlü en yeni nesil modeli kullanın.
+**Neye ihtiyacınız var?** Node 24.15+ (önerilen), uyumluluk için Node 22 LTS (`22.22.3+`) veya Node 25.9+, seçtiğiniz sağlayıcıdan bir API anahtarı ve 5 dakika. En iyi kalite ve güvenlik için kullanılabilir en güçlü, en yeni nesil modeli kullanın.
 
 ## Nasıl çalışır?
 
 ```mermaid
 flowchart LR
-  A["Sohbet uygulamaları + pluginler"] --> B["Gateway"]
+  A["Sohbet uygulamaları + plugin'ler"] --> B["Gateway"]
   B --> C["OpenClaw ajanı"]
   B --> D["CLI"]
   B --> E["Web Denetim Arayüzü"]
   B --> F["macOS uygulaması"]
-  B --> G["iOS ve Android nodeları"]
+  B --> G["iOS ve Android Node'ları"]
 ```
 
 Gateway; oturumlar, yönlendirme ve kanal bağlantıları için tek doğruluk kaynağıdır.
@@ -130,26 +131,26 @@ Gateway; oturumlar, yönlendirme ve kanal bağlantıları için tek doğruluk ka
     Tek bir Gateway işlemiyle Discord, iMessage, Signal, Slack, Telegram, WhatsApp, WebChat ve daha fazlası.
   </Card>
   <Card title="Plugin kanalları" icon="plug" href="/tr/tools/plugin">
-    Kanal pluginleri Matrix, Nostr, Twitch, Zalo ve daha fazlasını ekler; resmî pluginler gerektiğinde kurulur.
+    Kanal plugin'leri Matrix, Nostr, Twitch, Zalo ve daha fazlasını ekler; resmî plugin'ler isteğe bağlı olarak kurulur.
   </Card>
   <Card title="Çoklu ajan yönlendirmesi" icon="route" href="/tr/concepts/multi-agent">
     Ajan, çalışma alanı veya gönderici başına yalıtılmış oturumlar.
   </Card>
   <Card title="Medya desteği" icon="image" href="/tr/nodes/images">
-    Görüntü, ses ve belge gönderip alın.
+    Görsel, ses ve belge gönderip alın.
   </Card>
   <Card title="Web Denetim Arayüzü" icon="monitor" href="/tr/web/control-ui">
-    Sohbet, yapılandırma, oturumlar ve nodelar için tarayıcı panosu.
+    Sohbet, yapılandırma, oturumlar ve Node'lar için tarayıcı kontrol paneli.
   </Card>
-  <Card title="Mobil nodelar" icon="smartphone" href="/tr/nodes">
-    Canvas, kamera ve ses özellikli iş akışları için iOS ve Android nodelarını eşleştirin.
+  <Card title="Mobil Node'lar" icon="smartphone" href="/tr/nodes">
+    Canvas, kamera ve ses özellikli iş akışları için iOS ve Android Node'larını eşleştirin.
   </Card>
 </Columns>
 
 ## Hızlı başlangıç
 
 <Steps>
-  <Step title="OpenClaw'u Kurun">
+  <Step title="OpenClaw'u kurun">
     ```bash
     npm install -g openclaw@latest
     ```
@@ -171,9 +172,9 @@ Gateway; oturumlar, yönlendirme ve kanal bağlantıları için tek doğruluk ka
   </Step>
 </Steps>
 
-Eksiksiz kurulum ve geliştirme ortamı kurulumu mu gerekiyor? [Başlangıç](/tr/start/getting-started) sayfasına bakın.
+Tam kurulum ve geliştirme ortamı yönergelerine mi ihtiyacınız var? [Başlangıç](/tr/start/getting-started) sayfasına bakın.
 
-## Pano
+## Kontrol paneli
 
 Gateway başladıktan sonra tarayıcı Denetim Arayüzünü açın.
 
@@ -186,10 +187,10 @@ Gateway başladıktan sonra tarayıcı Denetim Arayüzünü açın.
 
 ## Yapılandırma (isteğe bağlı)
 
-Yapılandırma `~/.openclaw/openclaw.json` konumunda bulunur.
+Yapılandırma `~/.openclaw/openclaw.json` konumundadır.
 
-- **Hiçbir şey yapmazsanız** OpenClaw, paketle birlikte gelen OpenClaw ajan çalışma zamanını kullanır; doğrudan mesajlar ajanın ana oturumunu paylaşır ve her grup sohbeti kendi oturumuna sahip olur.
-- Erişimi kısıtlamak istiyorsanız `channels.whatsapp.allowFrom` ile ve (gruplar için) bahsetme kurallarıyla başlayın.
+- **Hiçbir şey yapmazsanız**, OpenClaw paketle birlikte gelen OpenClaw ajan çalışma zamanını kullanır; doğrudan mesajlar ajanın ana oturumunu paylaşır ve her grup sohbeti kendi oturumuna sahip olur.
+- Erişimi kısıtlamak istiyorsanız `channels.whatsapp.allowFrom` ve (gruplar için) bahsetme kurallarıyla başlayın.
 
 Örnek:
 
@@ -209,19 +210,19 @@ Yapılandırma `~/.openclaw/openclaw.json` konumunda bulunur.
 
 <Columns>
   <Card title="Belge merkezleri" href="/tr/start/hubs" icon="book-open">
-    Kullanım senaryosuna göre düzenlenmiş tüm belgeler ve kılavuzlar.
+    Kullanım durumuna göre düzenlenmiş tüm belgeler ve kılavuzlar.
   </Card>
   <Card title="Yapılandırma" href="/tr/gateway/configuration" icon="settings">
-    Temel Gateway ayarları, tokenlar ve sağlayıcı yapılandırması.
+    Temel Gateway ayarları, token'lar ve sağlayıcı yapılandırması.
   </Card>
   <Card title="Uzaktan erişim" href="/tr/gateway/remote" icon="globe">
     SSH ve tailnet erişim kalıpları.
   </Card>
   <Card title="Kanallar" href="/tr/channels/telegram" icon="message-square">
-    Discord, Feishu, Microsoft Teams, Telegram, WhatsApp ve daha fazlası için kanala özel kurulum.
+    Discord, Feishu, Microsoft Teams, Telegram, WhatsApp ve daha fazlası için kanala özgü kurulum.
   </Card>
-  <Card title="Nodelar" href="/tr/nodes" icon="smartphone">
-    Eşleştirme, Canvas, kamera ve cihaz eylemlerine sahip iOS ve Android nodeları.
+  <Card title="Node'lar" href="/tr/nodes" icon="smartphone">
+    Eşleştirme, Canvas, kamera ve cihaz eylemleriyle iOS ve Android Node'ları.
   </Card>
   <Card title="Yardım" href="/tr/help" icon="life-buoy">
     Yaygın düzeltmeler ve sorun giderme başlangıç noktası.
@@ -238,12 +239,12 @@ Yapılandırma `~/.openclaw/openclaw.json` konumunda bulunur.
     Çalışma alanı yalıtımı ve ajan başına oturumlar.
   </Card>
   <Card title="Güvenlik" href="/tr/gateway/security" icon="shield">
-    Tokenlar, izin listeleri ve güvenlik denetimleri.
+    Token'lar, izin listeleri ve güvenlik denetimleri.
   </Card>
   <Card title="Sorun giderme" href="/tr/gateway/troubleshooting" icon="wrench">
     Gateway tanılaması ve yaygın hatalar.
   </Card>
   <Card title="Hakkında ve katkıda bulunanlar" href="/tr/reference/credits" icon="info">
-    Projenin kökeni, katkıda bulunanlar ve lisans.
+    Projenin kökenleri, katkıda bulunanlar ve lisans.
   </Card>
 </Columns>

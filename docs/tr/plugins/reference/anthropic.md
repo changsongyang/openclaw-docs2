@@ -1,10 +1,10 @@
 ---
 read_when:
-    - anthropic Pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+    - anthropic pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: Anthropic modelleri, Claude CLI ve yerel Claude oturum kataloğu.
-title: Anthropic plugini
+title: Anthropic Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:42:45Z"
+    generated_at: "2026-07-26T22:54:31Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Anthropic plugin'i
+# Anthropic plugini
 
 Anthropic modelleri, Claude CLI ve yerel Claude oturum kataloğu.
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - microsoft Pluginのインストール、設定、または監査を行っています
+    - microsoft Plugin のインストール、設定、または監査を行っている場合
 summary: テキスト読み上げプロバイダーのサポートを追加します。
 title: Microsoft Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:58:55Z"
+    generated_at: "2026-07-26T09:13:19Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,6 +23,6 @@ x-i18n:
 - パッケージ: `@openclaw/microsoft-speech`
 - インストール方法: OpenClaw に同梱
 
-## サーフェス
+## 提供機能
 
 コントラクト: `speechProviders`

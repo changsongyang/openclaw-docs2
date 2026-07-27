@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप Runway Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: वीडियो निर्माण प्रदाता के लिए समर्थन जोड़ता है।
+summary: वीडियो जनरेशन प्रदाता का समर्थन जोड़ता है।
 title: Runway Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:41:17Z"
+    generated_at: "2026-07-27T19:40:50Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Runway Plugin
 
-वीडियो जनरेशन प्रदाता के लिए समर्थन जोड़ता है।
+वीडियो जनरेशन प्रदाता समर्थन जोड़ता है।
 
 ## वितरण
 

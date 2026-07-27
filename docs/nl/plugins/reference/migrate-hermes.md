@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de migrate-hermes-plugin
-summary: Importeert Hermes-configuratie, herinneringen, skills en ondersteunde inloggegevens in OpenClaw.
+summary: Importeert Hermes-configuratie, herinneringen, Skills en ondersteunde inloggegevens in OpenClaw.
 title: Hermes-plugin migreren
 x-i18n:
-    generated_at: "2026-07-16T16:15:53Z"
+    generated_at: "2026-07-27T05:26:58Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Hermes-plugin migreren
+# Hermes-Plugin migreren
 
-Importeert Hermes-configuratie, herinneringen, skills en ondersteunde referenties in OpenClaw.
+Importeert Hermes-configuratie, herinneringen, Skills en ondersteunde inloggegevens in OpenClaw.
 
 ## Distributie
 
 - Pakket: `@openclaw/migrate-hermes`
-- Installatieroute: opgenomen in OpenClaw
+- Installatieroute: inbegrepen bij OpenClaw
 
 ## Oppervlak
 

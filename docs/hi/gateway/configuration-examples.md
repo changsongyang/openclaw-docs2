@@ -6,17 +6,17 @@ read_when:
 summary: सामान्य OpenClaw सेटअप के लिए स्कीमा-सटीक कॉन्फ़िगरेशन उदाहरण
 title: कॉन्फ़िगरेशन के उदाहरण
 x-i18n:
-    generated_at: "2026-07-20T07:09:55Z"
+    generated_at: "2026-07-27T17:47:22Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 2796f28e33b631aff0f706e72e3c81072a57683c09d3bad1125c8f89cffb2ac4
+    source_hash: ade743a23e24f2e927d1bb1e1828893e24d3d718ec321dd8fda3932830be8331
     source_path: gateway/configuration-examples.md
     workflow: 16
 ---
 
-नीचे दिए गए उदाहरण वर्तमान कॉन्फ़िगरेशन स्कीमा के अनुरूप हैं। संपूर्ण संदर्भ और प्रत्येक फ़ील्ड के नोट्स के लिए, [कॉन्फ़िगरेशन](/hi/gateway/configuration) देखें।
+नीचे दिए गए उदाहरण वर्तमान कॉन्फ़िग स्कीमा के अनुरूप हैं। संपूर्ण संदर्भ और प्रत्येक फ़ील्ड के नोट्स के लिए, [कॉन्फ़िगरेशन](/hi/gateway/configuration) देखें।
 
 ## त्वरित शुरुआत
 
@@ -29,7 +29,7 @@ x-i18n:
 }
 ```
 
-इसे `~/.openclaw/openclaw.json` में सहेजें और आप उस नंबर से बॉट को DM कर सकते हैं।
+इसे `~/.openclaw/openclaw.json` में सहेजें और आप उस नंबर से बॉट को सीधे संदेश भेज सकते हैं।
 
 ### अनुशंसित प्रारंभिक कॉन्फ़िगरेशन
 
@@ -40,16 +40,15 @@ x-i18n:
       workspace: "~/.openclaw/workspace",
       model: { primary: "anthropic/claude-sonnet-4-6" },
     },
-    list: [
-      {
-        id: "main",
+    entries: {
+      main: {
         identity: {
           name: "Clawd",
-          theme: "सहायक असिस्टेंट",
+          theme: "helpful assistant",
           emoji: "🦞",
         },
       },
-    ],
+    },
   },
   channels: {
     whatsapp: {
@@ -60,7 +59,7 @@ x-i18n:
   messages: {
     visibleReplies: "automatic",
     groupChat: {
-      visibleReplies: "message_tool", // ऑप्ट-इन; दृश्यमान आउटपुट के लिए message(action=send) आवश्यक है
+      visibleReplies: "message_tool", // इसे चुनकर सक्षम करें; दृश्यमान आउटपुट के लिए message(action=send) आवश्यक है
       unmentionedInbound: "room_event",
     },
   },
@@ -85,7 +84,7 @@ x-i18n:
     },
   },
 
-  // प्रमाणीकरण प्रोफ़ाइल मेटाडेटा (सीक्रेट auth-profiles.json में रहते हैं)
+  // प्रमाणीकरण प्रोफ़ाइल मेटाडेटा (गोपनीय मान auth-profiles.json में रहते हैं)
   auth: {
     profiles: {
       "anthropic:default": { provider: "anthropic", mode: "api_key" },
@@ -99,7 +98,7 @@ x-i18n:
     },
   },
 
-  // पहचान प्रत्येक एजेंट के लिए अलग होती है — इसे नीचे agents.list[].identity में सेट करें।
+  // पहचान प्रत्येक एजेंट के लिए अलग होती है — इसे नीचे agents.entries.<id>.identity पर सेट करें।
 
   // लॉगिंग
   logging: {
@@ -110,21 +109,19 @@ x-i18n:
     redactSensitive: "tools",
   },
 
-  // संदेश प्रारूपण
+  // संदेश स्वरूपण
   messages: {
-    messagePrefix: "[openclaw]",
     visibleReplies: "automatic",
     responsePrefix: ">",
     ackReaction: "👀",
     ackReactionScope: "group-mentions",
     groupChat: {
       historyLimit: 50,
-      visibleReplies: "message_tool", // टूल-विश्वसनीय मॉडल वाले साझा रूम के लिए ऑप्ट-इन
+      visibleReplies: "message_tool", // टूल के विश्वसनीय उपयोग वाले मॉडल के साथ साझा कक्षों के लिए इसे चुनकर सक्षम करें
       unmentionedInbound: "room_event",
     },
     queue: {
       mode: "followup",
-      debounceMs: 500,
       cap: 20,
       drop: "summarize",
       byChannel: {
@@ -135,27 +132,6 @@ x-i18n:
         signal: "followup",
         imessage: "followup",
         webchat: "followup",
-      },
-    },
-  },
-
-  // टूलिंग
-  tools: {
-    media: {
-      audio: {
-        enabled: true,
-        maxBytes: 20971520,
-        models: [
-          { provider: "openai", model: "gpt-4o-transcribe" },
-          // वैकल्पिक CLI फ़ॉलबैक (Whisper बाइनरी):
-          // { type: "cli", command: "whisper", args: ["--model", "base", "{{MediaPath}}"] }
-        ],
-        timeoutSeconds: 120,
-      },
-      video: {
-        enabled: true,
-        maxBytes: 52428800,
-        models: [{ provider: "google", model: "gemini-3-flash-preview" }],
       },
     },
   },
@@ -210,7 +186,8 @@ x-i18n:
     discord: {
       enabled: true,
       token: "YOUR_DISCORD_BOT_TOKEN",
-      dm: { enabled: true, allowFrom: ["123456789012345678"] },
+      dmPolicy: "allowlist",
+      allowFrom: ["123456789012345678"],
       guilds: {
         "123456789012345678": {
           slug: "friends-of-openclaw",
@@ -230,7 +207,8 @@ x-i18n:
       channels: {
         "#general": { enabled: true, requireMention: true },
       },
-      dm: { enabled: true, allowFrom: ["U123"] },
+      dmPolicy: "allowlist",
+      allowFrom: ["U123"],
       slashCommand: {
         enabled: true,
         name: "openclaw",
@@ -257,7 +235,7 @@ x-i18n:
         "anthropic/claude-sonnet-4-6": { alias: "sonnet" },
         "openai/gpt-5.4": { alias: "gpt" },
       },
-      skills: ["github", "weather"], // list[].skills छोड़ने वाले एजेंटों को विरासत में मिलता है
+      skills: ["github", "weather"], // जिन एजेंट के list[].skills नहीं हैं, उन्हें ये विरासत में मिलते हैं
       thinkingDefault: "low",
       verboseDefault: "off",
       toolProgressDetail: "explain",
@@ -289,17 +267,9 @@ x-i18n:
         prompt: "HEARTBEAT",
         ackMaxChars: 300,
       },
-      memorySearch: {
-        provider: "gemini",
-        model: "gemini-embedding-001",
-        remote: {
-          apiKey: "${GEMINI_API_KEY}",
-        },
-        extraPaths: ["../team-docs", "/srv/shared-notes"],
-      },
       sandbox: {
         mode: "non-main",
-        scope: "session", // पुराने perSession: true की तुलना में बेहतर
+        scope: "session", // पुराने perSession: true की तुलना में इसे प्राथमिकता दें
         workspaceRoot: "~/.openclaw/sandboxes",
         docker: {
           image: "openclaw-sandbox:bookworm-slim",
@@ -314,38 +284,55 @@ x-i18n:
         },
       },
     },
-    list: [
-      {
-        id: "main",
+    entries: {
+      main: {
         default: true,
         identity: {
           name: "Samantha",
-          theme: "सहायक स्लॉथ",
+          theme: "helpful sloth",
           emoji: "🦥",
         },
-        // defaults.skills विरासत में मिलते हैं -> github, weather
+        // defaults.skills से github, weather विरासत में मिलते हैं
         groupChat: {
           mentionPatterns: ["@openclaw", "openclaw"],
         },
-        thinkingDefault: "high", // प्रत्येक एजेंट के लिए सोच का ओवरराइड
+        thinkingDefault: "high", // प्रत्येक एजेंट के लिए विचार प्रक्रिया का ओवरराइड
         reasoningDefault: "on", // प्रत्येक एजेंट के लिए तर्क की दृश्यता
         fastModeDefault: false, // प्रत्येक एजेंट के लिए तेज़ मोड
       },
-      {
-        id: "quick",
+      quick: {
         skills: [], // इस एजेंट के लिए कोई Skills नहीं
-        fastModeDefault: true, // यह एजेंट हमेशा तेज़ चलता है
+        fastModeDefault: true, // यह एजेंट हमेशा तेज़ी से चलता है
         thinkingDefault: "off",
       },
-    ],
+    },
+  },
+
+  memory: {
+    search: {
+      provider: "gemini",
+      model: "gemini-embedding-001",
+      remote: {
+        apiKey: "${GEMINI_API_KEY}",
+      },
+      extraPaths: ["../team-docs", "/srv/shared-notes"],
+    },
   },
 
   tools: {
+    media: {
+      models: [
+        { provider: "openai", model: "gpt-4o-transcribe", capabilities: ["audio"] },
+        { provider: "google", model: "gemini-3-flash-preview", capabilities: ["video"] },
+      ],
+      audio: { enabled: true, maxBytes: 20971520, timeoutSeconds: 120 },
+      video: { enabled: true, maxBytes: 52428800 },
+    },
     allow: ["exec", "process", "read", "write", "edit", "apply_patch"],
     deny: ["browser", "canvas"],
     exec: {
       backgroundMs: 10000,
-      timeoutSec: 1800,
+      timeoutSeconds: 1800,
       cleanupMs: 1800000,
     },
     elevated: {
@@ -388,7 +375,7 @@ x-i18n:
     },
   },
 
-  // Cron जॉब
+  // Cron कार्य
   cron: {
     enabled: true,
     store: "~/.openclaw/cron/jobs.json",
@@ -451,7 +438,7 @@ x-i18n:
     },
     tailscale: { mode: "serve", resetOnExit: false },
     remote: { url: "ws://gateway-host.ts.net:18789", token: "remote-token" },
-    reload: { mode: "hybrid", debounceMs: 300 },
+    reload: { mode: "hybrid" },
   },
 
   skills: {
@@ -479,7 +466,8 @@ x-i18n:
 
 ### सिमलिंक किया गया सहोदर Skills रिपॉज़िटरी
 
-जब किसी अंतर्निहित skill रूट में किसी सहोदर रिपॉज़िटरी की ओर संकेत करने वाला सिमलिंक हो, तब इसका उपयोग करें, उदाहरण के लिए `~/.agents/skills/manager -> ~/Projects/manager/skills`।
+इसका उपयोग तब करें जब अंतर्निहित Skills रूट में किसी सहोदर रिपॉज़िटरी का सिमलिंक हो, उदाहरण के
+लिए `~/.agents/skills/manager -> ~/Projects/manager/skills`।
 
 ```json5
 {
@@ -492,15 +480,15 @@ x-i18n:
 }
 ```
 
-- `extraDirs` सहोदर रिपॉज़िटरी को एक स्पष्ट skill रूट के रूप में स्कैन करता है।
-- `allowSymlinkTargets` मनमाने सिमलिंक पलायन की अनुमति दिए बिना, सिमलिंक किए गए skill फ़ोल्डरों को उस विश्वसनीय
-  वास्तविक लक्ष्य रूट में रिज़ॉल्व होने देता है।
+- `extraDirs` सहोदर रिपॉज़िटरी को एक स्पष्ट स्किल रूट के रूप में स्कैन करता है।
+- `allowSymlinkTargets` सिमलिंक किए गए स्किल फ़ोल्डरों को उस विश्वसनीय
+  वास्तविक लक्ष्य रूट में रिज़ॉल्व होने देता है, बिना मनमाने सिमलिंक पलायन की अनुमति दिए।
 - Skill Workshop को उसी विश्वसनीय सिमलिंक लक्ष्य के माध्यम से लिखने देने के लिए,
   `skills.workshop.allowSymlinkTargetWrites: true` सेट करें।
 
 ## सामान्य पैटर्न
 
-### एक ओवरराइड के साथ साझा skill आधाररेखा
+### एक ओवरराइड के साथ साझा स्किल आधाररेखा
 
 ```json5
 {
@@ -509,17 +497,17 @@ x-i18n:
       workspace: "~/.openclaw/workspace",
       skills: ["github", "weather"],
     },
-    list: [
-      { id: "main", default: true },
-      { id: "docs", workspace: "~/.openclaw/workspace-docs", skills: ["docs-search"] },
-    ],
+    entries: {
+      main: { default: true },
+      docs: { workspace: "~/.openclaw/workspace-docs", skills: ["docs-search"] },
+    },
   },
 }
 ```
 
 - `agents.defaults.skills` साझा आधाररेखा है।
-- `agents.list[].skills` एक एजेंट के लिए उस आधाररेखा को प्रतिस्थापित करता है।
-- जब किसी एजेंट को कोई Skills नहीं दिखनी चाहिए, तब `skills: []` का उपयोग करें।
+- `agents.entries.*.skills` एक एजेंट के लिए उस आधाररेखा को प्रतिस्थापित करता है।
+- जब किसी एजेंट को कोई स्किल नहीं दिखना चाहिए, तब `skills: []` का उपयोग करें।
 
 ### बहु-प्लेटफ़ॉर्म सेटअप
 
@@ -527,7 +515,7 @@ x-i18n:
 {
   agents: { defaults: { workspace: "~/.openclaw/workspace" } },
   channels: {
-    whatsapp: { allowFrom: ["+15555550123"] },
+    whatsapp: { allowFrom: ["+15555550123"], responsePrefix: "[openclaw]" },
     telegram: {
       enabled: true,
       botToken: "YOUR_TOKEN",
@@ -536,7 +524,7 @@ x-i18n:
     discord: {
       enabled: true,
       token: "YOUR_TOKEN",
-      dm: { allowFrom: ["123456789012345678"] },
+      allowFrom: ["123456789012345678"],
     },
   },
 }
@@ -544,9 +532,9 @@ x-i18n:
 
 ### विश्वसनीय Node नेटवर्क की स्वचालित स्वीकृति
 
-जब तक नेटवर्क पथ आपके नियंत्रण में न हो, डिवाइस पेयरिंग को मैन्युअल रखें। किसी समर्पित
-लैब या टेलनेट सबनेट के लिए, आप सटीक CIDR या IP के साथ पहली बार होने वाली Node डिवाइस स्वचालित स्वीकृति
-को वैकल्पिक रूप से सक्षम कर सकते हैं:
+जब तक नेटवर्क पथ आपके नियंत्रण में न हो, डिवाइस पेयरिंग मैन्युअल रखें। किसी समर्पित
+लैब या टेलनेट सबनेट के लिए, आप सटीक CIDR या IP के साथ पहली बार होने वाली Node डिवाइस
+पेयरिंग की स्वचालित स्वीकृति को चुन सकते हैं:
 
 ```json5
 {
@@ -560,38 +548,38 @@ x-i18n:
 }
 ```
 
-सेट न होने पर यह बंद रहता है। यह केवल बिना अनुरोधित स्कोप वाली नई `role: node` पेयरिंग पर
-लागू होता है। ऑपरेटर/ब्राउज़र क्लाइंट और भूमिका, स्कोप, मेटाडेटा या
+सेट न होने पर यह बंद रहता है। यह केवल बिना किसी अनुरोधित स्कोप वाली नई `role: node`
+पेयरिंग पर लागू होता है। ऑपरेटर/ब्राउज़र क्लाइंट और भूमिका, स्कोप, मेटाडेटा या
 सार्वजनिक-कुंजी अपग्रेड के लिए अब भी मैन्युअल स्वीकृति आवश्यक है।
 
 ### सुरक्षित DM मोड (साझा इनबॉक्स / बहु-उपयोगकर्ता DM)
 
-यदि एक से अधिक व्यक्ति आपके बॉट को DM कर सकते हैं (`allowFrom` में अनेक प्रविष्टियाँ, अनेक लोगों के लिए पेयरिंग स्वीकृतियाँ या `dmPolicy: "open"`), तो **सुरक्षित DM मोड** सक्षम करें, ताकि अलग-अलग प्रेषकों के DM डिफ़ॉल्ट रूप से एक ही संदर्भ साझा न करें:
+यदि एक से अधिक व्यक्ति आपके बॉट को DM कर सकते हैं (`allowFrom` में कई प्रविष्टियाँ, कई लोगों के लिए पेयरिंग स्वीकृतियाँ या `dmPolicy: "open"`), तो **सुरक्षित DM मोड** सक्षम करें, ताकि अलग-अलग प्रेषकों के DM डिफ़ॉल्ट रूप से एक ही संदर्भ साझा न करें:
 
 ```json5
 {
-  // Secure DM mode (recommended for multi-user or sensitive DM agents)
+  // बहु-उपयोगकर्ता या संवेदनशील DM एजेंटों के लिए सुरक्षित DM मोड की अनुशंसा की जाती है
   session: { dmScope: "per-channel-peer" },
 
   channels: {
-    // Example: WhatsApp multi-user inbox
+    // उदाहरण: WhatsApp बहु-उपयोगकर्ता इनबॉक्स
     whatsapp: {
       dmPolicy: "allowlist",
       allowFrom: ["+15555550123", "+15555550124"],
     },
 
-    // Example: Discord multi-user inbox
+    // उदाहरण: Discord बहु-उपयोगकर्ता इनबॉक्स
     discord: {
       enabled: true,
       token: "YOUR_DISCORD_BOT_TOKEN",
-      dm: { enabled: true, allowFrom: ["123456789012345678", "987654321098765432"] },
+      allowFrom: ["123456789012345678", "987654321098765432"],
     },
   },
 }
 ```
 
 Discord/Google Chat/IRC/Mattermost/Microsoft Teams/Slack के लिए, प्रेषक प्राधिकरण डिफ़ॉल्ट रूप से पहले ID पर आधारित होता है।
-सीधे परिवर्तनीय नाम/ईमेल/उपनाम मिलान को प्रत्येक चैनल के `dangerouslyAllowNameMatching: true` से केवल तभी सक्षम करें, जब आप उस जोखिम को स्पष्ट रूप से स्वीकार करते हों।
+प्रत्येक चैनल के `dangerouslyAllowNameMatching: true` के साथ प्रत्यक्ष परिवर्तनशील नाम/ईमेल/निक मिलान केवल तभी सक्षम करें, जब आप उस जोखिम को स्पष्ट रूप से स्वीकार करते हों।
 
 ### Anthropic API कुंजी + MiniMax फ़ॉलबैक
 
@@ -638,15 +626,14 @@ Discord/Google Chat/IRC/Mattermost/Microsoft Teams/Slack के लिए, प�
       workspace: "~/work-openclaw",
       elevatedDefault: "off",
     },
-    list: [
-      {
-        id: "main",
+    entries: {
+      main: {
         identity: {
           name: "WorkBot",
           theme: "professional assistant",
         },
       },
-    ],
+    },
   },
   channels: {
     slack: {
@@ -697,10 +684,10 @@ Discord/Google Chat/IRC/Mattermost/Microsoft Teams/Slack के लिए, प�
 
 ## सुझाव
 
-- यदि आप `dmPolicy: "open"` सेट करते हैं, तो मेल खाने वाली `allowFrom` सूची में `"*"` शामिल होना चाहिए।
-- प्रदाता ID अलग-अलग होते हैं (फ़ोन नंबर, उपयोगकर्ता ID, चैनल ID)। प्रारूप की पुष्टि करने के लिए प्रदाता दस्तावेज़ों का उपयोग करें।
+- यदि आप `dmPolicy: "open"` सेट करते हैं, तो संबंधित `allowFrom` सूची में `"*"` शामिल होना चाहिए।
+- प्रदाता ID अलग-अलग होते हैं (फ़ोन नंबर, उपयोगकर्ता ID, चैनल ID)। प्रारूप की पुष्टि के लिए प्रदाता दस्तावेज़ों का उपयोग करें।
 - बाद में जोड़ने के लिए वैकल्पिक अनुभाग: `web`, `browser`, `ui`, `discovery`, `plugins`, `talk`, `signal`, `imessage`।
-- अधिक विस्तृत सेटअप टिप्पणियों के लिए [प्रदाता](/hi/providers) और [समस्या निवारण](/hi/gateway/troubleshooting) देखें।
+- सेटअप के अधिक विस्तृत नोट्स के लिए [प्रदाता](/hi/providers) और [समस्या निवारण](/hi/gateway/troubleshooting) देखें।
 
 ## संबंधित
 

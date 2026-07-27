@@ -1,12 +1,12 @@
 ---
 read_when:
     - Skripterstellung oder Debugging des Agent-Browsers über die lokale Steuerungs-API
-    - Auf der Suche nach der `openclaw browser`-CLI-Referenz
+    - Suche nach der `openclaw browser`-CLI-Referenz
     - Benutzerdefinierte Browserautomatisierung mit Snapshots und Referenzen hinzufügen
 summary: OpenClaw-Browsersteuerungs-API, CLI-Referenz und Skriptaktionen
 title: Browsersteuerungs-API
 x-i18n:
-    generated_at: "2026-07-24T14:48:10Z"
+    generated_at: "2026-07-26T18:47:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ CLI und Skripting-Muster (Snapshots, Refs, Wartevorgänge, Debug-Abläufe).
 ## Steuerungs-API (optional)
 
 Nur für lokale Integrationen stellt das Gateway eine kleine Loopback-HTTP-API bereit.
-Dieser eigenständige Server muss explizit aktiviert werden – setzen Sie die Umgebungsvariable
+Dieser eigenständige Server ist optional — setzen Sie die Umgebungsvariable
 `OPENCLAW_EAGER_BROWSER_CONTROL_SERVER=1` in der Umgebung des Gateway-Dienstes
 und starten Sie das Gateway neu, bevor die HTTP-Endpunkte verfügbar werden. Ohne
 diese Variable funktioniert die Browser-Steuerungslaufzeit weiterhin über die CLI und
@@ -44,36 +44,36 @@ Agent-Tools, aber am Loopback-Steuerungsport lauscht kein Dienst.
 - Zustand: `GET /storage/:kind`, `POST /storage/:kind/set`, `POST /storage/:kind/clear`
 - Einstellungen: `POST /set/offline`, `POST /set/headers`, `POST /set/credentials`, `POST /set/geolocation`, `POST /set/media`, `POST /set/timezone`, `POST /set/locale`, `POST /set/device`
 
-`POST /tabs/action` ist die gebündelte Form, die die CLI intern für
+`POST /tabs/action` ist die gebündelte Form, welche die CLI intern für
 `browser tab`-Unterbefehle verwendet (`{"action":"new"|"label"|"select"|"close"|"list", ...}`);
 bevorzugen Sie beim direkten Skripting die oben aufgeführten zweckgebundenen Tab-Routen.
 
 Alle Endpunkte akzeptieren `?profile=<name>`. `POST /start?headless=true` fordert einen
-einmaligen Headless-Start für lokal verwaltete Profile an, ohne die persistierte
-Browserkonfiguration zu ändern. Profile für ausschließliches Anhängen, Remote-CDP und bestehende Sitzungen lehnen
+einmaligen Headless-Start für lokale verwaltete Profile an, ohne die persistierte
+Browserkonfiguration zu ändern; reine Anbindungs-, Remote-CDP- und bestehende Sitzungsprofile lehnen
 diese Überschreibung ab, da OpenClaw diese Browserprozesse nicht startet.
 
-Bei Tab-Endpunkten ist `targetId` der Kompatibilitätsfeldname. Übergeben Sie vorzugsweise
-`suggestedTargetId` aus `GET /tabs` oder `POST /tabs/open`; Labels und `tabId`-
-Handles wie `t1` werden ebenfalls akzeptiert. Unverarbeitete CDP-Ziel-IDs und eindeutige unverarbeitete
-Ziel-ID-Präfixe funktionieren weiterhin, sind jedoch flüchtige Diagnose-Handles.
+Für Tab-Endpunkte ist `targetId` der Kompatibilitätsfeldname. Übergeben Sie vorzugsweise
+`suggestedTargetId` aus `GET /tabs` oder `POST /tabs/open`; Bezeichnungen und `tabId`-
+Handles wie `t1` werden ebenfalls akzeptiert. Unverarbeitete CDP-Ziel-IDs und eindeutige Präfixe
+unverarbeiteter Ziel-IDs funktionieren weiterhin, sind jedoch flüchtige Diagnose-Handles.
 
-Wenn die Gateway-Authentifizierung mit einem gemeinsamen Geheimnis konfiguriert ist, erfordern auch die Browser-HTTP-Routen eine Authentifizierung:
+Wenn die Gateway-Authentifizierung mit einem gemeinsamen Geheimnis konfiguriert ist, erfordern auch Browser-HTTP-Routen eine Authentifizierung:
 
 - `Authorization: Bearer <gateway token>`
 - `x-openclaw-password: <gateway password>` oder HTTP-Basic-Authentifizierung mit diesem Passwort
 
 Hinweise:
 
-- Diese eigenständige Loopback-Browser-API verwendet **keine** Identitätsheader von vertrauenswürdigen Proxys oder
+- Diese eigenständige Loopback-Browser-API verwendet **keine** Identitäts-Header von vertrauenswürdigen Proxys oder
   Tailscale Serve.
-- Wenn `gateway.auth.mode` den Wert `none` oder `trusted-proxy` hat, übernehmen diese Loopback-Browser-
+- Wenn `gateway.auth.mode` auf `none` oder `trusted-proxy` gesetzt ist, übernehmen diese Loopback-Browser-
   Routen diese identitätstragenden Modi nicht; beschränken Sie sie auf Loopback.
 
 ### `/act`-Fehlervertrag
 
-`POST /act` verwendet eine strukturierte Fehlerantwort für Validierungs- und
-Richtlinienfehler auf Routenebene:
+`POST /act` verwendet für Validierungs- und
+Richtlinienfehler auf Routenebene eine strukturierte Fehlerantwort:
 
 ```json
 { "error": "<message>", "code": "ACT_*" }
@@ -83,10 +83,10 @@ Aktuelle `code`-Werte:
 
 - `ACT_KIND_REQUIRED` (HTTP 400): `kind` fehlt oder wird nicht erkannt.
 - `ACT_INVALID_REQUEST` (HTTP 400): Die Aktionsnutzlast konnte nicht normalisiert oder validiert werden.
-- `ACT_SELECTOR_UNSUPPORTED` (HTTP 400): `selector` wurde mit einer nicht unterstützten Aktionsart verwendet.
+- `ACT_SELECTOR_UNSUPPORTED` (HTTP 400): `selector` wurde mit einem nicht unterstützten Aktionstyp verwendet.
 - `ACT_EVALUATE_DISABLED` (HTTP 403): `evaluate` (oder `wait --fn`) ist durch die Konfiguration deaktiviert.
-- `ACT_TARGET_ID_MISMATCH` (HTTP 403): `targetId` auf oberster Ebene oder in einem Batch steht im Konflikt mit dem Anfrageziel.
-- `ACT_EXISTING_SESSION_UNSUPPORTED` (HTTP 501): Die Aktion wird für Profile mit bestehenden Sitzungen nicht unterstützt.
+- `ACT_TARGET_ID_MISMATCH` (HTTP 403): `targetId` auf oberster Ebene oder in einer gebündelten Anfrage steht im Konflikt mit dem Anfrageziel.
+- `ACT_EXISTING_SESSION_UNSUPPORTED` (HTTP 501): Die Aktion wird für bestehende Sitzungsprofile nicht unterstützt.
 
 Andere Laufzeitfehler können weiterhin `{ "error": "<message>" }` ohne ein
 `code`-Feld zurückgeben.
@@ -97,19 +97,19 @@ Einige Funktionen (Navigation/Aktion/KI-Snapshot/Rollen-Snapshot, Element-Screen
 PDF) erfordern Playwright. Wenn Playwright nicht installiert ist, geben diese Endpunkte
 einen eindeutigen 501-Fehler zurück.
 
-Was ohne Playwright weiterhin funktioniert:
+Was weiterhin ohne Playwright funktioniert:
 
 - ARIA-Snapshots
-- Rollenbasierte Barrierefreiheits-Snapshots (`--interactive`, `--compact`,
+- Barrierefreiheits-Snapshots im Rollenstil (`--interactive`, `--compact`,
   `--depth`, `--efficient`), wenn ein tabbezogener CDP-WebSocket verfügbar ist. Dies ist
-  eine Ausweichlösung zur Inspektion und Ermittlung von Refs; Playwright bleibt die primäre
+  eine Ausweichlösung für die Inspektion und Ref-Ermittlung; Playwright bleibt die primäre
   Aktions-Engine.
-- Seiten-Screenshots für den verwalteten Browser `openclaw`, wenn ein tabbezogener CDP-
+- Seiten-Screenshots für den verwalteten `openclaw`-Browser, wenn ein tabbezogener CDP-
   WebSocket verfügbar ist
 - Seiten-Screenshots für `existing-session`-/Chrome-MCP-Profile
-- Ref-basierte `existing-session`-Screenshots (`--ref`) aus der Snapshot-Ausgabe
+- `existing-session`-Ref-basierte Screenshots (`--ref`) aus der Snapshot-Ausgabe
 
-Was weiterhin Playwright benötigt:
+Was weiterhin Playwright erfordert:
 
 - `navigate`
 - `act`
@@ -121,38 +121,38 @@ Element-Screenshots lehnen außerdem `--full-page` ab; die Route gibt `fullPage 
 not supported for element screenshots` zurück.
 
 Wenn `Playwright is not available in this gateway build` angezeigt wird, fehlt dem paketierten
-Gateway die Kernabhängigkeit für die Browserlaufzeit. Installieren oder aktualisieren Sie
-OpenClaw erneut und starten Sie anschließend das Gateway neu. Installieren Sie für Docker außerdem die Chromium-
-Browserbinärdateien wie unten dargestellt.
+Gateway die zentrale Browser-Laufzeitabhängigkeit. Installieren oder aktualisieren Sie
+OpenClaw und starten Sie anschließend das Gateway neu. Installieren Sie für Docker außerdem die Chromium-
+Browser-Binärdateien wie unten dargestellt.
 
-#### Playwright-Installation für Docker
+#### Docker-Playwright-Installation
 
 Wenn Ihr Gateway in Docker ausgeführt wird, vermeiden Sie `npx playwright` (Konflikte mit npm-Überschreibungen).
-Integrieren Sie Chromium bei benutzerdefinierten Images direkt in das Image:
+Integrieren Sie bei benutzerdefinierten Images Chromium in das Image:
 
 ```bash
 OPENCLAW_INSTALL_BROWSER=1 ./scripts/docker/setup.sh
 ```
 
-Installieren Sie bei einem bestehenden Image stattdessen über die mitgelieferte CLI:
+Installieren Sie bei einem vorhandenen Image stattdessen über die mitgelieferte CLI:
 
 ```bash
 docker compose run --rm openclaw-cli \
   node /app/node_modules/playwright-core/cli.js install chromium
 ```
 
-Um Browserdownloads persistent zu speichern, setzen Sie `PLAYWRIGHT_BROWSERS_PATH` (zum Beispiel
+Um Browser-Downloads persistent zu speichern, setzen Sie `PLAYWRIGHT_BROWSERS_PATH` (zum Beispiel
 `/home/node/.cache/ms-playwright`) und stellen Sie sicher, dass `/home/node` über
 `OPENCLAW_HOME_VOLUME` oder einen Bind-Mount persistent gespeichert wird. OpenClaw erkennt das persistierte
-Chromium unter Linux automatisch. Weitere Informationen finden Sie unter [Docker](/de/install/docker).
+Chromium unter Linux automatisch. Siehe [Docker](/de/install/docker).
 
 ## Funktionsweise (intern)
 
-Ein kleiner Loopback-Steuerungsserver akzeptiert HTTP-Anfragen und stellt über CDP Verbindungen zu Chromium-basierten Browsern her. Erweiterte Aktionen (Klicken/Eingeben/Snapshot/PDF) werden über Playwright auf Basis von CDP ausgeführt. Wenn Playwright fehlt, sind nur Vorgänge verfügbar, die Playwright nicht benötigen. Der Agent sieht eine einheitliche stabile Schnittstelle, während lokale und entfernte Browser sowie Profile darunter frei ausgetauscht werden können.
+Ein kleiner Loopback-Steuerungsserver nimmt HTTP-Anfragen entgegen und stellt über CDP eine Verbindung zu Chromium-basierten Browsern her. Erweiterte Aktionen (Klicken/Eingeben/Snapshot/PDF) werden über Playwright auf CDP ausgeführt; wenn Playwright fehlt, sind nur Vorgänge ohne Playwright verfügbar. Der Agent verwendet eine einheitliche stabile Schnittstelle, während lokale und entfernte Browser sowie Profile darunter beliebig ausgetauscht werden können.
 
 ## CLI-Kurzreferenz
 
-Alle Befehle akzeptieren `--browser-profile <name>` zur Auswahl eines bestimmten Profils und `--json` für eine maschinenlesbare Ausgabe.
+Alle Befehle akzeptieren `--browser-profile <name>`, um ein bestimmtes Profil auszuwählen, und `--json` für maschinenlesbare Ausgaben.
 
 <AccordionGroup>
 
@@ -163,8 +163,8 @@ openclaw browser status
 openclaw browser doctor
 openclaw browser doctor --deep    # Live-Snapshot-Prüfung hinzufügen
 openclaw browser start
-openclaw browser start --headless # einmaliger lokal verwalteter Headless-Start
-openclaw browser stop            # löscht auch die Emulation bei ausschließlich angehängten/Remote-CDP-Verbindungen
+openclaw browser start --headless # einmaliger lokaler verwalteter Headless-Start
+openclaw browser stop            # löscht auch die Emulation bei reiner Anbindung/Remote-CDP
 openclaw browser reset-profile   # verschiebt die Browserdaten des Profils in den Papierkorb
 openclaw browser tabs
 openclaw browser tab             # Kurzform für den aktuellen Tab
@@ -249,7 +249,7 @@ openclaw browser trace stop
 
 </Accordion>
 
-<Accordion title="Zustand: Cookies, Speicher, Offline, Header, Geostandort, Gerät">
+<Accordion title="Zustand: Cookies, Speicher, Offline-Modus, Header, Standort, Gerät">
 
 ```bash
 openclaw browser cookies
@@ -260,7 +260,7 @@ openclaw browser storage local set theme dark
 openclaw browser storage session clear
 openclaw browser set offline on
 openclaw browser set headers --headers-json '{"X-Debug":"1"}'
-openclaw browser set credentials user pass            # zum Entfernen --clear verwenden
+openclaw browser set credentials user pass            # mit --clear entfernen
 openclaw browser set geo 37.7749 -122.4194 --origin "https://example.com"
 openclaw browser set media dark
 openclaw browser set timezone America/New_York
@@ -276,38 +276,38 @@ Hinweise:
 
 - Das agentenseitige Tool `browser` stellt `action=download` (erforderlich: `ref` und
   `path`) sowie `action=waitfordownload` (optional: `path`) bereit. Beide geben die gespeicherte
-  Download-URL, den vorgeschlagenen Dateinamen und den geschützten lokalen Pfad zurück. Explizites Abfangen von Downloads
-  ist für verwaltete Playwright-Profile verfügbar; Profile mit bestehender Sitzung
-  geben einen Fehler für einen nicht unterstützten Vorgang zurück.
-- Bevorzugen Sie atomare Uploads über die Dateiauswahl: Übergeben Sie den Auslöser `--ref` zusammen mit dem Upload, damit OpenClaw die Auswahl in einer Anfrage vorbereitet und anklickt. `upload` nur mit Pfaden wird weiterhin unterstützt, wenn ein späterer Auslöser beabsichtigt ist. Verwenden Sie `--input-ref` oder `--element`, um ein Dateieingabefeld direkt festzulegen. `dialog` ist ein Vorbereitungsaufruf; führen Sie ihn vor dem Klick oder Tastendruck aus, der den Dialog auslöst. Wenn eine Aktion ein modales Fenster öffnet, enthält die Aktionsantwort `blockedByDialog` und `browserState.dialogs.pending`; übergeben Sie diesen `dialogId`, um direkt zu antworten. Außerhalb von OpenClaw behandelte Dialoge werden unter `browserState.dialogs.recent` angezeigt.
-- `click`/`type`/usw. erfordern einen `ref` aus `snapshot` (numerischer `12`, Rollen-Ref `e12` oder ausführbarer ARIA-Ref `ax12`). CSS-Selektoren werden für Aktionen bewusst nicht unterstützt. Verwenden Sie `click-coords`, wenn die sichtbare Position im Viewport das einzige zuverlässige Ziel ist.
-- Download- und Trace-Pfade sind auf die temporären Stammverzeichnisse von OpenClaw beschränkt: `/tmp/openclaw{,/downloads}` (Fallback: `${os.tmpdir()}/openclaw/...`).
-- `upload` akzeptiert Dateien aus dem Stammverzeichnis für temporäre OpenClaw-Uploads und
+  Download-URL, den vorgeschlagenen Dateinamen und den abgesicherten lokalen Pfad zurück. Das explizite Abfangen von
+  Downloads ist für verwaltete Playwright-Profile verfügbar; Profile mit vorhandener Sitzung
+  geben einen Fehler wegen eines nicht unterstützten Vorgangs zurück.
+- Bevorzugen Sie atomare Uploads über die Dateiauswahl: Übergeben Sie den Auslöser `--ref` zusammen mit dem Upload, damit OpenClaw die Dateiauswahl in einer Anfrage vorbereitet und anklickt. `upload` nur mit Pfaden wird weiterhin unterstützt, wenn ein späterer Auslöser beabsichtigt ist. Verwenden Sie `--input-ref` oder `--element`, um eine Dateieingabe direkt festzulegen. `dialog` ist ein Vorbereitungsaufruf; führen Sie ihn vor dem Klick oder Tastendruck aus, der den Dialog auslöst. Wenn eine Aktion ein modales Fenster öffnet, enthält die Aktionsantwort `blockedByDialog` und `browserState.dialogs.pending`; übergeben Sie dieses `dialogId`, um direkt zu antworten. Außerhalb von OpenClaw behandelte Dialoge werden unter `browserState.dialogs.recent` angezeigt.
+- `click`/`type`/usw. erfordern ein `ref` aus `snapshot` (numerisches `12`, Rollen-Ref `e12` oder ausführbares ARIA-Ref `ax12`). CSS-Selektoren werden für Aktionen bewusst nicht unterstützt. Verwenden Sie `click-coords`, wenn die sichtbare Position im Viewport das einzig zuverlässige Ziel ist.
+- Download- und Trace-Pfade sind auf temporäre OpenClaw-Stammverzeichnisse beschränkt: `/tmp/openclaw{,/downloads}` (Fallback: `${os.tmpdir()}/openclaw/...`).
+- `upload` akzeptiert Dateien aus dem temporären Upload-Stammverzeichnis von OpenClaw und
   von OpenClaw verwaltete eingehende Medien. Verwaltete eingehende Medien können als
-  `media://inbound/<id>`, als sandboxrelativer `media/inbound/<id>` oder als aufgelöster
+  `media://inbound/<id>`, sandboxrelatives `media/inbound/<id>` oder als aufgelöster
   Pfad innerhalb des Verzeichnisses für verwaltete eingehende Medien referenziert werden. Verschachtelte Medien-Refs,
-  Verzeichnisdurchquerung, symbolische Links, Hardlinks und beliebige lokale Pfade werden weiterhin abgelehnt.
-- `upload` kann Dateieingabefelder auch direkt über `--input-ref` oder `--element` festlegen.
+  Verzeichnisdurchquerung, symbolische Links, harte Links und beliebige lokale Pfade werden weiterhin abgelehnt.
+- `upload` kann Dateieingaben auch direkt über `--input-ref` oder `--element` festlegen.
 
-Stabile Tab-IDs und -Bezeichnungen überstehen das Ersetzen roher Chromium-Ziele, wenn OpenClaw
+Stabile Tab-IDs und -Bezeichnungen bleiben beim Ersetzen von Chromium-Raw-Targets erhalten, wenn OpenClaw
 den Ersatz-Tab eindeutig bestimmen kann, etwa anhand eines eindeutigen alten/neuen Paars für dieselbe URL oder
-wenn ein einzelner alter Tab nach dem Absenden eines Formulars zu einem einzelnen neuen Tab wird. Mehrdeutige
-Ersetzungen mit doppelten URLs erhalten neue Handles. Rohe Ziel-IDs sind weiterhin
+wenn nach dem Absenden eines Formulars aus einem einzelnen alten Tab ein einzelner neuer Tab wird. Mehrdeutige
+Ersetzungen mit identischer URL erhalten neue Handles. Raw-Target-IDs bleiben
 flüchtig; bevorzugen Sie in Skripten `suggestedTargetId` aus `tabs`.
 
-Snapshot-Flags auf einen Blick:
+Snapshot-Flags im Überblick:
 
 - `--format ai` (Standard mit Playwright): KI-Snapshot mit numerischen Refs (`aria-ref="<n>"`).
-- `--format aria`: Barrierefreiheitsbaum mit `axN`-Refs. Wenn Playwright verfügbar ist, bindet OpenClaw Refs mit Backend-DOM-IDs an die aktive Seite, sodass Folgeaktionen sie verwenden können; andernfalls ist die Ausgabe nur zur Prüfung zu verwenden.
+- `--format aria`: Barrierefreiheitsbaum mit `axN`-Refs. Wenn Playwright verfügbar ist, bindet OpenClaw Refs mithilfe von Backend-DOM-IDs an die aktive Seite, sodass nachfolgende Aktionen sie verwenden können; andernfalls ist die Ausgabe ausschließlich zur Überprüfung bestimmt.
 - `--efficient` (oder `--mode efficient`): kompakte Voreinstellung für Rollen-Snapshots. Legen Sie `browser.snapshotDefaults.mode: "efficient"` fest, um dies zum Standard zu machen (siehe [Gateway-Konfiguration](/de/gateway/configuration-reference#browser)).
 - `--interactive`, `--compact`, `--depth`, `--selector` erzwingen einen Rollen-Snapshot mit `ref=e12`-Refs. `--frame "<iframe>"` beschränkt Rollen-Snapshots auf einen iframe.
-- Mit Playwright fügt `--labels` einen Screenshot mit eingeblendeten Ref-Bezeichnungen hinzu
-  (gibt `MEDIA:<path>` aus) sowie ein `annotations`-Array mit dem Begrenzungsrahmen
+- Mit Playwright fügt `--labels` einen Screenshot mit überlagerten Ref-Bezeichnungen hinzu
+  (gibt `MEDIA:<path>` aus), ergänzt um ein `annotations`-Array mit dem Begrenzungsrahmen
   jedes Refs. Bei `screenshot` funktionieren Playwright-gestützte Bezeichnungen mit `--full-page`,
   `--ref` und `--element`; bei `snapshot` bleibt der zugehörige Screenshot
-  auf den Viewport beschränkt. Profile mit bestehender Sitzung/chrome-mcp rendern eingeblendete Bezeichnungen auf
-  Seiten-Screenshots, geben jedoch weder `annotations` zurück noch verwenden sie die Playwright-
-  Projektionshilfe für vollständige Seiten, Refs oder Elemente. Ohne Playwright oder chrome-mcp
+  auf den Viewport beschränkt. Profile mit vorhandener Sitzung bzw. chrome-mcp-Profile rendern überlagerte Bezeichnungen auf
+  Seiten-Screenshots, geben jedoch kein `annotations` zurück und verwenden nicht den Playwright-
+  Projektionshelfer für vollständige Seiten, Refs oder Elemente. Ohne Playwright oder chrome-mcp
   sind beschriftete Screenshots nicht verfügbar.
 - `--urls` hängt erkannte Linkziele an KI-Snapshots an.
 
@@ -316,91 +316,92 @@ Snapshot-Flags auf einen Blick:
 OpenClaw unterstützt zwei „Snapshot“-Stile:
 
 - **KI-Snapshot (numerische Refs)**: `openclaw browser snapshot` (Standard; `--format ai`)
-  - Ausgabe: ein Text-Snapshot, der numerische Refs enthält.
+  - Ausgabe: ein Text-Snapshot mit numerischen Refs.
   - Aktionen: `openclaw browser click 12`, `openclaw browser type 23 "hello"`.
-  - Intern wird der Ref über `aria-ref` von Playwright aufgelöst.
+  - Intern wird das Ref über `aria-ref` von Playwright aufgelöst.
 
 - **Rollen-Snapshot (Rollen-Refs wie `e12`)**: `openclaw browser snapshot --interactive` (oder `--compact`, `--depth`, `--selector`, `--frame`)
-  - Ausgabe: eine rollenbasierte Liste/Baumstruktur mit `[ref=e12]` (und optional `[nth=1]`).
+  - Ausgabe: eine rollenbasierte Liste bzw. Baumstruktur mit `[ref=e12]` (und optional `[nth=1]`).
   - Aktionen: `openclaw browser click e12`, `openclaw browser highlight e12`.
-  - Intern wird der Ref über `getByRole(...)` aufgelöst (zuzüglich `nth()` bei Duplikaten).
-  - Fügen Sie `--labels` hinzu, um einen Screenshot mit eingeblendeten `e12`-Bezeichnungen einzuschließen. Bei
-    Playwright-gestützten Profilen werden dadurch zusätzlich Begrenzungsrahmen-Metadaten je Ref
-    (`annotations[]`) zurückgegeben.
-  - Fügen Sie `--urls` hinzu, wenn Linktext mehrdeutig ist und der Agent konkrete
+  - Intern wird das Ref über `getByRole(...)` aufgelöst (zuzüglich `nth()` bei Duplikaten).
+  - Fügen Sie `--labels` hinzu, um einen Screenshot mit überlagerten `e12`-Bezeichnungen einzuschließen. Bei
+    Playwright-gestützten Profilen werden dadurch außerdem Metadaten zum Begrenzungsrahmen jedes Refs zurückgegeben
+    (`annotations[]`).
+  - Fügen Sie `--urls` hinzu, wenn der Linktext mehrdeutig ist und der Agent konkrete
     Navigationsziele benötigt.
 
 - **ARIA-Snapshot (ARIA-Refs wie `ax12`)**: `openclaw browser snapshot --format aria`
-  - Ausgabe: der Barrierefreiheitsbaum als strukturierte Knoten.
-  - Aktionen: `openclaw browser click ax12` funktioniert, wenn der Snapshot-Pfad den Ref
-    über Playwright und die Backend-DOM-IDs von Chrome binden kann.
-- Wenn Playwright nicht verfügbar ist, können ARIA-Snapshots weiterhin zur
-  Prüfung nützlich sein, die Refs sind jedoch möglicherweise nicht ausführbar. Erstellen Sie mit `--format ai`
-  oder `--interactive` erneut einen Snapshot, wenn Sie Aktions-Refs benötigen.
+  - Ausgabe: der Barrierefreiheitsbaum als strukturierte Nodes.
+  - Aktionen: `openclaw browser click ax12` funktioniert, wenn der Snapshot-Pfad
+    das Ref über Playwright und Chrome-Backend-DOM-IDs binden kann.
+- Wenn Playwright nicht verfügbar ist, können ARIA-Snapshots weiterhin
+  zur Überprüfung nützlich sein, die Refs sind jedoch möglicherweise nicht ausführbar. Erstellen Sie mit `--format ai`
+  oder `--interactive` einen neuen Snapshot, wenn Sie Aktions-Refs benötigen.
 - Docker-Nachweis für den Raw-CDP-Fallback-Pfad: `pnpm test:docker:browser-cdp-snapshot`
-  startet Chromium mit CDP, führt `browser doctor --deep` aus und überprüft, dass Rollen-
-  Snapshots Link-URLs, durch den Cursor hervorgehobene anklickbare Elemente und iframe-Metadaten enthalten.
+  startet Chromium mit CDP, führt `browser doctor --deep` aus und verifiziert, dass Rollen-
+  Snapshots Link-URLs, durch den Cursor als anklickbar erkannte Elemente und iframe-Metadaten enthalten.
 
-Ref-Verhalten:
+Verhalten von Refs:
 
-- Refs sind **nicht über Navigationen hinweg stabil**; wenn etwas fehlschlägt, führen Sie `snapshot` erneut aus und verwenden Sie einen neuen Ref.
-- `/act` gibt nach einem durch eine Aktion ausgelösten Ersetzen das aktuelle rohe `targetId` zurück,
+- Refs sind **über Navigationen hinweg nicht stabil**; wenn etwas fehlschlägt, führen Sie `snapshot` erneut aus und verwenden Sie ein neues Ref.
+- `/act` gibt nach einem durch eine Aktion ausgelösten Austausch das aktuelle Raw-`targetId` zurück,
   wenn der Ersatz-Tab eindeutig bestimmt werden kann. Verwenden Sie für
-  Folgebefehle weiterhin stabile Tab-IDs/-Bezeichnungen.
+  nachfolgende Befehle weiterhin stabile Tab-IDs und -Bezeichnungen.
 - Wenn der Rollen-Snapshot mit `--frame` erstellt wurde, sind Rollen-Refs bis zum nächsten Rollen-Snapshot auf diesen iframe beschränkt.
 - Unbekannte oder veraltete `axN`-Refs schlagen sofort fehl, statt auf
-  den `aria-ref`-Selektor von Playwright zurückzufallen. Erstellen Sie in diesem Fall einen neuen Snapshot desselben Tabs.
+  den `aria-ref`-Selektor von Playwright zurückzufallen. Erstellen Sie in diesem Fall
+  einen neuen Snapshot desselben Tabs.
 
 ## Browser-Batch-CLI
 
 `openclaw browser batch` führt ein Array verschachtelter `/act`-Aktionen in einem einzigen `/act`-
-Aufruf aus (dieselbe `kind="batch"`-Laufzeit, die über das Agenten-Tool erreichbar ist), sodass CLI-
+Aufruf aus (dieselbe über das Agenten-Tool erreichbare `kind="batch"`-Laufzeit), sodass CLI-
 Benutzer und Skripte Aktionen wie `wait`, `click`, `type` und
-`evaluate` ohne Rundreisen je Aktion zu einem einzigen wiederholbaren Plan kombinieren können. Jeder
-Eintrag in `actions[]` ist ein `BrowserActRequest` – die geschlossene Union, welche die `/act`-
+`evaluate` ohne Roundtrips für einzelne Aktionen zu einem einzigen wiederholbaren Plan kombinieren können. Jeder
+Eintrag in `actions[]` ist ein `BrowserActRequest` – die abgeschlossene Union, die die `/act`-
 Route akzeptiert (`click`, `clickCoords`, `type`, `press`, `hover`,
 `scrollIntoView`, `drag`, `select`, `fill`, `resize`, `wait`, `evaluate`,
 `close`, `batch`) – und keine beliebigen `openclaw browser`-Unterbefehle. `batch` wird
-bei `profile="user"` und anderen Profilen mit bestehender Sitzung (chrome-mcp)
-nicht unterstützt; senden Sie dort Aktionen einzeln.
+bei `profile="user"` und anderen Profilen mit vorhandener Sitzung (chrome-mcp)
+nicht unterstützt; senden Sie die Aktionen dort einzeln.
 
 - CLI: `openclaw browser batch --actions '<json>'`, `openclaw browser batch
 --actions-file plan.json` oder `openclaw browser batch --actions-file -`, um
-  das JSON-Array aus stdin zu lesen. `--continue` legt `stopOnError=false` fest; standardmäßig
-  wird beim ersten Fehler angehalten. `--target-id` beschränkt den gesamten Batch auf
+  das JSON-Array aus stdin zu lesen. `--continue` legt `stopOnError=false` fest;
+  standardmäßig wird beim ersten Fehler abgebrochen. `--target-id` beschränkt den gesamten Batch auf
   einen Tab.
-- Ref-Lebenszyklus: Refs stammen aus einem `snapshot`-Lauf vor dem Batch (Snapshot ist
+- Ref-Lebenszyklus: Refs stammen aus einer vor dem Batch ausgeführten `snapshot`-Ausführung (Snapshot ist
   keine verschachtelte Aktion). Eine verschachtelte Aktion, die den Seitenzustand ändert – etwa ein
   `click`, das eine Navigation auslöst, oder ein `evaluate`, das das DOM verändert – kann
   frühere Refs für den Rest des Batches ungültig machen. Platzieren Sie zustandsändernde Aktionen
-  zuerst oder teilen Sie sie nach dem erneuten Erstellen eines Snapshots in einen Folge-Batch auf. Navigation und
-  erneutes Erstellen von Snapshots erfolgen außerhalb des Batches (`openclaw browser navigate` /
+  zuerst oder teilen Sie sie nach der erneuten Snapshot-Erstellung in einen nachfolgenden Batch auf. Navigation und
+  erneute Snapshot-Erstellung finden außerhalb des Batches statt (`openclaw browser navigate` /
   `snapshot`), da `open`, `navigate` und `snapshot` keine `/act`-Arten sind.
-- Konflikte bei Ziel-IDs: Eine verschachtelte Aktion kann `targetId` auslassen oder den
-  `targetId` auf Anfrageebene wiederholen; ein expliziter verschachtelter `targetId`, der zu einem
-  anderen Tab aufgelöst wird, wird vor dem Ausführen einer Aktion mit `ACT_TARGET_ID_MISMATCH`
-  abgelehnt. Batch-Aktionen verwenden absichtlich gemeinsam den Tab der Anfrage.
-- Fehlerübersicht: Die Antwort ist `{ "results": [{ "ok": true }, { "ok": false,
-"error": "<message>" }, ...] }`, mit einem Eintrag je Aktion in ihrer Reihenfolge. Wenn
-  `stopOnError` der Standard ist, endet das Array beim ersten Fehler; mit
-  `--continue` umfasst es jede Aktion. Jeder fehlgeschlagene Eintrag führt dazu, dass die CLI mit
-  einem Exit-Code ungleich null beendet wird; übergeben Sie `--json`, um die vollständige geordnete Antwort für Skripte beizubehalten.
+- Konflikte bei Ziel-IDs: Eine verschachtelte Aktion kann `targetId` auslassen oder das
+  `targetId` auf Anfrageebene wiederholen; ein explizites verschachteltes `targetId`, das zu einem
+  anderen Tab aufgelöst wird, wird mit `ACT_TARGET_ID_MISMATCH` abgelehnt, bevor eine Aktion
+  ausgeführt wird. Batch-Aktionen verwenden konstruktionsbedingt gemeinsam den Tab der Anfrage.
+- Fehlerzusammenfassung: Die Antwort ist `{ "results": [{ "ok": true }, { "ok": false,
+"error": "<message>" }, ...] }`, mit einem Eintrag pro Aktion in der ursprünglichen Reihenfolge. Wenn
+  `stopOnError` der Standardwert ist, endet das Array beim ersten Fehler; mit
+  `--continue` umfasst es jede Aktion. Jeder fehlgeschlagene Eintrag bewirkt, dass die CLI
+  mit einem von null verschiedenen Status beendet wird; übergeben Sie `--json`, um die vollständige geordnete Antwort für Skripte beizubehalten.
 
 ## Erweiterte Wartefunktionen
 
-Sie können nicht nur auf Zeit/Text warten:
+Sie können nicht nur auf Zeit oder Text warten:
 
 - Auf URL warten (Globs werden von Playwright unterstützt):
   - `openclaw browser wait --url "**/dash"`
-- Auf Ladezustand warten:
+- Auf Ladestatus warten:
   - `openclaw browser wait --load networkidle`
-  - Wird für verwaltete `openclaw`- und rohe/externe CDP-Profile unterstützt. Profile, die den `existing-session`-Treiber verwenden (einschließlich des standardmäßigen `user`-Profils), lehnen `networkidle` ab; verwenden Sie dort `--url`, `--text`, einen Selektor oder `--fn`-Wartevorgänge.
+  - Unterstützt bei verwalteten `openclaw`- und Raw-/Remote-CDP-Profilen. Profile, die den `existing-session`-Treiber verwenden (einschließlich des standardmäßigen `user`-Profils), lehnen `networkidle` ab; verwenden Sie dort `--url`, `--text`, einen Selektor oder `--fn`-Wartevorgänge.
 - Auf ein JS-Prädikat warten:
   - `openclaw browser wait --fn "window.ready===true"`
 - Warten, bis ein Selektor sichtbar wird:
   - `openclaw browser wait "#main"`
 
-Diese können kombiniert werden:
+Diese Optionen können kombiniert werden:
 
 ```bash
 openclaw browser wait "#main" \
@@ -415,19 +416,19 @@ openclaw browser wait "#main" \
 Wenn eine Aktion fehlschlägt (z. B. „nicht sichtbar“, „Verletzung des strikten Modus“, „verdeckt“):
 
 1. `openclaw browser snapshot --interactive`
-2. Verwenden Sie `click <ref>` / `type <ref>` (bevorzugen Sie Rollen-Refs im interaktiven Modus)
-3. Wenn es weiterhin fehlschlägt: `openclaw browser highlight <ref>`, um zu sehen, worauf Playwright zielt
+2. Verwenden Sie `click <ref>` / `type <ref>` (bevorzugen Sie im interaktiven Modus Rollen-Refs)
+3. Wenn sie weiterhin fehlschlägt: `openclaw browser highlight <ref>`, um zu sehen, worauf Playwright zielt
 4. Wenn sich die Seite ungewöhnlich verhält:
    - `openclaw browser errors --clear`
    - `openclaw browser requests --filter api --clear`
-5. Für tiefgehendes Debugging: Zeichnen Sie einen Trace auf:
+5. Für eine tiefgehende Fehlersuche: Zeichnen Sie einen Trace auf:
    - `openclaw browser trace start`
    - Reproduzieren Sie das Problem
    - `openclaw browser trace stop` (gibt `TRACE:<path>` aus)
 
 ## JSON-Ausgabe
 
-`--json` ist für Skripting und strukturierte Tools vorgesehen.
+`--json` ist für Skripterstellung und strukturierte Werkzeuge vorgesehen.
 
 Beispiele:
 
@@ -438,11 +439,11 @@ openclaw browser --json requests --filter api
 openclaw browser --json cookies
 ```
 
-Rollen-Snapshots in JSON enthalten `refs` sowie einen kleinen `stats`-Block (Zeilen/Zeichen/Refs/interaktiv), damit Tools die Größe und Dichte der Nutzdaten beurteilen können.
+Rollen-Snapshots im JSON enthalten `refs` sowie einen kleinen `stats`-Block (Zeilen/Zeichen/Refs/interaktiv), damit Werkzeuge Größe und Dichte der Nutzdaten beurteilen können.
 
-## Einstellungen für Zustand und Umgebung
+## Zustands- und Umgebungsoptionen
 
-Diese sind für Abläufe nach dem Muster „die Website soll sich wie X verhalten“ nützlich:
+Diese sind für Abläufe nach dem Muster „Die Website soll sich wie X verhalten“ nützlich:
 
 - Cookies: `cookies`, `cookies set`, `cookies clear`
 - Speicher: `storage local|session get|set|clear`
@@ -463,10 +464,10 @@ Diese sind für Abläufe nach dem Muster „die Website soll sich wie X verhalte
   führen beliebiges JavaScript im Seitenkontext aus. Prompt-Injection kann dies
   steuern. Deaktivieren Sie es mit `browser.evaluateEnabled=false`, wenn Sie es nicht benötigen.
 - `openclaw browser evaluate --fn` akzeptiert den Quelltext einer Funktion, einen Ausdruck oder
-  einen Anweisungsblock. Anweisungsblöcke werden als asynchrone Funktionen gekapselt; verwenden Sie daher
-  `return` für den gewünschten Rückgabewert. Verwenden Sie `--timeout-ms <ms>`, wenn die
+  einen Anweisungsblock. Anweisungsblöcke werden als asynchrone Funktionen umschlossen; verwenden Sie daher
+  `return` für den Wert, den Sie zurückerhalten möchten. Verwenden Sie `--timeout-ms <ms>`, wenn die
   Funktion auf der Seite möglicherweise länger als das standardmäßige Zeitlimit für die Auswertung benötigt.
-- Hinweise zu Anmeldungen und Anti-Bot-Maßnahmen (X/Twitter usw.) finden Sie unter [Browseranmeldung und Veröffentlichung auf X/Twitter](/de/tools/browser-login).
+- Hinweise zu Anmeldungen und Anti-Bot-Maßnahmen (X/Twitter usw.) finden Sie unter [Browser-Anmeldung und Beiträge auf X/Twitter](/de/tools/browser-login).
 - Halten Sie den Gateway-/Node-Host privat (nur Loopback oder Tailnet).
 - Remote-CDP-Endpunkte sind leistungsfähig; tunneln und schützen Sie sie.
 
@@ -478,7 +479,7 @@ Beispiel für den strikten Modus (private/interne Ziele standardmäßig blockier
     ssrfPolicy: {
       dangerouslyAllowPrivateNetwork: false,
       hostnameAllowlist: ["*.example.com", "example.com"],
-      allowedHostnames: ["localhost"], // optionale exakte Freigabe
+      allowedHostnames: ["localhost"], // optional exact allow
     },
   },
 }
@@ -487,6 +488,6 @@ Beispiel für den strikten Modus (private/interne Ziele standardmäßig blockier
 ## Verwandte Themen
 
 - [Browser](/de/tools/browser) – Übersicht, Konfiguration, Profile, Sicherheit
-- [Browseranmeldung](/de/tools/browser-login) – Anmeldung bei Websites
+- [Browser-Anmeldung](/de/tools/browser-login) – Anmeldung bei Websites
 - [Fehlerbehebung für Browser unter Linux](/de/tools/browser-linux-troubleshooting)
 - [Fehlerbehebung für Browser unter WSL2](/de/tools/browser-wsl2-windows-remote-cdp-troubleshooting)

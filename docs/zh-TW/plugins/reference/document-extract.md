@@ -1,10 +1,10 @@
 ---
 read_when:
-    - 你正在安裝、設定或稽核 document-extract 外掛
+    - 你正在安裝、設定或稽核文件擷取外掛
 summary: 從本機文件附件擷取文字與備用頁面影像。
 title: 文件擷取外掛
 x-i18n:
-    generated_at: "2026-07-16T11:48:06Z"
+    generated_at: "2026-07-26T08:05:39Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,9 +16,9 @@ x-i18n:
 
 # 文件擷取外掛
 
-從本機文件附件擷取文字與備援頁面影像。
+從本機文件附件擷取文字，並在無法擷取時提供頁面影像。
 
-## 發行方式
+## 發布方式
 
 - 套件：`@openclaw/document-extract-plugin`
 - 安裝方式：隨附於 OpenClaw

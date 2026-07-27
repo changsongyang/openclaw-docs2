@@ -1,10 +1,10 @@
 ---
 read_when:
-    - linux-node Pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
-summary: Linux Node ana makineleri için masaüstü bildirimleri, kamera çekimi ve konum.
-title: Linux Node plugin’i
+    - linux-node pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+summary: Linux Node ana makineleri için masaüstü bildirimleri, kamera görüntüsü yakalama ve konum.
+title: Linux Node plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:30:41Z"
+    generated_at: "2026-07-27T00:11:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Linux Node plugin'i
+# Linux Node Plugin'i
 
-Linux node ana makineleri için masaüstü bildirimleri, kamera görüntüsü yakalama ve konum.
+Linux Node ana makineleri için masaüstü bildirimleri, kamera yakalama ve konum.
 
 ## Dağıtım
 
@@ -25,4 +25,4 @@ Linux node ana makineleri için masaüstü bildirimleri, kamera görüntüsü ya
 
 ## Yüzey
 
-plugin
+Plugin

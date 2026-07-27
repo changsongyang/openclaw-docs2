@@ -1,10 +1,10 @@
 ---
 read_when:
-    - 你正在安装、配置或审查 IRC 插件
-summary: 添加 IRC 渠道界面，用于发送和接收 OpenClaw 消息。
+    - 你正在安装、配置或审计 IRC 插件
+summary: 新增 IRC 渠道界面，用于发送和接收 OpenClaw 消息。
 title: IRC 插件
 x-i18n:
-    generated_at: "2026-07-16T11:50:27Z"
+    generated_at: "2026-07-26T06:18:01Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # IRC 插件
 
-添加 IRC 渠道接口，用于发送和接收 OpenClaw 消息。
+添加 IRC 渠道界面，用于发送和接收 OpenClaw 消息。
 
 ## 分发
 
-- 软件包：`@openclaw/irc`
-- 安装途径：npm；ClawHub：`clawhub:@openclaw/irc`
+- 包：`@openclaw/irc`
+- 安装方式：npm；ClawHub：`clawhub:@openclaw/irc`
 
-## 接口
+## 界面
 
 渠道：`irc`
 

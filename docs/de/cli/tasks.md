@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Sie möchten Datensätze zu Hintergrundaufgaben prüfen, auditieren oder abbrechen
+    - Sie möchten Aufzeichnungen zu Hintergrundaufgaben überprüfen, auditieren oder abbrechen
     - Sie dokumentieren TaskFlow-Befehle unter `openclaw tasks flow`
-summary: CLI-Referenz für `openclaw tasks` (Hintergrundaufgabenregister und TaskFlow-Status)
+summary: CLI-Referenz für `openclaw tasks` (Hintergrundaufgaben-Ledger und TaskFlow-Status)
 title: '`openclaw tasks`'
 x-i18n:
-    generated_at: "2026-07-24T04:58:20Z"
+    generated_at: "2026-07-26T18:53:56Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,7 +15,7 @@ x-i18n:
     workflow: 16
 ---
 
-Überprüfen Sie dauerhafte Hintergrundaufgaben und den Task-Flow-Status. Ohne Unterbefehl
+Untersuchen Sie dauerhafte Hintergrundaufgaben und den TaskFlow-Status. Ohne Unterbefehl
 entspricht `openclaw tasks` dem Befehl `openclaw tasks list`.
 
 Unter [Hintergrundaufgaben](/de/automation/tasks) finden Sie das Lebenszyklus- und Zustellungsmodell
@@ -41,9 +41,9 @@ openclaw tasks flow cancel <lookup>
 
 ## Stammoptionen
 
-| Flag               | Beschreibung                                                                                        |
+| Flag               | Beschreibung                                                                                       |
 | ------------------ | -------------------------------------------------------------------------------------------------- |
-| `--json`           | Gibt JSON aus.                                                                                       |
+| `--json`           | Gibt JSON aus.                                                                                     |
 | `--runtime <name>` | Filtert nach Art: `subagent`, `acp`, `cron` oder `cli`.                                               |
 | `--status <name>`  | Filtert nach Status: `queued`, `running`, `succeeded`, `failed`, `timed_out`, `cancelled` oder `lost`. |
 
@@ -55,7 +55,7 @@ openclaw tasks flow cancel <lookup>
 openclaw tasks list [--runtime <name>] [--status <name>] [--json]
 ```
 
-Listet verfolgte Hintergrundaufgaben auf, beginnend mit der neuesten.
+Listet verfolgte Hintergrundaufgaben absteigend nach Aktualität auf.
 
 ### `show`
 
@@ -88,15 +88,15 @@ openclaw tasks audit [--severity <warn|error>] [--code <name>] [--limit <n>] [--
 ```
 
 Zeigt veraltete, verlorene, bei der Zustellung fehlgeschlagene oder anderweitig inkonsistente Aufgaben- und
-Task-Flow-Datensätze an. Bis `cleanupAfter` aufbewahrte verlorene Aufgaben führen zu Warnungen;
-abgelaufene oder nicht mit einem Zeitstempel versehene verlorene Aufgaben führen zu Fehlern.
+TaskFlow-Datensätze an. Bis `cleanupAfter` aufbewahrte verlorene Aufgaben sind Warnungen;
+abgelaufene oder nicht mit einem Zeitstempel versehene verlorene Aufgaben sind Fehler.
 
 `--code` akzeptiert Aufgabencodes (`stale_queued`, `stale_running`, `lost`,
-`delivery_failed`, `missing_cleanup`, `inconsistent_timestamps`) und Task-
-Flow-Codes (`restore_failed`, `stale_waiting`, `stale_blocked`,
+`delivery_failed`, `missing_cleanup`, `inconsistent_timestamps`) und TaskFlow-Codes
+(`restore_failed`, `stale_waiting`, `stale_blocked`,
 `cancel_stuck`, `missing_linked_tasks`, `blocked_task_missing`). Unter
-[Hintergrundaufgaben](/de/automation/tasks) finden Sie Details zu Schweregrad und Auslöser für jeden
-Code.
+[Hintergrundaufgaben](/de/automation/tasks) finden Sie Einzelheiten zum Schweregrad und Auslöser jedes
+Codes.
 
 ### `maintenance`
 
@@ -104,20 +104,20 @@ Code.
 openclaw tasks maintenance [--apply] [--json]
 ```
 
-Zeigt eine Vorschau der Abstimmung, Bereinigungsmarkierung, Entfernung und Bereinigung der Registrierung
-veralteter Cron-Ausführungssitzungen für Aufgaben und Task Flow an oder wendet diese Vorgänge an.
+Zeigt eine Vorschau der Abstimmung, Kennzeichnung für die Bereinigung,
+Bereinigung und Entfernung veralteter Registrierungseinträge für Cron-Ausführungssitzungen von Aufgaben und TaskFlow an oder wendet diese Vorgänge an.
 
-Für Cron-Aufgaben verwendet die Abstimmung persistierte Ausführungsprotokolle und den Auftragsstatus, bevor
-eine alte aktive Aufgabe als `lost` markiert wird. Dadurch werden abgeschlossene Cron-Ausführungen nicht zu
-falschen Prüfungsfehlern, nur weil der Laufzeitstatus des Gateway im Arbeitsspeicher nicht mehr vorhanden ist.
-Die Offline-CLI-Prüfung ist für die prozesslokale Gruppe aktiver Cron-Aufträge des Gateway
+Bei Cron-Aufgaben verwendet die Abstimmung persistierte Ausführungsprotokolle und den Auftragsstatus, bevor
+eine alte aktive Aufgabe als `lost` markiert wird, damit abgeschlossene Cron-Ausführungen nicht
+fälschlicherweise als Überprüfungsfehler gelten, nur weil der speicherinterne Laufzeitstatus des Gateways nicht mehr vorhanden ist.
+Eine Offline-CLI-Überprüfung ist für die prozesslokale Menge aktiver Cron-Aufträge des Gateways
 nicht maßgeblich. CLI-Aufgaben mit einer Ausführungs-ID/Quell-ID werden als `lost` markiert, wenn
-ihr aktiver Gateway-Ausführungskontext nicht mehr vorhanden ist, selbst wenn noch ein alter untergeordneter Sitzungsdatensatz
-besteht.
+ihr aktiver Gateway-Ausführungskontext nicht mehr vorhanden ist, selbst wenn noch ein alter Datensatz der untergeordneten Sitzung
+vorhanden ist.
 
-Bei der Anwendung entfernt die Wartung außerdem `cron:<jobId>:run:<uuid>`-Sitzungsdatensätze
-aus der Registrierung, die älter als 7 Tage sind. Aktuell laufende Cron-Aufträge bleiben dabei erhalten,
-und Sitzungsdatensätze, die nicht zu Cron gehören, bleiben unverändert.
+Bei der Anwendung entfernt die Wartung außerdem `cron:<jobId>:run:<uuid>`-Sitzungsregistrierungsdatensätze,
+die älter als 7 Tage sind, wobei derzeit laufende Cron-Aufträge beibehalten und
+Sitzungsdatensätze, die nicht zu Cron gehören, unverändert gelassen werden.
 
 ### `flow`
 
@@ -127,7 +127,7 @@ openclaw tasks flow show <lookup> [--json]
 openclaw tasks flow cancel <lookup>
 ```
 
-Überprüft dauerhaften Task-Flow-Status im Aufgabenjournal oder bricht ihn ab.
+Untersucht dauerhaften TaskFlow-Status im Aufgabenjournal oder bricht ihn ab.
 `flow list --status` akzeptiert `queued`, `running`, `waiting`, `blocked`,
 `succeeded`, `failed`, `cancelled` oder `lost`.
 

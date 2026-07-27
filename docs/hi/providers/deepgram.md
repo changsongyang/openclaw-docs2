@@ -6,12 +6,12 @@ read_when:
 summary: इनबाउंड वॉइस नोट्स के लिए Deepgram ट्रांसक्रिप्शन
 title: Deepgram
 x-i18n:
-    generated_at: "2026-07-16T16:39:59Z"
+    generated_at: "2026-07-27T18:53:09Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 74652e089899423d117dae6267e7c9af09e52ec91ee15e3532fcb2d705f43099
+    source_hash: c00473762c3bede1f6de9230043827d90daefd68d05e67ed4b3e3026b9d6ba4f
     source_path: providers/deepgram.md
     workflow: 16
 ---
@@ -22,9 +22,8 @@ Deepgram एक स्पीच-टू-टेक्स्ट API है। OpenC
 
 बैच ट्रांसक्रिप्शन पूरी ऑडियो फ़ाइल को Deepgram पर अपलोड करता है और
 ट्रांसक्रिप्ट को उत्तर पाइपलाइन (`{{Transcript}}` + `[Audio]` ब्लॉक) में सम्मिलित करता है।
-Voice Call स्ट्रीमिंग, लाइव G.711 u-law फ़्रेम को Deepgram के
-WebSocket `listen` एंडपॉइंट पर अग्रेषित करती है और Deepgram से प्राप्त होते ही
-आंशिक/अंतिम ट्रांसक्रिप्ट जारी करती है।
+Voice Call स्ट्रीमिंग, Deepgram के WebSocket `listen` एंडपॉइंट पर लाइव G.711 u-law फ़्रेम अग्रेषित करती है और Deepgram द्वारा
+उन्हें लौटाए जाने पर आंशिक/अंतिम ट्रांसक्रिप्ट उत्सर्जित करती है।
 
 | विवरण        | मान                                                      |
 | ------------- | ---------------------------------------------------------- |
@@ -56,19 +55,19 @@ WebSocket `listen` एंडपॉइंट पर अग्रेषित क�
     ```
   </Step>
   <Step title="वॉइस नोट भेजें">
-    किसी भी कनेक्टेड चैनल के माध्यम से ऑडियो संदेश भेजें। OpenClaw, Deepgram
+    किसी भी कनेक्ट किए गए चैनल के माध्यम से एक ऑडियो संदेश भेजें। OpenClaw, Deepgram
     के माध्यम से उसका ट्रांसक्रिप्शन करता है और ट्रांसक्रिप्ट को उत्तर पाइपलाइन में सम्मिलित करता है।
   </Step>
 </Steps>
 
 ## कॉन्फ़िगरेशन विकल्प
 
-| विकल्प     | पथ                                  | विवरण                           |
-| ---------- | ------------------------------------- | ------------------------------------- |
-| `model`    | `tools.media.audio.models[].model`    | Deepgram मॉडल आईडी (डिफ़ॉल्ट: `nova-3`) |
-| `language` | `tools.media.audio.models[].language` | भाषा संकेत (वैकल्पिक)              |
+| विकल्प     | पथ                            | विवरण                           |
+| ---------- | ------------------------------- | ------------------------------------- |
+| `model`    | `tools.media.models[].model`    | Deepgram मॉडल आईडी (डिफ़ॉल्ट: `nova-3`) |
+| `language` | `tools.media.models[].language` | भाषा संकेत (वैकल्पिक)              |
 
-`providerOptions.deepgram`, अतिरिक्त क्वेरी पैरामीटर को सीधे
+`providerOptions.deepgram` अतिरिक्त क्वेरी पैरामीटर को सीधे
 Deepgram `/listen` अनुरोध में मर्ज करता है, इसलिए Deepgram द्वारा समर्थित कोई भी पैरामीटर नाम काम करता है
 (उदाहरण के लिए `detect_language`, `punctuate`, `smart_format`):
 
@@ -113,12 +112,12 @@ Deepgram `/listen` अनुरोध में मर्ज करता है
 ## Voice Call स्ट्रीमिंग STT
 
 बंडल किया गया `deepgram` Plugin, Voice Call Plugin के लिए
-रीयल-टाइम ट्रांसक्रिप्शन प्रदाता भी पंजीकृत करता है।
+एक रीयल-टाइम ट्रांसक्रिप्शन प्रदाता भी पंजीकृत करता है।
 
 | सेटिंग         | कॉन्फ़िगरेशन पथ                                                             | डिफ़ॉल्ट                                      |
 | --------------- | ----------------------------------------------------------------------- | -------------------------------------------- |
-| API कुंजी         | `plugins.entries.voice-call.config.streaming.providers.deepgram.apiKey` | `DEEPGRAM_API_KEY` पर फ़ॉलबैक करता है             |
-| बेस URL        | `...deepgram.baseUrl`                                                   | `DEEPGRAM_BASE_URL` या Deepgram का सार्वजनिक API |
+| API कुंजी         | `plugins.entries.voice-call.config.streaming.providers.deepgram.apiKey` | `DEEPGRAM_API_KEY` का फ़ॉलबैक उपयोग करता है             |
+| आधार URL        | `...deepgram.baseUrl`                                                   | `DEEPGRAM_BASE_URL` या Deepgram का सार्वजनिक API |
 | मॉडल           | `...deepgram.model`                                                     | `nova-3`                                     |
 | भाषा        | `...deepgram.language`                                                  | (सेट नहीं)                                      |
 | एन्कोडिंग        | `...deepgram.encoding`                                                  | `mulaw`                                      |
@@ -152,14 +151,14 @@ Deepgram `/listen` अनुरोध में मर्ज करता है
 ```
 
 [Deepgram कस्टम एंडपॉइंट](https://developers.deepgram.com/reference/custom-endpoints) के लिए,
-`baseUrl` को एंडपॉइंट रूट पर सेट करें, जिसमें कोई भी बेस पथ शामिल हो, लेकिन `/listen` नहीं।
+`baseUrl` को एंडपॉइंट रूट पर सेट करें, जिसमें कोई भी आधार पथ शामिल हो लेकिन `/listen` नहीं।
 रीयल-टाइम एंडपॉइंट `http://`, `https://`, `ws://`, और `wss://` स्वीकार करते हैं। HTTP
-को WS में मैप किया जाता है, HTTPS को WSS में मैप किया जाता है और स्पष्ट WebSocket स्कीम अपरिवर्तित रहती हैं।
+को WS पर मैप किया जाता है, HTTPS को WSS पर मैप किया जाता है और स्पष्ट WebSocket स्कीम अपरिवर्तित रहती हैं।
 विकृत URL और अन्य स्कीम के कारण सत्र सेटअप के दौरान विफलता होती है।
 
 <Note>
 Voice Call को टेलीफ़ोनी ऑडियो 8 kHz G.711 u-law के रूप में प्राप्त होता है। Deepgram
-स्ट्रीमिंग प्रदाता डिफ़ॉल्ट रूप से `encoding: "mulaw"` और `sampleRate: 8000` का उपयोग करता है, इसलिए
+स्ट्रीमिंग प्रदाता का डिफ़ॉल्ट `encoding: "mulaw"` और `sampleRate: 8000` है, इसलिए
 Twilio मीडिया फ़्रेम सीधे अग्रेषित किए जा सकते हैं।
 </Note>
 
@@ -168,15 +167,14 @@ Twilio मीडिया फ़्रेम सीधे अग्रेषि�
 <AccordionGroup>
   <Accordion title="प्रमाणीकरण">
     प्रमाणीकरण मानक प्रदाता प्रमाणीकरण क्रम का पालन करता है। `DEEPGRAM_API_KEY`
-    सबसे सरल मार्ग है।
+    सबसे सरल पथ है।
   </Accordion>
   <Accordion title="प्रॉक्सी और कस्टम एंडपॉइंट">
-    प्रॉक्सी का उपयोग करते समय `tools.media.audio.baseUrl` और
-    `tools.media.audio.headers` से एंडपॉइंट या हेडर ओवरराइड करें।
+    प्रॉक्सी का उपयोग करते समय Deepgram `tools.media.models[]` प्रविष्टि पर एंडपॉइंट या हेडर ओवरराइड करें।
   </Accordion>
   <Accordion title="आउटपुट व्यवहार">
-    आउटपुट अन्य प्रदाताओं के समान ऑडियो नियमों का पालन करता है (आकार सीमाएँ, टाइमआउट,
-    ट्रांसक्रिप्ट सम्मिलन)।
+    आउटपुट अन्य प्रदाताओं के समान ऑडियो नियमों (आकार सीमाएँ, टाइमआउट,
+    ट्रांसक्रिप्ट सम्मिलन) का पालन करता है।
   </Accordion>
 </AccordionGroup>
 
@@ -184,7 +182,7 @@ Twilio मीडिया फ़्रेम सीधे अग्रेषि�
 
 <CardGroup cols={2}>
   <Card title="मीडिया टूल" href="/hi/tools/media-overview" icon="photo-film">
-    ऑडियो, छवि और वीडियो प्रोसेसिंग पाइपलाइन का अवलोकन।
+    ऑडियो, इमेज और वीडियो प्रोसेसिंग पाइपलाइन का अवलोकन।
   </Card>
   <Card title="कॉन्फ़िगरेशन" href="/hi/gateway/configuration" icon="gear">
     मीडिया टूल सेटिंग सहित पूर्ण कॉन्फ़िगरेशन संदर्भ।

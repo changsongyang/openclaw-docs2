@@ -1,10 +1,10 @@
 ---
 read_when:
     - Sie installieren, konfigurieren oder überprüfen das Browser-Plugin
-summary: Fügt Tools hinzu, die von Agenten aufgerufen werden können.
+summary: Fügt vom Agenten aufrufbare Tools hinzu.
 title: Browser-Plugin
 x-i18n:
-    generated_at: "2026-07-24T03:59:48Z"
+    generated_at: "2026-07-26T17:58:01Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Browser-Plugin
 
-Fügt vom Agenten aufrufbare Tools hinzu.
+Fügt von Agenten aufrufbare Tools hinzu.
 
 ## Distribution
 

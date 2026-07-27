@@ -4,7 +4,7 @@ read_when:
 summary: پشتیبانی از ارائه‌دهنده مدل vLLM را به OpenClaw اضافه می‌کند.
 title: Plugin ‏vLLM
 x-i18n:
-    generated_at: "2026-07-16T17:30:51Z"
+    generated_at: "2026-07-27T15:57:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

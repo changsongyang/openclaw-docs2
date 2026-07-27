@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 anthropic 外掛
-summary: Anthropic 模型、Claude 命令列介面與原生 Claude 工作階段目錄。
+summary: Anthropic 模型、Claude 命令列介面，以及原生 Claude 工作階段目錄。
 title: Anthropic 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:51:56Z"
+    generated_at: "2026-07-26T07:49:42Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 
 Anthropic 模型、Claude 命令列介面，以及原生 Claude 工作階段目錄。
 
-## 發布方式
+## 發行方式
 
 - 套件：`@openclaw/anthropic-provider`
 - 安裝途徑：隨附於 OpenClaw

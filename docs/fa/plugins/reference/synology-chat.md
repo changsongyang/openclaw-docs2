@@ -2,9 +2,9 @@
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin ‏synology-chat هستید
 summary: Plugin کانال Synology Chat برای کانال‌ها و پیام‌های مستقیم OpenClaw.
-title: Plugin چت Synology
+title: Plugin گفت‌وگوی Synology
 x-i18n:
-    generated_at: "2026-07-16T17:30:25Z"
+    generated_at: "2026-07-27T15:57:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Plugin کانال چت Synology برای کانال‌ها و پیام‌های 
 ## توزیع
 
 - بسته: `@openclaw/synology-chat`
-- مسیر نصب: npm؛ ClawHub
+- روش نصب: npm؛ ClawHub
 
 ## سطح
 

@@ -4,7 +4,7 @@ read_when:
 summary: Fügt Unterstützung für den Cerebras-Modell-Provider zu OpenClaw hinzu.
 title: Cerebras-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:32:38Z"
+    generated_at: "2026-07-26T18:29:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -27,6 +27,6 @@ Fügt OpenClaw Unterstützung für den Cerebras-Modell-Provider hinzu.
 
 Provider: `cerebras`
 
-## Verwandte Dokumentation
+## Zugehörige Dokumentation
 
 - [Cerebras](/de/providers/cerebras)

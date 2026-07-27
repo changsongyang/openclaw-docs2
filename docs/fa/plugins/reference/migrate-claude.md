@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin migrate-claude هستید
+    - شما در حال نصب، پیکربندی یا ممیزی Plugin ‏migrate-claude هستید
 summary: دستورالعمل‌های Claude Code و Claude Desktop، سرورهای MCP، مهارت‌ها و پیکربندی امن را به OpenClaw وارد می‌کند.
 title: مهاجرت Plugin کلود
 x-i18n:
-    generated_at: "2026-07-16T16:56:16Z"
+    generated_at: "2026-07-27T14:29:20Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## توزیع
 
 - بسته: `@openclaw/migrate-claude`
-- روش نصب: در OpenClaw گنجانده شده است
+- مسیر نصب: در OpenClaw گنجانده شده است
 
 ## سطح
 

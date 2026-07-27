@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 QQ Bot 外掛
-summary: OpenClaw QQ Bot 頻道外掛，適用於群組與私訊工作流程。
+summary: 適用於群組與私訊工作流程的 OpenClaw QQ Bot 頻道外掛。
 title: QQ Bot 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:53:39Z"
+    generated_at: "2026-07-26T08:43:45Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # QQ Bot 外掛
 
-適用於群組與私訊工作流程的 OpenClaw QQ Bot 頻道外掛。
+OpenClaw QQ Bot 頻道外掛，適用於群組與私人訊息工作流程。
 
-## 發行
+## 發布方式
 
 - 套件：`@openclaw/qqbot`
-- 安裝途徑：npm；ClawHub
+- 安裝管道：npm；ClawHub
 
 ## 介面
 

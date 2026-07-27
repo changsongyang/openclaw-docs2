@@ -4,7 +4,7 @@ read_when:
 summary: 透過原生 zca-js 整合的 OpenClaw Zalo Personal 帳號外掛。
 title: Zalo Personal 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:56:15Z"
+    generated_at: "2026-07-26T07:59:53Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,16 +16,16 @@ x-i18n:
 
 # Zalo Personal 外掛
 
-透過原生 zca-js 整合的 OpenClaw Zalo Personal 帳號外掛。
+透過原生 zca-js 整合的 OpenClaw Zalo Personal Account 外掛。
 
 ## 發布
 
 - 套件：`@openclaw/zalouser`
-- 安裝管道：npm；ClawHub
+- 安裝途徑：npm；ClawHub
 
 ## 介面
 
-頻道：`zalouser`；合約：`tools`
+頻道：`zalouser`；契約：`tools`
 
 ## 相關文件
 

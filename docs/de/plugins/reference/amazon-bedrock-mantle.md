@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das Plugin amazon-bedrock-mantle.
-summary: OpenClaw Amazon Bedrock Mantle Provider-Plugin für OpenAI-kompatibles Modell-Routing.
+    - Sie installieren, konfigurieren oder prüfen das amazon-bedrock-mantle-Plugin.
+summary: OpenClaw Amazon Bedrock Mantle-Provider-Plugin für OpenAI-kompatibles Modell-Routing.
 title: Amazon-Bedrock-Mantle-Plugin
 x-i18n:
-    generated_at: "2026-07-24T05:06:48Z"
+    generated_at: "2026-07-26T18:37:20Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Amazon Bedrock Mantle Plugin
+# Amazon-Bedrock-Mantle-Plugin
 
 OpenClaw Amazon Bedrock Mantle Provider-Plugin für OpenAI-kompatibles Modell-Routing.
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das Plugin cloudflare-ai-gateway
+    - Sie installieren, konfigurieren oder prüfen das Plugin cloudflare-ai-gateway.
 summary: Fügt OpenClaw Unterstützung für den Modell-Provider Cloudflare AI Gateway hinzu.
 title: Cloudflare-AI-Gateway-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:00:03Z"
+    generated_at: "2026-07-26T17:58:12Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Cloudflare-AI-Gateway-Plugin
 
-Fügt OpenClaw Unterstützung für den Modell-Provider Cloudflare AI Gateway hinzu.
+Fügt Unterstützung für den Cloudflare-AI-Gateway-Modell-Provider zu OpenClaw hinzu.
 
 ## Distribution
 

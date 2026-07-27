@@ -1,11 +1,11 @@
 ---
 read_when:
     - Sie möchten datenschutzorientierte Inferenz in OpenClaw
-    - Sie benötigen eine Anleitung zur Einrichtung von Venice AI
-summary: Nutzen Sie die datenschutzorientierten Modelle von Venice AI in OpenClaw
+    - Sie wünschen eine Anleitung zur Einrichtung von Venice AI
+summary: Datenschutzorientierte Modelle von Venice AI in OpenClaw verwenden
 title: Venice AI
 x-i18n:
-    generated_at: "2026-07-24T05:14:31Z"
+    generated_at: "2026-07-26T18:44:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,15 +16,15 @@ x-i18n:
 ---
 
 [Venice AI](https://venice.ai) bietet datenschutzorientierte Inferenz: Offene Modelle werden
-ohne Protokollierung ausgeführt, ergänzt durch anonymisierten Proxy-Zugriff auf Claude, GPT, Gemini und Grok.
-Alle Endpunkte sind mit OpenAI kompatibel (`/v1`).
+ohne Protokollierung ausgeführt, zusätzlich gibt es anonymisierten Proxy-Zugriff auf Claude, GPT, Gemini und Grok.
+Alle Endpunkte sind OpenAI-kompatibel (`/v1`).
 
 ## Datenschutzmodi
 
-| Modus          | Verhalten                                                                    | Modelle                                                       |
-| -------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| **Privat**     | Prompts/Antworten werden niemals gespeichert oder protokolliert. Flüchtig.   | Llama, Qwen, DeepSeek, Kimi, MiniMax, Venice Uncensored usw.  |
-| **Anonymisiert** | Weiterleitung über Venice, wobei Metadaten zuvor entfernt werden.           | Claude, GPT, Gemini, Grok                                     |
+| Modus          | Verhalten                                                               | Modelle                                                       |
+| -------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------- |
+| **Privat**     | Prompts/Antworten werden niemals gespeichert oder protokolliert. Temporär. | Llama, Qwen, DeepSeek, Kimi, MiniMax, Venice Uncensored usw. |
+| **Anonymisiert** | Weiterleitung über Venice, wobei Metadaten zuvor entfernt werden.       | Claude, GPT, Gemini, Grok                                     |
 
 <Warning>
 Anonymisierte Modelle sind nicht vollständig privat. Venice entfernt Metadaten vor der Weiterleitung, aber der zugrunde liegende Provider (OpenAI, Anthropic, Google, xAI) verarbeitet die Anfrage weiterhin. Verwenden Sie private Modelle, wenn vollständiger Datenschutz erforderlich ist.
@@ -77,67 +77,67 @@ Anonymisierte Modelle sind nicht vollständig privat. Venice entfernt Metadaten 
 ## Modellauswahl
 
 - **Standard**: `venice/kimi-k2-5` (privat, Schlussfolgerung, Bildverarbeitung).
-- **Stärkste anonymisierte Option**: `venice/claude-opus-4-6`.
+- **Leistungsstärkste anonymisierte Option**: `venice/claude-opus-4-6`.
 
 ```bash
 openclaw models set venice/kimi-k2-5
 openclaw models list --all --provider venice
 ```
 
-Sie können auch `openclaw configure` ausführen und **Model/auth provider > Venice AI** auswählen.
+Sie können auch `openclaw configure` ausführen und **Modell-/Authentifizierungs-Provider > Venice AI** auswählen.
 
 <Tip>
-| Anwendungsfall         | Modell                                       | Begründung                                      |
-| ---------------------- | -------------------------------------------- | ----------------------------------------------- |
-| Allgemeiner Chat (Standard) | `kimi-k2-5`                             | Starke private Schlussfolgerung plus Bildverarbeitung |
-| Beste Gesamtqualität   | `claude-opus-4-6`                            | Stärkste anonymisierte Venice-Option            |
-| Datenschutz + Programmierung | `qwen3-coder-480b-a35b-instruct-turbo`                       | Privates Programmiermodell mit großem Kontext   |
-| Schnell + günstig      | `llama-3.2-3b`                            | Kompaktes privates Modell                       |
-| Komplexe private Aufgaben | `deepseek-v3.2`                         | Starke Schlussfolgerung; Tool-Aufrufe deaktiviert |
-| Unzensiert             | `venice-uncensored-1-2`                            | Aktuelles unzensiertes Venice-Modell            |
+| Anwendungsfall          | Modell                                       | Grund                                          |
+| ----------------------- | -------------------------------------------- | ---------------------------------------------- |
+| Allgemeiner Chat (Standard) | `kimi-k2-5`                       | Leistungsstarke private Schlussfolgerung plus Bildverarbeitung |
+| Beste Gesamtqualität    | `claude-opus-4-6`                            | Leistungsstärkste anonymisierte Venice-Option  |
+| Datenschutz + Programmierung | `qwen3-coder-480b-a35b-instruct-turbo`                      | Privates Programmiermodell mit großem Kontext  |
+| Schnell + günstig       | `llama-3.2-3b`                            | Kompaktes privates Modell                      |
+| Komplexe private Aufgaben | `deepseek-v3.2`                          | Leistungsstarke Schlussfolgerung; Tool-Aufrufe deaktiviert |
+| Unzensiert              | `venice-uncensored-1-2`                            | Aktuelles unzensiertes Venice-Modell           |
 </Tip>
 
 ## Integrierter Katalog (30 Modelle)
 
 <AccordionGroup>
   <Accordion title="Private Modelle (20) — vollständig privat, keine Protokollierung">
-    | Modell-ID                              | Name                                  | Kontext | Hinweise                              |
-    | -------------------------------------- | ------------------------------------- | ------- | ------------------------------------- |
-    | `kimi-k2-5`                    | Kimi K2.5                             | 256k    | Standard, Schlussfolgerung, Bildverarbeitung |
-    | `llama-3.3-70b`                    | Llama 3.3 70B                         | 128k    | Allgemein                             |
-    | `llama-3.2-3b`                    | Llama 3.2 3B                          | 128k    | Allgemein                             |
-    | `hermes-3-llama-3.1-405b`                    | Hermes 3 Llama 3.1 405B               | 128k    | Allgemein, Tools deaktiviert          |
-    | `qwen3-235b-a22b-thinking-2507`                    | Qwen3 235B Thinking                   | 128k    | Schlussfolgerung                      |
-    | `qwen3-235b-a22b-instruct-2507`                    | Qwen3 235B Instruct                   | 128k    | Allgemein                             |
-    | `qwen3-coder-480b-a35b-instruct-turbo`                    | Qwen3 Coder 480B Turbo                | 256k    | Programmierung                        |
-    | `qwen3-5-35b-a3b`                    | Qwen3.5 35B A3B                       | 256k    | Schlussfolgerung, Bildverarbeitung    |
-    | `qwen3-next-80b`                    | Qwen3 Next 80B                        | 256k    | Allgemein                             |
-    | `qwen3-vl-235b-a22b`                    | Qwen3 VL 235B (Vision)                | 256k    | Bildverarbeitung                      |
-    | `deepseek-v3.2`                    | DeepSeek V3.2                         | 160k    | Schlussfolgerung, Tools deaktiviert   |
-    | `google-gemma-3-27b-it`                    | Google Gemma 3 27B Instruct           | 198k    | Bildverarbeitung                      |
-    | `openai-gpt-oss-120b`                    | OpenAI GPT OSS 120B                   | 128k    | Allgemein                             |
-    | `nvidia-nemotron-3-nano-30b-a3b`                    | NVIDIA Nemotron 3 Nano 30B            | 128k    | Allgemein                             |
-    | `olafangensan-glm-4.7-flash-heretic`                    | GLM 4.7 Flash Heretic                 | 128k    | Schlussfolgerung                      |
-    | `zai-org-glm-4.6`                    | GLM 4.6                               | 198k    | Allgemein                             |
-    | `zai-org-glm-4.7`                    | GLM 4.7                               | 198k    | Schlussfolgerung                      |
-    | `zai-org-glm-4.7-flash`                    | GLM 4.7 Flash                         | 128k    | Schlussfolgerung                      |
-    | `zai-org-glm-5`                    | GLM 5                                 | 198k    | Schlussfolgerung                      |
-    | `minimax-m25`                    | MiniMax M2.5                          | 198k    | Schlussfolgerung                      |
+    | Modell-ID                              | Name                                  | Kontext | Hinweise                         |
+    | -------------------------------------- | ------------------------------------- | ------- | -------------------------------- |
+    | `kimi-k2-5`                     | Kimi K2.5                             | 256k    | Standard, Schlussfolgerung, Bildverarbeitung |
+    | `llama-3.3-70b`                     | Llama 3.3 70B                         | 128k    | Allgemein                        |
+    | `llama-3.2-3b`                     | Llama 3.2 3B                          | 128k    | Allgemein                        |
+    | `hermes-3-llama-3.1-405b`                     | Hermes 3 Llama 3.1 405B              | 128k    | Allgemein, Tools deaktiviert     |
+    | `qwen3-235b-a22b-thinking-2507`                     | Qwen3 235B Thinking                   | 128k    | Schlussfolgerung                 |
+    | `qwen3-235b-a22b-instruct-2507`                     | Qwen3 235B Instruct                   | 128k    | Allgemein                        |
+    | `qwen3-coder-480b-a35b-instruct-turbo`                     | Qwen3 Coder 480B Turbo                | 256k    | Programmierung                   |
+    | `qwen3-5-35b-a3b`                     | Qwen3.5 35B A3B                       | 256k    | Schlussfolgerung, Bildverarbeitung |
+    | `qwen3-next-80b`                     | Qwen3 Next 80B                        | 256k    | Allgemein                        |
+    | `qwen3-vl-235b-a22b`                     | Qwen3 VL 235B (Vision)                | 256k    | Bildverarbeitung                 |
+    | `deepseek-v3.2`                     | DeepSeek V3.2                         | 160k    | Schlussfolgerung, Tools deaktiviert |
+    | `google-gemma-3-27b-it`                     | Google Gemma 3 27B Instruct           | 198k    | Bildverarbeitung                 |
+    | `openai-gpt-oss-120b`                     | OpenAI GPT OSS 120B                   | 128k    | Allgemein                        |
+    | `nvidia-nemotron-3-nano-30b-a3b`                     | NVIDIA Nemotron 3 Nano 30B            | 128k    | Allgemein                        |
+    | `olafangensan-glm-4.7-flash-heretic`                     | GLM 4.7 Flash Heretic                 | 128k    | Schlussfolgerung                 |
+    | `zai-org-glm-4.6`                     | GLM 4.6                               | 198k    | Allgemein                        |
+    | `zai-org-glm-4.7`                     | GLM 4.7                               | 198k    | Schlussfolgerung                 |
+    | `zai-org-glm-4.7-flash`                     | GLM 4.7 Flash                         | 128k    | Schlussfolgerung                 |
+    | `zai-org-glm-5`                     | GLM 5                                 | 198k    | Schlussfolgerung                 |
+    | `minimax-m25`                     | MiniMax M2.5                          | 198k    | Schlussfolgerung                 |
   </Accordion>
 
-  <Accordion title="Anonymisierte Modelle (10) — über den Venice-Proxy">
-    | Modell-ID                        | Name                           | Kontext | Hinweise                               |
-    | -------------------------------- | ------------------------------ | ------- | -------------------------------------- |
-    | `claude-opus-4-6`               | Claude Opus 4.6 (über Venice)  | 1M      | Schlussfolgerung, Bildverarbeitung     |
-    | `claude-sonnet-4-6`               | Claude Sonnet 4.6 (über Venice) | 1M     | Schlussfolgerung, Bildverarbeitung     |
-    | `openai-gpt-54`               | GPT-5.4 (über Venice)          | 1M      | Schlussfolgerung, Bildverarbeitung     |
+  <Accordion title="Anonymisierte Modelle (10) — über Venice-Proxy">
+    | Modell-ID                        | Name                           | Kontext | Hinweise                              |
+    | -------------------------------- | ------------------------------ | ------- | ------------------------------------- |
+    | `claude-opus-4-6`               | Claude Opus 4.6 (über Venice)  | 1M      | Schlussfolgerung, Bildverarbeitung    |
+    | `claude-sonnet-4-6`               | Claude Sonnet 4.6 (über Venice) | 1M     | Schlussfolgerung, Bildverarbeitung    |
+    | `openai-gpt-54`               | GPT-5.4 (über Venice)          | 1M      | Schlussfolgerung, Bildverarbeitung    |
     | `openai-gpt-53-codex`               | GPT-5.3 Codex (über Venice)    | 400k    | Schlussfolgerung, Bildverarbeitung, Programmierung |
-    | `openai-gpt-52`               | GPT-5.2 (über Venice)          | 256k    | Schlussfolgerung                       |
+    | `openai-gpt-52`               | GPT-5.2 (über Venice)          | 256k    | Schlussfolgerung                      |
     | `openai-gpt-52-codex`               | GPT-5.2 Codex (über Venice)    | 256k    | Schlussfolgerung, Bildverarbeitung, Programmierung |
-    | `openai-gpt-4o-2024-11-20`               | GPT-4o (über Venice)           | 128k    | Bildverarbeitung                       |
-    | `openai-gpt-4o-mini-2024-07-18`               | GPT-4o Mini (über Venice)      | 128k    | Bildverarbeitung                       |
-    | `gemini-3-1-pro-preview`               | Gemini 3.1 Pro (über Venice)   | 1M      | Schlussfolgerung, Bildverarbeitung     |
-    | `gemini-3-flash-preview`               | Gemini 3 Flash (über Venice)   | 256k    | Schlussfolgerung, Bildverarbeitung     |
+    | `openai-gpt-4o-2024-11-20`               | GPT-4o (über Venice)           | 128k    | Bildverarbeitung                      |
+    | `openai-gpt-4o-mini-2024-07-18`               | GPT-4o Mini (über Venice)      | 128k    | Bildverarbeitung                      |
+    | `gemini-3-1-pro-preview`               | Gemini 3.1 Pro (über Venice)   | 1M      | Schlussfolgerung, Bildverarbeitung    |
+    | `gemini-3-flash-preview`               | Gemini 3 Flash (über Venice)   | 256k    | Schlussfolgerung, Bildverarbeitung    |
   </Accordion>
 </AccordionGroup>
 
@@ -147,43 +147,43 @@ Format für Tool-Aufrufe verwenden.
 
 ## Modellerkennung
 
-Der oben aufgeführte gebündelte Katalog ist eine manifestgestützte Ausgangsliste. Zur Laufzeit aktualisiert OpenClaw
+Der oben aufgeführte integrierte Katalog ist eine manifestbasierte Ausgangsliste. Zur Laufzeit aktualisiert OpenClaw
 ihn über die Venice-API `/models` und greift auf die Ausgangsliste zurück, wenn
 die API nicht erreichbar ist. Der Endpunkt `/models` ist öffentlich (für die
-Auflistung ist keine Authentifizierung erforderlich), für die Inferenz ist jedoch ein gültiger API-Schlüssel erforderlich.
+Auflistung ist keine Authentifizierung erforderlich), aber für die Inferenz ist ein gültiger API-Schlüssel erforderlich.
 
-Venice akzeptiert möglicherweise weiterhin ausgemusterte Modell-IDs als Provider-eigene Aliase. Der
+Venice akzeptiert möglicherweise weiterhin eingestellte Modell-IDs als vom Provider verwaltete Aliasse. Der
 OpenClaw-Katalog führt nur die von `/models` zurückgegebenen kanonischen Modell-IDs auf.
 
-## DeepSeek-V4-Wiedergabeverhalten
+## Replay-Verhalten von DeepSeek V4
 
 Wenn Venice DeepSeek-V4-Modelle wie `deepseek-v4-pro` oder
-`deepseek-v4-flash` bereitstellt, ergänzt OpenClaw das erforderliche Wiedergabefeld
+`deepseek-v4-flash` bereitstellt, ergänzt OpenClaw das erforderliche Replay-Feld
 `reasoning_content` in Assistentennachrichten, wenn Venice es auslässt, und entfernt `thinking`/
-`reasoning`/`reasoning_effort` aus der Anfrage-Nutzlast (Venice lehnt
-DeepSeeks native Steuerung `thinking` für diese Modelle ab). Diese Wiedergabekorrektur ist
-von den eigenen Denksteuerungen des nativen DeepSeek-Providers getrennt.
+`reasoning`/`reasoning_effort` aus der Anfrage-Payload (Venice lehnt
+DeepSeeks native Steuerung `thinking` bei diesen Modellen ab). Diese Replay-Korrektur ist
+von den eigenen Thinking-Steuerungen des nativen DeepSeek-Providers getrennt.
 
 ## Streaming- und Tool-Unterstützung
 
-| Funktion         | Unterstützung                                          |
-| ---------------- | ------------------------------------------------------ |
-| Streaming        | Alle Modelle                                           |
-| Funktionsaufrufe | Die meisten Modelle; pro Modell deaktiviert, sofern oben angegeben |
-| Bildverarbeitung/Bilder | Oben mit „Vision“ gekennzeichnete Modelle       |
-| JSON-Modus       | Über `response_format`                                |
+| Funktion         | Unterstützung                                             |
+| ---------------- | --------------------------------------------------------- |
+| Streaming        | Alle Modelle                                              |
+| Funktionsaufrufe | Die meisten Modelle; je Modell wie oben angegeben deaktiviert |
+| Bildverarbeitung/Bilder | Oben mit „Vision“ gekennzeichnete Modelle          |
+| JSON-Modus       | Über `response_format`                                   |
 
 ## Preise
 
 Venice verwendet ein kreditbasiertes System. Anonymisierte Modelle kosten ungefähr so viel wie
-die direkte API-Nutzung zuzüglich einer kleinen Venice-Gebühr. Aktuelle Preise finden Sie unter
+die direkte API-Nutzung zuzüglich einer kleinen Venice-Gebühr. Die aktuellen Preise finden Sie unter
 [venice.ai/pricing](https://venice.ai/pricing).
 
-## Verwendungsbeispiele
+## Anwendungsbeispiele
 
 ```bash
 # Privates Standardmodell
-openclaw agent --model venice/kimi-k2-5 --message "Kurzer Funktionscheck"
+openclaw agent --model venice/kimi-k2-5 --message "Kurze Funktionsprüfung"
 
 # Claude Opus über Venice (anonymisiert)
 openclaw agent --model venice/claude-opus-4-6 --message "Fassen Sie diese Aufgabe zusammen"
@@ -195,7 +195,7 @@ openclaw agent --model venice/venice-uncensored-1-2 --message "Entwerfen Sie Opt
 openclaw agent --model venice/qwen3-vl-235b-a22b --message "Prüfen Sie das angehängte Bild"
 
 # Programmiermodell
-openclaw agent --model venice/qwen3-coder-480b-a35b-instruct-turbo --message "Überarbeiten Sie diese Funktion"
+openclaw agent --model venice/qwen3-coder-480b-a35b-instruct-turbo --message "Refaktorieren Sie diese Funktion"
 ```
 
 ## Fehlerbehebung
@@ -207,13 +207,13 @@ openclaw agent --model venice/qwen3-coder-480b-a35b-instruct-turbo --message "Ü
     openclaw models list | grep venice
     ```
 
-    Bestätigen Sie, dass der Schlüssel mit `vapi_` beginnt.
+    Stellen Sie sicher, dass der Schlüssel mit `vapi_` beginnt.
 
   </Accordion>
 
   <Accordion title="Modell nicht verfügbar">
-    Führen Sie `openclaw models list --all --provider venice` aus, um die derzeit
-    verfügbaren Modelle anzuzeigen; der Katalog ändert sich, wenn Venice Modelle hinzufügt oder ausmustert.
+    Führen Sie `openclaw models list --all --provider venice` aus, um die aktuell
+    verfügbaren Modelle anzuzeigen; der Katalog ändert sich, wenn Venice Modelle hinzufügt oder einstellt.
   </Accordion>
 
   <Accordion title="Verbindungsprobleme">
@@ -272,6 +272,6 @@ Weitere Hilfe: [Fehlerbehebung](/de/help/troubleshooting) und [Häufig gestellte
     Venice-API-Referenz und Entwicklerdokumentation.
   </Card>
   <Card title="Preise" href="https://venice.ai/pricing" icon="credit-card">
-    Aktuelle Venice-Guthabentarife und Pläne.
+    Aktuelle Venice-Guthabentarife und -pläne.
   </Card>
 </CardGroup>

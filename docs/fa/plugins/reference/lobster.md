@@ -1,10 +1,10 @@
 ---
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin مربوط به Lobster هستید
-summary: Plugin ابزار گردش‌کار Lobster برای خط‌لوله‌های نوع‌دار و تأییدهای قابل‌ازسرگیری.
+summary: Plugin ابزار گردش‌کار Lobster برای پایپ‌لاین‌های نوع‌دار و تأییدهای قابل‌ازسرگیری.
 title: Plugin Lobster
 x-i18n:
-    generated_at: "2026-07-16T17:02:41Z"
+    generated_at: "2026-07-27T15:55:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin Lobster
 
-Plugin ابزار گردش‌کار Lobster برای خط‌لوله‌های نوع‌دار و تأییدهای ازسرگرفتنی.
+Plugin ابزار گردش کار Lobster برای پایپ‌لاین‌های نوع‌دار و تأییدهای ازسرگرفتنی.
 
 ## توزیع
 

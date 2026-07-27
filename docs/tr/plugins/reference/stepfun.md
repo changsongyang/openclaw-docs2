@@ -2,9 +2,9 @@
 read_when:
     - stepfun pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a StepFun ve StepFun Plan model sağlayıcısı desteği ekler.
-title: StepFun plugin'i
+title: StepFun Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:32:21Z"
+    generated_at: "2026-07-26T23:29:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das Raft-Plugin.
+    - Sie installieren, konfigurieren oder überprüfen das Raft-Plugin
 summary: OpenClaw-Raft-Kanal-Plugin für sichere CLI-Aktivierungsbrücken.
 title: Raft-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:00:27Z"
+    generated_at: "2026-07-26T17:58:40Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

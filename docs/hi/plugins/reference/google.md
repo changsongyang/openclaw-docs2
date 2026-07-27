@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप google Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: OpenClaw में Google, Google Gemini CLI और Google Vertex मॉडल प्रदाता का समर्थन जोड़ता है।
+summary: OpenClaw में Google, Google Gemini CLI और Google Vertex मॉडल प्रदाता समर्थन जोड़ता है।
 title: Google Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:07:32Z"
+    generated_at: "2026-07-27T18:18:22Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ OpenClaw में Google, Google Gemini CLI और Google Vertex मॉडल �
 - पैकेज: `@openclaw/google-plugin`
 - इंस्टॉल मार्ग: OpenClaw में शामिल
 
-## सतह
+## उपलब्ध सतह
 
 प्रदाता: `google`, `google-gemini-cli`, `google-vertex`; अनुबंध: `imageGenerationProviders`, `mediaUnderstandingProviders`, `memoryEmbeddingProviders`, `musicGenerationProviders`, `realtimeVoiceProviders`, `speechProviders`, `usageProviders`, `videoGenerationProviders`, `webSearchProviders`
 

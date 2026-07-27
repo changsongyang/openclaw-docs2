@@ -1,10 +1,10 @@
 ---
 read_when:
-    - tlon Plugin のインストール、設定、または監査を行っています
+    - tlon Pluginをインストール、設定、または監査している場合
 summary: チャットワークフロー向けの OpenClaw Tlon/Urbit チャンネル Plugin。
 title: Tlon Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:06:59Z"
+    generated_at: "2026-07-26T09:44:46Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # Tlon Plugin
 
-チャットワークフロー向けの OpenClaw Tlon/Urbit チャンネル Plugin。
+チャットワークフロー用の OpenClaw Tlon/Urbit チャンネル Plugin。
 
 ## 配布
 
 - パッケージ: `@openclaw/tlon`
 - インストール経路: npm、ClawHub
 
-## 対応領域
+## 対応機能
 
 チャンネル: `tlon`、Skills
 

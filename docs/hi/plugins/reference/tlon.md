@@ -4,7 +4,7 @@ read_when:
 summary: चैट वर्कफ़्लो के लिए OpenClaw Tlon/Urbit चैनल Plugin।
 title: Tlon Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:18:01Z"
+    generated_at: "2026-07-27T19:41:04Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Tlon Plugin
 
-चैट वर्कफ़्लो के लिए OpenClaw Tlon/Urbit चैनल Plugin।
+चैट कार्यप्रवाहों के लिए OpenClaw Tlon/Urbit चैनल Plugin।
 
 ## वितरण
 
 - पैकेज: `@openclaw/tlon`
-- इंस्टॉल करने का माध्यम: npm; ClawHub
+- इंस्टॉल मार्ग: npm; ClawHub
 
 ## उपलब्ध सतह
 

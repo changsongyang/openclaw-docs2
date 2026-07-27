@@ -1,10 +1,10 @@
 ---
 read_when:
     - llm-task Plugin のインストール、設定、または監査を行っています
-summary: ワークフローから呼び出せる、構造化タスク向けの汎用 JSON 専用 LLM ツール。
-title: LLMタスクPlugin
+summary: ワークフローから呼び出せる構造化タスク向けの汎用 JSON 専用 LLM ツール。
+title: LLM タスク Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:04:56Z"
+    generated_at: "2026-07-26T09:36:23Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,13 +16,13 @@ x-i18n:
 
 # LLM Task Plugin
 
-ワークフローから呼び出せる、構造化タスク向けの汎用 JSON 専用 LLM ツール。
+ワークフローから呼び出せる構造化タスク向けの、汎用 JSON 専用 LLM ツールです。
 
 ## 配布
 
 - パッケージ: `@openclaw/llm-task`
-- インストール経路: OpenClaw に同梱
+- インストール方法: OpenClaw に同梱
 
-## サーフェス
+## 公開インターフェース
 
 コントラクト: `tools`

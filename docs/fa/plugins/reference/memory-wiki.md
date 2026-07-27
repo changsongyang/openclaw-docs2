@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی افزونهٔ memory-wiki هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin ویکی حافظه هستید
 summary: کامپایلر پایدار ویکی و مخزن دانش سازگار با Obsidian برای OpenClaw.
 title: Plugin ویکی حافظه
 x-i18n:
-    generated_at: "2026-07-16T17:02:44Z"
+    generated_at: "2026-07-27T15:56:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## توزیع
 
 - بسته: `@openclaw/memory-wiki`
-- مسیر نصب: در OpenClaw گنجانده شده است
+- مسیر نصب: گنجانده‌شده در OpenClaw
 
 ## سطح
 

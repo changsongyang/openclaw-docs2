@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin de transferencia de archivos
-summary: Obtén, enumera y escribe archivos en nodos emparejados mediante comandos de Node específicos. Evita el truncamiento de stdout de bash mediante el uso de base64 sobre node.invoke para archivos binarios de hasta 16 MB.
+summary: Obtén, enumera y escribe archivos en nodos emparejados mediante comandos de nodo específicos. Evita el truncamiento de stdout de bash mediante el uso de base64 a través de node.invoke para archivos binarios de hasta 16 MB.
 title: Plugin de transferencia de archivos
 x-i18n:
-    generated_at: "2026-07-16T11:51:41Z"
+    generated_at: "2026-07-26T04:51:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin de transferencia de archivos
+# Plugin File Transfer
 
-Obtiene, enumera y escribe archivos en nodos emparejados mediante comandos de nodo específicos. Evita el truncamiento de la salida estándar de bash mediante el uso de base64 a través de node.invoke para archivos binarios de hasta 16 MB.
+Obtenga, enumere y escriba archivos en nodos emparejados mediante comandos de nodo dedicados. Evita el truncamiento de stdout de bash utilizando base64 mediante node.invoke para archivos binarios de hasta 16 MB.
 
 ## Distribución
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - google Plugin のインストール、設定、または監査を行っています
+    - google Plugin のインストール、設定、または監査を行っている。
 summary: OpenClaw に Google、Google Gemini CLI、Google Vertex モデルプロバイダーのサポートを追加します。
 title: Google Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:54:46Z"
+    generated_at: "2026-07-26T09:11:38Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ OpenClaw に Google、Google Gemini CLI、Google Vertex モデルプロバイダ
 - パッケージ: `@openclaw/google-plugin`
 - インストール方法: OpenClaw に同梱
 
-## 提供機能
+## サーフェス
 
 プロバイダー: `google`、`google-gemini-cli`、`google-vertex`; コントラクト: `imageGenerationProviders`、`mediaUnderstandingProviders`、`memoryEmbeddingProviders`、`musicGenerationProviders`、`realtimeVoiceProviders`、`speechProviders`、`usageProviders`、`videoGenerationProviders`、`webSearchProviders`
 

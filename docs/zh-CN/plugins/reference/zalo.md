@@ -1,10 +1,10 @@
 ---
 read_when:
-    - 你正在安装、配置或审计 Zalo 插件
+    - 你正在安装、配置或审核 Zalo 插件
 summary: 用于 Bot 和 webhook 聊天的 OpenClaw Zalo 渠道插件。
 title: Zalo 插件
 x-i18n:
-    generated_at: "2026-07-16T11:52:52Z"
+    generated_at: "2026-07-26T06:28:04Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # Zalo 插件
 
-用于 Bot 和 webhook 聊天的 OpenClaw Zalo 渠道插件。
+用于机器人和 webhook 聊天的 OpenClaw Zalo 渠道插件。
 
 ## 分发
 
 - 软件包：`@openclaw/zalo`
-- 安装渠道：npm；ClawHub
+- 安装途径：npm；ClawHub
 
-## 功能界面
+## 接口
 
 渠道：`zalo`
 

@@ -4,7 +4,7 @@ read_when:
 summary: پشتیبانی از ارائه‌دهنده مدل ClawRouter را به OpenClaw اضافه می‌کند.
 title: Plugin ‏ClawRouter
 x-i18n:
-    generated_at: "2026-07-16T17:26:25Z"
+    generated_at: "2026-07-27T16:50:11Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## توزیع
 
 - بسته: `@openclaw/clawrouter`
-- مسیر نصب: همراه OpenClaw ارائه می‌شود
+- مسیر نصب: در OpenClaw گنجانده شده است
 
 ## سطح
 

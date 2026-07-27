@@ -1,11 +1,11 @@
 ---
 read_when:
     - आप किसी बाहरी सिस्टम से TaskFlows को ट्रिगर या संचालित करना चाहते हैं
-    - आप बंडल किए गए webhooks Plugin को कॉन्फ़िगर कर रहे हैं
-summary: 'Webhooks Plugin: विश्वसनीय बाहरी ऑटोमेशन के लिए प्रमाणीकृत TaskFlow इनग्रेस'
+    - आप बंडल किए गए वेबहुक Plugin को कॉन्फ़िगर कर रहे हैं
+summary: 'Webhooks Plugin: विश्वसनीय बाहरी स्वचालन के लिए प्रमाणीकृत TaskFlow इनग्रेस'
 title: Webhooks Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:26:00Z"
+    generated_at: "2026-07-27T20:17:22Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -19,13 +19,13 @@ Webhooks Plugin प्रमाणित HTTP रूट जोड़ता ह�
 सिस्टम (Zapier, n8n, कोई CI जॉब, कोई आंतरिक सेवा) कस्टम Plugin लिखे बिना
 HTTP के माध्यम से प्रबंधित OpenClaw TaskFlows बना और संचालित कर सके।
 
-Plugin Gateway प्रक्रिया के भीतर चलता है। किसी दूरस्थ Gateway के लिए, इसे
-उस होस्ट पर इंस्टॉल और कॉन्फ़िगर करें, फिर Gateway पुनः आरंभ करें। यह बिना किसी
-कॉन्फ़िगर किए गए रूट के आता है, इसलिए कम-से-कम एक रूट जोड़ने तक यह कोई कार्य नहीं करता।
+Plugin Gateway प्रक्रिया के भीतर चलता है। किसी रिमोट Gateway के लिए, इसे
+उस होस्ट पर इंस्टॉल और कॉन्फ़िगर करें, फिर Gateway को पुनः आरंभ करें। यह बिना
+किसी कॉन्फ़िगर किए गए रूट के उपलब्ध होता है, इसलिए कम-से-कम एक रूट जोड़ने तक यह कोई कार्रवाई नहीं करता।
 
 ## रूट कॉन्फ़िगर करें
 
-`plugins.entries.webhooks.config` के अंतर्गत कॉन्फ़िग सेट करें:
+कॉन्फ़िगरेशन को `plugins.entries.webhooks.config` के अंतर्गत सेट करें:
 
 ```json5
 {
@@ -60,38 +60,38 @@ Plugin Gateway प्रक्रिया के भीतर चलता ह�
 | -------------- | -------- | ----------------------------- | --------------------------------------------- |
 | `enabled`      | नहीं       | `true`                        |                                               |
 | `path`         | नहीं       | `/plugins/webhooks/<routeId>` | सभी रूट में अद्वितीय होना चाहिए।                 |
-| `sessionKey`   | हाँ      | -                             | वह सत्र, जिसके पास संबद्ध TaskFlows का स्वामित्व है।        |
-| `secret`       | हाँ      | -                             | सामान्य स्ट्रिंग या SecretRef (नीचे)।          |
+| `sessionKey`   | हाँ      | -                             | वह सेशन जिसके स्वामित्व में संबद्ध TaskFlows हैं।        |
+| `secret`       | हाँ      | -                             | सादा स्ट्रिंग या SecretRef (नीचे)।          |
 | `controllerId` | नहीं       | `webhooks/<routeId>`          | डिफ़ॉल्ट `create_flow` नियंत्रक के रूप में उपयोग किया जाता है। |
-| `description`  | नहीं       | -                             | केवल ऑपरेटर टिप्पणी।                           |
+| `description`  | नहीं       | -                             | केवल ऑपरेटर के लिए टिप्पणी।                           |
 
-`secret` सामान्य स्ट्रिंग या SecretRef स्वीकार करता है: `{ source: "env" | "file" | "exec", provider: "default", id: "..." }`।
+`secret` सादा स्ट्रिंग या SecretRef स्वीकार करता है: `{ source: "env" | "file" | "exec", provider: "default", id: "..." }`।
 
-SecretRefs का समाधान Gateway के स्टार्टअप कॉन्फ़िग स्नैपशॉट में किया जाता है। जब किसी रूट का
-सीक्रेट हल नहीं हो पाता, तब Gateway चलता रहता है और वही रूट
-पंजीकृत लेकिन निष्क्रिय रहता है: अनुरोधों को एक सामान्य प्रमाणीकरण विफलता (`401`) मिलती है।
-अन्य रूट उपलब्ध रहते हैं। SecretRef स्रोत ठीक करें, फिर नया स्नैपशॉट
-सक्रिय करने के लिए Gateway को पुनः लोड या पुनः आरंभ करें। सार्वजनिक अनुरोध पथ पर
+SecretRefs का समाधान Gateway के स्टार्टअप कॉन्फ़िगरेशन स्नैपशॉट में किया जाता है। जब किसी रूट के
+सीक्रेट का समाधान नहीं हो पाता, तो Gateway चलता रहता है और वही रूट
+पंजीकृत लेकिन निष्क्रिय रहता है: अनुरोधों को सामान्य प्रमाणीकरण विफलता मिलती है (`401`)।
+अन्य रूट उपलब्ध रहते हैं। SecretRef स्रोत ठीक करें, फिर नया स्नैपशॉट सक्रिय
+करने के लिए Gateway को रीलोड या पुनः आरंभ करें। सार्वजनिक अनुरोध पथ पर
 SecretRef मानों का समाधान कभी नहीं किया जाता।
 
 ## सुरक्षा मॉडल
 
-हर रूट अपने कॉन्फ़िगर किए गए `sessionKey` के TaskFlow प्राधिकार के साथ कार्य करता है: वह
-उस सत्र के स्वामित्व वाले किसी भी TaskFlow का निरीक्षण और परिवर्तन कर सकता है। TaskFlow अभिगम
+प्रत्येक रूट अपने कॉन्फ़िगर किए गए `sessionKey` के TaskFlow अधिकार के साथ कार्य करता है: यह
+उस सेशन के स्वामित्व वाले किसी भी TaskFlow का निरीक्षण और परिवर्तन कर सकता है। TaskFlow एक्सेस
 हमेशा `api.runtime.tasks.managedFlows.bindSession(...)` के माध्यम से होता है, इसलिए कोई
-रूट अपने संबद्ध सत्र के बाहर कभी कार्य नहीं कर सकता। प्रभाव-क्षेत्र सीमित करने के लिए:
+रूट कभी भी अपने संबद्ध सेशन के बाहर कार्य नहीं कर सकता। प्रभाव क्षेत्र सीमित करने के लिए:
 
-- हर रूट के लिए एक मज़बूत, अद्वितीय सीक्रेट उपयोग करें।
-- इनलाइन सामान्य-पाठ सीक्रेट के बजाय SecretRef को प्राथमिकता दें।
-- रूट को कार्यप्रवाह के अनुकूल सबसे सीमित सत्र से संबद्ध करें।
-- केवल वही विशिष्ट Webhook पथ उजागर करें जिसकी आपको आवश्यकता है।
+- प्रत्येक रूट के लिए एक मजबूत, अद्वितीय सीक्रेट उपयोग करें।
+- इनलाइन सादे टेक्स्ट वाले सीक्रेट के बजाय SecretRef को प्राथमिकता दें।
+- रूट को वर्कफ़्लो के अनुकूल सबसे सीमित सेशन से संबद्ध करें।
+- केवल वही विशिष्ट Webhook पथ उपलब्ध कराएँ जिसकी आपको आवश्यकता है।
 
-हर पथ के लिए अनुरोध प्रबंधन का क्रम: HTTP विधि (केवल `POST`) और
-`Content-Type: application/json` जाँच, फिर निश्चित-विंडो दर सीमा (प्रति पथ+क्लाइंट-IP कुंजी प्रति
-60-सेकंड विंडो में 120 अनुरोध, अधिकतम 4,096 ट्रैक की गई
+प्रत्येक पथ के लिए अनुरोध संसाधन क्रम: HTTP विधि (केवल `POST`) और
+`Content-Type: application/json` जाँच, फिर निश्चित-विंडो दर सीमांकन (प्रत्येक path+client-IP कुंजी पर प्रति 60-सेकंड विंडो में 120
+अनुरोध, अधिकतम 4,096 ट्रैक की गई
 कुंजियाँ), फिर प्रगति पर मौजूद अनुरोधों की सीमा (प्रति कुंजी 8 समवर्ती अनुरोध, अधिकतम
-4,096 ट्रैक की गई कुंजियाँ), फिर साझा-सीक्रेट प्रमाणीकरण, और फिर 256 KB /
-15-सेकंड JSON बॉडी पठन। जो अनुरोध किसी आरंभिक जाँच में विफल होते हैं, वे
+4,096 ट्रैक की गई कुंजियाँ), फिर साझा-सीक्रेट प्रमाणीकरण, फिर 256 KB /
+15-सेकंड की JSON बॉडी रीड। किसी शुरुआती जाँच में विफल होने वाले अनुरोध
 बाद की जाँचों तक कभी नहीं पहुँचते।
 
 ## अनुरोध प्रारूप
@@ -103,37 +103,37 @@ SecretRef मानों का समाधान कभी नहीं क�
 curl -X POST https://gateway.example.com/plugins/webhooks/zapier \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer YOUR_SHARED_SECRET' \
-  -d '{"action":"create_flow","goal":"इनबाउंड कतार की समीक्षा करें"}'
+  -d '{"action":"create_flow","goal":"Review inbound queue"}'
 ```
 
 ## समर्थित क्रियाएँ
 
 | क्रिया             | उद्देश्य                                                            |
 | ------------------ | ------------------------------------------------------------------ |
-| `create_flow`      | रूट के सत्र के लिए प्रबंधित TaskFlow बनाएँ।                 |
+| `create_flow`      | रूट के सेशन के लिए एक प्रबंधित TaskFlow बनाएँ।                 |
 | `get_flow`         | आईडी द्वारा एक TaskFlow प्राप्त करें।                                          |
-| `list_flows`       | रूट के सत्र के TaskFlows सूचीबद्ध करें।                            |
+| `list_flows`       | रूट के सेशन के TaskFlows सूचीबद्ध करें।                            |
 | `find_latest_flow` | सबसे हाल में अपडेट किया गया TaskFlow प्राप्त करें।                          |
 | `resolve_flow`     | अपारदर्शी टोकन द्वारा TaskFlow का समाधान करें।                                |
-| `get_task_summary` | किसी TaskFlow के लिए कार्य सारांश प्राप्त करें।                             |
+| `get_task_summary` | किसी TaskFlow का कार्य सारांश प्राप्त करें।                             |
 | `set_waiting`      | वैकल्पिक स्थिति/प्रतीक्षा डेटा के साथ TaskFlow को प्रतीक्षारत चिह्नित करें।            |
-| `resume_flow`      | प्रतीक्षारत/अवरुद्ध TaskFlow पुनः शुरू करें।                                 |
-| `finish_flow`      | TaskFlow को समाप्त चिह्नित करें।                                          |
+| `resume_flow`      | प्रतीक्षारत/अवरुद्ध TaskFlow को फिर से शुरू करें।                                 |
+| `finish_flow`      | TaskFlow को पूर्ण चिह्नित करें।                                          |
 | `fail_flow`        | TaskFlow को विफल चिह्नित करें।                                            |
-| `request_cancel`   | सहयोगात्मक रद्दीकरण का अनुरोध करें।                                  |
-| `cancel_flow`      | TaskFlow रद्द करें (यदि चाइल्ड अभी भी सक्रिय हैं, तो `202` लौट सकता है)। |
-| `run_task`         | किसी मौजूदा TaskFlow के भीतर प्रबंधित चाइल्ड कार्य बनाएँ।           |
+| `request_cancel`   | सहकारी रद्दीकरण का अनुरोध करें।                                  |
+| `cancel_flow`      | TaskFlow रद्द करें (यदि चाइल्ड अभी भी सक्रिय हैं, तो `202` लौटाया जा सकता है)। |
+| `run_task`         | किसी मौजूदा TaskFlow के भीतर एक प्रबंधित चाइल्ड कार्य बनाएँ।           |
 
 परिवर्तनकारी क्रियाओं (`set_waiting`, `resume_flow`, `finish_flow`, `fail_flow`,
-`request_cancel`) को आशावादी समवर्ती नियंत्रण के लिए `flowId` और
-`expectedRevision` की आवश्यकता होती है; पुराना संशोधन `409 revision_conflict` लौटाता है।
+`request_cancel`) को आशावादी समवर्ती नियंत्रण के लिए `flowId` और `expectedRevision`
+की आवश्यकता होती है; कोई पुराना संशोधन `409 revision_conflict` लौटाता है।
 
 ### `create_flow`
 
 ```json
 {
   "action": "create_flow",
-  "goal": "इनबाउंड कतार की समीक्षा करें",
+  "goal": "Review inbound queue",
   "status": "queued",
   "notifyPolicy": "done_only"
 }
@@ -142,7 +142,7 @@ curl -X POST https://gateway.example.com/plugins/webhooks/zapier \
 ### `run_task`
 
 अनुमत `runtime` मान: `subagent`, `acp`। `startedAt`, `lastEventAt`, और
-`progressSummary` केवल तभी मान्य हैं जब `status`, `"running"` हो; इन्हें
+`progressSummary` केवल तभी मान्य हैं जब `status`, `"running"` हो; उन्हें
 किसी अन्य स्थिति के साथ भेजने पर `400 invalid_request` लौटता है।
 
 ```json
@@ -151,7 +151,7 @@ curl -X POST https://gateway.example.com/plugins/webhooks/zapier \
   "flowId": "flow_123",
   "runtime": "acp",
   "childSessionKey": "agent:main:acp:worker",
-  "task": "अगले संदेश बैच का निरीक्षण करें"
+  "task": "Inspect the next message batch"
 }
 ```
 
@@ -170,22 +170,22 @@ curl -X POST https://gateway.example.com/plugins/webhooks/zapier \
   "ok": false,
   "routeId": "zapier",
   "code": "not_found",
-  "error": "TaskFlow नहीं मिला।",
+  "error": "TaskFlow not found.",
   "result": {}
 }
 ```
 
-प्रवाह और कार्य दृश्य में कभी भी स्वामी/सत्र मेटाडेटा शामिल नहीं होता, इसलिए प्रतिक्रियाएँ
-रूट के संबद्ध `sessionKey` को उजागर नहीं कर सकतीं। `code` मानों में `not_found`,
+प्रवाह और कार्य दृश्य कभी भी स्वामी/सेशन मेटाडेटा शामिल नहीं करते, इसलिए प्रतिक्रियाएँ
+रूट के संबद्ध `sessionKey` को लीक नहीं कर सकतीं। `code` मानों में `not_found`,
 `not_managed`, `revision_conflict`, `persist_failed`, `cancel_requested`,
 `cancel_pending`, `terminal`, `invalid_request`, `request_rejected`, और
 क्रिया-विशिष्ट फ़ॉलबैक कोड (`mutation_rejected`, `create_rejected`,
-`task_not_created`, `cancel_rejected`) शामिल हैं, जब किसी परिवर्तन को ऐसे
-कारण से अस्वीकार किया जाता है जिसे ऊपर दिए गए नामित कोड कवर नहीं करते।
+`task_not_created`, `cancel_rejected`) शामिल हैं, जब कोई परिवर्तन ऐसे
+कारण से अस्वीकार किया जाता है जिसे ऊपर दिए गए नामित कोड में शामिल नहीं किया गया है।
 
 ## संबंधित
 
-- [हुक](/hi/automation/hooks) - आंतरिक घटना-संचालित हुक बनाम यह HTTP-आधारित TaskFlow ब्रिज
-- [Gateway Webhooks (`hooks.*` कॉन्फ़िग)](/hi/automation/cron-jobs#webhooks) - अलग सामान्य Gateway HTTP एंडपॉइंट सुविधा; इस Plugin के रूट के समान नहीं
+- [हुक्स](/hi/automation/hooks) - आंतरिक घटना-संचालित हुक्स बनाम यह HTTP-आधारित TaskFlow ब्रिज
+- [Gateway Webhooks (`hooks.*` कॉन्फ़िगरेशन)](/hi/automation/cron-jobs#webhooks) - अलग सामान्य Gateway HTTP एंडपॉइंट सुविधा; इस Plugin के रूट के समान नहीं
 - [Plugin रनटाइम SDK](/hi/plugins/sdk-runtime)
 - [CLI Webhooks](/hi/cli/webhooks)

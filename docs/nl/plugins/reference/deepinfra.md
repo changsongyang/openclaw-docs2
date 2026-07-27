@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de deepinfra-plugin
 summary: Voegt ondersteuning voor de DeepInfra-modelprovider toe aan OpenClaw.
-title: DeepInfra-Plugin
+title: DeepInfra-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:14:01Z"
+    generated_at: "2026-07-27T05:26:14Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

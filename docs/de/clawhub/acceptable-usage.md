@@ -1,13 +1,13 @@
 ---
 read_when:
-    - Überprüfung von Uploads auf Missbrauch oder Richtlinienverstöße
-    - Moderationsdokumentation oder Reviewer-Runbooks verfassen
-    - Entscheiden, ob ein Skill ausgeblendet oder ein Benutzer gesperrt werden soll
+    - Uploads auf Missbrauch oder Richtlinienverstöße prüfen
+    - Moderationsdokumentation oder Prüfer-Runbooks verfassen
+    - Entscheiden, ob ein Skill ausgeblendet oder ein Benutzer gesperrt werden sollte
 sidebarTitle: Acceptable Usage
 summary: 'Marketplace-Richtlinie: Was ClawHub erlaubt und was dort nicht gehostet wird.'
-title: Zulässige Nutzung
+title: Akzeptable Nutzung
 x-i18n:
-    generated_at: "2026-07-24T03:40:28Z"
+    generated_at: "2026-07-26T17:40:21Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,103 +17,102 @@ x-i18n:
     workflow: 16
 ---
 
-# Zulässige Nutzung
+# Akzeptable Nutzung
 
 ClawHub hostet Skills, Plugins, Pakete und Marketplace-Metadaten für OpenClaw.
-Auf dieser Seite können Sie entscheiden, ob Inhalte oder Veröffentlichungsverhalten auf
+Diese Seite hilft bei der Entscheidung, ob Inhalte oder Veröffentlichungsverhalten auf
 ClawHub gehören.
 
-Diese Regeln gelten dafür, was ein Eintrag tut, zu welchen Ausführungen er Benutzer auffordert, wie er
-sich darstellt und wie Herausgeber die Entdeckungs-, Installations- und
-Vertrauensbereiche von ClawHub nutzen. Informationen zu Moderationsstatus und Kontostatus finden Sie unter
-[Moderation und Kontosicherheit](/clawhub/moderation). Informationen zu Urheberrechtsansprüchen oder Ansprüchen aufgrund anderer Rechte
-finden Sie unter [Anfragen zu Inhaltsrechten](/clawhub/content-rights).
+Diese Regeln gelten dafür, was ein Eintrag tut, welche Ausführungen er von Benutzern
+verlangt, wie er sich darstellt und wie Herausgeber die Entdeckungs-, Installations- und
+Vertrauensfunktionen von ClawHub nutzen. Informationen zu Moderationsstatus und Kontostatus finden Sie unter
+[Moderation und Kontosicherheit](/de/clawhub/moderation). Informationen zu Urheberrechts- oder anderen Rechtsansprüchen
+finden Sie unter [Anfragen zu Inhaltsrechten](/de/clawhub/content-rights).
 
 ## Zulässige Inhalte
 
-ClawHub begrüßt Inhalte, die nützlich und verständlich sind und nach bestem
-Wissen und Gewissen veröffentlicht werden.
+ClawHub begrüßt Inhalte, die nützlich und verständlich sind und nach Treu und Glauben
+veröffentlicht werden.
 
-| Kategorie                                        | Zulässig, wenn                                                                                                                             |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| Entwicklerproduktivität                          | Der Eintrag Benutzern hilft, Software zu erstellen, zu testen, zu migrieren, zu debuggen, zu dokumentieren oder zu betreiben.              |
-| UI-, Daten- und Automatisierungsworkflows         | Der Umfang klar ist, erforderliche Anmeldedaten ausdrücklich genannt sind und riskante Aktionen Prüf-, Probelauf-, Vorschau- oder Bestätigungsabläufe umfassen. |
-| Defensive Sicherheit, Moderation und Missbrauchsprüfung | Das Tool für autorisierte Prüfungen vorgesehen ist, Beweismittel bewahrt und die Grenzen menschlicher Genehmigung klar hält.         |
-| Persönliche oder Team-Workflows                   | Der Workflow einwilligungsbasierte Konten, eine transparente Einrichtung und ausdrückliche Berechtigungen verwendet.                       |
-| Gepflegte Kataloge                                | Jeder Eintrag eigenständig, nützlich, korrekt beschrieben und angemessen gepflegt ist.                                                      |
+| Kategorie                                        | Zulässig, wenn                                                                                                                            |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Entwicklerproduktivität                          | Der Eintrag Benutzern beim Entwickeln, Testen, Migrieren, Debuggen, Dokumentieren oder Betreiben von Software hilft.                      |
+| UI-, Daten- und Automatisierungsabläufe           | Der Umfang klar ist, erforderliche Zugangsdaten ausdrücklich angegeben sind und riskante Aktionen Prüf-, Testlauf-, Vorschau- oder Bestätigungspfade enthalten. |
+| Defensive Sicherheit, Moderation und Missbrauchsprüfung | Das Tool für autorisierte Prüfungen vorgesehen ist, Beweismittel bewahrt und die Grenzen menschlicher Genehmigung klar einhält.      |
+| Persönliche oder Team-Abläufe                     | Der Ablauf auf Einwilligung basierende Konten, eine transparente Einrichtung und ausdrückliche Berechtigungen verwendet.                 |
+| Gepflegte Kataloge                                | Jeder Eintrag eigenständig und nützlich ist, korrekt beschrieben und angemessen gepflegt wird.                                           |
 
 Der Kontext ist entscheidend. Dasselbe Thema kann in einem eng begrenzten defensiven oder
-einwilligungsbasierten Umfeld zulässig und als verpackter Missbrauchsworkflow unzulässig
-sein.
+auf Einwilligung basierenden Umfeld akzeptabel und als Missbrauchsablauf verpackt inakzeptabel sein.
 
 ## Unzulässige Inhalte
 
 ClawHub hostet keine Inhalte, deren Hauptzweck Missbrauch, Täuschung, unsichere
-Ausführung oder die Verletzung von Rechten ist.
+Ausführung oder Rechtsverletzungen sind.
 
-| Kategorie                                                   | Nicht zulässig                                                                                                                                                                                                                                                                                                |
-| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Unbefugter Zugriff oder Umgehung von Sicherheitsmaßnahmen   | Umgehung der Authentifizierung, Kontoübernahme, Missbrauch von Ratenbegrenzungen, Übernahme laufender Anrufe oder Agenten, wiederverwendbarer Sitzungsdiebstahl oder automatische Genehmigung von Kopplungsabläufen für nicht genehmigte Benutzer.                                                               |
-| Plattformmissbrauch und Umgehung von Sperren                 | Verdeckte Konten nach Sperren, Aufwärmen oder Farmen von Konten, vorgetäuschte Interaktionen, Automatisierung mehrerer Konten, Massenveröffentlichungen, Spam-Bots oder Automatisierung zur Vermeidung der Erkennung.                                                                                              |
-| Betrug, Täuschungen und irreführende Finanzworkflows         | Gefälschte Zertifikate oder Rechnungen, irreführende Zahlungsabläufe, betrügerische Kontaktaufnahme, vorgetäuschte soziale Glaubwürdigkeit, Workflows mit synthetischen Identitäten für Betrug oder Tools zum Ausgeben beziehungsweise Abbuchen ohne klare menschliche Genehmigung.                                |
-| In die Privatsphäre eingreifende Datenanreicherung oder Überwachung | Auslesen von Kontakten für Spam, Doxxing, Stalking, Lead-Extraktion in Verbindung mit unaufgeforderter Kontaktaufnahme, verdeckte Überwachung, biometrischer Abgleich ohne Einwilligung oder Verwendung geleakter Daten oder Datensätze aus Sicherheitsverletzungen.                                       |
-| Identitätsnachahmung oder -manipulation ohne Einwilligung    | Gesichtsaustausch, digitale Zwillinge, geklonte Influencer, gefälschte Personas oder andere Tools, die zur Nachahmung oder Irreführung verwendet werden.                                                                                                                                                         |
-| Explizite sexuelle Inhalte oder nicht sicherheitsbeschränkte Generierung von Inhalten für Erwachsene | Generierung nicht jugendfreier Bilder, Videos oder Inhalte; Wrapper für Inhalte für Erwachsene um Drittanbieter-APIs; oder Einträge, deren Hauptzweck explizite sexuelle Inhalte sind.                                                                                                             |
-| Verborgene, unsichere oder irreführende Ausführungsanforderungen | Verschleierte Installationsbefehle, Pipe-to-Shell-Installationsprogramme wie heruntergeladene Inhalte, die ohne klare Prüfbarkeit mit `sh` oder `bash` ausgeführt werden, nicht deklarierte Anforderungen an Secrets oder private Schlüssel, entfernte Ausführung von `npx @latest` ohne klare Prüfbarkeit oder Metadaten, die verschleiern, was der Eintrag tatsächlich zur Ausführung benötigt. |
-| Urheberrechtsverletzendes oder sonstige Rechte verletzendes Material | Erneute Veröffentlichung von Skills, Plugins, Dokumentation, Markenressourcen oder proprietärem Code anderer Personen ohne Genehmigung; Verletzung von Lizenzbedingungen; oder Nachahmung des ursprünglichen Autors oder Herausgebers.                                                               |
+| Kategorie                                                    | Nicht zulässig                                                                                                                                                                                                                                                                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Unbefugter Zugriff oder Umgehung von Sicherheitsmaßnahmen    | Umgehung der Authentifizierung, Kontoübernahme, Missbrauch von Ratenbegrenzungen, Übernahme laufender Anrufe oder Agenten, wiederverwendbarer Diebstahl von Sitzungen oder automatische Genehmigung von Kopplungsabläufen für nicht genehmigte Benutzer.                                                             |
+| Plattformmissbrauch und Umgehung von Sperren                 | Verdeckte Konten nach Sperren, Aufwärmen oder Farmen von Konten, vorgetäuschte Interaktionen, Automatisierung mehrerer Konten, massenhafte Veröffentlichungen, Spam-Bots oder Automatisierung zur Vermeidung der Erkennung.                                                                                            |
+| Betrug, Scams und irreführende Finanzabläufe                 | Gefälschte Zertifikate oder Rechnungen, irreführende Zahlungsabläufe, betrügerische Kontaktaufnahme, vorgetäuschte soziale Bestätigung, Abläufe mit synthetischen Identitäten für Betrug oder Tools zum Ausgeben bzw. Abbuchen von Geld ohne klare menschliche Genehmigung.                                            |
+| In die Privatsphäre eingreifende Datenanreicherung oder Überwachung | Auslesen von Kontaktdaten für Spam, Doxxing, Stalking, Lead-Extraktion in Verbindung mit unaufgeforderter Kontaktaufnahme, verdeckte Überwachung, biometrischer Abgleich ohne Einwilligung oder Verwendung geleakter Daten bzw. Daten aus Sicherheitsverletzungen.                                                |
+| Nachahmung oder Identitätsmanipulation ohne Einwilligung     | Gesichtsaustausch, digitale Zwillinge, geklonte Influencer, gefälschte Persönlichkeiten oder andere Tools, die zum Nachahmen oder Irreführen verwendet werden.                                                                                                                                                      |
+| Explizite sexuelle Inhalte oder nicht sicherheitsbeschränkte Generierung von Inhalten für Erwachsene | Generierung von NSFW-Bildern, -Videos oder -Inhalten; Wrapper für Inhalte für Erwachsene um APIs von Drittanbietern; oder Einträge, deren Hauptzweck explizite sexuelle Inhalte sind.                                                                                                           |
+| Verborgene, unsichere oder irreführende Ausführungsanforderungen | Verschleierte Installationsbefehle, Pipe-to-Shell-Installationsprogramme, etwa heruntergeladene Inhalte, die ohne klare Prüfbarkeit mit `sh` oder `bash` ausgeführt werden, nicht deklarierte Anforderungen an Secrets oder private Schlüssel, entfernte Ausführung von `npx @latest` ohne klare Prüfbarkeit oder Metadaten, die verschleiern, was der Eintrag tatsächlich zur Ausführung benötigt. |
+| Urheberrechtsverletzendes oder anderweitig rechtsverletzendes Material | Erneute Veröffentlichung von Skills, Plugins, Dokumentation, Markenressourcen oder proprietärem Code anderer Personen ohne Erlaubnis; Verletzung von Lizenzbedingungen; oder Nachahmung des ursprünglichen Autors oder Herausgebers.                                                                            |
 
 ## Unzulässiges Marketplace-Verhalten
 
-ClawHub prüft auch, wie Herausgeber den Marketplace nutzen. Verwenden Sie ClawHub nicht, um
-Entdeckung, Metriken, Vertrauenssignale, Moderationssysteme oder die Aufmerksamkeit der
-Benutzer zu manipulieren.
+ClawHub prüft auch, wie Herausgeber den Marketplace nutzen. Verwenden Sie ClawHub nicht,
+um Auffindbarkeit, Kennzahlen, Vertrauenssignale, Moderationssysteme oder die
+Aufmerksamkeit von Benutzern zu manipulieren.
 
 Zu unzulässigem Marketplace-Verhalten gehören:
 
-- massenhaftes Veröffentlichen einer großen Anzahl von mit geringem Aufwand erstellten, duplizierten, als Platzhalter dienenden oder
+- massenhaftes Veröffentlichen einer großen Zahl von mit geringem Aufwand erstellten, duplizierten, als Platzhalter dienenden oder
   maschinell generierten Einträgen, die keinen echten Nutzen für Benutzer zu haben scheinen
-- Überfluten von Such- oder Kategoriebereichen mit nahezu identischen Skills oder Plugins
-- Veröffentlichen Hunderter Einträge mit geringer oder keiner Nutzung, Pflege, Klarheit
-  der Quellen oder nennenswerten Abgrenzung
-- künstliches Erhöhen von Installationen, Downloads, Sternen oder anderen Interaktionsmetriken
+- Überfluten von Such- oder Kategorieansichten mit nahezu identischen Skills oder Plugins
+- Veröffentlichen Hunderter Einträge mit geringer oder keiner Nutzung, Pflege, Quelltransparenz
+  oder sinnvollen Unterscheidung
+- künstliches Aufblähen von Installationen, Downloads, Sternen oder anderen Interaktionskennzahlen
   durch Automatisierung, Selbstinstallationsschleifen, gefälschte Konten, koordinierte
   Aktivitäten, bezahlte Interaktionen oder anderes nicht organisches Verhalten
 - Erstellen oder Wechseln von Konten zur Umgehung von Moderation, Sperren, Herausgeberbeschränkungen oder
   Marketplace-Prüfungen
-- Irreführen von Benutzern über Eigentumsverhältnisse, Quellen, Funktionen, Sicherheitsstatus,
-  Installationsanforderungen oder die Zugehörigkeit zu einem anderen Projekt oder Herausgeber
+- Irreführen von Benutzern hinsichtlich Eigentum, Quelle, Fähigkeiten, Sicherheitsstatus,
+  Installationsanforderungen oder Zugehörigkeit zu einem anderen Projekt oder Herausgeber
 - wiederholtes Hochladen von Inhalten, die bereits verborgen, entfernt oder blockiert wurden,
   ohne das zugrunde liegende Problem zu beheben
 
-Veröffentlichungen in großer Zahl stellen nicht automatisch Missbrauch dar. Große Kataloge sind zulässig,
+Das Veröffentlichen großer Mengen stellt nicht automatisch Missbrauch dar. Große Kataloge sind akzeptabel,
 wenn sich die Einträge wesentlich unterscheiden, korrekt beschrieben und gepflegt werden
 und von echten Benutzern verwendet werden. Große Kataloge werden zu einem Vertrauens- und Sicherheitsproblem, wenn
-ein hohes Volumen mit substanzarmen, duplizierten, irreführenden, ungepflegten oder
-künstlich beworbenen Einträgen verbunden ist.
+hohe Mengen mit oberflächlichen, duplizierten, irreführenden, ungepflegten oder
+künstlich beworbenen Einträgen einhergehen.
 
 ## Inhaltsrechte
 
 Wenn Sie der Ansicht sind, dass Inhalte auf ClawHub Ihr Urheberrecht oder andere Rechte verletzen, verwenden Sie
-[Anfragen zu Inhaltsrechten](/clawhub/content-rights). Verwenden Sie normale Marketplace-
-Meldungen nicht für Urheberrechtsansprüche oder Ansprüche aufgrund anderer Rechte, es sei denn, der Eintrag ist zugleich unsicher,
-bösartig oder irreführend.
+[Anfragen zu Inhaltsrechten](/de/clawhub/content-rights). Verwenden Sie normale Marketplace-
+Meldungen nicht für Urheberrechts- oder andere Rechtsansprüche, sofern der Eintrag nicht zugleich unsicher,
+bösartig oder irreführend ist.
 
 ## Prüfung und Durchsetzung
 
 ClawHub kann automatisierte Prüfungen, statistische Missbrauchssignale, Benutzermeldungen und
-Prüfungen durch Mitarbeitende verwenden, um unsichere Inhalte oder missbräuchliches Veröffentlichungsverhalten zu erkennen. Ein Signal
-beweist allein keinen Missbrauch; es hilft ClawHub bei der Entscheidung, was geprüft werden muss.
+Prüfungen durch Mitarbeiter einsetzen, um unsichere Inhalte oder missbräuchliches Veröffentlichungsverhalten zu erkennen. Ein Signal
+beweist für sich allein keinen Missbrauch; es hilft ClawHub bei der Entscheidung, was geprüft werden muss.
 
 Wir können:
 
-- gegen die Regeln verstoßende Einträge verbergen, zurückhalten, entfernen, vorläufig löschen oder, sofern für den Ressourcentyp unterstützt,
+- rechtsverletzende Einträge verbergen, zurückhalten, entfernen, vorläufig löschen oder, sofern für den Ressourcentyp unterstützt,
   endgültig löschen
 - Downloads oder Installationen unsicherer Releases blockieren
 - API-Tokens widerrufen
 - zugehörige Inhalte vorläufig löschen
 - den Veröffentlichungszugriff einschränken
-- wiederholte oder schwerwiegende Verstöße mit einer Sperre ahnden
+- wiederholt oder schwerwiegend gegen die Regeln verstoßende Personen sperren
 
-Bei offensichtlichem Missbrauch garantieren wir nicht, dass vor Durchsetzungsmaßnahmen zunächst eine Warnung erfolgt. Informationen zu Meldungen, Moderationssperren,
+Bei offensichtlichem Missbrauch garantieren wir keine vorherige Warnung. Informationen zu Meldungen, Moderationssperren,
 verborgenen Einträgen, Sperren und Kontostatus finden Sie unter
-[Moderation und Kontosicherheit](/clawhub/moderation).
+[Moderation und Kontosicherheit](/de/clawhub/moderation).

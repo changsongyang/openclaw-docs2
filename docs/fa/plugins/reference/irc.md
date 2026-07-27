@@ -4,7 +4,7 @@ read_when:
 summary: سطح کانال IRC را برای ارسال و دریافت پیام‌های OpenClaw اضافه می‌کند.
 title: Plugin IRC
 x-i18n:
-    generated_at: "2026-07-16T17:27:45Z"
+    generated_at: "2026-07-27T14:28:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## توزیع
 
 - بسته: `@openclaw/irc`
-- مسیر نصب: npm؛ ClawHub: `clawhub:@openclaw/irc`
+- روش نصب: npm؛ ClawHub: `clawhub:@openclaw/irc`
 
 ## سطح
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## مستندات مرتبط
 
-- [irc](/fa/channels/irc)
+- [IRC](/fa/channels/irc)

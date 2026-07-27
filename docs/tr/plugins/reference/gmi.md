@@ -1,10 +1,10 @@
 ---
 read_when:
     - gmi pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: OpenClaw GMI Cloud sağlayıcı Plugin'i.
+summary: OpenClaw GMI Cloud sağlayıcı plugini.
 title: Gmi Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:44:01Z"
+    generated_at: "2026-07-27T00:11:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

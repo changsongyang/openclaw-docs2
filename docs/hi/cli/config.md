@@ -5,20 +5,20 @@ sidebarTitle: Config
 summary: '`openclaw config` के लिए CLI संदर्भ (get/set/patch/unset/file/schema/validate)'
 title: कॉन्फ़िगरेशन
 x-i18n:
-    generated_at: "2026-07-20T16:49:04Z"
+    generated_at: "2026-07-27T19:26:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 8dafc3a8e8c6d27fc86ab6c417593bd753f4326a65768b1cb073bfa6fffceaea
+    source_hash: 4c4f8edb19737070e421c9107f7da8886e5617d9a043d8647666505c7ac9638d
     source_path: cli/config.md
     workflow: 16
 ---
 
-`openclaw.json` के लिए गैर-इंटरैक्टिव सहायक: पथ के अनुसार किसी मान को प्राप्त/सेट/पैच/अनसेट करें, स्कीमा प्रिंट करें, सत्यापन करें या सक्रिय फ़ाइल पथ प्रिंट करें। `openclaw configure` जैसा ही निर्देशित विज़ार्ड खोलने के लिए `openclaw config` को बिना किसी उपकमांड के चलाएँ।
+`openclaw.json` के लिए गैर-इंटरैक्टिव सहायक: पथ के अनुसार कोई मान प्राप्त/सेट/पैच/अनसेट करें, स्कीमा प्रिंट करें, सत्यापन करें, या सक्रिय फ़ाइल पथ प्रिंट करें। `openclaw configure` जैसा ही निर्देशित विज़ार्ड खोलने के लिए `openclaw config` को बिना किसी उपकमांड के चलाएँ।
 
 <Note>
-जब `OPENCLAW_NIX_MODE=1`, OpenClaw `openclaw.json` को अपरिवर्तनीय मानता है। केवल-पढ़ने वाले कमांड (`config get`, `config file`, `config schema`, `config validate`) फिर भी काम करते हैं; कॉन्फ़िगरेशन लेखक इनकार कर देते हैं। इसके बजाय इंस्टॉल के लिए Nix स्रोत संपादित करें; प्रथम-पक्ष nix-openclaw वितरण के लिए, [nix-openclaw त्वरित शुरुआत](https://github.com/openclaw/nix-openclaw#quick-start) का उपयोग करें और `programs.openclaw.config` या `instances.<name>.config` के अंतर्गत मान सेट करें।
+जब `OPENCLAW_NIX_MODE=1`, तब OpenClaw `openclaw.json` को अपरिवर्तनीय मानता है। केवल-पढ़ने वाले कमांड (`config get`, `config file`, `config schema`, `config validate`) फिर भी काम करते हैं; कॉन्फ़िग लेखक इनकार कर देते हैं। इसके बजाय इंस्टॉल के लिए Nix स्रोत संपादित करें; प्रथम-पक्ष nix-openclaw वितरण के लिए, [nix-openclaw त्वरित शुरुआत](https://github.com/openclaw/nix-openclaw#quick-start) का उपयोग करें और मानों को `programs.openclaw.config` या `instances.<name>.config` के अंतर्गत सेट करें।
 </Note>
 
 ## रूट विकल्प
@@ -40,7 +40,7 @@ openclaw config get browser.executablePath
 openclaw config set browser.executablePath "/usr/bin/google-chrome"
 openclaw config set browser.profiles.work.executablePath "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 openclaw config set agents.defaults.heartbeat.every "2h"
-openclaw config set 'agents.list[0].tools.exec.node' "node-id-or-name"
+openclaw config set 'agents.entries.main.tools.exec.node' "node-id-or-name"
 openclaw config set agents.defaults.models '{"openai/gpt-5.4":{}}' --strict-json --merge
 openclaw config set channels.discord.token --ref-provider default --ref-source env --ref-id DISCORD_BOT_TOKEN
 openclaw config set secrets.providers.vaultfile --provider-source file --provider-path /etc/openclaw/secrets.json --provider-mode json
@@ -53,20 +53,20 @@ openclaw config validate --json
 
 ### पथ
 
-डॉट या ब्रैकेट संकेत-पद्धति। शेल उदाहरणों में ब्रैकेट पथों को उद्धरण चिह्नों में रखें, ताकि zsh `[0]` को ग्लोब-विस्तारित न करे:
+डॉट या ब्रैकेट संकेतन। शेल उदाहरणों में ब्रैकेट पथों को उद्धरण चिह्नों में रखें, ताकि zsh `[0]` को ग्लोब-विस्तारित न करे:
 
 ```bash
 openclaw config get agents.defaults.workspace
-openclaw config get 'agents.list[0].id'
-openclaw config get agents.list
-openclaw config set 'agents.list[1].tools.exec.node' "node-id-or-name"
+openclaw config get agents.entries.main
+openclaw config get agents.entries
+openclaw config set 'agents.entries.work.tools.exec.node' "node-id-or-name"
 ```
 
 ### `config get`
 
-रिडैक्ट किए गए कॉन्फ़िगरेशन स्नैपशॉट से एक मान पढ़ता है (सीक्रेट कभी प्रिंट नहीं होते)। `--json` अपरिष्कृत मान को JSON के रूप में प्रिंट करता है; अन्यथा स्ट्रिंग/संख्या/बूलियन बिना आवरण के प्रिंट होते हैं और ऑब्जेक्ट/ऐरे स्वरूपित JSON के रूप में प्रिंट होते हैं।
+संशोधित कॉन्फ़िग स्नैपशॉट से कोई मान पढ़ता है (गोपनीय मान कभी प्रिंट नहीं होते)। `--json` मूल मान को JSON के रूप में प्रिंट करता है; अन्यथा स्ट्रिंग/संख्या/बूलियन बिना आवरण के प्रिंट होते हैं और ऑब्जेक्ट/ऐरे स्वरूपित JSON के रूप में प्रिंट होते हैं।
 
-जब पथ मौजूद नहीं होता, तो `--json` stdout पर `{ "error": "Config path not found: <path>" }` लिखता है और स्थिति 1 के साथ बाहर निकलता है। `--json` के बिना, निदान stderr पर ही रहता है।
+जब पथ अनुपस्थित होता है, तब `--json` stdout पर `{ "error": "Config path not found: <path>" }` लिखता है और स्थिति 1 के साथ बाहर निकलता है। `--json` के बिना, निदान stderr पर ही रहता है।
 
 ```bash
 openclaw config get browser.executablePath
@@ -75,7 +75,7 @@ openclaw config get agents.defaults.model --json
 
 ### `config file`
 
-`OPENCLAW_CONFIG_PATH` या डिफ़ॉल्ट स्थान से हल किया गया सक्रिय कॉन्फ़िगरेशन फ़ाइल पथ प्रिंट करता है। पथ किसी नियमित फ़ाइल को निर्दिष्ट करता है, सिमलिंक को नहीं; [लेखन सुरक्षा](#write-safety) देखें।
+`OPENCLAW_CONFIG_PATH` या डिफ़ॉल्ट स्थान से निर्धारित सक्रिय कॉन्फ़िग फ़ाइल पथ प्रिंट करता है। पथ किसी नियमित फ़ाइल को निर्दिष्ट करता है, सिमलिंक को नहीं; [लेखन सुरक्षा](#write-safety) देखें।
 
 ### `config schema`
 
@@ -83,16 +83,16 @@ openclaw config get agents.defaults.model --json
 
 <AccordionGroup>
   <Accordion title="इसमें क्या शामिल है">
-    - वर्तमान रूट कॉन्फ़िगरेशन स्कीमा और संपादक टूलिंग के लिए एक रूट `$schema` स्ट्रिंग फ़ील्ड।
+    - वर्तमान रूट कॉन्फ़िग स्कीमा, साथ ही संपादक टूलिंग के लिए एक रूट `$schema` स्ट्रिंग फ़ील्ड।
     - Control UI द्वारा उपयोग किया जाने वाला फ़ील्ड `title` / `description` दस्तावेज़ मेटाडेटा।
-    - मेल खाने वाले फ़ील्ड दस्तावेज़ मौजूद होने पर नेस्टेड ऑब्जेक्ट, वाइल्डकार्ड (`*`) और ऐरे-आइटम (`[]`) नोड समान `title` / `description` मेटाडेटा इनहेरिट करते हैं।
+    - जब मेल खाने वाले फ़ील्ड दस्तावेज़ मौजूद हों, तब नेस्टेड ऑब्जेक्ट, वाइल्डकार्ड (`*`), और ऐरे-आइटम (`[]`) नोड समान `title` / `description` मेटाडेटा इनहेरिट करते हैं।
     - `anyOf` / `oneOf` / `allOf` शाखाएँ भी समान दस्तावेज़ मेटाडेटा इनहेरिट करती हैं।
     - रनटाइम मैनिफ़ेस्ट लोड किए जा सकने पर सर्वोत्तम-प्रयास वाला लाइव Plugin + चैनल स्कीमा मेटाडेटा।
-    - वर्तमान कॉन्फ़िगरेशन अमान्य होने पर भी एक साफ़ फ़ॉलबैक स्कीमा।
+    - वर्तमान कॉन्फ़िग अमान्य होने पर भी एक स्वच्छ फ़ॉलबैक स्कीमा।
 
   </Accordion>
   <Accordion title="संबंधित रनटाइम RPC">
-    `config.schema.lookup` एक उथले स्कीमा नोड (`title`, `description`, `type`, `enum`, `const`, सामान्य सीमाएँ), मेल खाते UI संकेत मेटाडेटा और तत्काल चाइल्ड सारांशों के साथ एक सामान्यीकृत कॉन्फ़िगरेशन पथ लौटाता है। Control UI या कस्टम क्लाइंट में पथ-सीमित विस्तृत अन्वेषण के लिए इसका उपयोग करें।
+    `config.schema.lookup` एक सामान्यीकृत कॉन्फ़िग पथ को उथले स्कीमा नोड (`title`, `description`, `type`, `enum`, `const`, सामान्य सीमाएँ), मेल खाने वाले UI संकेत मेटाडेटा और निकटतम चाइल्ड सारांशों के साथ लौटाता है। Control UI या कस्टम क्लाइंट में पथ-स्कोप्ड ड्रिल-डाउन के लिए इसका उपयोग करें।
   </Accordion>
 </AccordionGroup>
 
@@ -103,7 +103,7 @@ openclaw config schema > openclaw.schema.json
 
 ### `config validate`
 
-Gateway शुरू किए बिना सक्रिय स्कीमा के विरुद्ध वर्तमान कॉन्फ़िगरेशन को सत्यापित करता है।
+Gateway शुरू किए बिना वर्तमान कॉन्फ़िग को सक्रिय स्कीमा के विरुद्ध सत्यापित करता है।
 
 ```bash
 openclaw config validate
@@ -111,12 +111,12 @@ openclaw config validate --json
 ```
 
 <Note>
-यदि सत्यापन पहले से विफल हो रहा है, तो `openclaw configure` या `openclaw doctor --fix` से शुरू करें। `openclaw chat` अमान्य-कॉन्फ़िगरेशन गार्ड को बायपास नहीं करता।
+यदि सत्यापन पहले से विफल हो रहा है, तो `openclaw configure` या `openclaw doctor --fix` से शुरू करें। `openclaw chat` अमान्य-कॉन्फ़िग गार्ड को बायपास नहीं करता।
 </Note>
 
 ## मान
 
-जहाँ संभव हो, मान JSON5 के रूप में पार्स होते हैं; अन्यथा उन्हें अपरिष्कृत स्ट्रिंग माना जाता है। बिना स्ट्रिंग फ़ॉलबैक वाले मानक JSON को आवश्यक बनाने के लिए `--strict-json` का उपयोग करें (तब केवल-JSON5 सिंटैक्स, जैसे टिप्पणियाँ, अंतिम कॉमा या बिना उद्धरण वाली कुंजियाँ, अस्वीकार कर दिए जाते हैं)। `--json`, `config set` पर `--strict-json` का एक लीगेसी उपनाम है।
+जहाँ संभव हो, मानों को JSON5 के रूप में पार्स किया जाता है; अन्यथा उन्हें मूल स्ट्रिंग माना जाता है। बिना किसी स्ट्रिंग फ़ॉलबैक के मानक JSON आवश्यक करने के लिए `--strict-json` का उपयोग करें (तब केवल-JSON5 सिंटैक्स, जैसे टिप्पणियाँ, अनुगामी कॉमा या उद्धरण-रहित कुंजियाँ, अस्वीकार कर दिए जाते हैं)। `config set` पर `--json`, `--strict-json` का एक पुराना उपनाम है।
 
 ```bash
 openclaw config set agents.defaults.heartbeat.every "0m"
@@ -124,12 +124,12 @@ openclaw config set gateway.port 19001 --strict-json
 openclaw config set channels.whatsapp.groups '["*"]' --strict-json
 ```
 
-`config get <path> --json` टर्मिनल-स्वरूपित टेक्स्ट के बजाय अपरिष्कृत मान को JSON के रूप में प्रिंट करता है।
+`config get <path> --json` टर्मिनल-स्वरूपित टेक्स्ट के बजाय मूल मान को JSON के रूप में प्रिंट करता है।
 
-जब कोई लेखन `agents.defaults.model` या प्रति-एजेंट `agents.list[].model` को बदलता है, तो OpenClaw लिखने से पहले प्रत्येक बदले हुए प्राथमिक या फ़ॉलबैक को कॉन्फ़िगर किए गए प्रदाता कैटलॉग के माध्यम से हल करता है। अज्ञात मॉडल संदर्भ सक्रिय कॉन्फ़िगरेशन को बदले बिना अस्वीकार कर दिए जाते हैं; उपलब्ध मॉडल देखने के लिए `openclaw models list` चलाएँ।
+जब कोई लेखन `agents.defaults.model` या प्रति-एजेंट `agents.entries.*.model` को बदलता है, तब OpenClaw लिखने से पहले प्रत्येक बदले हुए प्राथमिक या फ़ॉलबैक को कॉन्फ़िगर किए गए प्रदाता कैटलॉग के माध्यम से निर्धारित करता है। अज्ञात मॉडल संदर्भ सक्रिय कॉन्फ़िग को बदले बिना अस्वीकार कर दिए जाते हैं; उपलब्ध मॉडल देखने के लिए `openclaw models list` चलाएँ।
 
 <Note>
-ऑब्जेक्ट असाइनमेंट डिफ़ॉल्ट रूप से लक्ष्य पथ को बदल देता है। आम तौर पर उपयोगकर्ता द्वारा जोड़ी गई प्रविष्टियाँ रखने वाले संरक्षित पथ ऐसे प्रतिस्थापनों से इनकार करते हैं जो मौजूदा प्रविष्टियाँ हटा देंगे, जब तक कि आप `--replace` पास न करें: `agents.defaults.models`, `agents.list`, `models.providers`, `models.providers.<id>`, `models.providers.<id>.models`, `plugins.entries`, और `auth.profiles`।
+ऑब्जेक्ट असाइनमेंट डिफ़ॉल्ट रूप से लक्ष्य पथ को प्रतिस्थापित करता है। सामान्यतः उपयोगकर्ता द्वारा जोड़ी गई प्रविष्टियाँ रखने वाले संरक्षित पथ ऐसे प्रतिस्थापनों को अस्वीकार करते हैं जो मौजूदा प्रविष्टियाँ हटा देंगे, जब तक कि आप `--replace` न दें: `agents.defaults.models`, `agents.entries`, `models.providers`, `models.providers.<id>`, `models.providers.<id>.models`, `plugins.entries`, और `auth.profiles`।
 </Note>
 
 उन मैप में प्रविष्टियाँ जोड़ते समय `--merge` का उपयोग करें:
@@ -139,7 +139,7 @@ openclaw config set agents.defaults.models '{"openai/gpt-5.4":{}}' --strict-json
 openclaw config set models.providers.ollama.models '[{"id":"llama3.2","name":"Llama 3.2"}]' --strict-json --merge
 ```
 
-`--replace` का उपयोग केवल तब करें जब दिया गया मान जानबूझकर संपूर्ण लक्ष्य मान बनना चाहिए।
+`--replace` का उपयोग केवल तभी करें, जब दिया गया मान जानबूझकर पूर्ण लक्ष्य मान बनना चाहिए।
 
 ## `config set` मोड
 
@@ -188,16 +188,16 @@ openclaw config set models.providers.ollama.models '[{"id":"llama3.2","name":"Ll
     openclaw config set --batch-file ./config-set.batch.json --dry-run
     ```
 
-    बैच फ़ाइलें 8 MiB तक सीमित हैं।
+    बैच फ़ाइलें अधिकतम 8 MiB तक सीमित हैं।
 
   </Tab>
 </Tabs>
 
 <Warning>
-असमर्थित रनटाइम-परिवर्तनशील सतहों (उदाहरण के लिए `hooks.token`, `commands.ownerDisplaySecret`, Discord थ्रेड-बाइंडिंग Webhook टोकन और WhatsApp क्रेडेंशियल JSON) पर SecretRef असाइनमेंट अस्वीकार कर दिए जाते हैं। [SecretRef क्रेडेंशियल सतह](/hi/reference/secretref-credential-surface) देखें।
+SecretRef असाइनमेंट असमर्थित रनटाइम-परिवर्तनीय सतहों पर अस्वीकार किए जाते हैं (उदाहरण के लिए `hooks.token`, `commands.ownerDisplaySecret`, Discord थ्रेड-बाइंडिंग Webhook टोकन और WhatsApp क्रेडेंशियल JSON)। [SecretRef क्रेडेंशियल सतह](/hi/reference/secretref-credential-surface) देखें।
 </Warning>
 
-बैच पार्सिंग हमेशा बैच पेलोड (`--batch-json`/`--batch-file`) को सत्य का स्रोत मानती है; `--strict-json` / `--json` बैच पार्सिंग के व्यवहार को नहीं बदलते।
+बैच पार्सिंग हमेशा बैच पेलोड (`--batch-json`/`--batch-file`) को सत्य का स्रोत मानती है; `--strict-json` / `--json` बैच पार्सिंग व्यवहार को नहीं बदलते।
 
 JSON पथ/मान मोड सीधे SecretRefs और प्रदाताओं के लिए भी काम करता है:
 
@@ -213,7 +213,7 @@ openclaw config set secrets.providers.vaultfile \
 
 ### प्रदाता बिल्डर फ़्लैग
 
-प्रदाता बिल्डर लक्ष्यों को पथ के रूप में `secrets.providers.<alias>` का उपयोग करना चाहिए।
+प्रदाता बिल्डर लक्ष्यों में पथ के रूप में `secrets.providers.<alias>` का उपयोग होना आवश्यक है।
 
 <AccordionGroup>
   <Accordion title="सामान्य फ़्लैग">
@@ -247,7 +247,7 @@ openclaw config set secrets.providers.vaultfile \
   </Accordion>
 </AccordionGroup>
 
-सुदृढ़ीकृत exec प्रदाता का उदाहरण:
+सुदृढ़ किया गया exec प्रदाता उदाहरण:
 
 ```bash
 openclaw config set secrets.providers.vault \
@@ -263,14 +263,14 @@ openclaw config set secrets.providers.vault \
 
 ## `config patch`
 
-कई पथ-आधारित `config set` कमांड चलाने के बजाय कॉन्फ़िगरेशन-आकृति वाला JSON5 पैच पेस्ट या पाइप करें। ऑब्जेक्ट पुनरावर्ती रूप से मर्ज होते हैं; ऐरे और स्केलर मान लक्ष्य को प्रतिस्थापित करते हैं; `null` लक्ष्य पथ को हटाता है।
+कई पथ-आधारित `config set` कमांड चलाने के बजाय कॉन्फ़िग-आकार का JSON5 पैच चिपकाएँ या पाइप करें। ऑब्जेक्ट पुनरावर्ती रूप से मर्ज होते हैं; ऐरे और स्केलर मान लक्ष्य को प्रतिस्थापित करते हैं; `null` लक्ष्य पथ को हटाता है।
 
 ```bash
 openclaw config patch --file ./openclaw.patch.json5 --dry-run
 openclaw config patch --file ./openclaw.patch.json5
 ```
 
-पैच फ़ाइलें 8 MiB तक सीमित हैं। पाइप किए गए `--stdin` पैच 1 MiB तक सीमित हैं।
+पैच फ़ाइलें अधिकतम 8 MiB तक सीमित हैं। पाइप किए गए `--stdin` पैच अधिकतम 1 MiB तक सीमित हैं।
 
 दूरस्थ सेटअप स्क्रिप्ट के लिए stdin के माध्यम से पैच पाइप करें:
 
@@ -317,11 +317,11 @@ ssh user@gateway-host 'openclaw config patch --stdin' < ./openclaw.patch.json5
 openclaw config patch --file ./discord.patch.json5 --replace-path 'channels.discord.guilds["123"].channels'
 ```
 
-`--dry-run` बिना लिखे स्कीमा और SecretRef की समाधान-क्षमता की जाँच चलाता है। ड्राई रन के दौरान exec-समर्थित SecretRefs डिफ़ॉल्ट रूप से छोड़ दिए जाते हैं; जब आप जानबूझकर चाहते हों कि ड्राई रन प्रदाता कमांड निष्पादित करे, तो `--allow-exec` जोड़ें।
+`--dry-run` बिना लिखे स्कीमा और SecretRef की समाधान-क्षमता की जाँच करता है। ड्राई रन के दौरान Exec-समर्थित SecretRefs डिफ़ॉल्ट रूप से छोड़ दिए जाते हैं; जब आप जानबूझकर चाहते हों कि ड्राई रन प्रदाता कमांड निष्पादित करे, तब `--allow-exec` जोड़ें।
 
 ## ड्राई रन
 
-`--dry-run`, `openclaw.json` को लिखे बिना परिवर्तनों को सत्यापित करता है। यह `config set`, `config patch`, और `config unset` पर उपलब्ध है।
+`--dry-run`, `openclaw.json` लिखे बिना परिवर्तनों को सत्यापित करता है। यह `config set`, `config patch`, और `config unset` पर उपलब्ध है।
 
 ```bash
 openclaw config set channels.discord.token \
@@ -340,26 +340,26 @@ openclaw config set channels.discord.token \
 ```
 
 <AccordionGroup>
-  <Accordion title="ड्राई-रन व्यवहार">
-    - बिल्डर मोड: बदले गए रेफ़रेंस/प्रदाताओं के लिए SecretRef समाधान-क्षमता जाँच चलाता है।
-    - JSON मोड (`--strict-json`, `--json`, या बैच मोड): स्कीमा सत्यापन के साथ SecretRef समाधान-क्षमता जाँच चलाता है।
-    - नीति सत्यापन परिवर्तन के बाद की पूरी कॉन्फ़िगरेशन पर चलता है, इसलिए पैरेंट-ऑब्जेक्ट लेखन (उदाहरण के लिए `hooks` को ऑब्जेक्ट के रूप में सेट करना) असमर्थित-सतह सत्यापन को दरकिनार नहीं कर सकता।
-    - कमांड के दुष्प्रभावों से बचने के लिए exec SecretRef जाँच डिफ़ॉल्ट रूप से छोड़ दी जाती है; इसे सक्षम करने के लिए `--allow-exec` पास करें (इससे प्रदाता कमांड निष्पादित हो सकते हैं)। `--allow-exec` केवल ड्राई रन के लिए है और `--dry-run` के बिना त्रुटि देता है।
+  <Accordion title="ड्राई-रन का व्यवहार">
+    - बिल्डर मोड: बदले गए refs/प्रदाताओं के लिए SecretRef की समाधान-क्षमता की जाँच करता है।
+    - JSON मोड (`--strict-json`, `--json`, या बैच मोड): स्कीमा सत्यापन के साथ SecretRef की समाधान-क्षमता की जाँच करता है।
+    - नीति सत्यापन परिवर्तन के बाद की पूरी कॉन्फ़िगरेशन पर चलता है, इसलिए पैरेंट-ऑब्जेक्ट लेखन (उदाहरण के लिए `hooks` को ऑब्जेक्ट के रूप में सेट करना) असमर्थित सतह के सत्यापन को बायपास नहीं कर सकता।
+    - कमांड के दुष्प्रभावों से बचने के लिए Exec SecretRef जाँच डिफ़ॉल्ट रूप से छोड़ दी जाती है; इसे चुनने के लिए `--allow-exec` पास करें (इससे प्रदाता कमांड निष्पादित हो सकते हैं)। `--allow-exec` केवल ड्राई-रन के लिए है और `--dry-run` के बिना त्रुटि देता है।
 
   </Accordion>
   <Accordion title="--dry-run --json फ़ील्ड">
-    - `ok`: ड्राई रन सफल हुआ या नहीं
+    - `ok`: ड्राई-रन सफल हुआ या नहीं
     - `operations`: मूल्यांकित असाइनमेंट की संख्या
-    - `checks`: स्कीमा/समाधान-क्षमता जाँच चली या नहीं
-    - `checks.resolvabilityComplete`: समाधान-क्षमता जाँच पूरी हुई या नहीं (exec रेफ़रेंस छोड़ दिए जाने पर false)
-    - `refsChecked`: ड्राई रन के दौरान वास्तव में हल किए गए रेफ़रेंस की संख्या
-    - `skippedExecRefs`: `--allow-exec` सेट न होने के कारण छोड़े गए exec रेफ़रेंस की संख्या
+    - `checks`: स्कीमा/समाधान-क्षमता की जाँच चली या नहीं
+    - `checks.resolvabilityComplete`: समाधान-क्षमता की जाँच पूरी हुई या नहीं (exec refs छोड़े जाने पर false)
+    - `refsChecked`: ड्राई-रन के दौरान वास्तव में समाधान किए गए refs की संख्या
+    - `skippedExecRefs`: `--allow-exec` सेट न होने के कारण छोड़े गए exec refs की संख्या
     - `errors`: `ok=false` होने पर संरचित अनुपलब्ध-पथ, स्कीमा, या समाधान-क्षमता विफलताएँ
 
   </Accordion>
 </AccordionGroup>
 
-### JSON आउटपुट संरचना
+### JSON आउटपुट की संरचना
 
 ```json5
 {
@@ -378,7 +378,7 @@ openclaw config set channels.discord.token \
     {
       kind: "missing-path" | "schema" | "resolvability" | "model",
       message: string,
-      ref?: string, // समाधान-क्षमता त्रुटियों के लिए मौजूद
+      ref?: string, // समाधान-क्षमता संबंधी त्रुटियों के लिए मौजूद
     },
   ],
 }
@@ -429,10 +429,10 @@ openclaw config set channels.discord.token \
 </Tabs>
 
 <AccordionGroup>
-  <Accordion title="यदि ड्राई रन विफल हो">
-    - `config schema validation failed`: परिवर्तन के बाद आपकी कॉन्फ़िगरेशन संरचना अमान्य है; पथ/मान या प्रदाता/रेफ़रेंस ऑब्जेक्ट संरचना ठीक करें।
-    - `Config policy validation failed: unsupported SecretRef usage`: उस क्रेडेंशियल को वापस सादे टेक्स्ट/स्ट्रिंग इनपुट में ले जाएँ; SecretRefs को केवल समर्थित सतहों पर रखें।
-    - `SecretRef assignment(s) could not be resolved`: संदर्भित प्रदाता/रेफ़रेंस अभी हल नहीं हो सकता (अनुपलब्ध पर्यावरण चर, अमान्य फ़ाइल पॉइंटर, exec प्रदाता विफलता, या प्रदाता/स्रोत बेमेल)।
+  <Accordion title="यदि ड्राई-रन विफल हो">
+    - `config schema validation failed`: परिवर्तन के बाद आपकी कॉन्फ़िगरेशन संरचना अमान्य है; पथ/मान या प्रदाता/ref ऑब्जेक्ट संरचना ठीक करें।
+    - `Config policy validation failed: unsupported SecretRef usage`: उस क्रेडेंशियल को वापस प्लेनटेक्स्ट/स्ट्रिंग इनपुट में ले जाएँ; SecretRefs को केवल समर्थित सतहों पर रखें।
+    - `SecretRef assignment(s) could not be resolved`: संदर्भित प्रदाता/ref का वर्तमान में समाधान नहीं किया जा सकता (अनुपलब्ध env var, अमान्य फ़ाइल पॉइंटर, exec प्रदाता की विफलता, या प्रदाता/स्रोत का असंगत होना)।
     - `model reference validation failed`: बदला गया टेक्स्ट-मॉडल प्राथमिक या फ़ॉलबैक अज्ञात है; `openclaw models list` चलाएँ और उपलब्ध मॉडल चुनें।
     - `Dry run note: skipped <n> exec SecretRef resolvability check(s)`: यदि आपको exec समाधान-क्षमता सत्यापन चाहिए, तो `--allow-exec` के साथ दोबारा चलाएँ।
     - बैच मोड के लिए, विफल प्रविष्टियाँ ठीक करें और लिखने से पहले `--dry-run` दोबारा चलाएँ।
@@ -442,7 +442,7 @@ openclaw config set channels.discord.token \
 
 ## परिवर्तन लागू करना
 
-प्रत्येक सफल `config set` / `config patch` / `config unset` के बाद, CLI तीन संकेतों में से एक प्रिंट करता है, ताकि आपको पता चले कि Gateway को पुनः आरंभ करना आवश्यक है या नहीं:
+प्रत्येक सफल `config set` / `config patch` / `config unset` के बाद, CLI तीन संकेतों में से एक प्रिंट करता है, ताकि आपको पता चले कि Gateway को पुनः आरंभ करने की आवश्यकता है या नहीं:
 
 | संकेत                                                | अर्थ                                |
 | --------------------------------------------------- | -------------------------------------- |
@@ -450,16 +450,16 @@ openclaw config set channels.discord.token \
 | `Change will apply without restarting the gateway.` | हॉट रीलोड इसे स्वचालित रूप से अपना लेता है।  |
 | `No gateway restart needed.`                        | रनटाइम से संबंधित कुछ भी नहीं बदला।      |
 
-`plugins.entries` (या उसके किसी उपपथ) पर लेखन के लिए हमेशा पुनः आरंभ करना आवश्यक है, क्योंकि CLI यह प्रमाणित नहीं कर सकता कि प्रत्येक Plugin का रीलोड मेटाडेटा लोड है।
+`plugins.entries` (या उसके किसी भी उपपथ) में लेखन के लिए हमेशा पुनः आरंभ आवश्यक होता है, क्योंकि CLI यह प्रमाणित नहीं कर सकता कि प्रत्येक Plugin का रीलोड मेटाडेटा लोड हुआ है।
 
 ## लेखन सुरक्षा
 
-`openclaw config set` और OpenClaw के स्वामित्व वाले अन्य कॉन्फ़िगरेशन राइटर डिस्क पर कमिट करने से पहले परिवर्तन के बाद की पूरी कॉन्फ़िगरेशन को सत्यापित करते हैं। यदि नया पेलोड स्कीमा सत्यापन में विफल होता है या विनाशकारी ओवरराइट जैसा दिखता है, तो सक्रिय कॉन्फ़िगरेशन को अपरिवर्तित रखा जाता है और अस्वीकृत पेलोड को उसके पास `openclaw.json.rejected.*` के रूप में सहेजा जाता है।
+`openclaw config set` और OpenClaw के स्वामित्व वाले अन्य कॉन्फ़िगरेशन राइटर, डिस्क पर कमिट करने से पहले परिवर्तन के बाद की पूरी कॉन्फ़िगरेशन को सत्यापित करते हैं। यदि नया पेलोड स्कीमा सत्यापन में विफल होता है या विनाशकारी ओवरराइट जैसा दिखता है, तो सक्रिय कॉन्फ़िगरेशन को अपरिवर्तित छोड़ा जाता है और अस्वीकृत पेलोड को उसके पास `openclaw.json.rejected.*` के रूप में सहेजा जाता है।
 
-OpenClaw के स्वामित्व वाले लेखन JSON5 को मानक JSON के रूप में पुनः क्रमबद्ध करते हैं। जब स्रोत में टिप्पणियाँ होती हैं, तो राइटर उन्हें हटाने से ठीक पहले चेतावनी देता है; यदि टिप्पणियों को सुरक्षित रखना महत्वपूर्ण है, तो सीधे एडिटर का उपयोग करें।
+OpenClaw के स्वामित्व वाले लेखन JSON5 को मानक JSON के रूप में फिर से क्रमबद्ध करते हैं। जब स्रोत में टिप्पणियाँ होती हैं, तो राइटर उन्हें हटाने से ठीक पहले चेतावनी देता है; टिप्पणियाँ सुरक्षित रखना महत्वपूर्ण हो तो सीधे एडिटर का उपयोग करें।
 
 <Warning>
-सक्रिय कॉन्फ़िगरेशन पथ एक नियमित फ़ाइल होना चाहिए। सिमलिंक किए गए `openclaw.json` लेआउट लेखन के लिए असमर्थित हैं; इसके बजाय वास्तविक फ़ाइल की ओर सीधे संकेत करने के लिए `OPENCLAW_CONFIG_PATH` का उपयोग करें।
+सक्रिय कॉन्फ़िगरेशन पथ एक नियमित फ़ाइल होना चाहिए। सिमलिंक किए गए `openclaw.json` लेआउट लेखन के लिए असमर्थित हैं; इसके बजाय वास्तविक फ़ाइल को सीधे इंगित करने के लिए `OPENCLAW_CONFIG_PATH` का उपयोग करें।
 </Warning>
 
 छोटे संपादनों के लिए CLI लेखन को प्राथमिकता दें:
@@ -470,7 +470,7 @@ openclaw config set gateway.reload.mode hybrid
 openclaw config validate
 ```
 
-यदि कोई लेखन अस्वीकार हो जाए, तो सहेजे गए पेलोड का निरीक्षण करें और पूरी कॉन्फ़िगरेशन संरचना ठीक करें:
+यदि कोई लेखन अस्वीकार हो जाता है, तो सहेजे गए पेलोड का निरीक्षण करें और पूरी कॉन्फ़िगरेशन संरचना ठीक करें:
 
 ```bash
 CONFIG="$(openclaw config file)"
@@ -478,19 +478,19 @@ ls -lt "$CONFIG".rejected.* 2>/dev/null | head
 openclaw config validate
 ```
 
-सीधे एडिटर से लेखन की अनुमति अभी भी है, लेकिन चल रहा Gateway सत्यापन होने तक उन्हें अविश्वसनीय मानता है। अमान्य सीधे संपादन स्टार्टअप को विफल करते हैं या हॉट रीलोड द्वारा छोड़ दिए जाते हैं; Gateway `openclaw.json` को दोबारा नहीं लिखता। उपसर्गयुक्त/ओवरराइट हुई कॉन्फ़िगरेशन को सुधारने या अंतिम ज्ञात-सही प्रति पुनर्स्थापित करने के लिए `openclaw doctor --fix` चलाएँ। [Gateway समस्या निवारण](/hi/gateway/troubleshooting#gateway-rejected-invalid-config) देखें।
+सीधे एडिटर से लिखना अभी भी अनुमत है, लेकिन चल रहा Gateway सत्यापन होने तक उन्हें अविश्वसनीय मानता है। अमान्य सीधे संपादन स्टार्टअप को विफल कर देते हैं या हॉट रीलोड द्वारा छोड़ दिए जाते हैं; Gateway `openclaw.json` को फिर से नहीं लिखता। उपसर्गयुक्त/ओवरराइट की गई कॉन्फ़िगरेशन की मरम्मत करने या अंतिम ज्ञात-सही प्रति पुनर्स्थापित करने के लिए `openclaw doctor --fix` चलाएँ। [Gateway समस्या निवारण](/hi/gateway/troubleshooting#gateway-rejected-invalid-config) देखें।
 
-पूरी फ़ाइल की पुनर्प्राप्ति केवल doctor मरम्मत के लिए आरक्षित है। Plugin स्कीमा परिवर्तन या `minHostVersion` असंगति, मॉडल, प्रदाता, प्रमाणीकरण प्रोफ़ाइल, चैनल, Gateway एक्सपोज़र, टूल, मेमोरी, ब्राउज़र, या Cron कॉन्फ़िगरेशन जैसी असंबंधित उपयोगकर्ता सेटिंग को वापस लौटाने के बजाय स्पष्ट रूप से त्रुटि देते हैं।
+पूरी फ़ाइल की पुनर्प्राप्ति केवल डॉक्टर द्वारा मरम्मत के लिए आरक्षित है। Plugin स्कीमा परिवर्तन या `minHostVersion` असंगति, मॉडल, प्रदाता, प्रमाणीकरण प्रोफ़ाइल, चैनल, Gateway एक्सपोज़र, टूल, मेमोरी, ब्राउज़र, या Cron कॉन्फ़िगरेशन जैसी असंबंधित उपयोगकर्ता सेटिंग्स को वापस लेने के बजाय स्पष्ट त्रुटि देते हैं।
 
 ## मरम्मत चक्र
 
-`openclaw config validate` सफल होने के बाद, स्थानीय TUI का उपयोग करें ताकि एक एम्बेडेड एजेंट सक्रिय कॉन्फ़िगरेशन की दस्तावेज़ों से तुलना करे, जबकि आप उसी टर्मिनल से प्रत्येक परिवर्तन को सत्यापित करें:
+`openclaw config validate` सफल होने के बाद, स्थानीय TUI का उपयोग करके किसी एम्बेडेड एजेंट से सक्रिय कॉन्फ़िगरेशन की दस्तावेज़ों से तुलना करवाएँ, जबकि आप उसी टर्मिनल से प्रत्येक परिवर्तन को सत्यापित करें:
 
 ```bash
 openclaw chat
 ```
 
-TUI के भीतर, आरंभिक `!` एक शाब्दिक स्थानीय शेल कमांड चलाता है (प्रति सत्र एक बार आने वाले पुष्टिकरण संकेत के बाद):
+TUI के अंदर, आरंभिक `!` एक शाब्दिक स्थानीय शेल कमांड चलाता है (प्रति सत्र एक बार पुष्टिकरण संकेत मिलने के बाद):
 
 ```text
 !openclaw config file
@@ -504,13 +504,13 @@ TUI के भीतर, आरंभिक `!` एक शाब्दिक स
     एजेंट से अपनी वर्तमान कॉन्फ़िगरेशन की संबंधित दस्तावेज़ पृष्ठ से तुलना करने और सबसे छोटा सुधार सुझाने के लिए कहें।
   </Step>
   <Step title="लक्षित संपादन लागू करें">
-    `openclaw config set` या `openclaw configure` से लक्षित संपादन लागू करें।
+    `openclaw config set` या `openclaw configure` के साथ लक्षित संपादन लागू करें।
   </Step>
   <Step title="दोबारा सत्यापित करें">
     प्रत्येक परिवर्तन के बाद `openclaw config validate` दोबारा चलाएँ।
   </Step>
-  <Step title="रनटाइम समस्याओं के लिए doctor">
-    यदि सत्यापन सफल हो, लेकिन रनटाइम अब भी अस्वस्थ हो, तो माइग्रेशन और मरम्मत सहायता के लिए `openclaw doctor` या `openclaw doctor --fix` चलाएँ।
+  <Step title="रनटाइम समस्याओं के लिए डॉक्टर">
+    यदि सत्यापन सफल हो जाता है लेकिन रनटाइम अभी भी अस्वस्थ है, तो माइग्रेशन और मरम्मत सहायता के लिए `openclaw doctor` या `openclaw doctor --fix` चलाएँ।
   </Step>
 </Steps>
 

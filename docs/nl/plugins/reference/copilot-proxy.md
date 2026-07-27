@@ -4,7 +4,7 @@ read_when:
 summary: Voegt ondersteuning voor de Copilot Proxy-modelprovider toe aan OpenClaw.
 title: Copilot Proxy-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:13:47Z"
+    generated_at: "2026-07-27T05:58:50Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

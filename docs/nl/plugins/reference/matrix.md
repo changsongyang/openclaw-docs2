@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de Matrix-plugin
-summary: OpenClaw Matrix-kanaalplugin voor ruimtes en directe berichten.
+summary: OpenClaw Matrix-kanaalplugin voor kamers en privéberichten.
 title: Matrix-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:15:36Z"
+    generated_at: "2026-07-27T05:09:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

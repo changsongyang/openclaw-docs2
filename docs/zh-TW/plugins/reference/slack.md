@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 Slack 外掛
-summary: OpenClaw Slack 頻道外掛，支援頻道、私訊、命令與應用程式事件。
+summary: OpenClaw Slack 頻道外掛，支援頻道、私人訊息、命令與應用程式事件。
 title: Slack 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:53:56Z"
+    generated_at: "2026-07-26T07:51:49Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,9 +16,9 @@ x-i18n:
 
 # Slack 外掛
 
-適用於頻道、私訊、命令和應用程式事件的 OpenClaw Slack 頻道外掛。
+用於頻道、私訊、命令和應用程式事件的 OpenClaw Slack 頻道外掛。
 
-## 發佈
+## 發布
 
 - 套件：`@openclaw/slack`
 - 安裝途徑：npm；ClawHub

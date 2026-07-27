@@ -4,7 +4,7 @@ read_when:
 summary: 用於 OpenClaw 文字訊息的 Twilio SMS 頻道外掛。
 title: SMS 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:55:39Z"
+    generated_at: "2026-07-26T08:06:59Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 
 用於 OpenClaw 文字訊息的 Twilio SMS 頻道外掛。
 
-## 發佈
+## 發布
 
 - 套件：`@openclaw/sms`
 - 安裝途徑：npm；ClawHub：`clawhub:@openclaw/sms`

@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw GMI Cloud प्रदाता Plugin।
 title: Gmi Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:15:17Z"
+    generated_at: "2026-07-27T21:30:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

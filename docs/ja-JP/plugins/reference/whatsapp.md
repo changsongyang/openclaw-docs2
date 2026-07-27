@@ -1,10 +1,10 @@
 ---
 read_when:
-    - WhatsApp Plugin のインストール、設定、または監査を行っています
-summary: WhatsApp Webチャット用のOpenClaw WhatsAppチャンネルPlugin。
+    - WhatsApp Plugin のインストール、設定、または監査を行う場合に使用します
+summary: WhatsApp Web チャット向けの OpenClaw WhatsApp チャンネル Plugin。
 title: WhatsApp Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:57:30Z"
+    generated_at: "2026-07-26T09:54:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,16 +16,16 @@ x-i18n:
 
 # WhatsApp Plugin
 
-WhatsApp Web チャット向けの OpenClaw WhatsApp チャネル Plugin。
+WhatsApp Web チャット向けの OpenClaw WhatsApp チャンネル Plugin。
 
 ## 配布
 
 - パッケージ: `@openclaw/whatsapp`
 - インストール経路: ClawHub: `clawhub:@openclaw/whatsapp`; npm
 
-## 対象領域
+## 対応範囲
 
-チャネル: `whatsapp`; コントラクト: `tools`; Skills
+チャンネル: `whatsapp`; コントラクト: `tools`; Skills
 
 ## 関連ドキュメント
 

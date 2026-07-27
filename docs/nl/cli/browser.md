@@ -1,24 +1,24 @@
 ---
 read_when:
     - Je gebruikt `openclaw browser` en wilt voorbeelden voor veelvoorkomende taken
-    - Je wilt via een nodehost een browser besturen die op een andere machine draait
-    - Je wilt via Chrome MCP verbinding maken met je lokale Chrome waarin je bent ingelogd
+    - Je wilt via een Node-host een browser bedienen die op een andere machine draait
+    - Je wilt via Chrome MCP verbinding maken met je lokale Chrome waarin je bent aangemeld
 summary: CLI-referentie voor `openclaw browser` (levenscyclus, profielen, tabbladen, acties, status en foutopsporing)
 title: Browser
 x-i18n:
-    generated_at: "2026-07-16T15:23:22Z"
+    generated_at: "2026-07-27T05:45:17Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 50e9da3fa6899d830e38d8548313c70b5615c2ed3d70dd372a1fe147ff5db053
+    source_hash: 62eb41248cda87cef96be7b0dfe3e0d36a9d3e1ee55c165bd8e3efd68d1e9a5e
     source_path: cli/browser.md
     workflow: 16
 ---
 
 # `openclaw browser`
 
-Beheer het browserbesturingsoppervlak van OpenClaw en voer browseracties uit: levenscyclus, profielen, tabbladen, momentopnamen, schermafbeeldingen, navigatie, invoer, statusemulatie en foutopsporing.
+Beheer het browserbesturingsvlak van OpenClaw en voer browseracties uit: levenscyclus, profielen, tabbladen, snapshots, schermafbeeldingen, navigatie, invoer, statusemulatie en foutopsporing.
 
 Gerelateerd: [Browsertool](/nl/tools/browser)
 
@@ -26,13 +26,13 @@ Gerelateerd: [Browsertool](/nl/tools/browser)
 
 - `--url <gatewayWsUrl>`: Gateway-WebSocket-URL (standaard uit de configuratie).
 - `--token <token>`: Gateway-token (indien vereist).
-- `--timeout <ms>`: time-out van het verzoek in ms (standaard: `30000`).
+- `--timeout <ms>`: time-out van aanvragen in ms (standaard: `30000`).
 - `--expect-final`: wacht op een definitief antwoord van de Gateway.
 - `--browser-profile <name>`: kies een browserprofiel (standaard: `openclaw` of `browser.defaultProfile`).
 - `--json`: machineleesbare uitvoer (waar ondersteund). Dit is een optie op browserniveau, dus
-  plaats deze vóór de subopdracht voor een ondubbelzinnige vorm, zoals
+  plaats deze vóór het subcommando voor een ondubbelzinnige vorm, zoals
   `openclaw browser --json status`. Plaatsing aan het einde, zoals
-  `openclaw browser status --json`, werkt ook wanneer de geselecteerde onderliggende opdracht
+  `openclaw browser status --json`, werkt ook wanneer het geselecteerde onderliggende commando
   geen eigen `--json` definieert.
 
 ## Snel aan de slag (lokaal)
@@ -48,9 +48,9 @@ Agents kunnen dezelfde gereedheidscontrole uitvoeren met `browser({ action: "doc
 
 ## Snelle probleemoplossing
 
-Als `start` mislukt met `not reachable after start`, los dan eerst problemen met de CDP-gereedheid op. Als `start` en `tabs` slagen, maar `open` of `navigate` mislukt, is het browserbesturingsvlak in orde en wordt de fout meestal veroorzaakt door een blokkering volgens het SSRF-beleid voor navigatie.
+Als `start` mislukt met `not reachable after start`, los dan eerst problemen met de CDP-gereedheid op. Als `start` en `tabs` slagen, maar `open` of `navigate` mislukt, is het browserbesturingsvlak in orde en wordt de fout doorgaans veroorzaakt doordat het SSRF-beleid de navigatie blokkeert.
 
-Minimale volgorde:
+Minimale reeks:
 
 ```bash
 openclaw browser --browser-profile openclaw doctor
@@ -59,7 +59,7 @@ openclaw browser --browser-profile openclaw tabs
 openclaw browser --browser-profile openclaw open https://example.com
 ```
 
-Gedetailleerde richtlijnen: [Probleemoplossing voor de browser](/nl/tools/browser#cdp-startup-failure-vs-navigation-ssrf-block)
+Uitgebreide richtlijnen: [Problemen met de browser oplossen](/nl/tools/browser#cdp-startup-failure-vs-navigation-ssrf-block)
 
 ## Levenscyclus
 
@@ -73,19 +73,19 @@ openclaw browser stop
 openclaw browser --browser-profile openclaw reset-profile
 ```
 
-- `doctor --deep` voegt een live momentopnamecontrole toe: nuttig wanneer de basisgereedheid van CDP groen is, maar je bewijs wilt dat het huidige tabblad kan worden geïnspecteerd.
+- `doctor --deep` voegt een live snapshotcontrole toe: nuttig wanneer de basisgereedheid van CDP in orde is, maar je bewijs wilt dat het huidige tabblad kan worden geïnspecteerd.
 - Voor een actief lokaal beheerd profiel rapporteren `status` en `doctor` diagnostische
-  grafische gegevens uit de cache van Chrome: hardware-/softwareclassificatie, renderer,
-  backend, apparaat/stuurprogramma, details over functies en uitgeschakelde statussen en
-  mogelijkheden voor versnelde video. `openclaw browser --json status` retourneert de volledige gestructureerde nettolading.
+  grafische gegevens uit de cache van Chrome: classificatie als hardware/software, renderer,
+  backend, apparaat/stuurprogramma, details over functies en uitgeschakelde statussen, en mogelijkheden voor
+  versnelde video. `openclaw browser --json status` retourneert de volledige gestructureerde payload.
   Een passieve status start Chrome nooit alleen om deze gegevens te verzamelen.
-- `stop` sluit de actieve besturingssessie en wist tijdelijke emulatie-instellingen, zelfs voor `attachOnly` en externe CDP-profielen waarbij OpenClaw het browserproces niet zelf heeft gestart. Voor lokaal beheerde profielen stopt `stop` ook het gestarte browserproces.
-- `start --headless` geldt alleen voor dat startverzoek en alleen wanneer OpenClaw een lokaal beheerde browser start. Het herschrijft `browser.headless` of de profielconfiguratie niet en heeft geen effect op een browser die al actief is.
+- `stop` sluit de actieve besturingssessie en wist tijdelijke emulatie-overschrijvingen, zelfs voor `attachOnly` en externe CDP-profielen waarbij OpenClaw het browserproces niet zelf heeft gestart. Voor lokaal beheerde profielen stopt `stop` ook het gestarte browserproces.
+- `start --headless` geldt alleen voor die startaanvraag en alleen wanneer OpenClaw een lokaal beheerde browser start. Het herschrijft `browser.headless` of de profielconfiguratie niet en heeft geen effect op een browser die al actief is.
 - Op Linux-hosts zonder `DISPLAY` of `WAYLAND_DISPLAY` worden lokaal beheerde profielen automatisch headless uitgevoerd, tenzij `OPENCLAW_BROWSER_HEADLESS=0`, `browser.headless=false` of `browser.profiles.<name>.headless=false` expliciet om een zichtbare browser vraagt.
 
-## Als de opdracht ontbreekt
+## Als het commando ontbreekt
 
-Als `openclaw browser` een onbekende opdracht is, controleer dan `plugins.allow` in `~/.openclaw/openclaw.json`. Wanneer `plugins.allow` aanwezig is, vermeld dan expliciet de meegeleverde browser-Plugin, tenzij de configuratie al een `browser`-blok op hoofdniveau bevat:
+Als `openclaw browser` een onbekend commando is, controleer dan `plugins.allow` in `~/.openclaw/openclaw.json`. Wanneer `plugins.allow` aanwezig is, vermeld je de meegeleverde browserplugin expliciet, tenzij de configuratie al een `browser`-blok op hoofdniveau bevat:
 
 ```json5
 {
@@ -95,7 +95,7 @@ Als `openclaw browser` een onbekende opdracht is, controleer dan `plugins.allow`
 }
 ```
 
-Een expliciet `browser`-blok op hoofdniveau (bijvoorbeeld `browser.enabled=true` of `browser.profiles.<name>`) activeert de meegeleverde browser-Plugin ook onder een beperkende toelatingslijst voor Plugins.
+Een expliciet `browser`-blok op hoofdniveau (bijvoorbeeld `browser.enabled=true` of `browser.profiles.<name>`) activeert de meegeleverde browserplugin ook bij een beperkende acceptatielijst voor plugins.
 
 Gerelateerd: [Browsertool](/nl/tools/browser#missing-browser-command-or-tool)
 
@@ -103,7 +103,7 @@ Gerelateerd: [Browsertool](/nl/tools/browser#missing-browser-command-or-tool)
 
 Profielen zijn benoemde routeringsconfiguraties voor browsers:
 
-- `openclaw` (standaard): start of koppelt met een speciale door OpenClaw beheerde Chrome-instantie (geïsoleerde map met gebruikersgegevens).
+- `openclaw` (standaard): start of koppelt met een speciaal door OpenClaw beheerd Chrome-exemplaar (geïsoleerde map met gebruikersgegevens).
 - `user`: bestuurt je bestaande aangemelde Chrome-sessie via Chrome DevTools MCP.
 - aangepaste CDP-profielen: verwijzen naar een lokaal of extern CDP-eindpunt.
 
@@ -119,13 +119,13 @@ openclaw browser create-profile --name remote --cdp-url https://browser-host.exa
 openclaw browser delete-profile --name work
 ```
 
-Gebruik bij elke subopdracht een specifiek profiel met `--browser-profile <name>`, bijvoorbeeld `openclaw browser --browser-profile work tabs`.
+Gebruik bij elk subcommando een specifiek profiel met `--browser-profile <name>`, bijvoorbeeld `openclaw browser --browser-profile work tabs`.
 
-Op macOS vermeldt `system-profiles` de echte Chrome-, Brave-, Edge- of Chromium-profielen die op de host beschikbaar zijn. `import-profile` ontsleutelt hun cookies na één toestemmingsprompt van macOS Keychain/Touch ID en injecteert ze in een nieuw door OpenClaw beheerd profiel. Alleen cookies worden geïmporteerd; lokale opslag en IndexedDB blijven ongewijzigd. Sommige Google-sessies gebruiken apparaatsgebonden sessiereferenties (DBSC) en kunnen na het importeren nog steeds vereisen dat je je opnieuw verifieert.
+Op macOS vermeldt `system-profiles` de echte Chrome-, Brave-, Edge- of Chromium-profielen die op de host beschikbaar zijn. `import-profile` ontsleutelt hun cookies na één toestemmingsprompt van macOS Keychain/Touch ID en injecteert ze in een nieuw door OpenClaw beheerd profiel. Alleen cookies worden geïmporteerd; lokale opslag en IndexedDB blijven ongewijzigd. Sommige Google-sessies gebruiken apparaatgebonden sessiereferenties (DBSC) en kunnen na het importeren alsnog vereisen dat je je opnieuw authenticeert.
 
-Wanneer de macOS-app een lokale Gateway gebruikt, kan deze de import eenmaal aanbieden en het geïsoleerde geïmporteerde profiel als standaard instellen voor browsen door agents. Importeren vereist altijd een expliciete klik; een geslaagde import of het sluiten van de melding onderdrukt latere automatische prompts en **Settings → General → Browser login** blijft beschikbaar om opnieuw te importeren.
+Wanneer de macOS-app een lokale Gateway gebruikt, kan deze deze import eenmaal aanbieden en het geïsoleerde geïmporteerde profiel instellen als standaard voor browsen door agents. Importeren vereist altijd een expliciete klik; na een geslaagde import of het sluiten van de prompt worden latere automatische prompts onderdrukt en blijft **Settings → General → Browser login** beschikbaar om opnieuw te importeren.
 
-Importeren van systeemprofielen is standaard ingeschakeld. Stel `browser.allowSystemProfileImport=false` in om zowel door de CLI als door agents geactiveerde imports uit te schakelen. Importeren is lokaal voor de host en kan niet via de browser-Node-proxy worden uitgevoerd.
+Het importeren van systeemprofielen is standaard ingeschakeld. Stel `browser.allowSystemProfileImport=false` in om zowel via de CLI als door agents gestarte imports uit te schakelen. Importeren is lokaal voor de host en kan niet via de browsernodeproxy worden uitgevoerd.
 
 ## Tabbladen
 
@@ -140,13 +140,13 @@ openclaw browser focus docs
 openclaw browser close t1
 ```
 
-`tabs` retourneert eerst `suggestedTargetId`, daarna de stabiele `tabId` (zoals `t1`), het optionele label en de onbewerkte `targetId`. Geef `suggestedTargetId` weer door aan `focus`, `close`, momentopnamen en acties. Wijs een label toe met `open --label`, `tab new --label` of `tab label`; labels, tabblad-id's, onbewerkte doel-id's en unieke voorvoegsels van doel-id's worden allemaal geaccepteerd. Het aanvraagveld heet voor compatibiliteit nog steeds `targetId`, maar accepteert elk van deze tabbladverwijzingen.
+`tabs` retourneert eerst `suggestedTargetId`, daarna de stabiele `tabId` (zoals `t1`), het optionele label en de onbewerkte `targetId`. Geef `suggestedTargetId` terug aan `focus`, `close`, snapshots en acties. Wijs een label toe met `open --label`, `tab new --label` of `tab label`; labels, tabblad-ID's, onbewerkte doel-ID's en unieke voorvoegsels van doel-ID's worden allemaal geaccepteerd. Het aanvraagveld heet voor compatibiliteit nog steeds `targetId`, maar accepteert elk van deze tabbladverwijzingen.
 
-Onbewerkte doel-id's zijn vluchtige diagnostische verwijzingen, geen duurzaam agentgeheugen: wanneer Chromium tijdens navigatie of het verzenden van een formulier het onderliggende onbewerkte doel vervangt, houdt OpenClaw de stabiele `tabId`/het label aan het vervangende tabblad gekoppeld wanneer de overeenkomst kan worden bewezen. Geef de voorkeur aan `suggestedTargetId`.
+Onbewerkte doel-ID's zijn vluchtige diagnostische handles, geen duurzaam geheugen voor agents: wanneer Chromium tijdens navigatie of het verzenden van een formulier het onderliggende onbewerkte doel vervangt, houdt OpenClaw de stabiele `tabId`/het label gekoppeld aan het vervangende tabblad wanneer de overeenkomst kan worden bewezen. Geef de voorkeur aan `suggestedTargetId`.
 
-## Momentopname / schermafbeelding / acties
+## Snapshot / schermafbeelding / acties
 
-Momentopname:
+Snapshot:
 
 ```bash
 openclaw browser snapshot
@@ -162,13 +162,13 @@ openclaw browser screenshot --ref e12
 openclaw browser screenshot --labels
 ```
 
-- `--full-page` is alleen bedoeld voor paginaopnamen; het kan niet worden gecombineerd met `--ref` of `--element`.
-- `existing-session`- / `user`-profielen ondersteunen schermafbeeldingen van pagina's en `--ref`-schermafbeeldingen uit momentopname-uitvoer, maar geen schermafbeeldingen met CSS-`--element`.
-- `--labels` legt de huidige momentopnameverwijzingen over de schermafbeelding. Bij profielen die door Playwright worden ondersteund, werkt dit met `--full-page` (overlay van de volledige pagina), `--ref` (overlay van een elementuitsnede via een ARIA-verwijzing) en `--element` (overlay van een elementuitsnede via een CSS-selector); in modi voor elementuitsneden worden labels relatief ten opzichte van het element geprojecteerd. Het antwoord bevat ook een `annotations`-array (weggelaten wanneer deze leeg is) met het begrenzingsvak van elke verwijzing: `ref`, `number`, `role`, optioneel `name` en `box: {x, y, width, height}` in het coördinatenstelsel van de vastgelegde afbeelding (viewport / volledige pagina / elementrelatief).
+- `--full-page` is alleen bedoeld voor het vastleggen van pagina's; het kan niet worden gecombineerd met `--ref` of `--element`.
+- `existing-session`- / `user`-profielen ondersteunen schermafbeeldingen van pagina's en `--ref`-schermafbeeldingen uit snapshotuitvoer, maar geen schermafbeeldingen met CSS-`--element`.
+- `--labels` legt de huidige snapshotverwijzingen over de schermafbeelding. Op profielen die door Playwright worden ondersteund, werkt dit met `--full-page` (overlay voor de volledige pagina), `--ref` (overlay van een elementuitsnede via ARIA-verwijzing) en `--element` (overlay van een elementuitsnede via CSS-selector); in elementuitsnedemodi worden labels relatief aan het element geprojecteerd. Het antwoord bevat ook een `annotations`-array (weggelaten wanneer leeg) met het begrenzingsvak van elke verwijzing: `ref`, `number`, `role`, optioneel `name` en `box: {x, y, width, height}` in de coördinatenruimte van de vastgelegde afbeelding (viewport / volledige pagina / relatief aan element).
   `existing-session`-profielen renderen een chrome-mcp-overlay op schermafbeeldingen van pagina's, maar gebruiken de Playwright-projectiehelper niet en bevatten geen `annotations`; schermafbeeldingen met CSS-`--element` worden daar niet ondersteund. Zonder Playwright of chrome-mcp zijn schermafbeeldingen met labels niet beschikbaar.
-- `snapshot --urls` voegt gevonden linkbestemmingen toe aan AI-momentopnamen, zodat agents rechtstreekse navigatiedoelen kunnen kiezen in plaats van uitsluitend op basis van linktekst te gokken.
+- `snapshot --urls` voegt gevonden linkbestemmingen toe aan AI-snapshots, zodat agents directe navigatiedoelen kunnen kiezen in plaats van alleen op basis van linktekst te raden.
 
-Navigeren/klikken/typen (UI-automatisering op basis van verwijzingen):
+Navigeren/klikken/typen (op verwijzingen gebaseerde UI-automatisering):
 
 ```bash
 openclaw browser navigate https://example.com
@@ -187,9 +187,9 @@ openclaw browser evaluate --fn 'const title = document.title; return title;'
 openclaw browser evaluate --timeout-ms 30000 --fn 'async () => { await window.ready; return true; }'
 ```
 
-`evaluate --fn` accepteert de bron van een functie, een expressie of een instructieblok. Instructieblokken worden verpakt als asynchrone functies, dus gebruik `return` voor de waarde die je terug wilt krijgen. Gebruik `--timeout-ms` wanneer de functie aan de paginazijde mogelijk langer nodig heeft dan de standaardtime-out voor evaluatie. `browser.evaluateEnabled=false` (standaard: `true`) schakelt zowel `evaluate` als `wait --fn` uit.
+`evaluate --fn` accepteert de broncode van een functie, een expressie of een instructieblok. Instructieblokken worden verpakt als asynchrone functies, dus gebruik `return` voor de waarde die je terug wilt krijgen. Gebruik `--timeout-ms` wanneer de functie aan de paginazijde mogelijk langer nodig heeft dan de standaardtime-out voor evaluatie. `browser.evaluateEnabled=false` (standaard: `true`) schakelt zowel `evaluate` als `wait --fn` uit.
 
-Actieantwoorden retourneren de huidige onbewerkte `targetId` na een door een actie geactiveerde paginavervanging wanneer OpenClaw het vervangende tabblad kan bewijzen. Scripts moeten voor langdurige workflows nog steeds `suggestedTargetId`/labels opslaan en doorgeven.
+Actieantwoorden retourneren de huidige onbewerkte `targetId` na een door een actie veroorzaakte paginavervanging wanneer OpenClaw het vervangende tabblad kan bewijzen. Scripts moeten voor langdurige workflows nog steeds `suggestedTargetId`/labels opslaan en doorgeven.
 
 Hulpmiddelen voor bestanden en dialoogvensters:
 
@@ -202,13 +202,23 @@ openclaw browser dialog --accept
 openclaw browser dialog --dismiss --dialog-id d1
 ```
 
-Beheerde Chrome-profielen slaan gewone door klikken geactiveerde downloads op in de downloadmap van OpenClaw (standaard `/tmp/openclaw/downloads`, of de geconfigureerde tijdelijke hoofdmap). Gebruik `waitfordownload` of `download` wanneer de agent op een specifiek bestand moet wachten en het pad ervan moet retourneren; deze expliciete wachters nemen de volgende download voor hun rekening. Uploads accepteren bestanden uit de tijdelijke hoofdmap voor uploads van OpenClaw en door OpenClaw beheerde inkomende media, waaronder `media://inbound/<id>` en sandbox-relatieve `media/inbound/<id>`-verwijzingen. Geneste mediaverwijzingen, padtraversatie en willekeurige lokale paden worden geweigerd.
+Beheerde Chrome-profielen slaan gewone downloads die door klikken worden gestart op in de downloadmap van OpenClaw (standaard `/tmp/openclaw/downloads`, of de geconfigureerde tijdelijke hoofdmap). Gebruik `waitfordownload` of `download` wanneer de agent op een specifiek bestand moet wachten en het pad ervan moet retourneren; deze expliciete wachters beheren de volgende download. Uploads accepteren bestanden uit de tijdelijke hoofdmap voor uploads van OpenClaw en door OpenClaw beheerde inkomende media, waaronder `media://inbound/<id>` en sandbox-relatieve `media/inbound/<id>`-verwijzingen. Geneste mediaverwijzingen, padtraversal en willekeurige lokale paden worden geweigerd.
 
-Wanneer een actie een modaal dialoogvenster opent, retourneert het actieantwoord `blockedByDialog` met `browserState.dialogs.pending`; geef `--dialog-id` door om er rechtstreeks op te antwoorden. Dialoogvensters die buiten OpenClaw worden afgehandeld, verschijnen onder `browserState.dialogs.recent`.
+Wanneer een actie een modaal dialoogvenster opent, retourneert het actieantwoord `blockedByDialog` met `browserState.dialogs.pending`; geef `--dialog-id` door om het rechtstreeks te beantwoorden. Dialoogvensters die buiten OpenClaw worden afgehandeld, verschijnen onder `browserState.dialogs.recent`.
+
+Batchacties:
+
+```bash
+openclaw browser batch --actions '[{"kind":"wait","timeMs":500},{"kind":"click","ref":"12"},{"kind":"type","ref":"23","text":"hello"}]'
+openclaw browser batch --actions-file plan.json
+openclaw browser batch --actions-file - --continue
+```
+
+`openclaw browser batch` verzendt een `kind="batch"` `/act`-verzoek met geneste `BrowserActRequest`-acties (`wait`, `click`, `type`, `evaluate`, ...) — niet `open`/`navigate`/`snapshot`/`screenshot`, want dat zijn CLI-subopdrachten en geen `/act`-soorten. `--continue` stelt `stopOnError=false` in (standaard wordt bij de eerste fout gestopt); `--target-id` beperkt de hele batch tot één tabblad. Een mislukte geneste actie zorgt ervoor dat de opdracht eindigt met een niet-nulstatus; gebruik `--json` om het geordende `results`-antwoord te behouden. Zie [CLI voor browserbatches](/nl/tools/browser-control#browser-batch-cli) voor het volledige contract (levenscyclus van refs, conflicten tussen doel-ID's, foutoverzicht). `batch` wordt niet ondersteund voor `profile="user"`-profielen/profielen met een bestaande sessie.
 
 ## Status en opslag
 
-Viewport en emulatie:
+Viewport + emulatie:
 
 ```bash
 openclaw browser resize 1280 720
@@ -259,26 +269,26 @@ openclaw browser create-profile --name chrome-port --driver existing-session --c
 openclaw browser --browser-profile chrome-live tabs
 ```
 
-Het standaardpad voor bestaande sessies is automatische Chrome MCP-verbinding uitsluitend op de host. Als de browser al met een DevTools-eindpunt wordt uitgevoerd, geef je `--cdp-url` door zodat Chrome MCP in plaats daarvan verbinding maakt met dat eindpunt. Gebruik voor Docker, Browserless of andere externe configuraties waarvoor Chrome MCP-semantiek niet nodig is een CDP-profiel.
+Het standaardpad voor bestaande sessies is automatische verbinding met Chrome MCP, uitsluitend op de host. Als de browser al met een DevTools-eindpunt wordt uitgevoerd, geef je `--cdp-url` door zodat Chrome MCP in plaats daarvan verbinding maakt met dat eindpunt. Gebruik voor Docker, Browserless of andere externe configuraties waarvoor de semantiek van Chrome MCP niet nodig is, in plaats daarvan een CDP-profiel.
 
 Huidige beperkingen voor bestaande sessies:
 
-- Acties op basis van momentopnamen gebruiken verwijzingen, geen CSS-selectors.
-- `browser.actionTimeoutMs` stelt ondersteunde `act`-aanvragen standaard in op 60000 ms wanneer aanroepers `timeoutMs` weglaten; `timeoutMs` per aanroep heeft nog steeds voorrang.
+- Acties op basis van snapshots gebruiken refs, geen CSS-selectors.
+- Ondersteunde `act`-verzoeken gebruiken een ingebouwde standaardwaarde van 60000 ms wanneer aanroepers `timeoutMs` weglaten; `timeoutMs` per aanroep blijft voorrang houden.
 - `click` ondersteunt alleen klikken met de linkermuisknop.
 - `type` ondersteunt `slowly=true` niet.
 - `press` ondersteunt `delayMs` niet.
 - `hover`, `scrollintoview`, `drag`, `select` en `fill` weigeren time-outoverschrijvingen per aanroep; `evaluate` accepteert `--timeout-ms`.
 - `select` ondersteunt slechts één waarde.
-- `wait --load networkidle` wordt niet ondersteund (werkt met beheerde en onbewerkte/externe CDP-profielen).
-- Voor bestandsuploads zijn `--ref` / `--input-ref` vereist; ze ondersteunen CSS-`--element` niet en ondersteunen één bestand tegelijk.
+- `wait --load networkidle` wordt niet ondersteund (werkt wel voor beheerde en onbewerkte/externe CDP-profielen).
+- Voor bestandsuploads zijn `--ref` / `--input-ref` vereist; ze ondersteunen geen CSS-`--element` en ondersteunen één bestand tegelijk.
 - Dialooghooks ondersteunen `--timeout` niet.
-- Schermafbeeldingen ondersteunen pagina-opnamen en `--ref`, maar geen CSS-`--element`.
-- `responsebody`, onderschepping van downloads, PDF-export en batchacties vereisen nog steeds een beheerde browser of een onbewerkt CDP-profiel.
+- Schermafbeeldingen ondersteunen opnamen van pagina's en `--ref`, maar geen CSS-`--element`.
+- `responsebody`, downloadonderschepping, PDF-export en batchacties vereisen nog steeds een beheerde browser of een onbewerkt CDP-profiel.
 
-## Externe browserbesturing (nodehostproxy)
+## Externe browserbesturing (proxy via nodehost)
 
-Als de Gateway op een andere machine wordt uitgevoerd dan de browser, voer je een **nodehost** uit op de machine waarop Chrome/Brave/Edge/Chromium staat. De Gateway stuurt browseracties via een proxy door naar die node; er is geen afzonderlijke server voor browserbesturing nodig.
+Als de Gateway op een andere machine draait dan de browser, voer je een **nodehost** uit op de machine waarop Chrome/Brave/Edge/Chromium staat. De Gateway stuurt browseracties via een proxy door naar die node; er is geen afzonderlijke server voor browserbesturing vereist.
 
 Gebruik `gateway.nodes.browser.mode` om automatische routering te beheren en `gateway.nodes.browser.node` om een specifieke node vast te zetten als er meerdere verbonden zijn.
 

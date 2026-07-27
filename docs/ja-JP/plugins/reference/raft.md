@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Raft Plugin をインストール、設定、または監査している場合
-summary: 安全な CLI ウェイクブリッジ向け OpenClaw Raft チャンネル Plugin。
+    - raft Plugin のインストール、設定、または監査を行っている場合
+summary: 安全な CLI ウェイクブリッジ用の OpenClaw Raft チャンネル Plugin。
 title: Raft Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:06:26Z"
+    generated_at: "2026-07-26T09:12:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Raft Plugin
 
-安全な CLI ウェイクブリッジ用の OpenClaw Raft チャネル Plugin。
+安全な CLI ウェイクブリッジ用の OpenClaw Raft チャンネル Plugin。
 
 ## 配布
 
@@ -25,7 +25,7 @@ x-i18n:
 
 ## サーフェス
 
-チャネル: `raft`
+チャンネル: `raft`
 
 ## 関連ドキュメント
 

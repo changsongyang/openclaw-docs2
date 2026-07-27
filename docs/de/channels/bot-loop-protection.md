@@ -1,12 +1,12 @@
 ---
 read_when:
     - Von Bots verfasste Kanalnachrichten konfigurieren
-    - Optimierung des Schutzes vor Bot-zu-Bot-Schleifen
+    - Abstimmung des Schutzes vor Bot-zu-Bot-Schleifen
 sidebarTitle: Bot loop protection
 summary: Standardeinstellungen für den Schutz vor Bot-zu-Bot-Schleifen und kanalspezifische Überschreibungen
-title: Schutz vor Bot-Schleifen
+title: Bot-Schleifenschutz
 x-i18n:
-    generated_at: "2026-07-24T04:51:55Z"
+    generated_at: "2026-07-26T18:47:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,26 +16,26 @@ x-i18n:
     workflow: 16
 ---
 
-OpenClaw kann Nachrichten annehmen, die von anderen Bots in Channels verfasst wurden, die `allowBots` unterstützen. Wenn dieser Pfad aktiviert ist, verhindert der Schutz vor Paar-Endlosschleifen, dass zwei Bot-Identitäten einander unbegrenzt antworten.
+OpenClaw kann auf Kanälen, die `allowBots` unterstützen, von anderen Bots verfasste Nachrichten annehmen. Wenn dieser Pfad aktiviert ist, verhindert der Schleifenschutz für Bot-Paare, dass zwei Bot-Identitäten einander unbegrenzt antworten.
 
-Der Schutz wird durch den zentralen Runner für eingehende Antworten durchgesetzt. Jeder unterstützende Channel ordnet sein eingehendes Ereignis generischen Fakten zu: Konto oder Geltungsbereich, Konversations-ID, ID des sendenden Bots und ID des empfangenden Bots. Der Core verfolgt das Teilnehmerpaar in beiden Richtungen (A zu B und B zu A gelten als dasselbe Paar), wendet ein Budget mit gleitendem Zeitfenster an und unterdrückt das Paar für eine Abkühlzeit, nachdem das Budget überschritten wurde.
+Der Schutz wird vom zentralen Runner für eingehende Antworten durchgesetzt. Jeder unterstützende Kanal bildet sein eingehendes Ereignis auf generische Fakten ab: Konto oder Geltungsbereich, Konversations-ID, Bot-ID des Absenders und Bot-ID des Empfängers. Der Kern verfolgt das Teilnehmerpaar in beiden Richtungen (A zu B und B zu A gelten als dasselbe Paar), wendet ein Budget mit gleitendem Zeitfenster an und unterdrückt das Paar für eine Abklingzeit, nachdem das Budget überschritten wurde.
 
 ## Standardwerte
 
-Der Schutz vor Paar-Endlosschleifen ist immer aktiv, wenn ein Channel zulässt, dass von Bots verfasste Nachrichten die Weiterleitung erreichen. Integrierte Standardwerte:
+Der Schleifenschutz für Bot-Paare ist immer aktiv, wenn ein Kanal zulässt, dass von Bots verfasste Nachrichten zur Verarbeitung weitergeleitet werden. Integrierte Standardwerte:
 
-| Schlüssel             | Standardwert | Bedeutung                                                   |
+| Schlüssel             | Standardwert | Bedeutung                                          |
 | -------------------- | ------- | --------------------------------------------------- |
-| `enabled`            | `true`  | Schutz für Channels aktiv, die ihn unterstützen.            |
-| `maxEventsPerWindow` | `20`    | Ereignisse, die ein Bot-Paar innerhalb des Zeitfensters austauschen kann. |
-| `windowSeconds`      | `60`    | Länge des gleitenden Zeitfensters.                           |
-| `cooldownSeconds`    | `60`    | Unterdrückungsdauer, nachdem das Paar das Budget überschreitet. |
+| `enabled`            | `true`  | Schutz für Kanäle aktiv, die ihn unterstützen.      |
+| `maxEventsPerWindow` | `20`    | Ereignisse, die ein Bot-Paar im Zeitfenster austauschen kann. |
+| `windowSeconds`      | `60`    | Länge des gleitenden Zeitfensters.                  |
+| `cooldownSeconds`    | `60`    | Unterdrückungsdauer, nachdem das Paar das Budget überschritten hat. |
 
-Der Schutz wirkt sich nicht auf von Menschen verfasste Nachrichten, Bereitstellungen mit einem einzelnen Bot, die Filterung eigener Nachrichten oder Bot-Antworten aus, die unter dem Budget bleiben.
+Der Schutz wirkt sich nicht auf von Menschen verfasste Nachrichten, Bereitstellungen mit nur einem Bot, die Filterung eigener Nachrichten oder Bot-Antworten aus, die unter dem Budget bleiben.
 
 ## Gemeinsame Standardwerte konfigurieren
 
-Legen Sie `channels.defaults.botLoopProtection` einmal fest, um allen unterstützenden Channels dieselbe Ausgangskonfiguration zuzuweisen. Channels können außerdem spezifischere Überschreibungen bereitstellen; Feishu verwendet absichtlich nur diese gemeinsame Ausgangskonfiguration.
+Legen Sie `channels.defaults.botLoopProtection` einmal fest, um allen unterstützenden Kanälen dieselbe Ausgangskonfiguration zuzuweisen. Kanäle können auch spezifischere Überschreibungen bereitstellen; Feishu verwendet absichtlich nur diese gemeinsame Ausgangskonfiguration.
 
 ```json5
 {
@@ -51,15 +51,15 @@ Legen Sie `channels.defaults.botLoopProtection` einmal fest, um allen unterstüt
 }
 ```
 
-Legen Sie `enabled: false` nur fest, wenn Ihre Channel-Richtlinie Bot-zu-Bot-Konversationen absichtlich ohne automatische Unterdrückung zulässt.
+Legen Sie `enabled: false` nur fest, wenn Ihre Kanalrichtlinie Bot-zu-Bot-Konversationen bewusst ohne automatische Unterdrückung zulässt.
 
-## Nach Channel, Konto oder Raum überschreiben
+## Nach Kanal, Konto oder Raum überschreiben
 
-Unterstützende Channels legen ihre eigene Konfiguration Schlüssel für Schlüssel über den gemeinsamen Standardwert. Rangfolge, beginnend mit der spezifischsten Einstellung:
+Unterstützende Kanäle legen ihre eigene Konfiguration Schlüssel für Schlüssel über den gemeinsamen Standardwert. Prioritätsreihenfolge, beginnend mit der spezifischsten Ebene:
 
-1. `channels.<channel>.<room-or-space>.botLoopProtection`, wenn der Channel Überschreibungen pro Konversation unterstützt
-2. `channels.<channel>.accounts.<account>.botLoopProtection`, wenn der Channel Konten unterstützt
-3. `channels.<channel>.botLoopProtection`, wenn der Channel Standardwerte auf oberster Ebene unterstützt
+1. `channels.<channel>.<room-or-space>.botLoopProtection`, wenn der Kanal konversationsspezifische Überschreibungen unterstützt
+2. `channels.<channel>.accounts.<account>.botLoopProtection`, wenn der Kanal Konten unterstützt
+3. `channels.<channel>.botLoopProtection`, wenn der Kanal Standardwerte auf oberster Ebene unterstützt
 4. `channels.defaults.botLoopProtection`
 5. integrierte Standardwerte
 
@@ -115,14 +115,14 @@ Unterstützende Channels legen ihre eigene Konfiguration Schlüssel für Schlüs
 }
 ```
 
-## Channel-Unterstützung
+## Kanalunterstützung
 
-- Discord: native `author.bot`-Fakten, nach Discord-Konto, Channel und Bot-Paar aufgeschlüsselt.
-- Feishu: native `sender_type=bot`-Fakten für zugelassene, von Bots verfasste Gruppennachrichten, nach Feishu-Konto, Chat und Bot-Paar aufgeschlüsselt. Feishu verwendet nur `channels.defaults.botLoopProtection`.
-- Google Chat: native `sender.type=BOT`-Fakten für akzeptierte, von Bots verfasste Nachrichten, nach Konto, Space und Bot-Paar aufgeschlüsselt.
-- Matrix: konfigurierte Matrix-Bot-Konten, nach Matrix-Konto, Raum und konfiguriertem Bot-Paar aufgeschlüsselt.
-- Slack: native `bot_id`-Fakten für akzeptierte, von Bots verfasste Nachrichten, nach Slack-Konto, Channel und Bot-Paar aufgeschlüsselt.
+- Discord: native `author.bot`-Fakten, nach Discord-Konto, Kanal und Bot-Paar verschlüsselt.
+- Feishu: native `sender_type=bot`-Fakten für zugelassene, von Bots verfasste Gruppennachrichten, nach Feishu-Konto, Chat und Bot-Paar verschlüsselt. Feishu verwendet nur `channels.defaults.botLoopProtection`.
+- Google Chat: native `sender.type=BOT`-Fakten für akzeptierte, von Bots verfasste Nachrichten, nach Konto, Space und Bot-Paar verschlüsselt.
+- Matrix: konfigurierte Matrix-Bot-Konten, nach Matrix-Konto, Raum und konfiguriertem Bot-Paar verschlüsselt.
+- Slack: native `bot_id`-Fakten für akzeptierte, von Bots verfasste Nachrichten, nach Slack-Konto, Kanal und Bot-Paar verschlüsselt.
 
-Channels, die keine zuverlässige Identität des eingehenden Bots bereitstellen, verwenden weiterhin ihre normalen Filter für eigene Nachrichten und Zugriffsrichtlinien. Sie sollten diesen Schutz erst aktivieren, wenn sie beide Teilnehmer des Bot-Paars identifizieren können.
+Kanäle, die keine zuverlässige Identität des eingehenden Bots bereitstellen, verwenden weiterhin ihre normalen Filter für eigene Nachrichten und Zugriffsrichtlinien. Sie sollten diesen Schutz erst aktivieren, wenn sie beide Teilnehmer des Bot-Paars identifizieren können.
 
 Implementierungsdetails für Plugins finden Sie unter [SDK-Laufzeit](/de/plugins/sdk-runtime#reusable-runtime-utilities).

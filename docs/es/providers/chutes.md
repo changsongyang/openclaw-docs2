@@ -2,11 +2,11 @@
 read_when:
     - Quieres usar Chutes con OpenClaw
     - Necesita la ruta de configuración de OAuth o de la clave de API
-    - Se desea configurar el modelo predeterminado, los alias o el comportamiento de detección
+    - Quiere el modelo predeterminado, los alias o el comportamiento de detección
 summary: Configuración de Chutes (OAuth o clave de API, descubrimiento de modelos, alias)
 title: Chutes
 x-i18n:
-    generated_at: "2026-07-19T02:09:51Z"
+    generated_at: "2026-07-26T05:17:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,13 +23,13 @@ API compatible con OpenAI. OpenClaw admite tanto OAuth mediante navegador como a
 | ---------------- | ------------------------------------------------------- |
 | Proveedor        | `chutes`                                      |
 | Plugin           | paquete externo oficial (`@openclaw/chutes-provider`)            |
-| API              | compatible con OpenAI                                   |
+| API              | Compatible con OpenAI                                   |
 | URL base         | `https://llm.chutes.ai/v1`                                      |
-| Autenticación    | OAuth o clave de API (véase a continuación)             |
-| Variables de entorno del entorno de ejecución | `CHUTES_API_KEY`, `CHUTES_OAUTH_TOKEN` |
+| Autenticación    | OAuth o clave de API (véase más abajo)                  |
+| Variables de entorno en tiempo de ejecución | `CHUTES_API_KEY`, `CHUTES_OAUTH_TOKEN` |
 
 `CHUTES_OAUTH_TOKEN` proporciona directamente un token de acceso OAuth ya obtenido
-(por ejemplo, en CI), lo que omite el flujo interactivo mediante navegador descrito a continuación.
+(por ejemplo, en CI), omitiendo el flujo interactivo mediante navegador que se describe a continuación.
 
 ## Instalar el plugin
 
@@ -50,7 +50,7 @@ el catálogo de Chutes.
         ```bash
         openclaw onboard --auth-choice chutes
         ```
-        OpenClaw inicia el flujo mediante navegador de forma local o muestra una URL y un flujo
+        OpenClaw inicia localmente el flujo mediante navegador o muestra una URL y un flujo
         para pegar la redirección en hosts remotos o sin interfaz gráfica. Los tokens OAuth se actualizan
         automáticamente mediante los perfiles de autenticación de OpenClaw.
       </Step>
@@ -77,9 +77,9 @@ Cuando la autenticación de Chutes está disponible, OpenClaw consulta `GET /v1/
 credencial y utiliza los modelos detectados, que se almacenan en caché durante 5 minutos por
 credencial. Si una clave ha caducado o no está autorizada (HTTP 401), OpenClaw vuelve a intentarlo una vez
 sin credenciales. Si la detección sigue sin devolver filas, falla o devuelve cualquier
-otro estado distinto de 2xx, recurre al catálogo estático incluido (tanto la detección
-con clave de API como con OAuth utiliza esta misma vía). Si la detección falla durante el inicio,
-el catálogo estático se utiliza automáticamente.
+otro estado distinto de 2xx, se utiliza como alternativa el catálogo estático incluido (tanto la detección
+mediante clave de API como mediante OAuth emplean esta misma ruta). Si la detección falla durante el inicio, el
+catálogo estático se utiliza automáticamente.
 
 ## Alias predeterminados
 
@@ -126,7 +126,7 @@ Ejecute `openclaw models list --all --provider chutes` para consultar la lista c
 
     | Variable | Finalidad |
     | -------- | --------- |
-    | `CHUTES_CLIENT_ID` | Id. de cliente de OAuth (se solicita si no se ha definido) |
+    | `CHUTES_CLIENT_ID` | Id. de cliente de OAuth (se solicita si no está definido) |
     | `CHUTES_CLIENT_SECRET` | Secreto de cliente de OAuth |
     | `CHUTES_OAUTH_REDIRECT_URI` | URI de redirección (valor predeterminado: `http://127.0.0.1:1456/oauth-callback`) |
     | `CHUTES_OAUTH_SCOPES` | Ámbitos separados por espacios (valor predeterminado: `openid profile chutes:invoke`) |
@@ -138,7 +138,7 @@ Ejecute `openclaw models list --all --provider chutes` para consultar la lista c
 
   <Accordion title="Notas">
     - Los modelos de Chutes se registran como `chutes/<model-id>`.
-    - Chutes no informa del uso de tokens durante la transmisión (`supportsUsageInStreaming: false`); los totales de uso se muestran cuando se completa la transmisión.
+    - Chutes no informa del uso de tokens durante la transmisión (`supportsUsageInStreaming: false`); los totales de uso aparecen cuando finaliza la transmisión.
 
   </Accordion>
 </AccordionGroup>
@@ -147,10 +147,10 @@ Ejecute `openclaw models list --all --provider chutes` para consultar la lista c
 
 <CardGroup cols={2}>
   <Card title="Selección de modelos" href="/es/concepts/model-providers" icon="layers">
-    Reglas de los proveedores, referencias de modelos y comportamiento de conmutación por error.
+    Reglas de proveedores, referencias de modelos y comportamiento de conmutación por error.
   </Card>
   <Card title="Referencia de configuración" href="/es/gateway/configuration-reference" icon="gear">
-    Esquema de configuración completo, incluida la configuración de los proveedores.
+    Esquema de configuración completo, incluidos los ajustes de proveedores.
   </Card>
   <Card title="Chutes" href="https://chutes.ai" icon="arrow-up-right-from-square">
     Panel de control y documentación de la API de Chutes.

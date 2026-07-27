@@ -2,9 +2,9 @@
 read_when:
     - Canvas pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
 summary: Eşleştirilmiş Node'lar için deneysel Canvas denetimi ve A2UI işleme yüzeyleri.
-title: Canvas plugini
+title: Canvas Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:42:58Z"
+    generated_at: "2026-07-26T23:32:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Canvas plugin'i
+# Canvas plugin
 
 Eşleştirilmiş Node'lar için deneysel Canvas denetimi ve A2UI işleme yüzeyleri.
 

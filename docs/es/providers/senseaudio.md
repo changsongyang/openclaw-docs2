@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Se desea usar la conversión de voz a texto de SenseAudio para los archivos de audio adjuntos
-    - Se necesita la variable de entorno de la clave de API de SenseAudio o la ruta de configuración de audio.
-summary: Conversión de voz a texto por lotes con SenseAudio para notas de voz entrantes
+    - Quieres usar la conversión de voz a texto de SenseAudio para los archivos de audio adjuntos
+    - Se necesita la variable de entorno de la clave de API de SenseAudio o la ruta de configuración de audio
+summary: Conversión por lotes de voz a texto con SenseAudio para notas de voz entrantes
 title: SenseAudio
 x-i18n:
-    generated_at: "2026-07-22T10:46:04Z"
+    generated_at: "2026-07-26T05:54:07Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,7 +15,7 @@ x-i18n:
     workflow: 16
 ---
 
-SenseAudio transcribe los archivos adjuntos de audio y notas de voz entrantes mediante el pipeline compartido `tools.media.audio` de OpenClaw. OpenClaw envía audio multiparte al endpoint de transcripción compatible con OpenAI e inserta el texto devuelto como `{{Transcript}}` junto con un bloque `[Audio]`.
+SenseAudio transcribe el audio entrante y los archivos adjuntos de notas de voz mediante el pipeline compartido `tools.media.audio` de OpenClaw. OpenClaw envía audio multiparte al endpoint de transcripción compatible con OpenAI e inserta el texto devuelto como `{{Transcript}}`, además de un bloque `[Audio]`.
 
 | Propiedad     | Valor                                            |
 | ------------- | ------------------------------------------------ |
@@ -31,12 +31,12 @@ SenseAudio transcribe los archivos adjuntos de audio y notas de voz entrantes me
 ## Primeros pasos
 
 <Steps>
-  <Step title="Configurar la clave de API">
+  <Step title="Establecer la clave de API">
     ```bash
     export SENSEAUDIO_API_KEY="..."
     ```
   </Step>
-  <Step title="Activar el proveedor de audio">
+  <Step title="Habilitar el proveedor de audio">
     ```json5
     {
       tools: {
@@ -62,9 +62,9 @@ SenseAudio transcribe los archivos adjuntos de audio y notas de voz entrantes me
 | ---------- | ------------------------------- | ----------------------------------- |
 | `model`    | `tools.media.models[].model`    | Id. del modelo ASR de SenseAudio             |
 | `language` | `tools.media.models[].language` | Indicación opcional del idioma              |
-| `prompt`   | `tools.media.models[].prompt`   | Prompt opcional de transcripción       |
+| `prompt`   | `tools.media.models[].prompt`   | Prompt de transcripción opcional       |
 | `baseUrl`  | `tools.media.models[].baseUrl`  | Sustituye la base compatible con OpenAI |
-| `headers`  | `tools.media.models[].headers`  | Encabezados adicionales de la solicitud               |
+| `headers`  | `tools.media.models[].headers`  | Encabezados de solicitud adicionales               |
 
 <Note>
 SenseAudio solo admite STT por lotes en OpenClaw. La transcripción en tiempo real de Voice Call

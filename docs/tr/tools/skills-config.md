@@ -1,25 +1,25 @@
 ---
 read_when:
-    - Skill yükleme, kurulum veya erişim denetimi davranışını yapılandırma
-    - Ajan başına Skills görünürlüğünü ayarlama
-    - Skill Atölyesi sınırlarını veya onay politikasını ayarlama
+    - Skills yükleme, kurulum veya erişim denetimi davranışını yapılandırma
+    - Aracı başına Skills görünürlüğünü ayarlama
+    - Skills Atölyesi sınırlarını veya onay politikasını ayarlama
 sidebarTitle: Skills config
-summary: skills.* yapılandırma şeması, ajan izin listeleri, atölye ayarları ve korumalı alan ortam değişkeni işleme süreçleri için eksiksiz başvuru kaynağı.
+summary: skills.* yapılandırma şeması, ajan izin listeleri, workshop ayarları ve korumalı alan ortam değişkeni işleme yöntemine ilişkin eksiksiz referans.
 title: Skills yapılandırması
 x-i18n:
-    generated_at: "2026-07-16T17:59:40Z"
+    generated_at: "2026-07-26T23:07:15Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 1633364a7333ba00f5f6c8d6f1f478b65e63bc97de23705e492eb980967ec521
+    source_hash: bc154bdf8a8537095a4d39bc6e86ebfd716e6beacd45def9c8a1c15fcdc93698
     source_path: tools/skills-config.md
     workflow: 16
 ---
 
-Çoğu Skills yapılandırması `~/.openclaw/openclaw.json` içindeki
-`skills` altında bulunur. Aracıya özgü görünürlük
-`agents.defaults.skills` ve `agents.list[].skills` altında bulunur.
+OpenClaw’da çoğu Skills yapılandırması `~/.openclaw/openclaw.json` içindeki
+`skills` altında bulunur. Agent’a özgü görünürlük
+`agents.defaults.skills` ve `agents.entries.*.skills` altında bulunur.
 
 ```json5
 {
@@ -29,7 +29,6 @@ x-i18n:
       extraDirs: ["~/Projects/agent-scripts/skills"],
       allowSymlinkTargets: ["~/Projects/manager/skills"],
       watch: true,
-      watchDebounceMs: 250,
     },
     install: {
       preferBrew: true,
@@ -57,66 +56,62 @@ x-i18n:
 ```
 
 <Note>
-  Yerleşik görüntü oluşturma için `skills.entries` yerine
-  `agents.defaults.imageGenerationModel` ile temel `image_generate` aracını kullanın. Skill
-  girdileri yalnızca özel veya üçüncü taraf skill iş akışları içindir.
+  Yerleşik görüntü üretimi için `skills.entries` yerine `agents.defaults.mediaModels.image`
+  ile temel `image_generate` aracını kullanın. Skills
+  girdileri yalnızca özel veya üçüncü taraf Skills iş akışları içindir.
 </Note>
 
 ## Yükleme (`skills.load`)
 
 <ParamField path="skills.load.extraDirs" type="string[]">
-  En düşük öncelikte (paketle gelen ve Plugin skill'lerinin altında) taranacak
-  ek skill dizinleri. Yollar `~` desteğiyle genişletilir.
+  En düşük öncelikle (paketle gelen ve Plugin Skills öğelerinin altında)
+  taranacak ek Skills dizinleri. Yollar, `~` desteğiyle genişletilir.
 </ParamField>
 
 <ParamField path="skills.load.allowSymlinkTargets" type="string[]">
-  Sembolik bağlantılı skill klasörlerinin, sembolik bağlantı yapılandırılmış
-  kökün dışında olsa bile çözümleyebileceği güvenilir gerçek hedef dizinleri.
-  Bunu `<workspace>/skills/manager -> ~/Projects/manager/skills` gibi kasıtlı kardeş depo
-  düzenleri için kullanın. Bu listeyi dar tutun; `~` veya
-  `~/Projects` gibi geniş kökleri göstermeyin.
+  Sembolik bağlantılı Skills klasörlerinin, sembolik bağlantı yapılandırılmış
+  kökün dışında olsa bile çözümleyebileceği güvenilir gerçek hedef dizinler.
+  Bunu `<workspace>/skills/manager -> ~/Projects/manager/skills` gibi bilinçli kardeş depo düzenleri için
+  kullanın. Bu listeyi dar tutun — `~` veya `~/Projects` gibi
+  geniş kökleri göstermeyin.
 </ParamField>
 
 <ParamField path="skills.load.watch" type="boolean" default="true">
-  Skill klasörlerini izleyin ve `SKILL.md` dosyaları değiştiğinde
-  Skills anlık görüntüsünü yenileyin. Gruplandırılmış skill kökleri altındaki
+  Skills klasörlerini izler ve `SKILL.md` dosyaları değiştiğinde
+  Skills anlık görüntüsünü yeniler. Gruplandırılmış Skills köklerinin altındaki
   iç içe dosyaları kapsar.
-</ParamField>
-
-<ParamField path="skills.load.watchDebounceMs" type="number" default="250">
-  Skill izleyici olayları için milisaniye cinsinden bekletme penceresi.
 </ParamField>
 
 ## Kurulum (`skills.install`)
 
 <ParamField path="skills.install.preferBrew" type="boolean" default="true">
-  `brew` kullanılabiliyorsa Homebrew yükleyicilerini tercih edin.
+  `brew` kullanılabiliyorsa Homebrew yükleyicilerini tercih eder.
 </ParamField>
 
 <ParamField path="skills.install.nodeManager" type='"npm" | "pnpm" | "yarn" | "bun"' default='"npm"'>
-  Skill kurulumları için Node paket yöneticisi tercihi. Bu yalnızca skill
-  kurulumlarını etkiler; standart durum deposu `node:sqlite` kullandığı
-  için OpenClaw CLI ve Gateway çalışma zamanı Node gerektirir.
-  `openclaw setup --node-manager` ve `openclaw onboard --node-manager`; `npm`,
-  `pnpm` veya `bun` değerlerini kabul eder. Yarn
-  destekli skill kurulumları için yapılandırmada doğrudan
-  `"yarn"` ayarlayın.
+  Skills kurulumları için Node paket yöneticisi tercihi. Bu yalnızca Skills
+  kurulumlarını etkiler; standart durum deposu `node:sqlite` kullandığından
+  OpenClaw CLI ve Gateway çalışma zamanı Node gerektirir. `openclaw setup --node-manager` ve
+  `openclaw onboard --node-manager`; `npm`, `pnpm` veya `bun` değerlerini
+  kabul eder. Yarn destekli Skills kurulumları için yapılandırmada
+  doğrudan `"yarn"` değerini ayarlayın.
 </ParamField>
 
 <ParamField path="skills.install.allowUploadedArchives" type="boolean" default="false">
-  Güvenilir `operator.admin` Gateway istemcilerinin
-  `skills.upload.*` üzerinden hazırlanan özel zip arşivlerini kurmasına izin
-  verin. Normal ClawHub kurulumları bu ayarı gerektirmez.
+  Güvenilir `operator.admin` Gateway istemcilerinin `skills.upload.*` üzerinden
+  hazırlanan özel zip arşivlerini kurmasına izin verir. Normal ClawHub
+  kurulumları bu ayara ihtiyaç duymaz.
 </ParamField>
 
-## Operatör Kurulum Politikası (`security.installPolicy`)
+## Operatör Kurulum İlkesi (`security.installPolicy`)
 
-Operatörlerin skill ve Plugin kurulumlarını ana makineye özgü politikayla
+Operatörlerin, Skills ve Plugin kurulumlarını ana makineye özgü bir ilkeyle
 onaylamak veya engellemek için güvenilir bir yerel komuta ihtiyaç duyduğu
-durumlarda `security.installPolicy` kullanın. Politika, OpenClaw kaynak materyalini
+durumlarda `security.installPolicy` kullanın. İlke, OpenClaw kaynak materyali
 hazırladıktan sonra ve kurulum ya da güncelleme devam etmeden önce çalışır.
-ClawHub skill'leri, yüklenen skill'ler, Git/yerel skill'ler, skill bağımlılığı
-yükleyicileri ve Plugin kurulum/güncelleme kaynakları için geçerlidir.
+ClawHub Skills öğeleri, yüklenen Skills öğeleri, Git/yerel Skills öğeleri,
+Skills bağımlılık yükleyicileri ve Plugin kurulum/güncelleme kaynakları için
+geçerlidir.
 
 ```json5
 {
@@ -142,51 +137,49 @@ yükleyicileri ve Plugin kurulum/güncelleme kaynakları için geçerlidir.
 ```
 
 <ParamField path="security.installPolicy.enabled" type="boolean" default="false">
-  Operatöre ait kurulum politikasını etkinleştirir. Geçerli bir
-  `exec` komutu olmadan etkinleştirildiğinde kurulumlar güvenli
-  biçimde başarısız olur.
+  Operatöre ait kurulum ilkesini etkinleştirir. Geçerli bir `exec`
+  komutu olmadan etkinleştirildiğinde kurulumlar güvenli biçimde başarısız olur.
 </ParamField>
 
 <ParamField path="security.installPolicy.targets" type='("skill" | "plugin")[]'>
-  İsteğe bağlı hedef filtresi. Atlandığında politika desteklenen her hedefe
-  uygulanır; böylece yeni kurulumlar beklenmedik şekilde açık kalmaz.
+  İsteğe bağlı hedef filtresi. Atlandığında ilke, yeni kurulumların beklenmedik
+  şekilde açık kalmaması için desteklenen her hedefe uygulanır.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.command" type="string">
-  Güvenilir politika yürütülebilir dosyasının mutlak yolu. OpenClaw bunu bir
-  kabuk olmadan çalıştırır ve kullanmadan önce yolu doğrular.
+  Güvenilir ilke yürütülebilir dosyasının mutlak yolu. OpenClaw bunu kabuk
+  kullanmadan çalıştırır ve kullanmadan önce yolu doğrular.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.args" type="string[]">
-  `command` sonrasında geçirilen sabit bağımsız değişkenler.
+  `command` sonrasında aktarılan statik bağımsız değişkenler.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.timeoutMs" type="number" default="10000">
-  Tek bir politika kararı için azami gerçek zaman çalışma süresi.
+  Tek bir ilke kararı için azami gerçek zaman çalışma süresi.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.noOutputTimeoutMs" type="number" default="timeoutMs">
-  Politika güvenli biçimde başarısız olmadan önce stdout veya stderr çıktısı
-  alınmadan geçebilecek azami süre.
+  İlkenin güvenli biçimde başarısız olmasından önce stdout veya stderr çıktısı
+  olmadan geçebilecek azami süre.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.maxOutputBytes" type="number" default="1048576">
-  Politika işleminden kabul edilen birleşik stdout ve stderr çıktısının azami
-  bayt sayısı.
+  İlke işleminden kabul edilen stdout ve stderr çıktılarının toplam azami bayt
+  sayısı.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.env" type="Record<string, string>">
-  Politika işlemine sağlanan değişmez ortam değişkenleri.
+  İlke işlemine sağlanan sabit ortam değişkenleri.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.passEnv" type="string[]">
-  OpenClaw işleminden politika işlemine kopyalanan ortam değişkeni adları.
-  Yalnızca adlandırılmış değişkenler geçirilir.
+  OpenClaw işleminden ilke işlemine kopyalanan ortam değişkeni adları. Yalnızca
+  adı belirtilen değişkenler aktarılır.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.trustedDirs" type="string[]">
-  Politika yürütülebilir dosyasını içerebilecek dizinlerin isteğe bağlı izin
-  listesi.
+  İlke yürütülebilir dosyasını içerebilecek dizinlerin isteğe bağlı izin listesi.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.allowInsecurePath" type="boolean" default="false">
@@ -197,28 +190,27 @@ yükleyicileri ve Plugin kurulum/güncelleme kaynakları için geçerlidir.
 <ParamField path="security.installPolicy.exec.allowSymlinkCommand" type="boolean" default="false">
   Yapılandırılmış komut yolunun sembolik bağlantı olmasına izin verir.
   Çözümlenen hedef yine de diğer yol denetimlerini karşılamalıdır. Yorumlayıcı
-  betiği bağımsız değişkenleri sembolik bağlantı değil, doğrudan normal
-  dosyalar olmalıdır.
+  betik bağımsız değişkenleri sembolik bağlantı değil, doğrudan normal dosyalar
+  olmalıdır.
 </ParamField>
 
-Politika stdin üzerinden `protocolVersion: 1`, `openclawVersion`,
-`targetType`, `targetName`, `sourcePath`,
-`sourcePathKind`, isteğe bağlı yapılandırılmış `source`,
-yapılandırılmış `origin` ve `request` içeren tek bir JSON
-nesnesi alır. stdout üzerine tek bir JSON nesnesi yazmalıdır:
+İlke stdin üzerinden `protocolVersion: 1`, `openclawVersion`, `targetType`,
+`targetName`, `sourcePath`, `sourcePathKind`, isteğe bağlı yapılandırılmış
+`source`, yapılandırılmış `origin` ve `request` içeren tek
+bir JSON nesnesi alır. stdout üzerine tek bir JSON nesnesi yazmalıdır:
 `{ "protocolVersion": 1, "decision": "allow" }` veya `{ "protocolVersion": 1, "decision": "block", "reason": "..." }`. Sıfır olmayan çıkış, zaman aşımı,
 hatalı biçimlendirilmiş JSON, eksik alanlar veya desteklenmeyen protokol
 sürümleri güvenli biçimde başarısız olur.
 
-OpenClaw, normal Gateway başlatması sırasında kurulum politikasını çalıştırmaz.
-Politika etkin ancak kullanılamaz olduğunda kurulumlar ve güncellemeler güvenli
+OpenClaw, normal Gateway başlatma sırasında kurulum ilkesini yürütmez.
+İlke etkin ancak kullanılamaz olduğunda kurulumlar ve güncellemeler güvenli
 biçimde başarısız olur. `openclaw doctor` statik doğrulama gerçekleştirir;
-`openclaw doctor --deep` yapılandırılmış komuta karşı sentetik bir kurulum yoklaması
-çalıştırır.
+`openclaw doctor --deep` ise yapılandırılmış komuta karşı yapay bir kurulum sınaması
+yürütür.
 
-Toplu güncellemeler politikayı hedef başına uygular: engellenen bir skill veya
-Plugin güncellemesi, politikayı devre dışı bırakmadan ya da toplu işlemdeki
-sonraki hedefleri atlamadan o hedef için başarısız olur.
+Toplu güncellemeler ilkeyi hedef başına uygular: engellenmiş bir Skills veya
+Plugin güncellemesi, ilkeyi devre dışı bırakmadan ya da gruptaki sonraki
+hedefleri atlamadan ilgili hedef için başarısız olur.
 
 Örnek stdin:
 
@@ -253,7 +245,7 @@ sonraki hedefleri atlamadan o hedef için başarısız olur.
 }
 ```
 
-Asgari politika komutu:
+Asgari ilke komutu:
 
 ```js
 #!/usr/bin/env node
@@ -270,7 +262,7 @@ process.stdin.on("end", () => {
       JSON.stringify({
         protocolVersion: 1,
         decision: "block",
-        reason: "yerel Plugin yolları bu ana makinede onaylanmıyor",
+        reason: "yerel Plugin yolları bu ana makinede onaylanmamıştır",
       }),
     );
     return;
@@ -279,134 +271,132 @@ process.stdin.on("end", () => {
 });
 ```
 
-## Paketle gelen skill izin listesi
+## Paketle gelen Skills izin listesi
 
 <ParamField path="skills.allowBundled" type="string[]">
-  Yalnızca **paketle gelen** skill'ler için isteğe bağlı izin listesi.
-  Ayarlandığında yalnızca listedeki paketle gelen skill'ler uygun olur.
-  Yönetilen, aracı düzeyindeki ve çalışma alanı skill'leri bundan etkilenmez.
+  Yalnızca **paketle gelen** Skills öğeleri için isteğe bağlı izin listesi.
+  Ayarlandığında yalnızca listedeki paketle gelen Skills öğeleri uygun olur.
+  Yönetilen, Agent düzeyindeki ve çalışma alanındaki Skills öğeleri etkilenmez.
 </ParamField>
 
-## Skill başına girdiler (`skills.entries`)
+## Skills başına girdiler (`skills.entries`)
 
-`entries` altındaki anahtarlar varsayılan olarak skill
-`name` değeriyle eşleşir. Bir skill `metadata.openclaw.skillKey` tanımlıyorsa
-bunun yerine o anahtarı kullanın. Kısa çizgili adları tırnak içine alın
-(JSON5, tırnaklı anahtarlara izin verir).
+`entries` altındaki anahtarlar varsayılan olarak Skills
+`name` değeriyle eşleşir. Bir Skills öğesi `metadata.openclaw.skillKey`
+tanımlıyorsa bunun yerine o anahtarı kullanın. Kısa çizgili adları tırnak içine
+alın (JSON5, tırnaklı anahtarlara izin verir).
 
 <ParamField path="skills.entries.<key>.enabled" type="boolean">
-  `false`, paketle gelmiş veya kurulmuş olsa bile skill'i devre dışı
-  bırakır. Paketle gelen `coding-agent` skill'i isteğe bağlıdır; bunu
-  `true` olarak ayarlayın ve `claude`,
-  `codex`, `opencode` ya da desteklenen başka bir CLI'ın
-  kurulu ve kimliği doğrulanmış olduğundan emin olun.
+  `false`, paketle gelmiş veya kurulmuş olsa bile Skills öğesini devre
+  dışı bırakır. Paketle gelen `coding-agent` Skills öğesi isteğe bağlıdır —
+  bunu `true` olarak ayarlayın ve `claude`,
+  `codex`, `opencode` veya desteklenen başka bir CLI'ın kurulu
+  ve kimliği doğrulanmış olduğundan emin olun.
 </ParamField>
 
 <ParamField path="skills.entries.<key>.apiKey" type='string | { source, provider, id }'>
-  `metadata.openclaw.primaryEnv` bildiren skill'ler için kolaylık alanı.
-  Düz metin dizesini veya SecretRef'i destekler: `{ source: "env", provider: "default", id: "VAR_NAME" }`.
+  `metadata.openclaw.primaryEnv` bildiren Skills öğeleri için kolaylık alanı.
+  Düz metin dizesini veya SecretRef değerini destekler: `{ source: "env", provider: "default", id: "VAR_NAME" }`.
 </ParamField>
 
 <ParamField path="skills.entries.<key>.env" type="Record<string, string>">
-  Aracı çalıştırması için eklenen ortam değişkenleri. Yalnızca değişken
-  işlemde zaten ayarlanmamışsa eklenir.
+  Agent çalıştırması için eklenen ortam değişkenleri. Yalnızca değişken işlemde
+  zaten ayarlanmamışsa eklenir.
 </ParamField>
 
 <ParamField path="skills.entries.<key>.config" type="object">
-  Skill başına özel yapılandırma alanları için isteğe bağlı alan grubu.
+  Skills öğesine özgü özel yapılandırma alanları için isteğe bağlı bir alan.
 </ParamField>
 
-## Aracı izin listeleri (`agents`)
+## Agent izin listeleri (`agents`)
 
-Aynı makine/çalışma alanı skill köklerini ancak aracı başına farklı bir görünür
-skill kümesini istediğinizde aracı yapılandırmasını kullanın.
+Aynı makine/çalışma alanı Skills köklerini, ancak Agent başına farklı bir
+görünür Skills kümesini istediğinizde Agent yapılandırmasını kullanın.
 
 ```json5
 {
   agents: {
     defaults: {
-      skills: ["github", "weather"], // paylaşılan temel küme
+      skills: ["github", "weather"], // paylaşılan temel
     },
     list: [
-      { id: "writer" }, // github ve weather değerlerini devralır
-      { id: "docs", skills: ["docs-search"] }, // varsayılanları tamamen değiştirir
-      { id: "locked-down", skills: [] }, // skill yok
+      { id: "writer" }, // github ve weather devralınır
+      { id: "docs", skills: ["docs-search"] }, // varsayılanların tamamının yerini alır
+      { id: "locked-down", skills: [] }, // Skills yok
     ],
   },
 }
 ```
 
 <ParamField path="agents.defaults.skills" type="string[]">
-  `agents.list[].skills` değerini atlayan aracılar tarafından devralınan paylaşılan
-  temel izin listesi. Skills'ı varsayılan olarak kısıtlamamak için bunu tamamen
-  atlayın.
+  `agents.entries.*.skills` alanını atlayan Agent’ların devraldığı paylaşılan temel
+  izin listesi. Skills öğelerini varsayılan olarak kısıtlamamak için bu alanı
+  tamamen atlayın.
 </ParamField>
 
-<ParamField path="agents.list[].skills" type="string[]">
-  Bu aracı için açık nihai skill kümesi. Açık listeler, devralınan varsayılanları
-  **değiştirir**; birleştirmez. Bu aracıya hiçbir skill göstermemek için
-  `[]` olarak ayarlayın.
+<ParamField path="agents.entries.*.skills" type="string[]">
+  İlgili Agent için açıkça belirtilmiş nihai Skills kümesi. Açık listeler,
+  devralınan varsayılanların **yerini alır** — bunlarla birleştirilmez.
+  İlgili Agent’a hiçbir Skills öğesi sunmamak için `[]` olarak
+  ayarlayın.
 </ParamField>
 
 <Warning>
-  Aracı skill izin listeleri; OpenClaw skill keşfi, istemler, eğik çizgi komutu
-  keşfi, korumalı alan eşitlemesi ve skill anlık görüntüleri için bir görünürlük
-  ve yükleme filtresidir. Bunlar kabuk zamanı yetkilendirme sınırı değildir.
-  Bir aracı ana makine `exec` komutunu çalıştırabiliyorsa bu kabuk,
-  `~/.openclaw/skills/config/mcporter.json` gibi MCP istemci kayıtları dahil olmak üzere harici
-  istemcileri çalıştırmaya veya yürütme kullanıcısının görebildiği ana makine
-  dosyalarını okumaya devam edebilir. Aracı başına MCP yalıtımı için skill izin
-  listelerini korumalı alan/işletim sistemi kullanıcısı yalıtımıyla birleştirin,
-  ana makine yürütmesini reddedin veya sıkı biçimde izin listesine alın ve MCP
-  sunucusunda aracı başına kimlik bilgilerini tercih edin.
+  Agent Skills izin listeleri; OpenClaw Skills keşfi, istemler, eğik çizgi
+  komutu keşfi, sandbox eşitlemesi ve Skills anlık görüntüleri için görünürlük
+  ve yükleme filtresidir. Kabuk zamanı yetkilendirme sınırı değildir. Bir Agent,
+  ana makine `exec` çalıştırabiliyorsa bu kabuk, `~/.openclaw/skills/config/mcporter.json`
+  gibi MCP istemci kayıtları da dahil olmak üzere yürütme kullanıcısının
+  görebildiği harici istemcileri çalıştırabilir veya ana makine dosyalarını
+  okuyabilir. Agent başına MCP yalıtımı için Skills izin listelerini sandbox/OS
+  kullanıcısı yalıtımıyla birleştirin, ana makine exec erişimini reddedin veya
+  sıkı bir izin listesiyle sınırlandırın ve MCP sunucusunda Agent başına kimlik
+  bilgilerini tercih edin.
 </Warning>
 
 ## Workshop (`skills.workshop`)
 
 <ParamField path="skills.workshop.autonomous.enabled" type="boolean" default="false">
   `true` olduğunda OpenClaw, kalıcı düzeltmelerden bekleyen öneriler oluşturabilir
-  ve sistem boşta kaldıktan sonra başarıyla tamamlanmış kapsamlı çalışmaları
-  inceleyebilir. Bu, uygun işlemlerden sonra arka planda bir model çalıştırması
-  ekleyebilir. Ayar `false` olduğunda kullanıcı istemiyle
-  beceri oluşturma ve `/learn` çalışmaya devam eder.
+  ve sistem boştayken başarıyla tamamlanmış önemli çalışmaları inceleyebilir.
+  Bu, uygun dönüşlerden sonra arka planda bir model çalıştırması ekleyebilir. Kullanıcı tarafından
+  istenen skill oluşturma ve `/learn`, ayar `false` olduğunda çalışmaya devam eder.
 </ParamField>
 
-Uygunluk, gizlilik, maliyet, yalnızca öneri izinleri ve sorun giderme hakkında
-bilgi için [Kendi kendine öğrenme](/tools/self-learning) bölümüne bakın.
+Uygunluk, gizlilik, maliyet, yalnızca öneri izinleri ve sorun giderme için
+[Kendi kendine öğrenme](/tr/tools/self-learning) bölümüne bakın.
 
 <ParamField path="skills.workshop.approvalPolicy" type='"pending" | "auto"' default='"auto"'>
-  `auto`, ek bir onay istemi olmadan aracının uygulama, reddetme
-  veya karantinaya alma işlemlerini başlatmasına izin verir. `pending`
-  operatör onayı gerektirir.
+  `auto`, ek bir onay istemi olmadan agent tarafından başlatılan uygulama,
+  reddetme veya karantinaya alma işlemlerine izin verir. `pending` operatör onayı gerektirir.
 </ParamField>
 
 <ParamField path="skills.workshop.allowSymlinkTargetWrites" type="boolean" default="false">
-  Beceri Atölyesi'nin uygulama işleminin, gerçek hedefi `skills.load.allowSymlinkTargets`
-  tarafından zaten güvenilir kabul edilen çalışma alanı beceri sembolik bağlantıları
-  üzerinden yazmasına izin verin. Oluşturulan önerilerin uygulanması bu paylaşılan
-  beceri kökünü değiştirmemeliyse bunu devre dışı bırakın.
+  Skill Workshop uygulamasının, gerçek hedefi `skills.load.allowSymlinkTargets` tarafından zaten
+  güvenilir kabul edilen çalışma alanı skill sembolik bağlantıları üzerinden yazmasına izin verir.
+  Oluşturulan önerilerin uygulanması bu paylaşılan skill kökünü değiştirmeyecekse
+  bu ayarı devre dışı tutun.
 </ParamField>
 
 <ParamField path="skills.workshop.maxPending" type="number" default="50">
-  Çalışma alanı başına tutulan bekleyen ve karantinaya alınmış önerilerin azami
-  sayısı (izin verilen aralık: 1-200).
+  Çalışma alanı başına saklanan bekleyen ve karantinaya alınmış önerilerin
+  azami sayısı (izin verilen aralık: 1-200).
 </ParamField>
 
 <ParamField path="skills.workshop.maxSkillBytes" type="number" default="40000">
-  Öneri gövdesinin bayt cinsinden azami boyutu (izin verilen aralık: 1024-200000).
+  Bayt cinsinden azami öneri gövdesi boyutu (izin verilen aralık: 1024-200000).
   Öneri açıklamaları, keşif ve listeleme çıktısında göründükleri için ayrıca
-  160 bayt ile kesin olarak sınırlandırılır.
+  kesin olarak 160 baytla sınırlandırılır.
 </ParamField>
 
-Bu yapılandırmanın denetlediği öneri yaşam döngüsü, CLI komutları, aracı araç
-parametreleri ve Gateway yöntemleri için [Beceri Atölyesi](/tr/tools/skill-workshop)
-bölümüne bakın.
+Bu yapılandırmanın denetlediği öneri yaşam döngüsü, CLI komutları, agent aracı
+parametreleri ve Gateway yöntemleri için [Skill Workshop](/tr/tools/skill-workshop) bölümüne bakın.
 
-## Sembolik bağlantılı beceri kökleri
+## Sembolik bağlantılı skill kökleri
 
-Varsayılan olarak çalışma alanı, proje aracısı, ek dizin ve paketlenmiş beceri
-kökleri kapsama sınırlarıdır. `<workspace>/skills` altında bulunan ve kökün dışına
-çözümlenen sembolik bağlantılı bir beceri klasörü, bir günlük mesajıyla atlanır.
+Varsayılan olarak çalışma alanı, proje agent'ı, ek dizin ve paketlenmiş skill
+kökleri kapsama sınırlarıdır. `<workspace>/skills` altında bulunan ve kökün
+dışına çözümlenen sembolik bağlantılı bir skill klasörü, bir günlük mesajıyla atlanır.
 
 Kasıtlı bir sembolik bağlantı düzenine izin vermek için güvenilir hedefi bildirin:
 
@@ -421,14 +411,13 @@ Kasıtlı bir sembolik bağlantı düzenine izin vermek için güvenilir hedefi 
 }
 ```
 
-Bu yapılandırmayla `<workspace>/skills/manager -> ~/Projects/manager/skills`, gerçek yol çözümlemesinden sonra
-kabul edilir. `extraDirs` kardeş depoyu doğrudan tarar;
-`allowSymlinkTargets` mevcut düzenler için sembolik bağlantılı yolu korur.
+Bu yapılandırmayla `<workspace>/skills/manager -> ~/Projects/manager/skills`, realpath çözümlemesinden sonra kabul edilir.
+`extraDirs` kardeş depoyu doğrudan tarar; `allowSymlinkTargets` mevcut
+düzenler için sembolik bağlantılı yolu korur.
 
-Beceri Atölyesi'nin uygulama işlemi varsayılan olarak bu sembolik bağlantılar
-üzerinden yazmaz. Atölye'nin uygulama işleminin zaten güvenilir kabul edilen
-sembolik bağlantı hedefleri altındaki becerileri değiştirmesine izin vermek
-için ayrıca etkinleştirin:
+Skill Workshop uygulaması varsayılan olarak bu sembolik bağlantılar üzerinden
+yazmaz. Workshop uygulamasının, zaten güvenilir olan sembolik bağlantı
+hedefleri altındaki skill'leri değiştirmesine izin vermek için ayrıca etkinleştirin:
 
 ```json5
 {
@@ -443,19 +432,18 @@ için ayrıca etkinleştirin:
 }
 ```
 
-Yönetilen `~/.openclaw/skills` ve kişisel `~/.agents/skills` dizinleri,
-beceri dizini sembolik bağlantılarını zaten koşulsuz olarak kabul eder
-(her beceri için `SKILL.md` kapsamı yine geçerlidir) —
-`allowSymlinkTargets` yalnızca çalışma alanı, ek dizin ve proje aracısı
-(`<workspace>/.agents/skills`) kökleri için gereklidir.
+Yönetilen `~/.openclaw/skills` ve kişisel `~/.agents/skills` dizinleri, skill
+dizini sembolik bağlantılarını zaten koşulsuz olarak kabul eder (skill başına
+`SKILL.md` kapsam denetimi yine uygulanır) — `allowSymlinkTargets` yalnızca
+çalışma alanı, ek dizin ve proje agent'ı (`<workspace>/.agents/skills`) kökleri için gereklidir.
 
-## Korumalı alandaki beceriler ve ortam değişkenleri
+## Korumalı alandaki skill'ler ve ortam değişkenleri
 
 <Warning>
-  `skills.entries.<skill>.env` ve `apiKey` yalnızca **ana makine**
-  çalıştırmaları için geçerlidir. Korumalı alan içinde hiçbir etkileri yoktur —
-  `GEMINI_API_KEY` bağımlılığı olan bir beceri, değişken korumalı alana
-  ayrıca verilmediği sürece `apiKey not configured` hatasıyla başarısız olur.
+  `skills.entries.<skill>.env` ve `apiKey` yalnızca **ana makine** çalıştırmalarına
+  uygulanır. Korumalı alan içinde hiçbir etkileri yoktur — `GEMINI_API_KEY`
+  bağımlılığı olan bir skill, değişken korumalı alana ayrıca verilmedikçe
+  `apiKey not configured` ile başarısız olur.
 </Warning>
 
 Gizli bilgileri bir Docker korumalı alanına şu şekilde aktarın:
@@ -476,9 +464,8 @@ Gizli bilgileri bir Docker korumalı alanına şu şekilde aktarın:
 
 <Note>
   Docker daemon erişimi olan kullanıcılar, `sandbox.docker.env` değerlerini
-  Docker meta verileri üzerinden inceleyebilir. Bu açığa çıkma kabul edilebilir
-  değilse bağlanmış bir gizli bilgi dosyası, özel bir imaj veya başka bir
-  teslim yolu kullanın.
+  Docker meta verileri üzerinden inceleyebilir. Bu ifşa kabul edilebilir değilse
+  bağlanmış bir gizli bilgi dosyası, özel bir imaj veya başka bir aktarım yolu kullanın.
 </Note>
 
 ## Yükleme sırası hatırlatması
@@ -488,30 +475,30 @@ workspace/skills      (en yüksek)
 workspace/.agents/skills
 ~/.agents/skills
 ~/.openclaw/skills
-paketlenmiş beceriler
+paketlenmiş skill'ler
 skills.load.extraDirs (en düşük)
 ```
 
-İzleyici etkinleştirildiğinde becerilerde ve yapılandırmada yapılan değişiklikler
-bir sonraki yeni oturumda veya izleyici bir değişiklik algıladığında bir sonraki
-aracı işleminde yürürlüğe girer.
+İzleyici etkin olduğunda skill ve yapılandırma değişiklikleri bir sonraki yeni
+oturumda veya izleyici bir değişiklik algıladığında bir sonraki agent dönüşünde
+geçerli olur.
 
-## İlgili
+## İlgili konular
 
 <CardGroup cols={2}>
-  <Card title="Beceriler başvurusu" href="/tr/tools/skills" icon="puzzle-piece">
-    Becerilerin ne olduğu, yükleme sırası, koşullu etkinleştirme ve SKILL.md biçimi.
+  <Card title="Skills referansı" href="/tr/tools/skills" icon="puzzle-piece">
+    Skill'lerin ne olduğu, yükleme sırası, geçit denetimi ve SKILL.md biçimi.
   </Card>
-  <Card title="Beceri oluşturma" href="/tr/tools/creating-skills" icon="hammer">
-    Özel çalışma alanı becerileri yazma.
+  <Card title="Skill oluşturma" href="/tr/tools/creating-skills" icon="hammer">
+    Özel çalışma alanı skill'leri yazma.
   </Card>
-  <Card title="Beceri Atölyesi" href="/tr/tools/skill-workshop" icon="flask">
-    Aracı tarafından taslak hâline getirilen beceriler için öneri kuyruğu.
+  <Card title="Skill Workshop" href="/tr/tools/skill-workshop" icon="flask">
+    Agent tarafından taslak hâline getirilen skill'ler için öneri kuyruğu.
   </Card>
-  <Card title="Kendi kendine öğrenme" href="/tools/self-learning" icon="brain">
-    Tamamlanan çalışmalardan elde edilen ihtiyatlı, isteğe bağlı öneriler.
+  <Card title="Kendi kendine öğrenme" href="/tr/tools/self-learning" icon="brain">
+    Tamamlanan çalışmalardan oluşturulan temkinli ve isteğe bağlı öneriler.
   </Card>
   <Card title="Eğik çizgi komutları" href="/tr/tools/slash-commands" icon="terminal">
-    Yerel eğik çizgi komutu kataloğu ve sohbet yönergeleri.
+    Yerel eğik çizgi komutları kataloğu ve sohbet yönergeleri.
   </Card>
 </CardGroup>

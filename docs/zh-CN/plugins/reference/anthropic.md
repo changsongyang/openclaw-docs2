@@ -4,7 +4,7 @@ read_when:
 summary: Anthropic 模型、Claude CLI 和原生 Claude 会话目录。
 title: Anthropic 插件
 x-i18n:
-    generated_at: "2026-07-16T11:48:32Z"
+    generated_at: "2026-07-26T06:16:53Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -20,10 +20,10 @@ Anthropic 模型、Claude CLI 和原生 Claude 会话目录。
 
 ## 分发
 
-- 包：`@openclaw/anthropic-provider`
-- 安装方式：OpenClaw 内置
+- 软件包：`@openclaw/anthropic-provider`
+- 安装方式：OpenClaw 中已内置
 
-## 功能接口
+## 接口
 
 提供商：`anthropic`；契约：`mediaUnderstandingProviders`、`usageProviders`
 

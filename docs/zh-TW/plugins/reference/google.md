@@ -4,7 +4,7 @@ read_when:
 summary: 為 OpenClaw 新增 Google、Google Gemini CLI 與 Google Vertex 模型供應商支援。
 title: Google 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:52:07Z"
+    generated_at: "2026-07-26T07:50:50Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,10 +18,10 @@ x-i18n:
 
 為 OpenClaw 新增 Google、Google Gemini 命令列介面及 Google Vertex 模型供應商支援。
 
-## 發佈
+## 發布方式
 
 - 套件：`@openclaw/google-plugin`
-- 安裝方式：隨附於 OpenClaw
+- 安裝途徑：隨 OpenClaw 內附
 
 ## 介面
 

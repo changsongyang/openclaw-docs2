@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Je installeert, configureert of controleert de Mattermost-plugin
+    - Je installeert, configureert of controleert de mattermost-plugin
 summary: Voegt het Mattermost-kanaal toe voor het verzenden en ontvangen van OpenClaw-berichten.
-title: Mattermost-plugin
+title: Mattermost-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:19:50Z"
+    generated_at: "2026-07-27T05:15:55Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

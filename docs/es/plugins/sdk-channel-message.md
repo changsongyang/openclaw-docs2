@@ -2,7 +2,7 @@
 summary: Redirigir a /plugins/sdk-channel-outbound
 title: API de mensajes de canal
 x-i18n:
-    generated_at: "2026-07-20T00:52:01Z"
+    generated_at: "2026-07-26T04:53:06Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,11 +15,11 @@ x-i18n:
 Esta página se trasladó a [API de salida de canales](/es/plugins/sdk-channel-outbound).
 
 `openclaw/plugin-sdk/channel-message` sigue siendo una subruta de compatibilidad obsoleta
-para plugins antiguos. Los nuevos plugins de canal deben usar
-`openclaw/plugin-sdk/channel-outbound` para el ciclo de vida de los mensajes, la confirmación de recepción,
-el envío duradero y las utilidades de vista previa en tiempo real, en lugar de añadir nuevas utilidades a la
+para plugins antiguos. Los plugins de canal nuevos deben usar
+`openclaw/plugin-sdk/channel-outbound` para el ciclo de vida de los mensajes, los acuses de recibo,
+el envío duradero y los auxiliares de vista previa en tiempo real, en lugar de añadir nuevos auxiliares a la
 subruta obsoleta.
 
 Plan de eliminación: mantener estos alias durante el período de migración de plugins
-externos y, después, eliminarlos en la próxima limpieza principal del SDK, una vez que los consumidores se hayan
+externos y, después, eliminarlos en la siguiente limpieza principal del SDK una vez que los invocadores se hayan
 trasladado a `channel-outbound`.

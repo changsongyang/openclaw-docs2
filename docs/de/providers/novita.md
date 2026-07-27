@@ -1,11 +1,11 @@
 ---
 read_when:
     - Sie möchten OpenClaw mit NovitaAI-Modellen ausführen
-    - Sie benötigen die Provider-ID, den Schlüssel oder den Endpunkt von Novita
+    - Sie benötigen die Novita-Provider-ID, den Schlüssel oder den Endpunkt
 summary: Verwenden Sie die OpenAI-kompatible API von NovitaAI mit OpenClaw
 title: NovitaAI
 x-i18n:
-    generated_at: "2026-07-24T04:05:14Z"
+    generated_at: "2026-07-26T18:03:42Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,14 +15,14 @@ x-i18n:
     workflow: 16
 ---
 
-NovitaAI ist ein gehosteter KI-Infrastruktur-Provider mit einer OpenAI-kompatiblen API.
-Er wird als gebündelter OpenClaw-Provider bereitgestellt (keine separate Plugin-Installation), daher
-werden Anmeldedaten über den normalen Modellauthentifizierungsablauf verwaltet und Modellreferenzen sehen wie
+NovitaAI ist ein Provider für gehostete KI-Infrastruktur mit einer OpenAI-kompatiblen API.
+Es wird als gebündelter OpenClaw-Provider bereitgestellt (keine separate Plugin-Installation), daher
+werden Anmeldedaten über den normalen Modellauthentifizierungsablauf verarbeitet und Modellreferenzen sehen wie
 `novita/deepseek/deepseek-v3-0324` aus.
 
 ## Einrichtung
 
-Erstellen Sie einen API-Schlüssel unter [novita.ai/settings/key-management](https://novita.ai/settings/key-management) und führen Sie anschließend Folgendes aus:
+Erstellen Sie unter [novita.ai/settings/key-management](https://novita.ai/settings/key-management) einen API-Schlüssel und führen Sie anschließend Folgendes aus:
 
 ```bash
 openclaw onboard --auth-choice novita-api-key
@@ -36,12 +36,12 @@ export NOVITA_API_KEY="<your-novita-api-key>" # pragma: allowlist secret
 
 ## Standardwerte
 
-| Einstellung       | Wert                              |
-| ------------- | ---------------------------------- |
-| Provider-ID   | `novita`                           |
-| Aliase       | `novita-ai`, `novitaai`            |
+| Einstellung    | Wert                               |
+| -------------- | ---------------------------------- |
+| Provider-ID    | `novita`                           |
+| Aliase         | `novita-ai`, `novitaai`            |
 | Basis-URL      | `https://api.novita.ai/openai/v1`  |
-| Umgebungsvariable       | `NOVITA_API_KEY`                   |
+| Umgebungsvariable | `NOVITA_API_KEY`                   |
 | Standardmodell | `novita/deepseek/deepseek-v3-0324` |
 
 ## Gebündelter Modellkatalog
@@ -55,36 +55,36 @@ export NOVITA_API_KEY="<your-novita-api-key>" # pragma: allowlist secret
 
 Dies ist ein Ausgangspunkt, kein Live-Katalog. Ihr Konto, Ihre Region oder
 das aktuelle Angebot von Novita kann Routen hinzufügen, entfernen oder einschränken. Prüfen Sie dies, bevor Sie
-einen langfristigen Standardwert festlegen:
+einen langfristigen Standard festlegen:
 
 ```bash
 openclaw models list --provider novita
 ```
 
-## Wann Novita die richtige Wahl ist
+## Wann Sie Novita wählen sollten
 
 - Gehosteter Zugriff auf Open-Weight-Modelle über eine OpenAI-kompatible API.
-- Routen für DeepSeek, Kimi, MiniMax, GLM oder die Qwen-Familie über ein einziges Provider-
+- Routen der DeepSeek-, Kimi-, MiniMax-, GLM- oder Qwen-Familie über ein einziges Provider-
   Konto.
 - Ein weiterer gehosteter Fallback-Pfad neben DeepInfra, GMI, OpenRouter oder direkten
   Anbieter-APIs.
-- Modellhosting durch den Provider, statt eine Infrastruktur mit LM Studio, Ollama,
+- Modellhosting auf Provider-Seite, statt eine Infrastruktur mit LM Studio, Ollama,
   SGLang oder vLLM zu betreiben.
 
 Wählen Sie einen direkten Anbieter-Provider, wenn Sie anbieterspezifische Anfrageparameter
 oder Supportverträge benötigen. Wählen Sie einen lokalen Provider, wenn das Modell
-auf Ihrer eigenen Hardware oder innerhalb Ihrer Netzwerkgrenze ausgeführt werden muss.
+auf Ihrer eigenen Hardware oder innerhalb Ihrer eigenen Netzwerkgrenze ausgeführt werden muss.
 
 ## Fehlerbehebung
 
 - `401`/`403`: Überprüfen Sie den Schlüssel auf der Schlüsselverwaltungsseite von Novita und führen Sie
   `openclaw onboard --auth-choice novita-api-key` erneut aus, wenn das gespeicherte Profil
   veraltet ist.
-- Fehler wegen unbekannter Modelle: Verwenden Sie den exakten Wert `novita/<route-id>`, der von
+- Fehler wegen unbekannter Modelle: Verwenden Sie die exakte `novita/<route-id>`, die von
   `openclaw models list --provider novita` zurückgegeben wird.
-- Langsame oder fehlgeschlagene Routen: Probieren Sie eine andere Novita-Modellroute aus oder legen Sie Novita als
+- Langsame oder fehlgeschlagene Routen: Versuchen Sie eine andere Novita-Modellroute oder legen Sie Novita als
   Fallback-Provider für Workloads fest, die providerspezifische
-  Abweichungen tolerieren können.
+  Schwankungen tolerieren können.
 
 ## Verwandte Themen
 

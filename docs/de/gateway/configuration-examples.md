@@ -1,12 +1,12 @@
 ---
 read_when:
-    - Erfahren Sie, wie Sie OpenClaw konfigurieren.
+    - Erfahren Sie, wie Sie OpenClaw konfigurieren
     - Auf der Suche nach Konfigurationsbeispielen
     - OpenClaw zum ersten Mal einrichten
 summary: Schemagenau konfigurierte Beispiele für gängige OpenClaw-Setups
 title: Konfigurationsbeispiele
 x-i18n:
-    generated_at: "2026-07-24T03:47:52Z"
+    generated_at: "2026-07-26T17:47:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -29,9 +29,9 @@ Die folgenden Beispiele entsprechen dem aktuellen Konfigurationsschema. Die voll
 }
 ```
 
-Speichern Sie dies unter `~/.openclaw/openclaw.json`. Anschließend können Sie dem Bot von dieser Nummer aus eine Direktnachricht senden.
+Speichern Sie dies unter `~/.openclaw/openclaw.json`; anschließend können Sie dem Bot von dieser Nummer aus eine Direktnachricht senden.
 
-### Empfohlene Ausgangskonfiguration
+### Empfohlene Startkonfiguration
 
 ```json5
 {
@@ -68,7 +68,7 @@ Speichern Sie dies unter `~/.openclaw/openclaw.json`. Anschließend können Sie 
 
 ## Erweitertes Beispiel (wichtigste Optionen)
 
-> JSON5 ermöglicht Kommentare und nachgestellte Kommas. Reguläres JSON funktioniert ebenfalls.
+> Mit JSON5 können Sie Kommentare und abschließende Kommas verwenden. Reguläres JSON funktioniert ebenfalls.
 
 ```json5
 {
@@ -98,7 +98,7 @@ Speichern Sie dies unter `~/.openclaw/openclaw.json`. Anschließend können Sie 
     },
   },
 
-  // Die Identität gilt pro Agent — legen Sie sie unten unter agents.entries.<id>.identity fest.
+  // Die Identität wird pro Agent festgelegt — legen Sie sie unten unter agents.entries.<id>.identity fest.
 
   // Protokollierung
   logging: {
@@ -235,7 +235,7 @@ Speichern Sie dies unter `~/.openclaw/openclaw.json`. Anschließend können Sie 
         "anthropic/claude-sonnet-4-6": { alias: "sonnet" },
         "openai/gpt-5.4": { alias: "gpt" },
       },
-      skills: ["github", "weather"], // wird von Agenten übernommen, die list[].skills auslassen
+      skills: ["github", "weather"], // wird von Agenten übernommen, bei denen list[].skills fehlt
       thinkingDefault: "low",
       verboseDefault: "off",
       toolProgressDetail: "explain",
@@ -296,7 +296,7 @@ Speichern Sie dies unter `~/.openclaw/openclaw.json`. Anschließend können Sie 
         groupChat: {
           mentionPatterns: ["@openclaw", "openclaw"],
         },
-        thinkingDefault: "high", // agentspezifische Überschreibung des Denkmodus
+        thinkingDefault: "high", // agentspezifische Überschreibung der Denktiefe
         reasoningDefault: "on", // agentspezifische Sichtbarkeit der Schlussfolgerungen
         fastModeDefault: false, // agentspezifischer Schnellmodus
       },
@@ -375,7 +375,7 @@ Speichern Sie dies unter `~/.openclaw/openclaw.json`. Anschließend können Sie 
     },
   },
 
-  // Cron-Aufgaben
+  // Cron-Aufträge
   cron: {
     enabled: true,
     store: "~/.openclaw/cron/jobs.json",
@@ -464,10 +464,9 @@ Speichern Sie dies unter `~/.openclaw/openclaw.json`. Anschließend können Sie 
 }
 ```
 
-### Über symbolischen Link eingebundenes benachbartes Skill-Repository
+### Über einen symbolischen Link eingebundenes benachbartes Skill-Repository
 
-Verwenden Sie dies, wenn ein integriertes Skill-Stammverzeichnis einen symbolischen Link zu einem benachbarten Repository enthält, zum
-Beispiel `~/.agents/skills/manager -> ~/Projects/manager/skills`.
+Verwenden Sie dies, wenn das Stammverzeichnis eines integrierten Skills einen symbolischen Link zu einem benachbarten Repository enthält, beispielsweise `~/.agents/skills/manager -> ~/Projects/manager/skills`.
 
 ```json5
 {
@@ -481,9 +480,9 @@ Beispiel `~/.agents/skills/manager -> ~/Projects/manager/skills`.
 ```
 
 - `extraDirs` durchsucht das benachbarte Repository als explizites Skills-Stammverzeichnis.
-- `allowSymlinkTargets` ermöglicht es verknüpften Skills-Ordnern, in diesem vertrauenswürdigen
-  tatsächlichen Zielstammverzeichnis aufgelöst zu werden, ohne beliebige Ausbrüche über symbolische Verknüpfungen zuzulassen.
-- Damit Skill Workshop Schreibvorgänge über dasselbe vertrauenswürdige Ziel der symbolischen Verknüpfung ausführen kann,
+- `allowSymlinkTargets` ermöglicht es verknüpften Skills-Ordnern, in dieses vertrauenswürdige
+  reale Zielstammverzeichnis aufgelöst zu werden, ohne beliebige Ausbrüche über symbolische Links zuzulassen.
+- Damit Skill Workshop Schreibvorgänge über dasselbe vertrauenswürdige Ziel des symbolischen Links ausführen kann,
   legen Sie `skills.workshop.allowSymlinkTargetWrites: true` fest.
 
 ## Gängige Muster
@@ -532,8 +531,8 @@ Beispiel `~/.agents/skills/manager -> ~/Projects/manager/skills`.
 
 ### Automatische Genehmigung im vertrauenswürdigen Node-Netzwerk
 
-Führen Sie die Gerätekopplung weiterhin manuell durch, sofern Sie den Netzwerkpfad nicht kontrollieren. Für ein dediziertes
-Labor- oder Tailnet-Subnetz können Sie die automatische Genehmigung von Node-Geräten bei der ersten Verbindung
+Lassen Sie die Gerätekopplung manuell, sofern Sie den Netzwerkpfad nicht kontrollieren. Für ein dediziertes
+Labor- oder Tailnet-Subnetz können Sie die automatische Genehmigung von Node-Geräten bei der ersten Kopplung
 mit exakten CIDRs oder IPs aktivieren:
 
 ```json5
@@ -548,27 +547,27 @@ mit exakten CIDRs oder IPs aktivieren:
 }
 ```
 
-Ist die Option nicht festgelegt, bleibt sie deaktiviert. Sie gilt nur für eine neue `role: node`-Kopplung
-ohne angeforderte Geltungsbereiche. Operator-/Browser-Clients sowie Upgrades von Rolle, Geltungsbereich, Metadaten oder
-öffentlichem Schlüssel erfordern weiterhin eine manuelle Genehmigung.
+Wenn diese Option nicht festgelegt ist, bleibt sie deaktiviert. Sie gilt nur für eine erstmalige `role: node`-Kopplung
+ohne angeforderte Geltungsbereiche. Operator-/Browser-Clients sowie Aktualisierungen von Rolle, Geltungsbereich, Metadaten oder
+öffentlichen Schlüsseln erfordern weiterhin eine manuelle Genehmigung.
 
-### Sicherer DM-Modus (gemeinsamer Posteingang / DMs mit mehreren Benutzern)
+### Sicherer DM-Modus (gemeinsamer Posteingang / Mehrbenutzer-DMs)
 
-Wenn mehrere Personen Ihrem Bot eine DM senden können (mehrere Einträge in `allowFrom`, Kopplungsgenehmigungen für mehrere Personen oder `dmPolicy: "open"`), aktivieren Sie den **sicheren DM-Modus**, damit DMs verschiedener Absender standardmäßig nicht denselben Kontext verwenden:
+Wenn mehr als eine Person Ihrem Bot eine DM senden kann (mehrere Einträge in `allowFrom`, Kopplungsgenehmigungen für mehrere Personen oder `dmPolicy: "open"`), aktivieren Sie den **sicheren DM-Modus**, damit DMs verschiedener Absender nicht standardmäßig denselben Kontext verwenden:
 
 ```json5
 {
-  // Sicherer DM-Modus (empfohlen für DM-Agenten mit mehreren Benutzern oder sensiblen Inhalten)
+  // Sicherer DM-Modus (für Mehrbenutzer- oder sensible DM-Agenten empfohlen)
   session: { dmScope: "per-channel-peer" },
 
   channels: {
-    // Beispiel: WhatsApp-Posteingang für mehrere Benutzer
+    // Beispiel: WhatsApp-Mehrbenutzer-Posteingang
     whatsapp: {
       dmPolicy: "allowlist",
       allowFrom: ["+15555550123", "+15555550124"],
     },
 
-    // Beispiel: Discord-Posteingang für mehrere Benutzer
+    // Beispiel: Discord-Mehrbenutzer-Posteingang
     discord: {
       enabled: true,
       token: "YOUR_DISCORD_BOT_TOKEN",
@@ -578,10 +577,10 @@ Wenn mehrere Personen Ihrem Bot eine DM senden können (mehrere Einträge in `al
 }
 ```
 
-Bei Discord/Google Chat/IRC/Mattermost/Microsoft Teams/Slack basiert die Absenderautorisierung standardmäßig vorrangig auf IDs.
-Aktivieren Sie den direkten Abgleich veränderlicher Namen/E-Mail-Adressen/Nicknames über `dangerouslyAllowNameMatching: true` des jeweiligen Kanals nur, wenn Sie dieses Risiko ausdrücklich akzeptieren.
+Für Discord/Google Chat/IRC/Mattermost/Microsoft Teams/Slack erfolgt die Absenderautorisierung standardmäßig primär anhand der ID.
+Aktivieren Sie den direkten Abgleich veränderlicher Namen/E-Mail-Adressen/Spitznamen über `dangerouslyAllowNameMatching: true` des jeweiligen Kanals nur, wenn Sie dieses Risiko ausdrücklich akzeptieren.
 
-### Anthropic-API-Schlüssel und MiniMax-Fallback
+### Anthropic-API-Schlüssel + MiniMax-Fallback
 
 ```json5
 {
@@ -630,7 +629,7 @@ Aktivieren Sie den direkten Abgleich veränderlicher Namen/E-Mail-Adressen/Nickn
       main: {
         identity: {
           name: "WorkBot",
-          theme: "professional assistant",
+          theme: "professioneller Assistent",
         },
       },
     },
@@ -668,7 +667,7 @@ Aktivieren Sie den direkten Abgleich veränderlicher Namen/E-Mail-Adressen/Nickn
         models: [
           {
             id: "my-local-model",
-            name: "Local Model",
+            name: "Lokales Modell",
             reasoning: false,
             input: ["text"],
             cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
@@ -686,7 +685,7 @@ Aktivieren Sie den direkten Abgleich veränderlicher Namen/E-Mail-Adressen/Nickn
 
 - Wenn Sie `dmPolicy: "open"` festlegen, muss die entsprechende `allowFrom`-Liste `"*"` enthalten.
 - Provider-IDs unterscheiden sich (Telefonnummern, Benutzer-IDs, Kanal-IDs). Prüfen Sie das Format in der Dokumentation des Providers.
-- Optionale Abschnitte, die später hinzugefügt werden können: `web`, `browser`, `ui`, `discovery`, `plugins`, `talk`, `signal`, `imessage`.
+- Optionale Abschnitte, die Sie später hinzufügen können: `web`, `browser`, `ui`, `discovery`, `plugins`, `talk`, `signal`, `imessage`.
 - Ausführlichere Hinweise zur Einrichtung finden Sie unter [Provider](/de/providers) und [Fehlerbehebung](/de/gateway/troubleshooting).
 
 ## Verwandte Themen

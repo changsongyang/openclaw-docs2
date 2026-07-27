@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw WhatsApp-kanaalplugin voor WhatsApp Web-chats.
 title: WhatsApp-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:17:56Z"
+    generated_at: "2026-07-27T06:01:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# WhatsApp-Plugin
+# WhatsApp-plugin
 
 OpenClaw WhatsApp-kanaalplugin voor WhatsApp Web-chats.
 

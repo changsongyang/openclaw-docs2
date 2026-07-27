@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das web-readability-Plugin.
+    - Sie installieren, konfigurieren oder prüfen das Plugin für die Lesbarkeit von Webinhalten
 summary: Lesbaren Artikelinhalt aus lokalen HTML-Webabrufantworten extrahieren.
-title: Web-Lesbarkeits-Plugin
+title: Plugin für Web-Lesbarkeit
 x-i18n:
-    generated_at: "2026-07-24T04:05:10Z"
+    generated_at: "2026-07-26T18:03:40Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

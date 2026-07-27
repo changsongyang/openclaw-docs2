@@ -1,10 +1,10 @@
 ---
 read_when:
     - azure-speech pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: Azure AI Speech metinden konuşmaya (MP3, yerel Ogg/Opus sesli notlar, PCM telefon hizmeti).
+summary: Azure AI Speech metinden konuşmaya (MP3, yerel Ogg/Opus sesli notlar, PCM telefon sesi).
 title: Azure Speech plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:29:03Z"
+    generated_at: "2026-07-26T23:27:19Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

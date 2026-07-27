@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Sie möchten Agent-Ausführungen über Skripte oder die Befehlszeile auslösen
-    - Sie müssen Agentenantworten programmgesteuert an einen Chatkanal übermitteln
-summary: Agent-Durchläufe über die CLI ausführen und Antworten optional an Kanäle zustellen
-title: Agent senden
+    - Sie möchten Agentenläufe über Skripte oder die Befehlszeile auslösen
+    - Sie müssen Agentenantworten programmgesteuert an einen Chatkanal senden.
+summary: Agent-Durchläufe über die CLI ausführen und Antworten optional an Kanäle übermitteln
+title: Agentenversand
 x-i18n:
-    generated_at: "2026-07-24T04:07:59Z"
+    generated_at: "2026-07-26T18:05:53Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,15 +15,15 @@ x-i18n:
     workflow: 16
 ---
 
-`openclaw agent` führt einen einzelnen Agent-Durchlauf über die Befehlszeile aus, ohne dass eine
-eingehende Chatnachricht vorliegt. Verwenden Sie dies für skriptgesteuerte Workflows, Tests und
+`openclaw agent` führt einen einzelnen Agentendurchlauf über die Befehlszeile ohne eine
+eingehende Chatnachricht aus. Verwenden Sie dies für skriptgesteuerte Workflows, Tests und
 programmatische Zustellung. Vollständige Referenz zu Flags und Verhalten:
 [Agent-CLI-Referenz](/de/cli/agent).
 
 ## Schnellstart
 
 <Steps>
-  <Step title="Einen einfachen Agent-Durchlauf ausführen">
+  <Step title="Einen einfachen Agentendurchlauf ausführen">
     ```bash
     openclaw agent --agent main --message "Wie ist das Wetter heute?"
     ```
@@ -37,22 +37,22 @@ programmatische Zustellung. Vollständige Referenz zu Flags und Verhalten:
     openclaw agent --agent ops --message-file ./task.md
     ```
 
-    Liest eine gültige UTF-8-Datei als Nachrichtentext des Agenten ein.
+    Liest eine gültige UTF-8-Datei als Nachrichtentext für den Agenten.
 
   </Step>
 
-  <Step title="Einen bestimmten Agenten oder eine bestimmte Sitzung adressieren">
+  <Step title="Einen bestimmten Agenten oder eine bestimmte Sitzung ansprechen">
     ```bash
-    # Einen bestimmten Agenten adressieren
+    # Einen bestimmten Agenten ansprechen
     openclaw agent --agent ops --message "Protokolle zusammenfassen"
 
-    # Eine Telefonnummer adressieren (leitet den Sitzungsschlüssel ab)
+    # Eine Telefonnummer ansprechen (leitet den Sitzungsschlüssel ab)
     openclaw agent --to +15555550123 --message "Statusaktualisierung"
 
-    # Eine bestehende Sitzung wiederverwenden
+    # Eine vorhandene Sitzung wiederverwenden
     openclaw agent --session-id abc123 --message "Aufgabe fortsetzen"
 
-    # Einen exakten Sitzungsschlüssel adressieren
+    # Einen exakten Sitzungsschlüssel verwenden
     openclaw agent --session-key agent:ops:incident-42 --message "Status zusammenfassen"
     ```
 
@@ -73,31 +73,31 @@ programmatische Zustellung. Vollständige Referenz zu Flags und Verhalten:
 
 ## Flags
 
-| Flag                        | Beschreibung                                                         |
+| Flag                        | Beschreibung                                                          |
 | --------------------------- | -------------------------------------------------------------------- |
-| `--message <text>`          | Zu sendende Inline-Nachricht                                         |
-| `--message-file <path>`     | Nachricht aus einer gültigen UTF-8-Datei lesen (max. 4 MiB)          |
-| `--to <dest>`               | Sitzungsschlüssel aus einem Ziel ableiten (Telefon, Chat-ID)         |
-| `--session-key <key>`       | Einen expliziten Sitzungsschlüssel verwenden                         |
-| `--agent <id>`              | Einen konfigurierten Agenten adressieren (verwendet dessen `main`-Sitzung) |
-| `--session-id <id>`         | Eine bestehende Sitzung anhand der ID wiederverwenden                |
-| `--model <id>`              | Modellüberschreibung für diesen Durchlauf (`provider/model` oder Modell-ID) |
-| `--local`                   | Lokale eingebettete Laufzeit erzwingen (Gateway überspringen)        |
-| `--deliver`                 | Die Antwort an einen Chatkanal senden                                |
-| `--channel <name>`          | Zustellungskanal; gilt mit `--agent` + `--to` auch für den DM-Geltungsbereich |
-| `--reply-to <target>`       | Zustellungsziel überschreiben                                        |
-| `--reply-channel <name>`    | Zustellungskanal überschreiben                                       |
-| `--reply-account <id>`      | Zustellungskonto-ID überschreiben                                    |
-| `--thinking <level>`        | Denkstufe für das ausgewählte Modellprofil festlegen                 |
-| `--verbose <on\|full\|off>` | Ausführlichkeitsstufe für die Sitzung beibehalten (`full` protokolliert auch die Werkzeugausgabe) |
-| `--timeout <seconds>`       | Zeitüberschreitung des Agenten überschreiben (Standard: 600 oder Konfigurationswert) |
-| `--json`                    | Strukturiertes JSON ausgeben                                         |
+| `--message <text>`          | Zu sendende Inline-Nachricht                                               |
+| `--message-file <path>`     | Nachricht aus einer gültigen UTF-8-Datei lesen (max. 4 MiB)                 |
+| `--to <dest>`               | Sitzungsschlüssel aus einem Ziel ableiten (Telefonnummer, Chat-ID)                    |
+| `--session-key <key>`       | Einen expliziten Sitzungsschlüssel verwenden                                          |
+| `--agent <id>`              | Einen konfigurierten Agenten ansprechen (verwendet dessen `main`-Sitzung)                  |
+| `--session-id <id>`         | Eine vorhandene Sitzung anhand ihrer ID wiederverwenden                                      |
+| `--model <id>`              | Modellüberschreibung für diesen Durchlauf (`provider/model` oder Modell-ID)           |
+| `--local`                   | Lokale eingebettete Laufzeit erzwingen (Gateway überspringen)                          |
+| `--deliver`                 | Antwort an einen Chatkanal senden                                     |
+| `--channel <name>`          | Zustellungskanal; gilt mit `--agent` + `--to` auch für den DM-Geltungsbereich     |
+| `--reply-to <target>`       | Zustellungsziel überschreiben                                             |
+| `--reply-channel <name>`    | Zustellungskanal überschreiben                                            |
+| `--reply-account <id>`      | Zustellungskonto-ID überschreiben                                         |
+| `--thinking <level>`        | Denkstufe für das ausgewählte Modellprofil festlegen                    |
+| `--verbose <on\|full\|off>` | Ausführlichkeitsstufe für die Sitzung speichern (`full` protokolliert auch die Werkzeugausgabe) |
+| `--timeout <seconds>`       | Zeitüberschreitung des Agenten überschreiben (Standard: 600 oder Konfigurationswert)                |
+| `--json`                    | Strukturiertes JSON ausgeben                                               |
 
 ## Verhalten
 
 - Standardmäßig läuft die CLI **über das Gateway**. Fügen Sie `--local` hinzu, um die
   eingebettete Laufzeit auf dem aktuellen Rechner zu erzwingen.
-- Übergeben Sie genau eine der Optionen `--message` oder `--message-file`. Dateinachrichten behalten
+- Übergeben Sie genau eines von `--message` oder `--message-file`. Dateinachrichten behalten
   mehrzeilige Inhalte bei, nachdem eine optionale UTF-8-BOM entfernt wurde. Dateien mit mehr als
   4 MiB werden vor der Weiterleitung abgelehnt.
 - Nach vorübergehenden Wiederholungsversuchen beim Handshake führt eine Gateway-Zeitüberschreitung oder eine geschlossene Verbindung
@@ -105,22 +105,22 @@ programmatische Zustellung. Vollständige Referenz zu Flags und Verhalten:
   erneut eingebettet aus. Das Gateway kann einen angenommenen Durchlauf dennoch abschließen. Prüfen Sie daher den Gateway-
   und Sitzungsstatus, bevor Sie den Vorgang wiederholen oder mit `--local` erneut ausführen.
 - Sitzungsauswahl: `--to` leitet den Sitzungsschlüssel ab (Gruppen-/Kanalziele
-  bleiben isoliert; direkte Chats werden zu `main` zusammengeführt). Wenn `--agent`,
+  behalten die Isolation bei; Direktchats werden zu `main` zusammengeführt). Wenn `--agent`,
   `--channel` und `--to` gemeinsam verwendet werden, folgt das Routing dem kanonischen
   Empfänger des Kanals und `session.dmScope`. Stabile Identitäten, die ausschließlich für ausgehende Nachrichten verwendet werden, nutzen eine
-  Provider-eigene Sitzung, die von der Hauptsitzung des Agenten isoliert ist.
-- `--session-key` wählt einen expliziten Schlüssel aus. Mit einem Agent-Präfix versehene Schlüssel müssen
+  vom Provider verwaltete Sitzung, die von der Hauptsitzung des Agenten isoliert ist.
+- `--session-key` wählt einen expliziten Schlüssel aus. Mit einem Agentenpräfix versehene Schlüssel müssen
   `agent:<agent-id>:<session-key>` verwenden, und `--agent` muss mit dieser Agenten-ID übereinstimmen, wenn
-  beide angegeben werden. Unpräfixierte Nicht-Sentinel-Schlüssel werden dem mit `--agent` angegebenen
-  Agenten zugeordnet; beispielsweise wird `--agent ops --session-key incident-42` an
-  `agent:ops:incident-42` weitergeleitet. Ohne `--agent` werden unpräfixierte Nicht-Sentinel-Schlüssel
-  dem konfigurierten Standardagenten zugeordnet. Die Literale `global` und `unknown` bleiben
-  nur dann ohne Geltungsbereich, wenn kein `--agent` angegeben wird.
+  beide angegeben werden. Unqualifizierte Schlüssel, die keine Sentinel-Schlüssel sind, werden auf `--agent` beschränkt, wenn
+  dies angegeben ist; beispielsweise wird `--agent ops --session-key incident-42` an
+  `agent:ops:incident-42` weitergeleitet. Ohne `--agent` werden unqualifizierte Schlüssel, die keine Sentinel-Schlüssel sind, auf
+  den konfigurierten Standardagenten beschränkt. Die literalen Werte `global` und `unknown` bleiben
+  nur dann unbeschränkt, wenn kein `--agent` angegeben ist.
 - `--reply-channel` und `--reply-account` wirken sich nur auf die Zustellung aus.
-- Flags für Denken und Ausführlichkeit werden dauerhaft im Sitzungsspeicher hinterlegt.
-- Ausgabe: standardmäßig Klartext oder `--json` für eine strukturierte Nutzlast mit Metadaten.
+- Denk- und Ausführlichkeits-Flags werden im Sitzungsspeicher gespeichert.
+- Ausgabe: standardmäßig Klartext oder `--json` für strukturierte Nutzdaten und Metadaten.
 - Mit `--json --deliver` enthält das JSON den Zustellungsstatus für gesendete,
-  unterdrückte, teilweise und fehlgeschlagene Zustellungen. Siehe
+  unterdrückte, teilweise und fehlgeschlagene Sendungen. Siehe
   [JSON-Zustellungsstatus](/de/cli/agent#json-delivery-status).
 
 ## Beispiele
@@ -129,7 +129,7 @@ programmatische Zustellung. Vollständige Referenz zu Flags und Verhalten:
 # Einfacher Durchlauf mit JSON-Ausgabe
 openclaw agent --to +15555550123 --message "Protokolle nachverfolgen" --verbose on --json
 
-# Durchlauf mit einer Modellüberschreibung
+# Durchlauf mit Modellüberschreibung
 openclaw agent --agent ops --model openai/gpt-5.4 --message "Protokolle zusammenfassen"
 
 # Durchlauf mit Denkstufe
@@ -141,7 +141,7 @@ openclaw agent --agent ops --message-file ./task.md
 # Exakter Sitzungsschlüssel
 openclaw agent --session-key agent:ops:incident-42 --message "Status zusammenfassen"
 
-# Einem Agenten zugeordneter Legacy-Schlüssel
+# Auf einen Agenten beschränkter Legacy-Schlüssel
 openclaw agent --agent ops --session-key incident-42 --message "Status zusammenfassen"
 
 # An einen anderen Kanal als den der Sitzung zustellen
@@ -161,6 +161,6 @@ openclaw agent --agent ops --message "Warnung" --deliver --reply-channel telegra
     Funktionsweise von Sitzungsschlüsseln und wie `--to`, `--agent` und `--session-id` sie auflösen.
   </Card>
   <Card title="Slash-Befehle" href="/de/tools/slash-commands" icon="slash">
-    Katalog nativer Befehle für die Verwendung innerhalb von Agentensitzungen.
+    Nativer Befehlskatalog zur Verwendung innerhalb von Agentensitzungen.
   </Card>
 </CardGroup>

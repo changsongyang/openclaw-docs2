@@ -4,7 +4,7 @@ read_when:
 summary: 为 OpenClaw 添加 LM Studio 模型提供商支持。
 title: LM Studio 插件
 x-i18n:
-    generated_at: "2026-07-16T11:50:07Z"
+    generated_at: "2026-07-26T06:22:09Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## 分发
 
 - 软件包：`@openclaw/lmstudio-provider`
-- 安装方式：内置于 OpenClaw
+- 安装方式：OpenClaw 内置
 
 ## 接口
 

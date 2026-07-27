@@ -1,10 +1,10 @@
 ---
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin comfy هستید
-summary: پشتیبانی از ارائه‌دهندهٔ مدل ComfyUI را به OpenClaw اضافه می‌کند.
+summary: پشتیبانی از ارائه‌دهنده مدل ComfyUI را به OpenClaw اضافه می‌کند.
 title: Plugin ‏ComfyUI
 x-i18n:
-    generated_at: "2026-07-16T16:54:43Z"
+    generated_at: "2026-07-27T15:30:14Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## توزیع
 
 - بسته: `@openclaw/comfy-provider`
-- مسیر نصب: در OpenClaw گنجانده شده است
+- مسیر نصب: همراه OpenClaw ارائه می‌شود
 
 ## سطح
 

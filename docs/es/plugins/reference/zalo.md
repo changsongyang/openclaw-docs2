@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin zalo
-summary: Plugin del canal Zalo de OpenClaw para chats de bot y Webhook.
+    - Está instalando, configurando o auditando el plugin de zalo
+summary: Plugin del canal Zalo de OpenClaw para chats de bots y Webhook.
 title: Plugin de Zalo
 x-i18n:
-    generated_at: "2026-07-16T11:55:04Z"
+    generated_at: "2026-07-26T04:53:06Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Plugin del canal Zalo de OpenClaw para chats de bot y Webhook.
 ## Distribución
 
 - Paquete: `@openclaw/zalo`
-- Método de instalación: npm; ClawHub
+- Ruta de instalación: npm; ClawHub
 
 ## Superficie
 

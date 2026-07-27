@@ -1,10 +1,10 @@
 ---
 read_when:
-    - signal Pluginのインストール、設定、または監査を行っています
+    - Signal Plugin のインストール、設定、または監査を行っています
 summary: OpenClaw メッセージを送受信するための Signal チャネル機能を追加します。
 title: Signal Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:06:37Z"
+    generated_at: "2026-07-26T09:13:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # Signal Plugin
 
-OpenClawメッセージを送受信するためのSignalチャネルサーフェスを追加します。
+OpenClaw メッセージを送受信するための Signal チャネル機能を追加します。
 
 ## 配布
 
 - パッケージ: `@openclaw/signal`
 - インストール経路: npm、ClawHub: `clawhub:@openclaw/signal`
 
-## サーフェス
+## 機能
 
 チャネル: `signal`
 

@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw Raft-kanaalplugin voor veilige CLI-wakebridges.
 title: Raft-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:07:34Z"
+    generated_at: "2026-07-27T05:16:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Raft-plugin
+# Raft-Plugin
 
 OpenClaw Raft-kanaalplugin voor veilige CLI-wakebridges.
 

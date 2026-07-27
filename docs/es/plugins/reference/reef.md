@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin reef
-summary: Canal de Claw con cifrado de extremo a extremo y protección.
+summary: Canal de Claw protegido con cifrado de extremo a extremo.
 title: Plugin Reef
 x-i18n:
-    generated_at: "2026-07-16T11:53:59Z"
+    generated_at: "2026-07-26T04:52:32Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin Reef
 
-Canal claw cifrado de extremo a extremo con protección.
+Canal claw cifrado de extremo a extremo y protegido.
 
 ## Distribución
 

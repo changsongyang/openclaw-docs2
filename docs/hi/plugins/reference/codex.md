@@ -4,7 +4,7 @@ read_when:
 summary: Codex app-server हार्नेस और नेटिव सेशन कैटलॉग।
 title: Codex Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:13:32Z"
+    generated_at: "2026-07-27T18:17:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,16 +16,16 @@ x-i18n:
 
 # Codex Plugin
 
-Codex app-server हार्नेस और नेटिव सेशन कैटलॉग।
+Codex ऐप-सर्वर हार्नेस और नेटिव सत्र कैटलॉग।
 
 ## वितरण
 
 - पैकेज: `@openclaw/codex`
 - इंस्टॉल मार्ग: npm; ClawHub
 
-## सरफ़ेस
+## सतह
 
-कॉन्ट्रैक्ट: `mediaUnderstandingProviders`, `migrationProviders`, `tools`, `webSearchProviders`
+अनुबंध: `mediaUnderstandingProviders`, `migrationProviders`, `tools`, `webSearchProviders`
 
 ## संबंधित दस्तावेज़
 

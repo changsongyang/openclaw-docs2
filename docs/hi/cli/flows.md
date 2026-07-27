@@ -1,11 +1,11 @@
 ---
 read_when:
     - आपको पुराने दस्तावेज़ों या रिलीज़ नोट्स में `openclaw flows` मिलता है
-    - आप TaskFlow के निरीक्षण के लिए एक त्वरित संदर्भ चाहते हैं
-summary: 'रीडायरेक्ट: प्रवाह कमांड `openclaw tasks flow` के अंतर्गत उपलब्ध हैं'
+    - आपको TaskFlow के त्वरित निरीक्षण का संदर्भ चाहिए
+summary: 'रीडायरेक्ट: प्रवाह कमांड `openclaw tasks flow` के अंतर्गत मौजूद हैं'
 title: प्रवाह (रीडायरेक्ट)
 x-i18n:
-    generated_at: "2026-07-19T08:15:59Z"
+    generated_at: "2026-07-27T17:51:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,7 +17,7 @@ x-i18n:
 
 # `openclaw tasks flow`
 
-कोई शीर्ष-स्तरीय `openclaw flows` कमांड नहीं है। स्थायी TaskFlow निरीक्षण `openclaw tasks flow` के अंतर्गत उपलब्ध है।
+शीर्ष-स्तर पर कोई `openclaw flows` कमांड नहीं है। स्थायी TaskFlow निरीक्षण `openclaw tasks flow` के अंतर्गत उपलब्ध है।
 
 ## उपकमांड
 
@@ -33,11 +33,11 @@ openclaw tasks flow cancel <lookup>
 | `show`     | एक TaskFlow दिखाएँ।         | `<lookup>` प्रवाह आईडी या स्वामी कुंजी; `--json` मशीन-पठनीय आउटपुट।                    |
 | `cancel`   | चल रहे TaskFlow को रद्द करें। | `<lookup>` प्रवाह आईडी या स्वामी कुंजी।                                                      |
 
-`<lookup>` या तो प्रवाह आईडी (`list` / `show` द्वारा लौटाई गई) या प्रवाह की स्वामी कुंजी (वह स्थिर पहचानकर्ता जिसका उपयोग स्वामी उपप्रणाली प्रवाह को ट्रैक करने के लिए करती है) स्वीकार करता है।
+`<lookup>` में प्रवाह आईडी (`list` / `show` द्वारा लौटाई गई) या प्रवाह की स्वामी कुंजी (प्रवाह को ट्रैक करने के लिए स्वामी उपप्रणाली द्वारा उपयोग किया जाने वाला स्थिर पहचानकर्ता), दोनों में से कोई भी स्वीकार्य है।
 
-### स्थिति फ़िल्टर मान
+### स्थिति फ़िल्टर के मान
 
-`list` पर `--status` इनमें से एक स्वीकार करता है: `queued`, `running`, `waiting`, `blocked`, `succeeded`, `failed`, `cancelled`, `lost`।
+`list` पर `--status` इनमें से कोई एक मान स्वीकार करता है: `queued`, `running`, `waiting`, `blocked`, `succeeded`, `failed`, `cancelled`, `lost`।
 
 ## उदाहरण
 

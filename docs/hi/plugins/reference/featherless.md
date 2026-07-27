@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw Featherless AI प्रदाता Plugin।
 title: Featherless Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:14:41Z"
+    generated_at: "2026-07-27T18:18:50Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 opencode-go 外掛
-summary: 為 OpenClaw 新增 OpenCode Go 模型供應商支援。
+summary: 新增 OpenCode Go 模型提供者支援至 OpenClaw。
 title: OpenCode Go 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:55:09Z"
+    generated_at: "2026-07-26T07:59:24Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,10 +18,10 @@ x-i18n:
 
 為 OpenClaw 新增 OpenCode Go 模型供應商支援。
 
-## 發佈
+## 發行方式
 
 - 套件：`@openclaw/opencode-go-provider`
-- 安裝途徑：隨附於 OpenClaw
+- 安裝方式：隨附於 OpenClaw
 
 ## 介面
 

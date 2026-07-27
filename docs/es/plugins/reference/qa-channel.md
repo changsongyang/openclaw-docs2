@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin qa-channel
-summary: Añade la interfaz del canal de control de calidad para enviar y recibir mensajes de OpenClaw.
-title: Plugin del canal de control de calidad
+    - Se está instalando, configurando o auditando el plugin qa-channel
+summary: Añade la interfaz de QA Channel para enviar y recibir mensajes de OpenClaw.
+title: Plugin de canal de control de calidad
 x-i18n:
-    generated_at: "2026-07-16T11:53:44Z"
+    generated_at: "2026-07-26T05:15:01Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # Plugin QA Channel
 
-Añade la interfaz QA Channel para enviar y recibir mensajes de OpenClaw.
+Añade la superficie QA Channel para enviar y recibir mensajes de OpenClaw.
 
 ## Distribución
 
 - Paquete: `@openclaw/qa-channel`
-- Ruta de instalación: solo desde una copia del código fuente
+- Ruta de instalación: solo desde una copia local del código fuente
 
-## Interfaz
+## Superficie
 
 canales: `qa-channel`
 

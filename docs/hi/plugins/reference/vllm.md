@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप vllm Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: OpenClaw में vLLM मॉडल प्रदाता का समर्थन जोड़ता है।
+summary: OpenClaw में vLLM मॉडल प्रदाता समर्थन जोड़ता है।
 title: vLLM Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:41:19Z"
+    generated_at: "2026-07-27T20:16:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

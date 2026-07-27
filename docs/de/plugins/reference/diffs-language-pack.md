@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das Plugin diffs-language-pack.
+    - Sie installieren, konfigurieren oder überprüfen das Plugin diffs-language-pack.
 summary: Fügt Syntaxhervorhebung für Sprachen hinzu, die nicht im Standardsatz des Diff-Viewers enthalten sind.
 title: Diffs-Sprachpaket-Plugin
 x-i18n:
-    generated_at: "2026-07-24T05:15:12Z"
+    generated_at: "2026-07-26T19:09:02Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Diffs-Sprachpaket-Plugin
+# Plugin für das Diffs-Sprachpaket
 
 Fügt Syntaxhervorhebung für Sprachen hinzu, die nicht im Standardsatz des Diffs-Viewers enthalten sind.
 
@@ -31,10 +31,10 @@ Plugin
 
 ## Hinzugefügte Sprachen
 
-Das grundlegende `diffs`-Plugin hebt bereits die gängigen Sprachen hervor, die unter [Diffs](/de/tools/diffs) dokumentiert sind. Installieren Sie dieses Sprachpaket, wenn Sie Syntaxhervorhebung für eine größere Auswahl von Shiki-unterstützten Sprachen benötigen. Wenn das Paket nicht installiert ist, werden diese Dateien weiterhin als lesbarer Klartext dargestellt.
+Das grundlegende `diffs`-Plugin hebt bereits die gängigen unter [Diffs](/de/tools/diffs) dokumentierten Sprachen hervor. Installieren Sie dieses Sprachpaket, wenn Sie Syntaxhervorhebung für eine breitere Auswahl von Shiki-unterstützten Sprachen wünschen. Wenn das Paket nicht installiert ist, werden diese Dateien weiterhin als lesbarer Klartext dargestellt.
 
 Beispiele sind Astro, Vue, Svelte, MDX, GraphQL, Terraform/HCL, Nix, Clojure, Elixir, Haskell, OCaml, Scala, Zig, Solidity, Verilog/VHDL, Fortran, MATLAB, LaTeX, Mermaid, Sass/Less/SCSS, Nginx, Apache, CSV, dotenv, INI und Diff-Dateien.
 
-Den Katalog der von Shiki unterstützten Sprachen und Aliasse finden Sie unter [Shiki-Sprachen](https://shiki.style/languages).
+Den Upstream-Katalog der Sprachen und Aliase von Shiki finden Sie unter [Shiki-Sprachen](https://shiki.style/languages).
 
 <!-- openclaw-plugin-reference:manual-end -->

@@ -4,7 +4,7 @@ read_when:
 summary: सुरक्षित CLI वेक ब्रिज के लिए OpenClaw Raft चैनल Plugin।
 title: Raft Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:17:35Z"
+    generated_at: "2026-07-27T18:19:14Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ x-i18n:
 - पैकेज: `@openclaw/raft`
 - इंस्टॉल मार्ग: npm; ClawHub
 
-## उपलब्ध इंटरफ़ेस
+## सतह
 
 चैनल: `raft`
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin novita
-summary: Añade compatibilidad con el proveedor de modelos Novita, Novita AI y Novitaai a OpenClaw.
+    - Se está instalando, configurando o auditando el plugin novita
+summary: Añade compatibilidad con el proveedor de modelos Novita, Novita AI y Novitaai en OpenClaw.
 title: Plugin de Novita
 x-i18n:
-    generated_at: "2026-07-16T11:49:09Z"
+    generated_at: "2026-07-26T05:14:56Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Añade compatibilidad con los proveedores de modelos Novita, Novita AI y Novitaa
 ## Distribución
 
 - Paquete: `@openclaw/novita-provider`
-- Ruta de instalación: incluida en OpenClaw
+- Ruta de instalación: incluido en OpenClaw
 
 ## Superficie
 

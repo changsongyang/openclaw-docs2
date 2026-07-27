@@ -4,7 +4,7 @@ read_when:
 summary: Endpoint RPC HTTP de administración de OpenClaw.
 title: Plugin de RPC HTTP de administración
 x-i18n:
-    generated_at: "2026-07-16T11:46:07Z"
+    generated_at: "2026-07-26T05:13:40Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Endpoint RPC HTTP de administración de OpenClaw.
 ## Distribución
 
 - Paquete: `@openclaw/admin-http-rpc`
-- Ruta de instalación: incluida en OpenClaw
+- Ruta de instalación: incluido en OpenClaw
 
 ## Superficie
 

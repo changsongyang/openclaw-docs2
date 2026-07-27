@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin ‏mattermost هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin مربوط به Mattermost هستید
 summary: سطح کانال Mattermost را برای ارسال و دریافت پیام‌های OpenClaw اضافه می‌کند.
-title: Plugin ماترموست
+title: Plugin ‏Mattermost
 x-i18n:
-    generated_at: "2026-07-16T17:02:35Z"
+    generated_at: "2026-07-27T14:29:07Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin Mattermost
+# Plugin مربوط به Mattermost
 
 سطح کانال Mattermost را برای ارسال و دریافت پیام‌های OpenClaw اضافه می‌کند.
 

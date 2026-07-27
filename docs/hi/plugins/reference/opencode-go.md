@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप opencode-go Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: OpenClaw में OpenCode Go मॉडल प्रदाता का समर्थन जोड़ता है।
+summary: OpenClaw में OpenCode Go मॉडल प्रदाता समर्थन जोड़ता है।
 title: OpenCode Go Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:41:04Z"
+    generated_at: "2026-07-27T19:40:23Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # OpenCode Go plugin
 
-OpenClaw में OpenCode Go मॉडल प्रदाता का समर्थन जोड़ता है।
+OpenClaw में OpenCode Go मॉडल प्रदाता समर्थन जोड़ता है।
 
 ## वितरण
 

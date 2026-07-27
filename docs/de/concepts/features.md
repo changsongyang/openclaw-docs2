@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw-Funktionen für Kanäle, Routing, Medien und UX.
 title: Funktionen
 x-i18n:
-    generated_at: "2026-07-24T03:46:14Z"
+    generated_at: "2026-07-26T17:44:45Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 
 <Columns>
   <Card title="Kanäle" icon="message-square" href="/de/channels">
-    Discord, iMessage, Signal, Slack, Telegram, WhatsApp, WebChat und mehr mit einem einzigen Gateway.
+    Discord, iMessage, Signal, Slack, Telegram, WhatsApp, WebChat und weitere über ein einziges Gateway.
   </Card>
   <Card title="Plugins" icon="plug" href="/de/tools/plugin">
     Offizielle Plugins fügen Matrix, Nextcloud Talk, Nostr, Twitch, Zalo und Dutzende weitere mit einem einzigen Installationsbefehl hinzu.
@@ -49,12 +49,12 @@ x-i18n:
   Tlon, Twitch, Voice Call, WhatsApp, Zalo und Zalo Personal
 - Außerhalb des OpenClaw-Repositorys gepflegte externe Plugin-Kanäle: WeChat, Yuanbao und Zalo ClawBot
 - Unterstützung für Gruppenchats mit erwähnungsbasierter Aktivierung
-- Schutz für Direktnachrichten durch Positivlisten und Kopplung
+- Sicherheit für Direktnachrichten durch Zulassungslisten und Kopplung
 
 **Agent:**
 
 - Eingebettete Agent-Laufzeit mit Tool-Streaming
-- Multi-Agent-Routing mit isolierten Sitzungen pro Arbeitsbereich oder Absender
+- Multi-Agent-Routing mit isolierten Sitzungen je Arbeitsbereich oder Absender
 - Sitzungen: Direktchats werden in einer gemeinsamen `main` zusammengeführt; Gruppen sind isoliert
 - Streaming und Aufteilung langer Antworten
 
@@ -63,16 +63,16 @@ x-i18n:
 - Mehr als 35 Modell-Provider (Anthropic, OpenAI, Google und weitere)
 - Abonnementauthentifizierung über OAuth (z. B. OpenAI Codex)
 - Unterstützung für benutzerdefinierte und selbst gehostete Provider (vLLM, SGLang, Ollama, llama.cpp, LM Studio und
-  jeden OpenAI- oder Anthropic-kompatiblen Endpunkt)
+  alle OpenAI- oder Anthropic-kompatiblen Endpunkte)
 
 **Medien:**
 
 - Ein- und Ausgabe von Bildern, Audio, Video und Dokumenten
-- Gemeinsame Funktionsschnittstellen für Bild- und Videogenerierung
+- Gemeinsame Funktionsoberflächen für Bild- und Videogenerierung
 - Transkription von Sprachnachrichten
-- Text-to-Speech mit mehreren Providern
+- Text-zu-Sprache mit mehreren Providern
 
-**Apps und Oberflächen:**
+**Apps und Schnittstellen:**
 
 - WebChat und browserbasierte Control UI
 - Begleit-App für die macOS-Menüleiste
@@ -83,20 +83,20 @@ x-i18n:
 
 - Browserautomatisierung, Befehlsausführung und Sandboxing
 - Websuche (Brave, DuckDuckGo, Exa, Firecrawl, Gemini, Grok, Kimi, MiniMax Search, Ollama Web Search, Perplexity, SearXNG, Tavily)
-- Cron-Aufgaben und Heartbeat-Planung
+- Cron-Aufgaben und Heartbeat-Zeitplanung
 - Skills, Plugins und Workflow-Pipelines (Lobster)
 
 ## Verwandte Themen
 
 <CardGroup cols={2}>
   <Card title="Experimentelle Funktionen" href="/de/concepts/experimental-features" icon="flask">
-    Optional aktivierbare Funktionen, die noch nicht in der Standardoberfläche verfügbar sind.
+    Optional aktivierbare Funktionen, die noch nicht für die Standardoberfläche veröffentlicht wurden.
   </Card>
   <Card title="Agent-Laufzeit" href="/de/concepts/agent" icon="robot">
-    Laufzeitmodell des Agents und die Verteilung von Ausführungen.
+    Laufzeitmodell des Agenten und die Weiterleitung von Ausführungen.
   </Card>
   <Card title="Kanäle" href="/de/channels" icon="message-square">
-    Verbinden Sie Telegram, WhatsApp, Discord, Slack und weitere über einen einzigen Gateway.
+    Verbinden Sie Telegram, WhatsApp, Discord, Slack und weitere über ein einziges Gateway.
   </Card>
   <Card title="Plugins" href="/de/tools/plugin" icon="plug">
     Offizielle und externe Plugins, die OpenClaw erweitern.

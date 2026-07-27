@@ -1,10 +1,10 @@
 ---
 read_when:
-    - tavily Plugin のインストール、設定、または監査を行っています
+    - tavily Plugin をインストール、設定、または監査している場合
 summary: エージェントから呼び出し可能なツールを追加します。Web 検索プロバイダーのサポートを追加します。
 title: Tavily Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:06:57Z"
+    generated_at: "2026-07-26T10:25:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Tavily Plugin
 
-エージェントから呼び出せるツールを追加します。Web 検索プロバイダーのサポートを追加します。
+エージェントから呼び出し可能なツールを追加します。Web 検索プロバイダーのサポートを追加します。
 
 ## 配布
 
 - パッケージ: `@openclaw/tavily-plugin`
-- インストール方法: npm、ClawHub: `clawhub:@openclaw/tavily-plugin`
+- インストール経路: npm、ClawHub: `clawhub:@openclaw/tavily-plugin`
 
 ## 提供機能
 

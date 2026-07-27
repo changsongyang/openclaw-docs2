@@ -4,7 +4,7 @@ read_when:
 summary: Cloud-Worker-Provider auf Basis der Crabbox CLI.
 title: Crabbox-Plugin
 x-i18n:
-    generated_at: "2026-07-24T05:15:01Z"
+    generated_at: "2026-07-26T19:08:55Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -31,6 +31,6 @@ Verträge: `workerProviders`
 
 ## Konfiguration
 
-Das Profilschema und Hinweise zum Lebenszyklus finden Sie unter [Cloud-Worker-Umgebungen](/de/gateway/configuration-reference#crabbox-profile).
+Informationen zum Profilschema und zum Lebenszyklus finden Sie unter [Cloud-Worker-Umgebungen](/de/gateway/configuration-reference#crabbox-profile).
 
 <!-- openclaw-plugin-reference:manual-end -->

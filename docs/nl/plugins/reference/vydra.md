@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de vydra-plugin
 summary: Voegt ondersteuning voor de Vydra-modelprovider toe aan OpenClaw.
-title: Vydra-Plugin
+title: Vydra-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:21:06Z"
+    generated_at: "2026-07-27T05:16:53Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

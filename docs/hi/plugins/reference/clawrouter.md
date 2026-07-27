@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw में ClawRouter मॉडल प्रदाता का समर्थन जोड़ता है।
 title: ClawRouter Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:13:16Z"
+    generated_at: "2026-07-27T20:12:29Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # ClawRouter Plugin
 
-OpenClaw में ClawRouter मॉडल प्रदाता का समर्थन जोड़ता है।
+OpenClaw में ClawRouter मॉडल प्रदाता समर्थन जोड़ता है।
 
 ## वितरण
 

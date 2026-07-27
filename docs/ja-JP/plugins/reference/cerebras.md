@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw に Cerebras モデルプロバイダーのサポートを追加します。
 title: Cerebras Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:03:29Z"
+    generated_at: "2026-07-26T09:42:44Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ OpenClaw に Cerebras モデルプロバイダーのサポートを追加しま�
 - パッケージ: `@openclaw/cerebras-provider`
 - インストール経路: npm、ClawHub: `clawhub:@openclaw/cerebras-provider`
 
-## 公開インターフェース
+## 提供機能
 
 プロバイダー: `cerebras`
 

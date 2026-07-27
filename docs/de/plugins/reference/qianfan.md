@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder überprüfen das qianfan-Plugin
+    - Sie installieren, konfigurieren oder überprüfen das qianfan-Plugin.
 summary: Fügt OpenClaw Unterstützung für den Qianfan-Modell-Provider hinzu.
 title: Qianfan-Plugin
 x-i18n:
-    generated_at: "2026-07-24T05:08:09Z"
+    generated_at: "2026-07-26T18:38:40Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Qianfan-Plugin
 
-Fügt OpenClaw Unterstützung für den Qianfan-Modell-Provider hinzu.
+Fügt Unterstützung für den Qianfan-Modell-Provider zu OpenClaw hinzu.
 
 ## Distribution
 
@@ -27,6 +27,6 @@ Fügt OpenClaw Unterstützung für den Qianfan-Modell-Provider hinzu.
 
 Provider: `qianfan`
 
-## Zugehörige Dokumentation
+## Verwandte Dokumentation
 
-- [Qianfan](/de/providers/qianfan)
+- [qianfan](/de/providers/qianfan)

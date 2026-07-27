@@ -4,7 +4,7 @@ read_when:
     - Añadir endpoints o esquemas
 summary: Descripción general y convenciones de la API REST pública (v1).
 x-i18n:
-    generated_at: "2026-07-19T01:51:07Z"
+    generated_at: "2026-07-26T04:32:38Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -22,45 +22,45 @@ OpenAPI: `/api/v1/openapi.json`
 
 ## Reutilización del catálogo público
 
-Se puede crear un catálogo, directorio o interfaz de búsqueda de terceros sobre las API públicas de lectura de ClawHub. Los metadatos y archivos públicos de las Skills se publican conforme a las reglas de licencia de Skills de ClawHub, mientras que la propia API tiene límites de frecuencia y debe utilizarse de manera responsable.
+Se puede crear un catálogo, directorio o sistema de búsqueda de terceros sobre las API públicas de lectura de ClawHub. Los metadatos y archivos públicos de Skills se publican conforme a las reglas de licencia de Skills de ClawHub, mientras que la propia API está sujeta a límites de frecuencia y debe utilizarse de forma responsable.
 
 Directrices:
 
 - Utilice endpoints públicos de lectura como `GET /api/v1/skills`, `GET /api/v1/search` y `GET /api/v1/skills/{slug}` para los listados del catálogo.
-- Almacene las respuestas en caché y respete `429`, `Retry-After` y las cabeceras de límite de frecuencia en lugar de realizar consultas frecuentes de forma agresiva.
-- Incluya un enlace a la URL canónica de la Skill de ClawHub al mostrar listados para que los usuarios puedan consultar el registro del repositorio de origen.
-- Utilice URL de página canónicas con el formato `https://clawhub.ai/<owner>/skills/<slug>`.
+- Almacene las respuestas en caché y respete `429`, `Retry-After` y los encabezados de límite de frecuencia en lugar de realizar consultas frecuentes de forma agresiva.
+- Incluya un enlace a la URL canónica de la Skill de ClawHub al mostrar los listados para que los usuarios puedan inspeccionar el registro de origen.
+- Utilice URL de páginas canónicas con el formato `https://clawhub.ai/<owner>/skills/<slug>`.
 - No dé a entender que ClawHub respalda, verifica u opera el sitio de terceros.
 - No replique contenido oculto, privado o bloqueado por moderación eludiendo los filtros de la API pública o los límites de autenticación.
 
 ## Autenticación
 
 - Lectura pública: no se requiere token.
-- Escritura + cuenta: `Authorization: Bearer clh_...`.
+- Escritura y cuenta: `Authorization: Bearer clh_...`.
 
 ## Límites de frecuencia
 
-Aplicación en función de la autenticación:
+Aplicación según la autenticación:
 
 - Solicitudes anónimas: por IP.
-- Solicitudes autenticadas (token Bearer válido): por intervalo de usuario.
-- Si el token falta o no es válido, se aplica el límite por IP.
+- Solicitudes autenticadas (token Bearer válido): por cuota de usuario.
+- Si falta el token o no es válido, se aplica el límite por IP.
 
 - Lectura: 3000/min por IP, 12000/min por clave
 - Escritura: 300/min por IP, 3000/min por clave
 - Descarga: 1200/min por IP, 6000/min por clave
 
-Cabeceras: `X-RateLimit-Limit`, `X-RateLimit-Reset`, `RateLimit-Limit`, `RateLimit-Reset`;
+Encabezados: `X-RateLimit-Limit`, `X-RateLimit-Reset`, `RateLimit-Limit`, `RateLimit-Reset`;
 `X-RateLimit-Remaining`, `RateLimit-Remaining` y `Retry-After` se incluyen en `429`.
 
 Semántica:
 
 - `X-RateLimit-Reset`: segundos desde la época Unix (hora absoluta de restablecimiento)
-- `RateLimit-Reset`: segundos de demora hasta el restablecimiento
-- `X-RateLimit-Remaining` / `RateLimit-Remaining`: presupuesto restante exacto cuando está
-  presente; las solicitudes distribuidas correctamente lo omiten en lugar de devolver un valor
+- `RateLimit-Reset`: segundos de espera hasta el restablecimiento
+- `X-RateLimit-Remaining` / `RateLimit-Remaining`: presupuesto restante exacto cuando
+  está presente; las solicitudes distribuidas que se realizan correctamente lo omiten en lugar de devolver un valor
   global aproximado
-- `Retry-After`: segundos de demora que se deben esperar en `429`
+- `Retry-After`: segundos que se deben esperar en `429`
 
 Ejemplo de `429`:
 
@@ -77,8 +77,8 @@ retry-after: 34
 
 Gestión del cliente:
 
-- Dé prioridad a `Retry-After` cuando esté presente.
-- En caso contrario, utilice `RateLimit-Reset` o calcule la demora a partir de `X-RateLimit-Reset`.
+- Dé preferencia a `Retry-After` cuando esté presente.
+- En caso contrario, utilice `RateLimit-Reset` o calcule la espera a partir de `X-RateLimit-Reset`.
 - Añada una variación aleatoria a los reintentos.
 
 ## Errores
@@ -96,7 +96,7 @@ Lectura pública:
   - Filtros opcionales: `highlightedOnly=true`, `nonSuspiciousOnly=true`
   - Alias heredado: `nonSuspicious=true`
 - `GET /api/v1/skills?limit=&cursor=&sort=`
-  - `sort`: `updated` (predeterminado), `recommended` (`default`), `createdAt` (`newest`), `downloads`, `stars` (`rating`), los alias de instalación heredados `installsCurrent`/`installs`/`installsAllTime` se asignan a `downloads`, `trending`
+  - `sort`: `updated` (predeterminado), `recommended` (`default`), `createdAt` (`newest`), `downloads`, `stars` (`rating`), los alias heredados de instalación `installsCurrent`/`installs`/`installsAllTime` se asignan a `downloads`, `trending`
   - Los valores no válidos de `sort` devuelven `400`
   - `cursor` se aplica a las ordenaciones distintas de `trending`
   - Filtro opcional: `nonSuspiciousOnly=true`
@@ -130,9 +130,9 @@ Lectura pública:
 - `GET /api/npm/{package}`
 - `GET /api/npm/{package}/-/{tarball}.tgz`
 
-Autenticación requerida:
+Se requiere autenticación:
 
-- `POST /api/v1/skills` (publicación, preferiblemente multipart)
+- `POST /api/v1/skills` (publicación; se prefiere multipart)
 - `DELETE /api/v1/skills/{slug}`
 - `DELETE /api/v1/packages/{name}`
 - `POST /api/v1/skills/{slug}/undelete`
@@ -150,10 +150,10 @@ Autenticación requerida:
 - `GET /api/v1/transfers/outgoing`
 - `GET /api/v1/whoami`
 
-Solo administradores:
+Solo para administradores:
 
-- `POST /api/v1/users/reserve` reserva slugs raíz y marcadores de posición de paquetes privados sin versión para un identificador de propietario.
+- `POST /api/v1/users/reserve` reserva slugs raíz y marcadores de posición privados de paquetes sin versión para el identificador de un propietario.
 
 ## Heredado
 
-Las versiones heredadas `/api/*` y `/api/cli/*` siguen disponibles. Consulte `DEPRECATIONS.md`.
+Los antiguos `/api/*` y `/api/cli/*` siguen disponibles. Consulte `DEPRECATIONS.md`.

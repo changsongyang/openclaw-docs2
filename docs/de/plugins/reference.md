@@ -5,7 +5,7 @@ read_when:
 summary: Generierter Index der OpenClaw-Plugin-Referenzseiten
 title: Plugin-Referenz
 x-i18n:
-    generated_at: "2026-07-24T05:06:38Z"
+    generated_at: "2026-07-26T18:37:14Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

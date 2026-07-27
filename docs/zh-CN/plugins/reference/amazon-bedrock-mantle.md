@@ -4,7 +4,7 @@ read_when:
 summary: 用于 OpenAI 兼容模型路由的 OpenClaw Amazon Bedrock Mantle 提供商插件。
 title: Amazon Bedrock Mantle 插件
 x-i18n:
-    generated_at: "2026-07-16T11:48:20Z"
+    generated_at: "2026-07-26T06:52:56Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## 分发
 
 - 软件包：`@openclaw/amazon-bedrock-mantle-provider`
-- 安装渠道：npm；ClawHub
+- 安装方式：npm；ClawHub
 
 ## 接口
 

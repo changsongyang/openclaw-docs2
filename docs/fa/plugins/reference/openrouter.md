@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin مربوط به openrouter هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin ‏openrouter هستید
 summary: پشتیبانی از ارائه‌دهنده مدل OpenRouter را به OpenClaw اضافه می‌کند.
 title: Plugin ‏OpenRouter
 x-i18n:
-    generated_at: "2026-07-16T17:29:35Z"
+    generated_at: "2026-07-27T16:51:32Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin ‏OpenRouter
+# Plugin OpenRouter
 
 پشتیبانی از ارائه‌دهنده مدل OpenRouter را به OpenClaw اضافه می‌کند.
 

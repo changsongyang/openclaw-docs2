@@ -4,7 +4,7 @@ read_when:
 summary: 受保护的端到端加密 Claw 渠道。
 title: Reef 插件
 x-i18n:
-    generated_at: "2026-07-16T11:51:41Z"
+    generated_at: "2026-07-26T06:27:24Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Reef 插件
 
-受保护的端到端加密 claw 渠道。
+受保护的端到端加密 Claw 渠道。
 
 ## 分发
 
 - 包：`@openclaw/reef`
-- 安装方式：内置于 OpenClaw
+- 安装方式：OpenClaw 内置
 
 ## 接口
 

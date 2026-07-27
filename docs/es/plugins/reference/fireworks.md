@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Estás instalando, configurando o auditando el plugin Fireworks
+    - Está instalando, configurando o auditando el Plugin Fireworks
 summary: Añade compatibilidad con el proveedor de modelos Fireworks a OpenClaw.
 title: Plugin de Fireworks
 x-i18n:
-    generated_at: "2026-07-16T11:47:36Z"
+    generated_at: "2026-07-26T05:21:16Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

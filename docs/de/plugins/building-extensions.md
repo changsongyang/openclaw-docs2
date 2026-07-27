@@ -1,10 +1,10 @@
 ---
 read_when:
     - Veralteter Link zu building-extensions
-summary: Leitet zum aktuellen Leitfaden zum Erstellen von Plugins weiter
+summary: Weiterleitung zum aktuellen Leitfaden zum Erstellen von Plugins
 title: Plugins erstellen (Weiterleitung)
 x-i18n:
-    generated_at: "2026-07-24T03:55:39Z"
+    generated_at: "2026-07-26T17:54:12Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

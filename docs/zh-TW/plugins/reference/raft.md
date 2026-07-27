@@ -4,7 +4,7 @@ read_when:
 summary: 用於安全命令列介面喚醒橋接的 OpenClaw Raft 頻道外掛。
 title: Raft 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:50:32Z"
+    generated_at: "2026-07-26T07:51:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 
 用於安全命令列介面喚醒橋接的 OpenClaw Raft 頻道外掛。
 
-## 發佈
+## 發行
 
 - 套件：`@openclaw/raft`
 - 安裝途徑：npm；ClawHub

@@ -4,7 +4,7 @@ read_when:
 summary: 新增 OpenClaw 對 vLLM 模型供應商的支援。
 title: vLLM 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:54:17Z"
+    generated_at: "2026-07-26T08:29:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # vLLM 外掛
 
-為 OpenClaw 新增 vLLM 模型供應商支援。
+為 OpenClaw 新增 vLLM 模型提供者支援。
 
 ## 發行方式
 
@@ -25,7 +25,7 @@ x-i18n:
 
 ## 介面
 
-供應商：`vllm`
+提供者：`vllm`
 
 ## 相關文件
 

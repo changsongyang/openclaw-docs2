@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin de SMS.
+    - Está instalando, configurando o auditando el plugin de SMS
 summary: Plugin de canal SMS de Twilio para mensajes de texto de OpenClaw.
 title: Plugin de SMS
 x-i18n:
-    generated_at: "2026-07-16T11:54:41Z"
+    generated_at: "2026-07-26T04:52:44Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin de SMS
 
-Plugin del canal de SMS de Twilio para mensajes de texto de OpenClaw.
+Plugin de canal SMS de Twilio para mensajes de texto de OpenClaw.
 
 ## Distribución
 
@@ -29,4 +29,4 @@ canales: `sms`
 
 ## Documentación relacionada
 
-- [sms](/es/channels/sms)
+- [SMS](/es/channels/sms)

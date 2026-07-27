@@ -4,7 +4,7 @@ read_when:
 summary: ابزارهای قابل فراخوانی توسط عامل را اضافه می‌کند. پشتیبانی از ارائه‌دهندهٔ واکشی وب را اضافه می‌کند. پشتیبانی از ارائه‌دهندهٔ جست‌وجوی وب را اضافه می‌کند.
 title: Plugin فایرکراول
 x-i18n:
-    generated_at: "2026-07-16T17:27:19Z"
+    generated_at: "2026-07-27T15:31:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -29,4 +29,4 @@ x-i18n:
 
 ## مستندات مرتبط
 
-- [Firecrawl](/fa/tools/firecrawl)
+- [firecrawl](/fa/tools/firecrawl)

@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de huggingface-plugin
 summary: Voegt ondersteuning voor de Hugging Face-modelprovider toe aan OpenClaw.
-title: Hugging Face-plugin
+title: Hugging Face-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:14:56Z"
+    generated_at: "2026-07-27T06:03:16Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Hugging Face-Plugin
+# Hugging Face-plugin
 
-Voegt ondersteuning voor Hugging Face-modelproviders toe aan OpenClaw.
+Voegt ondersteuning voor de Hugging Face-modelprovider toe aan OpenClaw.
 
 ## Distributie
 
 - Pakket: `@openclaw/huggingface-provider`
-- Installatieroute: inbegrepen in OpenClaw
+- Installatieroute: inbegrepen bij OpenClaw
 
 ## Oppervlak
 

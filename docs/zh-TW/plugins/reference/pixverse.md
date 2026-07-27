@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw PixVerse 影片生成供應商外掛。
 title: PixVerse 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:50:14Z"
+    generated_at: "2026-07-26T07:51:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,9 +16,9 @@ x-i18n:
 
 # PixVerse 外掛
 
-OpenClaw PixVerse 影片生成供應商外掛。
+OpenClaw PixVerse 影片生成提供者外掛。
 
-## 發佈
+## 發布方式
 
 - 套件：`@openclaw/pixverse-provider`
 - 安裝途徑：npm；ClawHub：`clawhub:@openclaw/pixverse-provider`

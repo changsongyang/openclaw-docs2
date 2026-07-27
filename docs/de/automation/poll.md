@@ -2,7 +2,7 @@
 summary: Weiterleitung zu /cli/message
 title: Umfragen
 x-i18n:
-    generated_at: "2026-07-24T04:20:45Z"
+    generated_at: "2026-07-26T18:15:10Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -12,7 +12,7 @@ x-i18n:
     workflow: 16
 ---
 
-Diese Seite wurde verschoben. Die Dokumentation zu Umfragen, einschließlich der Flags `openclaw message poll` und der Limits pro Kanal, befindet sich unter [Nachrichten-Tool](/de/cli/message).
+Diese Seite wurde verschoben. Die Dokumentation zu Umfragen, einschließlich der `openclaw message poll`-Flags und der kanalbezogenen Beschränkungen, finden Sie unter [Nachrichten-Tool](/de/cli/message).
 
 ## Verwandte Themen
 

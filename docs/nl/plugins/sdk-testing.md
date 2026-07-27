@@ -7,30 +7,30 @@ sidebarTitle: Testing
 summary: Testhulpmiddelen en -patronen voor OpenClaw-plugins
 title: Plugin testen
 x-i18n:
-    generated_at: "2026-07-16T16:08:51Z"
+    generated_at: "2026-07-27T06:29:12Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 8f82f32a61e1ba8049f410a6a1c3651055efb8c048eaa6d1ac0c1442c34726e6
+    source_hash: 9c6c050826dae3cd2c794d50b2dd95e20e6533d838161cce037742ee5fdf7e0e
     source_path: plugins/sdk-testing.md
     workflow: 16
 ---
 
-Referentie voor testhulpprogramma's, patronen en lint-handhaving voor OpenClaw-
+Naslaginformatie voor testhulpprogramma's, patronen en lint-handhaving voor OpenClaw-
 plugins.
 
 <Tip>
-  **Op zoek naar testvoorbeelden?** De handleidingen bevatten uitgewerkte testvoorbeelden:
+  **Op zoek naar testvoorbeelden?** De instructiegidsen bevatten uitgewerkte testvoorbeelden:
   [Tests voor kanaalplugins](/nl/plugins/sdk-channel-plugins#step-6-test) en
   [Tests voor providerplugins](/nl/plugins/sdk-provider-plugins#step-6-test).
 </Tip>
 
 ## Testhulpprogramma's
 
-Deze subpaden zijn repo-lokale bron-entrypoints voor de eigen gebundelde
+Deze subpaden zijn lokale broningangen van de repository voor de eigen gebundelde
 plugintests van OpenClaw. Het zijn geen gepubliceerde `package.json`-exports voor plugins
-van derden en ze kunnen Vitest of andere testafhankelijkheden importeren die alleen in de repo beschikbaar zijn.
+van derden en ze kunnen Vitest of andere testafhankelijkheden importeren die alleen in de repository beschikbaar zijn.
 
 ```typescript
 import {
@@ -47,6 +47,8 @@ import { registerSingleProviderPlugin } from "openclaw/plugin-sdk/plugin-test-ru
 import { describeOpenAIProviderRuntimeContract } from "openclaw/plugin-sdk/provider-test-contracts";
 import { getProviderHttpMocks } from "openclaw/plugin-sdk/provider-http-test-mocks";
 import { withEnv, withFetchPreconnect, withServer } from "openclaw/plugin-sdk/test-env";
+import { isLiveTestEnabled } from "openclaw/plugin-sdk/test-live";
+import { createRequestCaptureJsonFetch } from "openclaw/plugin-sdk/test-media-understanding";
 import {
   bundledPluginRoot,
   createCliRuntimeCapture,
@@ -56,85 +58,88 @@ import { mockNodeBuiltinModule } from "openclaw/plugin-sdk/test-node-mocks";
 ```
 
 Gebruik deze gerichte subpaden voor tests van gebundelde plugins. De voormalige
-`openclaw/plugin-sdk/testing`-barrel was repo-lokaal, uitgesloten van uitgebrachte
-pakketten en is verwijderd. De verouderde alias `openclaw/plugin-sdk/test-utils`
-blijft repo-lokaal; `pnpm run lint:plugins:no-extension-test-core-imports`
-(`scripts/check-no-extension-test-core-imports.ts`) weigert nieuwe imports voor extensietests
-van die alias.
+`openclaw/plugin-sdk/testing`-barrel was lokaal in de repository, uitgesloten van uitgebrachte
+pakketten en is verwijderd. De voormalige `openclaw/plugin-sdk/test-utils`-
+alias is tegelijk verwijderd. `pnpm run lint:plugins:no-extension-test-core-imports`
+(`scripts/check-no-extension-test-core-imports.ts`) houdt extensietests op
+de bovenstaande gerichte testsubpaden.
 
 ### Beschikbare exports
 
 | Export                                               | Doel                                                                                                                                  |
 | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `createTestPluginApi`                                | Bouw een minimale mock van de Plugin-API voor unit-tests van directe registratie. Importeer uit `plugin-sdk/plugin-test-api`                             |
-| `AUTH_PROFILE_RUNTIME_CONTRACT`                      | Gedeelde contractfixture voor authenticatieprofielen voor systeemeigen agentruntime-adapters. Importeer uit `plugin-sdk/agent-runtime-test-contracts`            |
-| `DELIVERY_NO_REPLY_RUNTIME_CONTRACT`                 | Gedeelde contractfixture voor onderdrukking van aflevering voor systeemeigen agentruntime-adapters. Importeer uit `plugin-sdk/agent-runtime-test-contracts`    |
-| `OUTCOME_FALLBACK_RUNTIME_CONTRACT`                  | Gedeelde contractfixture voor fallbackclassificatie voor systeemeigen agentruntime-adapters. Importeer uit `plugin-sdk/agent-runtime-test-contracts` |
-| `createParameterFreeTool`                            | Bouw fixtures voor schema's van dynamische tools voor contracttests van systeemeigen runtimes. Importeer uit `plugin-sdk/agent-runtime-test-contracts`              |
+| `createTestPluginApi`                                | Bouw een minimale mock van de Plugin-API voor unittests van directe registratie. Importeer uit `plugin-sdk/plugin-test-api`                             |
+| `AUTH_PROFILE_RUNTIME_CONTRACT`                      | Gedeelde contractfixture voor authenticatieprofielen voor systeemeigen adapters van de agentruntime. Importeer uit `plugin-sdk/agent-runtime-test-contracts`            |
+| `DELIVERY_NO_REPLY_RUNTIME_CONTRACT`                 | Gedeelde contractfixture voor onderdrukking van bezorging voor systeemeigen adapters van de agentruntime. Importeer uit `plugin-sdk/agent-runtime-test-contracts`    |
+| `OUTCOME_FALLBACK_RUNTIME_CONTRACT`                  | Gedeelde contractfixture voor fallbackclassificatie voor systeemeigen adapters van de agentruntime. Importeer uit `plugin-sdk/agent-runtime-test-contracts` |
+| `createParameterFreeTool`                            | Bouw schemafixtures voor dynamische tools voor contracttests van systeemeigen runtimes. Importeer uit `plugin-sdk/agent-runtime-test-contracts`              |
 | `expectChannelInboundContextContract`                | Controleer de vorm van de inkomende kanaalcontext. Importeer uit `plugin-sdk/channel-contract-testing`                                                  |
-| `installChannelOutboundPayloadContractSuite`         | Installeer contracttestgevallen voor uitgaande kanaalpayloads. Importeer uit `plugin-sdk/channel-contract-testing`                                       |
+| `installChannelOutboundPayloadContractSuite`         | Installeer contractgevallen voor uitgaande kanaalpayloads. Importeer uit `plugin-sdk/channel-contract-testing`                                       |
 | `createStartAccountContext`                          | Bouw contexten voor de levenscyclus van kanaalaccounts. Importeer uit `plugin-sdk/channel-test-helpers`                                                  |
-| `installChannelActionsContractSuite`                 | Installeer generieke contracttestgevallen voor kanaalberichtacties. Importeer uit `plugin-sdk/channel-test-helpers`                                     |
-| `installChannelSetupContractSuite`                   | Installeer generieke contracttestgevallen voor kanaalconfiguratie. Importeer uit `plugin-sdk/channel-test-helpers`                                              |
-| `installChannelStatusContractSuite`                  | Installeer generieke contracttestgevallen voor kanaalstatus. Importeer uit `plugin-sdk/channel-test-helpers`                                             |
-| `expectDirectoryIds`                                 | Controleer kanaalmap-id's uit een functie die een mappenlijst retourneert. Importeer uit `plugin-sdk/channel-test-helpers`                               |
-| `assertBundledChannelEntries`                        | Controleer of toegangspunten van gebundelde kanalen het verwachte openbare contract beschikbaar stellen. Importeer uit `plugin-sdk/channel-test-helpers`                    |
+| `installChannelActionsContractSuite`                 | Installeer generieke contractgevallen voor kanaalberichtacties. Importeer uit `plugin-sdk/channel-test-helpers`                                     |
+| `installChannelSetupContractSuite`                   | Installeer generieke contractgevallen voor kanaalconfiguratie. Importeer uit `plugin-sdk/channel-test-helpers`                                              |
+| `installChannelStatusContractSuite`                  | Installeer generieke contractgevallen voor kanaalstatus. Importeer uit `plugin-sdk/channel-test-helpers`                                             |
+| `expectDirectoryIds`                                 | Controleer kanaalmap-id's aan de hand van een functie die mappen opsomt. Importeer uit `plugin-sdk/channel-test-helpers`                               |
+| `assertBundledChannelEntries`                        | Controleer of ingangspunten van gebundelde kanalen het verwachte openbare contract beschikbaar stellen. Importeer uit `plugin-sdk/channel-test-helpers`                    |
 | `formatEnvelopeTimestamp`                            | Formatteer deterministische tijdstempels voor enveloppen. Importeer uit `plugin-sdk/channel-test-helpers`                                                  |
-| `expectPairingReplyText`                             | Controleer de antwoordtekst voor kanaalkoppeling en extraheer de code. Importeer uit `plugin-sdk/channel-test-helpers`                                    |
+| `expectPairingReplyText`                             | Controleer de antwoordtekst voor kanaalkoppeling en extraheer de code ervan. Importeer uit `plugin-sdk/channel-test-helpers`                                    |
 | `describePluginRegistrationContract`                 | Installeer contractcontroles voor Plugin-registratie. Importeer uit `plugin-sdk/plugin-test-contracts`                                              |
-| `registerSingleProviderPlugin`                       | Registreer één provider-Plugin in rooktests voor de lader. Importeer uit `plugin-sdk/plugin-test-runtime`                                         |
-| `registerProviderPlugin`                             | Leg alle providertypen van één Plugin vast. Importeer uit `plugin-sdk/plugin-test-runtime`                                                 |
+| `registerSingleProviderPlugin`                       | Registreer één provider-Plugin in rooktests voor de loader. Importeer uit `plugin-sdk/plugin-test-runtime`                                         |
+| `registerProviderPlugin`                             | Leg alle providersoorten van één Plugin vast. Importeer uit `plugin-sdk/plugin-test-runtime`                                                 |
 | `registerProviderPlugins`                            | Leg providerregistraties van meerdere plugins vast. Importeer uit `plugin-sdk/plugin-test-runtime`                                     |
-| `requireRegisteredProvider`                          | Controleer of een providerverzameling een id bevat. Importeer uit `plugin-sdk/plugin-test-runtime`                                           |
-| `createRuntimeEnv`                                   | Bouw een gemockte CLI-/Plugin-runtimeomgeving. Importeer uit `plugin-sdk/plugin-test-runtime`                                              |
-| `createPluginRuntimeMock`                            | Bouw een gemockt Plugin-runtimeoppervlak. Importeer uit `plugin-sdk/plugin-test-runtime`                                                      |
+| `requireRegisteredProvider`                          | Controleer of een verzameling providers een id bevat. Importeer uit `plugin-sdk/plugin-test-runtime`                                           |
+| `createRuntimeEnv`                                   | Bouw een gesimuleerde runtimeomgeving voor de CLI/Plugin. Importeer uit `plugin-sdk/plugin-test-runtime`                                              |
+| `createPluginRuntimeMock`                            | Bouw een gesimuleerd Plugin-runtimeoppervlak. Importeer uit `plugin-sdk/plugin-test-runtime`                                                      |
 | `createPluginSetupWizardStatus`                      | Bouw helpers voor de configuratiestatus van kanaalplugins. Importeer uit `plugin-sdk/plugin-test-runtime`                                             |
-| `createTestWizardPrompter`                           | Bouw een gemockte promptfunctie voor de configuratiewizard. Importeer uit `plugin-sdk/plugin-test-runtime`                                                       |
-| `createRuntimeTaskFlow`                              | Maak geïsoleerde runtime-status voor taakstromen. Importeer uit `plugin-sdk/plugin-test-runtime`                                                    |
-| `runProviderCatalog`                                 | Voer een hook voor de providercatalogus uit met testafhankelijkheden. Importeer uit `plugin-sdk/plugin-test-runtime`                                     |
-| `resolveProviderWizardOptions`                       | Los keuzes van de providerconfiguratiewizard op in contracttests. Importeer uit `plugin-sdk/plugin-test-runtime`                                    |
-| `resolveProviderModelPickerEntries`                  | Los items van de providermodelkiezer op in contracttests. Importeer uit `plugin-sdk/plugin-test-runtime`                                    |
+| `createTestWizardPrompter`                           | Bouw een gesimuleerde promptfunctie voor de configuratiewizard. Importeer uit `plugin-sdk/plugin-test-runtime`                                                       |
+| `createRuntimeTaskFlow`                              | Maak geïsoleerde TaskFlow-status voor de runtime. Importeer uit `plugin-sdk/plugin-test-runtime`                                                    |
+| `runProviderCatalog`                                 | Voer een providercatalogushaak uit met testafhankelijkheden. Importeer uit `plugin-sdk/plugin-test-runtime`                                     |
+| `resolveProviderWizardOptions`                       | Bepaal de keuzes van de providerconfiguratiewizard in contracttests. Importeer uit `plugin-sdk/plugin-test-runtime`                                    |
+| `resolveProviderModelPickerEntries`                  | Bepaal de items van de provider-modelkiezer in contracttests. Importeer uit `plugin-sdk/plugin-test-runtime`                                    |
 | `buildProviderPluginMethodChoice`                    | Bouw keuze-id's voor de providerwizard voor controles. Importeer uit `plugin-sdk/plugin-test-runtime`                                            |
-| `setProviderWizardProvidersResolverForTest`          | Injecteer providers voor de providerwizard voor geïsoleerde tests. Importeer uit `plugin-sdk/plugin-test-runtime`                                        |
+| `setProviderWizardProvidersResolverForTest`          | Injecteer providers voor de providerwizard in geïsoleerde tests. Importeer uit `plugin-sdk/plugin-test-runtime`                                        |
 | `describeOpenAIProviderRuntimeContract`              | Installeer runtimecontractcontroles voor providerfamilies. Importeer uit `plugin-sdk/provider-test-contracts`                                        |
-| `expectPassthroughReplayPolicy`                      | Controleer of beleid voor het opnieuw afspelen van providers wordt doorgegeven via tools en metadata die eigendom zijn van de provider. Importeer uit `plugin-sdk/provider-test-contracts`         |
-| `runRealtimeSttLiveTest`                             | Voer een live test van een realtime STT-provider uit met gedeelde audiofixtures. Importeer uit `plugin-sdk/provider-test-contracts`                       |
+| `expectPassthroughReplayPolicy`                      | Controleer of beleid voor herhaling door providers wordt doorgegeven via tools en metadata die eigendom zijn van de provider. Importeer uit `plugin-sdk/provider-test-contracts`         |
+| `runRealtimeSttLiveTest`                             | Voer een live realtime test van een STT-provider uit met gedeelde audiofixtures. Importeer uit `plugin-sdk/provider-test-contracts`                       |
 | `normalizeTranscriptForMatch`                        | Normaliseer live transcriptuitvoer vóór fuzzy controles. Importeer uit `plugin-sdk/provider-test-contracts`                               |
 | `expectExplicitVideoGenerationCapabilities`          | Controleer of videoproviders expliciete mogelijkheden voor generatiemodi declareren. Importeer uit `plugin-sdk/provider-test-contracts`                   |
 | `expectExplicitMusicGenerationCapabilities`          | Controleer of muziekproviders expliciete mogelijkheden voor genereren/bewerken declareren. Importeer uit `plugin-sdk/provider-test-contracts`                   |
-| `mockSuccessfulDashscopeVideoTask`                   | Installeer een geslaagd DashScope-compatibel antwoord op een videotaak. Importeer uit `plugin-sdk/provider-test-contracts`                          |
-| `getProviderHttpMocks`                               | Gebruik optionele Vitest-mocks voor HTTP/authenticatie van providers. Importeer uit `plugin-sdk/provider-http-test-mocks`                                         |
-| `installProviderHttpMockCleanup`                     | Stel de mocks voor HTTP/authenticatie van providers na elke test opnieuw in. Importeer uit `plugin-sdk/provider-http-test-mocks`                                        |
-| `installCommonResolveTargetErrorCases`               | Gedeelde testgevallen voor foutafhandeling bij doelresolutie. Importeer uit `plugin-sdk/channel-target-testing`                                  |
+| `mockSuccessfulDashscopeVideoTask`                   | Installeer een geslaagd antwoord op een DashScope-compatibele videotaak. Importeer uit `plugin-sdk/provider-test-contracts`                          |
+| `getProviderHttpMocks`                               | Verkrijg toegang tot opt-in Vitest-mocks voor HTTP/authenticatie van providers. Importeer uit `plugin-sdk/provider-http-test-mocks`                                         |
+| `installProviderHttpMockCleanup`                     | Stel mocks voor HTTP/authenticatie van providers na elke test opnieuw in. Importeer uit `plugin-sdk/provider-http-test-mocks`                                        |
+| `installCommonResolveTargetErrorCases`               | Gedeelde testgevallen voor foutafhandeling bij het bepalen van doelen. Importeer uit `plugin-sdk/channel-target-testing`                                  |
 | `shouldAckReaction`                                  | Controleer of een kanaal een bevestigingsreactie moet toevoegen. Importeer uit `plugin-sdk/channel-feedback`                                            |
-| `removeAckReactionAfterReply`                        | Verwijder de bevestigingsreactie nadat het antwoord is afgeleverd. Importeer uit `plugin-sdk/channel-feedback`                                                      |
+| `removeAckReactionAfterReply`                        | Verwijder de bevestigingsreactie nadat het antwoord is bezorgd. Importeer uit `plugin-sdk/channel-feedback`                                                      |
 | `createTestRegistry`                                 | Bouw een registerfixture voor kanaalplugins. Importeer uit `plugin-sdk/plugin-test-runtime` of `plugin-sdk/channel-test-helpers`               |
-| `createEmptyPluginRegistry`                          | Bouw een lege registerfixture voor plugins. Importeer uit `plugin-sdk/plugin-test-runtime` of `plugin-sdk/channel-test-helpers`                |
+| `createEmptyPluginRegistry`                          | Bouw een lege Plugin-registerfixture. Importeer uit `plugin-sdk/plugin-test-runtime` of `plugin-sdk/channel-test-helpers`                |
 | `setActivePluginRegistry`                            | Installeer een registerfixture voor Plugin-runtimetests. Importeer uit `plugin-sdk/plugin-test-runtime` of `plugin-sdk/channel-test-helpers`   |
-| `createRequestCaptureJsonFetch`                      | Leg JSON-fetchverzoeken vast in tests van mediahelpers. Importeer uit `plugin-sdk/test-env`                                                     |
-| `withServer`                                         | Voer tests uit tegen een tijdelijke lokale HTTP-server. Importeer uit `plugin-sdk/test-env`                                                      |
+| `createRequestCaptureJsonFetch`                      | Leg JSON-fetchverzoeken vast in tests van mediahelpers. Importeer uit `plugin-sdk/test-media-understanding`                                     |
+| `isLiveTestEnabled`                                  | Scherm opt-in live providertests af. Importeer uit `plugin-sdk/test-live`                                                                      |
+| `collectProviderApiKeys`                             | Zoek aanmeldgegevens voor live providertests. Importeer uit `plugin-sdk/test-live-auth`                                                    |
+| `parseProviderModelMap`                              | Parseer overschrijvingen van modellen voor live muziek-/videotests. Importeer uit `plugin-sdk/test-media-generation`                                              |
+| `withServer`                                         | Voer tests uit met een tijdelijke lokale HTTP-server. Importeer uit `plugin-sdk/test-env`                                                      |
 | `createMockIncomingRequest`                          | Bouw een minimaal object voor inkomende HTTP-verzoeken. Importeer uit `plugin-sdk/test-env`                                                          |
-| `withFetchPreconnect`                                | Voer fetchtests uit met geïnstalleerde preconnect-hooks. Importeer uit `plugin-sdk/test-env`                                                       |
+| `withFetchPreconnect`                                | Voer fetchtests uit met geïnstalleerde preconnect-haken. Importeer uit `plugin-sdk/test-env`                                                       |
 | `withEnv` / `withEnvAsync`                           | Pas omgevingsvariabelen tijdelijk aan. Importeer uit `plugin-sdk/test-env`                                                               |
-| `createTempHomeEnv` / `withTempHome` / `withTempDir` | Maak geïsoleerde bestandssysteemfixtures voor tests. Importeer uit `plugin-sdk/test-env`                                                              |
-| `createMockServerResponse`                           | Maak een minimale mock voor een HTTP-serverantwoord. Importeer uit `plugin-sdk/test-env`                                                            |
+| `createTempHomeEnv` / `withTempHome` / `withTempDir` | Maak geïsoleerde testfixtures voor het bestandssysteem. Importeer uit `plugin-sdk/test-env`                                                              |
+| `createMockServerResponse`                           | Maak een minimale mock voor HTTP-serverantwoorden. Importeer uit `plugin-sdk/test-env`                                                            |
 | `createProviderUsageFetch`                           | Bouw fetchfixtures voor providergebruik. Importeer uit `plugin-sdk/test-env`                                                                   |
 | `useFrozenTime` / `useRealTime`                      | Bevries en herstel timers voor tijdgevoelige tests. Importeer uit `plugin-sdk/test-env`                                                    |
-| `createCliRuntimeCapture`                            | Leg CLI-runtime-uitvoer vast in tests. Importeer uit `plugin-sdk/test-fixtures`                                                              |
+| `createCliRuntimeCapture`                            | Leg CLI-runtimeuitvoer vast in tests. Importeer uit `plugin-sdk/test-fixtures`                                                              |
 | `importFreshModule`                                  | Importeer een ESM-module met een nieuw querytoken om de modulecache te omzeilen. Importeer uit `plugin-sdk/test-fixtures`                             |
-| `bundledPluginRoot` / `bundledPluginFile`            | Los fixturepaden naar broncode of dist van gebundelde plugins op. Importeer uit `plugin-sdk/test-fixtures`                                              |
+| `bundledPluginRoot` / `bundledPluginFile`            | Bepaal fixturepaden naar de broncode of dist van gebundelde plugins. Importeer uit `plugin-sdk/test-fixtures`                                              |
 | `mockNodeBuiltinModule`                              | Installeer beperkte Vitest-mocks voor ingebouwde Node-modules. Importeer uit `plugin-sdk/test-node-mocks`                                                       |
-| `createSandboxTestContext`                           | Bouw sandboxtestcontexten. Importeer uit `plugin-sdk/test-fixtures`                                                                      |
+| `createSandboxTestContext`                           | Bouw testcontexten voor de sandbox. Importeer uit `plugin-sdk/test-fixtures`                                                                      |
 | `writeSkill`                                         | Schrijf Skills-fixtures. Importeer uit `plugin-sdk/test-fixtures`                                                                             |
 | `makeAgentAssistantMessage`                          | Bouw berichtfixtures voor agenttranscripten. Importeer uit `plugin-sdk/test-fixtures`                                                          |
-| `peekSystemEvents` / `resetSystemEventsForTest`      | Inspecteer systeemgebeurtenisfixtures en stel ze opnieuw in. Importeer uit `plugin-sdk/test-fixtures`                                                          |
-| `sanitizeTerminalText`                               | Sanitizeer terminaluitvoer voor controles. Importeer uit `plugin-sdk/test-fixtures`                                                          |
-| `countLines` / `hasBalancedFences`                   | Controleer de vorm van de uitvoer van opdelen in segmenten. Importeer uit `plugin-sdk/test-fixtures`                                                                     |
+| `peekSystemEvents` / `resetSystemEventsForTest`      | Inspecteer en reset fixtures voor systeemgebeurtenissen. Importeer uit `plugin-sdk/test-fixtures`                                                          |
+| `sanitizeTerminalText`                               | Saniteer terminaluitvoer voor controles. Importeer uit `plugin-sdk/test-fixtures`                                                          |
+| `countLines` / `hasBalancedFences`                   | Controleer de vorm van de chunking-uitvoer. Importeer uit `plugin-sdk/test-fixtures`                                                                     |
 | `typedCases`                                         | Behoud letterlijke typen voor tabelgestuurde tests. Importeer uit `plugin-sdk/test-fixtures`                                                    |
 
-Contractsuites voor gebundelde plugins gebruiken deze SDK-testsubpaden ook voor
-register-, manifest-, openbaar-artifact- en runtimefixturehelpers die uitsluitend voor tests zijn bedoeld.
-Suites die uitsluitend voor de kern zijn en afhankelijk zijn van de gebundelde OpenClaw-inventaris, blijven in plaats daarvan onder
+Gebundelde Plugin-contractsuites gebruiken deze SDK-testsubpaden ook voor
+testhelpers voor alleen-tests-registers, manifesten, openbare artefacten en runtime-fixtures.
+Suites die uitsluitend voor core zijn en afhankelijk zijn van de gebundelde OpenClaw-inventaris, blijven in plaats daarvan onder
 `src/plugins/contracts`.
 
 ### Typen
@@ -150,25 +155,25 @@ import type { OpenClawConfig } from "openclaw/plugin-sdk/config-contracts";
 import type { MockFn, PluginRuntime, RuntimeEnv } from "openclaw/plugin-sdk/plugin-test-runtime";
 ```
 
-## Resolutie van testdoelen
+## Oplossing van testdoelen
 
-Gebruik `installCommonResolveTargetErrorCases` om standaardfoutgevallen toe te voegen voor de
-resolutie van kanaaldoelen:
+Gebruik `installCommonResolveTargetErrorCases` om standaardfoutgevallen toe te voegen voor
+het oplossen van kanaaldoelen:
 
 ```typescript
 import { describe } from "vitest";
 import { installCommonResolveTargetErrorCases } from "openclaw/plugin-sdk/channel-target-testing";
 
-describe("doelresolutie van my-channel", () => {
+describe("oplossing van my-channel-doelen", () => {
   installCommonResolveTargetErrorCases({
     resolveTarget: ({ to, mode, allowFrom }) => {
-      // De logica voor doelresolutie van je kanaal
+      // De logica voor het oplossen van doelen van je kanaal
       return myChannelResolveTarget({ to, mode, allowFrom });
     },
     implicitAllowFrom: ["user1", "user2"],
   });
 
-  // Voeg kanaalspecifieke testgevallen toe
+  // Kanaalspecifieke testgevallen toevoegen
   it("moet @username-doelen oplossen", () => {
     // ...
   });
@@ -179,32 +184,30 @@ describe("doelresolutie van my-channel", () => {
 
 ### Registratiecontracten testen
 
-Unittests die een handgeschreven mock van `api` doorgeven aan `register(api)`, testen
-de acceptatiecontroles van de OpenClaw-loader niet. Voeg ten minste één door de loader ondersteunde
+Unittests die een handgeschreven mock van `api` doorgeven aan `register(api)`, oefenen
+de acceptatiecontroles van de OpenClaw-loader niet uit. Voeg ten minste één door de loader ondersteunde
 rooktest toe voor elk registratieoppervlak waarvan je Plugin afhankelijk is, met name
 hooks en exclusieve mogelijkheden zoals geheugen.
 
-De echte loader laat Plugin-registratie mislukken wanneer vereiste metadata ontbreekt of
-een Plugin een capability-API aanroept waarvan deze geen eigenaar is. Zo vereist
-`api.registerHook(...)` bijvoorbeeld een hooknaam, en vereist
-`api.registerMemoryCapability(...)` dat het Plugin-manifest of de geëxporteerde
-ingang `kind: "memory"` declareert.
+De echte loader laat de Plugin-registratie mislukken wanneer vereiste metadata ontbreekt of
+een Plugin een capability-API aanroept waarvan deze niet de eigenaar is. Bijvoorbeeld:
+`api.registerHook(...)` vereist een hooknaam en
+`api.registerMemoryCapability(...)` vereist dat het Plugin-manifest of de geëxporteerde
+entry `kind: "memory"` declareert.
 
 ### Toegang tot runtimeconfiguratie testen
 
-Geef de voorkeur aan de gedeelde mock voor de Plugin-runtime uit `openclaw/plugin-sdk/plugin-test-runtime`.
-De mocks `runtime.config.loadConfig()` en `runtime.config.writeConfigFile(...)`
-werpen standaard een fout op, zodat tests nieuw gebruik van verouderde compatibiliteits-
-API's detecteren. Overschrijf deze mocks alleen wanneer de test expliciet verouderd
-compatibiliteitsgedrag behandelt.
+Geef de voorkeur aan de gedeelde mock voor de Plugin-runtime uit
+`openclaw/plugin-sdk/plugin-test-runtime`. De helpers voor runtimeconfiguratie modelleren de
+huidige snapshot- en mutatie-API's.
 
-### Een kanaal-Plugin unit-testen
+### Een kanaal-Plugin met unittests testen
 
 ```typescript
 import { describe, it, expect, vi } from "vitest";
 
 describe("my-channel-Plugin", () => {
-  it("moet een account uit de configuratie oplossen", () => {
+  it("moet account uit configuratie oplossen", () => {
     const cfg = {
       channels: {
         "my-channel": {
@@ -218,7 +221,7 @@ describe("my-channel-Plugin", () => {
     expect(account.token).toBe("test-token");
   });
 
-  it("moet een account inspecteren zonder geheimen te materialiseren", () => {
+  it("moet account inspecteren zonder geheimen te materialiseren", () => {
     const cfg = {
       channels: {
         "my-channel": { token: "test-token" },
@@ -234,7 +237,7 @@ describe("my-channel-Plugin", () => {
 });
 ```
 
-### Een provider-Plugin unit-testen
+### Een provider-Plugin met unittests testen
 
 ```typescript
 import { describe, it, expect } from "vitest";
@@ -251,7 +254,7 @@ describe("my-provider-Plugin", () => {
     expect(model.api).toBe("openai-completions");
   });
 
-  it("moet een catalogus retourneren wanneer een API-sleutel beschikbaar is", async () => {
+  it("moet catalogus retourneren wanneer een API-sleutel beschikbaar is", async () => {
     const result = await myProvider.catalog.run({
       resolveProviderApiKey: () => ({ apiKey: "test-key" }),
       // ... context
@@ -262,9 +265,9 @@ describe("my-provider-Plugin", () => {
 });
 ```
 
-### De Plugin-runtime nabootsen
+### De Plugin-runtime mocken
 
-Voor code die `createPluginRuntimeStore` gebruikt, bootst je de runtime na in tests:
+Voor code die `createPluginRuntimeStore` gebruikt, mock je de runtime in tests:
 
 ```typescript
 import { createPluginRuntimeStore } from "openclaw/plugin-sdk/runtime-store";
@@ -297,14 +300,14 @@ store.clearRuntime();
 
 ### Testen met stubs per instantie
 
-Geef de voorkeur aan stubs per instantie boven het wijzigen van het prototype:
+Geef de voorkeur aan stubs per instantie boven prototypemutatie:
 
 ```typescript
 // Aanbevolen: stub per instantie
 const client = new MyChannelClient();
 client.sendMessage = vi.fn().mockResolvedValue({ id: "msg-1" });
 
-// Vermijd: het prototype wijzigen
+// Vermijd: prototypemutatie
 // MyChannelClient.prototype.sendMessage = vi.fn();
 ```
 
@@ -320,7 +323,7 @@ Deze tests controleren:
 
 - Welke Plugins welke providers registreren
 - Welke Plugins welke spraakproviders registreren
-- Correctheid van de registratiestructuur
+- Correctheid van de registratievorm
 - Naleving van het runtimecontract
 
 ### Afgebakende tests uitvoeren
@@ -339,35 +342,35 @@ pnpm test src/plugins/contracts/auth-choice.contract.test.ts
 pnpm test src/plugins/contracts/runtime-seams.contract.test.ts
 ```
 
-## Lintafdwinging (Plugins in de repository)
+## Lint-handhaving (Plugins in de repository)
 
-`scripts/run-additional-boundary-checks.mjs` voert in CI een reeks `lint:plugins:*`-controles
-op importgrenzen uit; elke controle kan ook afzonderlijk lokaal worden uitgevoerd:
+`scripts/run-additional-boundary-checks.mjs` voert in CI een reeks `lint:plugins:*`
+controles op importgrenzen uit; elke controle kan ook zelfstandig lokaal worden uitgevoerd:
 
-| Opdracht                                                        | Dwingt af                                                                                    |
-| -------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `pnpm run lint:plugins:no-monolithic-plugin-sdk-entry-imports` | Gebundelde Plugins mogen de monolithische rootbarrel `openclaw/plugin-sdk` niet importeren.             |
-| `pnpm run lint:plugins:no-extension-src-imports`               | Productie-extensiebestanden mogen de `src/**`-structuur van de repository niet rechtstreeks importeren (`../../src/...`). |
-| `pnpm run lint:plugins:no-extension-test-core-imports`         | Extensietestbestanden mogen `plugin-sdk/test-utils` of andere uitsluitend voor de kern bestemde testhelpers niet importeren. |
+| Opdracht                                                        | Dwingt af                                                                                     |
+| -------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `pnpm run lint:plugins:no-monolithic-plugin-sdk-entry-imports` | Gebundelde Plugins mogen de monolithische hoofdbarrel `openclaw/plugin-sdk` niet importeren.              |
+| `pnpm run lint:plugins:no-extension-src-imports`               | Productie-extensiebestanden mogen de `src/**`-boom van de repository niet rechtstreeks importeren (`../../src/...`).  |
+| `pnpm run lint:plugins:no-extension-test-core-imports`         | Extensietestbestanden mogen geen verwijderde SDK-testaliassen of andere testhelpers die uitsluitend voor core zijn importeren. |
 
-Externe Plugins vallen niet onder deze lintregels, maar het wordt aanbevolen
-dezelfde patronen te volgen.
+Externe Plugins vallen niet onder deze lintregels, maar het volgen van dezelfde
+patronen wordt aanbevolen.
 
 ## Testconfiguratie
 
 OpenClaw gebruikt Vitest 4 met informatieve V8-dekkingsrapportage. Voor Plugin-tests:
 
 ```bash
-# Voer alle tests uit
+# Alle tests uitvoeren
 pnpm test
 
-# Voer tests voor een specifieke Plugin uit
+# Tests voor een specifieke Plugin uitvoeren
 pnpm test <bundled-plugin-root>/my-channel/src/channel.test.ts
 
-# Voer uit met een filter voor een specifieke testnaam
+# Uitvoeren met een filter voor een specifieke testnaam
 pnpm test <bundled-plugin-root>/my-channel/ -t "resolves account"
 
-# Voer uit met dekkingsrapportage
+# Uitvoeren met dekking
 pnpm test:coverage
 ```
 
@@ -382,4 +385,4 @@ OPENCLAW_VITEST_MAX_WORKERS=1 pnpm test
 - [SDK-overzicht](/nl/plugins/sdk-overview) -- importconventies
 - [SDK-kanaal-Plugins](/nl/plugins/sdk-channel-plugins) -- interface voor kanaal-Plugins
 - [SDK-provider-Plugins](/nl/plugins/sdk-provider-plugins) -- hooks voor provider-Plugins
-- [Plugins bouwen](/nl/plugins/building-plugins) -- handleiding om aan de slag te gaan
+- [Plugins bouwen](/nl/plugins/building-plugins) -- introductiegids

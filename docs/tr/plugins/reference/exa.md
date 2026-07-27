@@ -1,10 +1,10 @@
 ---
 read_when:
     - exa pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: Web araması sağlayıcısı desteği ekler.
-title: Exa plugin'i
+summary: Web arama sağlayıcısı desteği ekler.
+title: Exa Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:25:08Z"
+    generated_at: "2026-07-27T00:07:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

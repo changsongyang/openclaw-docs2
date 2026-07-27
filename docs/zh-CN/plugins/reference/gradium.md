@@ -4,7 +4,7 @@ read_when:
 summary: 添加文本转语音提供商支持。
 title: Gradium 插件
 x-i18n:
-    generated_at: "2026-07-16T11:45:34Z"
+    generated_at: "2026-07-26T06:21:51Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

@@ -4,7 +4,7 @@ read_when:
 summary: Añade compatibilidad con los proveedores de modelos MiniMax y MiniMax Portal en OpenClaw.
 title: Plugin de MiniMax
 x-i18n:
-    generated_at: "2026-07-16T11:53:57Z"
+    generated_at: "2026-07-26T05:14:50Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Añade compatibilidad con los proveedores de modelos MiniMax y MiniMax Portal a 
 ## Distribución
 
 - Paquete: `@openclaw/minimax-provider`
-- Método de instalación: incluido en OpenClaw
+- Ruta de instalación: incluida en OpenClaw
 
 ## Superficie
 

@@ -4,7 +4,7 @@ read_when:
 summary: 为 OpenClaw 添加 Groq 模型提供商支持。
 title: Groq 插件
 x-i18n:
-    generated_at: "2026-07-16T11:49:43Z"
+    generated_at: "2026-07-26T06:52:09Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

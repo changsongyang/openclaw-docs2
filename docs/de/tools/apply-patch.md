@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Sie müssen strukturierte Dateiänderungen über mehrere Dateien hinweg vornehmen
+    - Sie benötigen strukturierte Dateiänderungen über mehrere Dateien hinweg
     - Sie möchten Patch-basierte Änderungen dokumentieren oder debuggen
-summary: Wenden Sie Patches für mehrere Dateien mit dem Tool apply_patch an
+summary: Wenden Sie mit dem Tool apply_patch Patches auf mehrere Dateien an
 title: apply_patch-Tool
 x-i18n:
-    generated_at: "2026-07-24T04:11:31Z"
+    generated_at: "2026-07-26T18:12:15Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 ---
 
 Wenden Sie Dateiänderungen mithilfe eines strukturierten Patch-Formats an. Dies eignet sich ideal für Änderungen an mehreren Dateien
-oder mit mehreren Hunks, bei denen ein einzelner `edit`-Aufruf fehleranfällig wäre.
+oder mehreren Blöcken, bei denen ein einzelner `edit`-Aufruf fehleranfällig wäre.
 
 Das Tool akzeptiert eine einzelne `input`-Zeichenfolge, die eine oder mehrere Dateioperationen umschließt:
 
@@ -40,8 +40,8 @@ Das Tool akzeptiert eine einzelne `input`-Zeichenfolge, die eine oder mehrere Da
 ## Hinweise
 
 - Patch-Pfade unterstützen relative Pfade (ausgehend vom Workspace-Verzeichnis) und absolute Pfade.
-- `tools.exec.applyPatch.workspaceOnly` verwendet standardmäßig `true` (auf den Workspace beschränkt). Setzen Sie den Wert nur dann auf `false`, wenn `apply_patch` absichtlich außerhalb des Workspace-Verzeichnisses schreiben oder löschen soll.
-- Verwenden Sie `*** Move to:` innerhalb eines `*** Update File:`-Hunks, um Dateien umzubenennen.
+- `tools.exec.applyPatch.workspaceOnly` ist standardmäßig `true` (auf den Workspace beschränkt). Setzen Sie es nur dann auf `false`, wenn Sie ausdrücklich möchten, dass `apply_patch` außerhalb des Workspace-Verzeichnisses schreibt oder Dateien löscht.
+- Verwenden Sie `*** Move to:` innerhalb eines `*** Update File:`-Blocks, um Dateien umzubenennen.
 - `*** End of File` kennzeichnet bei Bedarf eine Einfügung ausschließlich am Dateiende.
 - Standardmäßig für jedes Modell aktiviert. Setzen Sie `tools.exec.applyPatch.enabled: false`,
   um es zu deaktivieren, oder beschränken Sie es mit
@@ -64,10 +64,10 @@ Das Tool akzeptiert eine einzelne `input`-Zeichenfolge, die eine oder mehrere Da
   <Card title="Diffs" href="/de/tools/diffs" icon="code-compare">
     Schreibgeschützter Diff-Viewer zur Darstellung von Änderungen.
   </Card>
-  <Card title="Ausführungstool" href="/de/tools/exec" icon="terminal">
+  <Card title="Exec-Tool" href="/de/tools/exec" icon="terminal">
     Ausführung von Shell-Befehlen durch den Agenten.
   </Card>
   <Card title="Codeausführung" href="/de/tools/code-execution" icon="square-code">
-    Abgeschirmte Remote-Python-Analyse mit xAI.
+    Remote-Python-Analyse mit xAI in einer Sandbox.
   </Card>
 </CardGroup>

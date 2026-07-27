@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw Tlon/Urbit-kanaalplugin voor chatworkflows.
 title: Tlon-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:07:49Z"
+    generated_at: "2026-07-27T05:42:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Tlon-plugin
+# Tlon-Plugin
 
 OpenClaw Tlon/Urbit-kanaalplugin voor chatworkflows.
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin del navegador
+    - Está instalando, configurando o auditando el plugin del navegador.
 summary: Añade herramientas que el agente puede invocar.
 title: Plugin del navegador
 x-i18n:
-    generated_at: "2026-07-16T11:46:32Z"
+    generated_at: "2026-07-26T04:47:21Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Plugin de navegador
 
-Añade herramientas que el agente puede invocar.
+Añade herramientas que pueden ser invocadas por el agente.
 
 ## Distribución
 
 - Paquete: `@openclaw/browser-plugin`
-- Ruta de instalación: incluido en OpenClaw
+- Ruta de instalación: incluida en OpenClaw
 
 ## Superficie
 

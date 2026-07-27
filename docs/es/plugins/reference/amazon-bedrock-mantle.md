@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin amazon-bedrock-mantle
-summary: Plugin del proveedor Amazon Bedrock Mantle de OpenClaw para el enrutamiento de modelos compatibles con OpenAI.
+summary: Plugin proveedor de Amazon Bedrock Mantle para OpenClaw, destinado al enrutamiento de modelos compatibles con OpenAI.
 title: Plugin Amazon Bedrock Mantle
 x-i18n:
-    generated_at: "2026-07-16T11:50:32Z"
+    generated_at: "2026-07-26T05:21:32Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

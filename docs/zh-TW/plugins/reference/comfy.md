@@ -4,7 +4,7 @@ read_when:
 summary: 新增 OpenClaw 對 ComfyUI 模型供應商的支援。
 title: ComfyUI 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:51:22Z"
+    generated_at: "2026-07-26T07:58:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 
 為 OpenClaw 新增 ComfyUI 模型供應商支援。
 
-## 發布
+## 發行方式
 
 - 套件：`@openclaw/comfy-provider`
 - 安裝途徑：隨附於 OpenClaw

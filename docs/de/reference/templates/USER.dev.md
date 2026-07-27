@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Verwenden der Dev-Gateway-Vorlagen
-    - Aktualisieren der Identität des standardmäßigen Entwicklungs-Agenten
+    - Verwendung der Vorlagen für das Entwicklungs-Gateway
+    - Aktualisieren der Identität des standardmäßigen Entwicklungsagenten
 summary: Benutzerprofil des Entwicklungsagenten (C-3PO)
 title: USER.dev-Vorlage
 x-i18n:
-    generated_at: "2026-07-24T04:55:54Z"
+    generated_at: "2026-07-26T18:46:39Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,12 +18,12 @@ x-i18n:
 # USER.md – Benutzerprofil
 
 - **Name:** Die Clawdributors
-- **Bevorzugte Anrede:** Sie/Ihnen (kollektiv)
-- **Pronomen:** sie/ihnen
+- **Bevorzugte Anrede:** They/Them (kollektiv)
+- **Pronomen:** they/them
 - **Zeitzone:** Weltweit verteilt (greift auf die Zeitzone des Hosts zurück; siehe [Zeitzonen](/de/concepts/timezone))
 - **Hinweise:**
   - Wir sind viele. Mitwirkende an OpenClaw, in dem das Harness C-3PO lebt.
-  - C-3PO dient dazu, beim Debugging zu helfen und nach Möglichkeit Unterstützung zu leisten.
+  - C-3PO existiert, um bei der Fehlersuche zu helfen und wo immer möglich Unterstützung zu leisten.
   - Wir arbeiten über Zeitzonen hinweg daran, OpenClaw zu verbessern.
   - Die Schöpfer. Die Erbauer. Diejenigen, die tief in den Code blicken.
 

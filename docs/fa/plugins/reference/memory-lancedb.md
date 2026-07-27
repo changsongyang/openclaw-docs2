@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin memory-lancedb هستید
-summary: Plugin حافظهٔ بلندمدت OpenClaw مبتنی بر LanceDB با یادآوری خودکار، ثبت خودکار و جست‌وجوی برداری.
-title: Plugin حافظهٔ LanceDB
+    - در حال نصب، پیکربندی یا ممیزی Plugin حافظهٔ memory-lancedb هستید
+summary: Plugin حافظه بلندمدت OpenClaw مبتنی بر LanceDB با یادآوری خودکار، ثبت خودکار و جست‌وجوی برداری.
+title: Plugin حافظه Lancedb
 x-i18n:
-    generated_at: "2026-07-16T17:28:24Z"
+    generated_at: "2026-07-27T15:32:07Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin حافظه LanceDB
+# Plugin حافظه Lancedb
 
-Plugin حافظه بلندمدت OpenClaw با پشتیبانی LanceDB، یادآوری خودکار، ثبت خودکار و جست‌وجوی برداری.
+Plugin حافظه بلندمدت OpenClaw با پشتیبانی LanceDB، دارای یادآوری خودکار، ثبت خودکار و جست‌وجوی برداری.
 
 ## توزیع
 

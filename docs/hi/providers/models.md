@@ -1,11 +1,11 @@
 ---
 read_when:
     - आप एक मॉडल प्रदाता चुनना चाहते हैं
-    - आप LLM प्रमाणीकरण + मॉडल चयन के लिए त्वरित सेटअप उदाहरण चाहते हैं
+    - आप LLM प्रमाणीकरण और मॉडल चयन के लिए त्वरित सेटअप उदाहरण चाहते हैं
 summary: OpenClaw द्वारा समर्थित मॉडल प्रदाता (LLM)
 title: मॉडल प्रदाता त्वरित शुरुआत
 x-i18n:
-    generated_at: "2026-07-19T09:49:10Z"
+    generated_at: "2026-07-27T20:27:06Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,11 +15,11 @@ x-i18n:
     workflow: 16
 ---
 
-कोई प्रदाता चुनें, प्रमाणीकरण करें, फिर डिफ़ॉल्ट मॉडल को `provider/model` के रूप में सेट करें।
+कोई प्रदाता चुनें, प्रमाणित करें, फिर डिफ़ॉल्ट मॉडल को `provider/model` के रूप में सेट करें।
 
 ## त्वरित शुरुआत (दो चरण)
 
-1. प्रदाता के साथ प्रमाणीकरण करें (आमतौर पर `openclaw onboard` के माध्यम से)।
+1. प्रदाता के साथ प्रमाणित करें (आमतौर पर `openclaw onboard` के माध्यम से)।
 2. डिफ़ॉल्ट मॉडल सेट करें:
 
 ```json5
@@ -33,7 +33,7 @@ x-i18n:
 - [Alibaba Model Studio](/hi/providers/alibaba)
 - [Amazon Bedrock](/hi/providers/bedrock)
 - [Anthropic (API + Claude CLI)](/hi/providers/anthropic)
-- [Baseten (Inkling + Model API)](/providers/baseten)
+- [Baseten (Inkling + Model API)](/hi/providers/baseten)
 - [BytePlus (अंतरराष्ट्रीय)](/hi/concepts/model-providers#byteplus-international)
 - [Chutes](/hi/providers/chutes)
 - [Cloudflare AI Gateway](/hi/providers/cloudflare-ai-gateway)
@@ -62,11 +62,11 @@ x-i18n:
 प्रदाताओं की पूरी सूची और उन्नत कॉन्फ़िगरेशन के लिए,
 [प्रदाता निर्देशिका](/hi/providers/index) और [मॉडल प्रदाता](/hi/concepts/model-providers) देखें।
 
-## प्रदाताओं के अतिरिक्त प्रकार
+## अतिरिक्त प्रदाता प्रकार
 
-- `anthropic-vertex` - Vertex क्रेडेंशियल उपलब्ध होने पर Google Vertex पर अंतर्निहित Anthropic समर्थन के लिए `@openclaw/anthropic-vertex-provider` इंस्टॉल करें; ऑनबोर्डिंग में प्रमाणीकरण का कोई अलग विकल्प नहीं है
+- `anthropic-vertex` - Vertex क्रेडेंशियल उपलब्ध होने पर Google Vertex पर अंतर्निहित Anthropic समर्थन के लिए `@openclaw/anthropic-vertex-provider` इंस्टॉल करें; ऑनबोर्डिंग में प्रमाणीकरण का कोई अलग विकल्प नहीं
 - `copilot-proxy` - स्थानीय VS Code Copilot Proxy ब्रिज; `openclaw onboard --auth-choice copilot-proxy` का उपयोग करें
-- `google-gemini-cli` - अनाधिकारिक Gemini CLI OAuth प्रवाह; इसके लिए स्थानीय `gemini` इंस्टॉलेशन आवश्यक है (`brew install gemini-cli` या `npm install -g @google/gemini-cli`); डिफ़ॉल्ट मॉडल `google-gemini-cli/gemini-3-flash-preview`; `openclaw onboard --auth-choice google-gemini-cli` या `openclaw models auth login --provider google-gemini-cli --set-default` का उपयोग करें
+- `google-gemini-cli` - अनाधिकारिक Gemini CLI OAuth प्रवाह; इसके लिए स्थानीय `gemini` इंस्टॉलेशन (`brew install gemini-cli` या `npm install -g @google/gemini-cli`) आवश्यक है; डिफ़ॉल्ट मॉडल `google-gemini-cli/gemini-3-flash-preview`; `openclaw onboard --auth-choice google-gemini-cli` या `openclaw models auth login --provider google-gemini-cli --set-default` का उपयोग करें
 
 ## संबंधित
 

@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw'a Arcee model sağlayıcısı desteği ekler.
 title: Arcee Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:23:40Z"
+    generated_at: "2026-07-26T23:31:50Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Arcee plugin'i
+# Arcee plugini
 
 OpenClaw'a Arcee model sağlayıcısı desteği ekler.
 

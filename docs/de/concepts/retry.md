@@ -1,11 +1,11 @@
 ---
 read_when:
     - Retry-Verhalten oder Standardeinstellungen des Providers aktualisieren
-    - Fehler beim Senden über den Provider oder Ratenbegrenzungen debuggen
+    - Fehlerbehebung bei Sendefehlern oder Ratenbegrenzungen des Providers
 summary: Wiederholungsrichtlinie für ausgehende Provider-Aufrufe
 title: Wiederholungsrichtlinie
 x-i18n:
-    generated_at: "2026-07-24T03:49:52Z"
+    generated_at: "2026-07-26T17:48:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,37 +18,37 @@ x-i18n:
 ## Ziele
 
 - Wiederholungsversuche erfolgen pro HTTP-Anfrage, nicht pro mehrstufigem Ablauf.
-- Die Reihenfolge wird beibehalten, indem nur der aktuelle Schritt wiederholt wird.
+- Die Reihenfolge bleibt erhalten, da nur der aktuelle Schritt wiederholt wird.
 - Die Duplizierung nicht idempotenter Vorgänge wird vermieden.
 
 ## Standardwerte
 
-| Einstellung              | Standardwert |
-| ------------------------ | ------------ |
-| Versuche                 | 3            |
-| Maximale Verzögerung     | 30000 ms     |
-| Zufallsabweichung        | 0.1 (10%)    |
-| Telegram-Mindestverzögerung | 400 ms    |
-| Discord-Mindestverzögerung  | 500 ms    |
+| Einstellung               | Standardwert |
+| ------------------------- | ------------ |
+| Versuche                  | 3            |
+| Maximale Verzögerung      | 30000 ms     |
+| Jitter                    | 0.1 (10%)    |
+| Telegram-Mindestverzögerung | 400 ms     |
+| Discord-Mindestverzögerung  | 500 ms     |
 
 ## Verhalten
 
 ### Modell-Provider
 
 - OpenClaw überlässt den Provider-SDKs die üblichen kurzen Wiederholungsversuche.
-- Bei Stainless-basierten SDKs wie Anthropic und OpenAI können wiederholbare Antworten (`408`, `409`, `429` und `5xx`) `retry-after-ms` oder `retry-after` enthalten. Wenn diese Wartezeit länger als 60 Sekunden ist, fügt OpenClaw `x-should-retry: false` ein, damit das SDK den Fehler sofort meldet und der Modell-Failover zu einem anderen Authentifizierungsprofil oder Fallback-Modell wechseln kann.
-- Überschreiben Sie die Obergrenze mit `OPENCLAW_SDK_RETRY_MAX_WAIT_SECONDS=<seconds>`. Setzen Sie den Wert auf `0`, `false`, `off`, `none` oder `disabled`, damit SDKs lange `Retry-After`-Wartezeiten intern berücksichtigen.
+- Bei Stainless-basierten SDKs wie Anthropic und OpenAI können wiederholbare Antworten (`408`, `409`, `429` und `5xx`) `retry-after-ms` oder `retry-after` enthalten. Wenn diese Wartezeit länger als 60 Sekunden ist, fügt OpenClaw `x-should-retry: false` ein, damit das SDK den Fehler sofort meldet und das Modell-Failover zu einem anderen Authentifizierungsprofil oder Fallback-Modell wechseln kann.
+- Überschreiben Sie die Obergrenze mit `OPENCLAW_SDK_RETRY_MAX_WAIT_SECONDS=<seconds>`. Setzen Sie sie auf `0`, `false`, `off`, `none` oder `disabled`, damit SDKs lange `Retry-After`-Wartezeiten intern berücksichtigen.
 
 ### Discord
 
-- Wiederholungsversuche erfolgen bei Ratenbegrenzungsfehlern (HTTP 429), Anfragezeitüberschreitungen, HTTP-5xx-Antworten und vorübergehenden Transportfehlern wie fehlgeschlagenen DNS-Auflösungen, zurückgesetzten Verbindungen, geschlossenen Sockets und fehlgeschlagenen Abrufen.
-- Verwendet Discord-`retry_after`, sofern verfügbar, andernfalls exponentielles Backoff.
+- Wiederholungsversuche erfolgen bei Rate-Limit-Fehlern (HTTP 429), Anfragezeitüberschreitungen, HTTP-5xx-Antworten und vorübergehenden Transportfehlern wie Fehlern bei der DNS-Auflösung, Verbindungsabbrüchen, Socket-Schließungen und Abruffehlern.
+- Verwendet Discord `retry_after`, sofern verfügbar, andernfalls exponentielles Backoff.
 
 ### Telegram
 
-- Wiederholungsversuche erfolgen bei vorübergehenden Fehlern (429, Zeitüberschreitung, Verbindung/Zurücksetzung/Schließung, vorübergehend nicht verfügbar).
+- Wiederholungsversuche erfolgen bei vorübergehenden Fehlern (429, Zeitüberschreitung, Verbindungs-/Zurücksetzungs-/Schließfehler, vorübergehend nicht verfügbar).
 - Verwendet `retry_after`, sofern verfügbar, andernfalls exponentielles Backoff.
-- HTML-/Markdown-Parsingfehler werden nicht erneut versucht; beim ersten Versuch wird auf Klartext zurückgegriffen.
+- HTML-/Markdown-Analysefehler werden nicht erneut versucht; beim ersten Versuch wird auf Klartext zurückgegriffen.
 
 ## Konfiguration
 

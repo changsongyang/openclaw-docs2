@@ -1,10 +1,10 @@
 ---
 read_when:
-    - deepgram pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+    - deepgram pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: Medya anlama sağlayıcısı desteği ekler. Gerçek zamanlı transkripsiyon sağlayıcısı desteği ekler.
-title: Deepgram Plugin'i
+title: Deepgram eklentisi
 x-i18n:
-    generated_at: "2026-07-16T17:29:38Z"
+    generated_at: "2026-07-26T22:55:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Deepgram plugin’i
+# Deepgram plugin'i
 
 Medya anlama sağlayıcısı desteği ekler. Gerçek zamanlı transkripsiyon sağlayıcısı desteği ekler.
 
 ## Dağıtım
 
 - Paket: `@openclaw/deepgram-provider`
-- Yükleme yolu: OpenClaw'a dahildir
+- Kurulum yolu: OpenClaw'a dahildir
 
 ## Yüzey
 

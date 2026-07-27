@@ -4,7 +4,7 @@ read_when:
 summary: 適用於聊天與管理工作流程的 OpenClaw Twitch 頻道外掛。
 title: Twitch 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:54:10Z"
+    generated_at: "2026-07-26T07:29:24Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Twitch 外掛
 
-用於聊天與管理工作流程的 OpenClaw Twitch 頻道外掛。
+用於聊天與內容管理工作流程的 OpenClaw Twitch 頻道外掛。
 
-## 發行方式
+## 發佈
 
 - 套件：`@openclaw/twitch`
-- 安裝管道：npm；ClawHub
+- 安裝途徑：npm；ClawHub
 
 ## 介面
 

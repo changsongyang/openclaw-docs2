@@ -1,11 +1,11 @@
 ---
 read_when:
-    - 从零开始的首次设置
-    - 你想以最快的方式让聊天功能正常运行
-summary: 几分钟内安装好 OpenClaw，并开始第一次聊天。
+    - 从零开始首次设置
+    - 你希望以最快方式让聊天功能正常运行
+summary: 几分钟内安装好 OpenClaw 并开始第一次聊天。
 title: 入门指南
 x-i18n:
-    generated_at: "2026-07-16T12:03:10Z"
+    generated_at: "2026-07-26T06:01:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -20,11 +20,11 @@ x-i18n:
 ## 所需条件
 
 - **Node.js 22.22.3+、24.15+ 或 25.9+**（推荐默认使用 24）
-- 来自模型提供商（Anthropic、OpenAI、Google 等）的 **API key** — 新手引导会提示你输入
+- 来自模型提供商（Anthropic、OpenAI、Google 等）的**一个 API key**——新手引导会提示你输入
 
 <Tip>
 使用 `node --version` 检查 Node 版本。
-**Windows 用户：**原生 Windows Hub 应用是最便捷的桌面使用方式。也支持 PowerShell 安装程序和 WSL2 Gateway 网关。请参阅 [Windows](/zh-CN/platforms/windows)。
+**Windows 用户：**原生 Windows Hub 应用是最便捷的桌面端方案。也支持 PowerShell 安装程序和 WSL2 Gateway 网关方案。请参阅 [Windows](/zh-CN/platforms/windows)。
 需要安装 Node？请参阅 [Node 设置](/zh-CN/install/node)。
 </Tip>
 
@@ -60,7 +60,7 @@ x-i18n:
     openclaw onboard --install-daemon
     ```
 
-    向导会引导你选择模型提供商、设置 API key 并配置 Gateway 网关。快速开始通常只需几分钟，但提供商登录、渠道配对、守护进程安装、网络下载、Skills 或可选插件可能会延长完整新手引导所需的时间。可以跳过可选步骤，稍后使用 `openclaw configure` 返回继续配置。
+    向导将引导你选择模型提供商、设置 API key 并配置 Gateway 网关。快速开始通常只需几分钟，但提供商登录、渠道配对、守护进程安装、网络下载、Skills 或可选插件可能会延长完整新手引导所需的时间。你可以跳过可选步骤，稍后使用 `openclaw configure` 返回继续配置。
 
     完整参考请参阅[新手引导（CLI）](/zh-CN/start/wizard)。
 
@@ -78,26 +78,26 @@ x-i18n:
     openclaw dashboard
     ```
 
-    这会在浏览器中打开 Control UI。如果能正常加载，说明一切运行正常。
+    这会在浏览器中打开 Control UI。如果页面可以加载，则表示一切运行正常。
 
   </Step>
   <Step title="发送第一条消息">
-    在 Control UI 聊天中输入消息，你应该会收到 AI 回复。
+    在 Control UI 聊天中输入一条消息，你应该会收到 AI 回复。
 
-    想改用手机聊天？设置速度最快的渠道是 [Telegram](/zh-CN/channels/telegram)（只需一个 bot token）。所有选项请参阅[渠道](/zh-CN/channels)。
+    想改用手机聊天？设置最快的渠道是 [Telegram](/zh-CN/channels/telegram)（只需一个机器人令牌）。所有选项请参阅[渠道](/zh-CN/channels)。
 
   </Step>
 </Steps>
 
 <Accordion title="高级：挂载自定义 Control UI 构建">
-  如果你维护本地化或自定义的仪表板构建，请将 `gateway.controlUi.root` 指向一个包含已构建静态资源和 `index.html` 的目录。
+  如果你维护本地化或自定义的仪表板构建，请将 `gateway.controlUi.root` 指向包含已构建静态资源和 `index.html` 的目录。
 
 ```bash
 mkdir -p "$HOME/.openclaw/control-ui-custom"
-# 将构建好的静态文件复制到该目录中。
+# 将已构建的静态文件复制到该目录中。
 ```
 
-然后进行以下设置：
+然后设置：
 
 ```json
 {
@@ -137,7 +137,7 @@ openclaw dashboard
 </Columns>
 
 <Accordion title="高级：环境变量">
-  如果你使用服务账户运行 OpenClaw，或希望使用自定义路径：
+  如果你以服务账户运行 OpenClaw，或希望使用自定义路径：
 
 - `OPENCLAW_HOME` — 用于内部路径解析的主目录
 - `OPENCLAW_STATE_DIR` — 覆盖状态目录

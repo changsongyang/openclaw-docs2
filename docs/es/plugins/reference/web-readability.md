@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin web-readability
-summary: Extrae el contenido legible de los artículos de las respuestas de obtención web HTML locales.
+    - Está instalando, configurando o auditando el plugin de legibilidad web
+summary: Extrae el contenido legible de los artículos a partir de respuestas locales de obtención web en HTML.
 title: Plugin de legibilidad web
 x-i18n:
-    generated_at: "2026-07-16T11:50:49Z"
+    generated_at: "2026-07-26T04:52:58Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin de legibilidad web
 
-Extrae contenido legible de artículos a partir de respuestas locales de obtención web en HTML.
+Extrae contenido legible de artículos a partir de respuestas locales de obtención de HTML web.
 
 ## Distribución
 

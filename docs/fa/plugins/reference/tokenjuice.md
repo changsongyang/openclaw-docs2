@@ -1,10 +1,10 @@
 ---
 read_when:
-    - شما در حال نصب، پیکربندی یا ممیزی Plugin مربوط به Tokenjuice هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin مربوط به Tokenjuice هستید
 summary: نتایج ابزارهای exec و bash را با کاهش‌دهنده‌های Tokenjuice فشرده می‌کند.
 title: Plugin ‏Tokenjuice
 x-i18n:
-    generated_at: "2026-07-16T17:04:14Z"
+    generated_at: "2026-07-27T16:52:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin Tokenjuice
 
-نتایج ابزارهای exec و bash را با کاهش‌دهنده‌های Tokenjuice فشرده می‌کند.
+نتایج ابزارهای exec و bash را با کاهش‌دهنده‌های tokenjuice فشرده می‌کند.
 
 ## توزیع
 

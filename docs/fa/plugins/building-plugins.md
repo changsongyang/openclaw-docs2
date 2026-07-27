@@ -5,41 +5,40 @@ read_when:
     - برای توسعهٔ Plugin به یک راهنمای شروع سریع نیاز دارید
     - در حال انتخاب میان مستندات کانال، ارائه‌دهنده، بک‌اند CLI، ابزار یا هوک هستید
 sidebarTitle: Getting Started
-summary: نخستین Plugin خود را برای OpenClaw در چند دقیقه بسازید
+summary: نخستین Plugin خود برای OpenClaw را در چند دقیقه ایجاد کنید
 title: ساخت Pluginها
 x-i18n:
-    generated_at: "2026-07-16T17:13:40Z"
+    generated_at: "2026-07-27T15:34:22Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 0d64d455c260f4aa85affc6160233a91c45237f17a6a87cb35e2c2a77f2e3cc1
+    source_hash: 9d156ea305e46d3ca311a0b2cfc42e2c4522f6f10eb70cdd5526d9e9fcd7d4ef
     source_path: plugins/building-plugins.md
     workflow: 16
 ---
 
-Pluginها بدون تغییر هسته، OpenClaw را گسترش می‌دهند. یک Plugin می‌تواند یک کانال
-پیام‌رسانی، ارائه‌دهنده مدل، بک‌اند محلی CLI، ابزار عامل، هوک، ارائه‌دهنده رسانه
-یا قابلیت دیگری متعلق به Plugin اضافه کند.
+Pluginها OpenClaw را بدون تغییر هسته گسترش می‌دهند. یک Plugin می‌تواند یک کانال
+پیام‌رسانی، ارائه‌دهنده مدل، بک‌اند محلی CLI، ابزار عامل، هوک، ارائه‌دهنده رسانه،
+یا قابلیت دیگری تحت مالکیت Plugin اضافه کند.
 
 نیازی نیست یک Plugin خارجی را به مخزن OpenClaw اضافه کنید. بسته را در
-[ClawHub](/clawhub) منتشر کنید تا کاربران آن را با دستور زیر نصب کنند:
+[ClawHub](/clawhub) منتشر کنید و کاربران آن را با دستور زیر نصب می‌کنند:
 
 ```bash
 openclaw plugins install clawhub:<package-name>
 ```
 
-در دوره گذار راه‌اندازی، مشخصات بسته بدون پیشوند همچنان از npm نصب می‌شوند. زمانی که
-تفکیک‌پذیری از طریق ClawHub را می‌خواهید، از پیشوند
+در دوره گذار راه‌اندازی، مشخصات بسته بدون پیشوند همچنان از npm نصب می‌شوند. زمانی‌که تفکیک‌پذیری از طریق ClawHub را می‌خواهید، از پیشوند
 `clawhub:` استفاده کنید.
 
 ## الزامات
 
-- Node 22.22.3+، Node 24.15+ یا Node 25.9+ و `npm` یا `pnpm`.
+- Node 22.22.3+، Node 24.15+، یا Node 25.9+، و `npm` یا `pnpm`.
 - ماژول‌های TypeScript ESM.
-- برای کار روی Pluginهای یکپارچه‌شده درون مخزن، مخزن را کلون و `pnpm install` را اجرا کنید.
+- برای کار روی Pluginهای همراه درون مخزن، مخزن را کلون و `pnpm install` را اجرا کنید.
   توسعه Plugin در نسخه منبع فقط با pnpm انجام می‌شود، زیرا OpenClaw
-  Pluginهای یکپارچه‌شده را از بسته‌های فضای کاری `extensions/*` کشف می‌کند.
+  Pluginهای همراه را از بسته‌های فضای کاری `extensions/*` کشف می‌کند.
 
 ## انتخاب ساختار Plugin
 
@@ -51,7 +50,7 @@ openclaw plugins install clawhub:<package-name>
     یک ارائه‌دهنده مدل، رسانه، جست‌وجو، واکشی، گفتار یا بلادرنگ اضافه کنید.
   </Card>
   <Card title="Plugin بک‌اند CLI" icon="terminal" href="/fa/plugins/cli-backend-plugins">
-    یک CLI محلی هوش مصنوعی را از طریق سازوکار جایگزین مدل OpenClaw اجرا کنید.
+    یک CLI محلی هوش مصنوعی را از طریق جایگزینی مدل OpenClaw اجرا کنید.
   </Card>
   <Card title="Plugin ابزار" icon="wrench" href="/fa/plugins/tool-plugins">
     ابزارهای عامل را ثبت کنید.
@@ -113,23 +112,23 @@ openclaw plugins install clawhub:<package-name>
 
     </CodeGroup>
 
-    نقاط ورود زمان اجرای Pluginهای خارجی منتشرشده باید به فایل‌های JavaScript
-    ساخته‌شده اشاره کنند. برای قرارداد کامل نقطه ورود، به
-    [نقاط ورود SDK](/fa/plugins/sdk-entrypoints) مراجعه کنید.
+    Pluginهای خارجی منتشرشده باید ورودی‌های زمان اجرا را به فایل‌های JavaScript
+    ساخته‌شده ارجاع دهند. برای قرارداد کامل نقطه ورود، به [نقاط ورود SDK](/fa/plugins/sdk-entrypoints)
+    مراجعه کنید.
 
-    هر Plugin حتی بدون پیکربندی نیز به مانیفست نیاز دارد. ابزارهای زمان اجرا باید
+    هر Plugin حتی بدون پیکربندی به یک مانیفست نیاز دارد. ابزارهای زمان اجرا باید
     در `contracts.tools` ظاهر شوند تا OpenClaw بتواند مالکیت را بدون
-    بارگذاری پیش‌دستانه زمان اجرای همه Pluginها کشف کند. مقدار `activation.onStartup`
-    را آگاهانه تنظیم کنید؛ این نمونه هنگام راه‌اندازی Gateway بارگذاری می‌شود.
+    بارگذاری پیش‌دستانه زمان اجرای همه Pluginها کشف کند. `activation.onStartup` را
+    آگاهانه تنظیم کنید؛ این نمونه هنگام راه‌اندازی Gateway بارگذاری می‌شود.
 
-    سطوح Plugin مورد اعتماد میزبان نیز با مانیفست محدود می‌شوند و برای
-    Pluginهای نصب‌شده به اعلان صریح نیاز دارند: `api.registerAgentToolResultMiddleware(...)`
-    به فهرست‌شدن هر زمان اجرای هدف در `contracts.agentToolResultMiddleware` نیاز دارد،
-    و `api.registerTrustedToolPolicy(...)` به هر شناسه خط‌مشی در
-    `contracts.trustedToolPolicies` نیاز دارد. این اعلان‌ها بازرسی زمان نصب
+    سطوح Plugin مورد اعتماد میزبان نیز با مانیفست محدود می‌شوند و برای Pluginهای
+    نصب‌شده به اعلان صریح نیاز دارند: `api.registerAgentToolResultMiddleware(...)`
+    مستلزم فهرست‌شدن هر زمان اجرای هدف در `contracts.agentToolResultMiddleware` است،
+    و `api.registerTrustedToolPolicy(...)` به درج هر شناسه سیاست در
+    `contracts.trustedToolPolicies` نیاز دارد. این اعلان‌ها بازرسی هنگام نصب
     و ثبت زمان اجرا را هم‌راستا نگه می‌دارند.
 
-    برای همه فیلدهای مانیفست، به [مانیفست Plugin](/fa/plugins/manifest) مراجعه کنید.
+    برای مشاهده همه فیلدهای مانیفست، به [مانیفست Plugin](/fa/plugins/manifest) مراجعه کنید.
 
   </Step>
 
@@ -147,9 +146,15 @@ openclaw plugins install clawhub:<package-name>
           name: "my_tool",
           description: "Echo one input value",
           parameters: Type.Object({ input: Type.String() }),
+          outputSchema: Type.Object(
+            { input: Type.String() },
+            { additionalProperties: false },
+          ),
           async execute(_id, params) {
+            const details = { input: params.input };
             return {
               content: [{ type: "text", text: `Got: ${params.input}` }],
+              details,
             };
           },
         });
@@ -169,12 +174,12 @@ openclaw plugins install clawhub:<package-name>
     openclaw plugins inspect my-plugin --runtime --json
     ```
 
-    اگر Plugin یک فرمان CLI ثبت می‌کند، آن فرمان را نیز اجرا و
-    خروجی را تأیید کنید؛ برای مثال `openclaw demo-plugin ping`.
+    اگر Plugin یک فرمان CLI ثبت می‌کند، آن فرمان را نیز اجرا و خروجی را
+    تأیید کنید؛ برای نمونه، `openclaw demo-plugin ping`.
 
-    برای یک Plugin یکپارچه‌شده در این مخزن، OpenClaw بسته‌های Plugin نسخه منبع را
-    از فضای کاری `extensions/*` کشف می‌کند. نزدیک‌ترین آزمون هدفمند
-    را اجرا کنید:
+    برای یک Plugin همراه در این مخزن، OpenClaw بسته‌های Plugin نسخه منبع
+    را از فضای کاری `extensions/*` کشف می‌کند. نزدیک‌ترین آزمون هدفمند را
+    اجرا کنید:
 
     ```bash
     pnpm test extensions/my-plugin/
@@ -185,9 +190,9 @@ openclaw plugins install clawhub:<package-name>
 
   <Step title="آزمایش نصب بسته">
     پیش از انتشار یک Plugin آماده بسته‌بندی، همان ساختار نصبی را آزمایش کنید که
-    کاربران دریافت خواهند کرد. ابتدا یک مرحله ساخت اضافه کنید، نقاط ورود زمان اجرا مانند
-    `openclaw.extensions` را به JavaScript ساخته‌شده‌ای مانند `./dist/index.js` هدایت کنید و
-    مطمئن شوید `npm pack` آن خروجی `dist/` را شامل می‌شود. نقاط ورود منبع TypeScript
+    کاربران دریافت خواهند کرد. ابتدا یک مرحله ساخت اضافه کنید، ورودی‌های زمان اجرا مانند
+    `openclaw.extensions` را به JavaScript ساخته‌شده مانند `./dist/index.js` ارجاع دهید، و
+    مطمئن شوید `npm pack` آن خروجی `dist/` را شامل می‌شود. ورودی‌های منبع TypeScript
     فقط برای نسخه‌های منبع و مسیرهای توسعه محلی هستند.
 
     سپس Plugin را بسته‌بندی کنید و فایل tar را با `npm-pack:` نصب کنید:
@@ -198,20 +203,20 @@ openclaw plugins install clawhub:<package-name>
     openclaw plugins inspect my-plugin --runtime --json
     ```
 
-    `npm-pack:` از پروژه npm مدیریت‌شده اختصاصی هر Plugin در OpenClaw استفاده می‌کند، بنابراین
-    اشتباهات وابستگی زمان اجرا را که آزمایش نسخه منبع ممکن است پنهان کند، شناسایی می‌کند. این کار
-    ساختار بسته و وابستگی را اثبات می‌کند، نه اعتماد رسمی متصل به کاتالوگ را.
+    `npm-pack:` از پروژه npm مدیریت‌شده OpenClaw برای هر Plugin استفاده می‌کند، بنابراین
+    خطاهای وابستگی زمان اجرا را که آزمایش نسخه منبع ممکن است پنهان کند، شناسایی
+    می‌کند. این کار ساختار بسته و وابستگی را اثبات می‌کند، نه اعتماد رسمی متصل به کاتالوگ را.
     واردسازی‌های زمان اجرا باید در `dependencies` یا `optionalDependencies` باشند؛
-    وابستگی‌هایی که فقط در `devDependencies` باقی بمانند، برای
-    پروژه زمان اجرای مدیریت‌شده نصب نخواهند شد.
+    وابستگی‌هایی که فقط در `devDependencies` باقی بمانند، برای پروژه
+    زمان اجرای مدیریت‌شده نصب نخواهند شد.
 
-    از نصب مستقیم بایگانی/مسیر به‌عنوان اثبات نهایی رفتار رسمی یا
-    دارای دسترسی ویژه Plugin استفاده نکنید. منابع مستقیم برای اشکال‌زدایی محلی مفیدند، اما
+    برای اثبات نهایی رفتار رسمی یا دارای امتیاز ویژه Plugin، از نصب مستقیم
+    آرشیو/مسیر استفاده نکنید. منابع مستقیم برای اشکال‌زدایی محلی مفیدند، اما
     همان مسیر وابستگی نصب‌های npm یا ClawHub را اثبات نمی‌کنند. اگر
-    Plugin شما به وضعیت مورد اعتماد Plugin رسمی متکی است، اثبات دومی را
+    Plugin شما به وضعیت Plugin رسمی مورد اعتماد وابسته است، یک اثبات دوم
     از طریق نصب رسمی مبتنی بر کاتالوگ یا مسیر بسته منتشرشده‌ای اضافه کنید که
-    اعتماد رسمی را ثبت می‌کند. برای جزئیات ریشه نصب و مالکیت وابستگی،
-    به [تفکیک وابستگی Plugin](/fa/plugins/dependency-resolution)
+    اعتماد رسمی را ثبت می‌کند. برای جزئیات ریشه نصب و مالکیت وابستگی، به
+    [تفکیک‌پذیری وابستگی Plugin](/fa/plugins/dependency-resolution)
     مراجعه کنید.
 
   </Step>
@@ -224,7 +229,7 @@ openclaw plugins install clawhub:<package-name>
     clawhub package publish your-org/your-plugin
     ```
 
-    قطعه‌کدهای معیار بسته ClawHub در `docs/snippets/plugin-publish/` قرار دارند.
+    قطعه‌کدهای مرجع بسته ClawHub در `docs/snippets/plugin-publish/` قرار دارند.
 
   </Step>
 
@@ -242,13 +247,13 @@ openclaw plugins install clawhub:<package-name>
 
 ## ثبت ابزارها
 
-ابزارها می‌توانند الزامی یا اختیاری باشند. ابزارهای الزامی هرگاه
-Plugin فعال باشد، همیشه در دسترس‌اند. ابزارهای اختیاری پیش از آنکه OpenClaw
-زمان اجرای Plugin مالک را بارگذاری کند، به پذیرش صریح کاربر نیاز دارند.
+ابزارها می‌توانند الزامی یا اختیاری باشند. ابزارهای الزامی هنگام فعال‌بودن
+Plugin همیشه در دسترس‌اند. ابزارهای اختیاری پیش از آنکه OpenClaw
+زمان اجرای Plugin مالک را بارگذاری کند، به انتخاب صریح کاربر نیاز دارند.
 
-کارخانه‌های ابزار، زمینه زمان اجرای مورد اعتماد را دریافت می‌کنند که شامل `deliveryContext`،
-`nativeChannelId` برای گفت‌وگوی فعال پلتفرم در صورت دسترس‌بودن و
-`requesterSenderId` است.
+کارخانه‌های ابزار زمینه زمان اجرای مورد اعتماد را دریافت می‌کنند، از جمله `deliveryContext`،
+`nativeChannelId` برای گفت‌وگوی فعال پلتفرم در صورت دسترس‌بودن، و
+`requesterSenderId`.
 
 ```typescript
 register(api) {
@@ -257,8 +262,15 @@ register(api) {
       name: "workflow_tool",
       description: "Run a workflow",
       parameters: Type.Object({ pipeline: Type.String() }),
+      outputSchema: Type.Object(
+        { pipeline: Type.String() },
+        { additionalProperties: false },
+      ),
       async execute(_id, params) {
-        return { content: [{ type: "text", text: params.pipeline }] };
+        return {
+          content: [{ type: "text", text: params.pipeline }],
+          details: { pipeline: params.pipeline },
+        };
       },
     },
     { optional: true },
@@ -266,8 +278,14 @@ register(api) {
 }
 ```
 
-هر ابزار ثبت‌شده با `api.registerTool(...)` باید در
-مانیفست Plugin نیز اعلان شود:
+`outputSchema` اختیاری است. این مورد مقدار ساختاریافته `details` را توصیف می‌کند که
+[حالت کد](/tools/code-mode) و [جست‌وجوی ابزار](/fa/tools/tool-search) از آن استفاده می‌کنند. فراخوانی‌های
+کاتالوگ طرح‌واره‌های نامعتبر را پیش از اجرا رد می‌کنند و مقدار نهایی را پس از
+هوک‌های ابزار اعتبارسنجی می‌کنند. برای ابزارهای فاقد نتیجه JSON پایدار، آن را حذف کنید. برای
+قرارداد کامل، به [Pluginهای ابزار](/fa/plugins/tool-plugins#output-contracts) مراجعه کنید.
+
+هر ابزاری که با `api.registerTool(...)` ثبت می‌شود باید در مانیفست
+Plugin نیز اعلام شود:
 
 ```json
 {
@@ -290,28 +308,28 @@ register(api) {
 }
 ```
 
-ابزارهای اختیاری تعیین می‌کنند که آیا ابزار در معرض مدل قرار می‌گیرد یا خیر. زمانی که یک ابزار
-یا هوک باید پس از انتخاب‌شدن توسط مدل و پیش از اجرای
+ابزارهای اختیاری تعیین می‌کنند که آیا ابزار در معرض مدل قرار گیرد یا خیر. زمانی‌که یک ابزار
+یا هوک باید پس از انتخاب توسط مدل و پیش از اجرای
 عمل درخواست تأیید کند، از [درخواست‌های مجوز Plugin](/fa/plugins/plugin-permission-requests) استفاده کنید.
 
-برای عوارض جانبی، فایل‌های اجرایی غیرمعمول یا قابلیت‌هایی که
-نباید به‌طور پیش‌فرض در معرض قرار گیرند، از ابزارهای اختیاری استفاده کنید. نام ابزارها نباید با نام
-ابزارهای هسته تداخل داشته باشد؛ موارد متداخل نادیده گرفته می‌شوند و در عیب‌یابی Plugin گزارش می‌شوند. ثبت‌های
-نادرست نیز به همین روش نادیده گرفته و گزارش می‌شوند: `name` غیرتهیِ ازدست‌رفته،
-`execute` که تابع نیست یا توصیفگر ابزاری بدون شیء `parameters`.
+از ابزارهای اختیاری برای عوارض جانبی، فایل‌های اجرایی نامتعارف یا قابلیت‌هایی استفاده کنید که
+نباید به‌طور پیش‌فرض در معرض مدل قرار گیرند. نام ابزارها نباید با نام ابزارهای هسته
+تداخل داشته باشد؛ موارد متعارض نادیده گرفته و در تشخیص‌های Plugin گزارش می‌شوند. ثبت‌های
+بدشکل نیز به همین روش نادیده گرفته و گزارش می‌شوند: نبود `name` غیرخالی،
+`execute` که تابع نیست، یا توصیف‌گر ابزار بدون شیء `parameters`.
 
-کارخانه‌های ابزار یک شیء زمینه تأمین‌شده توسط زمان اجرا دریافت می‌کنند. هنگامی که یک ابزار
-برای ثبت گزارش، نمایش یا سازگارشدن با مدل فعال نوبت جاری نیاز دارد، از `ctx.activeModel`
-استفاده کنید؛ این شیء می‌تواند شامل `provider`، `modelId` و `modelRef` باشد. با آن
-به‌عنوان فراداده اطلاعاتی زمان اجرا رفتار کنید، نه یک مرز امنیتی در برابر
-اپراتور محلی، کد Plugin نصب‌شده یا زمان اجرای تغییریافته OpenClaw. ابزارهای
-محلی حساس همچنان باید به پذیرش صریح Plugin یا اپراتور نیاز داشته باشند و
-اگر فراداده مدل فعال موجود یا مناسب نیست، به‌صورت بسته شکست بخورند.
+کارخانه‌های ابزار یک شیء زمینه تأمین‌شده توسط زمان اجرا دریافت می‌کنند. زمانی‌که ابزار نیاز دارد
+مدل فعال نوبت جاری را ثبت، نمایش یا خود را با آن سازگار کند، از `ctx.activeModel`
+استفاده کنید؛ این مقدار می‌تواند شامل `provider`، `modelId` و `modelRef` باشد. با آن
+به‌عنوان فراداده اطلاعاتی زمان اجرا رفتار کنید، نه مرز امنیتی در برابر اپراتور
+محلی، کد Plugin نصب‌شده یا زمان اجرای تغییریافته OpenClaw. ابزارهای محلی
+حساس همچنان باید به انتخاب صریح Plugin یا اپراتور نیاز داشته باشند و
+هنگامی‌که فراداده مدل فعال وجود ندارد یا مناسب نیست، به‌صورت بسته شکست بخورند.
 
-مانیفست مالکیت و کشف را اعلان می‌کند؛ اجرا همچنان پیاده‌سازی زنده
-ابزار ثبت‌شده را فراخوانی می‌کند. `toolMetadata.<tool>.optional: true`
-را با `api.registerTool(..., { optional: true })` هم‌راستا نگه دارید تا OpenClaw بتواند
-از بارگذاری زمان اجرای آن Plugin تا زمانی که ابزار صریحاً در فهرست مجاز قرار گیرد، خودداری کند.
+مانیفست مالکیت و کشف را اعلام می‌کند؛ اجرا همچنان پیاده‌سازی زنده
+ابزار ثبت‌شده را فراخوانی می‌کند. `toolMetadata.<tool>.optional: true` را
+با `api.registerTool(..., { optional: true })` هم‌راستا نگه دارید تا OpenClaw بتواند از
+بارگذاری زمان اجرای آن Plugin تا زمانی‌که ابزار صریحاً در فهرست مجاز قرار گیرد، خودداری کند.
 
 ## قراردادهای واردسازی
 
@@ -322,44 +340,42 @@ import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
 import { createPluginRuntimeStore } from "openclaw/plugin-sdk/runtime-store";
 ```
 
-از barrel ریشه منسوخ‌شده وارد نکنید:
-
-```typescript
-import { definePluginEntry } from "openclaw/plugin-sdk";
-```
-
 در بسته Plugin خود، برای واردسازی‌های داخلی از فایل‌های barrel محلی مانند `api.ts` و
-`runtime-api.ts` استفاده کنید. Plugin خود را از طریق یک مسیر
-SDK وارد نکنید. کمک‌کننده‌های مختص ارائه‌دهنده باید در بسته ارائه‌دهنده باقی بمانند، مگر اینکه
-مرز واقعاً عمومی باشد.
+`runtime-api.ts` استفاده کنید. Plugin خود را از طریق یک مسیر SDK وارد نکنید. کمک‌تابع‌های
+مختص ارائه‌دهنده باید در بسته ارائه‌دهنده باقی بمانند، مگر اینکه مرز واقعاً عمومی باشد.
 
-متدهای سفارشی RPC در Gateway یک نقطه ورود پیشرفته هستند. آن‌ها را روی یک
+متدهای سفارشی RPC در Gateway یک نقطه ورود پیشرفته هستند. آن‌ها را زیر یک
 پیشوند مختص Plugin نگه دارید؛ فضاهای نام مدیریتی هسته مانند `config.*`،
-`exec.approvals.*`، `operator.admin.*`، `wizard.*` و `update.*` رزروشده باقی می‌مانند
-و به `operator.admin` تفکیک می‌شوند. پل
-`openclaw/plugin-sdk/gateway-method-runtime` برای مسیرهای HTTP در Plugin که
-`contracts.gatewayMethodDispatch: ["authenticated-request"]` را اعلان می‌کنند، رزرو شده است.
+`exec.approvals.*`، `operator.admin.*`، `wizard.*` و `update.*` رزرو می‌مانند
+و به `operator.admin` منتهی می‌شوند. پل
+`openclaw/plugin-sdk/gateway-method-runtime` برای مسیرهای HTTP Plugin که `contracts.gatewayMethodDispatch: ["authenticated-request"]` را اعلام می‌کنند، رزرو شده است.
 
-برای نقشه کامل واردسازی، به [نمای کلی SDK مربوط به Plugin](/fa/plugins/sdk-overview) مراجعه کنید.
+برای نقشه کامل واردسازی، به [نمای کلی SDK برای Plugin](/fa/plugins/sdk-overview) مراجعه کنید.
 
-## چک‌لیست پیش از ارسال
+فیلدهای سازگاری SDK در OpenClaw دارای حاشیه‌نویسی‌های TypeScript `@deprecated` هستند
+که ویرایشگرها آن‌ها را به‌صورت هشدار مهاجرت نمایش می‌دهند. برای اعمال آن‌ها هنگام ساخت،
+یک قاعده آگاه از نوع مانند
+[`@typescript-eslint/no-deprecated`](https://typescript-eslint.io/rules/no-deprecated/)
+را فعال کنید. Oxlint از نوع‌ها آگاه نیست، بنابراین نمی‌تواند این حاشیه‌نویسی‌ها را اعمال کند.
 
-<Check>**package.json** دارای فراداده صحیح `openclaw` است</Check>
+## فهرست بررسی پیش از ارسال
+
+<Check>**package.json** دارای فرادادهٔ صحیح `openclaw` است</Check>
 <Check>مانیفست **openclaw.plugin.json** موجود و معتبر است</Check>
-<Check>نقطه ورود از `defineChannelPluginEntry` یا `definePluginEntry` استفاده می‌کند</Check>
-<Check>همه واردسازی‌ها از مسیرهای متمرکز `plugin-sdk/<subpath>` استفاده می‌کنند</Check>
-<Check>واردسازی‌های داخلی از ماژول‌های محلی استفاده می‌کنند، نه خودواردسازی‌های SDK</Check>
-<Check>آزمون‌ها موفق‌اند (`pnpm test <bundled-plugin-root>/my-plugin/`)</Check>
-<Check>`pnpm check` موفق است (Pluginهای درون مخزن)</Check>
+<Check>نقطهٔ ورود از `defineChannelPluginEntry` یا `definePluginEntry` استفاده می‌کند</Check>
+<Check>همهٔ importها از مسیرهای متمرکز `plugin-sdk/<subpath>` استفاده می‌کنند</Check>
+<Check>importهای داخلی از ماژول‌های محلی استفاده می‌کنند، نه self-importهای SDK</Check>
+<Check>آزمون‌ها با موفقیت اجرا می‌شوند (`pnpm test <bundled-plugin-root>/my-plugin/`)</Check>
+<Check>`pnpm check` با موفقیت اجرا می‌شود (برای Pluginهای درون مخزن)</Check>
 
 ## آزمایش در برابر نسخه‌های بتا
 
-1. انتشارهای [openclaw/openclaw](https://github.com/openclaw/openclaw/releases) را دنبال کنید (`Watch` > `Releases`). برچسب‌های بتا به‌شکل `v2026.3.N-beta.1` هستند. همچنین می‌توانید برای اطلاعیه‌های انتشار، [@openclaw](https://x.com/openclaw) را در X دنبال کنید.
-2. به‌محض ظاهرشدن برچسب بتا، Plugin خود را با آن آزمایش کنید. بازه زمانی پیش از انتشار پایدار معمولاً فقط چند ساعت است.
-3. پس از آزمایش، در رشتهٔ Plugin خود در کانال Discord با نام `plugin-forum` ([discord.gg/clawd](https://discord.gg/clawd))، یکی از این دو مورد را ارسال کنید: `all good` یا شرح آنچه از کار افتاده است. اگر هنوز رشته‌ای ندارید، یکی ایجاد کنید.
-4. اگر چیزی از کار افتاد، یک مسئله با عنوان `Beta blocker: <plugin-name> - <summary>` باز یا به‌روزرسانی کنید و برچسب `beta-blocker` را به آن اعمال کنید. پیوند مسئله را در رشتهٔ خود قرار دهید.
-5. یک PR با عنوان `fix(<plugin-id>): beta blocker - <summary>` برای `main` باز کنید و در هر دو محل، یعنی PR و رشتهٔ Discord خود، به مسئله پیوند دهید. مشارکت‌کنندگان نمی‌توانند به PRها برچسب بزنند؛ بنابراین عنوان، نشانهٔ سمت PR برای نگه‌دارندگان و خودکارسازی است. موارد مسدودکننده‌ای که PR دارند ادغام می‌شوند؛ موارد بدون PR ممکن است بااین‌حال منتشر شوند.
-6. سکوت به‌معنای سبزبودن وضعیت است. ازدست‌دادن این بازه معمولاً به این معناست که اصلاح شما در چرخهٔ بعدی اعمال می‌شود.
+1. نسخه‌های منتشرشدهٔ [openclaw/openclaw](https://github.com/openclaw/openclaw/releases) را دنبال کنید (`Watch` > `Releases`). برچسب‌های بتا شبیه `v2026.3.N-beta.1` هستند. همچنین می‌توانید برای اطلاعیه‌های انتشار، [@openclaw](https://x.com/openclaw) را در X دنبال کنید.
+2. به‌محض ظاهرشدن برچسب بتا، Plugin خود را در برابر آن آزمایش کنید. بازهٔ زمانی پیش از نسخهٔ پایدار معمولاً فقط چند ساعت است.
+3. پس از آزمایش، در رشتهٔ Plugin خود در کانال Discord به نام `plugin-forum` ([discord.gg/clawd](https://discord.gg/clawd)) پیام بگذارید و `all good` یا مورد خراب‌شده را اعلام کنید. اگر هنوز رشته‌ای ندارید، یکی ایجاد کنید.
+4. اگر چیزی خراب شد، یک issue با عنوان `Beta blocker: <plugin-name> - <summary>` باز یا به‌روزرسانی کنید و برچسب `beta-blocker` را اعمال کنید. پیوند issue را در رشتهٔ خود قرار دهید.
+5. یک PR با عنوان `fix(<plugin-id>): beta blocker - <summary>` برای `main` باز کنید و پیوند issue را هم در PR و هم در رشتهٔ Discord خود قرار دهید. مشارکت‌کنندگان نمی‌توانند به PRها برچسب بزنند، بنابراین عنوان، نشانهٔ سمت PR برای نگه‌دارندگان و خودکارسازی است. موارد مسدودکننده‌ای که PR دارند ادغام می‌شوند؛ موارد بدون PR ممکن است به‌هرحال منتشر شوند.
+6. سکوت به‌معنای سبزبودن وضعیت است. ازدست‌دادن این بازه معمولاً به این معناست که اصلاح شما در چرخهٔ بعدی وارد می‌شود.
 
 ## گام‌های بعدی
 
@@ -374,7 +390,7 @@ SDK وارد نکنید. کمک‌کننده‌های مختص ارائه‌ده
     یک بک‌اند محلی CLI هوش مصنوعی ثبت کنید
   </Card>
   <Card title="نمای کلی SDK" icon="book-open" href="/fa/plugins/sdk-overview">
-    مرجع نگاشت واردکردن و API ثبت
+    مرجع نگاشت import و API ثبت
   </Card>
   <Card title="ابزارهای کمکی زمان اجرا" icon="settings" href="/fa/plugins/sdk-runtime">
     TTS، جست‌وجو و زیرعامل از طریق api.runtime
@@ -389,5 +405,5 @@ SDK وارد نکنید. کمک‌کننده‌های مختص ارائه‌ده
 
 ## مرتبط
 
-- [قلاب‌های Plugin](/fa/plugins/hooks)
+- [هوک‌های Plugin](/fa/plugins/hooks)
 - [معماری Plugin](/fa/plugins/architecture)

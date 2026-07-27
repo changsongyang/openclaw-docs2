@@ -1,8 +1,9 @@
 ---
 x-i18n:
-    generated_at: "2026-07-11T21:58:40Z"
+    generated_at: "2026-07-26T08:51:41Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
+    prompt_version: 32
     provider: openai
     source_hash: a8712b1aeb2e605055c22cf308049e5e74fdf33061870026be20bd55cb0c3d1d
     source_path: AGENTS.md
@@ -11,15 +12,15 @@ x-i18n:
 
 # ドキュメントガイド
 
-このディレクトリは、ドキュメントの執筆、Mintlify のリンク規則、ドキュメントの国際化ポリシーを管理します。
+このディレクトリは、ドキュメントの執筆、Mintlify のリンク規則、ドキュメントの i18n ポリシーを管理します。
 
 ## Mintlify の規則
 
-- ドキュメントは Mintlify（`https://docs.openclaw.ai`）でホストされています。
-- `docs/**/*.md` 内のドキュメント内部リンクは、`.md` または `.mdx` の接尾辞を付けず、ルート相対のままにする必要があります（例：`[設定](/gateway/configuration)`）。
-- セクション間の相互参照には、ルート相対パス上のアンカーを使用してください（例：`[フック](/gateway/configuration-reference#hooks)`）。
-- Mintlify のアンカー生成はこれらの文字を適切に処理できないため、ドキュメントの見出しでは em ダッシュとアポストロフィを避けてください。
-- README および GitHub でレンダリングされるその他のドキュメントでは、Mintlify 外でもリンクが機能するように、ドキュメントの絶対 URL を維持してください。
+- ドキュメントは Mintlify (`https://docs.openclaw.ai`) でホストされます。
+- `docs/**/*.md` 内の内部ドキュメントリンクは、`.md` または `.mdx` のサフィックスを付けず、ルート相対のままにする必要があります（例: `[Config](/gateway/configuration)`）。
+- セクション間の相互参照には、ルート相対パス上のアンカーを使用してください（例: `[Hooks](/gateway/configuration-reference#hooks)`）。
+- Mintlify のアンカー生成では処理が不安定になるため、ドキュメントの見出しでは em ダッシュとアポストロフィを避けてください。
+- README および GitHub でレンダリングされるその他のドキュメントでは、Mintlify の外部でもリンクが機能するよう、ドキュメントの絶対 URL を維持してください。
 - ドキュメントの内容は汎用的なものにする必要があります。個人のデバイス名、ホスト名、ローカルパスは使用せず、`user@gateway-host` のようなプレースホルダーを使用してください。
 
 ## ドキュメント内容の規則
@@ -30,27 +31,27 @@ x-i18n:
 
 ## 内部ドキュメント
 
-- 長期的に使用する非公開の運用者向けドキュメントは `~/Projects/manager/docs/` に配置します。
-- リポジトリ内の内部作業用ドキュメントやミラードキュメントは、無視対象の `docs/internal/` 配下に配置できます。
-- `docs/internal/**` のページを `docs/docs.json` のナビゲーションに追加したり、公開ドキュメントからリンクしたりしないでください。
-- 後からページが強制的に追加された場合でも、`scripts/docs-sync-publish.mjs` は公開用の `openclaw/docs` 公開リポジトリから `docs/internal/**` を除外して削除します。
-- 内部ドキュメントには、リポジトリパス、非公開アプリ名、1Password の項目名、運用手順を記載できますが、シークレットの値は決して含めないでください。
+- 長期的に使用する非公開の運用者向けドキュメントは、`~/Projects/manager/docs/` に配置してください。
+- リポジトリ内のみで使用する内部のスクラッチ／ミラードキュメントは、無視対象の `docs/internal/` 以下に配置できます。
+- `docs/internal/**` ページを `docs/docs.json` のナビゲーションに追加したり、公開ドキュメントからリンクしたりしないでください。
+- 後からページが強制追加された場合でも、`scripts/docs-sync-publish.mjs` は公開 `openclaw/docs` 公開リポジトリから `docs/internal/**` を除外して削除します。
+- 内部ドキュメントにはリポジトリパス、非公開アプリ名、1Password の項目名、ランブックを記載できますが、シークレット値は決して含めないでください。
 
 ## 成熟度スコアカードの編集
 
-`taxonomy.yaml` と `qa/maturity-scores.yaml` がソース入力です。`docs/maturity/` 配下に生成される成熟度ドキュメントは投影結果であり、スコア、LTS、分類体系、QA プロファイル、エビデンステーブルを手動で編集しないでください。
-生成は `scripts/qa/render-maturity-docs.ts` が管理します。コミット済みドキュメントを更新するには `pnpm maturity:render`、検証するには `pnpm maturity:check` を使用してください。
-`.github/workflows/maturity-scorecard.yml` はアーティファクトのプレビューをレンダリングし、生成済みドキュメントの PR を作成できます。`.github/workflows/openclaw-release-checks.yml` はリリース QA のためにこれをディスパッチします。
-メンテナーがサニタイズ済みのコミット対象投影結果を明示的に要求しない限り、決定論的な `qa-evidence.json.scorecard` データは GitHub Actions のアーティファクトに保持してください。
-人による上書きでは、PR でソースの状態を変更し、その理由と公開済みまたは墨消し済みのエビデンスを説明する必要があります。
+`taxonomy.yaml` と `qa/maturity-scores.yaml` がソース入力です。`docs/maturity/` 以下の生成された成熟度ドキュメントは投影であり、スコア、LTS、分類体系、QA プロファイル、またはエビデンステーブルを手動で編集しないでください。
+`scripts/qa/render-maturity-docs.ts` が生成を管理します。コミット済みドキュメントを更新するには `pnpm maturity:render`、検証するには `pnpm maturity:check` を使用してください。
+`.github/workflows/maturity-scorecard.yml` はアーティファクトのプレビューをレンダリングし、生成ドキュメントの PR を作成できます。`.github/workflows/openclaw-release-checks.yml` はリリース QA 用にこれをディスパッチします。
+保守担当者がサニタイズ済みのコミット対象投影を明示的に求めない限り、決定論的な `qa-evidence.json.scorecard` データは GitHub Actions のアーティファクトに保持してください。
+人手による上書きでは、PR でソース状態を変更し、その理由と公開済みまたは編集済みのエビデンスを説明する必要があります。
 
-## ドキュメントの国際化
+## ドキュメントの i18n
 
-- 外国語のドキュメントはこのリポジトリでは保守されません。生成された公開出力は別の `openclaw/docs` リポジトリに配置されます（多くの場合、ローカルでは `../openclaw-docs` としてクローンされます）。
-- ここでは `docs/<locale>/**` 配下のローカライズ済みドキュメントを追加または編集しないでください。
-- このリポジトリの英語ドキュメントと用語集ファイルを信頼できる唯一の情報源として扱ってください。
-- パイプライン：ここで英語ドキュメントを更新し、必要に応じて `docs/.i18n/glossary.<locale>.json` を更新した後、公開リポジトリの同期と `openclaw/docs` 内の `scripts/docs-i18n` の実行に任せます。
-- `scripts/docs-i18n` を再実行する前に、英語のまま維持する必要がある、または固定訳を使用する必要がある新しい技術用語、ページタイトル、短いナビゲーションラベルを用語集に追加してください。
-- `pnpm docs:check-i18n-glossary` は、変更された英語ドキュメントのタイトルと短い内部ドキュメントラベルを検査するガードです。
+- 外国語のドキュメントはこのリポジトリでは管理されません。生成された公開出力は、別の `openclaw/docs` リポジトリに配置されます（ローカルでは `../openclaw-docs` としてクローンされることがよくあります）。
+- ここでは `docs/<locale>/**` 以下にローカライズ済みドキュメントを追加または編集しないでください。
+- このリポジトリの英語ドキュメントと用語集ファイルを正としてください。
+- パイプライン: ここで英語ドキュメントを更新し、必要に応じて `docs/.i18n/glossary.<locale>.json` を更新した後、公開リポジトリの同期と `scripts/docs-i18n` を `openclaw/docs` で実行します。
+- `scripts/docs-i18n` を再実行する前に、英語のまま維持するか固定訳を使用する必要がある新しい技術用語、ページタイトル、短いナビゲーションラベルを用語集に追加してください。
+- `pnpm docs:check-i18n-glossary` は、変更された英語ドキュメントのタイトルと短い内部ドキュメントラベルを保護するガードです。
 - 翻訳メモリは、公開リポジトリ内で生成される `docs/.i18n/*.tm.jsonl` ファイルに保存されます。
 - `docs/.i18n/README.md` を参照してください。

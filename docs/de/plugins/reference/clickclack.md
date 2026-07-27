@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder überprüfen das clickclack-Plugin
+    - Sie installieren, konfigurieren oder prüfen das clickclack-Plugin.
 summary: Fügt die Clickclack-Kanaloberfläche zum Senden und Empfangen von OpenClaw-Nachrichten hinzu.
 title: Clickclack-Plugin
 x-i18n:
-    generated_at: "2026-07-24T05:14:48Z"
+    generated_at: "2026-07-26T19:08:42Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -29,7 +29,7 @@ Kanäle: `clickclack`; Verträge: `tools`
 
 <!-- openclaw-plugin-reference:manual-start -->
 
-Das Plugin kann optional für jede OpenClaw-Sitzung einen mit dem Lebenszyklus synchronisierten ClickClack-Kanal erstellen. Verwaltete Diskussionskanäle verwenden zur Beobachtung und Weiterleitung eine Seitensitzung desselben Agenten, während die verknüpfte Hauptsitzung ein nur für Abrufe vorgesehenes `discussion`-Tool erhält. Informationen zu den Anforderungen an die Konfiguration und die Sichtbarkeit des Sitzungstools finden Sie unter [ClickClack-Sitzungsdiskussionen](/de/channels/clickclack#session-discussions).
+Das Plugin kann optional für jede OpenClaw-Sitzung einen mit dem Lebenszyklus synchronisierten ClickClack-Kanal erstellen. Verwaltete Diskussionskanäle verwenden eine Nebensitzung desselben Agenten zur Beobachtung und Weiterleitung, während die zugehörige Hauptsitzung ein ausschließlich zum Abrufen vorgesehenes `discussion`-Tool erhält. Informationen zur Konfiguration und zu den Anforderungen an die Sichtbarkeit des Sitzungstools finden Sie unter [ClickClack-Sitzungsdiskussionen](/de/channels/clickclack#session-discussions).
 
 <!-- openclaw-plugin-reference:manual-end -->
 

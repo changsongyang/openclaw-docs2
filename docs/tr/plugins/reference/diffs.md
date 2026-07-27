@@ -1,10 +1,10 @@
 ---
 read_when:
-    - diffs pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: Ajanlar için OpenClaw salt okunur fark görüntüleyici plugini ve dosya işleyicisi.
-title: Diffler plugini
+    - diffs pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+summary: Aracılar için OpenClaw salt okunur fark görüntüleyici Plugin'i ve dosya oluşturucusu.
+title: Diffs plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:29:43Z"
+    generated_at: "2026-07-26T22:54:46Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Diffs plugin'i
+# Diffs Plugin'i
 
-OpenClaw için salt okunur fark görüntüleyici plugin ve agent'lar için dosya işleyici.
+Aracılar için OpenClaw salt okunur fark görüntüleyici Plugin'i ve dosya işleyicisi.
 
 ## Dağıtım
 
@@ -25,4 +25,4 @@ OpenClaw için salt okunur fark görüntüleyici plugin ve agent'lar için dosya
 
 ## Yüzey
 
-sözleşmeler: `tools`; skills
+sözleşmeler: `tools`; Skills

@@ -4,7 +4,7 @@ read_when:
 summary: Fügt die Telegram-Kanalschnittstelle zum Senden und Empfangen von OpenClaw-Nachrichten hinzu.
 title: Telegram-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:00:34Z"
+    generated_at: "2026-07-26T17:58:50Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

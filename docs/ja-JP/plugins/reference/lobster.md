@@ -1,10 +1,10 @@
 ---
 read_when:
-    - lobster Pluginをインストール、設定、または監査している場合
+    - Lobster Plugin のインストール、設定、または監査を行っている場合
 summary: 型付きパイプラインと再開可能な承認に対応する Lobster ワークフローツール Plugin。
 title: Lobster Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:58:41Z"
+    generated_at: "2026-07-26T09:53:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Lobster Plugin
 
-型付きパイプラインと再開可能な承認に対応する Lobster ワークフローツール Plugin。
+型付きパイプラインと再開可能な承認のための Lobster ワークフローツール Plugin。
 
 ## 配布
 

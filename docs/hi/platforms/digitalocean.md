@@ -1,11 +1,12 @@
 ---
 redirect: /install/digitalocean
-summary: /install/digitalocean पर पुनर्निर्देशित करें
-title: DigitalOcean (प्लैटफ़ॉर्म)
+summary: /install/digitalocean पर रीडायरेक्ट करें
+title: DigitalOcean (प्लेटफ़ॉर्म)
 x-i18n:
-    generated_at: "2026-06-28T23:26:37Z"
-    model: gpt-5.5
+    generated_at: "2026-07-27T20:05:02Z"
+    model: gpt-5.6
     postprocess_version: locale-links-v1
+    prompt_version: 32
     provider: openai
     source_hash: d2b63c0f6d16f081a6610bf45b1e3a58e2e037d3562423287a53be9549d7cdd6
     source_path: platforms/digitalocean.md
@@ -16,5 +17,5 @@ x-i18n:
 
 ## संबंधित
 
-- [इंस्टॉल अवलोकन](/hi/install)
+- [इंस्टॉलेशन का अवलोकन](/hi/install)
 - [VPS होस्टिंग](/hi/vps)

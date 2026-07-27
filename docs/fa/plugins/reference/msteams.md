@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin مربوط به msteams هستید
-summary: Plugin کانال Microsoft Teams در OpenClaw برای مکالمات ربات.
-title: Plugin ‏Microsoft Teams
+    - در حال نصب، پیکربندی یا ممیزی Plugin ‏msteams هستید
+summary: Plugin کانال Microsoft Teams در OpenClaw برای مکالمات بات.
+title: Plugin Microsoft Teams
 x-i18n:
-    generated_at: "2026-07-16T17:03:03Z"
+    generated_at: "2026-07-27T16:58:48Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

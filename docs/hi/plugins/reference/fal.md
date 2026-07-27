@@ -1,10 +1,10 @@
 ---
 read_when:
-    - आप fal Plugin इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: OpenClaw में fal मॉडल प्रदाता समर्थन जोड़ता है।
+    - आप fal Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
+summary: OpenClaw में fal मॉडल प्रदाता का समर्थन जोड़ता है।
 title: fal Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:35:22Z"
+    generated_at: "2026-07-27T21:29:58Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # fal Plugin
 
-OpenClaw में fal मॉडल प्रदाता समर्थन जोड़ता है।
+OpenClaw में fal मॉडल प्रदाता का समर्थन जोड़ता है।
 
 ## वितरण
 

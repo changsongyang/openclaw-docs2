@@ -4,7 +4,7 @@ read_when:
 summary: 添加智能体可调用的工具。
 title: Memory Core 插件
 x-i18n:
-    generated_at: "2026-07-16T11:46:07Z"
+    generated_at: "2026-07-26T06:26:49Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,11 +16,11 @@ x-i18n:
 
 # Memory Core 插件
 
-添加可由智能体调用的工具。
+添加智能体可调用的工具。
 
 ## 分发
 
-- 软件包：`@openclaw/memory-core`
+- 包：`@openclaw/memory-core`
 - 安装方式：内置于 OpenClaw
 
 ## 接口

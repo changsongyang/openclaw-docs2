@@ -1,10 +1,10 @@
 ---
 read_when:
     - onepassword pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: Onay politikası ve SQLite denetim geçmişi sunan, özenle seçilmiş 1Password gizli bilgi aracısı.
+summary: Onay ilkesi ve SQLite denetim geçmişi sunan, özenle seçilmiş 1Password gizli bilgi aracısı.
 title: Onepassword Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:31:21Z"
+    generated_at: "2026-07-26T22:55:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Onepassword plugin
+# Onepassword plugin'i
 
-Onay politikası ve SQLite denetim geçmişiyle seçilmiş 1Password gizli bilgi aracısı.
+Onay politikası ve SQLite denetim geçmişi içeren, özenle seçilmiş 1Password gizli bilgileri aracısı.
 
 ## Dağıtım
 

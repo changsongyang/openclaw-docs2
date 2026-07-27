@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Slack Plugin のインストール、設定、または監査を行っています
+    - Slack Plugin のインストール、設定、または監査を行う場合に使用します
 summary: チャンネル、DM、コマンド、アプリイベントに対応する OpenClaw Slack チャンネル Plugin。
 title: Slack Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:56:54Z"
+    generated_at: "2026-07-26T09:12:48Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

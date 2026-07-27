@@ -4,7 +4,7 @@ read_when:
     - Endpunkte oder Schemas hinzufügen
 summary: Übersicht und Konventionen der öffentlichen REST-API (v1).
 x-i18n:
-    generated_at: "2026-07-24T03:41:17Z"
+    generated_at: "2026-07-26T17:41:11Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -22,43 +22,43 @@ OpenAPI: `/api/v1/openapi.json`
 
 ## Wiederverwendung des öffentlichen Katalogs
 
-Sie können auf Grundlage der öffentlichen Lese-APIs von ClawHub einen Katalog, ein Verzeichnis oder eine Suchoberfläche eines Drittanbieters erstellen. Öffentliche Metadaten und Dateien von Skills werden gemäß den Lizenzregeln für Skills von ClawHub veröffentlicht. Die API selbst unterliegt jedoch Ratenbegrenzungen und sollte verantwortungsvoll genutzt werden.
+Sie können auf Grundlage der öffentlichen Lese-APIs von ClawHub einen Katalog, ein Verzeichnis oder eine Suchoberfläche eines Drittanbieters erstellen. Öffentliche Skill-Metadaten und Skill-Dateien werden gemäß den Skill-Lizenzregeln von ClawHub veröffentlicht, während die API selbst ratenbegrenzt ist und verantwortungsvoll genutzt werden sollte.
 
 Richtlinien:
 
-- Verwenden Sie für Katalogeinträge öffentliche Leseendpunkte wie `GET /api/v1/skills`, `GET /api/v1/search` und `GET /api/v1/skills/{slug}`.
-- Speichern Sie Antworten zwischen und beachten Sie `429`, `Retry-After` sowie Ratenbegrenzungs-Header, statt häufige Abfragen durchzuführen.
-- Verlinken Sie bei der Anzeige von Einträgen auf die kanonische URL des ClawHub-Skills, damit Benutzer den Quelldatensatz in der Registry prüfen können.
-- Verwenden Sie kanonische Seiten-URLs im Format `https://clawhub.ai/<owner>/skills/<slug>`.
+- Verwenden Sie öffentliche Lese-Endpunkte wie `GET /api/v1/skills`, `GET /api/v1/search` und `GET /api/v1/skills/{slug}` für Katalogeinträge.
+- Speichern Sie Antworten im Cache und beachten Sie `429`, `Retry-After` sowie die Ratenbegrenzungs-Header, anstatt häufige Abfragen durchzuführen.
+- Verlinken Sie beim Anzeigen von Einträgen auf die kanonische ClawHub-Skill-URL, damit Benutzer den zugrunde liegenden Registry-Eintrag prüfen können.
+- Verwenden Sie kanonische Seiten-URLs in der Form `https://clawhub.ai/<owner>/skills/<slug>`.
 - Erwecken Sie nicht den Eindruck, dass ClawHub die Drittanbieter-Website unterstützt, überprüft oder betreibt.
 - Spiegeln Sie keine ausgeblendeten, privaten oder durch die Moderation gesperrten Inhalte, indem Sie öffentliche API-Filter oder Authentifizierungsgrenzen umgehen.
 
 ## Authentifizierung
 
 - Öffentlicher Lesezugriff: kein Token erforderlich.
-- Schreibzugriff und Konto: `Authorization: Bearer clh_...`.
+- Schreibzugriff + Konto: `Authorization: Bearer clh_...`.
 
 ## Ratenbegrenzungen
 
 Authentifizierungsabhängige Durchsetzung:
 
-- Anonyme Anfragen: pro IP-Adresse.
+- Anonyme Anfragen: pro IP.
 - Authentifizierte Anfragen (gültiges Bearer-Token): pro Benutzerkontingent.
-- Bei fehlendem oder ungültigem Token erfolgt die Durchsetzung anhand der IP-Adresse.
+- Bei fehlendem/ungültigem Token erfolgt die Durchsetzung nach IP.
 
-- Lesezugriff: 3000/min pro IP-Adresse, 12000/min pro Schlüssel
-- Schreibzugriff: 300/min pro IP-Adresse, 3000/min pro Schlüssel
-- Download: 1200/min pro IP-Adresse, 6000/min pro Schlüssel
+- Lesen: 3000/min pro IP, 12000/min pro Schlüssel
+- Schreiben: 300/min pro IP, 3000/min pro Schlüssel
+- Download: 1200/min pro IP, 6000/min pro Schlüssel
 
 Header: `X-RateLimit-Limit`, `X-RateLimit-Reset`, `RateLimit-Limit`, `RateLimit-Reset`;
-`X-RateLimit-Remaining`, `RateLimit-Remaining` und `Retry-After` sind in `429` enthalten.
+`X-RateLimit-Remaining`, `RateLimit-Remaining` und `Retry-After` sind bei `429` enthalten.
 
 Semantik:
 
 - `X-RateLimit-Reset`: Sekunden seit der Unix-Epoche (absoluter Rücksetzzeitpunkt)
-- `RateLimit-Reset`: Verzögerung in Sekunden bis zur Rücksetzung
-- `X-RateLimit-Remaining` / `RateLimit-Remaining`: exakt verbleibendes Kontingent, sofern
-  vorhanden; bei erfolgreichen Anfragen mit Sharding wird es ausgelassen, statt einen ungefähren
+- `RateLimit-Reset`: Verzögerung in Sekunden bis zum Zurücksetzen
+- `X-RateLimit-Remaining` / `RateLimit-Remaining`: exaktes verbleibendes Kontingent, sofern
+  vorhanden; bei erfolgreichen, auf Shards verteilten Anfragen wird dieser Wert ausgelassen, statt einen ungefähren
   globalen Wert zurückzugeben
 - `Retry-After`: bei `429` abzuwartende Verzögerung in Sekunden
 
@@ -79,12 +79,12 @@ Clientseitige Verarbeitung:
 
 - Bevorzugen Sie `Retry-After`, sofern vorhanden.
 - Verwenden Sie andernfalls `RateLimit-Reset` oder leiten Sie die Verzögerung aus `X-RateLimit-Reset` ab.
-- Fügen Sie Wiederholungsversuchen Jitter hinzu.
+- Fügen Sie Wiederholungsversuchen eine zufällige Streuung hinzu.
 
 ## Fehler
 
-- Fehler in v1 sind Klartext (`text/plain; charset=utf-8`), einschließlich `400`,
-  `401`, `403`, `404`, `429` und Antworten bei gesperrten Downloads.
+- v1-Fehler sind Klartext (`text/plain; charset=utf-8`), einschließlich `400`,
+  `401`, `403`, `404`, `429` und Antworten bei blockierten Downloads.
 - Unbekannte Abfrageparameter werden aus Kompatibilitätsgründen ignoriert.
 - Bekannte Abfrageparameter mit ungültigen Werten geben `400` zurück.
 
@@ -96,12 +96,12 @@ Clientseitige Verarbeitung:
   - Optionale Filter: `highlightedOnly=true`, `nonSuspiciousOnly=true`
   - Legacy-Alias: `nonSuspicious=true`
 - `GET /api/v1/skills?limit=&cursor=&sort=`
-  - `sort`: `updated` (Standard), `recommended` (`default`), `createdAt` (`newest`), `downloads`, `stars` (`rating`), die Legacy-Installationsaliase `installsCurrent`/`installs`/`installsAllTime` werden `downloads`, `trending` zugeordnet
-  - Ungültige Werte für `sort` geben `400` zurück
+  - `sort`: `updated` (Standard), `recommended` (`default`), `createdAt` (`newest`), `downloads`, `stars` (`rating`), die Legacy-Installationsaliase `installsCurrent`/`installs`/`installsAllTime` werden auf `downloads`, `trending` abgebildet
+  - Ungültige `sort`-Werte geben `400` zurück
   - `cursor` gilt für Sortierungen außer `trending`
   - Optionaler Filter: `nonSuspiciousOnly=true`
   - Legacy-Alias: `nonSuspicious=true`
-  - Mit `nonSuspiciousOnly=true` können cursorbasierte Seiten weniger als `limit` Elemente enthalten; verwenden Sie zum Fortfahren `nextCursor`.
+  - Mit `nonSuspiciousOnly=true` können cursorbasierte Seiten weniger als `limit` Elemente enthalten; verwenden Sie `nextCursor`, um fortzufahren.
   - `recommended` verwendet Interaktions- und Aktualitätssignale.
 - `GET /api/v1/skills/{slug}`
 - `GET /api/v1/skills/{slug}/moderation`
@@ -112,15 +112,15 @@ Clientseitige Verarbeitung:
 - `GET /api/v1/resolve?slug=&hash=`
 - `GET /api/v1/download?slug=&version=&tag=`
   - Gehostete Skills geben deterministische ZIP-Bytes zurück.
-  - Aktuelle GitHub-basierte Skills mit einem Scan vom Typ `clean` oder `suspicious` geben statt ClawHub-Bytes einen
+  - Aktuelle GitHub-gestützte Skills mit einem Scan vom Typ `clean` oder `suspicious` geben anstelle von ClawHub-Bytes einen
     JSON-Übergabedeskriptor vom Typ `public-github` zurück.
 - `GET /api/v1/skills/export?startDate=&endDate=&limit=&cursor=`
   - Gehostete Skills werden als gespeicherte Dateien exportiert.
-  - Aktuelle GitHub-basierte Skills mit einem Scan vom Typ `clean` oder `suspicious` werden
+  - Aktuelle GitHub-gestützte Skills mit einem Scan vom Typ `clean` oder `suspicious` werden
     als Übergabedeskriptoren vom Typ `public-github` exportiert.
 - `GET /api/v1/packages?limit=&cursor=&sort=`
   - `sort`: `updated` (Standard), `recommended`, `downloads`, Legacy-Alias `installs`
-  - Ungültige Werte für `sort` geben `400` zurück
+  - Ungültige `sort`-Werte geben `400` zurück
 - `GET /api/v1/plugins?limit=&cursor=&sort=`
   - `sort`: `recommended` (Standard), `downloads`, `updated`, Legacy-Alias `installs`
 - `GET /api/v1/plugins/search?q=...`
@@ -132,7 +132,7 @@ Clientseitige Verarbeitung:
 
 Authentifizierung erforderlich:
 
-- `POST /api/v1/skills` (Veröffentlichung, Multipart bevorzugt)
+- `POST /api/v1/skills` (Veröffentlichen, Multipart bevorzugt)
 - `DELETE /api/v1/skills/{slug}`
 - `DELETE /api/v1/packages/{name}`
 - `POST /api/v1/skills/{slug}/undelete`
@@ -152,7 +152,7 @@ Authentifizierung erforderlich:
 
 Nur für Administratoren:
 
-- `POST /api/v1/users/reserve` reserviert Root-Slugs und private Paketplatzhalter ohne Release für einen Owner-Handle.
+- `POST /api/v1/users/reserve` reserviert Stamm-Slugs und private Paketplatzhalter ohne Release für ein Eigentümer-Handle.
 
 ## Legacy
 

@@ -1,11 +1,11 @@
 ---
 read_when:
-    - OS समर्थन या इंस्टॉल पाथ खोज रहे हैं
+    - OS समर्थन या इंस्टॉलेशन पाथ खोज रहे हैं
     - Gateway को कहाँ चलाना है, यह तय करना
 summary: प्लेटफ़ॉर्म समर्थन का अवलोकन (Gateway + सहायक ऐप्स)
 title: प्लेटफ़ॉर्म
 x-i18n:
-    generated_at: "2026-07-19T09:00:08Z"
+    generated_at: "2026-07-27T21:12:57Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,13 @@ x-i18n:
 ---
 
 OpenClaw कोर TypeScript में लिखा गया है। **Node आवश्यक रनटाइम है** क्योंकि
-कैनोनिकल स्टेट स्टोर `node:sqlite` का उपयोग करता है। Bun निर्भरता
-इंस्टॉलेशन और पैकेज स्क्रिप्ट के लिए उपलब्ध है; [Bun](/hi/install/bun) देखें।
+प्रामाणिक स्टेट स्टोर `node:sqlite` का उपयोग करता है। निर्भरता इंस्टॉलेशन और
+पैकेज स्क्रिप्ट के लिए Bun उपलब्ध रहता है; [Bun](/hi/install/bun) देखें।
 
-Windows Hub, macOS (मेनू बार ऐप), और मोबाइल नोड्स
-(iOS/Android) के लिए सहयोगी ऐप उपलब्ध हैं। Linux सहयोगी ऐप की योजना है, लेकिन Gateway आज
-पूरी तरह समर्थित है। Windows पर, डेस्कटॉप ऐप के लिए Windows Hub, मुख्यतः
-टर्मिनल उपयोग के लिए नेटिव PowerShell इंस्टॉलेशन, या सर्वाधिक
-Linux-संगत Gateway रनटाइम के लिए WSL2 चुनें।
+Windows Hub, macOS (मेन्यू बार ऐप), और मोबाइल नोड्स
+(iOS/Android) के लिए सहयोगी ऐप उपलब्ध हैं। Linux सहयोगी ऐप की योजना है, लेकिन Gateway
+आज पूरी तरह समर्थित है। Windows पर, डेस्कटॉप ऐप के लिए Windows Hub, टर्मिनल-प्रथम उपयोग
+के लिए नेटिव PowerShell इंस्टॉलेशन, या सर्वाधिक Linux-संगत Gateway रनटाइम के लिए WSL2 चुनें।
 
 ## अपना OS चुनें
 
@@ -45,9 +44,9 @@ Linux-संगत Gateway रनटाइम के लिए WSL2 चुने
 
 ## सामान्य लिंक
 
-- इंस्टॉलेशन गाइड: [शुरू करना](/hi/start/getting-started)
+- इंस्टॉलेशन गाइड: [आरंभ करें](/hi/start/getting-started)
 - Windows Hub: [Windows](/hi/platforms/windows)
-- Gateway रनबुक: [Gateway](/hi/gateway)
+- Gateway संचालन पुस्तिका: [Gateway](/hi/gateway)
 - Gateway कॉन्फ़िगरेशन: [कॉन्फ़िगरेशन](/hi/gateway/configuration)
 - सेवा की स्थिति: `openclaw gateway status`
 
@@ -58,7 +57,7 @@ Linux-संगत Gateway रनटाइम के लिए WSL2 चुने
 - विज़ार्ड (अनुशंसित): `openclaw onboard --install-daemon`
 - प्रत्यक्ष: `openclaw gateway install`
 - कॉन्फ़िगरेशन प्रवाह: `openclaw configure` → **Gateway service** चुनें
-- मरम्मत/माइग्रेशन: `openclaw doctor` (सेवा इंस्टॉल या ठीक करने का विकल्प देता है)
+- मरम्मत/माइग्रेशन: `openclaw doctor` (सेवा इंस्टॉल करने या ठीक करने का विकल्प देता है)
 
 सेवा का लक्ष्य OS पर निर्भर करता है:
 

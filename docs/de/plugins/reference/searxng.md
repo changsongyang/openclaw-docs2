@@ -1,10 +1,10 @@
 ---
 read_when:
     - Sie installieren, konfigurieren oder prüfen das searxng-Plugin.
-summary: Fügt Unterstützung für Websuche-Provider hinzu.
+summary: Fügt Unterstützung für Websuch-Provider hinzu.
 title: SearXNG-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:48:22Z"
+    generated_at: "2026-07-26T18:39:24Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

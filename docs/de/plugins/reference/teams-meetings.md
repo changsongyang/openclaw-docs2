@@ -4,7 +4,7 @@ read_when:
 summary: Nehmen Sie als Gast über den Chrome-Browser an Microsoft Teams-Besprechungen teil.
 title: Microsoft-Teams-Besprechungs-Plugin
 x-i18n:
-    generated_at: "2026-07-24T22:24:37Z"
+    generated_at: "2026-07-26T18:00:14Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Microsoft-Teams-Besprechungs-Plugin
+# Plugin für Microsoft Teams-Besprechungen
 
-Nehmen Sie als Gast über einen Chrome-Browser an Microsoft-Teams-Besprechungen teil.
+Als Gast über den Chrome-Browser an Microsoft Teams-Besprechungen teilnehmen.
 
 ## Distribution
 
@@ -29,4 +29,4 @@ Verträge: `tools`, `transcriptSourceProviders`
 
 ## Zugehörige Dokumentation
 
-- [teams-meetings](/de/plugins/teams-meetings)
+- [Teams-Besprechungen](/de/plugins/teams-meetings)

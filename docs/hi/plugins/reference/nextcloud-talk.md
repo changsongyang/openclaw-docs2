@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप nextcloud-talk Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: बातचीत के लिए OpenClaw Nextcloud Talk चैनल Plugin।
+summary: वार्तालापों के लिए OpenClaw Nextcloud Talk चैनल Plugin।
 title: Nextcloud Talk Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:32:32Z"
+    generated_at: "2026-07-27T18:19:01Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # Nextcloud Talk Plugin
 
-वार्तालापों के लिए OpenClaw Nextcloud Talk चैनल Plugin।
+बातचीत के लिए OpenClaw Nextcloud Talk चैनल Plugin।
 
 ## वितरण
 
 - पैकेज: `@openclaw/nextcloud-talk`
 - इंस्टॉल मार्ग: npm; ClawHub
 
-## उपलब्ध सतह
+## उपलब्धता
 
 चैनल: `nextcloud-talk`
 

@@ -2,10 +2,10 @@
 read_when:
     - आप Synthetic को मॉडल प्रदाता के रूप में उपयोग करना चाहते हैं
     - आपको Synthetic API कुंजी या बेस URL सेटअप की आवश्यकता है
-summary: OpenClaw में Synthetic के Anthropic-संगत API का उपयोग करें
+summary: OpenClaw में Synthetic की Anthropic-संगत API का उपयोग करें
 title: Synthetic
 x-i18n:
-    generated_at: "2026-07-19T09:46:59Z"
+    generated_at: "2026-07-27T18:55:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -26,12 +26,12 @@ Messages API का उपयोग करता है।
 | API      | Anthropic Messages                    |
 | बेस URL  | `https://api.synthetic.new/anthropic`                    |
 
-## आरंभ करना
+## शुरुआत करना
 
 <Steps>
   <Step title="API कुंजी प्राप्त करें">
     अपने Synthetic खाते से `SYNTHETIC_API_KEY` प्राप्त करें, या ऑनबोर्डिंग को
-    इसके लिए संकेत देने दें।
+    इसके लिए आपसे पूछने दें।
   </Step>
   <Step title="ऑनबोर्डिंग चलाएँ">
     ```bash
@@ -47,7 +47,7 @@ Messages API का उपयोग करता है।
 </Steps>
 
 <Warning>
-OpenClaw का Anthropic क्लाइंट बेस URL में `/v1` स्वचालित रूप से जोड़ता है, इसलिए
+OpenClaw का Anthropic क्लाइंट बेस URL में `/v1` स्वतः जोड़ता है, इसलिए
 `https://api.synthetic.new/anthropic` का उपयोग करें (`/anthropic/v1` का नहीं)। यदि Synthetic
 अपना बेस URL बदलता है, तो `models.providers.synthetic.baseUrl` को ओवरराइड करें।
 </Warning>
@@ -92,26 +92,26 @@ OpenClaw का Anthropic क्लाइंट बेस URL में `/v1` �
 सभी Synthetic मॉडल लागत `0` (इनपुट/आउटपुट/कैश) का उपयोग करते हैं। सेवा की उपलब्धता के लिए Synthetic की
 [वर्तमान मॉडल सूची](https://dev.synthetic.new/docs/api/models) देखें।
 
-| मॉडल ID                                            | कॉन्टेक्स्ट विंडो | अधिकतम टोकन | रीजनिंग | इनपुट       |
-| --------------------------------------------------- | -------------- | ---------- | --------- | ------------ |
-| `hf:MiniMaxAI/MiniMax-M3`                           | 262,144        | 65,536     | हाँ       | टेक्स्ट + इमेज |
-| `hf:moonshotai/Kimi-K2.7-Code`                      | 262,144        | 8,192      | हाँ       | टेक्स्ट + इमेज |
-| `hf:nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4` | 262,144        | 8,192      | हाँ       | टेक्स्ट       |
-| `hf:openai/gpt-oss-120b`                            | 131,072        | 8,192      | हाँ       | टेक्स्ट       |
-| `hf:Qwen/Qwen3.6-27B`                               | 262,144        | 81,920     | हाँ       | टेक्स्ट + इमेज |
-| `hf:zai-org/GLM-4.7-Flash`                          | 196,608        | 131,072    | हाँ       | टेक्स्ट       |
-| `hf:zai-org/GLM-5.2`                                | 524,288        | 131,072    | हाँ       | टेक्स्ट       |
+| मॉडल ID                                             | कॉन्टेक्स्ट विंडो | अधिकतम टोकन | रीजनिंग | इनपुट       |
+| --------------------------------------------------- | ---------------- | ------------ | -------- | ----------- |
+| `hf:MiniMaxAI/MiniMax-M3`                                  | 262,144          | 65,536       | हाँ      | टेक्स्ट + इमेज |
+| `hf:moonshotai/Kimi-K2.7-Code`                                  | 262,144          | 8,192        | हाँ      | टेक्स्ट + इमेज |
+| `hf:nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4`                                  | 262,144          | 8,192        | हाँ      | टेक्स्ट      |
+| `hf:openai/gpt-oss-120b`                                  | 131,072          | 8,192        | हाँ      | टेक्स्ट      |
+| `hf:Qwen/Qwen3.6-27B`                                  | 262,144          | 81,920       | हाँ      | टेक्स्ट + इमेज |
+| `hf:zai-org/GLM-4.7-Flash`                                  | 196,608          | 131,072      | हाँ      | टेक्स्ट      |
+| `hf:zai-org/GLM-5.2`                                  | 524,288          | 131,072      | हाँ      | टेक्स्ट      |
 
 <Tip>
-मॉडल रेफ़रेंस `synthetic/<modelId>` प्रारूप का उपयोग करते हैं। आपके
+मॉडल संदर्भ `synthetic/<modelId>` प्रारूप का उपयोग करते हैं। अपने
 खाते पर उपलब्ध सभी मॉडल देखने के लिए `openclaw models list --provider synthetic` का उपयोग करें।
 </Tip>
 
 <AccordionGroup>
   <Accordion title="मॉडल अनुमति-सूची">
-    यदि आप मॉडल अनुमति-सूची (`agents.defaults.modelPolicy.allow`) सक्षम करते हैं, तो उपयोग करने की योजना वाले प्रत्येक
-    Synthetic मॉडल को जोड़ें। अनुमति-सूची में शामिल न होने वाले मॉडल एजेंट
-    से छिपे रहते हैं।
+    यदि आप मॉडल अनुमति-सूची (`agents.defaults.modelPolicy.allow`) सक्षम करते हैं, तो उपयोग किए जाने वाले प्रत्येक
+    Synthetic मॉडल को जोड़ें। अनुमति-सूची में शामिल न होने वाले मॉडल एजेंट से
+    छिपे रहते हैं।
   </Accordion>
 
   <Accordion title="बेस URL ओवरराइड">
@@ -129,7 +129,7 @@ OpenClaw का Anthropic क्लाइंट बेस URL में `/v1` �
     }
     ```
 
-    OpenClaw फिर भी `/v1` स्वचालित रूप से जोड़ता है।
+    OpenClaw अब भी `/v1` स्वतः जोड़ता है।
 
   </Accordion>
 </AccordionGroup>
@@ -138,10 +138,10 @@ OpenClaw का Anthropic क्लाइंट बेस URL में `/v1` �
 
 <CardGroup cols={2}>
   <Card title="मॉडल प्रदाता" href="/hi/concepts/model-providers" icon="layers">
-    प्रदाता नियम, मॉडल रेफ़रेंस और फ़ेलओवर व्यवहार।
+    प्रदाता नियम, मॉडल संदर्भ और फ़ेलओवर व्यवहार।
   </Card>
   <Card title="कॉन्फ़िगरेशन संदर्भ" href="/hi/gateway/configuration-reference" icon="gear">
-    प्रदाता सेटिंग सहित पूर्ण कॉन्फ़िगरेशन स्कीमा।
+    प्रदाता सेटिंग सहित पूरा कॉन्फ़िगरेशन स्कीमा।
   </Card>
   <Card title="Synthetic" href="https://synthetic.new" icon="arrow-up-right-from-square">
     Synthetic डैशबोर्ड और API दस्तावेज़।

@@ -4,7 +4,7 @@ read_when:
 summary: Añade compatibilidad con el proveedor de modelos ComfyUI a OpenClaw.
 title: Plugin de ComfyUI
 x-i18n:
-    generated_at: "2026-07-16T11:50:36Z"
+    generated_at: "2026-07-26T05:14:15Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Añade compatibilidad con el proveedor de modelos ComfyUI a OpenClaw.
 ## Distribución
 
 - Paquete: `@openclaw/comfy-provider`
-- Ruta de instalación: incluida en OpenClaw
+- Vía de instalación: incluido en OpenClaw
 
 ## Superficie
 

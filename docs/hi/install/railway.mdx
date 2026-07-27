@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Railway पर OpenClaw डिप्लॉय करना
-    - आप ब्राउज़र-आधारित Control UI के साथ एक-क्लिक क्लाउड डिप्लॉयमेंट चाहते हैं
+    - Railway पर OpenClaw परिनियोजित करना
+    - आप ब्राउज़र-आधारित Control UI के साथ एक-क्लिक क्लाउड डिप्लॉय चाहते हैं
 summary: एक-क्लिक टेम्पलेट से Railway पर OpenClaw डिप्लॉय करें
 title: Railway
 x-i18n:
-    generated_at: "2026-07-16T15:41:20Z"
+    generated_at: "2026-07-27T19:55:01Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,17 +15,17 @@ x-i18n:
     workflow: 16
 ---
 
-एक-क्लिक टेम्पलेट से Railway पर OpenClaw तैनात करें और वेब Control UI के माध्यम से इसे एक्सेस करें। यह सबसे आसान "सर्वर पर टर्मिनल की आवश्यकता नहीं" वाला तरीका है: Railway आपके लिए Gateway चलाता है।
+एक-क्लिक टेम्पलेट से Railway पर OpenClaw डिप्लॉय करें और वेब Control UI के माध्यम से इसे एक्सेस करें। यह सबसे आसान "सर्वर पर टर्मिनल की आवश्यकता नहीं" वाला तरीका है: Railway आपके लिए Gateway चलाता है।
 
-## एक-क्लिक परिनियोजन
+## एक-क्लिक डिप्लॉयमेंट
 
 <a href="https://railway.com/deploy/clawdbot-railway-template" target="_blank" rel="noreferrer">
-  Railway पर तैनात करें
+  Railway पर डिप्लॉय करें
 </a>
 
 <Steps>
-  <Step title="टेम्पलेट तैनात करें">
-    ऊपर **Deploy on Railway** पर क्लिक करें।
+  <Step title="टेम्पलेट डिप्लॉय करें">
+    ऊपर दिए गए **Deploy on Railway** पर क्लिक करें।
   </Step>
 
 <Step title="वॉल्यूम जोड़ें">
@@ -57,28 +57,28 @@ x-i18n:
 ## आपको क्या मिलता है
 
 - होस्ट किया गया OpenClaw Gateway + Control UI
-- Railway Volume (`/data`) के माध्यम से स्थायी स्टोरेज, ताकि `openclaw.json`, प्रति-एजेंट `auth-profiles.json`, चैनल/प्रदाता की स्थिति, सत्र और कार्यक्षेत्र पुनः परिनियोजन के बाद भी बने रहें
+- Railway Volume (`/data`) के माध्यम से स्थायी स्टोरेज, ताकि `openclaw.json`, प्रत्येक एजेंट का `auth-profiles.json`, चैनल/प्रोवाइडर की स्थिति, सत्र और वर्कस्पेस फिर से डिप्लॉय करने के बाद भी बने रहें
 
 ## चैनल कनेक्ट करें
 
 चैनल सेटअप निर्देशों के लिए `/openclaw` पर Control UI का उपयोग करें या Railway के शेल के माध्यम से `openclaw onboard` चलाएँ:
 
 - [Discord](/hi/channels/discord)
-- [Telegram](/hi/channels/telegram) (सबसे तेज़ -- केवल एक बॉट टोकन)
+- [Telegram](/hi/channels/telegram) (सबसे तेज़ -- केवल बॉट टोकन आवश्यक है)
 - [सभी चैनल](/hi/channels)
 
 ## बैकअप और माइग्रेशन
 
-अपनी स्थिति, कॉन्फ़िगरेशन, प्रमाणीकरण प्रोफ़ाइल और कार्यक्षेत्र निर्यात करें:
+अपनी स्थिति, कॉन्फ़िगरेशन, प्रमाणीकरण प्रोफ़ाइल और वर्कस्पेस एक्सपोर्ट करें:
 
 ```bash
 openclaw backup create
 ```
 
-यह OpenClaw की स्थिति और किसी भी कॉन्फ़िगर किए गए कार्यक्षेत्र के साथ एक पोर्टेबल बैकअप आर्काइव बनाता है। विवरण के लिए [बैकअप](/hi/cli/backup) देखें।
+यह OpenClaw की स्थिति और किसी भी कॉन्फ़िगर किए गए वर्कस्पेस के साथ एक पोर्टेबल बैकअप आर्काइव बनाता है। विवरण के लिए [बैकअप](/hi/cli/backup) देखें।
 
 ## अगले चरण
 
 - मैसेजिंग चैनल सेट अप करें: [चैनल](/hi/channels)
 - Gateway कॉन्फ़िगर करें: [Gateway कॉन्फ़िगरेशन](/hi/gateway/configuration)
-- OpenClaw को नवीनतम रखें: [अपडेट करना](/hi/install/updating)
+- OpenClaw को अद्यतित रखें: [अपडेट करना](/hi/install/updating)

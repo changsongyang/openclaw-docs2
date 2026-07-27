@@ -1,10 +1,10 @@
 ---
 read_when:
-    - 你正在安装、配置或审核 qa-channel 插件
-summary: 添加用于发送和接收 OpenClaw 消息的 QA Channel 界面。
-title: QA 渠道插件
+    - 你正在安装、配置或审计 qa-channel 插件
+summary: 添加用于发送和接收 OpenClaw 消息的 QA channel 接口。
+title: QA channel 插件
 x-i18n:
-    generated_at: "2026-07-16T11:51:27Z"
+    generated_at: "2026-07-26T06:22:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # QA channel 插件
 
-添加用于发送和接收 OpenClaw 消息的 QA channel 接口。
+添加用于发送和接收 OpenClaw 消息的 QA channel 功能界面。
 
 ## 分发
 
 - 软件包：`@openclaw/qa-channel`
-- 安装方式：仅限源代码检出
+- 安装途径：仅限源代码检出
 
-## 接口
+## 功能界面
 
 渠道：`qa-channel`
 

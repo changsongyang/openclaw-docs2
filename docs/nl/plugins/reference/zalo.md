@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw Zalo-kanaalplugin voor bot- en webhookchats.
 title: Zalo-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:18:05Z"
+    generated_at: "2026-07-27T05:27:51Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Zalo-plugin
+# Zalo-Plugin
 
 OpenClaw Zalo-kanaalplugin voor bot- en webhookchats.
 

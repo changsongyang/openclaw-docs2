@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw に Fireworks モデルプロバイダーのサポートを追加します。
 title: Fireworks Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:04:15Z"
+    generated_at: "2026-07-26T09:53:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,9 +21,9 @@ OpenClaw に Fireworks モデルプロバイダーのサポートを追加しま
 ## 配布
 
 - パッケージ: `@openclaw/fireworks-provider`
-- インストール経路: npm、ClawHub: `clawhub:@openclaw/fireworks-provider`
+- インストール経路: npm; ClawHub: `clawhub:@openclaw/fireworks-provider`
 
-## 対応範囲
+## 公開範囲
 
 プロバイダー: `fireworks`
 

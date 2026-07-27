@@ -1,10 +1,10 @@
 ---
 read_when:
-    - google pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - google Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a Google, Google Gemini CLI ve Google Vertex model sağlayıcısı desteği ekler.
 title: Google plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:30:25Z"
+    generated_at: "2026-07-26T22:55:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Google Plugin
+# Google plugin'i
 
 OpenClaw'a Google, Google Gemini CLI ve Google Vertex model sağlayıcısı desteği ekler.
 
@@ -29,4 +29,4 @@ sağlayıcılar: `google`, `google-gemini-cli`, `google-vertex`; sözleşmeler: 
 
 ## İlgili belgeler
 
-- [Google](/tr/providers/google)
+- [google](/tr/providers/google)

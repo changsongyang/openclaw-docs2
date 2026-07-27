@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de linux-node-plugin
 summary: Bureaubladmeldingen, camera-opnamen en locatie voor Linux-Node-hosts.
-title: Linux Node Plugin
+title: Linux Node-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:06:14Z"
+    generated_at: "2026-07-27T06:27:59Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,15 +14,15 @@ x-i18n:
     workflow: 16
 ---
 
-# Linux Node-plugin
+# Linux-Node-plugin
 
-Bureaubladmeldingen, camera-opnamen en locatie voor Linux Node-hosts.
+Bureaubladmeldingen, camera-opnamen en locatie voor Linux-Node-hosts.
 
 ## Distributie
 
 - Pakket: `@openclaw/linux-node`
-- Installatieroute: inbegrepen bij OpenClaw
+- Installatieroute: opgenomen in OpenClaw
 
 ## Oppervlak
 
-plugin
+Plugin

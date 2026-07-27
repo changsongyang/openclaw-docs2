@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de opencode-plugin
 summary: Voegt ondersteuning voor de OpenCode-modelprovider toe aan OpenClaw.
-title: OpenCode-plugin
+title: OpenCode-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:07:06Z"
+    generated_at: "2026-07-27T06:00:22Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -33,10 +33,10 @@ providers: `opencode`; contracten: `mediaUnderstandingProviders`
 
 OpenClaw detecteert automatisch de `opencode`-CLI op de Gateway en gekoppelde nodes. Opgeslagen
 sessies verschijnen vervolgens in de sessiezijbalkgroep **OpenCode**, met alleen-lezen
-bladeren door transcripties via de officiële opdrachten `opencode --pure db ... --format json`
+doorbladeren van transcripties via de officiële opdrachten `opencode --pure db ... --format json`
 en `opencode --pure export`. De beperkte omgeving en de modus `--pure`
-voorkomen dat bij het doorzoeken van de catalogus projectplugins worden geladen of niet-gerelateerde
-Gateway-aanmeldgegevens worden overgenomen.
+voorkomen dat bij het doorbladeren van de catalogus projectplugins worden geladen of niet-gerelateerde
+Gateway-referenties worden overgenomen.
 
 Schakel **OpenCode Session Catalog** uit onder **Config > Plugins > OpenCode** om
 detectie uit te schakelen. Deze is standaard ingeschakeld.

@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw-Sandbox-Backend für die NVIDIA OpenShell CLI mit gespiegelten lokalen Arbeitsbereichen und Befehlsausführung über SSH.
 title: Openshell-Plugin
 x-i18n:
-    generated_at: "2026-07-24T05:16:05Z"
+    generated_at: "2026-07-26T19:09:45Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

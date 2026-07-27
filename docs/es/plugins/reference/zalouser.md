@@ -4,7 +4,7 @@ read_when:
 summary: Plugin de cuenta personal de Zalo para OpenClaw mediante la integración nativa con zca-js.
 title: Plugin personal de Zalo
 x-i18n:
-    generated_at: "2026-07-16T11:55:18Z"
+    generated_at: "2026-07-26T05:15:32Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Plugin de cuenta personal de Zalo para OpenClaw mediante la integración nativa 
 ## Distribución
 
 - Paquete: `@openclaw/zalouser`
-- Método de instalación: npm; ClawHub
+- Vía de instalación: npm; ClawHub
 
 ## Superficie
 

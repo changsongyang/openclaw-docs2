@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin de Cerebras
-summary: Añade compatibilidad con el proveedor de modelos Cerebras en OpenClaw.
+    - Está instalando, configurando o auditando el plugin Cerebras.
+summary: Añade compatibilidad con el proveedor de modelos Cerebras a OpenClaw.
 title: Plugin de Cerebras
 x-i18n:
-    generated_at: "2026-07-16T11:46:34Z"
+    generated_at: "2026-07-26T05:14:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Añade compatibilidad con el proveedor de modelos Cerebras a OpenClaw.
 ## Distribución
 
 - Paquete: `@openclaw/cerebras-provider`
-- Vía de instalación: npm; ClawHub: `clawhub:@openclaw/cerebras-provider`
+- Ruta de instalación: npm; ClawHub: `clawhub:@openclaw/cerebras-provider`
 
 ## Superficie
 

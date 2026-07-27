@@ -1,127 +1,142 @@
 ---
 read_when:
     - Uitleg over hoe streaming of opdelen in chunks werkt op kanalen
-    - Gedrag voor blokstreaming of kanaalchunking wijzigen
-    - Dubbele/vroege blokantwoorden of streaming van kanaalvoorbeelden debuggen
-summary: Gedrag voor streaming + opsplitsing (blokantwoorden, streaming van kanaalvoorbeelden, modustoewijzing)
-title: Streaming en opdelen in stukken
+    - Gedrag voor blokstreaming of kanaalopsplitsing wijzigen
+    - Foutopsporing van dubbele/vroege blokantwoorden of streaming van kanaalvoorbeelden
+summary: Streaming- en chunkinggedrag (blokantwoorden, streaming van kanaalvoorbeelden, modustoewijzing)
+title: Streamen en opdelen in segmenten
 x-i18n:
-    generated_at: "2026-07-16T15:33:56Z"
+    generated_at: "2026-07-27T04:58:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: b91d2143e59d9eb0271732adf8bc87482ef0d18fe664bfa46ed375c20fdc3d93
+    source_hash: a498f2e490ae6f2ecdebba92f0b992f2e16d212eae6a437eb3a0ef8a59354e13
     source_path: concepts/streaming.md
     workflow: 16
 ---
 
 OpenClaw heeft twee onafhankelijke streaminglagen en er is momenteel **geen echte
-streaming van tokendelta's** naar kanaalberichten:
+token-deltastreaming** naar kanaalberichten:
 
-- **Blokstreaming (kanalen):** verzendt voltooide **blokken** terwijl de assistent
+- **Blokstreaming (kanalen):** voltooide **blokken** verzenden terwijl de assistent
   schrijft. Dit zijn normale kanaalberichten, geen tokendelta's.
-- **Voorbeeldstreaming (Telegram/Discord/Slack/Matrix/Mattermost/MS Teams):**
-  werkt tijdens het genereren een tijdelijk **voorbeeldbericht** bij (verzenden + bewerken/aanvullen).
+- **Voorvertoningsstreaming (Telegram/Discord/Slack/Matrix/Mattermost/MS Teams):**
+  tijdens het genereren een tijdelijk **voorvertoningsbericht** bijwerken (verzenden + bewerken/toevoegen).
+
+## Opstartstatus van de Control UI
+
+Nadat `chat.send` een actieve uitvoering bevestigt, kan de Gateway een getypeerde,
+globale opstartstatus verzenden voordat tekst van de assistent of toolactiviteit zichtbaar is. De
+Control UI toont deze status naast de werkindicator, met fasen voor
+werkruimtevoorbereiding, inrichting van de omgeving, contextvoorbereiding en
+het opstarten van het model.
+
+De eerste delta van de assistent of de start van een tool vervangt de opstartstatus voor
+die uitvoering definitief. De goedkeuringsstatus krijgt voorrang terwijl een tool wacht op actie
+van de operator. Het aanmaken van de worktree en de eerste verzending naar de cloud vinden plaats voordat een chatuitvoering
+bestaat, waardoor de voortgang van hun RPC vóór de uitvoering niet als opstartstatus van de uitvoering wordt weergegeven;
+de inrichting van de omgeving verschijnt hier alleen wanneer een actieve uitvoering een
+teruggewonnen worker opnieuw inricht.
 
 ## Blokstreaming (kanaalberichten)
 
-Blokstreaming verzendt de uitvoer van de assistent in grove segmenten zodra deze beschikbaar komt.
+Blokstreaming verzendt uitvoer van de assistent in grove delen zodra deze beschikbaar komt.
 
 ```text
 Modeluitvoer
-  └─ text_delta/gebeurtenissen
+  └─ text_delta/events
        ├─ (blockStreamingBreak=text_end)
-       │    └─ segmentverdeler verzendt blokken naarmate de buffer groeit
+       │    └─ chunker verzendt blokken naarmate de buffer groeit
        └─ (blockStreamingBreak=message_end)
-            └─ segmentverdeler leegt de buffer bij message_end
-                   └─ verzending via kanaal (blokantwoorden)
+            └─ chunker leegt de buffer bij message_end
+                   └─ verzending naar kanaal (blokantwoorden)
 ```
 
 - `text_delta/events`: modelstreamgebeurtenissen (kunnen schaars zijn bij modellen zonder streaming).
-- `chunker`: `EmbeddedBlockChunker` waarbij minimum-/maximumgrenzen + voorkeur voor afbreekpunten worden toegepast.
-- `channel send`: daadwerkelijk verzonden berichten (blokantwoorden).
+- `chunker`: `EmbeddedBlockChunker` past minimum-/maximumgrenzen en de voorkeur voor afbreekpunten toe.
+- `channel send`: daadwerkelijk uitgaande berichten (blokantwoorden).
 
-**Instellingen** (allemaal onder `agents.defaults`, tenzij anders vermeld):
+**Besturingselementen** (allemaal onder `agents.defaults`, tenzij anders vermeld):
 
-| Sleutel                                                       | Waarden / vorm                                                           | Standaard   |
-| ------------------------------------------------------------ | ----------------------------------------------------------------------- | ---------- |
+| Sleutel                                                      | Waarden / vorm                                                           | Standaardwaarde |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------ | --------------- |
 | `blockStreamingDefault`                                      | `"on"` / `"off"`                                                        | `"off"`    |
 | `blockStreamingBreak`                                        | `"text_end"` / `"message_end"`                                          | -          |
 | `blockStreamingChunk`                                        | `{ minChars, maxChars, breakPreference? }`                              | -          |
-| `blockStreamingCoalesce`                                     | `{ minChars?, maxChars?, idleMs? }` (gestreamde blokken samenvoegen vóór verzending) | -          |
+| `blockStreamingCoalesce`                                     | `{ minChars?, maxChars?, idleMs? }` (gestreamde blokken vóór verzending samenvoegen) | -          |
 | `*.streaming.block.enabled` (overschrijving per kanaal)               | `true` / `false`, dwingt blokstreaming af per kanaal (en per account)  | -          |
-| `*.textChunkLimit` (bijv. `channels.whatsapp.textChunkLimit`) | getal, harde limiet                                                       | 4000       |
+| `*.textChunkLimit` (bijv. `channels.whatsapp.textChunkLimit`) | getal, harde limiet                                                        | 4000       |
 | `*.streaming.chunkMode`                                      | `"length"` / `"newline"`                                                | `"length"` |
-| `channels.discord.maxLinesPerMessage`                        | getal, zachte regellimiet die lange antwoorden splitst om afkapping in de UI te voorkomen     | 17         |
+| `channels.discord.maxLinesPerMessage`                        | getal, zachte regellimiet die lange antwoorden splitst om afkapping in de UI te voorkomen | 17         |
 
 `streaming.chunkMode: "newline"` splitst op lege regels (alineagrenzen),
 niet op elke nieuwe regel, voordat wordt teruggevallen op splitsing op lengte zodra de tekst
 de limiet overschrijdt.
 
 Gebundelde kanalen schrijven deze overschrijvingen als
-`channels.<id>.streaming.{chunkMode,block.enabled,block.coalesce}`. De platte
-schrijfwijzen `*.chunkMode` / `*.blockStreaming` / `*.blockStreamingCoalesce` zijn
+`channels.<id>.streaming.{chunkMode,block.enabled,block.coalesce}`. De platte schrijfwijzen
+`*.chunkMode` / `*.blockStreaming` / `*.blockStreamingCoalesce` zijn
 verouderd voor elk gebundeld kanaal: `openclaw doctor --fix` migreert ze naar
-de geneste vorm en kanaalschema's weigeren ze. Configuraties van externe SDK-plugins
-die nog steeds de platte schrijfwijzen gebruiken, blijven werken via een verouderde
-terugvaloptie (met een runtimewaarschuwing) tot de volgende releasereeks.
+de geneste vorm en kanaalschema's wijzen ze af. Configuraties van externe SDK-plugins
+die nog steeds de platte schrijfwijzen gebruiken, blijven via een verouderde
+terugvaloptie werken (met een runtimewaarschuwing) tot de volgende releasecyclus.
 
 **Grenssemantiek** voor `blockStreamingBreak`:
 
-- `text_end`: stream blokken zodra de segmentverdeler ze verzendt; leeg de buffer bij elke `text_end`.
-- `message_end`: wacht totdat het assistentbericht is voltooid en leeg vervolgens de gebufferde
-  uitvoer. Gebruikt nog steeds de segmentverdeler als de gebufferde tekst `maxChars` overschrijdt, zodat deze
-  aan het einde meerdere segmenten kan verzenden.
+- `text_end`: stream blokken zodra de chunker ze verzendt; leeg de buffer bij elke `text_end`.
+- `message_end`: wacht tot het assistentbericht is voltooid en leeg vervolgens de gebufferde
+  uitvoer. Gebruikt nog steeds de chunker als de gebufferde tekst `maxChars` overschrijdt, zodat deze
+  aan het einde meerdere delen kan verzenden.
 
 ### Medialevering met blokstreaming
 
 Streamingmedia moeten gestructureerde payloadvelden gebruiken, zoals `mediaUrl` of
-`mediaUrls`; gestreamde tekst wordt niet als bijlageopdracht geïnterpreteerd. Wanneer blokstreaming
-media vroeg verzendt, onthoudt OpenClaw die levering voor deze beurt. Als
+`mediaUrls`; gestreamde tekst wordt niet als een bijlageopdracht geïnterpreteerd. Wanneer blokstreaming
+media vroeg verzendt, onthoudt OpenClaw die levering voor de beurt. Als
 de uiteindelijke payload van de assistent dezelfde media-URL herhaalt, verwijdert de uiteindelijke levering
 de dubbele media in plaats van de bijlage opnieuw te verzenden.
 
 Exact identieke uiteindelijke payloads worden onderdrukt. Als de uiteindelijke payload
 afzonderlijke tekst toevoegt rond media die al zijn gestreamd, verzendt OpenClaw
-de nieuwe tekst alsnog, terwijl de media slechts eenmaal worden geleverd. Dit voorkomt dubbele
-spraakberichten of bestanden op kanalen zoals Telegram.
+de nieuwe tekst nog steeds, terwijl de media slechts eenmaal worden geleverd. Dit voorkomt dubbele spraakberichten
+of bestanden op kanalen zoals Telegram.
 
-## Segmenteringsalgoritme (onder-/bovengrenzen)
+## Splitsingsalgoritme (onder-/bovengrenzen)
 
-Bloksegmentering wordt geïmplementeerd door `EmbeddedBlockChunker`:
+Bloksplitsing wordt geïmplementeerd door `EmbeddedBlockChunker`:
 
-- **Ondergrens:** verzend niets totdat buffer >= `minChars` (tenzij afgedwongen).
+- **Ondergrens:** niets verzenden totdat de buffer >= `minChars` is (tenzij afgedwongen).
 - **Bovengrens:** geef de voorkeur aan splitsingen vóór `maxChars`; indien afgedwongen, splits bij `maxChars`.
 - **Voorkeursvolgorde voor afbreekpunten:** `paragraph` -> `newline` -> `sentence` ->
   witruimte -> harde afbreking.
-- **Codeblokken:** splits nooit binnen codeblokken; wanneer een splitsing bij `maxChars` wordt afgedwongen, sluit
-  en heropen je het codeblok om geldige Markdown te behouden.
+- **Codeblokken:** splits nooit binnen fences; sluit bij een afgedwongen splitsing op `maxChars`
+  de fence en open deze opnieuw om geldige Markdown te behouden.
 
-`maxChars` wordt begrensd tot de `textChunkLimit` van het kanaal, zodat je
+`maxChars` wordt begrensd op de `textChunkLimit` van het kanaal, zodat je
 de limieten per kanaal niet kunt overschrijden.
 
 ## Samenvoegen (gestreamde blokken combineren)
 
-Wanneer blokstreaming is ingeschakeld, kan OpenClaw **opeenvolgende bloksegmenten
-samenvoegen** voordat ze worden verzonden. Dit vermindert de hoeveelheid losse regels, terwijl
-de uitvoer toch stapsgewijs beschikbaar komt.
+Wanneer blokstreaming is ingeschakeld, kan OpenClaw **opeenvolgende blokdelen
+samenvoegen** voordat ze worden verzonden. Dit vermindert spam van afzonderlijke regels terwijl
+de uitvoer nog steeds geleidelijk wordt weergegeven.
 
-- Het samenvoegen wacht vóór het legen van de buffer op **inactieve intervallen** (`idleMs`).
+- Bij samenvoegen wordt vóór het legen gewacht op **perioden van inactiviteit** (`idleMs`).
 - Buffers worden begrensd door `maxChars` en geleegd als ze deze waarde overschrijden.
 - `minChars` voorkomt dat kleine fragmenten worden verzonden totdat voldoende tekst is verzameld
-  (bij de laatste lediging wordt alle resterende tekst altijd verzonden).
+  (bij de uiteindelijke leging wordt resterende tekst altijd verzonden).
 - Het scheidingsteken wordt afgeleid van `blockStreamingChunk.breakPreference`: `paragraph` ->
   `\n\n`, `newline` -> `\n`, `sentence` -> spatie.
 - Overschrijvingen per kanaal zijn beschikbaar via `*.streaming.block.coalesce` (inclusief
   configuraties per account).
-- Discord, Signal en Slack gebruiken standaard `{ minChars: 1500, idleMs: 1000 }` voor samenvoegen,
-  tenzij dit wordt overschreven.
+- Discord, Signal en Slack gebruiken standaard `{ minChars: 1500, idleMs: 1000 }`
+  voor samenvoegen, tenzij dit wordt overschreven.
 
-## Menselijke pauzes tussen blokken
+## Menselijk aandoende pauzes tussen blokken
 
-Wanneer blokstreaming is ingeschakeld, wordt na het eerste blok een **willekeurige pauze**
-tussen blokantwoorden toegevoegd, zodat antwoorden met meerdere tekstballonnen natuurlijker aanvoelen.
+Voeg wanneer blokstreaming is ingeschakeld na het eerste blok een **willekeurige pauze**
+tussen blokantwoorden toe, zodat antwoorden met meerdere tekstballonnen natuurlijker aanvoelen.
 
 | `agents.defaults.humanDelay.mode` | Gedrag                  |
 | --------------------------------- | ----------------------- |
@@ -129,47 +144,47 @@ tussen blokantwoorden toegevoegd, zodat antwoorden met meerdere tekstballonnen n
 | `natural`                         | Willekeurige pauze van 800-2500ms |
 | `custom`                          | `minMs`/`maxMs`         |
 
-Overschrijf dit per agent via `agents.list[].humanDelay`. Geldt alleen voor **blokantwoorden**,
-niet voor uiteindelijke antwoorden of toolsamenvattingen.
+Overschrijf dit per agent via `agents.entries.*.humanDelay`. Is alleen van toepassing op **blokantwoorden**,
+niet op uiteindelijke antwoorden of toolsamenvattingen.
 
-## "Segmenten of alles streamen"
+## "Delen of alles streamen"
 
-- **Segmenten streamen:** `blockStreamingDefault: "on"` + `blockStreamingBreak: "text_end"`
-  (verzend ze zodra ze beschikbaar zijn). Andere kanalen dan Telegram vereisen ook
-  `*.streaming.block.enabled: true`.
-- **Alles aan het einde streamen:** `blockStreamingBreak: "message_end"` (leeg de buffer
-  eenmaal, mogelijk in meerdere segmenten als de tekst erg lang is).
+- **Delen streamen:** `blockStreamingDefault: "on"` + `blockStreamingBreak: "text_end"`
+  (verzend gaandeweg). Voor andere kanalen dan Telegram is ook
+  `*.streaming.block.enabled: true` vereist.
+- **Alles aan het einde streamen:** `blockStreamingBreak: "message_end"` (buffer
+  eenmaal legen, mogelijk in meerdere delen indien zeer lang).
 - **Geen blokstreaming:** `blockStreamingDefault: "off"` (alleen het uiteindelijke antwoord).
 
 Blokstreaming is **uitgeschakeld tenzij** `*.streaming.block.enabled` expliciet
 is ingesteld op `true` (uitzondering: QQ Bot heeft geen `streaming.block`-sleutels en streamt
-blokantwoorden tenzij `channels.qqbot.streaming.mode` `"off"` is). Kanalen kunnen
-een live voorbeeld streamen (`channels.<channel>.streaming.mode`) zonder
-blokantwoorden. De standaardwaarden van `blockStreaming*` bevinden zich onder `agents.defaults`, niet in de
-hoofdmap van de configuratie.
+blokantwoorden tenzij `channels.qqbot.streaming.mode` gelijk is aan `"off"`). Kanalen kunnen
+een livevoorvertoning streamen (`channels.<channel>.streaming.mode`) zonder blokantwoorden.
+De standaardwaarden van `blockStreaming*` staan onder `agents.defaults`, niet in de
+configuratiehoofdmap.
 
-## Modi voor voorbeeldstreaming
+## Modi voor voorvertoningsstreaming
 
 Canonieke sleutel: `channels.<channel>.streaming` (geneste `{ mode, ... }`; verouderde
-booleaanse/tekenreeksnotaties op het hoogste niveau worden herschreven door `openclaw doctor --fix`).
+booleaanse/tekenreeksvarianten op het hoogste niveau worden herschreven door `openclaw doctor --fix`).
 
 | Modus      | Gedrag                                                                |
 | ---------- | --------------------------------------------------------------------- |
-| `off`      | Voorbeeldstreaming uitschakelen                                      |
-| `partial`  | Eén voorbeeld vervangen door de nieuwste tekst                         |
-| `block`    | Voorbeeld stapsgewijs in segmenten bijwerken/aanvullen                  |
-| `progress` | Voortgangs-/statusvoorbeeld tijdens het genereren, uiteindelijk antwoord na voltooiing |
+| `off`      | Voorvertoningsstreaming uitschakelen                                  |
+| `partial`  | Eén voorvertoning die door de nieuwste tekst wordt vervangen          |
+| `block`    | Voorvertoning wordt in gesplitste/toegevoegde stappen bijgewerkt      |
+| `progress` | Voortgangs-/statusvoorvertoning tijdens het genereren, definitief antwoord bij voltooiing |
 
-`streaming.mode: "block"` is een modus voor voorbeeldstreaming voor kanalen
-die bewerken ondersteunen, zoals Discord en Telegram; hiermee wordt bloklevering via het kanaal
-niet automatisch ingeschakeld. Gebruik `streaming.block.enabled` voor normale blokantwoorden.
-Microsoft Teams vormt de
-uitzondering: het heeft geen bloktransport voor conceptvoorbeelden, dus `streaming.mode:
+`streaming.mode: "block"` is een modus voor voorvertoningsstreaming voor kanalen
+die bewerken ondersteunen, zoals Discord en Telegram; deze modus schakelt daar niet zelfstandig
+de levering van kanaalblokken in. Gebruik `streaming.block.enabled` voor normale blokantwoorden.
+Microsoft Teams is de
+uitzondering: het heeft geen bloktransport voor conceptvoorvertoningen, dus `streaming.mode:
 "block"` schakelt native streaming volledig uit en het antwoord wordt als normale
-bloklevering verzonden in plaats van als native gedeeltelijke/voortgangsstreaming. Mattermost
-werkt ook anders: in de modus `block` wisselt het voorbeeld tussen voltooide tekst en
-blokken met toolactiviteit, zodat eerdere blokken als afzonderlijke berichten zichtbaar blijven
-in plaats van in één bewerkbaar concept te worden overschreven.
+bloklevering geplaatst in plaats van als native gedeeltelijke/voortgangsstreaming. Mattermost
+wijkt ook af: in de modus `block` wisselt de voorvertoning tussen voltooide tekst en
+toolactiviteitsblokken, zodat eerdere blokken als afzonderlijke berichten zichtbaar blijven
+in plaats van te worden overschreven in één bewerkbaar concept.
 
 ### Kanaaltoewijzing
 
@@ -181,175 +196,175 @@ in plaats van in één bewerkbaar concept te worden overschreven.
 | Mattermost | Ja    | Ja        | Ja      | Ja                      |
 | MS Teams   | Ja    | Ja        | Ja      | native voortgangsstream |
 
-De segmentconfiguratie voor voorbeelden (`streaming.preview.chunk.*`, bijvoorbeeld onder
+De configuratie voor voorvertoningsdelen (`streaming.preview.chunk.*`, bijvoorbeeld onder
 `channels.discord.streaming` of `channels.telegram.streaming`) gebruikt standaard
-`minChars: 200`, `maxChars: 800` (begrensd tot de `textChunkLimit` van het kanaal) en
+`minChars: 200`, `maxChars: 800` (begrensd op de `textChunkLimit` van het kanaal) en
 `breakPreference: "paragraph"`.
 
 Alleen voor Slack:
 
-- `channels.slack.streaming.nativeTransport` schakelt aanroepen van de native streaming-API van Slack
+- `channels.slack.streaming.nativeTransport` schakelt aanroepen naar de native streaming-API van Slack
   (`chat.startStream`/`chat.appendStream`/`chat.stopStream`) in of uit wanneer
   `channels.slack.streaming.mode="partial"` (standaard: `true`).
-- Voor native streaming van Slack en de threadstatus van de Slack-assistent is een doelthread
-  voor antwoorden vereist. DM's op het hoogste niveau tonen dat threadachtige voorbeeld niet, maar kunnen
-  nog steeds Slack-berichten voor conceptvoorbeelden en bewerkingen gebruiken.
+- Voor native streaming en de threadstatus van de Slack-assistent is een antwoordthread
+  als doel vereist. DM's op het hoogste niveau tonen die voorvertoning in threadstijl niet, maar kunnen
+  nog steeds conceptvoorvertoningsberichten en bewerkingen van Slack gebruiken.
 
 ### Migratie van verouderde sleutels
 
-| Kanaal   | Verouderde sleutels                                        | Status                                                                                                                                               |
+| Kanaal   | Verouderde sleutels                                         | Status                                                                                                                                               |
 | -------- | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Telegram | `streamMode`, scalaire/booleaanse `streaming`                    | Herschreven naar `streaming.mode` door `openclaw doctor --fix`; niet gelezen tijdens runtime                                                                        |
-| Discord  | `streamMode`, booleaanse `streaming`                           | Herschreven naar `streaming.mode` door `openclaw doctor --fix`; niet gelezen tijdens runtime                                                                        |
-| Slack    | `streamMode`; booleaanse `streaming`; verouderde `nativeStreaming` | Herschreven naar `streaming.mode` (en `streaming.nativeTransport` voor de booleaanse/verouderde vormen) door `openclaw doctor --fix`; niet gelezen tijdens runtime         |
-| Matrix   | scalaire/booleaanse `streaming`                                  | Herschreven naar `streaming.mode` (inclusief de modus `"quiet"` van Matrix) door `openclaw doctor --fix`; niet gelezen tijdens runtime                                    |
-| Feishu   | booleaanse `streaming`                                         | Herschreven naar `streaming.mode` door `openclaw doctor --fix`; niet gelezen tijdens runtime                                                                        |
-| QQ Bot   | booleaanse `streaming`; `streaming.c2cStreamApi`               | Herschreven naar `streaming.mode` (en `streaming.nativeTransport` voor de booleaanse/`c2cStreamApi`-vormen) door `openclaw doctor --fix`; niet gelezen tijdens runtime |
+| Telegram | `streamMode`, scalaire/booleaanse `streaming`                    | Door `openclaw doctor --fix` herschreven naar `streaming.mode`; niet gelezen tijdens runtime                                                                        |
+| Discord  | `streamMode`, booleaanse `streaming`                           | Door `openclaw doctor --fix` herschreven naar `streaming.mode`; niet gelezen tijdens runtime                                                                        |
+| Slack    | `streamMode`; booleaanse `streaming`; verouderde `nativeStreaming` | Door `openclaw doctor --fix` herschreven naar `streaming.mode` (en `streaming.nativeTransport` voor de booleaanse/verouderde vormen); niet gelezen tijdens runtime         |
+| Matrix   | scalaire/booleaanse `streaming`                                  | Door `openclaw doctor --fix` herschreven naar `streaming.mode` (inclusief de `"quiet"`-modus van Matrix); niet gelezen tijdens runtime                                    |
+| Feishu   | booleaanse `streaming`                                         | Door `openclaw doctor --fix` herschreven naar `streaming.mode`; niet gelezen tijdens runtime                                                                        |
+| QQ Bot   | booleaanse `streaming`; `streaming.c2cStreamApi`               | Door `openclaw doctor --fix` herschreven naar `streaming.mode` (en `streaming.nativeTransport` voor de booleaanse/`c2cStreamApi`-vormen); niet gelezen tijdens runtime |
 
 ## Runtimegedrag
 
 ### Telegram
 
-- Gebruikt `sendMessage` + `editMessageText` voor voorvertoningsupdates in privéberichten en
-  groepen/onderwerpen; de definitieve tekst bewerkt de actieve voorvertoning ter plaatse. Tijdelijke
-  Telegram-concepten van 30 seconden die aangeven dat er wordt getypt (`sendMessageDraft`), worden niet gebruikt voor
+- Gebruikt `sendMessage` + `editMessageText`-voorbeeldupdates in privéberichten en
+  groepen/onderwerpen; de definitieve tekst bewerkt het actieve voorbeeld ter plaatse. Tijdelijke
+  Telegram-concepten voor 30 seconden met de status 'typen' (`sendMessageDraft`) worden niet gebruikt voor
   het streamen van antwoorden.
-- Korte eerste voorvertoningen worden nog steeds vertraagd voor een goede gebruikerservaring met pushmeldingen, maar
+- Korte eerste voorbeelden worden nog steeds met debounce verwerkt voor de gebruikerservaring van pushmeldingen, maar
   verschijnen na een begrensde vertraging, zodat actieve uitvoeringen niet visueel stil blijven.
-- Lange definitieve antwoorden hergebruiken het voorvertoningsbericht voor het eerste deel en verzenden alleen de
-  resterende delen.
-- De modus `block` zet de voorvertoning om in een nieuw bericht bij
-  `streaming.preview.chunk.maxChars` (standaard 800, begrensd door Telegrams
-  bewerkingslimiet van 4096); andere modi laten één voorvertoning groeien tot 4096 tekens.
-- De modus `progress` houdt de voortgang van hulpmiddelen bij in een bewerkbaar statusconcept, maakt
-  het statuslabel zichtbaar wanneer het streamen van antwoorden actief is maar er nog geen hulpmiddelregel
-  beschikbaar is, wist het concept na voltooiing en verzendt het definitieve antwoord
-  via de normale aflevering.
+- Lange definitieve antwoorden hergebruiken het voorbeeldbericht voor het eerste fragment en verzenden alleen de
+  resterende fragmenten.
+- De `block`-modus zet het voorbeeld om in een nieuw bericht bij
+  `streaming.preview.chunk.maxChars` (standaard 800, begrensd op de bewerkingslimiet van Telegram van 4096);
+  andere modi laten één voorbeeld groeien tot 4096 tekens.
+- De `progress`-modus houdt de voortgang van tools bij in een bewerkbaar statusconcept, toont
+  het statuslabel wanneer antwoordstreaming actief is maar er nog geen toolregel
+  beschikbaar is, wist het concept bij voltooiing en verzendt het definitieve antwoord
+  via de normale bezorging.
 - Als de definitieve bewerking mislukt voordat de voltooide tekst is bevestigd, gebruikt OpenClaw
-  de normale aflevering van het definitieve antwoord en ruimt het de verouderde voorvertoning op.
-- Het streamen van voorvertoningen wordt overgeslagen wanneer Telegram-blokstreaming expliciet
-  is ingeschakeld, om dubbel streamen te voorkomen.
-- `/reasoning stream` kan de redenering schrijven naar een tijdelijke voorvertoning die
-  na aflevering van het definitieve antwoord wordt verwijderd.
-- Antwoorden met een geselecteerd citaat in Telegram vormen een uitzondering: wanneer `replyToMode` niet
-  `"off"` is en er geselecteerde citaattekst aanwezig is, slaat OpenClaw de antwoordvoorvertoningsstream
-  voor die beurt over (het definitieve antwoord moet via het systeemeigen pad voor citaatantwoorden
-  worden verzonden), zodat voorvertoningsregels met hulpmiddelvoortgang niet kunnen worden weergegeven. Antwoorden op het huidige bericht
-  zonder geselecteerde citaattekst blijven voorvertoningsstreaming gebruiken. Zie
-  [Telegram-kanaaldocumentatie](/nl/channels/telegram) voor details.
+  de normale definitieve bezorging en ruimt het verouderde voorbeeld op.
+- Voorbeeldstreaming wordt overgeslagen wanneer Telegram-blokstreaming expliciet
+  is ingeschakeld, om dubbele streaming te voorkomen.
+- `/reasoning stream` kan redeneringen naar een tijdelijk voorbeeld schrijven dat
+  na de definitieve bezorging wordt verwijderd.
+- Geselecteerde citaatantwoorden van Telegram vormen een uitzondering: wanneer `replyToMode` niet
+  `"off"` is en geselecteerde citaattekst aanwezig is, slaat OpenClaw de antwoordvoorbeeldstream
+  voor die beurt over (het definitieve antwoord moet via het systeemeigen pad voor
+  citaatantwoorden verlopen), zodat voorbeeldregels voor toolvoortgang niet kunnen worden weergegeven. Antwoorden op het huidige bericht
+  zonder geselecteerde citaattekst behouden de voorbeeldstreaming. Zie
+  [documentatie voor het Telegram-kanaal](/nl/channels/telegram) voor details.
 
 ### Discord
 
-- Gebruikt verzonden en bewerkte voorvertoningsberichten.
-- De modus `block` gebruikt conceptsegmentering (`draftChunk`).
-- Het streamen van voorvertoningen wordt overgeslagen wanneer Discord-blokstreaming expliciet
+- Gebruikt verzonden en bewerkte voorbeeldberichten.
+- De `block`-modus gebruikt conceptfragmentatie (`draftChunk`).
+- Voorbeeldstreaming wordt overgeslagen wanneer Discord-blokstreaming expliciet
   is ingeschakeld.
-- De modus `progress` voegt een klein `-#`-activiteitenoverzicht (aantallen gedachten/hulpmiddelaanroepen
+- De `progress`-modus voegt een klein `-#`-activiteitenoverzicht (aantallen gedachten/toolaanroepen
   en verstreken tijd) toe aan het definitieve antwoord en verwijdert het statusconcept
-  zodra dat antwoord is afgeleverd, zodat drukke kanalen geen verweesd hulpmiddellogboek
-  boven het antwoord behouden. Bij definitieve foutmeldingen blijft het concept bewaard als registratie van de mislukte
+  zodra dat antwoord is bezorgd, zodat drukke kanalen geen verweesd toollogboek
+  boven het antwoord behouden. Bij definitieve foutberichten blijft het concept bewaard als registratie van de mislukte
   beurt.
-- Definitieve media-, fout- en expliciete antwoordpayloads annuleren openstaande voorvertoningen
-  zonder een nieuw concept te publiceren en gebruiken vervolgens de normale aflevering.
+- Definitieve media-, fout- en expliciete antwoordpayloads annuleren openstaande voorbeelden
+  zonder een nieuw concept te publiceren en gebruiken vervolgens de normale bezorging.
 
 ### Slack
 
-- `partial` kan waar beschikbaar systeemeigen Slack-streaming gebruiken (`chat.startStream`/`append`/`stop`).
-- `block` gebruikt conceptvoorvertoningen waaraan tekst wordt toegevoegd.
-- `progress` gebruikt een statusvoorvertoningstekst en daarna het definitieve antwoord.
-- Privéberichten op het hoogste niveau zonder antwoordthread gebruiken conceptvoorvertoningsberichten en bewerkingen
+- `partial` kan, indien beschikbaar, systeemeigen Slack-streaming gebruiken (`chat.startStream`/`append`/`stop`).
+- `block` gebruikt conceptvoorbeelden met toevoegingen.
+- `progress` gebruikt statustekst als voorbeeld, gevolgd door het definitieve antwoord.
+- Privéberichten op het hoogste niveau zonder antwoordthread gebruiken conceptvoorbeeldberichten en bewerkingen
   in plaats van systeemeigen Slack-streaming.
-- Systeemeigen streaming en conceptvoorvertoningsstreaming onderdrukken blokantwoorden voor die beurt, zodat een
-  Slack-antwoord slechts via één afleveringspad wordt gestreamd.
-- Definitieve media-/foutpayloads en definitieve voortgangsberichten maken geen tijdelijke conceptberichten
-  aan; alleen definitieve tekst-/blokberichten die de voorvertoning kunnen bewerken, publiceren openstaande
+- Systeemeigen streaming en conceptvoorbeeldstreaming onderdrukken blokantwoorden voor die beurt, zodat een
+  Slack-antwoord slechts via één bezorgingspad wordt gestreamd.
+- Definitieve media-/foutpayloads en definitieve voortgangsberichten maken geen tijdelijke conceptberichten;
+  alleen definitieve tekst-/blokberichten die het voorbeeld kunnen bewerken, publiceren openstaande
   concepttekst.
 
 ### Mattermost
 
-- In de modus `partial` worden denkwerk en gedeeltelijke antwoordtekst gestreamd naar één
-  conceptvoorvertoningsbericht dat ter plaatse wordt afgerond zodra het definitieve antwoord veilig kan worden verzonden.
-- In de modus `progress` worden denkwerk en hulpmiddelactiviteit gestreamd naar één statusvoorvertoning
-  die ter plaatse wordt afgerond zodra het definitieve antwoord veilig kan worden verzonden.
-- In de modus `block` wordt afgewisseld tussen berichten met voltooide tekst en hulpmiddelactiviteit;
-  parallelle en opeenvolgende hulpmiddelupdates delen het huidige hulpmiddelactiviteitsbericht.
-- Valt terug op het verzenden van een nieuw definitief bericht als het voorvertoningsbericht is verwijderd of
-  anderszins niet beschikbaar is wanneer het moet worden afgerond.
-- Definitieve media-/foutpayloads annuleren openstaande voorvertoningsupdates vóór de normale
-  aflevering in plaats van een tijdelijk voorvertoningsbericht te publiceren.
+- In de `partial`-modus worden gedachten en gedeeltelijke antwoordtekst gestreamd naar één
+  conceptvoorbeeldbericht dat ter plaatse definitief wordt gemaakt wanneer het definitieve antwoord veilig kan worden verzonden.
+- In de `progress`-modus worden gedachten en toolactiviteit gestreamd naar één statusvoorbeeld
+  dat ter plaatse definitief wordt gemaakt wanneer het definitieve antwoord veilig kan worden verzonden.
+- In de `block`-modus wordt gewisseld tussen berichten met voltooide tekst en toolactiviteit;
+  parallelle en opeenvolgende toolupdates delen het huidige toolactiviteitsbericht.
+- Valt terug op het verzenden van een nieuw definitief bericht als het voorbeeldbericht is verwijderd of
+  anderszins niet beschikbaar is op het moment van definitief maken.
+- Definitieve media-/foutpayloads annuleren openstaande voorbeeldupdates vóór de normale
+  bezorging, in plaats van een tijdelijk voorbeeldbericht te publiceren.
 
 ### Matrix
 
-- Conceptvoorvertoningen worden ter plaatse afgerond wanneer de definitieve tekst de voorvertoningsgebeurtenis
+- Conceptvoorbeelden worden ter plaatse definitief gemaakt wanneer de definitieve tekst de voorbeeldgebeurtenis
   kan hergebruiken.
-- Definitieve berichten met alleen media, fouten en niet-overeenkomende antwoorddoelen annuleren openstaande voorvertoningsupdates
-  vóór de normale aflevering; een reeds zichtbare verouderde voorvertoning wordt geredigeerd.
+- Definitieve berichten met alleen media, fouten en een niet-overeenkomend antwoorddoel annuleren openstaande voorbeeldupdates
+  vóór de normale bezorging; een reeds zichtbaar verouderd voorbeeld wordt geredigeerd.
 
-## Updates van hulpmiddelvoortgang in de voorvertoning
+## Voorbeeldupdates voor toolvoortgang
 
-Voorvertoningsstreaming kan ook updates voor **hulpmiddelvoortgang** bevatten: korte statusregels
-zoals "het web doorzoeken", "bestand lezen" of "hulpmiddel aanroepen" die
-in hetzelfde voorvertoningsbericht verschijnen terwijl hulpmiddelen worden uitgevoerd, vóór het definitieve antwoord.
+Voorbeeldstreaming kan ook **toolvoortgangsupdates** bevatten: korte statusregels
+zoals 'zoeken op internet', 'bestand lezen' of 'tool aanroepen' die
+in hetzelfde voorbeeldbericht verschijnen terwijl tools worden uitgevoerd, vóór het definitieve antwoord.
 In de Codex-appservermodus gebruiken Codex-inleidings-/commentaarberichten hetzelfde
-voorvertoningspad, zodat korte voortgangsmeldingen zoals "Ik controleer..." naar het
-bewerkbare concept kunnen worden gestreamd zonder onderdeel te worden van het definitieve antwoord. Hierdoor blijven
-beurten met meerdere hulpmiddelstappen visueel actief in plaats van stil tussen de eerste
-denkvoorvertoning en het definitieve antwoord.
+voorbeeldpad, zodat korte voortgangsmeldingen zoals 'Ik controleer...' naar het
+bewerkbare concept kunnen worden gestreamd zonder onderdeel van het definitieve antwoord te worden. Hierdoor blijven
+toolbeurten met meerdere stappen visueel actief in plaats van stil tussen het eerste
+voorbeeld van de gedachten en het definitieve antwoord.
 
-Langdurig actieve hulpmiddelen kunnen getypeerde voortgang uitsturen voordat ze resultaat opleveren. Zo
-stelt `web_fetch` bij het starten een timer van vijf seconden in: als het ophalen nog steeds
-bezig is, toont de voorvertoning `Fetching page content...`; als het ophalen vóór die tijd is voltooid of
-geannuleerd, wordt er geen voortgangsregel uitgestuurd. Het latere definitieve hulpmiddelresultaat
-wordt nog steeds op de normale manier aan het model geleverd.
+Langdurige tools kunnen getypeerde voortgang uitsturen voordat ze terugkeren. Zo
+start `web_fetch` bij aanvang een timer van vijf seconden: als het ophalen nog steeds
+niet is voltooid, toont het voorbeeld `Fetching page content...`; als het ophalen voordien wordt voltooid of
+geannuleerd, wordt geen voortgangsregel uitgestuurd. Het latere definitieve toolresultaat
+wordt nog steeds normaal aan het model geleverd.
 
 Ondersteunde oppervlakken:
 
-- **Discord**, **Slack**, **Telegram** en **Matrix** streamen standaard hulpmiddelvoortgang en
-  Codex-inleidingsupdates naar de live bewerking van de voorvertoning wanneer voorvertoningsstreaming
+- **Discord**, **Slack**, **Telegram** en **Matrix** streamen toolvoortgangs- en
+  Codex-inleidingsupdates standaard naar de live voorbeeldbewerking wanneer voorbeeldstreaming
   actief is. Microsoft Teams gebruikt zijn systeemeigen voortgangsstream in
   persoonlijke chats.
-- Telegram wordt sinds `v2026.4.22` geleverd met ingeschakelde voorvertoningsupdates voor hulpmiddelvoortgang;
-  door deze ingeschakeld te houden blijft dat uitgebrachte gedrag behouden.
-- **Mattermost** voegt hulpmiddelactiviteit samen in één voorvertoningsbericht in de modi `partial` en
-  `progress`, of in één hulpmiddelactiviteitsbericht tussen tekstblokken in de modus `block`
+- Telegram wordt sinds `v2026.4.22` geleverd met ingeschakelde toolvoortgangsupdates
+  voor voorbeelden; door deze ingeschakeld te houden, blijft dat uitgebrachte gedrag behouden.
+- **Mattermost** voegt toolactiviteit samen in één voorbeeldbericht in de modi `partial` en
+  `progress`, of in één toolactiviteitsbericht tussen tekstblokken in de `block`-modus
   (zie hierboven).
-- Bewerkingen voor hulpmiddelvoortgang volgen de actieve modus voor voorvertoningsstreaming; ze worden
-  overgeslagen wanneer voorvertoningsstreaming `off` is of wanneer blokstreaming het
-  bericht heeft overgenomen. In Telegram is `streaming.mode: "off"` alleen voor definitieve berichten: algemeen
+- Toolvoortgangsbewerkingen volgen de actieve voorbeeldstreamingmodus; ze worden
+  overgeslagen wanneer voorbeeldstreaming `off` is of wanneer blokstreaming het
+  bericht heeft overgenomen. Op Telegram is `streaming.mode: "off"` alleen definitief: algemeen
   voortgangscommentaar wordt eveneens onderdrukt in plaats van als afzonderlijke statusberichten
-  te worden afgeleverd, terwijl goedkeuringsprompts, mediapayloads en fouten nog steeds normaal
-  worden gerouteerd.
-- Om voorvertoningsstreaming te behouden maar regels met hulpmiddelvoortgang te verbergen, stel je
+  bezorgd, terwijl goedkeuringsprompts, mediapayloads en fouten nog steeds
+  normaal worden gerouteerd.
+- Om voorbeeldstreaming te behouden maar toolvoortgangsregels te verbergen, stel je
   `streaming.preview.toolProgress` voor dat kanaal in op `false` (standaard
-  `true`). Om regels met hulpmiddelvoortgang zichtbaar te houden terwijl je opdracht-/uitvoertekst verbergt,
+  `true`). Om toolvoortgangsregels zichtbaar te houden terwijl opdracht-/uitvoertekst wordt verborgen,
   stel je `streaming.preview.commandText` in op `"status"` of
   `streaming.progress.commandText` op `"status"`; de standaardwaarde is `"raw"` om
   uitgebracht gedrag te behouden. Dit beleid wordt gedeeld door concept-/voortgangskanalen
   die de compacte voortgangsrenderer van OpenClaw gebruiken, waaronder Discord, Matrix,
-  Microsoft Teams, Mattermost, Slack-conceptvoorvertoningen en Telegram. Om
-  voorvertoningsbewerkingen volledig uit te schakelen, stel je `streaming.mode` in op `off`.
+  Microsoft Teams, Mattermost, Slack-conceptvoorbeelden en Telegram. Om
+  voorbeeldbewerkingen volledig uit te schakelen, stel je `streaming.mode` in op `off`.
 
 ## Weergave van voortgangsconcepten
 
-Concepten in voortgangsmodus (`streaming.progress.*`) zijn per kanaal begrensd en
-configureerbaar:
+Voortgangsconcepten (`streaming.progress.*`) zijn begrensd en per
+kanaal configureerbaar:
 
 | Sleutel                           | Standaard     | Gedrag                                                         |
 | --------------------------------- | ------------- | -------------------------------------------------------------- |
-| `streaming.progress.maxLines`     | `8`           | Maximaal aantal compacte voortgangsregels dat onder het conceptlabel wordt behouden |
+| `streaming.progress.maxLines`     | `8`           | Maximaal aantal compacte voortgangsregels onder het conceptlabel |
 | `streaming.progress.maxLineChars` | `120`         | Maximaal aantal tekens per compacte regel vóór afkapping (woordbewust) |
 | `streaming.progress.label`        | `"auto"`      | Concepttitel; een aangepaste tekenreeks, of `false` om deze te verbergen |
 | `streaming.progress.labels`       | ingebouwde verzameling | Kandidaatlabels die worden gebruikt wanneer `label: "auto"` |
 
-### Voortgangsstrook voor commentaar
+### Voortgangsbaan voor commentaar
 
-Naast hulpmiddelvoortgang kan de compacte voortgangsrenderer nog een strook
+Naast toolvoortgang kan de compacte voortgangsrenderer nog één baan
 in het concept weergeven:
 
-- **`streaming.progress.commentary`** - geef het **commentaar** van het model vóór het hulpmiddel weer
-  (een korte toelichting zoals "Ik controleer... en daarna..."), afgewisseld met
-  hulpmiddelregels in het voortgangsconcept. In de voortgangsmodus van Discord en Telegram
-  levert dezelfde inleiding de statuskop, zelfs wanneer deze optionele strook
+- **`streaming.progress.commentary`** - geef het **commentaar** van het model vóór toolgebruik
+  weer (een korte beschrijving zoals 'Ik controleer... en daarna...'), afgewisseld met
+  toolregels in het voortgangsconcept. Op Discord en Telegram in de voortgangsmodus
+  levert dezelfde inleiding de statuskop, zelfs wanneer deze optionele baan
   is uitgeschakeld; andere kanalen behouden hun bestaande voortgangsgedrag. Zie
   [Voortgangsconcepten](/nl/concepts/progress-drafts#status-headline).
 
@@ -381,9 +396,9 @@ Houd voortgangsregels zichtbaar, maar verberg onbewerkte opdracht-/uitvoertekst:
 }
 ```
 
-Gebruik dezelfde structuur onder een andere sleutel voor een compact voortgangskanaal, bijvoorbeeld
+Gebruik dezelfde structuur onder de sleutel van een ander compact voortgangskanaal, bijvoorbeeld
 `channels.discord`, `channels.matrix`, `channels.msteams`,
-`channels.mattermost` of Slack-conceptvoorvertoningen. Plaats voor de voortgangsconceptmodus
+`channels.mattermost` of Slack-conceptvoorbeelden. Plaats voor de voortgangsconceptmodus
 hetzelfde beleid onder `streaming.progress`:
 
 ```json
@@ -404,8 +419,8 @@ hetzelfde beleid onder `streaming.progress`:
 
 ## Gerelateerd
 
-- [Herstructurering van de berichtlevenscyclus](/nl/concepts/message-lifecycle-refactor) - beoogd gedeeld ontwerp voor voorvertoning, bewerking, streaming en afronding
-- [Voortgangsconcepten](/nl/concepts/progress-drafts) - zichtbare berichten over lopend werk die tijdens lange beurten worden bijgewerkt
-- [Berichten](/nl/concepts/messages) - berichtlevenscyclus en aflevering
-- [Opnieuw proberen](/nl/concepts/retry) - gedrag bij opnieuw proberen na een afleveringsfout
+- [Refactor van de berichtlevenscyclus](/nl/concepts/message-lifecycle-refactor) - ontwerp voor gedeelde voorbeelden, bewerkingen, streams en definitieve verwerking
+- [Voortgangsconcepten](/nl/concepts/progress-drafts) - zichtbare berichten over werk in uitvoering die tijdens lange beurten worden bijgewerkt
+- [Berichten](/nl/concepts/messages) - berichtlevenscyclus en bezorging
+- [Opnieuw proberen](/nl/concepts/retry) - gedrag voor opnieuw proberen bij een bezorgingsfout
 - [Kanalen](/nl/channels) - ondersteuning voor streaming per kanaal

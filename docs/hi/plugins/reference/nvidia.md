@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw में NVIDIA मॉडल प्रदाता का समर्थन जोड़ता है।
 title: NVIDIA Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:32:46Z"
+    generated_at: "2026-07-27T20:15:26Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # NVIDIA Plugin
 
-OpenClaw में NVIDIA मॉडल प्रदाता के लिए समर्थन जोड़ता है।
+OpenClaw में NVIDIA मॉडल प्रदाता समर्थन जोड़ता है।
 
 ## वितरण
 
 - पैकेज: `@openclaw/nvidia-provider`
-- इंस्टॉल करने का माध्यम: OpenClaw में शामिल
+- इंस्टॉल मार्ग: OpenClaw में शामिल
 
-## उपलब्धता
+## उपलब्ध सतह
 
 प्रदाता: `nvidia`
 

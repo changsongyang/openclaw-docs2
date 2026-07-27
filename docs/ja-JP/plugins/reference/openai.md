@@ -1,10 +1,10 @@
 ---
 read_when:
-    - openai Pluginをインストール、設定、または監査しています
+    - openai Plugin のインストール、設定、または監査を行っています
 summary: OpenClaw に OpenAI モデルプロバイダーのサポートを追加します。
 title: OpenAI Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:56:22Z"
+    generated_at: "2026-07-26T09:37:07Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

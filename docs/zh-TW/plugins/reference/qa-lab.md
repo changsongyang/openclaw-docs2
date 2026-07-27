@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 qa-lab 外掛
-summary: OpenClaw QA 實驗室外掛，提供私有偵錯工具 UI 與情境執行器。
+summary: OpenClaw QA 實驗室外掛，具備私有偵錯工具介面與情境執行器。
 title: QA Lab 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:55:20Z"
+    generated_at: "2026-07-26T08:29:26Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,9 +16,9 @@ x-i18n:
 
 # QA Lab 外掛
 
-OpenClaw QA Lab 外掛，具備私有偵錯工具使用者介面和情境執行器。
+OpenClaw QA Lab 外掛，提供私有偵錯工具 UI 與情境執行器。
 
-## 發佈
+## 發佈方式
 
 - 套件：`@openclaw/qa-lab`
 - 安裝途徑：僅限原始碼簽出

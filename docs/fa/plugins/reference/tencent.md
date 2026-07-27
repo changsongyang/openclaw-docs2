@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin tencent هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin ‏tencent هستید
 summary: پشتیبانی از ارائه‌دهندگان مدل Tencent TokenHub و Tencent Tokenplan را به OpenClaw اضافه می‌کند.
-title: Plugin تنسنت
+title: Plugin Tencent
 x-i18n:
-    generated_at: "2026-07-16T17:04:17Z"
+    generated_at: "2026-07-27T15:45:16Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

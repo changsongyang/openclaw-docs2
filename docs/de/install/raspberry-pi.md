@@ -2,11 +2,11 @@
 read_when:
     - OpenClaw auf einem Raspberry Pi einrichten
     - OpenClaw auf ARM-Geräten ausführen
-    - Eine kostengünstige, rund um die Uhr verfügbare persönliche KI entwickeln
+    - Eine kostengünstige, ständig verfügbare persönliche KI entwickeln
 summary: OpenClaw auf einem Raspberry Pi für dauerhaftes Self-Hosting hosten
 title: Raspberry Pi
 x-i18n:
-    generated_at: "2026-07-24T05:02:36Z"
+    generated_at: "2026-07-26T18:33:27Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,18 +16,18 @@ x-i18n:
     workflow: 16
 ---
 
-Führen Sie ein dauerhaftes, stets aktives OpenClaw Gateway auf einem Raspberry Pi aus. Da der Pi lediglich als Gateway dient (die Modelle werden über eine API in der Cloud ausgeführt), bewältigt selbst ein leistungsschwächerer Pi die Arbeitslast problemlos – typische Hardwarekosten betragen **einmalig $35-80**, ohne monatliche Gebühren.
+Führen Sie einen persistenten, stets aktiven OpenClaw Gateway auf einem Raspberry Pi aus. Da der Pi lediglich als Gateway dient (die Modelle werden über eine API in der Cloud ausgeführt), bewältigt selbst ein leistungsschwächerer Pi die Arbeitslast problemlos – die typischen Hardwarekosten betragen einmalig **$35-80**, ohne monatliche Gebühren.
 
 ## Hardwarekompatibilität
 
-| Pi-Modell   | RAM    | Geeignet? | Hinweise                                      |
-| ----------- | ------ | --------- | --------------------------------------------- |
-| Pi 5        | 4/8 GB | Optimal   | Am schnellsten, empfohlen.                    |
-| Pi 4        | 4 GB   | Gut       | Ideal für die meisten Benutzer.               |
-| Pi 4        | 2 GB   | Ausreichend | Auslagerungsspeicher hinzufügen.            |
-| Pi 4        | 1 GB   | Knapp     | Mit Auslagerungsspeicher und Minimalkonfiguration möglich. |
-| Pi 3B+      | 1 GB   | Langsam   | Funktioniert, reagiert aber träge.             |
-| Pi Zero 2 W | 512 MB | Nein      | Nicht empfohlen.                              |
+| Pi-Modell   | RAM    | Geeignet? | Hinweise                                    |
+| ----------- | ------ | --------- | ------------------------------------------- |
+| Pi 5        | 4/8 GB | Optimal   | Am schnellsten, empfohlen.                  |
+| Pi 4        | 4 GB   | Gut       | Ideale Wahl für die meisten Benutzer.       |
+| Pi 4        | 2 GB   | Ausreichend | Swap hinzufügen.                          |
+| Pi 4        | 1 GB   | Knapp     | Mit Swap und minimaler Konfiguration möglich. |
+| Pi 3B+      | 1 GB   | Langsam   | Funktioniert, reagiert aber träge.           |
+| Pi Zero 2 W | 512 MB | Nein      | Nicht empfohlen.                             |
 
 **Minimum:** 1 GB RAM, 1 Kern, 500 MB freier Speicherplatz, 64-Bit-Betriebssystem.
 **Empfohlen:** mindestens 2 GB RAM, mindestens 16 GB große SD-Karte (oder USB-SSD), Ethernet.
@@ -35,7 +35,7 @@ Führen Sie ein dauerhaftes, stets aktives OpenClaw Gateway auf einem Raspberry 
 ## Voraussetzungen
 
 - Raspberry Pi 4 oder 5 mit mindestens 2 GB RAM (4 GB empfohlen)
-- MicroSD-Karte (mindestens 16 GB) oder USB-SSD (bessere Leistung)
+- MicroSD-Karte (mindestens 16 GB) oder USB-SSD (höhere Leistung)
 - Offizielles Pi-Netzteil
 - Netzwerkverbindung (Ethernet oder WLAN)
 - 64-Bit-Version von Raspberry Pi OS (erforderlich – verwenden Sie nicht die 32-Bit-Version)
@@ -45,16 +45,16 @@ Führen Sie ein dauerhaftes, stets aktives OpenClaw Gateway auf einem Raspberry 
 
 <Steps>
   <Step title="Betriebssystem aufspielen">
-    Verwenden Sie **Raspberry Pi OS Lite (64-bit)** – für einen Headless-Server ist keine Desktopumgebung erforderlich.
+    Verwenden Sie **Raspberry Pi OS Lite (64-bit)** – für einen Headless-Server ist keine Desktop-Umgebung erforderlich.
 
     1. Laden Sie [Raspberry Pi Imager](https://www.raspberrypi.com/software/) herunter.
     2. Wählen Sie als Betriebssystem **Raspberry Pi OS Lite (64-bit)** aus.
-    3. Konfigurieren Sie im Einstellungsdialog Folgendes vor:
+    3. Konfigurieren Sie im Einstellungsdialog vorab:
        - Hostname: `gateway-host`
-       - Enable SSH
+       - SSH aktivieren
        - Benutzernamen und Passwort festlegen
-       - WLAN konfigurieren (wenn Sie kein Ethernet verwenden)
-    4. Spielen Sie das Image auf Ihre SD-Karte oder Ihr USB-Laufwerk auf, setzen Sie das Medium ein und starten Sie den Pi.
+       - WLAN konfigurieren (falls Sie kein Ethernet verwenden)
+    4. Spielen Sie das Image auf Ihre SD-Karte oder Ihr USB-Laufwerk, setzen Sie das Speichermedium ein und starten Sie den Pi.
 
   </Step>
 
@@ -83,7 +83,7 @@ Führen Sie ein dauerhaftes, stets aktives OpenClaw Gateway auf einem Raspberry 
     ```
   </Step>
 
-  <Step title="Auslagerungsspeicher hinzufügen (wichtig bei höchstens 2 GB)">
+  <Step title="Swap hinzufügen (wichtig bei höchstens 2 GB)">
     ```bash
     sudo fallocate -l 2G /swapfile
     sudo chmod 600 /swapfile
@@ -91,7 +91,7 @@ Führen Sie ein dauerhaftes, stets aktives OpenClaw Gateway auf einem Raspberry 
     sudo swapon /swapfile
     echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
-    # Auslagerungsneigung für Geräte mit wenig RAM reduzieren
+    # Swappiness für Geräte mit wenig RAM reduzieren
     echo 'vm.swappiness=10' | sudo tee -a /etc/sysctl.conf
     sudo sysctl -p
     ```
@@ -121,14 +121,14 @@ Führen Sie ein dauerhaftes, stets aktives OpenClaw Gateway auf einem Raspberry 
     ```
   </Step>
 
-  <Step title="Auf die Bedienoberfläche zugreifen">
+  <Step title="Auf die Steuerungsoberfläche zugreifen">
     Rufen Sie auf Ihrem Computer eine Dashboard-URL vom Pi ab:
 
     ```bash
     ssh user@gateway-host 'openclaw dashboard --no-open'
     ```
 
-    Erstellen Sie anschließend in einem anderen Terminal einen SSH-Tunnel:
+    Erstellen Sie anschließend in einem weiteren Terminal einen SSH-Tunnel:
 
     ```bash
     ssh -N -L 18789:127.0.0.1:18789 user@gateway-host
@@ -139,11 +139,11 @@ Führen Sie ein dauerhaftes, stets aktives OpenClaw Gateway auf einem Raspberry 
   </Step>
 </Steps>
 
-## Leistungstipps
+## Tipps zur Leistungsoptimierung
 
-**Verwenden Sie eine USB-SSD** – SD-Karten sind langsam und verschleißen. Eine USB-SSD verbessert die Leistung erheblich und übersteht mehr Schreibzyklen; verwenden Sie sie für `OPENCLAW_STATE_DIR`, wenn das Betriebssystem auf der SD-Karte verbleibt. Weitere Informationen finden Sie in der [Anleitung zum USB-Boot des Pi](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#usb-mass-storage-boot).
+**Verwenden Sie eine USB-SSD** – SD-Karten sind langsam und verschleißen. Eine USB-SSD verbessert die Leistung erheblich und hält mehr Schreibzyklen stand; verwenden Sie sie für `OPENCLAW_STATE_DIR`, wenn das Betriebssystem auf der SD-Karte verbleibt. Weitere Informationen finden Sie im [Pi-Leitfaden zum Booten über USB](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#usb-mass-storage-boot).
 
-**Modul-Compile-Cache aktivieren** – Beschleunigt wiederholte CLI-Aufrufe auf leistungsschwächeren Pi-Hosts. `OPENCLAW_NO_RESPAWN=1` hält routinemäßige Gateway-Neustarts im selben Prozess, wodurch zusätzliche Prozessübergaben vermieden werden und die PID-Verfolgung auf kleinen Hosts einfach bleibt:
+**Modul-Compile-Cache aktivieren** – Beschleunigt wiederholte CLI-Aufrufe auf leistungsschwächeren Pi-Hosts. `OPENCLAW_NO_RESPAWN=1` hält routinemäßige Neustarts des Gateway innerhalb desselben Prozesses, vermeidet zusätzliche Prozessübergaben und vereinfacht die PID-Verfolgung auf kleinen Hosts:
 
 ```bash
 grep -q 'NODE_COMPILE_CACHE=/var/tmp/openclaw-compile-cache' ~/.bashrc || cat >> ~/.bashrc <<'EOF' # pragma: allowlist secret
@@ -154,16 +154,16 @@ EOF
 source ~/.bashrc
 ```
 
-Verwenden Sie `/var/tmp`, nicht `/tmp` – einige Distributionen leeren `/tmp` beim Start, wodurch der vorgewärmte Cache verloren geht.
+Verwenden Sie `/var/tmp` statt `/tmp` – einige Distributionen leeren `/tmp` beim Start, wodurch der aufgewärmte Cache verloren geht.
 
-**Speichernutzung reduzieren** – Geben Sie bei Headless-Einrichtungen GPU-Speicher frei und deaktivieren Sie nicht benötigte Dienste:
+**Speichernutzung reduzieren** – Geben Sie bei Headless-Installationen GPU-Speicher frei und deaktivieren Sie nicht verwendete Dienste:
 
 ```bash
 echo 'gpu_mem=16' | sudo tee -a /boot/config.txt
 sudo systemctl disable bluetooth
 ```
 
-**systemd-Drop-in für stabile Neustarts** – Wenn dieser Pi hauptsächlich OpenClaw ausführt, fügen Sie ein Dienst-Drop-in hinzu:
+**systemd-Drop-in für stabile Neustarts** – Wenn auf diesem Pi hauptsächlich OpenClaw ausgeführt wird, fügen Sie ein Service-Drop-in hinzu:
 
 ```bash
 systemctl --user edit openclaw-gateway.service
@@ -178,11 +178,11 @@ RestartSec=2
 TimeoutStartSec=90
 ```
 
-Führen Sie anschließend `systemctl --user daemon-reload && systemctl --user restart openclaw-gateway.service` aus. Aktivieren Sie auf einem Headless-Pi außerdem einmalig das Verbleiben des Benutzerdienstes, damit dieser nach der Abmeldung weiterläuft: `sudo loginctl enable-linger "$(whoami)"`.
+Führen Sie anschließend `systemctl --user daemon-reload && systemctl --user restart openclaw-gateway.service` aus. Aktivieren Sie auf einem Headless-Pi außerdem einmalig Linger, damit der Benutzerdienst nach der Abmeldung weiterläuft: `sudo loginctl enable-linger "$(whoami)"`.
 
 ## Empfohlene Modellkonfiguration
 
-Da der Pi nur das Gateway ausführt, verwenden Sie in der Cloud gehostete API-Modelle – führen Sie keine lokalen LLMs auf einem Pi aus, da selbst kleine Modelle zu langsam sind, um sinnvoll eingesetzt werden zu können:
+Da auf dem Pi nur das Gateway ausgeführt wird, sollten Sie über die Cloud bereitgestellte API-Modelle verwenden – führen Sie keine lokalen LLMs auf einem Pi aus; selbst kleine Modelle sind zu langsam, um sinnvoll nutzbar zu sein:
 
 ```json
 {
@@ -199,16 +199,16 @@ Da der Pi nur das Gateway ausführt, verwenden Sie in der Cloud gehostete API-Mo
 
 ## Hinweise zu ARM-Binärdateien
 
-Die meisten OpenClaw-Funktionen arbeiten ohne Änderungen auf ARM64 (Node.js, Telegram, WhatsApp/Baileys, Chromium). Bei Binärdateien, für die gelegentlich keine ARM-Builds verfügbar sind, handelt es sich in der Regel um optionale, von Skills bereitgestellte Go-/Rust-CLI-Werkzeuge. Überprüfen Sie die Architektur mit `uname -m` (die Ausgabe sollte `aarch64` lauten) und suchen Sie anschließend auf der Release-Seite einer fehlenden Binärdatei nach `linux-arm64`- bzw. `aarch64`-Artefakten, bevor Sie ersatzweise aus dem Quellcode kompilieren.
+Die meisten OpenClaw-Funktionen sind ohne Änderungen unter ARM64 verfügbar (Node.js, Telegram, WhatsApp/Baileys, Chromium). Bei den Binärdateien, für die gelegentlich keine ARM-Builds verfügbar sind, handelt es sich üblicherweise um optionale, von Skills bereitgestellte Go-/Rust-CLI-Tools. Überprüfen Sie die Architektur mit `uname -m` (die Ausgabe sollte `aarch64` lauten) und suchen Sie anschließend auf der Release-Seite einer fehlenden Binärdatei nach `linux-arm64`- bzw. `aarch64`-Artefakten, bevor Sie auf das Erstellen aus dem Quellcode zurückgreifen.
 
 ## Persistenz und Sicherungen
 
-Der OpenClaw-Zustand befindet sich unter:
+Der OpenClaw-Status befindet sich unter:
 
-- `~/.openclaw/` – `openclaw.json`, agentenspezifische `auth-profiles.json`, Kanal-/Provider-Zustand, Sitzungen.
+- `~/.openclaw/` – `openclaw.json`, agentenspezifische `auth-profiles.json`, Kanal-/Provider-Status, Sitzungen.
 - `~/.openclaw/workspace/` – Agent-Arbeitsbereich (SOUL.md, Speicher, Artefakte).
 
-Diese Daten bleiben nach Neustarts erhalten und profitieren hinsichtlich Leistung und Lebensdauer von einer SSD anstelle einer SD-Karte. Erstellen Sie einen portablen Snapshot mit:
+Diese Daten bleiben bei Neustarts erhalten. Eine SSD bietet gegenüber einer SD-Karte sowohl bei der Leistung als auch bei der Lebensdauer Vorteile. Erstellen Sie einen portablen Snapshot mit:
 
 ```bash
 openclaw backup create
@@ -216,11 +216,11 @@ openclaw backup create
 
 ## Fehlerbehebung
 
-**Nicht genügend Arbeitsspeicher** – Überprüfen Sie mit `free -h`, ob der Auslagerungsspeicher aktiv ist. Deaktivieren Sie nicht benötigte Dienste (`sudo systemctl disable cups bluetooth avahi-daemon`). Verwenden Sie ausschließlich API-basierte Modelle.
+**Nicht genügend Arbeitsspeicher** – Überprüfen Sie mit `free -h`, ob Swap aktiv ist. Deaktivieren Sie nicht verwendete Dienste (`sudo systemctl disable cups bluetooth avahi-daemon`). Verwenden Sie ausschließlich API-basierte Modelle.
 
-**Geringe Leistung** – Verwenden Sie eine USB-SSD anstelle einer SD-Karte. Prüfen Sie mit `vcgencmd get_throttled`, ob die CPU gedrosselt wird (die Ausgabe sollte `0x0` lauten).
+**Langsame Leistung** – Verwenden Sie statt einer SD-Karte eine USB-SSD. Prüfen Sie mit `vcgencmd get_throttled`, ob die CPU gedrosselt wird (die Ausgabe sollte `0x0` lauten).
 
-**Dienst startet nicht** – Prüfen Sie die Protokolle mit `journalctl --user -u openclaw-gateway.service --no-pager -n 100` und führen Sie `openclaw doctor --non-interactive` aus. Wenn es sich um einen Headless-Pi handelt, überprüfen Sie außerdem, ob das Verbleiben des Benutzerdienstes aktiviert ist: `sudo loginctl enable-linger "$(whoami)"`.
+**Dienst startet nicht** – Prüfen Sie die Protokolle mit `journalctl --user -u openclaw-gateway.service --no-pager -n 100` und führen Sie `openclaw doctor --non-interactive` aus. Überprüfen Sie bei einem Headless-Pi außerdem, ob Linger aktiviert ist: `sudo loginctl enable-linger "$(whoami)"`.
 
 **Probleme mit ARM-Binärdateien** – Wenn ein Skill mit „exec format error“ fehlschlägt, prüfen Sie, ob ein ARM64-Build der Binärdatei verfügbar ist. Überprüfen Sie die Architektur mit `uname -m` (die Ausgabe sollte `aarch64` lauten).
 
@@ -228,7 +228,7 @@ openclaw backup create
 
 ## Nächste Schritte
 
-- [Kanäle](/de/channels) – Telegram, WhatsApp, Discord und weitere Dienste verbinden
+- [Kanäle](/de/channels) – Telegram, WhatsApp, Discord und weitere verbinden
 - [Gateway-Konfiguration](/de/gateway/configuration) – alle Konfigurationsoptionen
 - [Aktualisierung](/de/install/updating) – OpenClaw auf dem neuesten Stand halten
 

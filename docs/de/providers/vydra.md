@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Sie möchten die Mediengenerierung mit Vydra in OpenClaw verwenden
+    - Sie möchten Vydra-Mediengenerierung in OpenClaw verwenden
     - Sie benötigen eine Anleitung zum Einrichten des Vydra-API-Schlüssels
-summary: Vydra-Bild-, Video- und Sprachfunktionen in OpenClaw verwenden
+summary: Vydra-Bild-, -Video- und -Sprachfunktionen in OpenClaw verwenden
 title: Vydra
 x-i18n:
-    generated_at: "2026-07-24T04:08:15Z"
+    generated_at: "2026-07-26T18:07:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,18 +15,18 @@ x-i18n:
     workflow: 16
 ---
 
-Das gebündelte Vydra-Plugin bietet:
+Das mitgelieferte Vydra-Plugin fügt Folgendes hinzu:
 
 - Bildgenerierung über `vydra/grok-imagine`
 - Videogenerierung über `vydra/veo3` (Text-zu-Video) und `vydra/kling` (Bild-zu-Video)
-- Sprachsynthese über Vydras auf ElevenLabs basierende TTS-Route
+- Sprachsynthese über Vydras ElevenLabs-gestützte TTS-Route
 
 OpenClaw verwendet für alle drei Funktionen denselben `VYDRA_API_KEY`.
 
 | Eigenschaft     | Wert                                                                      |
 | --------------- | ------------------------------------------------------------------------- |
 | Provider-ID     | `vydra`                                                        |
-| Plugin          | gebündelt, `enabledByDefault: true`                                             |
+| Plugin          | mitgeliefert, `enabledByDefault: true`                                         |
 | Auth-Umgebungsvariable | `VYDRA_API_KEY`                                                  |
 | Onboarding-Flag | `--auth-choice vydra-api-key`                                                        |
 | Direktes CLI-Flag | `--vydra-api-key <key>`                                                      |
@@ -34,7 +34,7 @@ OpenClaw verwendet für alle drei Funktionen denselben `VYDRA_API_KEY`.
 | Basis-URL       | `https://www.vydra.ai/api/v1` (den Host `www` verwenden)                |
 
 <Warning>
-Verwenden Sie `https://www.vydra.ai/api/v1` als Basis-URL. Vydras Apex-Host (`https://vydra.ai/api/v1`) leitet derzeit zu `www` weiter. Einige HTTP-Clients verwerfen `Authorization` bei dieser hostübergreifenden Weiterleitung, wodurch ein gültiger API-Schlüssel zu einem irreführenden Authentifizierungsfehler führt. Das gebündelte Plugin normalisiert jede konfigurierte `vydra.ai`-Basis-URL zu `www.vydra.ai`, um dies zu vermeiden.
+Verwenden Sie `https://www.vydra.ai/api/v1` als Basis-URL. Vydras Apex-Host (`https://vydra.ai/api/v1`) leitet derzeit zu `www` weiter. Einige HTTP-Clients verwerfen bei dieser hostübergreifenden Weiterleitung `Authorization`, wodurch ein gültiger API-Schlüssel zu einem irreführenden Authentifizierungsfehler führt. Das mitgelieferte Plugin normalisiert jede konfigurierte `vydra.ai`-Basis-URL zu `www.vydra.ai`, um dies zu vermeiden.
 </Warning>
 
 ## Einrichtung
@@ -52,8 +52,8 @@ Verwenden Sie `https://www.vydra.ai/api/v1` als Basis-URL. Vydras Apex-Host (`ht
     ```
 
   </Step>
-  <Step title="Standardfunktion auswählen">
-    Wählen Sie eine oder mehrere der folgenden Funktionen (Bild, Video oder Sprache) aus und wenden Sie die entsprechende Konfiguration an.
+  <Step title="Eine Standardfunktion auswählen">
+    Wählen Sie mindestens eine der folgenden Funktionen (Bild, Video oder Sprache) und wenden Sie die entsprechende Konfiguration an.
   </Step>
 </Steps>
 
@@ -61,7 +61,7 @@ Verwenden Sie `https://www.vydra.ai/api/v1` als Basis-URL. Vydras Apex-Host (`ht
 
 <AccordionGroup>
   <Accordion title="Bildgenerierung">
-    Standardmäßiges und einziges gebündeltes Bildmodell:
+    Standardmäßiges und einziges mitgeliefertes Bildmodell:
 
     - `vydra/grok-imagine`
 
@@ -79,7 +79,7 @@ Verwenden Sie `https://www.vydra.ai/api/v1` als Basis-URL. Vydras Apex-Host (`ht
     }
     ```
 
-    Die gebündelte Unterstützung umfasst nur Text-zu-Bild und höchstens ein Bild pro Anfrage. Vydras gehostete Bearbeitungsrouten erwarten Remote-Bild-URLs, und das gebündelte Plugin fügt keine Vydra-spezifische Upload-Bridge hinzu.
+    Die mitgelieferte Unterstützung umfasst ausschließlich Text-zu-Bild und höchstens ein Bild pro Anfrage. Vydras gehostete Bearbeitungsrouten erwarten Remote-Bild-URLs, und das mitgelieferte Plugin fügt keine Vydra-spezifische Upload-Brücke hinzu.
 
     <Note>
     Unter [Bildgenerierung](/de/tools/image-generation) finden Sie Informationen zu gemeinsamen Tool-Parametern, zur Provider-Auswahl und zum Failover-Verhalten.
@@ -109,9 +109,9 @@ Verwenden Sie `https://www.vydra.ai/api/v1` als Basis-URL. Vydras Apex-Host (`ht
 
     Hinweise:
 
-    - `vydra/kling` lehnt Uploads lokaler Dateien von vornherein ab; nur eine Referenz auf eine Remote-Bild-URL funktioniert.
-    - Vydras HTTP-Route `kling` war uneinheitlich darin, ob sie `image_url` oder `video_url` erfordert; der gebündelte Provider sendet in beiden Feldern dieselbe Remote-Bild-URL.
-    - Das gebündelte Plugin bleibt konservativ und leitet undokumentierte Stiloptionen wie Seitenverhältnis, Auflösung, Wasserzeichen oder generiertes Audio nicht weiter.
+    - `vydra/kling` lehnt lokale Datei-Uploads von vornherein ab; es funktioniert nur eine Referenz auf eine Remote-Bild-URL.
+    - Vydras `kling`-HTTP-Route war uneinheitlich darin, ob sie `image_url` oder `video_url` erfordert; der mitgelieferte Provider sendet dieselbe Remote-Bild-URL in beiden Feldern.
+    - Das mitgelieferte Plugin bleibt konservativ und leitet undokumentierte Stiloptionen wie Seitenverhältnis, Auflösung, Wasserzeichen oder generiertes Audio nicht weiter.
 
     <Note>
     Unter [Videogenerierung](/de/tools/video-generation) finden Sie Informationen zu gemeinsamen Tool-Parametern, zur Provider-Auswahl und zum Failover-Verhalten.
@@ -119,8 +119,8 @@ Verwenden Sie `https://www.vydra.ai/api/v1` als Basis-URL. Vydras Apex-Host (`ht
 
   </Accordion>
 
-  <Accordion title="Live-Tests für Video">
-    Provider-spezifische Live-Testabdeckung:
+  <Accordion title="Video-Live-Tests">
+    Provider-spezifische Live-Abdeckung:
 
     ```bash
     OPENCLAW_LIVE_TEST=1 \
@@ -128,12 +128,12 @@ Verwenden Sie `https://www.vydra.ai/api/v1` als Basis-URL. Vydras Apex-Host (`ht
     pnpm test:live -- extensions/vydra/vydra.live.test.ts
     ```
 
-    Die gebündelte Vydra-Live-Testdatei deckt Folgendes ab:
+    Die mitgelieferte Vydra-Live-Datei deckt Folgendes ab:
 
     - `vydra/veo3` Text-zu-Video
     - `vydra/kling` Bild-zu-Video unter Verwendung einer Remote-Bild-URL
 
-    Überschreiben Sie bei Bedarf die Remote-Bild-Test-Fixture:
+    Überschreiben Sie bei Bedarf die Remote-Bild-Testressource:
 
     ```bash
     export OPENCLAW_LIVE_VYDRA_KLING_IMAGE_URL="https://example.com/reference.png"
@@ -163,7 +163,7 @@ Verwenden Sie `https://www.vydra.ai/api/v1` als Basis-URL. Vydras Apex-Host (`ht
     - Modell: `elevenlabs/tts`
     - Stimmen-ID: `21m00Tcm4TlvDq8ikWAM` ("Rachel")
 
-    Das gebündelte Plugin stellt diese eine bekanntermaßen funktionierende Standardstimme bereit und gibt MP3-Audiodateien zurück.
+    Das mitgelieferte Plugin stellt diese eine bewährte Standardstimme bereit und gibt MP3-Audiodateien zurück.
 
   </Accordion>
 </AccordionGroup>

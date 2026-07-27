@@ -1,10 +1,10 @@
 ---
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin ‏admin-http-rpc هستید
-summary: نقطه پایانی RPC مبتنی بر HTTP برای مدیریت OpenClaw.
-title: Plugin مدیریت HTTP RPC
+summary: نقطهٔ پایانی HTTP RPC مدیریتی OpenClaw.
+title: Plugin مدیریت Http Rpc
 x-i18n:
-    generated_at: "2026-07-16T16:57:53Z"
+    generated_at: "2026-07-27T15:29:28Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin Admin Http Rpc
+# Plugin مربوط به Admin Http Rpc
 
-نقطه پایانی RPC مدیریتی HTTP در OpenClaw.
+نقطه پایانی RPC ‏HTTP مدیریتی OpenClaw.
 
 ## توزیع
 
 - بسته: `@openclaw/admin-http-rpc`
-- مسیر نصب: در OpenClaw گنجانده شده است
+- مسیر نصب: گنجانده‌شده در OpenClaw
 
 ## سطح
 

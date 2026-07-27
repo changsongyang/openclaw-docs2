@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin ‏zai هستید
-summary: پشتیبانی از ارائه‌دهنده مدل Z.AI را به OpenClaw اضافه می‌کند.
+    - در حال نصب، پیکربندی یا ممیزی Plugin zai هستید
+summary: پشتیبانی از ارائه‌دهندهٔ مدل Z.AI را به OpenClaw اضافه می‌کند.
 title: Plugin ‏Z.AI
 x-i18n:
-    generated_at: "2026-07-16T16:58:15Z"
+    generated_at: "2026-07-27T14:30:38Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## توزیع
 
 - بسته: `@openclaw/zai-provider`
-- مسیر نصب: npm؛ ClawHub: `clawhub:@openclaw/zai-provider`
+- روش نصب: npm؛ ClawHub: `clawhub:@openclaw/zai-provider`
 
 ## سطح
 

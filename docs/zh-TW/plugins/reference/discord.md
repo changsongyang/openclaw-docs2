@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 Discord 外掛
-summary: OpenClaw Discord 頻道外掛，支援頻道、私訊、命令及應用程式事件。
+summary: 適用於頻道、私訊、命令和應用程式事件的 OpenClaw Discord 頻道外掛。
 title: Discord 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:53:25Z"
+    generated_at: "2026-07-26T07:50:28Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Discord 外掛
 
-用於頻道、私人訊息、命令及應用程式事件的 OpenClaw Discord 頻道外掛。
+OpenClaw Discord 頻道外掛，支援頻道、私訊、命令及應用程式事件。
 
-## 發布
+## 發佈
 
 - 套件：`@openclaw/discord`
-- 安裝管道：npm；ClawHub
+- 安裝途徑：npm；ClawHub
 
 ## 介面
 

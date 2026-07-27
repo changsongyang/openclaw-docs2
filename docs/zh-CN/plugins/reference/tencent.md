@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安装、配置或审计 tencent 插件
-summary: 为 OpenClaw 添加腾讯 TokenHub、腾讯 TokenPlan 模型提供商支持。
+summary: 为 OpenClaw 添加腾讯 TokenHub、腾讯 Tokenplan 模型提供商支持。
 title: 腾讯插件
 x-i18n:
-    generated_at: "2026-07-16T11:52:09Z"
+    generated_at: "2026-07-26T06:27:40Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Tencent 插件
 
-为 OpenClaw 添加腾讯 TokenHub、腾讯 Tokenplan 模型提供商支持。
+为 OpenClaw 添加 Tencent TokenHub、Tencent Tokenplan 模型提供商支持。
 
 ## 分发
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## 相关文档
 
-- [腾讯云](/zh-CN/providers/tencent)
+- [Tencent](/zh-CN/providers/tencent)

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - pixverse pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: OpenClaw PixVerse video oluşturma sağlayıcısı plugin'i.
-title: PixVerse Plugin'i
+    - pixverse Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+summary: OpenClaw PixVerse video oluşturma sağlayıcı plugini.
+title: PixVerse plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:31:30Z"
+    generated_at: "2026-07-26T22:56:23Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# PixVerse plugin’i
+# PixVerse plugin'i
 
-OpenClaw PixVerse video oluşturma sağlayıcısı plugin’i.
+OpenClaw PixVerse video oluşturma sağlayıcısı plugin'i.
 
 ## Dağıtım
 

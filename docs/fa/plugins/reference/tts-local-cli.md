@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin‏ tts-local-cli هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin ‏tts-local-cli هستید
 summary: پشتیبانی از ارائه‌دهندهٔ تبدیل متن به گفتار را اضافه می‌کند.
 title: Plugin محلی CLI برای TTS
 x-i18n:
-    generated_at: "2026-07-16T16:57:43Z"
+    generated_at: "2026-07-27T16:59:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप tencent Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: OpenClaw में Tencent TokenHub और Tencent Tokenplan मॉडल प्रदाता समर्थन जोड़ता है।
+summary: OpenClaw में Tencent TokenHub और Tencent Tokenplan मॉडल प्रदाता का समर्थन जोड़ता है।
 title: Tencent Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:08:22Z"
+    generated_at: "2026-07-27T18:48:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Tencent Plugin
 
-OpenClaw में Tencent TokenHub और Tencent Tokenplan मॉडल प्रदाता का समर्थन जोड़ता है।
+OpenClaw में Tencent TokenHub और Tencent Tokenplan मॉडल प्रदाता समर्थन जोड़ता है।
 
 ## वितरण
 

@@ -1,13 +1,13 @@
 ---
 read_when:
-    - Sie möchten, dass ein Agent Bereiche der Control UI teilt, fokussiert, schließt oder darin navigiert
-    - Sie möchten, dass ein Agent die Seitenleiste, das Terminal oder die Browserbereiche ein- oder ausblendet
-    - Sie benötigen die Fähigkeit ui.command und den Fan-out-Vertrag.
+    - Sie möchten, dass ein Agent Bereiche der Control UI teilt, fokussiert, schließt oder zwischen ihnen navigiert
+    - Sie möchten, dass ein Agent die Seitenleiste, das Terminal oder die Browser-Bereiche ein- oder ausblendet
+    - Sie benötigen die `ui.command`-Capability und den Fan-out-Vertrag
 sidebarTitle: Screen
-summary: Lassen Sie einen Agenten die verbundene Control UI einrichten
+summary: Lassen Sie die verbundene Control UI von einem Agenten einrichten
 title: Bildschirm
 x-i18n:
-    generated_at: "2026-07-24T04:45:58Z"
+    generated_at: "2026-07-26T18:41:21Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,13 +17,13 @@ x-i18n:
     workflow: 16
 ---
 
-Mit dem Tool `screen` kann ein Agent die browserbasierte Control UI anordnen. Es handelt sich um eine
-typisierte Layout- und Navigationsoberfläche, nicht um eine Screenshot-Erfassung oder Browser-
-automatisierung.
+Das Tool `screen` ermöglicht einem Agenten, die browserbasierte Control UI anzuordnen. Es ist eine
+typisierte Oberfläche für Layout und Navigation, keine Screenshot-Erfassung oder Browser-
+Automatisierung.
 
-Das Tool wird nur bereitgestellt, wenn der ursprüngliche Client die Funktion
-`ui-commands` bekannt gibt. Beim Ausführen des Tools muss weiterhin mindestens eine kompatible Control UI
-verbunden sein; andernfalls gibt das Gateway `UNAVAILABLE` zurück.
+Das Tool wird nur bereitgestellt, wenn der ursprüngliche Client die
+Fähigkeit `ui-commands` angibt. Mindestens eine geeignete Control UI muss weiterhin
+verbunden sein, wenn das Tool ausgeführt wird; andernfalls gibt das Gateway `UNAVAILABLE` zurück.
 
 ## Aktionen
 
@@ -44,12 +44,12 @@ das typisierte Ereignis `ui.command` übertragen hat.
 ## Routing und Sicherheit
 
 Protokoll v1 sendet den Befehl absichtlich an jede verbundene Control UI, die
-`ui-commands` bekannt gibt; es richtet ihn nicht an einen einzelnen Browser-Tab. Dies ist relevant, wenn
+`ui-commands` angibt; es wird nicht gezielt ein einzelner Browser-Tab angesprochen. Dies ist relevant, wenn
 derselbe Operator mehrere Dashboards geöffnet hat.
 
 Der Gateway-RPC erfordert `operator.write`. Das Tool kann ausschließlich den Darstellungs-
-zustand ändern: Es kann keine Pixel auslesen, Screenshots erstellen, beliebige Seiten-
-inhalte anklicken oder die Berechtigungen der ausgewählten Sitzungs- und Operator-
+zustand ändern: Es kann weder Pixel auslesen noch Screenshots erstellen, auf beliebige Seiten-
+inhalte klicken oder die Berechtigungen der ausgewählten Sitzungs- und Operator-
 panels umgehen.
 
 ## Verwandte Themen

@@ -4,7 +4,7 @@ read_when:
 summary: Voegt ondersteuning voor de Fireworks-modelprovider toe aan OpenClaw.
 title: Fireworks-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:18:34Z"
+    generated_at: "2026-07-27T05:59:27Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

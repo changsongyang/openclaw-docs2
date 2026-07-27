@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप qqbot Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: समूह और प्रत्यक्ष-संदेश वर्कफ़्लो के लिए OpenClaw QQ Bot चैनल Plugin।
+summary: समूह और सीधे संदेश के कार्यप्रवाहों के लिए OpenClaw QQ Bot चैनल Plugin।
 title: QQ Bot Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:33:27Z"
+    generated_at: "2026-07-27T21:31:08Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # QQ Bot Plugin
 
-समूह और सीधे संदेश वाले कार्यप्रवाहों के लिए OpenClaw QQ Bot चैनल Plugin।
+समूह और प्रत्यक्ष-संदेश कार्यप्रवाहों के लिए OpenClaw QQ Bot चैनल Plugin।
 
 ## वितरण
 
 - पैकेज: `@openclaw/qqbot`
-- इंस्टॉल करने का माध्यम: npm; ClawHub
+- इंस्टॉल मार्ग: npm; ClawHub
 
 ## सतह
 

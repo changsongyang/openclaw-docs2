@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin de Deepgram
-summary: Añade compatibilidad con proveedores de comprensión de contenido multimedia. Añade compatibilidad con proveedores de transcripción en tiempo real.
+summary: Añade compatibilidad con proveedores de comprensión multimedia. Añade compatibilidad con proveedores de transcripción en tiempo real.
 title: Plugin de Deepgram
 x-i18n:
-    generated_at: "2026-07-16T11:50:48Z"
+    generated_at: "2026-07-26T04:45:27Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Plugin de Deepgram
 
-Añade compatibilidad con un proveedor de comprensión de contenido multimedia. Añade compatibilidad con un proveedor de transcripción en tiempo real.
+Añade compatibilidad con proveedores de comprensión multimedia. Añade compatibilidad con proveedores de transcripción en tiempo real.
 
 ## Distribución
 
 - Paquete: `@openclaw/deepgram-provider`
-- Ruta de instalación: incluido en OpenClaw
+- Método de instalación: incluido en OpenClaw
 
 ## Superficie
 
@@ -29,4 +29,4 @@ contratos: `mediaUnderstandingProviders`, `realtimeTranscriptionProviders`
 
 ## Documentación relacionada
 
-- [deepgram](/es/providers/deepgram)
+- [Deepgram](/es/providers/deepgram)

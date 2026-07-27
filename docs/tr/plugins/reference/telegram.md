@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw mesajlarını göndermek ve almak için Telegram kanal yüzeyini ekler.
 title: Telegram plugin’i
 x-i18n:
-    generated_at: "2026-07-16T17:46:47Z"
+    generated_at: "2026-07-26T22:56:35Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Telegram plugin
+# Telegram plugin'i
 
-OpenClaw mesajlarını gönderip almak için Telegram kanal yüzeyini ekler.
+OpenClaw mesajlarını göndermek ve almak için Telegram kanal yüzeyini ekler.
 
 ## Dağıtım
 

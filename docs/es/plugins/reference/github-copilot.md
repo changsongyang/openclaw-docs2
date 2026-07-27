@@ -4,7 +4,7 @@ read_when:
 summary: Añade compatibilidad con el proveedor de modelos GitHub Copilot en OpenClaw.
 title: Plugin de GitHub Copilot
 x-i18n:
-    generated_at: "2026-07-16T11:51:43Z"
+    generated_at: "2026-07-26T05:22:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin GitHub Copilot
+# Plugin de GitHub Copilot
 
 Añade compatibilidad con el proveedor de modelos GitHub Copilot a OpenClaw.
 
 ## Distribución
 
 - Paquete: `@openclaw/github-copilot-provider`
-- Ruta de instalación: incluido en OpenClaw
+- Ruta de instalación: incluida en OpenClaw
 
 ## Superficie
 
@@ -29,4 +29,4 @@ proveedores: `github-copilot`; contratos: `memoryEmbeddingProviders`, `usageProv
 
 ## Documentación relacionada
 
-- [GitHub Copilot](/es/providers/github-copilot)
+- [github-copilot](/es/providers/github-copilot)

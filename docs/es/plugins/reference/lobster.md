@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin Lobster
-summary: Plugin de la herramienta de flujos de trabajo Lobster para pipelines tipados y aprobaciones reanudables.
-title: Plugin Lobster
+summary: Plugin de la herramienta de flujo de trabajo Lobster para pipelines tipados y aprobaciones reanudables.
+title: Plugin de Lobster
 x-i18n:
-    generated_at: "2026-07-16T11:53:30Z"
+    generated_at: "2026-07-26T05:21:39Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin Lobster
 
-Plugin de la herramienta de flujos de trabajo Lobster para canalizaciones tipadas y aprobaciones reanudables.
+Plugin de la herramienta de flujos de trabajo Lobster para pipelines tipados y aprobaciones reanudables.
 
 ## Distribución
 

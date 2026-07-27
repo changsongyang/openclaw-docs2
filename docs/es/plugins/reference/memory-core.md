@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin memory-core
-summary: Añade herramientas que los agentes pueden invocar.
+summary: Añade herramientas que puede invocar el agente.
 title: Plugin Memory Core
 x-i18n:
-    generated_at: "2026-07-16T11:48:36Z"
+    generated_at: "2026-07-26T04:51:59Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

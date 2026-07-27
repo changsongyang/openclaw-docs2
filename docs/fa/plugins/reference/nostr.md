@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin nostr هستید
+    - شما در حال نصب، پیکربندی یا ممیزی Plugin ‏nostr هستید
 summary: Plugin کانال Nostr برای OpenClaw جهت پیام‌های مستقیم رمزگذاری‌شده با NIP-04.
-title: Plugin نوستر
+title: Plugin ‏Nostr
 x-i18n:
-    generated_at: "2026-07-16T17:03:13Z"
+    generated_at: "2026-07-27T15:44:28Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin‏ Nostr
+# Plugin Nostr
 
 Plugin کانال Nostr در OpenClaw برای پیام‌های مستقیم رمزگذاری‌شده با NIP-04.
 
 ## توزیع
 
 - بسته: `@openclaw/nostr`
-- روش نصب: npm؛ ClawHub
+- مسیر نصب: npm؛ ClawHub
 
 ## سطح
 

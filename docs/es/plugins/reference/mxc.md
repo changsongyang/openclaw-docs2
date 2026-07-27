@@ -4,7 +4,7 @@ read_when:
 summary: 'Ejecución de herramientas aislada a nivel del sistema operativo mediante MXC: ejecuta comandos en un ProcessContainer de Windows con archivos de políticas de MXC configurados.'
 title: Plugin Mxc
 x-i18n:
-    generated_at: "2026-07-21T22:41:23Z"
+    generated_at: "2026-07-26T04:48:39Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Plugin Mxc
 
-Ejecución de herramientas aislada a nivel del sistema operativo mediante MXC: ejecuta comandos en un ProcessContainer de Windows con archivos de políticas de MXC configurados.
+Ejecución de herramientas aislada mediante sandbox a nivel del sistema operativo a través de MXC: ejecuta comandos en un ProcessContainer de Windows con los archivos de políticas de MXC configurados.
 
 ## Distribución
 
 - Paquete: `@openclaw/mxc-sandbox`
-- Método de instalación: npm; ClawHub
+- Vía de instalación: npm; ClawHub
 
 ## Superficie
 

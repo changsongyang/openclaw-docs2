@@ -4,7 +4,7 @@ read_when:
 summary: Añade compatibilidad con proveedores de búsqueda web.
 title: Plugin de DuckDuckGo
 x-i18n:
-    generated_at: "2026-07-16T11:51:16Z"
+    generated_at: "2026-07-26T05:14:26Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

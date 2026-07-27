@@ -1,10 +1,10 @@
 ---
 read_when:
-    - memory-core Plugin のインストール、設定、または監査を行っている場合
-summary: エージェントから呼び出し可能なツールを追加します。
+    - memory-core Plugin のインストール、設定、または監査を行っています
+summary: エージェントから呼び出せるツールを追加します。
 title: Memory Core Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:05:09Z"
+    generated_at: "2026-07-26T09:36:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Memory Core Plugin
 
-エージェントから呼び出せるツールを追加します。
+エージェントから呼び出し可能なツールを追加します。
 
 ## 配布
 

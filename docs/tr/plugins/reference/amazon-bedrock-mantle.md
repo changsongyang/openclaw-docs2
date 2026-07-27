@@ -4,7 +4,7 @@ read_when:
 summary: OpenAI uyumlu model yönlendirmesi için OpenClaw Amazon Bedrock Mantle sağlayıcı plugini.
 title: Amazon Bedrock Mantle Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:42:35Z"
+    generated_at: "2026-07-27T00:07:29Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

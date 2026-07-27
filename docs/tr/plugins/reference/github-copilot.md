@@ -1,10 +1,10 @@
 ---
 read_when:
-    - github-copilot Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - github-copilot Pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a GitHub Copilot model sağlayıcısı desteği ekler.
 title: GitHub Copilot plugini
 x-i18n:
-    generated_at: "2026-07-16T17:30:10Z"
+    generated_at: "2026-07-27T00:08:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# GitHub Copilot plugin'i
+# GitHub Copilot Plugin'i
 
 OpenClaw'a GitHub Copilot model sağlayıcısı desteği ekler.
 

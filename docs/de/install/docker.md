@@ -5,7 +5,7 @@ read_when:
 summary: Optionale Docker-basierte Einrichtung und Einführung für OpenClaw
 title: Docker
 x-i18n:
-    generated_at: "2026-07-24T03:54:07Z"
+    generated_at: "2026-07-26T17:52:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,49 +15,49 @@ x-i18n:
     workflow: 16
 ---
 
-Docker ist **optional**. Verwenden Sie es für eine isolierte, kurzlebige Gateway-Umgebung oder einen Host ohne lokale Installationen. Wenn Sie bereits auf Ihrem eigenen Rechner entwickeln, verwenden Sie stattdessen den normalen Installationsablauf.
+Docker ist **optional**. Verwenden Sie es für eine isolierte, temporäre Gateway-Umgebung oder einen Host ohne lokale Installationen. Wenn Sie bereits auf Ihrem eigenen Rechner entwickeln, verwenden Sie stattdessen den normalen Installationsablauf.
 
 Das standardmäßige Sandbox-Backend verwendet Docker, wenn `agents.defaults.sandbox` aktiviert ist. Sandboxing ist jedoch standardmäßig deaktiviert und setzt nicht voraus, dass das Gateway selbst in Docker ausgeführt wird. SSH- und OpenShell-Sandbox-Backends sind ebenfalls verfügbar; siehe [Sandboxing](/de/gateway/sandboxing).
 
-Hosten Sie mehrere Benutzer? Informationen zum Modell mit einer Zelle pro Mandant finden Sie unter [Mandantenfähiges Hosting](/de/gateway/multi-tenant-hosting).
+Hosten Sie mehrere Benutzer? Unter [Mandantenfähiges Hosting](/de/gateway/multi-tenant-hosting) finden Sie das Modell mit einer Zelle pro Mandant.
 
 ## Voraussetzungen
 
 - Docker Desktop (oder Docker Engine) + Docker Compose v2
-- Mindestens 2 GB RAM für die Image-Erstellung (`pnpm install` kann auf Hosts mit 1 GB wegen Speichermangels beendet werden, mit Exit-Code 137)
+- Mindestens 2 GB RAM für den Image-Build (`pnpm install` kann auf Hosts mit 1 GB wegen Speichermangels mit Exit-Code 137 beendet werden)
 - Ausreichend Speicherplatz für Images und Protokolle
-- Prüfen Sie auf einem VPS/öffentlichen Host die [Sicherheitshärtung für Netzwerkexposition](/de/gateway/security), insbesondere die Docker-Firewall-Kette `DOCKER-USER`
+- Prüfen Sie auf einem VPS/öffentlichen Host die [Sicherheitshärtung bei Netzwerkexposition](/de/gateway/security), insbesondere die Docker-Firewall-Kette `DOCKER-USER`
 
 ## Containerisiertes Gateway
 
 <Steps>
   <Step title="Image erstellen">
-    Vom Repository-Stammverzeichnis aus:
+    Aus dem Repository-Stammverzeichnis:
 
     ```bash
     ./scripts/docker/setup.sh
     ```
 
-    Dadurch wird das Gateway-Image lokal als `openclaw:local` erstellt. So verwenden Sie stattdessen ein vorab erstelltes Image:
+    Dadurch wird das Gateway-Image lokal als `openclaw:local` erstellt. So verwenden Sie stattdessen ein vorgefertigtes Image:
 
     ```bash
     export OPENCLAW_IMAGE="ghcr.io/openclaw/openclaw:latest"
     ./scripts/docker/setup.sh
     ```
 
-    Vorab erstellte Images werden zuerst in der [GitHub Container Registry](https://github.com/openclaw/openclaw/pkgs/container/openclaw) veröffentlicht. GHCR ist die primäre Registry für Release-Automatisierung, fest angeheftete Bereitstellungen und Herkunftsprüfungen. Dasselbe Release veröffentlicht einen Docker-Hub-Spiegel unter `openclaw/openclaw`:
+    Vorgefertigte Images werden zuerst in der [GitHub Container Registry](https://github.com/openclaw/openclaw/pkgs/container/openclaw) veröffentlicht. GHCR ist die primäre Registry für Release-Automatisierung, fest angeheftete Bereitstellungen und Herkunftsprüfungen. Dasselbe Release veröffentlicht unter `openclaw/openclaw` einen Spiegel auf Docker Hub:
 
     ```bash
     export OPENCLAW_IMAGE="openclaw/openclaw:latest"
     ./scripts/docker/setup.sh
     ```
 
-    Verwenden Sie `ghcr.io/openclaw/openclaw` oder `openclaw/openclaw` und vermeiden Sie inoffizielle Spiegel, da diese weder den Release-Zeitplan noch die Aufbewahrungsrichtlinie von OpenClaw übernehmen. Versionsspezifische Tags umfassen Releases wie `2026.2.26` und Vorabversionen wie `2026.2.26-beta.1`. Stabile Releases aktualisieren `latest` und `main`; Gateway-Releases für den auslaufenden Monat aktualisieren nur `extended-stable`. Zu den Varianten gehören `slim`, `main-slim`, `extended-stable-slim`, `latest-browser`, `main-browser` und `extended-stable-browser`. Die Standard-Images enthalten die Plugins `codex` und `diagnostics-otel`. Eine Variante `-browser` wird außerdem mit integriertem Chromium ausgeliefert. Dies ist für das Tool [Browser in der Sandbox](/de/gateway/sandboxing#sandboxed-browser) nützlich, ohne dass beim ersten Start eine Playwright-Installation erforderlich ist.
+    Verwenden Sie `ghcr.io/openclaw/openclaw` oder `openclaw/openclaw` und vermeiden Sie inoffizielle Spiegel, da diese weder den Release-Zeitplan noch die Aufbewahrungsrichtlinie von OpenClaw übernehmen. Versionsspezifische Tags umfassen Releases wie `2026.2.26` und Vorabversionen wie `2026.2.26-beta.1`. Stabile Releases aktualisieren `latest` und `main`; nachlaufende monatliche Gateway-Releases aktualisieren nur `extended-stable`. Zu den Varianten gehören `slim`, `main-slim`, `extended-stable-slim`, `latest-browser`, `main-browser` und `extended-stable-browser`. Die Standard-Images enthalten die Plugins `codex` und `diagnostics-otel`. Eine Variante `-browser` wird außerdem mit vorinstalliertem Chromium ausgeliefert. Dies ist für das Tool [Browser in der Sandbox](/de/gateway/sandboxing#sandboxed-browser) nützlich, da bei der ersten Ausführung keine Playwright-Installation erforderlich ist.
 
   </Step>
 
   <Step title="Erneute Ausführung ohne Netzwerkzugang">
-    Übertragen und laden Sie das Image auf Offline-Hosts zunächst:
+    Übertragen und laden Sie auf Offline-Hosts zunächst das Image:
 
     ```bash
     docker load -i openclaw-image.tar
@@ -65,26 +65,26 @@ Hosten Sie mehrere Benutzer? Informationen zum Modell mit einer Zelle pro Mandan
     ./scripts/docker/setup.sh --offline
     ```
 
-    `--offline` prüft, ob `OPENCLAW_IMAGE` bereits lokal vorhanden ist, deaktiviert implizite Compose-Abrufe und -Builds und führt anschließend den normalen Ablauf aus: Synchronisierung von `.env`, Korrekturen der Berechtigungen, Onboarding, Synchronisierung der Gateway-Konfiguration und Compose-Start.
+    `--offline` prüft, ob `OPENCLAW_IMAGE` bereits lokal vorhanden ist, deaktiviert implizite Compose-Pulls und -Builds und führt anschließend den normalen Ablauf aus: Synchronisierung von `.env`, Berechtigungskorrekturen, Onboarding, Synchronisierung der Gateway-Konfiguration und Start über Compose.
 
-    Wenn `OPENCLAW_SANDBOX=1`, prüft die Offline-Einrichtung außerdem die konfigurierten standardmäßigen und agentenspezifischen Sandbox-Images auf dem Daemon hinter `OPENCLAW_DOCKER_SOCKET`, einschließlich der Browser-Vertragskennzeichnung auf Docker-basierten Browser-Images. Wenn ein erforderliches Image fehlt oder veraltet ist, wird die Einrichtung beendet, ohne die Sandbox-Konfiguration zu ändern, statt fälschlicherweise einen erfolgreichen Abschluss zu melden.
+    Bei `OPENCLAW_SANDBOX=1` prüft die Offline-Einrichtung außerdem die konfigurierten standardmäßigen und agentenspezifischen Sandbox-Images auf dem Daemon hinter `OPENCLAW_DOCKER_SOCKET`, einschließlich des Browser-Vertragslabels auf Docker-basierten Browser-Images. Wenn ein erforderliches Image fehlt oder veraltet ist, wird die Einrichtung beendet, ohne die Sandbox-Konfiguration zu ändern, statt fälschlicherweise einen erfolgreichen, aber fehlerhaften Zustand zu melden.
 
   </Step>
 
   <Step title="Onboarding abschließen">
     Das Einrichtungsskript führt das Onboarding automatisch aus:
 
-    - fordert Provider-API-Schlüssel an
+    - fordert zur Eingabe der Provider-API-Schlüssel auf
     - generiert ein Gateway-Token und schreibt es nach `.env`
     - erstellt das Verzeichnis für den geheimen Schlüssel des Authentifizierungsprofils
     - startet das Gateway über Docker Compose
 
-    Das Onboarding vor dem Start und Konfigurationsschreibvorgänge werden direkt über `openclaw-gateway` ausgeführt (mit `--no-deps --entrypoint node`), da `openclaw-cli` den Netzwerk-Namespace des Gateways gemeinsam verwendet und erst funktioniert, wenn der Gateway-Container vorhanden ist.
+    Das Onboarding vor dem Start und das Schreiben der Konfiguration erfolgen direkt über `openclaw-gateway` (mit `--no-deps --entrypoint node`), da `openclaw-cli` den Netzwerk-Namespace des Gateways gemeinsam nutzt und erst funktioniert, sobald der Gateway-Container vorhanden ist.
 
   </Step>
 
   <Step title="Control UI öffnen">
-    Öffnen Sie `http://127.0.0.1:18789/` und fügen Sie das in `.env` geschriebene Token unter Settings ein. Wenn Sie den Container auf Passwortauthentifizierung umgestellt haben, verwenden Sie stattdessen dieses Passwort.
+    Öffnen Sie `http://127.0.0.1:18789/` und fügen Sie das nach `.env` geschriebene Token unter Settings ein. Wenn Sie den Container auf Passwortauthentifizierung umgestellt haben, verwenden Sie stattdessen dieses Passwort.
 
     Benötigen Sie die URL erneut?
 
@@ -127,68 +127,56 @@ docker compose run --rm --no-deps --entrypoint node openclaw-gateway \
 docker compose up -d openclaw-gateway
 ```
 
-Der Docker-Kontext schließt `.git` aus. Übergeben Sie die Quellidentität wie
-oben gezeigt als Build-Argumente, damit der Info-Bildschirm des Images den ausgecheckten Commit und
-einen Build-Zeitstempel anzeigt. `scripts/docker/setup.sh` ermittelt und übergibt beide Werte
-automatisch.
+Der Docker-Kontext schließt `.git` aus. Übergeben Sie die Quellidentität wie oben gezeigt als Build-Argumente, damit der Info-Bildschirm des Images den ausgecheckten Commit und einen Build-Zeitstempel anzeigt. `scripts/docker/setup.sh` ermittelt und übergibt beide Werte automatisch.
 
 <Note>
-Führen Sie `docker compose` vom Repository-Stammverzeichnis aus. Wenn Sie `OPENCLAW_EXTRA_MOUNTS` oder `OPENCLAW_HOME_VOLUME` aktiviert haben, schreibt das Einrichtungsskript `docker-compose.extra.yml`; binden Sie es nach allen `docker-compose.override.yml` ein, die Sie selbst verwalten, z. B. `-f docker-compose.yml -f docker-compose.override.yml -f docker-compose.extra.yml`.
+Führen Sie `docker compose` aus dem Repository-Stammverzeichnis aus. Wenn Sie `OPENCLAW_EXTRA_MOUNTS` oder `OPENCLAW_HOME_VOLUME` aktiviert haben, schreibt das Einrichtungsskript `docker-compose.extra.yml`; fügen Sie diese Datei nach jeder selbst verwalteten `docker-compose.override.yml` ein, z. B. `-f docker-compose.yml -f docker-compose.override.yml -f docker-compose.extra.yml`.
 </Note>
 
 ### Container-Images aktualisieren
 
-Wenn Sie das OpenClaw-Image ersetzen, aber denselben eingebundenen Zustand und dieselbe Konfiguration beibehalten, führt das
-neue Gateway vor der Betriebsbereitschaft startsichere Upgrade-Migrationen und eine Plugin-Konvergenz aus.
-Für routinemäßige Image-Aktualisierungen sollte kein separater
-Durchlauf von `openclaw doctor --fix` erforderlich sein.
+Wenn Sie das OpenClaw-Image ersetzen, aber denselben eingebundenen Zustand und dieselbe Konfiguration beibehalten, führt das neue Gateway vor der Bereitschaft startkompatible Upgrade-Migrationen und die Plugin-Konvergenz aus. Routinemäßige Image-Upgrades sollten keinen separaten Durchlauf von `openclaw doctor --fix` erfordern.
 
-Wenn diese Reparaturen beim Start nicht sicher abgeschlossen werden können, wird das Gateway beendet, statt
-einen fehlerfreien Zustand zu melden. Bei einer Neustartrichtlinie können Docker, Podman oder Kubernetes den
-Gateway-Container als wiederholt neu startend anzeigen. Behalten Sie das eingebundene Zustands-Volume bei und führen Sie anschließend
-dasselbe Image einmal mit `openclaw doctor --fix` als Container-Befehl und mit denselben
-Zustands-/Konfigurationseinbindungen aus, die das Gateway verwendet:
+Wenn diese Reparaturen beim Start nicht sicher abgeschlossen werden können, wird das Gateway beendet, statt einen fehlerfreien Zustand zu melden. Bei einer Neustartrichtlinie zeigen Docker, Podman oder Kubernetes möglicherweise an, dass der Gateway-Container wiederholt neu gestartet wird. Behalten Sie das eingebundene Zustands-Volume bei und führen Sie dasselbe Image anschließend einmal mit `openclaw doctor --fix` als Container-Befehl aus. Verwenden Sie dabei dieselben Zustands- und Konfigurationseinbindungen wie das Gateway:
 
 ```bash
 docker run --rm -v <openclaw-state>:/home/node/.openclaw <image> openclaw doctor --fix
 podman run --rm -v <openclaw-state>:/home/node/.openclaw <image> openclaw doctor --fix
 ```
 
-Starten Sie nach Abschluss von doctor den Gateway-Container mit seinem Standardbefehl neu.
-Führen Sie denselben Befehl in Kubernetes in einem einmaligen Job oder Debug-Pod aus, der dasselbe
-PVC eingebunden hat, und starten Sie anschließend das Deployment oder StatefulSet neu.
+Starten Sie den Gateway-Container nach Abschluss von Doctor mit seinem Standardbefehl neu. Führen Sie denselben Befehl in Kubernetes in einem einmaligen Job oder Debug-Pod aus, der dasselbe PVC eingebunden hat, und starten Sie anschließend das Deployment oder StatefulSet neu.
 
 ### Umgebungsvariablen
 
 Optionale Variablen, die von `scripts/docker/setup.sh` (und für den Gateway-Container direkt von `docker-compose.yml`) akzeptiert werden:
 
-| Variable                                        | Zweck                                                                                                           |
+| Variable                                        | Zweck                                                                                                             |
 | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `OPENCLAW_IMAGE`                                | Ein Remote-Image verwenden, statt es lokal zu erstellen                                                                    |
-| `OPENCLAW_IMAGE_APT_PACKAGES`                   | Zusätzliche apt-Pakete während des Builds installieren (durch Leerzeichen getrennt). Veralteter Alias: `OPENCLAW_DOCKER_APT_PACKAGES`           |
-| `OPENCLAW_IMAGE_PIP_PACKAGES`                   | Zusätzliche Python-Pakete während des Builds installieren (durch Leerzeichen getrennt)                                                      |
+| `OPENCLAW_IMAGE`                                | Ein Remote-Image verwenden, statt es lokal zu erstellen                                                           |
+| `OPENCLAW_IMAGE_APT_PACKAGES`                   | Zusätzliche apt-Pakete während des Builds installieren (durch Leerzeichen getrennt). Veralteter Alias: `OPENCLAW_DOCKER_APT_PACKAGES` |
+| `OPENCLAW_IMAGE_PIP_PACKAGES`                   | Zusätzliche Python-Pakete während des Builds installieren (durch Leerzeichen getrennt)                            |
 | `OPENCLAW_EXTENSIONS`                           | Unterstützte ausgewählte Plugins kompilieren/paketieren und ihre Laufzeitabhängigkeiten installieren (durch Kommas oder Leerzeichen getrennte IDs) |
-| `OPENCLAW_DOCKER_BUILD_NODE_OPTIONS`            | Node-Optionen für den lokalen Quell-Build überschreiben (Standard: `--max-old-space-size=8192`)                                |
-| `OPENCLAW_DOCKER_BUILD_TSDOWN_MAX_OLD_SPACE_MB` | tsdown-Heap für den lokalen Quell-Build in MB überschreiben                                                                 |
-| `OPENCLAW_DOCKER_BUILD_SKIP_DTS`                | Ausgabe von Deklarationen bei lokalen Image-Builds nur für die Laufzeit überspringen (Standard: `1`)                                      |
-| `OPENCLAW_INSTALL_BROWSER`                      | Chromium + Xvfb während des Builds in das Image integrieren                                                                 |
-| `OPENCLAW_EXTRA_MOUNTS`                         | Zusätzliche Host-Bind-Mounts (durch Kommas getrennte `source:target[:opts]`)                                                   |
-| `OPENCLAW_HOME_VOLUME`                          | `/home/node` in einem benannten Docker-Volume dauerhaft speichern                                                                     |
-| `OPENCLAW_SANDBOX`                              | Sandbox-Bootstrap aktivieren (`1`, `true`, `yes`, `on`)                                                            |
-| `OPENCLAW_SKIP_ONBOARDING`                      | Den interaktiven Onboarding-Schritt überspringen (`1`, `true`, `yes`, `on`)                                                   |
-| `OPENCLAW_DOCKER_SOCKET`                        | Docker-Socket-Pfad überschreiben                                                                                   |
-| `OPENCLAW_DISABLE_BONJOUR`                      | Bonjour-/mDNS-Ankündigung erzwingen: ein (`0`) oder aus (`1`); siehe [Bonjour / mDNS](#bonjour--mdns)                        |
-| `OPENCLAW_DISABLE_BUNDLED_SOURCE_OVERLAYS`      | Bind-Mount-Overlays für den Quellcode mitgelieferter Plugins deaktivieren                                                                 |
-| `OTEL_EXPORTER_OTLP_ENDPOINT`                   | Gemeinsamer OTLP/HTTP-Collector-Endpunkt für den OpenTelemetry-Export                                                      |
-| `OTEL_EXPORTER_OTLP_*_ENDPOINT`                 | Signalspezifische OTLP-Endpunkte für Traces, Metriken oder Protokolle                                                       |
-| `OTEL_EXPORTER_OTLP_PROTOCOL`                   | OTLP-Protokoll überschreiben. Derzeit wird nur `http/protobuf` unterstützt                                                   |
-| `OTEL_SERVICE_NAME`                             | Für OpenTelemetry-Ressourcen verwendeter Dienstname                                                                     |
-| `OTEL_SEMCONV_STABILITY_OPT_IN`                 | Neueste experimentelle semantische GenAI-Attribute aktivieren                                                           |
-| `OPENCLAW_OTEL_PRELOADED`                       | Start eines zweiten OpenTelemetry SDK überspringen, wenn bereits eines vorgeladen ist                                                    |
+| `OPENCLAW_DOCKER_BUILD_NODE_OPTIONS`            | Node-Optionen für den lokalen Quell-Build überschreiben (Standard: `--max-old-space-size=8192`)                            |
+| `OPENCLAW_DOCKER_BUILD_TSDOWN_MAX_OLD_SPACE_MB` | tsdown-Heap für den lokalen Quell-Build in MB überschreiben                                                       |
+| `OPENCLAW_DOCKER_BUILD_SKIP_DTS`                | Deklarationsausgabe bei lokalen, ausschließlich für die Laufzeit vorgesehenen Image-Builds überspringen (Standard: `1`) |
+| `OPENCLAW_INSTALL_BROWSER`                      | Chromium und Xvfb zum Build-Zeitpunkt in das Image integrieren                                                    |
+| `OPENCLAW_EXTRA_MOUNTS`                         | Zusätzliche Host-Bind-Mounts (durch Kommas getrennte `source:target[:opts]`)                                         |
+| `OPENCLAW_HOME_VOLUME`                          | `/home/node` in einem benannten Docker-Volume dauerhaft speichern                                          |
+| `OPENCLAW_SANDBOX`                              | Sandbox-Bootstrap aktivieren (`1`, `true`, `yes`, `on`)    |
+| `OPENCLAW_SKIP_ONBOARDING`                      | Interaktiven Onboarding-Schritt überspringen (`1`, `true`, `yes`, `on`) |
+| `OPENCLAW_DOCKER_SOCKET`                        | Pfad zum Docker-Socket überschreiben                                                                               |
+| `OPENCLAW_DISABLE_BONJOUR`                      | Bonjour-/mDNS-Ankündigung erzwingen: ein (`0`) oder aus (`1`); siehe [Bonjour / mDNS](#bonjour--mdns) |
+| `OPENCLAW_DISABLE_BUNDLED_SOURCE_OVERLAYS`      | Bind-Mount-Overlays für Quellen gebündelter Plugins deaktivieren                                                  |
+| `OTEL_EXPORTER_OTLP_ENDPOINT`                   | Gemeinsamer OTLP/HTTP-Collector-Endpunkt für den OpenTelemetry-Export                                             |
+| `OTEL_EXPORTER_OTLP_*_ENDPOINT`                 | Signalspezifische OTLP-Endpunkte für Traces, Metriken oder Protokolle                                             |
+| `OTEL_EXPORTER_OTLP_PROTOCOL`                   | OTLP-Protokoll überschreiben. Derzeit wird nur `http/protobuf` unterstützt                                    |
+| `OTEL_SERVICE_NAME`                             | Für OpenTelemetry-Ressourcen verwendeter Dienstname                                                               |
+| `OTEL_SEMCONV_STABILITY_OPT_IN`                 | Neueste experimentelle semantische GenAI-Attribute aktivieren                                                     |
+| `OPENCLAW_OTEL_PRELOADED`                       | Start eines zweiten OpenTelemetry SDK überspringen, wenn bereits eines vorgeladen ist                            |
 
-Das offizielle Image enthält kein Homebrew. Während des Onboardings blendet OpenClaw in einem Linux-Container ohne `brew` Installer für reine brew-Abhängigkeiten von Skills aus; stellen Sie diese Abhängigkeiten über ein benutzerdefiniertes Image bereit oder installieren Sie sie manuell. Verwenden Sie `OPENCLAW_IMAGE_APT_PACKAGES` für als Debian-Pakete verfügbare Abhängigkeiten und `OPENCLAW_IMAGE_PIP_PACKAGES` für Python-Abhängigkeiten (führt `python3 -m pip install --break-system-packages` während des Builds aus; fixieren Sie daher Versionen und verwenden Sie nur Indizes, denen Sie vertrauen).
+Das offizielle Image enthält kein Homebrew. Während des Onboardings blendet OpenClaw in einem Linux-Container ohne `brew` Installationsprogramme für reine brew-Abhängigkeiten von Skills aus. Stellen Sie diese Abhängigkeiten über ein benutzerdefiniertes Image bereit oder installieren Sie sie manuell. Verwenden Sie `OPENCLAW_IMAGE_APT_PACKAGES` für als Debian-Pakete verfügbare Abhängigkeiten und `OPENCLAW_IMAGE_PIP_PACKAGES` für Python-Abhängigkeiten (führt `python3 -m pip install --break-system-packages` während des Builds aus; legen Sie daher Versionen fest und verwenden Sie nur vertrauenswürdige Paketindizes).
 
-Wenn Docker `ResourceExhausted` oder `cannot allocate memory` meldet oder während `tsdown` abbricht, erhöhen Sie das Speicherlimit des Docker-Builders oder versuchen Sie es erneut mit kleineren expliziten Heaps:
+Wenn Docker `ResourceExhausted` oder `cannot allocate memory` meldet oder während `tsdown` abbricht, erhöhen Sie das Speicherlimit des Docker-Builders oder wiederholen Sie den Vorgang mit kleineren, explizit angegebenen Heaps:
 
 ```bash
 OPENCLAW_DOCKER_BUILD_NODE_OPTIONS=--max-old-space-size=4096 OPENCLAW_DOCKER_BUILD_TSDOWN_MAX_OLD_SPACE_MB=4096
@@ -200,17 +188,17 @@ OPENCLAW_DOCKER_BUILD_NODE_OPTIONS=--max-old-space-size=4096 OPENCLAW_DOCKER_BUI
 vorhandene Namen von Quellverzeichnissen werden ebenfalls akzeptiert, wenn sie abweichen. Der Docker-
 Build löst die Auswahl einmalig in Quellverzeichnisse auf, installiert Produktions-
 abhängigkeiten und kompiliert, wenn ein ausgewähltes Plugin separat mit
-`openclaw.build.bundledDist: false` veröffentlicht wird, dessen Laufzeit in die gebündelte Root-
-Distribution. Diese reine Docker-Paketierung ändert den npm- oder ClawHub-
+`openclaw.build.bundledDist: false` veröffentlicht wird, dessen Runtime in die gebündelte Root-
+Distribution. Diese ausschließlich für Docker vorgesehene Paketierung ändert den npm- oder ClawHub-
 Artefaktvertrag des Plugins nicht. Unbekannte, ungültige oder mehrdeutige IDs lassen den Image-Build fehlschlagen.
-Bekannte reine Abhängigkeits-/Quell-IDs behalten ihr bestehendes Staging von Quellen und Abhängigkeiten,
-ohne einen kompilierten Root-Distributionseintrag zu erhalten. Ein ausgewähltes Plugin mit
+Bekannte reine Abhängigkeits-/Quell-IDs behalten ihr bestehendes Quell- und Abhängigkeits-
+Staging, ohne einen kompilierten Root-Distributionseintrag zu erhalten. Ein ausgewähltes Plugin mit
 vereinheitlichten Build-Einträgen muss erfolgreich kompiliert werden; nicht ausgewählte externe Plugin-
-Quellen und Laufzeitausgaben werden entfernt.
+Quellen und Runtime-Ausgaben werden entfernt.
 
-Diese Befehle erstellen beispielsweise separate, eigenständige
-FakeCo-Gateway-Images für mehrere Architekturen für ClickClack, Slack und Microsoft Teams. ClawRouter ist
-bereits Teil der Root-Laufzeit von OpenClaw, daher wählt das ClickClack-Image nur
+Diese Befehle erstellen beispielsweise separate, eigenständige Multi-Architektur-
+Gateway-Images von FakeCo für ClickClack, Slack und Microsoft Teams. ClawRouter ist
+bereits Teil der Root-Runtime von OpenClaw, daher wählt das ClickClack-Image nur
 `clickclack` aus. Das explizit leere Browserargument hält das Standard-Image frei
 von Chromium:
 
@@ -241,10 +229,10 @@ build_gateway_image teams msteams
 ```
 
 Verwenden Sie `--platform linux/arm64 --load` oder `--platform linux/amd64 --load` für einen
-einzelnen nativen lokalen Build. Ausgaben für mehrere Plattformen und angehängte SBOM-/Provenienz-
-Nachweise erfordern eine Registry oder eine andere Buildx-Ausgabe, die Attestierungen beibehält. Prüfen
+einzelnen nativen lokalen Build. Multi-Plattform-Ausgaben und angehängte SBOM-/Provenienz-
+Nachweise erfordern eine Registry oder eine andere Buildx-Ausgabe, die Attestierungen bewahrt. Prüfen
 Sie nach dem Push das Manifest und stellen Sie den unveränderlichen Digest statt des
-veränderlichen Quell-SHA-Tags bereit:
+veränderlichen Source-SHA-Tags bereit:
 
 ```bash
 docker buildx imagetools inspect \
@@ -258,11 +246,11 @@ separates x86_64-Appliance-Archiv, das einen OpenClaw-npm-Tarball enthält, und 
 die Digests von Node, Archiv und Manifest. Erstellen Sie diese Appliance unabhängig
 aus derselben übernommenen OpenClaw-Quelle.
 
-Um gebündelte Plugin-Quellen mit einem paketierten Image zu testen, mounten Sie ein Plugin-Quellverzeichnis über dessen paketierten Quellpfad, z. B. `OPENCLAW_EXTRA_MOUNTS=/path/to/fork/extensions/synology-chat:/app/extensions/synology-chat:ro`. Dadurch wird das entsprechende kompilierte `/app/dist/extensions/synology-chat`-Bundle für dieselbe Plugin-ID überschrieben.
+Um gebündelte Plugin-Quellen mit einem paketierten Image zu testen, mounten Sie ein Plugin-Quellverzeichnis über dessen paketierten Quellpfad, z. B. `OPENCLAW_EXTRA_MOUNTS=/path/to/fork/extensions/synology-chat:/app/extensions/synology-chat:ro`. Dadurch wird das passende kompilierte `/app/dist/extensions/synology-chat`-Bundle für dieselbe Plugin-ID überschrieben.
 
 ### Beobachtbarkeit
 
-Der OpenTelemetry-Export erfolgt ausgehend vom Gateway-Container zu Ihrem OTLP-Collector; dafür ist kein veröffentlichter Docker-Port erforderlich. So nehmen Sie den gebündelten Exporter in ein lokal erstelltes Image auf:
+Der OpenTelemetry-Export erfolgt ausgehend vom Gateway-Container zu Ihrem OTLP-Collector; dafür muss kein Docker-Port veröffentlicht werden. So nehmen Sie den gebündelten Exporter in ein lokal erstelltes Image auf:
 
 ```bash
 export OPENCLAW_EXTENSIONS="diagnostics-otel"
@@ -271,7 +259,7 @@ export OTEL_SERVICE_NAME="openclaw-gateway"
 ./scripts/docker/setup.sh
 ```
 
-Offizielle vorgefertigte Images enthalten `diagnostics-otel` bereits; installieren Sie `clawhub:@openclaw/diagnostics-otel` nur selbst, wenn Sie es entfernt haben. Um den Export zu aktivieren, erlauben und aktivieren Sie das Plugin `diagnostics-otel` in der Konfiguration und setzen Sie anschließend `diagnostics.otel.enabled=true` (das vollständige Beispiel finden Sie unter [OpenTelemetry-Export](/de/gateway/opentelemetry)). Authentifizierungsheader für den Collector werden über `diagnostics.otel.headers` und nicht über Docker-Umgebungsvariablen übergeben.
+Offizielle vorgefertigte Images enthalten `diagnostics-otel` bereits; installieren Sie `clawhub:@openclaw/diagnostics-otel` nur selbst, wenn Sie es entfernt haben. Um den Export zu aktivieren, erlauben und aktivieren Sie das Plugin `diagnostics-otel` in der Konfiguration und legen Sie anschließend `diagnostics.otel.enabled=true` fest (das vollständige Beispiel finden Sie unter [OpenTelemetry-Export](/de/gateway/opentelemetry)). Authentifizierungsheader des Collectors werden über `diagnostics.otel.headers` und nicht über Docker-Umgebungsvariablen übergeben.
 
 Prometheus-Metriken verwenden den bereits veröffentlichten Gateway-Port. Installieren Sie `clawhub:@openclaw/diagnostics-prometheus`, aktivieren Sie das Plugin `diagnostics-prometheus` und führen Sie dann das Scraping durch:
 
@@ -279,20 +267,20 @@ Prometheus-Metriken verwenden den bereits veröffentlichten Gateway-Port. Instal
 http://<gateway-host>:18789/api/diagnostics/prometheus
 ```
 
-Die Route ist durch die Gateway-Authentifizierung geschützt; legen Sie keinen separaten öffentlichen Port `/metrics` oder einen nicht authentifizierten Reverse-Proxy-Pfad offen. Siehe [Prometheus-Metriken](/de/gateway/prometheus).
+Die Route ist durch die Gateway-Authentifizierung geschützt; stellen Sie keinen separaten öffentlichen Port `/metrics` und keinen nicht authentifizierten Reverse-Proxy-Pfad bereit. Siehe [Prometheus-Metriken](/de/gateway/prometheus).
 
 ### Zustandsprüfungen
 
 Container-Prüfendpunkte (keine Authentifizierung erforderlich):
 
 ```bash
-curl -fsS http://127.0.0.1:18789/healthz   # Aktivität
+curl -fsS http://127.0.0.1:18789/healthz   # Verfügbarkeit
 curl -fsS http://127.0.0.1:18789/readyz     # Bereitschaft
 ```
 
-Der integrierte `HEALTHCHECK` des Images fragt `/healthz` ab; wiederholte Fehler markieren den Container als `unhealthy`, sodass Orchestratoren ihn neu starten oder ersetzen können.
+Das im Image integrierte `HEALTHCHECK` pingt `/healthz`; wiederholte Fehler markieren den Container als `unhealthy`, sodass Orchestratoren ihn neu starten oder ersetzen können.
 
-Authentifizierte detaillierte Zustandsübersicht:
+Authentifizierte detaillierte Zustandsmomentaufnahme:
 
 ```bash
 docker compose exec openclaw-gateway node dist/index.js health --token "$OPENCLAW_GATEWAY_TOKEN"
@@ -306,15 +294,15 @@ docker compose exec openclaw-gateway node dist/index.js health --token "$OPENCLA
 - `loopback`: Nur Prozesse innerhalb des Netzwerk-Namensraums des Containers können das Gateway direkt erreichen.
 
 <Note>
-Verwenden Sie Bindungsmoduswerte in `gateway.bind` (`lan` / `loopback` / `custom` / `tailnet` / `auto`) und keine Host-Aliasse wie `0.0.0.0` oder `127.0.0.1`.
+Verwenden Sie Bind-Modus-Werte in `gateway.bind` (`lan` / `loopback` / `custom` / `tailnet` / `auto`), nicht Host-Aliasse wie `0.0.0.0` oder `127.0.0.1`.
 </Note>
 
 ### Lokale Provider auf dem Host
 
 Innerhalb des Containers ist `127.0.0.1` der Container selbst, nicht der Host. Verwenden Sie `host.docker.internal` für Provider, die auf dem Host ausgeführt werden:
 
-| Provider  | Standard-URL auf dem Host | Docker-Einrichtungs-URL              |
-| --------- | ------------------------- | ------------------------------------ |
+| Provider  | Standard-URL des Hosts   | Docker-Einrichtungs-URL             |
+| --------- | ------------------------ | ----------------------------------- |
 | LM Studio | `http://127.0.0.1:1234`  | `http://host.docker.internal:1234`  |
 | Ollama    | `http://127.0.0.1:11434` | `http://host.docker.internal:11434` |
 
@@ -329,9 +317,9 @@ Verwenden Sie Ihre eigene Compose-Datei oder `docker run`? Fügen Sie dieselbe Z
 
 ### Claude-CLI-Backend in Docker
 
-Das offizielle Image installiert Claude Code nicht vorab. Installieren Sie es und melden Sie sich innerhalb des Benutzers `node` des Containers an. Persistieren Sie anschließend dieses Container-Home-Verzeichnis, damit Image-Upgrades weder die Binärdatei noch den Authentifizierungsstatus löschen.
+Das offizielle Image installiert Claude Code nicht vor. Installieren Sie es und melden Sie sich innerhalb des Container-Benutzers `node` an. Persistieren Sie anschließend das Home-Verzeichnis des Containers, damit Image-Upgrades weder die Binärdatei noch den Authentifizierungsstatus löschen.
 
-Aktivieren Sie für eine Neuinstallation ein persistentes Volume `/home/node`, bevor Sie die Einrichtung ausführen:
+Aktivieren Sie bei einer Neuinstallation ein persistentes `/home/node`-Volume, bevor Sie die Einrichtung ausführen:
 
 ```bash
 export OPENCLAW_IMAGE="ghcr.io/openclaw/openclaw:latest"
@@ -339,7 +327,7 @@ export OPENCLAW_HOME_VOLUME="openclaw_home"
 ./scripts/docker/setup.sh
 ```
 
-Stoppen Sie bei einer bestehenden Installation zunächst den Stack und laden Sie die aktuellen Werte aus `.env` neu — das Einrichtungsskript schreibt `.env` immer anhand der aktuellen Shell und der Standardwerte neu; es liest die Datei nicht selbstständig:
+Stoppen Sie bei einer vorhandenen Installation zunächst den Stack und laden Sie die aktuellen Werte aus `.env` neu. Das Einrichtungsskript schreibt `.env` stets anhand der aktuellen Shell und der Standardwerte neu; es liest die Datei nicht selbstständig:
 
 ```bash
 set -a
@@ -349,7 +337,7 @@ export OPENCLAW_HOME_VOLUME="${OPENCLAW_HOME_VOLUME:-openclaw_home}"
 ./scripts/docker/setup.sh
 ```
 
-Falls `.env` Werte enthält, die Ihre Shell nicht einlesen kann, exportieren Sie zunächst manuell erneut, worauf Sie angewiesen sind (`OPENCLAW_IMAGE`, Ports, Bindungsmodus, benutzerdefinierte Pfade, `OPENCLAW_EXTRA_MOUNTS`, Sandbox, Onboarding überspringen). Das generierte Overlay mountet das Home-Volume sowohl für `openclaw-gateway` als auch für `openclaw-cli`; führen Sie die verbleibenden Befehle mit diesem Overlay aus (und zuerst mit `docker-compose.override.yml`, falls Sie eines verwenden):
+Falls `.env` Werte enthält, die Ihre Shell nicht einlesen kann, exportieren Sie zunächst manuell erneut, worauf Sie angewiesen sind (`OPENCLAW_IMAGE`, Ports, Bind-Modus, benutzerdefinierte Pfade, `OPENCLAW_EXTRA_MOUNTS`, Sandbox, Onboarding überspringen). Das erzeugte Overlay mountet das Home-Volume sowohl für `openclaw-gateway` als auch für `openclaw-cli`; führen Sie die verbleibenden Befehle mit diesem Overlay aus (und zuerst mit `docker-compose.override.yml`, falls Sie eines verwenden):
 
 ```bash
 docker compose -f docker-compose.yml -f docker-compose.extra.yml run --rm \
@@ -361,7 +349,7 @@ Das native Installationsprogramm schreibt `claude` nach `/home/node/.local/bin/c
 OpenClaw-Image enthält `/home/node/.local/bin` in `PATH`, sodass das gebündelte
 Anthropic-Plugin es ohne Überschreibung der Adapterkonfiguration auflöst.
 
-Melden Sie sich an und prüfen Sie die Installation aus demselben persistenten Home-Verzeichnis:
+Melden Sie sich an und überprüfen Sie die Installation aus demselben persistenten Home-Verzeichnis:
 
 ```bash
 docker compose -f docker-compose.yml -f docker-compose.extra.yml run --rm \
@@ -382,38 +370,38 @@ docker compose -f docker-compose.yml -f docker-compose.extra.yml run --rm \
   openclaw-cli agent \
   --agent main \
   --model claude-cli/claude-sonnet-4-6 \
-  --message "Begrüßen Sie mich aus der Docker Claude CLI"
+  --message "Hallo von der Docker Claude CLI"
 ```
 
-`OPENCLAW_HOME_VOLUME` persistiert die native Installation unter `/home/node/.local/bin` und `/home/node/.local/share/claude` sowie die Einstellungen/Authentifizierung von Claude Code unter `/home/node/.claude` und `/home/node/.claude.json`. Nur `/home/node/.openclaw` zu persistieren, reicht nicht aus; wenn Sie `OPENCLAW_EXTRA_MOUNTS` statt eines Home-Volumes verwenden, mounten Sie alle diese Claude-Pfade in beide Dienste.
+`OPENCLAW_HOME_VOLUME` persistiert die native Installation unter `/home/node/.local/bin` und `/home/node/.local/share/claude` sowie die Einstellungen/Authentifizierung von Claude Code unter `/home/node/.claude` und `/home/node/.claude.json`. Nur `/home/node/.openclaw` zu persistieren reicht nicht aus; wenn Sie `OPENCLAW_EXTRA_MOUNTS` statt eines Home-Volumes verwenden, mounten Sie alle diese Claude-Pfade in beide Dienste.
 
 <Note>
-Bevorzugen Sie für gemeinsam genutzte Produktionsautomatisierung oder vorhersehbare Anthropic-Abrechnung den Anthropic-API-Schlüssel-Pfad. Die Wiederverwendung der Claude CLI richtet sich nach der installierten Version, der Kontoanmeldung, der Abrechnung und dem Aktualisierungsverhalten von Claude Code.
+Für gemeinsam genutzte Produktionsautomatisierung oder vorhersehbare Anthropic-Abrechnung sollten Sie den Anthropic-API-Schlüsselpfad bevorzugen. Die Wiederverwendung der Claude CLI folgt der installierten Version, der Kontoanmeldung, der Abrechnung und dem Aktualisierungsverhalten von Claude Code.
 </Note>
 
 ### Bonjour / mDNS
 
-Docker-Bridge-Netzwerke leiten Bonjour-/mDNS-Multicast (`224.0.0.251:5353`) üblicherweise nicht zuverlässig weiter. Wenn `OPENCLAW_DISABLE_BONJOUR` nicht gesetzt ist, deaktiviert das gebündelte Bonjour-Plugin die LAN-Ankündigung automatisch, sobald es erkennt, dass es in einem Container ausgeführt wird. Dadurch gerät es nicht in eine Absturzschleife, während es wiederholt Multicast sendet, das von der Bridge verworfen wird. Setzen Sie `OPENCLAW_DISABLE_BONJOUR=1`, um die Funktion unabhängig von der Erkennung zwangsweise zu deaktivieren, oder `0`, um sie zwangsweise zu aktivieren (nur bei Host-Netzwerken, macvlan oder einem anderen Netzwerk, in dem mDNS-Multicast nachweislich funktioniert).
+Docker-Bridge-Netzwerke leiten Bonjour-/mDNS-Multicast (`224.0.0.251:5353`) üblicherweise nicht zuverlässig weiter. Wenn `OPENCLAW_DISABLE_BONJOUR` nicht festgelegt ist, deaktiviert das gebündelte Bonjour-Plugin die LAN-Ankündigung automatisch, sobald es erkennt, dass es in einem Container ausgeführt wird. Dadurch gerät es nicht in eine Absturzschleife, während es wiederholt versucht, Multicast-Daten zu senden, die von der Bridge verworfen werden. Legen Sie `OPENCLAW_DISABLE_BONJOUR=1` fest, um es unabhängig von der Erkennung zu deaktivieren, oder `0`, um es zu aktivieren (nur bei Host-Netzwerken, macvlan oder einem anderen Netzwerk, in dem mDNS-Multicast nachweislich funktioniert).
 
-Verwenden Sie andernfalls für Docker-Hosts die veröffentlichte Gateway-URL, Tailscale oder Wide-Area-DNS-SD. Hinweise zu Fallstricken und zur Fehlerbehebung finden Sie unter [Bonjour-Erkennung](/de/gateway/bonjour).
+Verwenden Sie andernfalls die veröffentlichte Gateway-URL, Tailscale oder Wide-Area-DNS-SD für Docker-Hosts. Hinweise zu Fallstricken und zur Fehlerbehebung finden Sie unter [Bonjour-Erkennung](/de/gateway/bonjour).
 
-### Speicher und Persistenz
+### Speicherung und Persistenz
 
-Docker Compose bind-mountet `OPENCLAW_CONFIG_DIR` nach `/home/node/.openclaw`, `OPENCLAW_WORKSPACE_DIR` nach `/home/node/.openclaw/workspace` und `OPENCLAW_AUTH_PROFILE_SECRET_DIR` nach `/home/node/.config/openclaw`, sodass diese Pfade einen Container-Austausch überstehen. Wenn eine Variable nicht gesetzt ist, greift `docker-compose.yml` auf einen Pfad unter `${HOME}` zurück oder auf `/tmp`, falls `HOME` selbst fehlt. Dadurch erzeugt `docker compose up` in Basissystemen niemals eine Volume-Spezifikation mit leerer Quelle.
+Docker Compose bind-mountet `OPENCLAW_CONFIG_DIR` nach `/home/node/.openclaw`, `OPENCLAW_WORKSPACE_DIR` nach `/home/node/.openclaw/workspace` und `OPENCLAW_AUTH_PROFILE_SECRET_DIR` nach `/home/node/.config/openclaw`, sodass diese Pfade einen Containeraustausch überdauern. Wenn eine Variable nicht festgelegt ist, greift `docker-compose.yml` ersatzweise auf einen Pfad unter `${HOME}` zurück oder auf `/tmp`, falls `HOME` selbst fehlt, sodass `docker compose up` in einfachen Umgebungen niemals eine Volume-Spezifikation mit leerer Quelle erzeugt.
 
 Dieses gemountete Konfigurationsverzeichnis enthält:
 
 - `openclaw.json` für die Verhaltenskonfiguration
 - `agents/<agentId>/agent/auth-profiles.json` für gespeicherte OAuth-/API-Schlüssel-Authentifizierung von Providern
-- `.env` für umgebungsbasierte Laufzeit-Secrets wie `OPENCLAW_GATEWAY_TOKEN`
+- `.env` für umgebungsbasierte Runtime-Geheimnisse wie `OPENCLAW_GATEWAY_TOKEN`
 
-Das Secret-Verzeichnis des Authentifizierungsprofils speichert den lokalen Verschlüsselungsschlüssel für das Tokenmaterial OAuth-basierter Authentifizierungsprofile. Bewahren Sie es zusammen mit dem Status Ihres Docker-Hosts auf, jedoch getrennt von `OPENCLAW_CONFIG_DIR`.
+Das Geheimnisverzeichnis des Authentifizierungsprofils speichert den lokalen Verschlüsselungsschlüssel für das Tokenmaterial OAuth-basierter Authentifizierungsprofile. Bewahren Sie es zusammen mit dem Zustand Ihres Docker-Hosts auf, jedoch getrennt von `OPENCLAW_CONFIG_DIR`.
 
-Installierte herunterladbare Plugins speichern ihren Paketstatus unter dem gemounteten OpenClaw-Home-Verzeichnis, sodass Installationsdatensätze und Paketstammverzeichnisse einen Container-Austausch überstehen; der Gateway-Start erzeugt die Abhängigkeitsbäume gebündelter Plugins nicht neu.
+Installierte herunterladbare Plugins speichern ihren Paketzustand unter dem gemounteten OpenClaw-Home-Verzeichnis, sodass Installationsdatensätze und Paket-Roots einen Containeraustausch überdauern; beim Start des Gateways werden die Abhängigkeitsbäume gebündelter Plugins nicht neu erzeugt.
 
-Vollständige Einzelheiten zur VM-Persistenz finden Sie unter [Docker-VM-Laufzeit – Was wo persistiert wird](/de/install/docker-vm-runtime#what-persists-where).
+Ausführliche Informationen zur vollständigen VM-Persistenz finden Sie unter [Docker-VM-Runtime – Wo welche Daten persistiert werden](/de/install/docker-vm-runtime#what-persists-where).
 
-**Schwerpunkte des Speicherwachstums:** `media/`, agentenspezifische SQLite-Datenbanken, ältere JSONL-Transkripte von Sitzungen, die gemeinsam genutzte SQLite-Statusdatenbank, Paketstammverzeichnisse installierter Plugins und rotierende Dateiprotokolle unter `/tmp/openclaw/`.
+**Schwerpunkte des Speicherplatzwachstums:** `media/`, agentenspezifische SQLite-Datenbanken, ältere JSONL-Transkripte von Sitzungen, die gemeinsam genutzte SQLite-Zustandsdatenbank, Paket-Roots installierter Plugins und rotierende Dateiprotokolle unter `/tmp/openclaw/`.
 
 ### Shell-Hilfsfunktionen (optional)
 
@@ -424,7 +412,7 @@ mkdir -p ~/.clawdock && curl -sL https://raw.githubusercontent.com/openclaw/open
 echo 'source ~/.clawdock/clawdock-helpers.sh' >> ~/.zshrc && source ~/.zshrc
 ```
 
-Wenn Sie über den älteren Pfad `scripts/shell-helpers/clawdock-helpers.sh` installiert haben, führen Sie den obigen Befehl erneut aus, damit Ihre lokale Hilfsfunktion dem aktuellen Speicherort folgt. Verwenden Sie anschließend `clawdock-start`, `clawdock-stop`, `clawdock-dashboard` usw. (führen Sie `clawdock-help` aus, um die vollständige Liste anzuzeigen).
+Wenn Sie die Installation über den älteren Pfad `scripts/shell-helpers/clawdock-helpers.sh` vorgenommen haben, führen Sie den obigen Befehl erneut aus, damit Ihre lokale Hilfsfunktion dem aktuellen Speicherort folgt. Verwenden Sie anschließend `clawdock-start`, `clawdock-stop`, `clawdock-dashboard` usw. (führen Sie `clawdock-help` aus, um die vollständige Liste anzuzeigen).
 
 <AccordionGroup>
   <Accordion title="Agent-Sandbox für Docker-Gateway aktivieren">
@@ -433,7 +421,7 @@ Wenn Sie über den älteren Pfad `scripts/shell-helpers/clawdock-helpers.sh` ins
     ./scripts/docker/setup.sh
     ```
 
-    Benutzerdefinierter Socket-Pfad (z. B. rootloses Docker):
+    Benutzerdefinierter Socket-Pfad (z. B. rootless Docker):
 
     ```bash
     export OPENCLAW_SANDBOX=1
@@ -456,11 +444,11 @@ Wenn Sie über den älteren Pfad `scripts/shell-helpers/clawdock-helpers.sh` ins
   </Accordion>
 
   <Accordion title="Sicherheitshinweis zum gemeinsam genutzten Netzwerk">
-    `openclaw-cli` verwendet `network_mode: "service:openclaw-gateway"`, damit CLI-Befehle den Gateway über `127.0.0.1` erreichen können. Behandeln Sie dies als gemeinsame Vertrauensgrenze. Die Compose-Konfiguration entfernt `NET_RAW`/`NET_ADMIN` und aktiviert `no-new-privileges` sowohl für `openclaw-gateway` als auch für `openclaw-cli`.
+    `openclaw-cli` verwendet `network_mode: "service:openclaw-gateway"`, damit CLI-Befehle das Gateway über `127.0.0.1` erreichen können. Behandeln Sie dies als gemeinsame Vertrauensgrenze. Die Compose-Konfiguration entfernt `NET_RAW`/`NET_ADMIN` und aktiviert `no-new-privileges` sowohl für `openclaw-gateway` als auch für `openclaw-cli`.
   </Accordion>
 
   <Accordion title="Docker-Desktop-DNS-Fehler in openclaw-cli">
-    Bei einigen Docker-Desktop-Konfigurationen schlagen DNS-Abfragen aus dem `openclaw-cli`-Sidecar im gemeinsam genutzten Netzwerk fehl, nachdem `NET_RAW` entfernt wurde. Dies äußert sich bei npm-gestützten Befehlen wie `openclaw plugins install` als `EAI_AGAIN`. Verwenden Sie für den normalen Betrieb weiterhin die standardmäßige gehärtete Compose-Datei. Die folgende Überschreibung stellt die Standard-Capabilities nur für den Container `openclaw-cli` wieder her — verwenden Sie sie für den einmaligen Befehl, der Zugriff auf die Registry benötigt, nicht als Standardaufruf:
+    Bei einigen Docker-Desktop-Konfigurationen schlagen DNS-Abfragen aus dem Sidecar `openclaw-cli` im gemeinsam genutzten Netzwerk fehl, nachdem `NET_RAW` entfernt wurde. Dies zeigt sich bei npm-gestützten Befehlen wie `openclaw plugins install` als `EAI_AGAIN`. Verwenden Sie für den normalen Betrieb weiterhin die standardmäßige gehärtete Compose-Datei. Die folgende Überschreibung stellt die Standard-Capabilities nur für den Container `openclaw-cli` wieder her — verwenden Sie sie für den einmaligen Befehl, der Zugriff auf die Registry benötigt, nicht als Standardaufruf:
 
     ```bash
     printf '%s\n' \
@@ -472,23 +460,23 @@ Wenn Sie über den älteren Pfad `scripts/shell-helpers/clawdock-helpers.sh` ins
     docker compose -f docker-compose.yml -f docker-compose.cli-no-dropped-caps.local.yml run --rm openclaw-cli plugins install <package>
     ```
 
-    Wenn Sie bereits einen langlebigen `openclaw-cli`-Container erstellt haben, erstellen Sie ihn mit derselben Überschreibung neu — `docker compose exec`/`docker exec` können die Linux-Capabilities eines bereits erstellten Containers nicht ändern.
+    Wenn Sie bereits einen langlebigen Container `openclaw-cli` erstellt haben, erstellen Sie ihn mit derselben Überschreibung neu — `docker compose exec`/`docker exec` können die Linux-Capabilities eines bereits erstellten Containers nicht ändern.
 
   </Accordion>
 
   <Accordion title="Berechtigungen und EACCES">
-    Das Image wird als `node` (UID 1000) ausgeführt. Wenn bei `/home/node/.openclaw` Berechtigungsfehler auftreten, stellen Sie sicher, dass Ihre Bind-Mounts auf dem Host UID 1000 gehören:
+    Das Image wird als `node` (UID 1000) ausgeführt. Wenn bei `/home/node/.openclaw` Berechtigungsfehler auftreten, stellen Sie sicher, dass Ihre Bind-Mounts auf dem Host der UID 1000 gehören:
 
     ```bash
     sudo chown -R 1000:1000 /path/to/openclaw-config /path/to/openclaw-workspace
     ```
 
-    Dieselbe Abweichung kann sich als `blocked plugin candidate: suspicious ownership (... uid=1000, expected uid=0 or root)`, gefolgt von `plugin present but blocked`, zeigen — die Prozess-UID und der Eigentümer des eingebundenen Plugin-Verzeichnisses stimmen nicht überein. Führen Sie den Prozess vorzugsweise mit der standardmäßigen UID 1000 aus und korrigieren Sie die Eigentümerschaft des Bind-Mounts. Ändern Sie die Eigentümerschaft von `/path/to/openclaw-config/npm` nur dann auf `root:root`, wenn Sie OpenClaw absichtlich dauerhaft als root ausführen.
+    Dieselbe Abweichung kann sich als `blocked plugin candidate: suspicious ownership (... uid=1000, expected uid=0 or root)`, gefolgt von `plugin present but blocked`, zeigen — die Prozess-UID und der Eigentümer des eingebundenen Plugin-Verzeichnisses stimmen nicht überein. Führen Sie OpenClaw vorzugsweise mit der standardmäßigen UID 1000 aus und korrigieren Sie die Eigentümerschaft des Bind-Mounts. Ändern Sie den Eigentümer von `/path/to/openclaw-config/npm` nur dann zu `root:root`, wenn Sie OpenClaw absichtlich dauerhaft als root ausführen.
 
   </Accordion>
 
-  <Accordion title="Schnellere Neuerstellungen">
-    Ordnen Sie Ihr Dockerfile so an, dass Abhängigkeits-Layer zwischengespeichert werden und `pnpm install` nicht erneut ausgeführt wird, solange sich die Lockfiles nicht ändern:
+  <Accordion title="Schnellere Neubuilds">
+    Ordnen Sie Ihr Dockerfile so an, dass Abhängigkeits-Layer zwischengespeichert werden und `pnpm install` nur erneut ausgeführt wird, wenn sich Lockfiles ändern:
 
     ```dockerfile
     FROM node:24-bookworm
@@ -513,43 +501,43 @@ Wenn Sie über den älteren Pfad `scripts/shell-helpers/clawdock-helpers.sh` ins
   <Accordion title="Container-Optionen für fortgeschrittene Benutzer">
     Das Standard-Image priorisiert Sicherheit und wird als Nicht-root-Benutzer `node` ausgeführt. Für einen umfangreicher ausgestatteten Container:
 
-    1. **`/home/node` persistent speichern**: `export OPENCLAW_HOME_VOLUME="openclaw_home"`
-    2. **Systemabhängigkeiten integrieren**: `export OPENCLAW_IMAGE_APT_PACKAGES="git curl jq"`
-    3. **Python-Abhängigkeiten integrieren**: `export OPENCLAW_IMAGE_PIP_PACKAGES="requests==2.32.5 humanize==4.14.0"`
-    4. **Playwright Chromium integrieren**: `export OPENCLAW_INSTALL_BROWSER=1`, oder verwenden Sie das offizielle Image-Tag `-browser`
+    1. **`/home/node` dauerhaft speichern**: `export OPENCLAW_HOME_VOLUME="openclaw_home"`
+    2. **Systemabhängigkeiten in das Image integrieren**: `export OPENCLAW_IMAGE_APT_PACKAGES="git curl jq"`
+    3. **Python-Abhängigkeiten in das Image integrieren**: `export OPENCLAW_IMAGE_PIP_PACKAGES="requests==2.32.5 humanize==4.14.0"`
+    4. **Playwright Chromium in das Image integrieren**: `export OPENCLAW_INSTALL_BROWSER=1`, oder verwenden Sie das offizielle Image-Tag `-browser`
     5. **Oder Playwright-Browser in einem persistenten Volume installieren**:
        ```bash
        docker compose run --rm openclaw-cli \
          node /app/node_modules/playwright-core/cli.js install chromium
        ```
-    6. **Browser-Downloads persistent speichern**: Verwenden Sie `OPENCLAW_HOME_VOLUME` oder `OPENCLAW_EXTRA_MOUNTS`. OpenClaw erkennt unter Linux automatisch das vom Image durch Playwright verwaltete Chromium.
+    6. **Browser-Downloads dauerhaft speichern**: Verwenden Sie `OPENCLAW_HOME_VOLUME` oder `OPENCLAW_EXTRA_MOUNTS`. OpenClaw erkennt unter Linux automatisch das von Playwright verwaltete Chromium des Images.
 
   </Accordion>
 
-  <Accordion title="OpenAI Codex OAuth (headless Docker)">
-    Wenn Sie im Assistenten OpenAI Codex OAuth auswählen, wird eine Browser-URL geöffnet. Kopieren Sie bei Docker- oder Headless-Konfigurationen die vollständige Weiterleitungs-URL, auf der Sie landen, und fügen Sie sie wieder in den Assistenten ein, um die Authentifizierung abzuschließen.
+  <Accordion title="OpenAI Codex OAuth (Docker ohne Benutzeroberfläche)">
+    Wenn Sie im Assistenten OpenAI Codex OAuth auswählen, wird eine Browser-URL geöffnet. Kopieren Sie in Docker- oder Headless-Umgebungen die vollständige Weiterleitungs-URL, auf der Sie landen, und fügen Sie sie wieder in den Assistenten ein, um die Authentifizierung abzuschließen.
   </Accordion>
 
   <Accordion title="Metadaten des Basis-Images">
-    Das Runtime-Image verwendet `node:24-bookworm-slim` und führt `tini` als PID 1 aus, damit Zombie-Prozesse beseitigt und Signale in langlebigen Containern korrekt verarbeitet werden. Es veröffentlicht OCI-Basis-Image-Annotationen einschließlich `org.opencontainers.image.base.name` und `org.opencontainers.image.source`. Dependabot aktualisiert den angehefteten Digest des Node-Basis-Images; Release-Builds führen keinen separaten Distributions-Upgrade-Layer aus. Siehe [OCI-Image-Annotationen](https://github.com/opencontainers/image-spec/blob/main/annotations.md).
+    Das Laufzeit-Image verwendet `node:24-bookworm-slim` und führt `tini` als PID 1 aus, damit Zombie-Prozesse bereinigt und Signale in langlebigen Containern korrekt verarbeitet werden. Es veröffentlicht OCI-Basis-Image-Annotationen einschließlich `org.opencontainers.image.base.name` und `org.opencontainers.image.source`. Dependabot aktualisiert den angehefteten Digest des Node-Basis-Images; Release-Builds führen keinen separaten Distributions-Upgrade-Layer aus. Siehe [OCI-Image-Annotationen](https://github.com/opencontainers/image-spec/blob/main/annotations.md).
   </Accordion>
 </AccordionGroup>
 
-### Ausführung auf einem VPS?
+### Betrieb auf einem VPS?
 
-Unter [Hetzner (Docker-VPS)](/de/install/hetzner) und [Docker-VM-Runtime](/de/install/docker-vm-runtime) finden Sie Bereitstellungsschritte für gemeinsam genutzte VMs, einschließlich der Integration von Binärdateien, Persistenz und Aktualisierungen.
+Unter [Hetzner (Docker-VPS)](/de/install/hetzner) und [Docker-VM-Laufzeit](/de/install/docker-vm-runtime) finden Sie Schritte für die Bereitstellung auf gemeinsam genutzten VMs, einschließlich der Integration von Binärdateien, Persistenz und Aktualisierungen.
 
 ## Agent-Sandbox
 
-Wenn `agents.defaults.sandbox` mit dem Docker-Backend aktiviert ist, führt der Gateway Agent-Werkzeuge (Shell, Lesen/Schreiben von Dateien usw.) innerhalb isolierter Docker-Container aus, während der Gateway selbst auf dem Host verbleibt — eine feste Trennung für nicht vertrauenswürdige oder mandantenfähige Agent-Sitzungen, ohne den gesamten Gateway in einen Container zu verlagern.
+Wenn `agents.defaults.sandbox` mit dem Docker-Backend aktiviert ist, führt das Gateway Agent-Tools (Shell, Lesen/Schreiben von Dateien usw.) in isolierten Docker-Containern aus, während das Gateway selbst auf dem Host verbleibt — eine feste Grenze um nicht vertrauenswürdige oder mandantenfähige Agent-Sitzungen, ohne das gesamte Gateway zu containerisieren.
 
-Der Sandbox-Geltungsbereich kann pro Agent (Standard), pro Sitzung oder gemeinsam gelten; jeder Geltungsbereich erhält einen eigenen Arbeitsbereich, der unter `/workspace` eingebunden wird. Sie können außerdem Zulassungs-/Verweigerungsrichtlinien für Werkzeuge, Netzwerkisolierung, Ressourcenlimits und Browser-Container konfigurieren.
+Der Sandbox-Geltungsbereich kann pro Agent (Standard), pro Sitzung oder gemeinsam festgelegt werden; jeder Geltungsbereich erhält einen eigenen, unter `/workspace` eingebundenen Arbeitsbereich. Sie können außerdem Zulassungs-/Ablehnungsrichtlinien für Tools, Netzwerkisolierung, Ressourcenlimits und Browser-Container konfigurieren.
 
 Vollständige Informationen zu Konfiguration, Images, Sicherheitshinweisen und Multi-Agent-Profilen:
 
 - [Sandboxing](/de/gateway/sandboxing) -- vollständige Sandbox-Referenz
 - [OpenShell](/de/gateway/openshell) -- interaktiver Shell-Zugriff auf Sandbox-Container
-- [Multi-Agent-Sandbox und -Werkzeuge](/de/tools/multi-agent-sandbox-tools) -- agentenspezifische Überschreibungen
+- [Multi-Agent-Sandbox und Tools](/de/tools/multi-agent-sandbox-tools) -- Überschreibungen pro Agent
 
 ### Schnellaktivierung
 
@@ -572,24 +560,24 @@ Erstellen Sie das standardmäßige Sandbox-Image (aus einem Quellcode-Checkout):
 scripts/sandbox-setup.sh
 ```
 
-Informationen zu npm-Installationen ohne Quellcode-Checkout finden Sie unter [Sandboxing § Images und Einrichtung](/de/gateway/sandboxing#images-and-setup) für direkt eingebettete `docker build`-Befehle.
+Informationen zu npm-Installationen ohne Quellcode-Checkout finden Sie unter [Sandboxing § Images und Einrichtung](/de/gateway/sandboxing#images-and-setup) mit Inline-Befehlen für `docker build`.
 
 ## Fehlerbehebung
 
 <AccordionGroup>
   <Accordion title="Image fehlt oder Sandbox-Container startet nicht">
-    Erstellen Sie das Sandbox-Image mit [`scripts/sandbox-setup.sh`](https://github.com/openclaw/openclaw/blob/main/scripts/sandbox-setup.sh) (Quellcode-Checkout) oder dem direkt eingebetteten `docker build`-Befehl aus [Sandboxing § Images und Einrichtung](/de/gateway/sandboxing#images-and-setup) (npm-Installation), oder setzen Sie `agents.defaults.sandbox.docker.image` auf Ihr benutzerdefiniertes Image. Container werden bei Bedarf automatisch pro Sitzung erstellt.
+    Erstellen Sie das Sandbox-Image mit [`scripts/sandbox-setup.sh`](https://github.com/openclaw/openclaw/blob/main/scripts/sandbox-setup.sh) (Quellcode-Checkout) oder dem Inline-Befehl `docker build` aus [Sandboxing § Images und Einrichtung](/de/gateway/sandboxing#images-and-setup) (npm-Installation), oder setzen Sie `agents.defaults.sandbox.docker.image` auf Ihr benutzerdefiniertes Image. Container werden bei Bedarf automatisch pro Sitzung erstellt.
   </Accordion>
 
   <Accordion title="Berechtigungsfehler in der Sandbox">
-    Setzen Sie `docker.user` auf eine UID:GID, die mit der Eigentümerschaft Ihres eingebundenen Arbeitsbereichs übereinstimmt, oder ändern Sie die Eigentümerschaft des Arbeitsbereichsordners.
+    Setzen Sie `docker.user` auf eine UID:GID, die der Eigentümerschaft Ihres eingebundenen Arbeitsbereichs entspricht, oder ändern Sie den Eigentümer des Arbeitsbereichsordners.
   </Accordion>
 
-  <Accordion title="Benutzerdefinierte Werkzeuge werden in der Sandbox nicht gefunden">
-    OpenClaw führt Befehle mit `sh -lc` (Login-Shell) aus. Diese liest `/etc/profile` ein und setzt möglicherweise PATH zurück. Legen Sie `docker.env.PATH` fest, um die Pfade Ihrer benutzerdefinierten Werkzeuge voranzustellen, oder fügen Sie in Ihrem Dockerfile ein Skript unter `/etc/profile.d/` hinzu.
+  <Accordion title="Benutzerdefinierte Tools werden in der Sandbox nicht gefunden">
+    OpenClaw führt Befehle mit `sh -lc` (Anmelde-Shell) aus, wodurch `/etc/profile` eingelesen und PATH möglicherweise zurückgesetzt wird. Setzen Sie `docker.env.PATH`, um Ihre benutzerdefinierten Tool-Pfade voranzustellen, oder fügen Sie in Ihrem Dockerfile unter `/etc/profile.d/` ein Skript hinzu.
   </Accordion>
 
-  <Accordion title="Während der Image-Erstellung wegen Speichermangels beendet (Exit 137)">
+  <Accordion title="Während des Image-Builds wegen Speichermangels beendet (Exit 137)">
     Die VM benötigt mindestens 2 GB RAM. Verwenden Sie eine größere Maschinenklasse und versuchen Sie es erneut.
   </Accordion>
 
@@ -607,7 +595,7 @@ Informationen zu npm-Installationen ohne Quellcode-Checkout finden Sie unter [Sa
   </Accordion>
 
   <Accordion title="Gateway-Ziel zeigt ws://172.x.x.x oder Kopplungsfehler über die Docker-CLI">
-    Setzen Sie Gateway-Modus und Bindung zurück:
+    Setzen Sie Gateway-Modus und Bind-Adresse zurück:
 
     ```bash
     docker compose run --rm openclaw-cli config set --batch-json '[{"path":"gateway.mode","value":"local"},{"path":"gateway.bind","value":"lan"}]'
@@ -621,6 +609,6 @@ Informationen zu npm-Installationen ohne Quellcode-Checkout finden Sie unter [Sa
 
 - [Installationsübersicht](/de/install) — alle Installationsmethoden
 - [Podman](/de/install/podman) — Podman-Alternative zu Docker
-- [ClawDock](/de/install/clawdock) — Community-Konfiguration für Docker Compose
-- [Aktualisieren](/de/install/updating) — OpenClaw auf dem neuesten Stand halten
+- [ClawDock](/de/install/clawdock) — Docker-Compose-Einrichtung der Community
+- [Aktualisierung](/de/install/updating) — OpenClaw auf dem neuesten Stand halten
 - [Konfiguration](/de/gateway/configuration) — Gateway-Konfiguration nach der Installation

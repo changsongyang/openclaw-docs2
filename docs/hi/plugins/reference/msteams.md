@@ -4,7 +4,7 @@ read_when:
 summary: बॉट वार्तालापों के लिए OpenClaw Microsoft Teams चैनल Plugin।
 title: Microsoft Teams Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:08:00Z"
+    generated_at: "2026-07-27T21:30:40Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ x-i18n:
 - पैकेज: `@openclaw/msteams`
 - इंस्टॉल मार्ग: npm; ClawHub
 
-## उपलब्ध सतह
+## उपलब्ध इंटरफ़ेस
 
 चैनल: `msteams`
 

@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 mistral 外掛
-summary: 新增對 OpenClaw 的 Mistral 模型供應商支援。
+summary: 新增 OpenClaw 對 Mistral 模型供應商的支援。
 title: Mistral 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:49:39Z"
+    generated_at: "2026-07-26T08:29:11Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,10 +18,10 @@ x-i18n:
 
 為 OpenClaw 新增 Mistral 模型供應商支援。
 
-## 發佈
+## 發行
 
 - 套件：`@openclaw/mistral-provider`
-- 安裝方式：隨附於 OpenClaw
+- 安裝方式：已包含於 OpenClaw
 
 ## 介面
 

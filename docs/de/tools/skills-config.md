@@ -1,13 +1,13 @@
 ---
 read_when:
-    - Lade-, Installations- oder Zugriffssteuerungsverhalten für Skills konfigurieren
+    - Lade-, Installations- oder Zugriffsbeschränkungsverhalten für Skills konfigurieren
     - Sichtbarkeit von Skills pro Agent festlegen
-    - Limits oder Genehmigungsrichtlinie des Skill Workshops anpassen
+    - Limits oder Genehmigungsrichtlinie des Skill Workshop anpassen
 sidebarTitle: Skills config
-summary: Vollständige Referenz für das Konfigurationsschema `skills.*`, Agent-Allowlists, Workshop-Einstellungen und die Verarbeitung von Sandbox-Umgebungsvariablen.
+summary: Vollständige Referenz für das Konfigurationsschema `skills.*`, Agenten-Zulassungslisten, Workshop-Einstellungen und die Handhabung von Sandbox-Umgebungsvariablen.
 title: Skills-Konfiguration
 x-i18n:
-    generated_at: "2026-07-24T04:13:03Z"
+    generated_at: "2026-07-26T18:10:35Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -57,30 +57,28 @@ Die meiste Skills-Konfiguration befindet sich unter `skills` in
 
 <Note>
   Verwenden Sie für die integrierte Bilderzeugung `agents.defaults.mediaModels.image`
-  zusammen mit dem zentralen Tool `image_generate` anstelle von `skills.entries`. Skill-
-  Einträge sind ausschließlich für benutzerdefinierte oder Drittanbieter-Skill-Workflows vorgesehen.
+  zusammen mit dem zentralen Tool `image_generate` anstelle von `skills.entries`. Skill-Einträge
+  sind ausschließlich für benutzerdefinierte oder Drittanbieter-Skill-Workflows vorgesehen.
 </Note>
 
 ## Laden (`skills.load`)
 
 <ParamField path="skills.load.extraDirs" type="string[]">
   Zusätzliche zu durchsuchende Skill-Verzeichnisse mit der niedrigsten Priorität (unterhalb
-  gebündelter und Plugin-Skills). Pfade werden mit Unterstützung für `~` erweitert.
+  gebündelter Skills und Plugin-Skills). Pfade werden mit Unterstützung für `~` erweitert.
 </ParamField>
 
 <ParamField path="skills.load.allowSymlinkTargets" type="string[]">
-  Vertrauenswürdige tatsächliche Zielverzeichnisse, in die über symbolische Links eingebundene
-  Skill-Ordner aufgelöst werden dürfen, selbst wenn sich der symbolische Link außerhalb des
-  konfigurierten Stammverzeichnisses befindet. Verwenden Sie dies für beabsichtigte Layouts
-  mit benachbarten Repositorys wie `<workspace>/skills/manager -> ~/Projects/manager/skills`. Halten Sie diese Liste
-  eng gefasst – verweisen Sie nicht auf weitreichende Stammverzeichnisse wie
-  `~` oder `~/Projects`.
+  Vertrauenswürdige tatsächliche Zielverzeichnisse, in die über Symlinks eingebundene Skill-Ordner
+  aufgelöst werden dürfen, selbst wenn sich der Symlink außerhalb des konfigurierten Stammverzeichnisses
+  befindet. Verwenden Sie dies für beabsichtigte Layouts mit benachbarten Repositorys wie
+  `<workspace>/skills/manager -> ~/Projects/manager/skills`. Halten Sie diese Liste
+  eng begrenzt — verweisen Sie nicht auf weit gefasste Stammverzeichnisse wie `~` oder `~/Projects`.
 </ParamField>
 
 <ParamField path="skills.load.watch" type="boolean" default="true">
-  Überwacht Skill-Ordner und aktualisiert den Skills-Snapshot, wenn sich
-  `SKILL.md`-Dateien ändern. Dies umfasst verschachtelte Dateien unter gruppierten
-  Skill-Stammverzeichnissen.
+  Überwacht Skill-Ordner und aktualisiert den Skills-Snapshot, wenn sich `SKILL.md`-Dateien
+  ändern. Dies umfasst verschachtelte Dateien unter gruppierten Skill-Stammverzeichnissen.
 </ParamField>
 
 ## Installation (`skills.install`)
@@ -90,36 +88,33 @@ Die meiste Skills-Konfiguration befindet sich unter `skills` in
 </ParamField>
 
 <ParamField path="skills.install.nodeManager" type='"npm" | "pnpm" | "yarn" | "bun"' default='"npm"'>
-  Bevorzugter Node-Paketmanager für Skill-Installationen. Dies betrifft nur
-  Skill-Installationen – die OpenClaw-CLI und die Gateway-Laufzeit benötigen Node, da
-  der kanonische Zustandsspeicher `node:sqlite` verwendet. `openclaw setup --node-manager` und
-  `openclaw onboard --node-manager` akzeptieren `npm`, `pnpm` oder
-  `bun`; legen Sie `"yarn"` für Yarn-basierte Skill-Installationen
-  direkt in der Konfiguration fest.
+  Bevorzugter Node-Paketmanager für Skill-Installationen. Dies betrifft ausschließlich
+  Skill-Installationen – die OpenClaw-CLI und die Gateway-Laufzeit benötigen Node, da der
+  kanonische Zustandsspeicher `node:sqlite` verwendet. `openclaw setup --node-manager` und
+  `openclaw onboard --node-manager` akzeptieren `npm`, `pnpm` oder `bun`; legen Sie
+  `"yarn"` für Yarn-basierte Skill-Installationen direkt in der Konfiguration fest.
 </ParamField>
 
 <ParamField path="skills.install.allowUploadedArchives" type="boolean" default="false">
-  Erlaubt vertrauenswürdigen `operator.admin`-Gateway-Clients, private ZIP-
-  Archive zu installieren, die über `skills.upload.*` bereitgestellt wurden. Normale
-  ClawHub-Installationen benötigen diese Einstellung nicht.
+  Erlaubt vertrauenswürdigen `operator.admin`-Gateway-Clients, private ZIP-Archive zu installieren,
+  die über `skills.upload.*` bereitgestellt wurden. Normale ClawHub-Installationen benötigen
+  diese Einstellung nicht.
 </ParamField>
 
 ## Installationsrichtlinie für Betreiber (`security.installPolicy`)
 
-Verwenden Sie `security.installPolicy`, wenn Betreiber einen vertrauenswürdigen lokalen Befehl
-benötigen, um Skill- und Plugin-Installationen anhand hostspezifischer Richtlinien zu
-genehmigen oder zu blockieren. Die Richtlinie wird ausgeführt, nachdem OpenClaw das
-Quellmaterial bereitgestellt hat und bevor die Installation oder Aktualisierung fortgesetzt
-wird. Sie gilt für ClawHub-Skills, hochgeladene Skills, Git-/lokale Skills,
-Installationsprogramme für Skill-Abhängigkeiten sowie Quellen für Plugin-Installationen
-und -Aktualisierungen.
+Verwenden Sie `security.installPolicy`, wenn Betreiber einen vertrauenswürdigen lokalen Befehl benötigen,
+um Skill- und Plugin-Installationen anhand hostspezifischer Richtlinien zu genehmigen oder zu blockieren. Die
+Richtlinie wird ausgeführt, nachdem OpenClaw das Quellmaterial bereitgestellt hat und bevor die Installation
+oder Aktualisierung fortgesetzt wird. Sie gilt für ClawHub-Skills, hochgeladene Skills, Git-/lokale
+Skills, Installationsprogramme für Skill-Abhängigkeiten sowie Quellen für Plugin-Installationen und -Aktualisierungen.
 
 ```json5
 {
   security: {
     installPolicy: {
       enabled: true,
-      // Ziele weglassen, um alle unterstützten Ziele abzudecken.
+      // Omit targets to cover every supported target.
       targets: ["skill", "plugin"],
       exec: {
         source: "exec",
@@ -138,20 +133,18 @@ und -Aktualisierungen.
 ```
 
 <ParamField path="security.installPolicy.enabled" type="boolean" default="false">
-  Aktiviert die betreibereigene Installationsrichtlinie. Wenn sie ohne einen gültigen
-  `exec`-Befehl aktiviert ist, schlagen Installationen nach dem
-  Fail-Closed-Prinzip fehl.
+  Aktiviert die betreibereigene Installationsrichtlinie. Wenn sie ohne gültigen `exec`-Befehl
+  aktiviert wird, werden Installationen standardmäßig blockiert.
 </ParamField>
 
 <ParamField path="security.installPolicy.targets" type='("skill" | "plugin")[]'>
-  Optionaler Zielfilter. Wenn er weggelassen wird, gilt die Richtlinie für jedes
-  unterstützte Ziel, damit neue Installationen nicht unerwartet nach dem
-  Fail-Open-Prinzip zugelassen werden.
+  Optionaler Zielfilter. Wenn er weggelassen wird, gilt die Richtlinie für jedes unterstützte
+  Ziel, damit neue Installationen nicht unerwartet standardmäßig zugelassen werden.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.command" type="string">
-  Absoluter Pfad zur vertrauenswürdigen ausführbaren Richtliniendatei. OpenClaw führt
-  sie ohne Shell aus und validiert den Pfad vor der Verwendung.
+  Absoluter Pfad zur vertrauenswürdigen ausführbaren Richtliniendatei. OpenClaw führt sie ohne
+  Shell aus und validiert den Pfad vor der Verwendung.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.args" type="string[]">
@@ -163,13 +156,12 @@ und -Aktualisierungen.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.noOutputTimeoutMs" type="number" default="timeoutMs">
-  Maximale Zeit ohne Ausgabe auf stdout oder stderr, bevor die Richtlinie nach dem
-  Fail-Closed-Prinzip fehlschlägt.
+  Maximale Zeit ohne Ausgabe auf stdout oder stderr, bevor die Richtlinie
+  standardmäßig blockiert.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.maxOutputBytes" type="number" default="1048576">
-  Maximale kombinierte Anzahl an stdout- und stderr-Bytes, die vom Richtlinienprozess
-  akzeptiert wird.
+  Maximale kombinierte Anzahl an stdout- und stderr-Bytes, die vom Richtlinienprozess akzeptiert wird.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.env" type="Record<string, string>">
@@ -177,43 +169,41 @@ und -Aktualisierungen.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.passEnv" type="string[]">
-  Namen von Umgebungsvariablen, die aus dem OpenClaw-Prozess in den Richtlinienprozess
-  kopiert werden. Nur ausdrücklich benannte Variablen werden übergeben.
+  Namen von Umgebungsvariablen, die aus dem OpenClaw-Prozess in den
+  Richtlinienprozess kopiert werden. Nur benannte Variablen werden übergeben.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.trustedDirs" type="string[]">
-  Optionale Positivliste der Verzeichnisse, die die ausführbare Richtliniendatei
-  enthalten dürfen.
+  Optionale Positivliste von Verzeichnissen, die die ausführbare Richtliniendatei enthalten dürfen.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.allowInsecurePath" type="boolean" default="false">
-  Umgeht die Prüfungen der Eigentümerschaft und Berechtigungen des Befehlspfads.
-  Verwenden Sie dies nur, wenn der Pfad durch einen anderen Mechanismus geschützt ist.
+  Umgeht Prüfungen der Eigentümerschaft und Berechtigungen des Befehlspfads. Verwenden Sie dies nur, wenn der
+  Pfad durch einen anderen Mechanismus geschützt ist.
 </ParamField>
 
 <ParamField path="security.installPolicy.exec.allowSymlinkCommand" type="boolean" default="false">
-  Erlaubt, dass der konfigurierte Befehlspfad ein symbolischer Link ist. Das aufgelöste
-  Ziel muss weiterhin die anderen Pfadprüfungen erfüllen. Skriptargumente für Interpreter
-  müssen direkte reguläre Dateien und dürfen keine symbolischen Links sein.
+  Erlaubt, dass der konfigurierte Befehlspfad ein Symlink ist. Das aufgelöste Ziel
+  muss weiterhin die übrigen Pfadprüfungen erfüllen. Argumente für Interpreter-Skripte müssen
+  direkte reguläre Dateien und dürfen keine Symlinks sein.
 </ParamField>
 
-Die Richtlinie empfängt auf stdin ein JSON-Objekt mit `protocolVersion: 1`,
-`openclawVersion`, `targetType`, `targetName`, `sourcePath`,
-`sourcePathKind`, optionalem strukturiertem `source`, strukturiertem
-`origin` und `request`. Sie muss ein JSON-Objekt auf stdout
-schreiben: `{ "protocolVersion": 1, "decision": "allow" }` oder `{ "protocolVersion": 1, "decision": "block", "reason": "..." }`. Ein Exit-Code ungleich null,
-eine Zeitüberschreitung, fehlerhaftes JSON, fehlende Felder oder nicht unterstützte
-Protokollversionen führen nach dem Fail-Closed-Prinzip zum Fehlschlag.
+Die Richtlinie empfängt über stdin ein JSON-Objekt mit `protocolVersion: 1`,
+`openclawVersion`, `targetType`, `targetName`, `sourcePath`, `sourcePathKind`,
+optionalem strukturiertem `source`, strukturiertem `origin` und `request`. Sie muss
+über stdout ein JSON-Objekt ausgeben: `{ "protocolVersion": 1, "decision": "allow" }`
+oder `{ "protocolVersion": 1, "decision": "block", "reason": "..." }`. Ein von null verschiedener
+Exit-Code, eine Zeitüberschreitung, fehlerhaftes JSON, fehlende Felder oder nicht unterstützte Protokollversionen
+führen zur standardmäßigen Blockierung.
 
 OpenClaw führt die Installationsrichtlinie beim normalen Start des Gateways nicht aus.
-Installationen und Aktualisierungen schlagen nach dem Fail-Closed-Prinzip fehl, wenn die
-Richtlinie aktiviert, aber nicht verfügbar ist. `openclaw doctor` führt eine statische
-Validierung durch; `openclaw doctor --deep` führt eine synthetische Installationsprüfung mit
-dem konfigurierten Befehl aus.
+Installationen und Aktualisierungen werden standardmäßig blockiert, wenn die Richtlinie aktiviert, aber nicht verfügbar ist.
+`openclaw doctor` führt eine statische Validierung durch; `openclaw doctor --deep`
+führt eine synthetische Installationsprüfung für den konfigurierten Befehl aus.
 
-Bei Massenaktualisierungen wird die Richtlinie auf jedes Ziel einzeln angewendet: Eine
-blockierte Skill- oder Plugin-Aktualisierung schlägt für dieses Ziel fehl, ohne die
-Richtlinie zu deaktivieren oder spätere Ziele im Stapel zu überspringen.
+Bei Massenaktualisierungen wird die Richtlinie auf jedes Ziel einzeln angewendet: Eine blockierte Aktualisierung
+eines Skills oder Plugins lässt dieses Ziel fehlschlagen, ohne die Richtlinie zu deaktivieren oder spätere Ziele
+im Stapel zu überspringen.
 
 Beispiel für stdin:
 
@@ -265,7 +255,7 @@ process.stdin.on("end", () => {
       JSON.stringify({
         protocolVersion: 1,
         decision: "block",
-        reason: "Lokale Plugin-Pfade sind auf diesem Host nicht genehmigt",
+        reason: "local plugin paths are not approved on this host",
       }),
     );
     return;
@@ -277,24 +267,22 @@ process.stdin.on("end", () => {
 ## Positivliste gebündelter Skills
 
 <ParamField path="skills.allowBundled" type="string[]">
-  Optionale Positivliste ausschließlich für **gebündelte** Skills. Wenn sie festgelegt
-  ist, kommen nur die gebündelten Skills in der Liste infrage. Verwaltete,
-  agentenspezifische und Workspace-Skills sind davon nicht betroffen.
+  Optionale Positivliste ausschließlich für **gebündelte** Skills. Wenn sie festgelegt ist, kommen nur die
+  gebündelten Skills in der Liste infrage. Verwaltete Skills sowie Skills auf Agenten- und Workspace-Ebene
+  sind davon nicht betroffen.
 </ParamField>
 
-## Skill-spezifische Einträge (`skills.entries`)
+## Einträge pro Skill (`skills.entries`)
 
-Schlüssel unter `entries` entsprechen standardmäßig der Skill-
-`name`. Wenn ein Skill `metadata.openclaw.skillKey` definiert, verwenden Sie
-stattdessen diesen Schlüssel. Setzen Sie Namen mit Bindestrichen in Anführungszeichen
-(JSON5 erlaubt Schlüssel in Anführungszeichen).
+Schlüssel unter `entries` entsprechen standardmäßig der `name` des Skills. Wenn ein Skill
+`metadata.openclaw.skillKey` definiert, verwenden Sie stattdessen diesen Schlüssel. Setzen Sie Namen mit Bindestrichen
+in Anführungszeichen (JSON5 erlaubt Schlüssel in Anführungszeichen).
 
 <ParamField path="skills.entries.<key>.enabled" type="boolean">
-  `false` deaktiviert den Skill, selbst wenn er gebündelt oder installiert
-  ist. Der gebündelte Skill `coding-agent` muss explizit aktiviert werden – setzen
-  Sie ihn auf `true` und stellen Sie sicher, dass `claude`,
-  `codex`, `opencode` oder eine andere unterstützte CLI installiert
-  und authentifiziert ist.
+  `false` deaktiviert den Skill, selbst wenn er gebündelt oder installiert ist. Der
+  gebündelte Skill `coding-agent` muss explizit aktiviert werden — setzen Sie ihn auf `true` und stellen Sie sicher, dass
+  `claude`, `codex`, `opencode` oder eine andere unterstützte CLI installiert und
+  authentifiziert ist.
 </ParamField>
 
 <ParamField path="skills.entries.<key>.apiKey" type='string | { source, provider, id }'>
@@ -303,82 +291,80 @@ stattdessen diesen Schlüssel. Setzen Sie Namen mit Bindestrichen in Anführungs
 </ParamField>
 
 <ParamField path="skills.entries.<key>.env" type="Record<string, string>">
-  Umgebungsvariablen, die für den Agentenlauf injiziert werden. Sie werden nur
-  injiziert, wenn die Variable im Prozess noch nicht gesetzt ist.
+  Umgebungsvariablen, die für die Agentenausführung eingefügt werden. Sie werden nur eingefügt, wenn die
+  Variable im Prozess noch nicht festgelegt ist.
 </ParamField>
 
 <ParamField path="skills.entries.<key>.config" type="object">
-  Optionales Objekt für benutzerdefinierte Skill-spezifische Konfigurationsfelder.
+  Optionales Objekt für benutzerdefinierte Konfigurationsfelder pro Skill.
 </ParamField>
 
 ## Agenten-Positivlisten (`agents`)
 
-Verwenden Sie die Agentenkonfiguration, wenn Sie dieselben Skill-Stammverzeichnisse
-für Maschine und Workspace, aber für jeden Agenten eine andere sichtbare Skill-Menge
-verwenden möchten.
+Verwenden Sie die Agentenkonfiguration, wenn dieselben Skill-Stammverzeichnisse für Maschine und Workspace,
+aber für jeden Agenten eine andere sichtbare Skill-Menge verwendet werden soll.
 
 ```json5
 {
   agents: {
     defaults: {
-      skills: ["github", "weather"], // gemeinsame Ausgangsbasis
+      skills: ["github", "weather"], // shared baseline
     },
     list: [
-      { id: "writer" }, // erbt github, weather
-      { id: "docs", skills: ["docs-search"] }, // ersetzt die Standardwerte vollständig
-      { id: "locked-down", skills: [] }, // keine Skills
+      { id: "writer" }, // inherits github, weather
+      { id: "docs", skills: ["docs-search"] }, // replaces defaults entirely
+      { id: "locked-down", skills: [] }, // no skills
     ],
   },
 }
 ```
 
 <ParamField path="agents.defaults.skills" type="string[]">
-  Gemeinsame Ausgangs-Positivliste, die von Agenten geerbt wird, die
-  `agents.entries.*.skills` weglassen. Lassen Sie sie vollständig weg, damit Skills
-  standardmäßig nicht eingeschränkt werden.
+  Gemeinsame Basis-Positivliste, die von Agenten übernommen wird, bei denen
+  `agents.entries.*.skills` fehlt. Lassen Sie sie vollständig weg, damit Skills standardmäßig
+  nicht eingeschränkt werden.
 </ParamField>
 
 <ParamField path="agents.entries.*.skills" type="string[]">
-  Explizite endgültige Skill-Menge für diesen Agenten. Explizite Listen
-  **ersetzen** geerbte Standardwerte – sie werden nicht zusammengeführt. Setzen Sie
-  sie auf `[]`, um für diesen Agenten keine Skills bereitzustellen.
+  Explizite endgültige Skill-Menge für diesen Agenten. Explizite Listen **ersetzen**
+  übernommene Standardwerte — sie werden nicht zusammengeführt. Setzen Sie sie auf `[]`, um für
+  diesen Agenten keine Skills bereitzustellen.
 </ParamField>
 
 <Warning>
-  Agenten-Skill-Positivlisten sind ein Sichtbarkeits- und Ladefilter für die
-  Skill-Erkennung, Prompts, Slash-Befehlserkennung, Sandbox-Synchronisierung und
-  Skill-Snapshots von OpenClaw. Sie stellen keine Autorisierungsgrenze zur
-  Shell-Laufzeit dar. Wenn ein Agent den Host-Befehl `exec` ausführen
-  kann, kann diese Shell weiterhin externe Clients ausführen oder Host-Dateien lesen,
-  die für den ausführenden Benutzer sichtbar sind, einschließlich MCP-Client-
-  Registrierungen wie `~/.openclaw/skills/config/mcporter.json`. Kombinieren Sie für eine MCP-Isolierung
-  pro Agent Skill-Positivlisten mit Sandbox-/Betriebssystembenutzer-Isolierung,
-  verweigern Sie die Host-Ausführung oder beschränken Sie sie auf eine enge
-  Positivliste, und bevorzugen Sie agentenspezifische Anmeldedaten am MCP-Server.
+  Agenten-Skill-Positivlisten dienen als Sichtbarkeits- und Ladefilter für die OpenClaw-
+  Skill-Erkennung, Prompts, Slash-Befehlserkennung, Sandbox-Synchronisierung und Skill-
+  Snapshots. Sie bilden keine Autorisierungsgrenze zur Shell-Laufzeit. Wenn ein Agent
+  `exec` auf dem Host ausführen kann, kann diese Shell weiterhin externe Clients ausführen oder
+  Hostdateien lesen, die für den ausführenden Benutzer sichtbar sind, einschließlich MCP-Client-
+  Registrierungen wie `~/.openclaw/skills/config/mcporter.json`. Kombinieren Sie für die
+  agentenspezifische MCP-Isolierung Skill-Positivlisten mit einer Sandbox-/Betriebssystembenutzer-
+  Isolierung, verweigern Sie die Host-Ausführung oder begrenzen Sie sie durch eine enge Positivliste und bevorzugen Sie
+  agentenspezifische Anmeldedaten auf dem MCP-Server.
 </Warning>
 
 ## Workshop (`skills.workshop`)
 
 <ParamField path="skills.workshop.autonomous.enabled" type="boolean" default="false">
   Wenn `true` festgelegt ist, kann OpenClaw aus dauerhaften Korrekturen ausstehende Vorschläge erstellen
-  und erfolgreiche, umfangreiche abgeschlossene Arbeiten überprüfen, nachdem das System
-  inaktiv geworden ist. Dies kann nach geeigneten Durchläufen einen Modellausführung im Hintergrund hinzufügen. Durch Benutzer veranlasste
-  Skill-Erstellung und `/learn` funktionieren weiterhin, wenn die Einstellung `false` ist.
+  und erfolgreiche, umfangreiche abgeschlossene Arbeiten prüfen, nachdem das System
+  inaktiv geworden ist. Dadurch kann nach geeigneten Durchläufen ein Modellauslauf im Hintergrund
+  hinzukommen. Die vom Benutzer veranlasste Erstellung von Skills und `/learn` funktionieren weiterhin, wenn die Einstellung `false` ist.
 </ParamField>
 
-Informationen zu Eignung, Datenschutz, Kosten, ausschließlich für Vorschläge geltenden Berechtigungen
-und Fehlerbehebung finden Sie unter [Selbstlernen](/de/tools/self-learning).
+Unter [Selbstlernen](/de/tools/self-learning) finden Sie Informationen zu Eignung, Datenschutz, Kosten,
+Berechtigungen nur für Vorschläge und Fehlerbehebung.
 
 <ParamField path="skills.workshop.approvalPolicy" type='"pending" | "auto"' default='"auto"'>
-  `auto` ermöglicht vom Agenten initiiertes Anwenden, Ablehnen oder Unter-Quarantäne-Stellen ohne eine
+  `auto` ermöglicht das vom Agenten initiierte Anwenden, Ablehnen oder unter Quarantäne stellen ohne eine
   zusätzliche Genehmigungsaufforderung. `pending` erfordert die Genehmigung durch den Betreiber.
 </ParamField>
 
 <ParamField path="skills.workshop.allowSymlinkTargetWrites" type="boolean" default="false">
-  Erlaubt Skill Workshop beim Anwenden, über Symlinks von Workspace-Skills zu schreiben, deren
+  Ermöglicht Skill Workshop beim Anwenden, über Symlinks von Workspace-Skills zu schreiben, deren
   tatsächliches Ziel bereits durch `skills.load.allowSymlinkTargets` als vertrauenswürdig eingestuft ist. Lassen Sie
-  diese Option deaktiviert, sofern das Anwenden generierter Vorschläge diesen gemeinsam genutzten
-  Skill-Stamm nicht verändern soll.
+  diese Option deaktiviert, sofern das Anwenden generierter Vorschläge nicht diesen gemeinsam genutzten
+  Skill-Stammordner verändern soll.
 </ParamField>
 
 <ParamField path="skills.workshop.maxPending" type="number" default="50">
@@ -387,19 +373,19 @@ und Fehlerbehebung finden Sie unter [Selbstlernen](/de/tools/self-learning).
 </ParamField>
 
 <ParamField path="skills.workshop.maxSkillBytes" type="number" default="40000">
-  Maximale Größe des Vorschlagsinhalts in Byte (zulässiger Bereich: 1024-200000). Vorschlagsbeschreibungen
-  sind separat fest auf 160 Byte begrenzt, da sie
-  in den Ausgaben für Erkennung und Auflistung erscheinen.
+  Maximale Größe des Vorschlagstexts in Byte (zulässiger Bereich: 1024-200000). Vorschlagsbeschreibungen
+  sind separat fest auf 160 Byte begrenzt, da sie in der Erkennungs- und Listenausgabe
+  erscheinen.
 </ParamField>
 
-Informationen zum Vorschlagslebenszyklus, zu CLI-Befehlen, Parametern der Agentenwerkzeuge
-und Gateway-Methoden, die von dieser Konfiguration gesteuert werden, finden Sie unter [Skill Workshop](/de/tools/skill-workshop).
+Unter [Skill Workshop](/de/tools/skill-workshop) finden Sie Informationen zum Lebenszyklus von Vorschlägen, zu CLI-
+Befehlen, Parametern der Agentenwerkzeuge und Gateway-Methoden, die von dieser Konfiguration gesteuert werden.
 
-## Skill-Stammverzeichnisse mit Symlinks
+## Über Symlinks eingebundene Skill-Stammordner
 
-Standardmäßig bilden die Skill-Stammverzeichnisse von Workspace, Projekt-Agent, zusätzlichen Verzeichnissen und gebündelten Skills
-Einschlussgrenzen. Ein Skill-Ordner mit Symlink unter `<workspace>/skills`,
-der auf ein Ziel außerhalb des Stammverzeichnisses verweist, wird mit einer Protokollmeldung übersprungen.
+Standardmäßig sind Workspace-, Projektagenten-, Zusatzverzeichnis- und gebündelte Skill-Stammordner
+Begrenzungsgrenzen. Ein über Symlink eingebundener Skill-Ordner unter `<workspace>/skills`,
+der auf ein Ziel außerhalb des Stammordners verweist, wird mit einer Protokollmeldung übersprungen.
 
 Um ein beabsichtigtes Symlink-Layout zuzulassen, deklarieren Sie das vertrauenswürdige Ziel:
 
@@ -415,8 +401,8 @@ Um ein beabsichtigtes Symlink-Layout zuzulassen, deklarieren Sie das vertrauensw
 ```
 
 Mit dieser Konfiguration wird `<workspace>/skills/manager -> ~/Projects/manager/skills`
-nach der Auflösung des tatsächlichen Pfads akzeptiert. `extraDirs` durchsucht das benachbarte Repository
-direkt; `allowSymlinkTargets` behält den Symlink-Pfad für bestehende
+nach der Realpath-Auflösung akzeptiert. `extraDirs` durchsucht das benachbarte Repository
+direkt; `allowSymlinkTargets` behält den über Symlink eingebundenen Pfad für bestehende
 Layouts bei.
 
 Beim Anwenden schreibt Skill Workshop standardmäßig nicht über diese Symlinks. Damit
@@ -436,10 +422,10 @@ Sie dies separat:
 }
 ```
 
-Verwaltete Verzeichnisse vom Typ `~/.openclaw/skills` und persönliche Verzeichnisse vom Typ `~/.agents/skills`
-akzeptieren Symlinks für Skill-Verzeichnisse bereits uneingeschränkt (der Einschluss von
+Verwaltete `~/.openclaw/skills`- und persönliche `~/.agents/skills`-Verzeichnisse
+akzeptieren Symlinks auf Skill-Verzeichnisse bereits uneingeschränkt (die Begrenzung von
 `SKILL.md` pro Skill gilt weiterhin) — `allowSymlinkTargets` wird nur
-für Workspace-, zusätzliche Verzeichnis- und Projekt-Agent-Stammverzeichnisse (`<workspace>/.agents/skills`)
+für Workspace-, Zusatzverzeichnis- und Projektagenten-Stammordner (`<workspace>/.agents/skills`)
 benötigt.
 
 ## Skills in Sandboxes und Umgebungsvariablen
@@ -447,11 +433,11 @@ benötigt.
 <Warning>
   `skills.entries.<skill>.env` und `apiKey` gelten nur für Ausführungen auf dem **Host**.
   Innerhalb einer Sandbox haben sie keine Wirkung — ein Skill, der von
-  `GEMINI_API_KEY` abhängt, schlägt mit `apiKey not configured` fehl, sofern der Sandbox
-  die Variable nicht separat übergeben wird.
+  `GEMINI_API_KEY` abhängt, schlägt mit `apiKey not configured` fehl, sofern die Variable
+  der Sandbox nicht separat bereitgestellt wird.
 </Warning>
 
-Übergeben Sie Geheimnisse mit folgender Konfiguration an eine Docker-Sandbox:
+Übergeben Sie Geheimnisse wie folgt an eine Docker-Sandbox:
 
 ```json5
 {
@@ -468,9 +454,9 @@ benötigt.
 ```
 
 <Note>
-  Benutzer mit Zugriff auf den Docker-Daemon können die Werte von `sandbox.docker.env`
+  Benutzer mit Zugriff auf den Docker-Daemon können `sandbox.docker.env`-Werte
   über Docker-Metadaten einsehen. Verwenden Sie eine eingebundene Geheimnisdatei, ein benutzerdefiniertes Image oder
-  einen anderen Übertragungsweg, wenn diese Offenlegung nicht akzeptabel ist.
+  einen anderen Bereitstellungsweg, wenn diese Offenlegung nicht akzeptabel ist.
 </Note>
 
 ## Erinnerung an die Ladereihenfolge
@@ -484,8 +470,8 @@ gebündelte Skills
 skills.load.extraDirs (niedrigste Priorität)
 ```
 
-Änderungen an Skills und Konfiguration werden bei der nächsten neuen Sitzung wirksam, wenn der
-Watcher aktiviert ist, oder beim nächsten Agentendurchlauf, wenn der Watcher eine
+Änderungen an Skills und Konfiguration werden in der nächsten neuen Sitzung wirksam, wenn die
+Überwachung aktiviert ist, oder beim nächsten Agentendurchlauf, wenn die Überwachung eine
 Änderung erkennt.
 
 ## Verwandte Themen
@@ -498,7 +484,7 @@ Watcher aktiviert ist, oder beim nächsten Agentendurchlauf, wenn der Watcher ei
     Erstellung benutzerdefinierter Workspace-Skills.
   </Card>
   <Card title="Skill Workshop" href="/de/tools/skill-workshop" icon="flask">
-    Vorschlagswarteschlange für von Agenten entworfene Skills.
+    Vorschlagswarteschlange für vom Agenten entworfene Skills.
   </Card>
   <Card title="Selbstlernen" href="/de/tools/self-learning" icon="brain">
     Konservative, freiwillig aktivierte Vorschläge aus abgeschlossenen Arbeiten.

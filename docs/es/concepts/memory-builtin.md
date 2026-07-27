@@ -5,7 +5,7 @@ read_when:
 summary: El backend de memoria predeterminado basado en SQLite con búsqueda por palabras clave, vectorial e híbrida
 title: Motor de memoria integrado
 x-i18n:
-    generated_at: "2026-07-22T10:31:02Z"
+    generated_at: "2026-07-26T04:35:24Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,10 +16,10 @@ x-i18n:
 ---
 
 El motor integrado es el backend de memoria predeterminado. Almacena el índice de memoria
-en una base de datos SQLite por agente y no necesita dependencias adicionales para
-empezar.
+en una base de datos SQLite por agente y no requiere dependencias adicionales para
+comenzar.
 
-## Qué proporciona
+## Qué ofrece
 
 - **Búsqueda por palabras clave** mediante indexación de texto completo FTS5 (puntuación BM25).
 - **Búsqueda vectorial** mediante embeddings de cualquier proveedor compatible.
@@ -31,7 +31,7 @@ empezar.
 
 De forma predeterminada, el motor integrado utiliza embeddings de OpenAI. Si `OPENAI_API_KEY` o
 `models.providers.openai.apiKey` ya está configurado, la búsqueda vectorial funciona
-sin ninguna configuración adicional de memoria.
+sin configuración adicional de memoria.
 
 Para establecer un proveedor explícitamente:
 
@@ -47,8 +47,8 @@ Para establecer un proveedor explícitamente:
 
 Sin un proveedor de embeddings, solo está disponible la búsqueda por palabras clave.
 
-Para forzar el uso de embeddings GGUF locales, instale el plugin oficial del proveedor llama.cpp
-y, después, haga que `local.modelPath` apunte a un archivo GGUF:
+Para forzar embeddings GGUF locales, instale el plugin oficial del proveedor llama.cpp
+y, a continuación, apunte `local.modelPath` a un archivo GGUF:
 
 ```bash
 openclaw plugins install @openclaw/llama-cpp-provider
@@ -73,32 +73,32 @@ openclaw plugins install @openclaw/llama-cpp-provider
 | Proveedor         | ID                  | Notas                                      |
 | ----------------- | ------------------- | ------------------------------------------ |
 | Bedrock           | `bedrock`           | Utiliza la cadena de credenciales de AWS   |
-| DeepInfra         | `deepinfra`         | Predeterminado: `BAAI/bge-m3`              |
+| DeepInfra         | `deepinfra`         | Valor predeterminado: `BAAI/bge-m3`        |
 | Gemini            | `gemini`            | Admite contenido multimodal (imagen + audio) |
 | GitHub Copilot    | `github-copilot`    | Utiliza su suscripción a Copilot           |
 | LM Studio         | `lmstudio`          | Local/alojado por el usuario               |
 | Local             | `local`             | `@openclaw/llama-cpp-provider`      |
 | Mistral           | `mistral`           |                                            |
 | Ollama            | `ollama`            | Local/alojado por el usuario               |
-| OpenAI            | `openai`            | Predeterminado: `text-embedding-3-small`   |
-| Compatible con OpenAI | `openai-compatible` | Endpoint genérico `/v1/embeddings`   |
+| OpenAI            | `openai`            | Valor predeterminado: `text-embedding-3-small` |
+| Compatible con OpenAI | `openai-compatible` | Endpoint genérico `/v1/embeddings`       |
 | Voyage            | `voyage`            |                                            |
 
-Establezca `memory.search.provider` para dejar de usar OpenAI.
+Establezca `memory.search.provider` para dejar de utilizar OpenAI.
 
 ## Cómo funciona la indexación
 
 OpenClaw divide `MEMORY.md` y `memory/*.md` en fragmentos (400 tokens con
-un solapamiento de 80 tokens de forma predeterminada) y los almacena en una base de datos SQLite por agente.
+una superposición de 80 tokens de forma predeterminada) y los almacena en una base de datos SQLite por agente.
 
 - **Ubicación del índice:** la base de datos del agente propietario en
   `~/.openclaw/agents/<agentId>/agent/openclaw-agent.sqlite`
-- **Mantenimiento del almacenamiento:** los archivos auxiliares WAL de SQLite se mantienen acotados mediante puntos de control periódicos y
-  al apagar.
+- **Mantenimiento del almacenamiento:** los archivos auxiliares WAL de SQLite se mantienen dentro de límites mediante puntos de control periódicos y
+  durante el cierre.
 - **Supervisión de archivos:** los cambios en los archivos de memoria activan una reindexación con antirrebote
-  (1,5 s de forma predeterminada).
-- **Reindexación automática:** el índice se reconstruye automáticamente cuando cambia el proveedor de
-  embeddings, el modelo, la configuración de fragmentación, las fuentes configuradas o el ámbito.
+  (valor predeterminado de 1.5s).
+- **Reindexación automática:** el índice se reconstruye automáticamente cuando cambian el proveedor de embeddings,
+  el modelo, la configuración de fragmentación, las fuentes configuradas o el ámbito.
 - **Reindexación bajo demanda:** `openclaw memory index --force`
 
 <Info>
@@ -111,8 +111,8 @@ También se pueden indexar archivos Markdown externos al espacio de trabajo con
 
 El motor integrado es la opción adecuada para la mayoría de los usuarios:
 
-- Funciona directamente sin dependencias adicionales.
-- Gestiona bien las búsquedas por palabras clave y vectoriales.
+- Funciona de inmediato sin dependencias adicionales.
+- Gestiona eficazmente las búsquedas por palabras clave y vectoriales.
 - Es compatible con todos los proveedores de embeddings.
 - La búsqueda híbrida combina lo mejor de ambos enfoques de recuperación.
 
@@ -124,7 +124,7 @@ con modelado automático del usuario.
 
 ## Solución de problemas
 
-**¿La búsqueda en memoria está desactivada?** Compruebe `openclaw memory status`. Si no se
+**¿Está deshabilitada la búsqueda en memoria?** Compruebe `openclaw memory status`. Si no se
 detecta ningún proveedor, establezca uno explícitamente o añada una clave de API.
 
 **¿No se detecta el proveedor local?** Confirme que la ruta local existe y ejecute:
@@ -134,22 +134,22 @@ openclaw memory status --deep --agent main
 openclaw memory index --force --agent main
 ```
 
-Tanto los comandos independientes de la CLI como el Gateway utilizan el mismo ID de proveedor `local`.
+Tanto los comandos independientes de la CLI como el Gateway utilizan el mismo id. de proveedor `local`.
 Establezca `memory.search.provider: "local"` cuando desee utilizar embeddings locales.
 
 **¿Resultados obsoletos?** Ejecute `openclaw memory index --force` para reconstruir el índice. El supervisor
-puede omitir cambios en casos extremos poco frecuentes.
+puede omitir cambios en casos excepcionales.
 
-**¿sqlite-vec no se carga?** OpenClaw recurre automáticamente a la similitud de coseno
-dentro del proceso. `openclaw memory status --deep` informa por separado sobre el almacén
-vectorial local y el proveedor de embeddings, por lo que `Vector store:
-unavailable` apunta a la carga de sqlite-vec, mientras que `Embeddings: unavailable`
-apunta a la disponibilidad del proveedor, la autenticación o el modelo. Consulte los registros para identificar el error
-de carga específico.
+**¿No se carga sqlite-vec?** OpenClaw recurre automáticamente a la similitud coseno
+en el proceso. `openclaw memory status --deep` informa del almacén vectorial local
+por separado del proveedor de embeddings, por lo que `Vector store:
+unavailable` hace referencia a la carga de sqlite-vec, mientras que `Embeddings: unavailable`
+hace referencia a la disponibilidad del proveedor, la autenticación o el modelo. Consulte los registros para identificar el error específico
+de carga.
 
 ## Configuración
 
-Para configurar proveedores de embeddings, ajustar la búsqueda híbrida (ponderaciones, MMR, decaimiento
+Para configurar el proveedor de embeddings, ajustar la búsqueda híbrida (pesos, MMR, decaimiento
 temporal), la indexación por lotes, la memoria multimodal, sqlite-vec, las rutas adicionales y todas
 las demás opciones de configuración, consulte la
 [referencia de configuración de memoria](/es/reference/memory-config).

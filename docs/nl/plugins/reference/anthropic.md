@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de anthropic-plugin
 summary: Anthropic-modellen, Claude CLI en de systeemeigen Claude-sessiecatalogus.
-title: Anthropic-Plugin
+title: Anthropic-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:13:02Z"
+    generated_at: "2026-07-27T05:14:24Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Anthropic-Plugin
+# Anthropic-plugin
 
 Anthropic-modellen, Claude CLI en systeemeigen Claude-sessiecatalogus.
 
 ## Distributie
 
 - Pakket: `@openclaw/anthropic-provider`
-- Installatieroute: inbegrepen in OpenClaw
+- Installatieroute: inbegrepen bij OpenClaw
 
 ## Oppervlak
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin مربوط به minimax هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin minimax هستید
 summary: پشتیبانی از ارائه‌دهندگان مدل MiniMax و MiniMax Portal را به OpenClaw اضافه می‌کند.
-title: Plugin ‏MiniMax
+title: Plugin مینی‌مکس
 x-i18n:
-    generated_at: "2026-07-16T17:03:01Z"
+    generated_at: "2026-07-27T15:32:22Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Plugin MiniMax
 
-پشتیبانی از ارائه‌دهندگان مدل MiniMax و MiniMax Portal را به OpenClaw اضافه می‌کند.
+پشتیبانی از ارائه‌دهنده مدل MiniMax و MiniMax Portal را به OpenClaw اضافه می‌کند.
 
 ## توزیع
 
 - بسته: `@openclaw/minimax-provider`
-- مسیر نصب: در OpenClaw گنجانده شده است
+- مسیر نصب: همراه OpenClaw ارائه می‌شود
 
 ## سطح
 

@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 groq 外掛
-summary: 新增 OpenClaw 對 Groq 模型供應商的支援。
+summary: 新增對 OpenClaw 的 Groq 模型供應商支援。
 title: Groq 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:52:12Z"
+    generated_at: "2026-07-26T08:28:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,16 +16,16 @@ x-i18n:
 
 # Groq 外掛
 
-為 OpenClaw 新增 Groq 模型供應商支援。
+為 OpenClaw 新增 Groq 模型提供者支援。
 
-## 發布
+## 發行
 
 - 套件：`@openclaw/groq-provider`
-- 安裝方式：npm；ClawHub：`clawhub:@openclaw/groq-provider`
+- 安裝途徑：npm；ClawHub：`clawhub:@openclaw/groq-provider`
 
 ## 介面
 
-供應商：`groq`；合約：`mediaUnderstandingProviders`
+提供者：`groq`；合約：`mediaUnderstandingProviders`
 
 ## 相關文件
 

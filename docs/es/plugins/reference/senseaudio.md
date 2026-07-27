@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin senseaudio
-summary: Añade compatibilidad con proveedores de comprensión de contenido multimedia.
-title: Plugin Senseaudio
+summary: Añade compatibilidad con proveedores de comprensión multimedia.
+title: Plugin de Senseaudio
 x-i18n:
-    generated_at: "2026-07-16T11:54:03Z"
+    generated_at: "2026-07-26T05:22:56Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

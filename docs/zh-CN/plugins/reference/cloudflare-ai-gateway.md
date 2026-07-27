@@ -4,7 +4,7 @@ read_when:
 summary: 为 OpenClaw 添加 Cloudflare AI Gateway 模型提供商支持。
 title: Cloudflare AI Gateway 网关插件
 x-i18n:
-    generated_at: "2026-07-16T11:48:20Z"
+    generated_at: "2026-07-26T05:55:11Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,10 +23,10 @@ x-i18n:
 - 软件包：`@openclaw/cloudflare-ai-gateway-provider`
 - 安装途径：npm；ClawHub：`clawhub:@openclaw/cloudflare-ai-gateway-provider`
 
-## 接口
+## 功能界面
 
 提供商：`cloudflare-ai-gateway`
 
 ## 相关文档
 
-- [Cloudflare AI Gateway](/zh-CN/providers/cloudflare-ai-gateway)
+- [cloudflare-ai-gateway](/zh-CN/providers/cloudflare-ai-gateway)

@@ -4,7 +4,7 @@ read_when:
 summary: 用于安全 CLI 唤醒桥接的 OpenClaw Raft 渠道插件。
 title: Raft 插件
 x-i18n:
-    generated_at: "2026-07-16T11:47:13Z"
+    generated_at: "2026-07-26T06:18:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## 分发
 
 - 软件包：`@openclaw/raft`
-- 安装途径：npm；ClawHub
+- 安装方式：npm；ClawHub
 
 ## 接口
 

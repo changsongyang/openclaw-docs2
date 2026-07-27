@@ -1,10 +1,10 @@
 ---
 read_when:
     - irc pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: OpenClaw mesajlarını gönderip almak için IRC kanal yüzeyini ekler.
+summary: OpenClaw mesajlarını göndermek ve almak için IRC kanal yüzeyini ekler.
 title: IRC Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:44:22Z"
+    generated_at: "2026-07-26T22:55:41Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# IRC plugin
+# IRC plugini
 
 OpenClaw mesajlarını göndermek ve almak için IRC kanal yüzeyini ekler.
 
 ## Dağıtım
 
 - Paket: `@openclaw/irc`
-- Kurulum yolu: npm; ClawHub: `clawhub:@openclaw/irc`
+- Yükleme yolu: npm; ClawHub: `clawhub:@openclaw/irc`
 
 ## Yüzey
 

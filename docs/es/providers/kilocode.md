@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Se necesita una sola clave de API para muchos LLMs
-    - Se desea ejecutar modelos mediante Kilo Gateway en OpenClaw
-summary: Usa la API unificada de Kilo Gateway para acceder a muchos modelos en OpenClaw
+    - Quieres una única clave de API para muchos LLM.
+    - Quieres ejecutar modelos mediante Kilo Gateway en OpenClaw
+summary: Usa la API unificada de Kilo Gateway para acceder a numerosos modelos en OpenClaw
 title: Gateway de Kilo
 x-i18n:
-    generated_at: "2026-07-19T02:08:41Z"
+    generated_at: "2026-07-26T05:26:56Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,7 +15,7 @@ x-i18n:
     workflow: 16
 ---
 
-Kilo Gateway enruta solicitudes a numerosos modelos mediante un único endpoint compatible con OpenAI y una clave de API.
+Kilo Gateway enruta solicitudes a muchos modelos mediante un único endpoint compatible con OpenAI y una única clave de API.
 
 | Propiedad | Valor                              |
 | -------- | ---------------------------------- |
@@ -42,7 +42,7 @@ openclaw gateway restart
     openclaw onboard --auth-choice kilocode-api-key
     ```
 
-    También puede configurar directamente la variable de entorno:
+    O establezca directamente la variable de entorno:
 
     ```bash
     export KILOCODE_API_KEY="<your-kilocode-api-key>" # pragma: allowlist secret
@@ -59,17 +59,17 @@ openclaw gateway restart
 ## Modelo predeterminado y catálogo
 
 El modelo predeterminado es `kilocode/kilo-auto/balanced`, el nivel equilibrado de enrutamiento inteligente de Kilo Gateway.
-OpenClaw no publica para este una correspondencia entre tareas y modelos ascendentes; el enrutamiento detrás de
-`kilo-auto/balanced` es responsabilidad de Kilo Gateway.
+OpenClaw no publica para él una correspondencia entre tareas y modelos ascendentes; el enrutamiento tras
+`kilo-auto/balanced` pertenece a Kilo Gateway.
 
 Al iniciarse, OpenClaw consulta `GET https://api.kilo.ai/api/gateway/models` y combina los modelos detectados
-antes de un catálogo de respaldo estático. El respaldo estático solo contiene
+antes de un catálogo estático de respaldo. El catálogo estático de respaldo solo contiene
 `kilocode/kilo-auto/balanced` (`Auto Balanced`, `input: ["text", "image"]`, `reasoning: true`,
 `contextWindow: 1000000`, `maxTokens: 65536`).
 
-Se puede acceder a cualquier modelo del Gateway como `kilocode/<upstream-id>` (por ejemplo,
+Se puede acceder a cualquier modelo del gateway como `kilocode/<upstream-id>` (por ejemplo,
 `kilocode/anthropic/claude-sonnet-4`, `kilocode/openai/gpt-5.5`). Ejecute `/models kilocode` o
-`openclaw models list --provider kilocode` para ver la lista completa de modelos detectados.
+`openclaw models list --provider kilocode` para consultar la lista completa de modelos detectados.
 
 ## Ejemplo de configuración
 
@@ -88,19 +88,19 @@ Se puede acceder a cualquier modelo del Gateway como `kilocode/<upstream-id>` (p
 
 <AccordionGroup>
   <Accordion title="Transporte y compatibilidad">
-    Kilo Gateway es compatible con OpenRouter, por lo que utiliza la ruta de solicitudes compatible con OpenAI
-    de tipo proxy, en lugar del formato de solicitudes nativo de OpenAI (sin `store`, sin carga útil de esfuerzo de razonamiento de OpenAI).
+    Kilo Gateway es compatible con OpenRouter, por lo que utiliza la ruta de solicitudes compatible
+    con OpenAI de tipo proxy en lugar del formato de solicitudes nativo de OpenAI (sin `store`, sin carga útil de esfuerzo de razonamiento de OpenAI).
 
-    - Las referencias de Kilo respaldadas por Gemini permanecen en la ruta proxy de Gemini: OpenClaw sanea allí las firmas
-      de pensamiento de Gemini, pero no habilita la validación de reproducción nativa de Gemini ni las reescrituras de inicialización.
+    - Las referencias de Kilo basadas en Gemini permanecen en la ruta proxy de Gemini: OpenClaw depura allí las firmas
+      de pensamiento de Gemini, pero no habilita la validación de repetición nativa de Gemini ni las reescrituras de arranque.
     - Las solicitudes utilizan un token Bearer creado a partir de la clave de API.
 
   </Accordion>
 
-  <Accordion title="Contenedor de flujo y razonamiento">
-    El contenedor de flujo de Kilo añade un encabezado de solicitud `X-KILOCODE-FEATURE` (valor predeterminado: `openclaw`;
+  <Accordion title="Envoltorio de transmisión y razonamiento">
+    El envoltorio de transmisión de Kilo añade un encabezado de solicitud `X-KILOCODE-FEATURE` (valor predeterminado `openclaw`,
     se puede sustituir mediante la variable de entorno `KILOCODE_FEATURE`) y normaliza las cargas útiles de esfuerzo de razonamiento para
-    los modelos que lo admiten.
+    los modelos compatibles.
 
     <Warning>
     Las referencias `kilocode/kilo-auto/balanced` y `x-ai/*` omiten la inyección del esfuerzo de razonamiento. Utilice una referencia
@@ -111,13 +111,13 @@ Se puede acceder a cualquier modelo del Gateway como `kilocode/<upstream-id>` (p
 
   <Accordion title="Solución de problemas">
     - Si la detección de modelos falla durante el inicio, OpenClaw recurre al catálogo estático que contiene `kilocode/kilo-auto/balanced`.
-    - Confirme que la clave de API sea válida y que la cuenta de Kilo tenga habilitados los modelos deseados.
-    - Cuando Gateway se ejecuta como demonio, asegúrese de que `KILOCODE_API_KEY` esté disponible para ese proceso (por ejemplo, en `~/.openclaw/.env` o mediante `env.shellEnv`).
+    - Confirme que la clave de API sea válida y que los modelos deseados estén habilitados en su cuenta de Kilo.
+    - Cuando Gateway se ejecute como demonio, asegúrese de que `KILOCODE_API_KEY` esté disponible para ese proceso (por ejemplo, en `~/.openclaw/.env` o mediante `env.shellEnv`).
 
   </Accordion>
 </AccordionGroup>
 
-## Contenido relacionado
+## Recursos relacionados
 
 <CardGroup cols={2}>
   <Card title="Selección de modelos" href="/es/concepts/model-providers" icon="layers">

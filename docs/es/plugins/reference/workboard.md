@@ -2,9 +2,9 @@
 read_when:
     - Está instalando, configurando o auditando el plugin de tablero de trabajo
 summary: Panel de trabajo para incidencias y sesiones gestionadas por agentes.
-title: Plugin de tablero de trabajo
+title: Plugin Workboard
 x-i18n:
-    generated_at: "2026-07-21T09:00:44Z"
+    generated_at: "2026-07-26T05:23:19Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin Workboard
 
-Panel de trabajo para incidencias y sesiones propiedad de agentes.
+Panel de trabajo para incidencias y sesiones gestionadas por agentes.
 
 ## Distribución
 
@@ -29,4 +29,4 @@ contratos: `tools`; enlaces de datos del panel: `workboard.cards.list`, `workboa
 
 ## Documentación relacionada
 
-- [workboard](/es/plugins/workboard)
+- [Workboard](/es/plugins/workboard)

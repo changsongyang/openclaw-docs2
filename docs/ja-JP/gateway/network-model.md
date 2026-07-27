@@ -5,9 +5,10 @@ redirect: /network#core-model
 summary: /network#core-model へリダイレクト
 title: ネットワークモデル
 x-i18n:
-    generated_at: "2026-07-11T22:16:25Z"
+    generated_at: "2026-07-26T09:42:16Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
+    prompt_version: 32
     provider: openai
     source_hash: a0ef2806cfb539157d827fe9c2ffddc914aa680e3ef318c211b2ec1f374cfed2
     source_path: gateway/network-model.md

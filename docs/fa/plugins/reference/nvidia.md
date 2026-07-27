@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin nvidia هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin ‏nvidia هستید
 summary: پشتیبانی از ارائه‌دهنده مدل NVIDIA را به OpenClaw اضافه می‌کند.
-title: Plugin انویدیا
+title: Plugin ‏NVIDIA
 x-i18n:
-    generated_at: "2026-07-16T17:29:20Z"
+    generated_at: "2026-07-27T15:56:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی افزونه anthropic هستید
-summary: مدل‌های Anthropic،‏ Claude CLI و فهرست بومی نشست‌های Claude.
-title: Plugin ‏Anthropic
+    - در حال نصب، پیکربندی یا ممیزی Plugin آنتروپیک هستید
+summary: مدل‌های Anthropic، ‏Claude CLI و کاتالوگ بومی نشست‌های Claude.
+title: Plugin Anthropic
 x-i18n:
-    generated_at: "2026-07-16T17:25:57Z"
+    generated_at: "2026-07-27T14:26:57Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Plugin Anthropic
 
-مدل‌های Anthropic، ‏CLI ‏Claude و فهرست بومی نشست‌های Claude.
+مدل‌های Anthropic،‏ Claude CLI و کاتالوگ بومی نشست‌های Claude.
 
 ## توزیع
 
 - بسته: `@openclaw/anthropic-provider`
-- مسیر نصب: در OpenClaw گنجانده شده است
+- مسیر نصب: همراه OpenClaw ارائه می‌شود
 
 ## سطح
 

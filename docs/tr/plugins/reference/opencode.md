@@ -2,9 +2,9 @@
 read_when:
     - opencode pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a OpenCode model sağlayıcısı desteği ekler.
-title: OpenCode plugini
+title: OpenCode plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:31:29Z"
+    generated_at: "2026-07-26T23:53:20Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# OpenCode plugin'i
+# OpenCode plugin’i
 
-OpenClaw'a OpenCode model sağlayıcısı desteği ekler.
+OpenClaw’a OpenCode model sağlayıcısı desteği ekler.
 
 ## Dağıtım
 
 - Paket: `@openclaw/opencode-provider`
-- Kurulum yolu: OpenClaw'a dahildir
+- Kurulum yolu: OpenClaw’a dahildir
 
 ## Yüzey
 
@@ -31,15 +31,15 @@ sağlayıcılar: `opencode`; sözleşmeler: `mediaUnderstandingProviders`
 
 ## Yerel oturumlar
 
-OpenClaw, Gateway ve eşleştirilmiş Node'larda `opencode` CLI'yi otomatik olarak algılar. Ardından depolanan
+OpenClaw, Gateway ve eşleştirilmiş Node’larda `opencode` CLI’ını otomatik olarak algılar. Ardından depolanan
 oturumlar, resmi `opencode --pure db ... --format json`
 ve `opencode --pure export` komutları aracılığıyla salt okunur
-transkriptlere göz atma olanağıyla **OpenCode** oturumları kenar çubuğu grubunda görünür. Kısıtlı ortam ve `--pure`
-modu, katalog taramasının proje plugin'lerini yüklemesini veya ilgisiz
-Gateway kimlik bilgilerini devralmasını engeller.
+transkriptlere göz atma özelliğiyle **OpenCode** oturumları kenar çubuğu grubunda görünür. Kısıtlı ortam ve `--pure`
+modu, katalog taramasının proje plugin’lerini yüklemesini veya ilgisiz
+Gateway kimlik bilgilerini devralmasını önler.
 
-Keşfi devre dışı bırakmak için **Config > Plugins > OpenCode** altındaki **OpenCode Session Catalog** seçeneğini kapatın.
-Bu seçenek varsayılan olarak etkindir.
+Keşfi devre dışı bırakmak için **Config > Plugins > OpenCode** altında
+**OpenCode Session Catalog** seçeneğini kapatın. Bu seçenek varsayılan olarak etkindir.
 
 <!-- openclaw-plugin-reference:manual-end -->
 

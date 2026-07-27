@@ -4,7 +4,7 @@ read_when:
 summary: Añade compatibilidad con el proveedor de modelos Meta a OpenClaw.
 title: Plugin de Meta
 x-i18n:
-    generated_at: "2026-07-16T11:48:44Z"
+    generated_at: "2026-07-26T05:22:24Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

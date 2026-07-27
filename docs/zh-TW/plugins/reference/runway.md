@@ -4,7 +4,7 @@ read_when:
 summary: 新增影片生成供應商支援。
 title: Runway 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:55:33Z"
+    generated_at: "2026-07-26T07:59:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Runway 外掛
 
-新增影片生成供應商支援。
+新增影片生成提供者支援。
 
-## 發佈
+## 發行方式
 
 - 套件：`@openclaw/runway-provider`
-- 安裝途徑：隨附於 OpenClaw
+- 安裝方式：隨附於 OpenClaw
 
 ## 介面
 

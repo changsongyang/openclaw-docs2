@@ -5,7 +5,7 @@ read_when:
 summary: Node'lar için konum komutu, platform izin modları ve Linux GeoClue kurulumu
 title: Konum komutu
 x-i18n:
-    generated_at: "2026-07-16T17:21:13Z"
+    generated_at: "2026-07-27T00:03:48Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -20,11 +20,11 @@ x-i18n:
 - `location.get`, `node.invoke` veya `openclaw nodes location get` aracılığıyla çağrılan bir Node komutudur.
 - Varsayılan olarak kapalıdır.
 - Android üçüncü taraf derlemeleri bir seçici kullanır: Kapalı / Kullanırken / Her Zaman. Play derlemelerinde Kapalı / Kullanırken seçenekleri bulunmaya devam eder.
-- Kesin Konum ayrı bir anahtardır.
+- Kesin Konum ayrı bir açma/kapatma seçeneğidir.
 
-## Neden yalnızca bir anahtar değil de seçici kullanılıyor?
+## Neden yalnızca anahtar değil, seçici kullanılıyor?
 
-İşletim sistemi konum izinleri birden çok düzeye sahiptir. Kesin konum da ayrı bir işletim sistemi iznidir (iOS 14+ sürümlerinde "Precise", Android'de "fine" ve "coarse"). Uygulama içindeki seçici, istenen modu belirler ancak verilecek gerçek izne yine işletim sistemi karar verir.
+İşletim sistemi konum izinleri birden fazla düzeye sahiptir. Kesin konum da ayrı bir işletim sistemi iznidir (iOS 14+ sürümünde "Precise", Android'de "fine" ve "coarse"). Uygulama içi seçici, istenen modu belirler ancak verilecek gerçek izne yine işletim sistemi karar verir.
 
 ## Ayarlar modeli
 
@@ -42,7 +42,7 @@ Kullanıcı arayüzü davranışı:
 
 ## İzin eşlemesi (node.permissions)
 
-İsteğe bağlıdır. macOS Node'u, `node.list`/`node.describe` üzerindeki `permissions` eşlemesi aracılığıyla `location` değerini bildirir; iOS/Android bunu atlayabilir.
+İsteğe bağlıdır. macOS Node'u, `node.list`/`node.describe` üzerindeki `permissions` eşlemesi aracılığıyla `location` değerini bildirir; iOS/Android bunu dahil etmeyebilir.
 
 ## Komut: `location.get`
 
@@ -84,20 +84,20 @@ Yanıt yükü:
 Hatalar (kararlı kodlar):
 
 - `LOCATION_DISABLED`: seçici kapalıdır.
-- `LOCATION_PERMISSION_REQUIRED`: istenen mod için gerekli izin eksiktir.
+- `LOCATION_PERMISSION_REQUIRED`: istenen mod için izin eksiktir.
 - `LOCATION_BACKGROUND_UNAVAILABLE`: uygulama arka plandadır ancak yalnızca Kullanırken izni verilmiştir.
 - `LOCATION_TIMEOUT`: zamanında konum belirlenemedi.
 - `LOCATION_UNAVAILABLE`: sistem hatası oluştu veya sağlayıcı yok.
 
 ## Arka plan davranışı
 
-- Android üçüncü taraf derlemeleri, arka plandaki `location.get` çağrılarını yalnızca kullanıcı `Always` seçeneğini belirlediğinde ve Android arka plan konum izni verdiğinde kabul eder. Mevcut kalıcı Node hizmeti, `location` hizmet türünü ekler ve etkinken `Location: Always` bilgisini gösterir.
-- Android Play derlemeleri ve `While Using` modu, arka plandayken `location.get` çağrılarını reddeder.
-- Diğer Node platformlarında davranış farklı olabilir.
+- Android üçüncü taraf derlemeleri, arka plandaki `location.get` isteklerini yalnızca kullanıcı `Always` seçeneğini belirlediyse ve Android arka plan konum izni verdiyse kabul eder. Mevcut kalıcı Node hizmeti, `location` hizmet türünü ekler ve etkinken `Location: Always` bilgisini açıkça gösterir.
+- Android Play derlemeleri ve `While Using` modu, uygulama arka plandayken `location.get` isteklerini reddeder.
+- Diğer Node platformları farklı davranabilir.
 
 ## Linux Node ana makinesi
 
-Paketle gelen Linux Node Plugin'i, Linux masaüstü uygulaması bulunmayan başsız ana makineler dâhil olmak üzere CLI `openclaw node` hizmetine `location.get` ekler. Konum varsayılan olarak kapalıdır. Plugin girdisi altında etkinleştirin ve ardından Node hizmetini yeniden başlatın:
+Paketle gelen Linux Node Plugin'i, Linux masaüstü uygulaması bulunmayan başsız ana makineler de dahil olmak üzere CLI `openclaw node` hizmetine `location.get` ekler. Konum varsayılan olarak kapalıdır. Plugin girdisi altında etkinleştirin ve ardından Node hizmetini yeniden başlatın:
 
 ```json5
 {
@@ -113,9 +113,9 @@ Paketle gelen Linux Node Plugin'i, Linux masaüstü uygulaması bulunmayan başs
 }
 ```
 
-GeoClue2'yi ve `where-am-i` demosunu (Debian ve Ubuntu'da `geoclue-2-demo`) yükleyin. Node hizmeti kullanıcısına, ana makinenin GeoClue politikası ve yetkilendirme aracısı tarafından izin verilmelidir.
+GeoClue2'yi ve `where-am-i` demosunu (Debian ve Ubuntu'da `geoclue-2-demo`) yükleyin. Node hizmeti kullanıcısına, ana makinenin GeoClue ilkesi ve yetkilendirme aracısı tarafından izin verilmelidir.
 
-Plugin, art arda yapılan `busctl` çağrıları yerine `where-am-i` kullanır. GeoClue; istemci oluşturma, özellikler, başlatma, güncellemeler ve durdurma işlemlerini tek bir D-Bus istemci bağlantısına bağlar. Demo bu yaşam döngüsünü bir arada tutarken ayrı `busctl` alt süreçleri bunu yapmaz. Herhangi bir npm bağımlılığı eklenmez.
+Plugin, bir dizi `busctl` çağrısı yerine `where-am-i` kullanır. GeoClue; istemci oluşturma, özellikler, başlatma, güncellemeler ve durdurma işlemlerini tek bir D-Bus istemci bağlantısına bağlar. Demo bu yaşam döngüsünü bir arada tutarken ayrı `busctl` alt süreçleri bunu yapmaz. Herhangi bir npm bağımlılığı eklenmez.
 
 Linux; `coarse`, `balanced` ve `precise` değerlerini sırasıyla `4`, `6` ve `8` GeoClue doğruluk düzeyleriyle eşler. `maxAgeMs` değerini döndürülen zaman damgasına göre doğrular. GeoClue demosu seçilen sağlayıcıyı göstermediğinden `source` değeri `unknown` olur; `isPrecise` yalnızca bildirilen doğruluk 100 metre veya daha iyiyse true olur.
 
@@ -123,20 +123,20 @@ Linux aynı kararlı hataları kullanır: `LOCATION_DISABLED`, `LOCATION_TIMEOUT
 
 ## Model/araç entegrasyonu
 
-- Agent aracı: `nodes` aracının `location_get` eylemi (Node gereklidir).
+- Aracı aracı: `nodes` aracının `location_get` eylemi (Node gereklidir).
 - CLI: `openclaw nodes location get --node <id>`.
-- Agent yönergeleri: yalnızca kullanıcı konumu etkinleştirmiş ve kapsamı anlamışsa çağırın.
+- Aracı yönergeleri: yalnızca kullanıcı konumu etkinleştirdiyse ve kapsamını anlıyorsa çağırın.
 
 ## Kullanıcı deneyimi metni (önerilen)
 
 - Kapalı: "Konum paylaşımı devre dışı."
 - Kullanırken: "Yalnızca OpenClaw açıkken."
 - Her Zaman: "OpenClaw arka plandayken istenen konum kontrollerine izin ver."
-- Kesin: "Kesin GPS konumunu kullan. Yaklaşık konum paylaşmak için kapatın."
+- Kesin: "Kesin GPS konumunu kullan. Yaklaşık konumu paylaşmak için kapatın."
 
-## İlgili
+## İlgili konular
 
 - [Node'lara genel bakış](/tr/nodes)
 - [Kanal konumu ayrıştırma](/tr/channels/location)
-- [Kamera yakalama](/tr/nodes/camera)
+- [Kamerayla çekim](/tr/nodes/camera)
 - [Konuşma modu](/tr/nodes/talk)

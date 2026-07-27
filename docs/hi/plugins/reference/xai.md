@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw में xAI मॉडल प्रदाता का समर्थन जोड़ता है।
 title: xAI Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:18:32Z"
+    generated_at: "2026-07-27T21:31:40Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,16 +14,16 @@ x-i18n:
     workflow: 16
 ---
 
-# xAI Plugin
+# xAI plugin
 
-OpenClaw में xAI मॉडल प्रदाता समर्थन जोड़ता है।
+OpenClaw में xAI मॉडल प्रदाता के लिए समर्थन जोड़ता है।
 
 ## वितरण
 
 - पैकेज: `@openclaw/xai-plugin`
 - इंस्टॉल मार्ग: OpenClaw में शामिल
 
-## उपलब्ध सतह
+## सतह
 
 प्रदाता: `xai`; अनुबंध: `imageGenerationProviders`, `mediaUnderstandingProviders`, `realtimeTranscriptionProviders`, `realtimeVoiceProviders`, `speechProviders`, `tools`, `videoGenerationProviders`, `webSearchProviders`
 

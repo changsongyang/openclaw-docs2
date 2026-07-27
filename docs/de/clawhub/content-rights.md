@@ -6,7 +6,7 @@ sidebarTitle: Content Rights
 summary: So melden Sie Bedenken wegen Urheberrechten oder anderen Inhaltsrechten an auf ClawHub veröffentlichtem Material.
 title: Anfragen zu Inhaltsrechten
 x-i18n:
-    generated_at: "2026-07-24T04:49:20Z"
+    generated_at: "2026-07-26T18:21:01Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -24,10 +24,10 @@ Geben Sie Folgendes an:
 
 - eine oder mehrere genaue `https://clawhub.ai/<owner>/skills/<skill>`-URLs
 - Ihren Namen, Ihre Organisation und Ihre Kontakt-E-Mail-Adresse
-- eine kurze Erläuterung der rechtlichen Bedenken
+- eine kurze Erläuterung des rechtlichen Anliegens
 - Belege, sofern verfügbar
 
-Die Mitarbeitenden von ClawHub prüfen Anfragen manuell und wenden sich möglicherweise an die anfragende oder veröffentlichende Person, um weitere Informationen einzuholen. Abhängig von den Umständen können betroffene Inhalte ausgeblendet, wiederhergestellt oder unverändert belassen werden.
+ClawHub-Mitarbeitende prüfen Anfragen manuell und können die anfragende oder veröffentlichende Person kontaktieren, um weitere Informationen einzuholen. Abhängig von den Umständen können betroffene Inhalte ausgeblendet, wiederhergestellt oder unverändert belassen werden.
 
-Verwenden Sie für unsichere Marketplace-Inhalte, bei denen es nicht um Inhaltsrechte geht, den unter [Moderation und Kontosicherheit](/clawhub/moderation) beschriebenen regulären Meldeweg.
-Informationen zu Schwachstellen in ClawHub selbst finden Sie unter [Sicherheit](/clawhub/security).
+Für unsichere Marketplace-Inhalte, bei denen es nicht um Inhaltsrechte geht, verwenden Sie den normalen Meldeweg, der unter [Moderation und Kontosicherheit](/de/clawhub/moderation) beschrieben ist.
+Informationen zu Schwachstellen in ClawHub selbst finden Sie unter [Sicherheit](/de/clawhub/security).

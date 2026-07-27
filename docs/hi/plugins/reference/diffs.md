@@ -1,10 +1,10 @@
 ---
 read_when:
-    - आप diffs Plugin को इंस्टॉल, कॉन्फ़िगर या उसके बदलावों का ऑडिट कर रहे हैं
+    - आप diffs Plugin को इंस्टॉल, कॉन्फ़िगर या उसके परिवर्तनों का ऑडिट कर रहे हैं
 summary: एजेंटों के लिए OpenClaw का केवल-पढ़ने योग्य डिफ़ व्यूअर Plugin और फ़ाइल रेंडरर।
 title: डिफ़्स Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:40:44Z"
+    generated_at: "2026-07-27T18:18:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

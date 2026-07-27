@@ -1,11 +1,11 @@
 ---
 read_when:
     - Skripte aus dem Repository ausführen
-    - Hinzufügen oder Ändern von Skripten unter ./scripts
+    - Skripte unter ./scripts hinzufügen oder ändern
 summary: 'Repository-Skripte: Zweck, Umfang und Sicherheitshinweise'
 title: Skripte
 x-i18n:
-    generated_at: "2026-07-24T03:51:08Z"
+    generated_at: "2026-07-26T17:50:15Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,27 +15,27 @@ x-i18n:
     workflow: 16
 ---
 
-`scripts/` enthält Hilfsskripte für lokale Workflows und Betriebsaufgaben. Verwenden Sie diese, wenn eine Aufgabe eindeutig an ein Skript gebunden ist; andernfalls ist die CLI vorzuziehen.
+`scripts/` enthält Hilfsskripte für lokale Workflows und Betriebsaufgaben. Verwenden Sie diese, wenn eine Aufgabe eindeutig mit einem Skript verknüpft ist; bevorzugen Sie andernfalls die CLI.
 
 ## Konventionen
 
-- Skripte sind **optional**, sofern nicht in der Dokumentation oder in Release-Checklisten auf sie verwiesen wird.
-- Bevorzugen Sie vorhandene CLI-Oberflächen (Beispiel: `openclaw models status --check`).
+- Skripte sind **optional**, sofern nicht in der Dokumentation oder in Release-Checklisten darauf verwiesen wird.
+- Bevorzugen Sie vorhandene CLI-Schnittstellen (Beispiel: `openclaw models status --check`).
 - Gehen Sie davon aus, dass Skripte hostspezifisch sind; lesen Sie sie, bevor Sie sie auf einem neuen Rechner ausführen.
 
 ## Skripte zur Authentifizierungsüberwachung
 
-Die allgemeine Modellauthentifizierung wird unter [Authentifizierung](/de/gateway/authentication) behandelt. Die folgenden Skripte bilden ein separates, optionales System zur Überwachung eines **Claude Code CLI-Abonnementtokens** auf einem entfernten/headless Host und zur erneuten Authentifizierung über ein Telefon:
+Die allgemeine Modellauthentifizierung wird unter [Authentifizierung](/de/gateway/authentication) behandelt. Die folgenden Skripte bilden ein separates, optionales System zur Überwachung eines **Claude Code CLI-Abonnementtokens** auf einem entfernten/headless Host und zur erneuten Authentifizierung per Smartphone:
 
-- `scripts/setup-auth-system.sh` – einmalige Einrichtung: Prüft die aktuelle Authentifizierung, hilft beim Erzeugen eines langlebigen `claude setup-token` und gibt Installationsschritte für systemd/Termux aus.
+- `scripts/setup-auth-system.sh` – einmalige Einrichtung: prüft die aktuelle Authentifizierung, unterstützt beim Erzeugen eines langlebigen `claude setup-token` und gibt Installationsschritte für systemd/Termux aus.
 - `scripts/claude-auth-status.sh [full|json|simple]` – prüft den Authentifizierungsstatus von Claude Code und OpenClaw.
-- `scripts/auth-monitor.sh` – fragt den Status regelmäßig ab und sendet eine Benachrichtigung (über OpenClaw send und/oder ntfy.sh), wenn sich das Token seinem Ablauf nähert. Umgebungsvariablen: `WARN_HOURS` (Standardwert `2`), `NOTIFY_PHONE`, `NOTIFY_NTFY`. Führen Sie es nach einem Zeitplan über das enthaltene `scripts/systemd/openclaw-auth-monitor.{service,timer}` aus (alle 30 Minuten).
-- `scripts/mobile-reauth.sh` – führt `claude setup-token` erneut aus und gibt URLs aus, die auf einem Telefon geöffnet werden können, zur Verwendung über SSH aus Termux.
-- `scripts/termux-quick-auth.sh`, `scripts/termux-auth-widget.sh`, `scripts/termux-sync-widget.sh` – Termux:Widget-Skripte, die per SSH eine Verbindung zum Host herstellen, eine Statusmeldung anzeigen und bei abgelaufener Authentifizierung die Konsole/Anweisungen zur erneuten Authentifizierung öffnen.
+- `scripts/auth-monitor.sh` – fragt den Status regelmäßig ab und sendet eine Benachrichtigung (über OpenClaw send und/oder ntfy.sh), wenn das Token kurz vor dem Ablauf steht. Umgebungsvariablen: `WARN_HOURS` (Standardwert `2`), `NOTIFY_PHONE`, `NOTIFY_NTFY`. Führen Sie das Skript planmäßig über den mitgelieferten `scripts/systemd/openclaw-auth-monitor.{service,timer}` aus (alle 30 Minuten).
+- `scripts/mobile-reauth.sh` – führt `claude setup-token` erneut aus und gibt URLs aus, die auf einem Smartphone geöffnet werden können; zur Verwendung über SSH aus Termux.
+- `scripts/termux-quick-auth.sh`, `scripts/termux-auth-widget.sh`, `scripts/termux-sync-widget.sh` – Termux:Widget-Skripte, die per SSH eine Verbindung zum Host herstellen, eine Statusmeldung einblenden und bei abgelaufener Authentifizierung die Konsole/Anweisungen zur erneuten Authentifizierung öffnen.
 
 ## GitHub-Lesehilfsprogramm
 
-Verwenden Sie `scripts/gh-read`, wenn `gh` für auf das Repository beschränkte Leseaufrufe das Installationstoken einer GitHub App verwenden soll, während das reguläre `gh` für Schreibaktionen mit Ihrer persönlichen Anmeldung verbunden bleibt.
+Verwenden Sie `scripts/gh-read`, wenn `gh` für Repository-bezogene Leseaufrufe das Installationstoken einer GitHub App verwenden soll, während das normale `gh` für Schreibaktionen weiterhin mit Ihrer persönlichen Anmeldung ausgeführt wird.
 
 Erforderliche Umgebungsvariablen:
 
@@ -44,8 +44,8 @@ Erforderliche Umgebungsvariablen:
 
 Optionale Umgebungsvariablen:
 
-- `OPENCLAW_GH_READ_INSTALLATION_ID`, wenn Sie die Repository-basierte Installationssuche überspringen möchten
-- `OPENCLAW_GH_READ_PERMISSIONS` als kommagetrennte Überschreibung der anzufordernden Teilmenge von Leseberechtigungen
+- `OPENCLAW_GH_READ_INSTALLATION_ID`, wenn Sie die Repository-basierte Suche nach der Installation überspringen möchten
+- `OPENCLAW_GH_READ_PERMISSIONS` als kommagetrennte Überschreibung für die anzufordernde Teilmenge der Leseberechtigungen
 
 Reihenfolge der Repository-Auflösung:
 
@@ -61,8 +61,8 @@ Beispiele:
 
 ## Beim Hinzufügen von Skripten
 
-- Halten Sie Skripte fokussiert und dokumentieren Sie sie.
-- Fügen Sie in der relevanten Dokumentation einen kurzen Eintrag hinzu (oder erstellen Sie sie, falls sie fehlt).
+- Halten Sie Skripte fokussiert und dokumentiert.
+- Fügen Sie einen kurzen Eintrag in der relevanten Dokumentation hinzu (oder erstellen Sie diese, falls sie fehlt).
 
 ## Verwandte Themen
 

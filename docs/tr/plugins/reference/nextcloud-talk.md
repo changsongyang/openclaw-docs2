@@ -1,10 +1,10 @@
 ---
 read_when:
     - nextcloud-talk pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: Sohbetler için OpenClaw Nextcloud Talk kanal plugin'i.
+summary: Konuşmalar için OpenClaw Nextcloud Talk kanal Plugin'i.
 title: Nextcloud Talk Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:45:40Z"
+    generated_at: "2026-07-26T22:56:12Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

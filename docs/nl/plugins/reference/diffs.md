@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Je installeert of configureert de diffs-plugin, of voert er een audit van uit
-summary: OpenClaw-plugin voor een alleen-lezen diffweergave en bestandsrenderer voor agents.
+    - Je installeert of configureert de diffs-plugin, of controleert deze op wijzigingen.
+summary: OpenClaw Plugin voor alleen-lezenweergave van diffs en bestandsrenderer voor agents.
 title: Diffs-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:05:14Z"
+    generated_at: "2026-07-27T05:08:50Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Diffs-plugin
 
-Alleen-lezen Plugin voor het weergeven van verschillen en bestandsrenderer voor agents in OpenClaw.
+OpenClaw Plugin voor het alleen-lezen bekijken van diffs en bestandsrenderer voor agents.
 
 ## Distributie
 

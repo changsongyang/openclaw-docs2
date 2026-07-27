@@ -1,12 +1,12 @@
 ---
 read_when:
-    - Sie automatisieren das Onboarding in Skripten oder der CI
+    - Sie automatisieren das Onboarding in Skripten oder der CI.
     - Sie benötigen nicht interaktive Beispiele für bestimmte Provider
 sidebarTitle: CLI automation
-summary: Skriptgestütztes Onboarding und Agenten-Setup für die OpenClaw CLI
+summary: Skriptgestütztes Onboarding und Agenteneinrichtung für die OpenClaw CLI
 title: CLI-Automatisierung
 x-i18n:
-    generated_at: "2026-07-24T04:43:35Z"
+    generated_at: "2026-07-26T18:39:04Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,13 +16,13 @@ x-i18n:
     workflow: 16
 ---
 
-Verwenden Sie `openclaw onboard --non-interactive`, um die Einrichtung zu skripten. Dafür ist `--accept-risk` erforderlich: Die nicht interaktive Einrichtung kann Anmeldedaten und die Daemon-Konfiguration ohne Bestätigungsaufforderung schreiben. Daher dient das Flag als ausdrückliche Bestätigung des Risikos.
+Verwenden Sie `openclaw onboard --non-interactive`, um die Einrichtung per Skript durchzuführen. Dafür ist `--accept-risk` erforderlich: Die nicht interaktive Einrichtung kann Anmeldedaten und die Daemon-Konfiguration ohne Bestätigungsaufforderung schreiben, daher dient das Flag als ausdrückliche Bestätigung des Risikos.
 
 <Note>
-`--json` aktiviert nicht automatisch den nicht interaktiven Modus. Übergeben Sie für Skripte ausdrücklich `--non-interactive --accept-risk`.
+`--json` impliziert keinen nicht interaktiven Modus. Übergeben Sie für Skripte ausdrücklich `--non-interactive --accept-risk`.
 </Note>
 
-## Nicht interaktives Basisbeispiel
+## Grundlegendes nicht interaktives Beispiel
 
 ```bash
 openclaw onboard --non-interactive --accept-risk \
@@ -41,7 +41,7 @@ Fügen Sie `--json` hinzu, um eine maschinenlesbare Zusammenfassung zu erhalten.
 
 - `--gateway-port` verwendet standardmäßig `18789`; übergeben Sie es nur, um diesen Wert zu überschreiben.
 - `--skip-bootstrap` überspringt die Erstellung der standardmäßigen Workspace-Dateien für Automatisierungen, die ihren eigenen Workspace vorab befüllen.
-- `--secret-input-mode ref` speichert im Authentifizierungsprofil statt des Klartextschlüssels eine umgebungsvariablenbasierte Referenz (`{ source: "env", provider: "default", id: "<ENV_VAR>" }`). Im nicht interaktiven `ref`-Modus muss die Umgebungsvariable des Providers bereits in der Prozessumgebung gesetzt sein: Wird ein Inline-Schlüssel-Flag ohne die zugehörige Umgebungsvariable übergeben, schlägt der Vorgang sofort fehl.
+- `--secret-input-mode ref` speichert im Authentifizierungsprofil statt des Klartextschlüssels eine umgebungsvariablenbasierte Referenz (`{ source: "env", provider: "default", id: "<ENV_VAR>" }`). Im nicht interaktiven `ref`-Modus muss die Umgebungsvariable des Providers bereits in der Prozessumgebung gesetzt sein: Wird ein Schlüssel-Flag inline ohne die zugehörige Umgebungsvariable übergeben, schlägt der Vorgang sofort fehl.
 
 ```bash
 openclaw onboard --non-interactive --accept-risk \
@@ -73,7 +73,7 @@ openclaw onboard --non-interactive --accept-risk \
       --gateway-bind loopback
     ```
   </Accordion>
-  <Accordion title="Gemini-Beispiel">
+  <Accordion title="Beispiel für Gemini">
     ```bash
     openclaw onboard --non-interactive --accept-risk \
       --mode local \
@@ -82,7 +82,7 @@ openclaw onboard --non-interactive --accept-risk \
       --gateway-bind loopback
     ```
   </Accordion>
-  <Accordion title="Mistral-Beispiel">
+  <Accordion title="Beispiel für Mistral">
     ```bash
     openclaw onboard --non-interactive --accept-risk \
       --mode local \
@@ -91,7 +91,7 @@ openclaw onboard --non-interactive --accept-risk \
       --gateway-bind loopback
     ```
   </Accordion>
-  <Accordion title="Moonshot-Beispiel">
+  <Accordion title="Beispiel für Moonshot">
     ```bash
     openclaw onboard --non-interactive --accept-risk \
       --mode local \
@@ -100,7 +100,7 @@ openclaw onboard --non-interactive --accept-risk \
       --gateway-bind loopback
     ```
   </Accordion>
-  <Accordion title="Ollama-Beispiel">
+  <Accordion title="Beispiel für Ollama">
     ```bash
     openclaw onboard --non-interactive --accept-risk \
       --mode local \
@@ -109,7 +109,7 @@ openclaw onboard --non-interactive --accept-risk \
       --gateway-bind loopback
     ```
   </Accordion>
-  <Accordion title="OpenCode-Beispiel">
+  <Accordion title="Beispiel für OpenCode">
     ```bash
     openclaw onboard --non-interactive --accept-risk \
       --mode local \
@@ -119,7 +119,7 @@ openclaw onboard --non-interactive --accept-risk \
     ```
     Wechseln Sie für den Go-Katalog zu `--auth-choice opencode-go --opencode-go-api-key "$OPENCODE_API_KEY"`.
   </Accordion>
-  <Accordion title="Synthetic-Beispiel">
+  <Accordion title="Beispiel für Synthetic">
     ```bash
     openclaw onboard --non-interactive --accept-risk \
       --mode local \
@@ -137,7 +137,7 @@ openclaw onboard --non-interactive --accept-risk \
       --gateway-bind loopback
     ```
   </Accordion>
-  <Accordion title="Z.AI-Beispiel">
+  <Accordion title="Beispiel für Z.AI">
     ```bash
     openclaw onboard --non-interactive --accept-risk \
       --mode local \
@@ -160,11 +160,11 @@ openclaw onboard --non-interactive --accept-risk \
       --gateway-bind loopback
     ```
 
-    `--custom-api-key` ist optional; einige Endpunkte erfordern keine Authentifizierung. Wenn es nicht angegeben wird, prüft das Onboarding `CUSTOM_API_KEY` in der Umgebung. `--custom-provider-id` ist optional und wird bei fehlender Angabe automatisch aus der Basis-URL abgeleitet. `--custom-compatibility` verwendet standardmäßig `openai` (weitere Werte: `openai-responses`, `anthropic`).
+    `--custom-api-key` ist optional; einige Endpunkte erfordern keine Authentifizierung. Wenn es weggelassen wird, prüft das Onboarding `CUSTOM_API_KEY` in der Umgebung. `--custom-provider-id` ist optional und wird bei Auslassung automatisch aus der Basis-URL abgeleitet. `--custom-compatibility` verwendet standardmäßig `openai` (weitere Werte: `openai-responses`, `anthropic`).
 
-    OpenClaw leitet die Unterstützung für Bildeingaben aus bekannten Mustern für Vision-Modell-IDs ab (`gpt-4o`, `claude-3/4`, `gemini`, Endungen mit `-vl`/`vision` und ähnliche Muster). Fügen Sie `--custom-image-input` hinzu, um sie für ein nicht erkanntes Vision-Modell zu erzwingen, oder `--custom-text-input`, um ausschließlich Text zu erzwingen.
+    OpenClaw leitet die Unterstützung für Bildeingaben aus bekannten Mustern für Vision-Modell-IDs ab (`gpt-4o`, `claude-3/4`, `gemini`, Suffixe `-vl`/`vision` und ähnliche). Fügen Sie `--custom-image-input` hinzu, um sie für ein nicht erkanntes Vision-Modell zu erzwingen, oder `--custom-text-input`, um ausschließlich Text zu erzwingen.
 
-    Variante im Referenzmodus, bei der `apiKey` als `{ source: "env", provider: "default", id: "CUSTOM_API_KEY" }` gespeichert wird:
+    Variante im Referenzmodus, die `apiKey` als `{ source: "env", provider: "default", id: "CUSTOM_API_KEY" }` speichert:
 
     ```bash
     export CUSTOM_API_KEY="your-key"
@@ -187,7 +187,7 @@ Die Authentifizierung mit einem Anthropic-Einrichtungstoken wird weiterhin unter
 
 ## Weiteren Agenten hinzufügen
 
-`openclaw agents add <name>` erstellt einen separaten Agenten mit eigenem Workspace, eigenen Sitzungen und Authentifizierungsprofilen. Wird der Befehl ohne `--workspace` (und ohne weitere Flags) ausgeführt, startet der interaktive Assistent. Die Übergabe eines der Flags `--workspace`, `--model`, `--agent-dir`, `--bind` oder `--non-interactive` führt ihn nicht interaktiv aus und erfordert dann `--workspace`.
+`openclaw agents add <name>` erstellt einen separaten Agenten mit eigenem Workspace, eigenen Sitzungen und Authentifizierungsprofilen. Wird der Befehl ohne `--workspace` (und ohne weitere Flags) ausgeführt, startet der interaktive Assistent. Die Übergabe eines beliebigen der Flags `--workspace`, `--model`, `--agent-dir`, `--bind` oder `--non-interactive` führt ihn nicht interaktiv aus und erfordert anschließend `--workspace`.
 
 ```bash
 openclaw agents add work \
@@ -207,12 +207,12 @@ Geschriebene Konfigurationsschlüssel (`agents.entries.*`-Eintrag für die neue 
 
 Hinweise:
 
-- Standard-Workspace (wenn `--workspace` im interaktiven Assistenten nicht angegeben wird): `~/.openclaw/workspace-<agentId>`.
-- `--bind <channel[:accountId]>` kann wiederholt angegeben werden; fügen Sie Bindungen hinzu, um eingehende Nachrichten an den neuen Agenten weiterzuleiten (dies kann im Assistenten auch interaktiv erfolgen).
+- Standard-Workspace (wenn `--workspace` im interaktiven Assistenten weggelassen wird): `~/.openclaw/workspace-<agentId>`.
+- `--bind <channel[:accountId]>` kann wiederholt angegeben werden; fügen Sie Bindungen hinzu, um eingehende Nachrichten an den neuen Agenten weiterzuleiten (der Assistent kann dies auch interaktiv erledigen).
 - Der Agentenname wird zu einer gültigen Agenten-ID normalisiert; `main` ist reserviert.
 
-## Verwandte Dokumentation
+## Zugehörige Dokumentation
 
-- Onboarding-Übersicht: [Onboarding (CLI)](/de/start/wizard)
-- Vollständige Referenz: [Referenz zur CLI-Einrichtung](/de/start/wizard-cli-reference)
+- Onboarding-Zentrale: [Onboarding (CLI)](/de/start/wizard)
+- Vollständige Referenz: [CLI-Einrichtungsreferenz](/de/start/wizard-cli-reference)
 - Befehlsreferenz: [`openclaw onboard`](/de/cli/onboard)

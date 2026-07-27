@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin vydra
-summary: Añade compatibilidad con el proveedor de modelos Vydra en OpenClaw.
+summary: Añade compatibilidad con el proveedor de modelos Vydra a OpenClaw.
 title: Plugin Vydra
 x-i18n:
-    generated_at: "2026-07-16T11:55:09Z"
+    generated_at: "2026-07-26T04:47:07Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Añade compatibilidad con el proveedor de modelos Vydra a OpenClaw.
 ## Distribución
 
 - Paquete: `@openclaw/vydra-provider`
-- Ruta de instalación: incluido en OpenClaw
+- Ruta de instalación: incluida en OpenClaw
 
 ## Superficie
 

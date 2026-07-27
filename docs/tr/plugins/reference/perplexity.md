@@ -1,10 +1,10 @@
 ---
 read_when:
-    - perplexity pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - perplexity pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
 summary: Web arama sağlayıcısı desteği ekler.
-title: Perplexity Plugin'i
+title: Perplexity eklentisi
 x-i18n:
-    generated_at: "2026-07-16T17:26:36Z"
+    generated_at: "2026-07-26T22:56:04Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

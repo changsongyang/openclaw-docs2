@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Anmeldung bei ClawHub
-    - Verwenden der ClawHub-CLI
+    - Bei ClawHub anmelden
+    - ClawHub-CLI verwenden
     - Fehlerbehebung bei 401-Fehlern
 summary: ClawHub-Anmeldung, API-Tokens, CLI-Anmeldung, Token-Speicherung und Widerruf.
 x-i18n:
-    generated_at: "2026-07-24T04:16:42Z"
+    generated_at: "2026-07-26T18:15:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,13 +17,18 @@ x-i18n:
 
 # Authentifizierung
 
-ClawHub verwendet GitHub für die Webanmeldung. Die CLI verwendet ClawHub-API-Token, die über das angemeldete Konto erstellt werden.
+ClawHub verwendet GitHub für die Webanmeldung. Die CLI verwendet ClawHub-API-Token, die
+über dieses angemeldete Konto erstellt wurden.
 
 ## Webanmeldung
 
 Melden Sie sich über GitHub bei [clawhub.ai](https://clawhub.ai) an.
 
-Gelöschte, gesperrte oder deaktivierte Konten können die normale ClawHub-Anmeldung nicht abschließen. Wenn Sie nach der Anmeldung wieder abgemeldet sind, ist Ihr Konto möglicherweise nicht ordnungsgemäß freigeschaltet. Wenn Ihr Konto gesperrt oder deaktiviert wurde und Sie dies für einen Fehler halten, verwenden Sie das [ClawHub-Einspruchsformular](https://appeals.openclaw.ai/).
+Gelöschte, gesperrte oder deaktivierte Konten können die normale ClawHub-Anmeldung nicht abschließen.
+Wenn Sie nach der Anmeldung wieder abgemeldet sind, ist Ihr Konto möglicherweise nicht
+ordnungsgemäß freigeschaltet. Wenn Ihr Konto gesperrt oder deaktiviert wurde, verwenden Sie das
+[ClawHub-Einspruchsformular](https://appeals.openclaw.ai/), falls Sie dies für einen
+Fehler halten.
 
 ## CLI-Anmeldung
 
@@ -34,15 +39,16 @@ clawhub login
 clawhub whoami
 ```
 
-Dabei geschieht Folgendes:
+Ablauf:
 
-1. Die CLI startet einen temporären Callback-Server auf `127.0.0.1`.
+1. Die CLI startet einen temporären Callback-Server unter `127.0.0.1`.
 2. Ihr Browser öffnet die ClawHub-Anmeldeseite.
 3. Nach der GitHub-Anmeldung erstellt ClawHub ein API-Token.
 4. Der Browser leitet zurück zum lokalen Callback.
 5. Die CLI speichert das Token in Ihrer ClawHub-Konfigurationsdatei.
 
-Wenn Ihr Browser den lokalen Callback aufgrund von Firewall-, VPN- oder Proxyregeln nicht erreichen kann, verwenden Sie den Headless-Token-Ablauf.
+Wenn Ihr Browser den lokalen Callback aufgrund von Firewall-, VPN- oder
+Proxyregeln nicht erreichen kann, verwenden Sie den Headless-Token-Ablauf.
 
 ## Headless-Anmeldung
 
@@ -52,15 +58,16 @@ Erstellen Sie ein Token in der ClawHub-Weboberfläche und übergeben Sie es ansc
 clawhub login --token clh_...
 ```
 
-Verwenden Sie diesen Ablauf für Server, CI-Aufträge oder Umgebungen, die ausschließlich über ein Terminal bedient werden.
+Verwenden Sie diesen Ablauf für Server, CI-Aufträge oder reine Terminalumgebungen.
 
-Führen Sie für Remote-Shells, bei denen Sie an anderer Stelle einen Browser öffnen können, Folgendes aus:
+Führen Sie für Remote-Shells, bei denen Sie einen Browser an anderer Stelle öffnen können, Folgendes aus:
 
 ```bash
 clawhub login --device
 ```
 
-Die CLI gibt einen einmalig verwendbaren Code aus und wartet, während Sie sie unter `https://clawhub.ai/cli/device` autorisieren.
+Die CLI zeigt einen einmalig verwendbaren Code an und wartet, während Sie sie unter
+`https://clawhub.ai/cli/device` autorisieren.
 
 ## Token-Speicherung
 
@@ -86,6 +93,10 @@ clawhub token
 
 Sie können API-Token in der ClawHub-Weboberfläche widerrufen.
 
-Widerrufene, ungültige oder fehlende Token geben `401 Unauthorized` zurück. Melden Sie sich erneut mit `clawhub login` an oder stellen Sie mit `clawhub login --token` ein neues Token bereit.
+Widerrufene, ungültige oder fehlende Token geben `401 Unauthorized` zurück. Melden Sie sich erneut
+mit `clawhub login` an oder stellen Sie mit `clawhub login --token` ein neues Token bereit.
 
-Gelöschte, gesperrte oder deaktivierte Konten können vorhandene API-Token nicht weiterverwenden. Wenn Ihr Konto gesperrt oder deaktiviert wurde und Sie dies für einen Fehler halten, verwenden Sie das [ClawHub-Einspruchsformular](https://appeals.openclaw.ai/).
+Gelöschte, gesperrte oder deaktivierte Konten können vorhandene API-Token nicht weiterverwenden.
+Wenn Ihr Konto gesperrt oder deaktiviert wurde, verwenden Sie das
+[ClawHub-Einspruchsformular](https://appeals.openclaw.ai/), falls Sie dies für einen
+Fehler halten.

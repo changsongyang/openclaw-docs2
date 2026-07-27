@@ -4,7 +4,7 @@ read_when:
 summary: 为 OpenClaw 添加 NVIDIA 模型提供商支持。
 title: NVIDIA 插件
 x-i18n:
-    generated_at: "2026-07-16T11:51:03Z"
+    generated_at: "2026-07-26T06:52:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## 分发
 
 - 包：`@openclaw/nvidia-provider`
-- 安装方式：内置于 OpenClaw
+- 安装方式：随 OpenClaw 内置
 
 ## 接口
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - crabbox Plugin のインストール、設定、または監査を行っています
+    - crabbox Plugin のインストール、設定、または監査を行っている場合
 summary: Crabbox CLI を基盤とするクラウドワーカープロバイダー。
 title: Crabbox Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:03:39Z"
+    generated_at: "2026-07-26T10:24:32Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -31,6 +31,6 @@ Crabbox CLI を基盤とするクラウドワーカープロバイダー。
 
 ## 設定
 
-プロファイルスキーマとライフサイクルに関する注記については、[クラウドワーカー環境](/ja-JP/gateway/configuration-reference#crabbox-profile)を参照してください。
+プロファイルスキーマとライフサイクルに関する注意事項については、[クラウドワーカー環境](/ja-JP/gateway/configuration-reference#crabbox-profile)を参照してください。
 
 <!-- openclaw-plugin-reference:manual-end -->

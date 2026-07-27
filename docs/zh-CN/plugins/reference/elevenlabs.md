@@ -1,10 +1,10 @@
 ---
 read_when:
-    - 你正在安装、配置或审核 elevenlabs 插件
+    - 你正在安装、配置或审计 elevenlabs 插件
 summary: 新增媒体理解提供商支持。新增实时转录提供商支持。新增文本转语音提供商支持。
-title: ElevenLabs 插件
+title: Elevenlabs 插件
 x-i18n:
-    generated_at: "2026-07-16T11:49:59Z"
+    generated_at: "2026-07-26T06:51:48Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

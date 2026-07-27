@@ -4,7 +4,7 @@ read_when:
 summary: 新增文字轉語音供應商支援。
 title: Gradium 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:48:35Z"
+    generated_at: "2026-07-26T07:59:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 
 新增文字轉語音供應商支援。
 
-## 發布方式
+## 發布
 
 - 套件：`@openclaw/gradium-speech`
 - 安裝途徑：npm；ClawHub：`clawhub:@openclaw/gradium-speech`

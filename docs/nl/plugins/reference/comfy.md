@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de comfy-plugin
 summary: Voegt ondersteuning voor de ComfyUI-modelprovider toe aan OpenClaw.
-title: ComfyUI-Plugin
+title: ComfyUI-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:04:59Z"
+    generated_at: "2026-07-27T05:41:21Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

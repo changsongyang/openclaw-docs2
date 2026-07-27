@@ -1,10 +1,10 @@
 ---
 read_when:
-    - kilocode Plugin のインストール、設定、または監査を行っています
+    - kilocode Plugin をインストール、設定、または監査している場合
 summary: OpenClaw に Kilocode モデルプロバイダーのサポートを追加します。
 title: Kilocode Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:04:43Z"
+    generated_at: "2026-07-26T09:36:08Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Kilocode Plugin
+# Kilocode plugin
 
 OpenClaw に Kilocode モデルプロバイダーのサポートを追加します。
 
@@ -23,7 +23,7 @@ OpenClaw に Kilocode モデルプロバイダーのサポートを追加しま�
 - パッケージ: `@openclaw/kilocode-provider`
 - インストール経路: npm、ClawHub: `clawhub:@openclaw/kilocode-provider`
 
-## 提供範囲
+## 提供機能
 
 プロバイダー: `kilocode`
 

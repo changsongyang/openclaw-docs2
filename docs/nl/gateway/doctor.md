@@ -4,19 +4,19 @@ read_when:
     - Invoering van incompatibele configuratiewijzigingen
 sidebarTitle: Doctor
 summary: 'Doctor-opdracht: statuscontroles, configuratiemigraties en herstelstappen'
-title: Diagnoseprogramma
+title: Diagnosehulpmiddel
 x-i18n:
-    generated_at: "2026-07-16T15:50:02Z"
+    generated_at: "2026-07-27T06:14:11Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: e5c37c31332a9128767ebf6a853aa618511b9eda7f5840a4f863ec705c58421a
+    source_hash: 3f599553a2455759cd0fe56bafbc16948f7ab4d381d344b08a496bf19c9dc636
     source_path: gateway/doctor.md
     workflow: 16
 ---
 
-`openclaw doctor` is het reparatie- en migratiehulpmiddel voor OpenClaw. Het herstelt verouderde configuratie/status, controleert de systeemstatus en biedt uitvoerbare reparatiestappen.
+`openclaw doctor` is het reparatie- en migratiehulpprogramma voor OpenClaw. Het herstelt verouderde configuratie/status, controleert de gezondheid en biedt uitvoerbare reparatiestappen.
 
 ## Snel aan de slag
 
@@ -32,7 +32,7 @@ openclaw doctor
     openclaw doctor --yes
     ```
 
-    Accepteer standaardwaarden zonder prompts (inclusief stappen voor herstart, service- en sandboxreparatie indien van toepassing).
+    Accepteer standaardwaarden zonder prompts (inclusief stappen voor het repareren van herstarts/services/sandboxen indien van toepassing).
 
   </Tab>
   <Tab title="--fix">
@@ -49,8 +49,8 @@ openclaw doctor
     openclaw doctor --lint --json
     ```
 
-    Voer gestructureerde statuscontroles uit voor CI of preflight-automatisering. Alleen-lezen: geen
-    prompts, reparaties, migraties, herstarts of schrijfbewerkingen naar de status.
+    Voer gestructureerde gezondheidscontroles uit voor CI of preflight-automatisering. Alleen-lezen: geen
+    prompts, reparaties, migraties, herstarts of statusbewerkingen.
 
   </Tab>
   <Tab title="--fix --force">
@@ -67,8 +67,8 @@ openclaw doctor
     ```
 
     Voer uit zonder prompts en pas alleen veilige migraties toe (configuratienormalisatie +
-    verplaatsingen van status op schijf). Slaat herstart-, service- en sandboxacties over waarvoor menselijke
-    bevestiging nodig is. Verouderde statusmigraties worden nog steeds automatisch uitgevoerd wanneer ze worden gedetecteerd.
+    verplaatsingen van status op schijf). Slaat herstart-/service-/sandboxacties over waarvoor menselijke
+    bevestiging nodig is. Verouderde statusmigraties worden bij detectie nog steeds automatisch uitgevoerd.
 
   </Tab>
   <Tab title="--deep">
@@ -81,7 +81,7 @@ openclaw doctor
   </Tab>
 </Tabs>
 
-Open eerst het configuratiebestand om wijzigingen te bekijken voordat ze worden geschreven:
+Open eerst het configuratiebestand om wijzigingen vóór het schrijven te beoordelen:
 
 ```bash
 cat ~/.openclaw/openclaw.json
@@ -90,35 +90,35 @@ cat ~/.openclaw/openclaw.json
 ## Alleen-lezen-lintmodus
 
 `openclaw doctor --lint` is de automatiseringsvriendelijke tegenhanger van
-`openclaw doctor --fix`. Ze delen hetzelfde Doctor-regelregister, maar selecteren
-regels niet op dezelfde manier en voeren er ook niet op dezelfde manier acties voor uit:
+`openclaw doctor --fix`. Ze delen hetzelfde Doctor-regelregister, maar
+selecteren regels niet op dezelfde manier en voeren er niet op dezelfde manier acties voor uit:
 
-| Modus                     | Prompts   | Schrijft configuratie/status | Uitvoer                   | Gebruik hiervoor                         |
+| Modus                     | Prompts   | Schrijft configuratie/status | Uitvoer                       | Gebruik voor                         |
 | ------------------------ | --------- | ----------------------- | ---------------------- | ------------------------------- |
-| `openclaw doctor`        | ja        | nee                     | toegankelijk statusrapport | een persoon die de status controleert    |
-| `openclaw doctor --fix`  | soms | ja, met reparatiebeleid | toegankelijk reparatielogboek | goedgekeurde reparaties toepassen        |
-| `openclaw doctor --lint` | nee       | nee                     | gestructureerde bevindingen | CI, preflight- en beoordelingspoorten     |
+| `openclaw doctor`        | ja        | nee                     | begrijpelijk gezondheidsrapport | een persoon die de status controleert |
+| `openclaw doctor --fix`  | soms      | ja, met reparatiebeleid | begrijpelijk reparatielogboek | goedgekeurde reparaties toepassen |
+| `openclaw doctor --lint` | nee       | nee                     | gestructureerde bevindingen | CI-, preflight- en reviewpoorten |
 
 Standaard voert `doctor --lint` het brede, veilige automatiseringsprofiel uit: controles die
-statisch, lokaal en nuttig zijn in CI- of preflight-uitvoer. Opt-incontroles die
-adviserend, omgevingsgevoelig, afhankelijk van live services, gericht op account-/workspace-
-inventarisatie of historische opschoning zijn, worden overgeslagen. Gebruik `doctor --lint --all` wanneer je de
-volledige geregistreerde lintaudit wilt, inclusief deze opt-incontroles, of `--only <id>` voor
+statisch en lokaal zijn en nuttig zijn in CI- of preflight-uitvoer. Opt-incontroles die
+adviserend, omgevingsgevoelig of afhankelijk van live-services zijn, inventarisaties van accounts/werkruimten
+uitvoeren of historische opschoning betreffen, worden overgeslagen. Gebruik `doctor --lint --all` als je de
+volledige geregistreerde lintaudit wilt, inclusief die opt-incontroles, of `--only <id>` voor
 een gerichte controle.
 
 `doctor --fix` gebruikt het standaardprofiel voor lint niet en accepteert
-`--all` niet. Het voert het geordende reparatiepad van Doctor uit: moderne statuscontroles kunnen
-een optionele `repair()`-implementatie bieden, terwijl oudere onderdelen nog steeds hun verouderde
-Doctor-reparatiestroom gebruiken. Sommige lintbevindingen zijn bewust uitsluitend diagnostisch, dus wanneer
-een controle in `--lint --all` voorkomt, betekent dit niet dat `--fix` dat onderdeel zal wijzigen.
+`--all` niet. Het voert het geordende reparatiepad van Doctor uit: moderne gezondheidscontroles kunnen
+een optionele `repair()`-implementatie bieden, terwijl oudere gebieden nog steeds hun verouderde
+Doctor-reparatieflow gebruiken. Sommige lintbevindingen zijn bewust uitsluitend diagnostisch, dus het
+verschijnen van een controle in `--lint --all` betekent niet dat `--fix` dat gebied zal wijzigen.
 Het contract scheidt `detect()` (rapporteert bevindingen) van `repair()` (rapporteert
-wijzigingen/diffs/neveneffecten), waardoor een pad openblijft voor een toekomstige
+wijzigingen/diffs/neveneffecten), zodat er ruimte blijft voor een toekomstige
 `doctor --fix --dry-run` zonder lintcontroles in wijzigingsplanners te veranderen.
 
 Sommige ingebouwde controles zijn intern standaard uitgeschakeld, zodat ze beschikbaar blijven voor
-`--all`, `--only` en Doctor-reparatiestromen zonder onderdeel te worden van het standaard
-`doctor --lint`-automatiseringsprofiel. De ernst van bevindingen wordt nog steeds per
-bevinding weergegeven (`info`, `warning` of `error`); standaardselectie is geen
+`--all`, `--only` en Doctor-reparatieflows zonder deel te worden van het standaard
+`doctor --lint`-automatiseringsprofiel. De ernst wordt nog steeds per bevinding
+weergegeven (`info`, `warning` of `error`); standaardselectie is geen
 ernstniveau.
 
 ```bash
@@ -132,7 +132,7 @@ openclaw doctor --lint --only core/doctor/gateway-config --json
 Velden in JSON-uitvoer:
 
 - `ok`: of een bevinding aan de geselecteerde ernstgrens voldeed
-- `checksRun` / `checksSkipped`: aantallen (overgeslagen vanwege het profiel, `--only` of `--skip`)
+- `checksRun` / `checksSkipped`: aantallen (overgeslagen vanwege profiel, `--only` of `--skip`)
 - `findings`: gestructureerde diagnostiek met `checkId`, `severity`, `message` en optioneel `path`, `line`, `column`, `ocPath`, `source`, `target`, `requirement`, `fixHint`
 
 Afsluitcodes:
@@ -141,24 +141,24 @@ Afsluitcodes:
 | ---- | -------------------------------------------------------- |
 | `0`  | geen bevindingen op of boven de geselecteerde grens      |
 | `1`  | een of meer bevindingen voldeden aan de geselecteerde grens |
-| `2`  | opdracht-/runtimefout voordat bevindingen konden worden weergegeven |
+| `2`  | opdracht-/runtimefout voordat bevindingen konden worden uitgevoerd |
 
 Vlaggen:
 
-- `--severity-min info|warning|error` (standaard `warning`): bepaalt zowel wat wordt weergegeven als wat een afsluitcode anders dan nul veroorzaakt.
+- `--severity-min info|warning|error` (standaard `warning`): bepaalt zowel wat wordt afgedrukt als wat een niet-nul-afsluitcode veroorzaakt.
 - `--all`: voert elke geregistreerde lintcontrole uit, inclusief opt-incontroles die van de standaard automatiseringsset zijn uitgesloten.
 - `--only <id>` (herhaalbaar): voer alleen de genoemde controle-id('s) uit; een onbekende id wordt als foutbevinding gerapporteerd.
 - `--skip <id>` (herhaalbaar): sluit een controle uit terwijl de rest van de uitvoering actief blijft.
-- `--json`, `--severity-min`, `--all`, `--only` en `--skip` vereisen `--lint`; gewone uitvoeringen van `openclaw doctor` en `--fix` wijzen ze af.
+- `--json`, `--severity-min`, `--all`, `--only` en `--skip` vereisen `--lint`; gewone uitvoeringen van `openclaw doctor` en `--fix` wijzen deze af.
 
 ## Wat het doet (samenvatting)
 
 <AccordionGroup>
-  <Accordion title="Status, UI en updates">
+  <Accordion title="Gezondheid, UI en updates">
     - Optionele preflight-update voor git-installaties (alleen interactief).
-    - Controle op actualiteit van het UI-protocol (bouwt de Control UI opnieuw wanneer het protocolschema nieuwer is).
-    - Statuscontrole + prompt voor herstart.
-    - Alleen opmerkingen over problematische Skills en Plugins; een gezonde inventaris blijft in `openclaw skills check` en `openclaw plugins list`.
+    - Versheidscontrole van het UI-protocol (bouwt de Control UI opnieuw wanneer het protocolschema nieuwer is).
+    - Gezondheidscontrole + prompt voor herstart.
+    - Alleen opmerkingen over problematische Skills en plugins; een gezonde inventaris blijft in `openclaw skills check` en `openclaw plugins list`.
 
   </Accordion>
   <Accordion title="Configuratie en migraties">
@@ -166,53 +166,53 @@ Vlaggen:
     - Migratie van Talk-configuratie van verouderde platte `talk.*`-velden naar `talk.provider` + `talk.providers.<provider>`.
     - Browsermigratiecontroles voor verouderde Chrome-extensieconfiguraties en gereedheid van Chrome MCP.
     - Waarschuwingen voor OpenCode-provideroverschrijvingen (`models.providers.opencode` / `opencode-zen` / `opencode-go`).
-    - Migratie van verouderde OpenAI Codex-provider/profiel (`openai-codex` → `openai`) en waarschuwingen voor overschaduwing door verouderde `models.providers.openai-codex`.
+    - Migratie van verouderde OpenAI Codex-provider/profielen (`openai-codex` → `openai`) en overschaduwingswaarschuwingen voor verouderde `models.providers.openai-codex`.
     - Controle van OAuth TLS-vereisten voor OpenAI Codex OAuth-profielen.
-    - Waarschuwingen voor toelatingslijsten van Plugins/hulpmiddelen wanneer `plugins.allow` beperkend is, maar het hulpmiddelenbeleid nog steeds om jokertekens of hulpmiddelen van Plugins vraagt.
+    - Waarschuwingen voor plugin-/tooltoelatingslijsten wanneer `plugins.allow` restrictief is, maar het toolbeleid nog steeds om jokertekens of tools van plugins vraagt.
     - Migratie van verouderde status op schijf (sessies/agentmap/WhatsApp-authenticatie).
-    - Migratie van verouderde contractsleutels voor Plugin-manifesten (`speechProviders`, `realtimeTranscriptionProviders`, `realtimeVoiceProviders`, `mediaUnderstandingProviders`, `imageGenerationProviders`, `videoGenerationProviders`, `webFetchProviders`, `webSearchProviders` → `contracts`).
+    - Migratie van verouderde contractsleutels in pluginmanifesten (`speechProviders`, `realtimeTranscriptionProviders`, `realtimeVoiceProviders`, `mediaUnderstandingProviders`, `imageGenerationProviders`, `videoGenerationProviders`, `webFetchProviders`, `webSearchProviders` → `contracts`).
     - Migratie van verouderde Cron-opslag (`jobId`, `schedule.cron`, leverings-/payloadvelden op het hoogste niveau, payload `provider`, `notify: true` Webhook-terugvaltaken).
-    - Herstel van runtimepin voor Codex CLI (`agentRuntime.id: "codex-cli"` → `"codex"`) in `agents.defaults`, `agents.list[]` en `models.providers.*` (inclusief vermeldingen per model).
-    - Opschoning van verouderde Plugin-configuratie wanneer Plugins zijn ingeschakeld; bij `plugins.enabled=false` blijven verouderde Plugin-verwijzingen behouden als inactieve inperkingsconfiguratie.
+    - Reparatie van de runtimepin voor Codex CLI (`agentRuntime.id: "codex-cli"` → `"codex"`) in `agents.defaults`, `agents.entries.*` en `models.providers.*` (inclusief vermeldingen per model).
+    - Opschoning van verouderde pluginconfiguratie wanneer plugins zijn ingeschakeld; bij `plugins.enabled=false` blijven verouderde pluginverwijzingen behouden als inactieve inperkingsconfiguratie.
 
   </Accordion>
   <Accordion title="Status en integriteit">
     - Inspectie van sessievergrendelingsbestanden en opschoning van verouderde vergrendelingen.
-    - Herstel van sessietranscripten voor gedupliceerde prompt-herschrijvingstakken die door getroffen 2026.4.24-builds zijn gemaakt.
-    - Detectie van tombstones voor herstartherstel van vastgelopen subagents, met ondersteuning voor `--fix` om verouderde afgebroken herstelvlaggen te wissen, zodat de opstartprocedure het onderliggende proces niet als afgebroken door een herstart blijft behandelen.
+    - Reparatie van sessietranscripten voor dubbele prompt-herschrijvingstakken die door getroffen builds van 2026.4.24 zijn aangemaakt.
+    - Detectie van tombstones voor herstart-herstel van vastgelopen hoofdsessies en subagents. Doctor rapporteert de geblokkeerde sessies en repareert alleen verouderde afgebroken-vlaggen die conflicteren met een bestaande tombstone; automatisch herstel wordt niet opnieuw ingeschakeld.
     - Controles van statusintegriteit en machtigingen (sessies, transcripten, statusmap).
-    - Machtigingscontroles voor configuratiebestanden (chmod 600) bij lokale uitvoering.
-    - Status van modelauthenticatie: controleert het verlopen van OAuth, kan bijna verlopen tokens vernieuwen en rapporteert afkoelings-/uitgeschakelde statussen van authenticatieprofielen.
+    - Controles van configuratiebestandsmachtigingen (chmod 600) bij lokale uitvoering.
+    - Gezondheid van modelauthenticatie: controleert de vervaldatum van OAuth, kan bijna verlopen tokens vernieuwen en rapporteert cooldown-/uitgeschakelde statussen van authenticatieprofielen.
 
   </Accordion>
   <Accordion title="Gateway, services en supervisors">
-    - Herstel van sandboxinstallatiekopieën wanneer sandboxing is ingeschakeld.
-    - Migratie van verouderde services en detectie van extra Gateways.
+    - Reparatie van sandboximages wanneer sandboxing is ingeschakeld.
+    - Migratie van verouderde services en detectie van extra gateways.
     - Migratie van verouderde status van het Matrix-kanaal (in de modus `--fix` / `--repair`).
     - Runtimecontroles van de Gateway (service geïnstalleerd maar niet actief; launchd-label in cache).
     - Waarschuwingen over kanaalstatus (opgevraagd bij de actieve Gateway).
-    - Kanaalspecifieke machtigingscontroles bevinden zich onder `openclaw channels capabilities`; machtigingen voor Discord-spraakkanalen worden bijvoorbeeld gecontroleerd met `openclaw channels capabilities --channel discord --target channel:<channel-id>`.
-    - Responsiviteitscontroles voor WhatsApp bij een verslechterde status van de Gateway-eventloop terwijl lokale TUI-clients nog actief zijn; `--fix` stopt alleen geverifieerde lokale TUI-clients.
-    - Herstel van Codex-routes voor verouderde `openai-codex/*`-modelverwijzingen in primaire modellen, terugvalopties, modellen voor beeld-/videogeneratie, Heartbeat-/subagent-/Compaction-overschrijvingen, hooks, kanaalmodeloverschrijvingen en sessieroutepins; `--fix` herschrijft ze naar `openai/*`, migreert `openai-codex:*`-authenticatieprofielen/-volgorde naar `openai:*`, verwijdert verouderde runtimepins voor sessies/volledige agents en laat de herstelde effectieve route bepalen of Codex compatibel is.
-    - Audit van supervisorconfiguraties (launchd/systemd/schtasks) met optioneel herstel.
-    - Opschoning van ingebedde proxyomgevingen voor Gateway-services die tijdens installatie of update `HTTP_PROXY`- / `HTTPS_PROXY`- / `NO_PROXY`-waarden uit de shell hebben overgenomen.
+    - Kanaalspecifieke machtigingscontroles staan onder `openclaw channels capabilities`; zo worden machtigingen voor Discord-spraakkanalen gecontroleerd met `openclaw channels capabilities --channel discord --target channel:<channel-id>`.
+    - Responsiviteitscontroles voor WhatsApp bij een verslechterde gezondheid van de Gateway-eventloop terwijl lokale TUI-clients nog actief zijn; `--fix` stopt alleen geverifieerde lokale TUI-clients.
+    - Reparatie van Codex-routes voor verouderde `openai-codex/*`-modelverwijzingen in primaire modellen, terugvalmodellen, modellen voor het genereren van afbeeldingen/video's, overschrijvingen voor Heartbeat/subagents/Compaction, hooks, overschrijvingen van kanaalmodellen en sessieroutepins; `--fix` herschrijft ze naar `openai/*`, migreert `openai-codex:*`-authenticatieprofielen/-volgorde naar `openai:*`, verwijdert verouderde runtimepins voor sessies/volledige agents en laat de gerepareerde effectieve route bepalen of Codex compatibel is.
+    - Audit van supervisorconfiguraties (launchd/systemd/schtasks) met optionele reparatie.
+    - Opschoning van ingesloten proxyomgevingen voor Gateway-services die tijdens installatie of update shellwaarden voor `HTTP_PROXY` / `HTTPS_PROXY` / `NO_PROXY` hebben vastgelegd.
     - Runtimecontroles van de Gateway (niet-ondersteunde verouderde Bun-services, paden van versiebeheerders).
     - Diagnostiek van Gateway-poortconflicten (standaard `18789`).
 
   </Accordion>
   <Accordion title="Authenticatie, beveiliging en koppeling">
     - Beveiligingswaarschuwingen voor open DM-beleid.
-    - Gateway-authenticatiecontroles voor lokale tokenmodus (biedt tokengeneratie aan wanneer er geen tokenbron bestaat; overschrijft geen SecretRef-configuraties voor tokens).
-    - Detectie van problemen met apparaatkoppeling (openstaande eerste koppelingsverzoeken, openstaande rol-/scope-upgrades, afwijkingen in verouderde lokale cache voor apparaattokens en authenticatieafwijkingen in gekoppelde records).
+    - Gateway-authenticatiecontroles voor lokale tokenmodus (biedt het genereren van tokens aan wanneer geen tokenbron bestaat; overschrijft geen SecretRef-configuraties voor tokens).
+    - Detectie van problemen met apparaatkoppeling (openstaande aanvragen voor eerste koppeling, openstaande upgrades van rollen/bereiken, afwijkingen in verouderde lokale apparaat-tokencaches en authenticatieafwijkingen in gekoppelde records).
 
   </Accordion>
-  <Accordion title="Workspace en shell">
+  <Accordion title="Werkruimte en shell">
     - Controle van systemd-linger op Linux.
-    - Controle van de bestandsgrootte voor workspace-bootstrapbestanden (waarschuwingen voor afkapping/bijna bereikte limiet voor contextbestanden).
-    - Gereedheidscontrole van Skills voor de standaardagent; rapporteert toegestane Skills waarvoor binaries, omgevingsvariabelen, configuratie of OS-vereisten ontbreken, en `--fix` kan niet-beschikbare Skills uitschakelen in `skills.entries`.
+    - Controle van de bestandsgrootte van werkruimtebootstrapbestanden (waarschuwingen voor afkapping/bijna bereikte limiet voor contextbestanden).
+    - Gereedheidscontrole van Skills voor de standaardagent; rapporteert toegestane Skills met ontbrekende binaries, omgevingsvariabelen, configuratie of OS-vereisten, en `--fix` kan niet-beschikbare Skills uitschakelen in `skills.entries`.
     - Statuscontrole en automatische installatie/upgrade van shellaanvulling.
-    - Gereedheidscontrole van de embeddingprovider voor zoeken in het geheugen (lokaal model, externe API-sleutel of QMD-binary).
-    - Controles van broninstallaties (niet-overeenkomende pnpm-workspace, ontbrekende UI-assets, ontbrekende tsx-binary).
+    - Gereedheidscontrole van de embeddingprovider voor geheugenzoekopdrachten (lokaal model, externe API-sleutel of QMD-binary).
+    - Controles van broninstallaties (niet-overeenkomende pnpm-werkruimte, ontbrekende UI-assets, ontbrekende tsx-binary).
     - Schrijft bijgewerkte configuratie + wizardmetadata.
 
   </Accordion>
@@ -220,46 +220,46 @@ Vlaggen:
 
 ## Aanvulling en reset van de Dreams-UI
 
-De Control UI-scène Dreams bevat de acties **Backfill**, **Reset** en **Clear Grounded** voor de gegronde Dreaming-workflow. Deze gebruiken RPC-methoden in Gateway-doctorstijl, maar maken **geen** deel uit van CLI-reparatie/-migratie met `openclaw doctor`.
+  De scène Dreams in de Control UI bevat de acties **Backfill**, **Reset** en **Clear Grounded** voor de geaarde Dreaming-workflow. Deze gebruiken RPC-methoden in de stijl van Gateway doctor, maar maken **geen** deel uit van de CLI-reparatie/-migratie van `openclaw doctor`.
 
-| Actie          | Wat deze doet                                                                                                                                                      |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Backfill       | Scant historische `memory/YYYY-MM-DD.md`-bestanden in de actieve werkruimte, voert de gegronde REM-dagboekpassage uit en schrijft omkeerbare backfill-vermeldingen naar `DREAMS.md`. |
-| Reset          | Verwijdert alleen de gemarkeerde backfill-dagboekvermeldingen uit `DREAMS.md`.                                                                                                  |
-| Clear Grounded | Verwijdert alleen klaargezette, uitsluitend gegronde kortetermijnvermeldingen uit historische herhaling die nog geen actieve herinnering of dagelijkse ondersteuning hebben opgebouwd.                           |
+  | Actie          | Wat deze doet                                                                                                                                                         |
+  | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Backfill       | Scant historische `memory/YYYY-MM-DD.md`-bestanden in de actieve werkruimte, voert de geaarde REM-dagboekpassage uit en schrijft omkeerbare backfill-vermeldingen naar `DREAMS.md`. |
+  | Reset          | Verwijdert alleen de gemarkeerde backfill-dagboekvermeldingen uit `DREAMS.md`.                                                                                 |
+  | Clear Grounded | Verwijdert alleen klaargezette, uitsluitend geaarde kortetermijnvermeldingen uit historische herhaling die nog geen live herinnering of dagelijkse ondersteuning hebben opgebouwd. |
 
-Geen van deze acties bewerkt `MEMORY.md`, voert volledige doctor-migraties uit of zet zelfstandig gegronde kandidaten klaar in het actieve kortetermijnarchief voor promotie. Gebruik in plaats daarvan de CLI-flow om gegronde historische herhaling naar het normale pad voor diepe promotie te sturen:
+  Geen van deze acties bewerkt `MEMORY.md`, voert volledige doctor-migraties uit of zet zelfstandig geaarde kandidaten klaar in de live opslag voor kortetermijnpromotie. Gebruik in plaats daarvan de CLI-flow om geaarde historische herhaling naar het normale diepe promotietraject te sturen:
 
-```bash
-openclaw memory rem-backfill --path ./memory --stage-short-term
-```
+  ```bash
+  openclaw memory rem-backfill --path ./memory --stage-short-term
+  ```
 
-Hiermee worden gegronde duurzame kandidaten klaargezet in het kortetermijnarchief voor Dreaming, terwijl `DREAMS.md` het beoordelingsoppervlak blijft.
+  Hiermee worden geaarde duurzame kandidaten klaargezet in de kortetermijnopslag voor Dreaming, terwijl `DREAMS.md` het beoordelingsoppervlak blijft.
 
-## Gedetailleerd gedrag en rationale
+  ## Gedetailleerd gedrag en onderbouwing
 
-<AccordionGroup>
+  <AccordionGroup>
   <Accordion title="0. Optionele update (git-installaties)">
-    Als dit een git-checkout is en doctor interactief wordt uitgevoerd, wordt aangeboden eerst een update uit te voeren (ophalen/rebasen/bouwen) voordat doctor wordt uitgevoerd.
+    Als dit een git-checkout is en doctor interactief wordt uitgevoerd, biedt deze aan om bij te werken (ophalen/rebasen/bouwen) voordat doctor wordt uitgevoerd.
   </Accordion>
   <Accordion title="1. Configuratienormalisatie">
-    Doctor normaliseert verouderde waardevormen naar het huidige schema. De huidige spraakconfiguratie voor Talk is `talk.provider` + `talk.providers.<provider>`, met de realtime spraakconfiguratie onder `talk.realtime.*`. Doctor herschrijft oude `talk.voiceId`- / `talk.voiceAliases`- / `talk.modelId`- / `talk.outputFormat`- / `talk.apiKey`-vormen naar de providerkaart en herschrijft verouderde realtime-selectors op het hoogste niveau (`talk.mode`, `talk.transport`, `talk.brain`, `talk.model`, `talk.voice`) naar `talk.realtime`.
+    Doctor normaliseert verouderde waardevormen naar het huidige schema. De huidige spraakconfiguratie van Talk is `talk.provider` + `talk.providers.<provider>`, met de realtime stemconfiguratie onder `talk.realtime.*`. Doctor herschrijft oude vormen van `talk.voiceId` / `talk.voiceAliases` / `talk.modelId` / `talk.outputFormat` / `talk.apiKey` naar de provider-map en herschrijft verouderde realtime selectors op het hoogste niveau (`talk.mode`, `talk.transport`, `talk.brain`, `talk.model`, `talk.voice`) naar `talk.realtime`.
 
-    Doctor waarschuwt ook wanneer `plugins.allow` niet leeg is en het toolbeleid jokertekens of toolvermeldingen van Plugins gebruikt. `tools.allow: ["*"]` komt alleen overeen met tools van Plugins die daadwerkelijk worden geladen; hiermee wordt de exclusieve toestemmingslijst voor Plugins niet omzeild.
+    Doctor waarschuwt ook wanneer `plugins.allow` niet leeg is en het toolbeleid jokertekens of toolvermeldingen van plugins gebruikt. `tools.allow: ["*"]` komt alleen overeen met tools van plugins die daadwerkelijk worden geladen; het omzeilt de exclusieve toestemmingslijst voor plugins niet.
 
   </Accordion>
   <Accordion title="2. Migraties van verouderde configuratiesleutels">
-    Wanneer de configuratie een verouderde sleutel met een actieve migratie bevat, weigeren andere opdrachten te worden uitgevoerd en vragen ze je `openclaw doctor` uit te voeren. Doctor legt uit welke verouderde sleutels zijn gevonden, toont de toegepaste migratie en herschrijft `~/.openclaw/openclaw.json` met het bijgewerkte schema. De Gateway weigert bij het opstarten verouderde configuratie-indelingen en vraagt je `openclaw doctor --fix` uit te voeren; `openclaw.json` wordt bij het opstarten niet herschreven. Migraties van het Cron-takenarchief worden ook verwerkt door `openclaw doctor --fix`.
+    Wanneer de configuratie een verouderde sleutel met een actieve migratie bevat, weigeren andere opdrachten te worden uitgevoerd en vragen ze je om `openclaw doctor` uit te voeren. Doctor legt uit welke verouderde sleutels zijn gevonden, toont de toegepaste migratie en herschrijft `~/.openclaw/openclaw.json` met het bijgewerkte schema. Het opstarten van de Gateway weigert verouderde configuratie-indelingen en vraagt je om `openclaw doctor --fix` uit te voeren; bij het opstarten wordt `openclaw.json` niet herschreven. Migraties van de Cron-taakopslag worden ook afgehandeld door `openclaw doctor --fix`.
 
     <Note>
       Doctor biedt automatische migraties slechts ongeveer twee maanden nadat een
       sleutel buiten gebruik is gesteld. Oudere verouderde sleutels (bijvoorbeeld de oorspronkelijke
       `routing.queue`, `routing.bindings`, `routing.agents`/`defaultAgentId`,
-      `routing.transcribeAudio`, `agent.*` op het hoogste niveau of `identity` op het hoogste niveau
-      uit de configuratievorm van vóór meerdere agents) hebben geen migratiepad meer;
-      configuraties waarin ze worden gebruikt, slagen nu niet voor validatie in plaats van te worden herschreven. Corrigeer
-      die sleutels handmatig aan de hand van de huidige configuratiereferentie voordat doctor
-      kan doorgaan.
+      `routing.transcribeAudio`, `agent.*` op het hoogste niveau of `identity`
+      op het hoogste niveau uit de configuratievorm van vóór multi-agent) hebben geen migratiepad
+      meer; configuraties die deze gebruiken, mislukken nu bij de validatie in plaats van te worden
+      herschreven. Corrigeer die sleutels handmatig aan de hand van de huidige configuratiereferentie
+      voordat doctor verder kan gaan.
     </Note>
 
     Actieve migraties:
@@ -275,10 +275,16 @@ Hiermee worden gegronde duurzame kandidaten klaargezet in het kortetermijnarchie
     | `channels.feishu.accounts.<accountId>.botName`                                                   | `channels.feishu.accounts.<accountId>.name`                                 |
     | `session.threadBindings.ttlHours`, `channels.<id>.threadBindings.ttlHours` (en per account)      | `...threadBindings.idleHours`                                               |
     | verouderde `talk.voiceId`/`talk.voiceAliases`/`talk.modelId`/`talk.outputFormat`/`talk.apiKey`        | `talk.provider` + `talk.providers.<provider>`                               |
-    | verouderde realtime-selectors voor Talk op het hoogste niveau (`talk.mode`/`talk.transport`/`talk.brain`/`talk.model`/`talk.voice`) | `talk.realtime`                                                              |
-    | `messages.tts.<provider>` (`openai`/`elevenlabs`/`microsoft`/`edge`)                             | `messages.tts.providers.<provider>`                                          |
-    | `messages.tts.provider: "edge"` / `messages.tts.providers.edge`                                  | `messages.tts.provider: "microsoft"` / `messages.tts.providers.microsoft`   |
-    | TTS-luidsprekervelden `voice`/`voiceName`/`voiceId`                                                 | `speakerVoice`/`speakerVoiceId`                                              |
+    | verouderde realtime Talk-selectors op het hoogste niveau (`talk.mode`/`talk.transport`/`talk.brain`/`talk.model`/`talk.voice`) | `talk.realtime`                                                              |
+    | `messages.tts`                                                                                  | `tts` op het hoogste niveau                                                              |
+    | `messages.tts.<provider>` (`openai`/`elevenlabs`/`microsoft`/`edge`)                             | `tts.providers.<provider>`                                                   |
+    | `messages.tts.provider: "edge"` / `messages.tts.providers.edge`                                  | `tts.provider: "microsoft"` / `tts.providers.microsoft`                    |
+    | `tools.exec.security` + `tools.exec.ask`                                                         | `tools.exec.mode`                                                            |
+    | `session.idleMinutes`                                                                            | `session.reset.idleMinutes`                                                  |
+    | `messages.responsePrefix` met expliciete kanaalblokken                                           | gekopieerd naar `responsePrefix` van het geconfigureerde kanaal/account; globale terugval behouden voor impliciete/aangepaste kanalen |
+    | `web.enabled`                                                                                    | `channels.whatsapp.enabled`                                                  |
+    | `meta.lastTouchedAt`, hook-installaties, Cron-opslag, gebundelde detectie, globaal pad voor TTS-voorkeuren            | gedeelde SQLite-status                                                       |
+    | TTS-sprekervelden `voice`/`voiceName`/`voiceId`                                                 | `speakerVoice`/`speakerVoiceId`                                              |
     | `channels.<id>.tts.<provider>` / `channels.<id>.accounts.<accountId>.tts.<provider>` (alle kanalen behalve Discord)                                          | `...tts.providers.<provider>`                                                |
     | `channels.<id>.voice.tts.<provider>` / `channels.<id>.accounts.<accountId>.voice.tts.<provider>` (alle kanalen, inclusief Discord)                          | `...voice.tts.providers.<provider>`                                          |
     | `plugins.entries.voice-call.config.tts.<provider>` (`openai`/`elevenlabs`/`microsoft`/`edge`)     | `plugins.entries.voice-call.config.tts.providers.<provider>`                |
@@ -287,85 +293,115 @@ Hiermee worden gegronde duurzame kandidaten klaargezet in het kortetermijnarchie
     | `plugins.entries.voice-call.config.twilio.from`                                                  | `plugins.entries.voice-call.config.fromNumber`                              |
     | `plugins.entries.voice-call.config.streaming.sttProvider`                                        | `plugins.entries.voice-call.config.streaming.provider`                      |
     | `plugins.entries.voice-call.config.streaming.openaiApiKey`/`sttModel`/`silenceDurationMs`/`vadThreshold` | `plugins.entries.voice-call.config.streaming.providers.openai.*`             |
-    | `models.providers.*.api: "openai"`                                                               | `"openai-completions"` (bij het opstarten slaat de Gateway ook providers over waarvan `api` een toekomstige/onbekende enumwaarde is, in plaats van gesloten te falen) |
+    | `models.providers.*.api: "openai"`                                                               | `"openai-completions"` (bij het starten van de Gateway worden ook providers overgeslagen waarvan `api` een toekomstige/onbekende enumwaarde is, in plaats van gesloten te falen) |
     | `browser.ssrfPolicy.allowPrivateNetwork`                                                         | `browser.ssrfPolicy.dangerouslyAllowPrivateNetwork`                          |
     | `browser.profiles.*.driver: "extension"`                                                         | `"existing-session"`                                                          |
     | `browser.relayBindHost`                                                                          | verwijderd (verouderde relayinstelling voor de Chrome-extensie)                             |
-    | `mcp.servers.*.type` (CLI-native aliassen)                                                        | `mcp.servers.*.transport`                                                    |
-    | `plugins.entries.codex.config.codexDynamicToolsProfile`                                          | verwijderd (de Codex-appserver houdt Codex-native werkruimtetools altijd native) |
+    | `mcp.servers.*.type` (CLI-eigen aliassen)                                                        | `mcp.servers.*.transport`                                                    |
+    | `mcp.servers.*.disabled`                                                                         | omgekeerde `mcp.servers.*.enabled`                                              |
+    | MCP-time-outaliassen `connectTimeout`/`connect_timeout`/`timeout`                                 | `connectionTimeoutMs`/`requestTimeoutMs`                                    |
+    | MCP-servervelden in snake_case                                                                     | MCP-servervelden in camelCase                                                   |
+    | `tools.media.image/audio/video.models`                                                           | met capaciteiten gelabelde `tools.media.models`                                        |
+    | `tools.media.asyncCompletion`                                                                    | verwijderd                                                                       |
+    | `tools.message.allowCrossContextSend`                                                            | `tools.message.crossContext`                                                  |
+    | `deepgram`-opties voor mediamodellen                                                                   | `providerOptions.deepgram`                                                    |
+    | `talk.realtime.voice`, realtime `voice` van Discord                                                 | `speakerVoice`                                                                |
+    | `agents.defaults.pdfMaxBytesMb`                                                                  | `agents.defaults.pdfMaxMb`                                                    |
+    | `tools.exec.timeoutSec`                                                                          | `tools.exec.timeoutSeconds`                                                   |
+    | `browser.ssrfPolicy.hostnameAllowlist`                                                           | jokertekenbewuste `browser.ssrfPolicy.allowedHostnames`                          |
+    | `enableNoVnc` van de sandboxbrowser                                                                    | `noVncEnabled`                                                                |
+    | hoofd-`media`                                                                                     | `attachments`                                                                |
+    | zichtbaarheidsblokken voor `heartbeat` van kanaal/account                                                   | `heartbeatVisibility`                                                         |
+    | `channels.slack.identity`                                                                        | `channels.slack.postAs`                                                       |
+    | hoofd-`audit`                                                                                     | `logging.audit`                                                               |
+    | `gateway.nodes.skills.enabled`                                                                   | `gateway.nodes.allowSkills`                                                   |
+    | `gateway.nodes.allowCommands`/`denyCommands`                                                    | `gateway.nodes.commands.allow`/`deny`                                         |
+    | standaardwaarden voor generatiemodellen                                                                       | `agents.defaults.mediaModels.{image,video,music}`                              |
+    | buiten gebruik gestelde afstelopties voor de uiteindelijke lay-out                                                               | ingebouwd standaardgedrag                                                     |
+    | `channels.whatsapp.messagePrefix` en verouderde `messages.messagePrefix`                            | `channels.whatsapp.responsePrefix`                                            |
+    | `channels.whatsapp.ackReaction`                                                                  | globale `messages.ackReaction` en `ackReactionScope` waar vertaalbaar        |
+    | `cron.failureDestination`                                                                        | bestemmingsvelden op `cron.failureAlert`                                     |
+    | `gateway.controlUi.chatMessageMaxWidth`, uitsluitend voor presentatie bedoelde `ui.prefs`-sleutels                       | verwijderd (tekstgrootte, chatbreedte en live activiteit in de zijbalk zijn lokaal voor de browser) |
+    | `agents.list`                                                                                    | `agents.entries` met sleutels                                                        |
+    | `defaultModel` op het hoogste niveau                                                                         | `agents.defaults.model`                                                      |
+    | `messages.messagePrefix`                                                                         | `channels.whatsapp.responsePrefix`                                            |
+    | `session.maintenance.pruneDays`, `session.resetByType.dm`                                        | `session.maintenance.pruneAfter`, `session.resetByType.direct`               |
+    | `tui` op het hoogste niveau                                                                                  | verwijderd (de TUI-voettekst gebruikt de compacte standaardwaarde)                            |
+    | `plugins.entries.codex.config.codexDynamicToolsProfile`                                          | verwijderd (de Codex-appserver houdt Codex-eigen werkruimtetools altijd native) |
     | `commands.modelsWrite`                                                                           | verwijderd (`/models add` is verouderd)                                       |
-    | `agents.defaults/list[].silentReplyRewrite`, `surfaces.*.silentReplyRewrite`                     | verwijderd (exacte `NO_REPLY` wordt niet langer herschreven naar zichtbare terugvaltekst)  |
+    | `agents.defaults/list[].silentReplyRewrite`, `surfaces.*.silentReplyRewrite`                     | verwijderd (exacte `NO_REPLY` wordt niet meer herschreven naar zichtbare terugvaltekst)  |
     | `agents.defaults/list[].systemPromptOverride`                                                    | verwijderd (OpenClaw beheert de gegenereerde systeemprompt)                        |
     | `agents.defaults/list[].embeddedPi`                                                              | `embeddedAgent`                                                              |
     | `agents.defaults/list[].sandbox.perSession`                                                      | `sandbox.scope`                                                              |
-    | `agents.defaults.llm`                                                                             | verwijderd (gebruik `models.providers.<id>.timeoutSeconds` voor time-outs van trage modellen/providers, onder de time-outlimiet van de agent/run gehouden) |
-    | `memorySearch` op het hoogste niveau                                                                         | `agents.defaults.memorySearch`                                              |
+    | `agents.defaults.llm`                                                                             | verwijderd (gebruik `models.providers.<id>.timeoutSeconds` voor time-outs van trage modellen/providers, onder de bovengrens voor de agent-/uitvoeringstime-out gehouden) |
+    | bovenste niveau `memorySearch`, `agents.defaults.memorySearch`                                         | `memory.search`                                                             |
+    | `agents.entries.*.memorySearch`                                                                     | `agents.entries.*.memory.search`                                               |
     | `memorySearch.provider: "auto"`                                                                  | `"openai"`                                                                    |
-    | `memorySearch.store.path` (elk niveau)                                                            | verwijderd (geheugenindexen bevinden zich in elke agentdatabase)                       |
-    | `heartbeat` op het hoogste niveau                                                                            | `agents.defaults.heartbeat` / `channels.defaults.heartbeat`                 |
-    | beleids-ID's van `plugins.openai-codex`                                                                | `plugins.openai`                                                             |
+    | `memorySearch.store.path` (elk niveau)                                                            | verwijderd (geheugenindexen bevinden zich in de database van elke agent)                       |
+    | bovenste niveau `heartbeat`                                                                            | `agents.defaults.heartbeat` / `channels.defaults.heartbeat`                 |
+    | beleids-id's voor `plugins.openai-codex`                                                                | `plugins.openai`                                                             |
     | `tools.web.x_search.apiKey`                                                                      | `plugins.entries.xai.config.webSearch.apiKey`                               |
     | `session.maintenance.rotateBytes`, `session.parentForkMaxTokens`                                 | verwijderd (verouderd)                                                        |
-    | `diagnostics.memoryPressureBundle`                                                               | `diagnostics.memoryPressureSnapshot`                                        |
+    | Instellingen voor runtime- en kanaalafstemming die in 2026.7 buiten gebruik zijn gesteld                                               | verwijderd (ingebouwde productiestandaardwaarden zijn van toepassing)                               |
 
     <Note>
-      De bovenstaande `plugins.entries.voice-call.config.*`-rijen worden bij elke configuratielading door
-      de Voice Call-plugin zelf genormaliseerd, niet door `openclaw
-      doctor`. De Plugin registreert ook een opstartwaarschuwing die naar `openclaw
-      doctor --fix` verwijst, maar doctor herschrijft
-      `openclaw.json` momenteel niet voor deze sleutels; de normalisatie van de Plugin zelf
+      De bovenstaande `plugins.entries.voice-call.config.*`-rijen worden bij elke configuratielading genormaliseerd door
+      de Voice Call-plugin zelf, niet door `openclaw
+      doctor`. De plugin registreert ook een opstartwaarschuwing die verwijst naar `openclaw
+      doctor --fix`, maar doctor herschrijft momenteel
+      `openclaw.json` niet voor deze sleutels; de eigen normalisatie van de plugin
       past de wijziging tijdens runtime toe.
     </Note>
 
-    Richtlijnen voor standaardaccounts bij kanalen met meerdere accounts:
+    Richtlijnen voor het standaardaccount bij kanalen met meerdere accounts:
 
-    - Als twee of meer `channels.<channel>.accounts`-vermeldingen zijn geconfigureerd zonder `channels.<channel>.defaultAccount` of `accounts.default`, waarschuwt doctor dat terugvalroutering een onverwacht account kan kiezen.
-    - Als `channels.<channel>.defaultAccount` is ingesteld op een onbekende account-ID, waarschuwt doctor en geeft deze de geconfigureerde account-ID's weer.
+    - Als twee of meer `channels.<channel>.accounts`-vermeldingen zijn geconfigureerd zonder `channels.<channel>.defaultAccount` of `accounts.default`, waarschuwt doctor dat de fallback-routering een onverwacht account kan kiezen.
+    - Als `channels.<channel>.defaultAccount` is ingesteld op een onbekende account-ID, waarschuwt doctor en toont het de geconfigureerde account-ID's.
 
   </Accordion>
-  <Accordion title="2b. OpenCode-provideroverschrijvingen">
-    Als je `models.providers.opencode`, `opencode-zen` of `opencode-go` handmatig hebt toegevoegd, overschrijft dit de ingebouwde OpenCode-catalogus uit `openclaw/plugin-sdk/llm`. Daardoor kunnen modellen gedwongen worden de verkeerde API te gebruiken of kunnen kosten op nul worden gezet. Doctor waarschuwt, zodat je de overschrijving kunt verwijderen en de API-routering en kosten per model kunt herstellen.
+  <Accordion title="2b. Overschrijvingen voor de OpenCode-provider">
+    Als je `models.providers.opencode`, `opencode-zen` of `opencode-go` handmatig hebt toegevoegd, overschrijft dit de ingebouwde OpenCode-catalogus uit `openclaw/plugin-sdk/llm`. Daardoor kunnen modellen gedwongen worden de verkeerde API te gebruiken of kunnen kosten op nul worden gezet. Doctor waarschuwt zodat je de overschrijving kunt verwijderen en de API-routering en kosten per model kunt herstellen.
   </Accordion>
   <Accordion title="2c. Browsermigratie en gereedheid van Chrome MCP">
     Als je browserconfiguratie nog naar het verwijderde Chrome-extensiepad verwijst, normaliseert doctor dit naar het huidige hostlokale Chrome MCP-koppelingsmodel (`browser.profiles.*.driver: "extension"` → `"existing-session"`; `browser.relayBindHost` verwijderd).
 
     Doctor controleert ook het hostlokale Chrome MCP-pad wanneer je `defaultProfile: "user"` of een geconfigureerd `existing-session`-profiel gebruikt:
 
-    - controleert of Google Chrome op dezelfde host is geïnstalleerd voor standaardprofielen met automatische verbinding
+    - controleert voor standaardprofielen met automatische verbinding of Google Chrome op dezelfde host is geïnstalleerd
     - controleert de gedetecteerde Chrome-versie en waarschuwt wanneer deze lager is dan Chrome 144
     - herinnert je eraan externe foutopsporing in te schakelen op de inspectiepagina van de browser (bijvoorbeeld `chrome://inspect/#remote-debugging`, `brave://inspect/#remote-debugging` of `edge://inspect/#remote-debugging`)
 
-    Doctor kan de instelling aan de Chrome-zijde niet voor je inschakelen. Voor hostlokale Chrome MCP is nog steeds een op Chromium gebaseerde browser 144+ vereist die lokaal op de Gateway-/Node-host draait, met externe foutopsporing ingeschakeld en waarbij het eerste toestemmingsverzoek voor koppeling in de browser is goedgekeurd.
+    Doctor kan de Chrome-instelling niet voor je inschakelen. Voor hostlokale Chrome MCP is nog steeds een lokaal uitgevoerde Chromium-gebaseerde browser 144+ op de Gateway-/Node-host vereist, met externe foutopsporing ingeschakeld en de eerste toestemmingsprompt voor koppeling goedgekeurd in de browser.
 
-    De gereedheidscontrole hier omvat alleen de lokale koppelingsvereisten. Existing-session behoudt de huidige routelimieten van Chrome MCP; geavanceerde routes zoals `responsebody`, PDF-export, downloadonderschepping en batchacties vereisen nog steeds een beheerde browser of een onbewerkt CDP-profiel. Deze controle is niet van toepassing op Docker-, sandbox-, externe-browser- of andere headless-processen, die onbewerkt CDP blijven gebruiken.
+    De gereedheidscontrole hier dekt alleen de lokale koppelingsvereisten. Existing-session behoudt de huidige routelimieten van Chrome MCP; geavanceerde routes zoals `responsebody`, PDF-export, onderschepping van downloads en batchacties vereisen nog steeds een beheerde browser of een onbewerkt CDP-profiel. Deze controle is niet van toepassing op Docker-, sandbox-, externe-browser- of andere headless-flows, die onbewerkt CDP blijven gebruiken.
 
   </Accordion>
   <Accordion title="2d. TLS-vereisten voor OAuth">
-    Wanneer een OpenAI Codex OAuth-profiel is geconfigureerd, test doctor het OpenAI-autorisatie-eindpunt om te controleren of de lokale Node/OpenSSL TLS-stack de certificaatketen kan valideren. Als de test mislukt met een certificaatfout (bijvoorbeeld `UNABLE_TO_GET_ISSUER_CERT_LOCALLY`, een verlopen certificaat of een zelfondertekend certificaat), toont doctor platformspecifieke instructies om dit op te lossen. Op macOS met een Homebrew Node is de oplossing meestal `brew postinstall ca-certificates`. Met `--deep` wordt de test ook uitgevoerd als de Gateway in orde is.
+    Wanneer een OpenAI Codex OAuth-profiel is geconfigureerd, test doctor het OpenAI-autorisatie-eindpunt om te verifiëren dat de lokale TLS-stack van Node/OpenSSL de certificaatketen kan valideren. Als de test mislukt met een certificaatfout (bijvoorbeeld `UNABLE_TO_GET_ISSUER_CERT_LOCALLY`, een verlopen certificaat of een zelfondertekend certificaat), toont doctor platformspecifieke richtlijnen voor de oplossing. Op macOS met een Homebrew-versie van Node is de oplossing meestal `brew postinstall ca-certificates`. Met `--deep` wordt de test uitgevoerd, zelfs als de Gateway gezond is.
   </Accordion>
-  <Accordion title="2e. Codex OAuth-provideroverschrijvingen">
-    Als je eerder verouderde OpenAI-transportinstellingen onder `models.providers.openai-codex` hebt toegevoegd, kunnen deze het ingebouwde providerpad voor Codex OAuth overschaduwen. Doctor waarschuwt wanneer deze oude transportinstellingen naast Codex OAuth worden aangetroffen, zodat je de verouderde transportoverschrijving kunt verwijderen of herschrijven en het huidige routeringsgedrag kunt herstellen. Aangepaste proxy's en overschrijvingen met alleen headers blijven ondersteund en activeren deze waarschuwing niet, maar deze handmatig gedefinieerde aanvraagroutes komen niet in aanmerking voor impliciete Codex-selectie.
+  <Accordion title="2e. Overschrijvingen voor de Codex OAuth-provider">
+    Als je eerder verouderde OpenAI-transportinstellingen hebt toegevoegd onder `models.providers.openai-codex`, kunnen deze het ingebouwde providerpad voor Codex OAuth overschaduwen. Doctor waarschuwt wanneer het die oude transportinstellingen naast Codex OAuth aantreft, zodat je de verouderde transportoverschrijving kunt verwijderen of herschrijven en het huidige routeringsgedrag kunt herstellen. Aangepaste proxy's en overschrijvingen met alleen headers blijven ondersteund en activeren deze waarschuwing niet, maar deze zelf gedefinieerde aanvraagroutes komen niet in aanmerking voor impliciete Codex-selectie.
   </Accordion>
-  <Accordion title="2f. Reparatie van Codex-routes">
-    Doctor controleert op verouderde `openai-codex/*`-modelverwijzingen. Systeemeigen routering van de Codex-harness gebruikt canonieke `openai/*`-modelverwijzingen, maar alleen het voorvoegsel selecteert Codex nooit. Als het runtimebeleid niet is ingesteld of `auto` is, komt alleen een exacte officiële HTTPS-route voor Platform Responses of ChatGPT Responses zonder handmatig gedefinieerde aanvraagoverschrijving in aanmerking. Zie [Impliciete OpenAI-agentruntime](/nl/providers/openai#implicit-agent-runtime).
+  <Accordion title="2f. Herstel van Codex-routes">
+    Doctor controleert op verouderde `openai-codex/*`-modelreferenties. Systeemeigen routering via de Codex-harness gebruikt canonieke `openai/*`-modelreferenties, maar alleen het voorvoegsel selecteert Codex nooit. Als het runtimebeleid niet is ingesteld of `auto` is, komt alleen een exacte officiële HTTPS-route voor Platform Responses of ChatGPT Responses zonder zelf gedefinieerde aanvraagoverschrijving in aanmerking. Zie [Impliciete OpenAI-agentruntime](/nl/providers/openai#implicit-agent-runtime).
 
-    In de modus `--fix` / `--repair` herschrijft doctor de betrokken verwijzingen voor de standaardagent en afzonderlijke agents, waaronder primaire modellen, fallbacks, modellen voor het genereren van afbeeldingen/video's, overschrijvingen voor Heartbeat/subagent/Compaction, hooks, kanaalmodeloverschrijvingen en verouderde opgeslagen sessieroutestatus:
+    In de modus `--fix` / `--repair` herschrijft doctor de betrokken referenties voor de standaardagent en afzonderlijke agents, waaronder primaire modellen, fallbacks, modellen voor beeld-/videogeneratie, overschrijvingen voor Heartbeat/subagents/Compaction, hooks, modeloverschrijvingen voor kanalen en verouderde permanente sessieroutestatus:
 
     - `openai-codex/gpt-*` wordt `openai/gpt-*`.
-    - Codex-intentie wordt verplaatst naar provider-/modelgebonden `agentRuntime.id: "codex"`-vermeldingen voor gerepareerde agentmodelverwijzingen.
-    - Verouderde runtimeconfiguratie voor de volledige agent en opgeslagen runtimepinnen van sessies worden verwijderd, omdat runtimeselectie provider-/modelgebonden is.
-    - Bestaand runtimebeleid voor provider/model blijft behouden, tenzij de gerepareerde verouderde modelverwijzing Codex-routering nodig heeft om het oude authenticatiepad te behouden.
-    - Bestaande lijsten met modelfallbacks blijven behouden, waarbij hun verouderde vermeldingen worden herschreven; gekopieerde instellingen per model worden van de verouderde sleutel naar de canonieke sleutel `openai/*` verplaatst.
-    - Opgeslagen sessiegegevens voor `modelProvider`/`providerOverride`, `model`/`modelOverride`, fallbackmeldingen en authenticatieprofielpinnen worden in alle gevonden sessieopslagen van agents gerepareerd.
-    - Doctor repareert afzonderlijk verouderde `agentRuntime.id: "codex-cli"`-pinnen (een afzonderlijke verouderde runtime-id) naar `"codex"` in modelvermeldingen van `agents.defaults`, `agents.list[]` en `models.providers.*`.
-    - `/codex ...` betekent "een systeemeigen Codex-gesprek vanuit de chat beheren of eraan koppelen."
+    - De Codex-intentie wordt verplaatst naar provider-/modelgebonden `agentRuntime.id: "codex"`-vermeldingen voor herstelde modelreferenties van agents.
+    - Verouderde runtimeconfiguratie voor de volledige agent en permanente runtimepinnen voor sessies worden verwijderd omdat runtimeselectie provider-/modelgebonden is.
+    - Bestaand runtimebeleid voor providers/modellen blijft behouden, tenzij de herstelde verouderde modelreferentie Codex-routering nodig heeft om het oude authenticatiepad te behouden.
+    - Bestaande lijsten met modelfallbacks blijven behouden en hun verouderde vermeldingen worden herschreven; gekopieerde instellingen per model worden van de verouderde sleutel naar de canonieke sleutel `openai/*` verplaatst.
+    - Permanente sessiegegevens voor `modelProvider`/`providerOverride`, `model`/`modelOverride`, fallbackmeldingen en authenticatieprofielpinnen worden hersteld in alle gevonden sessieopslaglocaties van agents.
+    - Doctor herstelt afzonderlijk verouderde `agentRuntime.id: "codex-cli"`-pinnen (een afzonderlijke verouderde runtime-ID) naar `"codex"` in de modelvermeldingen `agents.defaults`, `agents.entries.*` en `models.providers.*`.
+    - `/codex ...` betekent "een systeemeigen Codex-gesprek vanuit de chat beheren of koppelen."
     - `/acp ...` of `runtime: "acp"` betekent "de externe ACP/acpx-adapter gebruiken."
 
   </Accordion>
   <Accordion title="2g. Opschoning van sessieroutes">
-    Doctor scant gevonden sessieopslagen van agents ook op verouderde, automatisch aangemaakte routestatus nadat je geconfigureerde modellen of de runtime hebt verplaatst van een Plugin-beheerde route zoals Codex.
+    Doctor scant gevonden sessieopslaglocaties van agents ook op verouderde, automatisch aangemaakte routestatus nadat je geconfigureerde modellen of de runtime hebt verplaatst van een route die eigendom is van een plugin, zoals Codex.
 
-    `openclaw doctor --fix` kan automatisch aangemaakte verouderde status wissen, zoals `modelOverrideSource: "auto"`-modelpinnen, runtimemodelmetadata, vastgezette harness-id's, CLI-sessiekoppelingen en automatische authenticatieprofieloverschrijvingen wanneer de route die ze beheert niet meer is geconfigureerd. Expliciete modelkeuzes van gebruikers of verouderde sessies worden gemeld voor handmatige controle en blijven ongewijzigd; wissel ze met `/model ...`, `/new` of stel de sessie opnieuw in wanneer die route niet meer bedoeld is.
+    `openclaw doctor --fix` kan automatisch aangemaakte verouderde status wissen, zoals `modelOverrideSource: "auto"`-modelpinnen, runtimemodelmetadata, vastgezette harness-ID's, CLI-sessiekoppelingen en automatische overschrijvingen van authenticatieprofielen wanneer de bijbehorende route niet meer is geconfigureerd. Expliciete modelkeuzes van gebruikers of uit verouderde sessies worden gemeld voor handmatige controle en blijven ongewijzigd; wijzig ze met `/model ...`, `/new` of stel de sessie opnieuw in wanneer die route niet langer bedoeld is.
 
   </Accordion>
   <Accordion title="3. Migraties van verouderde status (schijfindeling)">
@@ -373,16 +409,17 @@ Hiermee worden gegronde duurzame kandidaten klaargezet in het kortetermijnarchie
 
     - Sessieopslag en transcripties: van `~/.openclaw/sessions/` naar `~/.openclaw/agents/<agentId>/sessions/`
     - Agentmap: van `~/.openclaw/agent/` naar `~/.openclaw/agents/<agentId>/agent/`
-    - WhatsApp-authenticatiestatus (Baileys): van verouderde `~/.openclaw/credentials/*.json` (behalve `oauth.json`) naar `~/.openclaw/credentials/whatsapp/<accountId>/...` (standaardaccount-id: `default`)
+    - WhatsApp-authenticatiestatus (Baileys): van het verouderde `~/.openclaw/credentials/*.json` (behalve `oauth.json`) naar `~/.openclaw/credentials/whatsapp/<accountId>/...` (standaardaccount-ID: `default`)
+    - Ondertekende apparaatidentiteit: van `~/.openclaw/identity/device.json` naar de `primary` `device_identities`-rij in `state/openclaw.sqlite`; het afzonderlijke bestand voor apparaatauthenticatie blijft ongewijzigd
 
-    Deze migraties worden naar beste vermogen uitgevoerd en zijn idempotent; doctor geeft waarschuwingen wanneer verouderde mappen als back-up achterblijven. De Gateway/CLI migreert de verouderde sessies en agentmap bij het opstarten ook automatisch, zodat geschiedenis/authenticatie/modellen zonder handmatige doctor-uitvoering in het pad per agent terechtkomen. WhatsApp-authenticatie wordt bewust alleen via `openclaw doctor` gemigreerd. De normalisatie van Talk-providers/provider-toewijzingen vergelijkt op structurele gelijkheid, zodat verschillen die alleen de sleutelvolgorde betreffen niet langer herhaaldelijk nutteloze `doctor --fix`-wijzigingen activeren.
+    Deze migraties worden naar beste vermogen uitgevoerd en zijn idempotent; doctor geeft waarschuwingen wanneer verouderde mappen als back-up achterblijven. De Gateway/CLI migreert bij het opstarten ook automatisch de verouderde sessies en agentmap, zodat geschiedenis/authenticatie/modellen zonder handmatige uitvoering van doctor in het pad per agent terechtkomen. WhatsApp-authenticatie wordt opzettelijk alleen via `openclaw doctor` gemigreerd. De normalisatie van Talk-provider/provider-map vergelijkt op structurele gelijkheid, zodat verschillen die alleen de sleutelvolgorde betreffen niet langer herhaaldelijk wijzigingen zonder effect in `doctor --fix` activeren.
 
   </Accordion>
-  <Accordion title="3a. Migraties van verouderde Plugin-manifesten">
-    Doctor scant alle geïnstalleerde Plugin-manifesten op verouderde mogelijkhedenleutels op het hoogste niveau (`speechProviders`, `realtimeTranscriptionProviders`, `realtimeVoiceProviders`, `mediaUnderstandingProviders`, `imageGenerationProviders`, `videoGenerationProviders`, `webFetchProviders`, `webSearchProviders`). Wanneer deze worden gevonden, biedt doctor aan ze naar het object `contracts` te verplaatsen en het manifestbestand ter plaatse te herschrijven. Deze migratie is idempotent; als `contracts` al dezelfde waarden bevat, wordt de verouderde sleutel verwijderd zonder gegevens te dupliceren.
+  <Accordion title="3a. Migraties van verouderde pluginmanifesten">
+    Doctor scant alle geïnstalleerde pluginmanifesten op verouderde mogelijkhedenleutels op het hoogste niveau (`speechProviders`, `realtimeTranscriptionProviders`, `realtimeVoiceProviders`, `mediaUnderstandingProviders`, `imageGenerationProviders`, `videoGenerationProviders`, `webFetchProviders`, `webSearchProviders`). Wanneer deze worden gevonden, biedt doctor aan ze naar het object `contracts` te verplaatsen en het manifestbestand ter plaatse te herschrijven. Deze migratie is idempotent; als `contracts` al dezelfde waarden bevat, wordt de verouderde sleutel verwijderd zonder gegevens te dupliceren.
   </Accordion>
   <Accordion title="3b. Migraties van verouderde Cron-opslag">
-    Doctor controleert ook de opslag voor Cron-taken (standaard `~/.openclaw/cron/jobs.json`, of `cron.store` wanneer overschreven) op oude taakstructuren die de planner nog steeds accepteert voor compatibiliteit.
+    Doctor controleert ook de verouderde opslag voor Cron-taken (`~/.openclaw/cron/jobs.json`) op oude taakstructuren voordat canonieke rijen in SQLite worden geïmporteerd.
 
     De huidige Cron-opschoningen omvatten:
 
@@ -390,203 +427,203 @@ Hiermee worden gegronde duurzame kandidaten klaargezet in het kortetermijnarchie
     - `schedule.cron` → `schedule.expr`
     - payloadvelden op het hoogste niveau (`message`, `model`, `thinking`, ...) → `payload`
     - afleveringsvelden op het hoogste niveau (`deliver`, `channel`, `to`, `provider`, ...) → `delivery`
-    - payload-aliassen voor `provider`-aflevering → expliciete `delivery.channel`
-    - verouderde `notify: true`-Webhook-fallbacktaken → expliciete Webhook-aflevering vanuit `cron.webhook` wanneer ingesteld; aankondigingstaken behouden hun chataflevering en krijgen `delivery.completionDestination`. Wanneer `cron.webhook` niet is ingesteld, wordt de inactieve markering `notify` op het hoogste niveau verwijderd voor taken zonder doel (bestaande aflevering, inclusief aankondigingen, blijft behouden), omdat de runtimeaflevering deze nooit leest.
+    - afleveringsaliassen in payload `provider` → expliciete `delivery.channel`
+    - verouderde `notify: true`-fallbacktaken voor Webhooks → expliciete Webhook-aflevering vanuit de uitgefaseerde onbewerkte waarde `cron.webhook` wanneer deze geldig is; aankondigingstaken behouden hun chataflevering en krijgen `delivery.completionDestination`. Doctor verwijdert vervolgens de oude configuratiesleutel. Zonder een bruikbare verouderde Webhook wordt de inactieve markering `notify` op het hoogste niveau verwijderd voor taken zonder doel (bestaande aflevering, inclusief aankondigingen, blijft behouden), omdat de runtimeaflevering deze nooit leest.
 
-    De Gateway schoont bij het laden ook onjuist gevormde Cron-rijen op, zodat geldige taken blijven worden uitgevoerd. Onbewerkte onjuist gevormde rijen worden vóór verwijdering uit `jobs.json` gekopieerd naar `jobs-quarantine.json` naast de actieve opslag; doctor meldt in quarantaine geplaatste rijen, zodat je ze handmatig kunt controleren of repareren.
+    De Gateway schoont ook onjuist gevormde Cron-rijen op tijdens het laden, zodat geldige taken blijven werken. Onbewerkte onjuist gevormde rijen worden vóór verwijdering uit `jobs.json` gekopieerd naar `jobs-quarantine.json` naast de actieve opslag; doctor meldt in quarantaine geplaatste rijen, zodat je ze handmatig kunt controleren of herstellen.
 
-    Bij het opstarten normaliseert de Gateway de runtimeprojectie en negeert deze de markering `notify` op het hoogste niveau, maar laat de opgeslagen Cron-configuratie intact voor reparatie door doctor. Wanneer `cron.webhook` niet is ingesteld, verwijdert doctor de inactieve markering voor taken zonder migratiedoel (`delivery.mode` geen/afwezig, een onbruikbaar Webhook-doel of bestaande aankondigings-/chataflevering), waarbij de bestaande aflevering ongewijzigd blijft, zodat herhaalde uitvoeringen van `doctor --fix` niet langer opnieuw voor dezelfde taak waarschuwen. Als `cron.webhook` is ingesteld maar geen geldige HTTP(S)-URL is, blijft doctor waarschuwen en laat deze de markering staan, zodat je de URL kunt corrigeren.
+    Bij het opstarten normaliseert de Gateway de runtimeprojectie en negeert deze de markering `notify` op het hoogste niveau, maar laat de permanente Cron-status intact voor herstel door doctor. Doctor verwijdert inactieve markeringen voor taken zonder migratiedoel (`delivery.mode` geen/afwezig, een onbruikbaar verouderd Webhook-doel of bestaande aankondigings-/chataflevering) en laat de bestaande aflevering ongewijzigd, zodat herhaalde uitvoeringen van `doctor --fix` niet langer opnieuw voor dezelfde taak waarschuwen.
 
-    Op Linux waarschuwt doctor ook wanneer de crontab van de gebruiker nog steeds het verouderde `~/.openclaw/bin/ensure-whatsapp.sh` aanroept. Dat hostlokale script wordt niet onderhouden door de huidige OpenClaw-versie en kan onjuiste `Gateway inactive`-meldingen naar `~/.openclaw/logs/whatsapp-health.log` schrijven wanneer Cron de systemd-gebruikersbus niet kan bereiken. Verwijder de verouderde crontab-vermelding met `crontab -e`; gebruik `openclaw channels status --probe`, `openclaw doctor` en `openclaw gateway status` voor de huidige statuscontroles.
+    Op Linux waarschuwt doctor ook wanneer de crontab van de gebruiker nog steeds het verouderde `~/.openclaw/bin/ensure-whatsapp.sh` aanroept. Dat hostlokale script wordt niet onderhouden door het huidige OpenClaw en kan onterechte `Gateway inactive`-berichten naar `~/.openclaw/logs/whatsapp-health.log` schrijven wanneer Cron de systemd-gebruikersbus niet kan bereiken. Verwijder de verouderde crontab-vermelding met `crontab -e`; gebruik `openclaw channels status --probe`, `openclaw doctor` en `openclaw gateway status` voor huidige statuscontroles.
 
   </Accordion>
-  <Accordion title="3c. Opschoning van sessievergrendelingen">
-    Doctor scant elke agentsessiemap op verouderde schrijfvergrendelingsbestanden die zijn achtergebleven nadat een sessie abnormaal werd beëindigd. Voor elk gevonden vergrendelingsbestand meldt doctor: het pad, de PID, of de PID nog actief is, de ouderdom van de vergrendeling en of deze als verouderd wordt beschouwd (inactieve PID, onjuist gevormde metadata van de eigenaar, ouder dan 30 minuten of een actieve PID waarvan is aangetoond dat deze bij een niet-OpenClaw-proces hoort). In de modus `--fix` / `--repair` verwijdert doctor automatisch vergrendelingen met inactieve, verweesde, hergebruikte, oude onjuist gevormde of niet-OpenClaw-eigenaren. Oude vergrendelingen die nog bij een actief OpenClaw-proces horen, worden gemeld maar blijven staan, zodat doctor een actieve transcriptschrijver niet afbreekt.
+  <Accordion title="3c. Opschonen van sessievergrendelingen">
+    Doctor scant elke agentsessiemap op verouderde schrijfvergrendelingsbestanden die zijn achtergebleven toen een sessie abnormaal werd beëindigd. Voor elk gevonden vergrendelingsbestand rapporteert het: het pad, de PID, of de PID nog actief is, de ouderdom van de vergrendeling en of deze als verouderd wordt beschouwd (inactieve PID, ongeldige metadata van de eigenaar, ouder dan 30 minuten of een actieve PID waarvan is aangetoond dat die bij een niet-OpenClaw-proces hoort). In de modus `--fix` / `--repair` verwijdert het automatisch vergrendelingen met inactieve, verweesde, hergebruikte, ongeldige oude of niet-OpenClaw-eigenaren. Oude vergrendelingen die nog eigendom zijn van een actief OpenClaw-proces worden gerapporteerd maar blijven staan, zodat doctor een actieve transcriptschrijver niet onderbreekt.
   </Accordion>
-  <Accordion title="3d. Reparatie van sessietranscriptvertakkingen">
-    Doctor scant JSONL-bestanden van agentsessies op de gedupliceerde vertakkingsstructuur die is ontstaan door de fout bij het herschrijven van prompttranscripties in 2026.4.24: een verlaten gebruikersbeurt met interne OpenClaw-runtimecontext en een actieve nevenvertakking met dezelfde zichtbare gebruikersprompt. In de modus `--fix` / `--repair` maakt doctor naast het origineel een back-up van elk betrokken bestand en herschrijft deze het transcript naar de actieve vertakking, zodat lezers van Gateway-geschiedenis en geheugen geen dubbele beurten meer zien.
+  <Accordion title="3d. Reparatie van sessietranscripttakken">
+    Doctor scant JSONL-bestanden van agentsessies op de gedupliceerde takstructuur die is ontstaan door de bug bij het herschrijven van prompttranscripten in 2026.4.24: een verlaten gebruikersbeurt met interne OpenClaw-runtimecontext plus een actieve zustertak met dezelfde zichtbare gebruikersprompt. In de modus `--fix` / `--repair` maakt doctor naast het origineel een back-up van elk getroffen bestand en herschrijft het transcript naar de actieve tak, zodat lezers van Gateway-geschiedenis en geheugen geen dubbele beurten meer zien.
   </Accordion>
-  <Accordion title="4. Integriteitscontroles van status (sessieopslag, routering en veiligheid)">
-    De statusmap is de operationele hersenstam. Als deze verdwijnt, verlies je sessies, aanmeldgegevens, logboeken en configuratie, tenzij je elders back-ups hebt.
+  <Accordion title="4. Integriteitscontroles van de status (sessieopslag, routering en veiligheid)">
+    De statusmap is de operationele hersenstam. Als deze verdwijnt, verlies je sessies, referenties, logboeken en configuratie, tenzij je elders back-ups hebt.
 
     Doctor controleert:
 
-    - **Statusmap ontbreekt**: waarschuwt voor catastrofaal verlies van statusgegevens, vraagt om de map opnieuw aan te maken en herinnert je eraan dat ontbrekende gegevens niet kunnen worden hersteld.
+    - **Statusmap ontbreekt**: waarschuwt voor catastrofaal statusverlies, vraagt om de map opnieuw aan te maken en herinnert je eraan dat ontbrekende gegevens niet kunnen worden hersteld.
     - **Machtigingen van statusmap**: controleert de schrijfbaarheid; biedt aan de machtigingen te herstellen (en geeft een `chown`-hint wanneer een verschil in eigenaar/groep wordt gedetecteerd).
-    - **Via de cloud gesynchroniseerde statusmap in macOS**: waarschuwt wanneer de status onder iCloud Drive (`~/Library/Mobile Documents/com~apple~CloudDocs/...`) of `~/Library/CloudStorage/...` wordt gevonden, omdat door synchronisatie ondersteunde paden tragere I/O en vergrendelings-/synchronisatieraces kunnen veroorzaken.
-    - **Statusmap op Linux-SD of -eMMC**: waarschuwt wanneer de status naar een `mmcblk*`-aankoppelbron wordt herleid, omdat willekeurige I/O op SD/eMMC trager kan zijn en sneller slijtage kan veroorzaken bij het schrijven van sessies en referenties.
-    - **Vluchtige statusmap in Linux**: waarschuwt wanneer de status naar `tmpfs` of `ramfs` wordt herleid, omdat sessies, referenties, configuratie en SQLite-status (met WAL-/journaal-zijbestanden) bij opnieuw opstarten verdwijnen. Docker-`overlay`-aankoppelingen worden bewust niet gemarkeerd, omdat hun schrijfbare lagen behouden blijven wanneer de host opnieuw wordt opgestart zolang de container blijft bestaan.
-    - **Sessiemappen ontbreken**: `sessions/` en de sessieopslagmap zijn vereist om de geschiedenis te bewaren en `ENOENT`-crashes te voorkomen.
-    - **Transcript komt niet overeen**: waarschuwt wanneer transcriptbestanden ontbreken voor recente sessievermeldingen.
+    - **Via de cloud gesynchroniseerde statusmap op macOS**: waarschuwt wanneer de status onder iCloud Drive (`~/Library/Mobile Documents/com~apple~CloudDocs/...`) of `~/Library/CloudStorage/...` wordt gevonden, omdat door synchronisatie ondersteunde paden tragere I/O en conflicten tussen vergrendeling en synchronisatie kunnen veroorzaken.
+    - **Statusmap op Linux-SD of -eMMC**: waarschuwt wanneer de status naar een `mmcblk*`-aankoppelbron wordt herleid, omdat willekeurige I/O op SD/eMMC trager kan zijn en de opslag sneller kan slijten bij het schrijven van sessies en referenties.
+    - **Vluchtige statusmap op Linux**: waarschuwt wanneer de status naar `tmpfs` of `ramfs` wordt herleid, omdat sessies, referenties, configuratie en SQLite-status (met WAL-/journaalhulpbestanden) bij opnieuw opstarten verdwijnen. Docker-`overlay`-aankoppelingen worden bewust niet gemarkeerd, omdat hun beschrijfbare lagen behouden blijven wanneer de host opnieuw wordt opgestart zolang de container blijft bestaan.
+    - **Sessiemappen ontbreken**: `sessions/` en de sessieopslagmap zijn vereist om geschiedenis te bewaren en `ENOENT`-crashes te voorkomen.
+    - **Transcript komt niet overeen**: waarschuwt wanneer bij recente sessie-items transcriptbestanden ontbreken.
     - **Hoofdsessie met "JSONL van 1 regel"**: markeert wanneer het hoofdtranscript slechts één regel bevat (de geschiedenis wordt niet opgebouwd).
-    - **Meerdere statusmappen**: waarschuwt wanneer meerdere `~/.openclaw`-mappen in thuismappen bestaan of wanneer `OPENCLAW_STATE_DIR` naar elders verwijst (de geschiedenis kan over installaties worden verdeeld).
+    - **Meerdere statusmappen**: waarschuwt wanneer meerdere `~/.openclaw`-mappen in thuismappen bestaan, of wanneer `OPENCLAW_STATE_DIR` naar een andere locatie verwijst (de geschiedenis kan over installaties worden verdeeld).
     - **Herinnering voor externe modus**: als `gateway.mode=remote`, herinnert doctor je eraan om het op de externe host uit te voeren (de status bevindt zich daar).
-    - **Machtigingen van configuratiebestand**: waarschuwt als `~/.openclaw/openclaw.json` leesbaar is voor de groep/iedereen en biedt aan de machtigingen aan te scherpen tot `600`.
+    - **Machtigingen van configuratiebestand**: waarschuwt als `~/.openclaw/openclaw.json` leesbaar is voor de groep/iedereen en biedt aan dit te beperken tot `600`.
 
   </Accordion>
-  <Accordion title="5. Status van modelauthenticatie (verlopen van OAuth)">
-    Doctor inspecteert OAuth-profielen in de authenticatieopslag, waarschuwt wanneer tokens binnenkort verlopen of al verlopen zijn en kan ze vernieuwen wanneer dat veilig is. Als het Anthropic OAuth-/tokenprofiel verouderd is, stelt het een Anthropic API-sleutel of het Anthropic-installatietokenpad voor. Vragen om te vernieuwen verschijnen alleen bij interactieve uitvoering (TTY); `--non-interactive` slaat vernieuwingspogingen over.
+  <Accordion title="5. Gezondheid van modelauthenticatie (verlopen van OAuth)">
+    Doctor inspecteert OAuth-profielen in de authenticatieopslag, waarschuwt wanneer tokens bijna verlopen of verlopen zijn en kan ze vernieuwen wanneer dat veilig is. Als het Anthropic OAuth-/tokenprofiel verouderd is, stelt het een Anthropic API-sleutel of het Anthropic-installatietokenpad voor. Vernieuwingsprompts verschijnen alleen bij interactieve uitvoering (TTY); `--non-interactive` slaat vernieuwingspogingen over.
 
-    Wanneer een OAuth-vernieuwing permanent mislukt (bijvoorbeeld `refresh_token_reused`, `invalid_grant` of wanneer een provider aangeeft dat je opnieuw moet inloggen), meldt doctor dat herauthenticatie vereist is en toont het de exacte uit te voeren opdracht `openclaw models auth login --provider ...`.
+    Wanneer een OAuth-vernieuwing permanent mislukt (bijvoorbeeld `refresh_token_reused`, `invalid_grant` of wanneer een provider aangeeft dat je je opnieuw moet aanmelden), meldt doctor dat herauthenticatie vereist is en drukt het de exacte uit te voeren opdracht `openclaw models auth login --provider ...` af.
 
-    Doctor meldt ook authenticatieprofielen die tijdelijk onbruikbaar zijn vanwege korte afkoelperioden (snelheidslimieten/time-outs/authenticatiefouten) of langere uitschakelingen (facturerings-/tegoedfouten).
+    Doctor rapporteert ook authenticatieprofielen die tijdelijk onbruikbaar zijn vanwege korte afkoelperioden (snelheidslimieten/time-outs/authenticatiefouten) of langere uitschakelingen (facturerings-/tegoedproblemen).
 
-    Verouderde Codex OAuth-profielen waarvan de tokens zich in macOS Keychain bevinden (oudere onboarding van vóór de bestandsgebaseerde zijbestandsindeling), worden alleen door doctor hersteld. Voer `openclaw doctor --fix` eenmaal uit vanuit een interactieve terminal om verouderde, door Keychain ondersteunde tokens rechtstreeks naar `auth-profiles.json` te migreren; daarna worden ze bij ingebedde beurten (Telegram, cron, verzending naar subagenten) als canonieke OpenAI OAuth-profielen herkend.
-
-  </Accordion>
-  <Accordion title="6. Modelvalidatie voor hooks">
-    Als `hooks.gmail.model` is ingesteld, valideert doctor de modelverwijzing aan de hand van de catalogus en toelatingslijst en waarschuwt het wanneer deze niet kan worden herkend of niet is toegestaan.
-  </Accordion>
-  <Accordion title="7. Herstel van sandbox-image">
-    Wanneer sandboxing is ingeschakeld, controleert doctor Docker-images en biedt het aan om te bouwen of over te schakelen naar verouderde namen als het huidige image ontbreekt.
-  </Accordion>
-  <Accordion title="7b. Opschoning van Plugin-installatie">
-    Doctor verwijdert verouderde, door OpenClaw gegenereerde stagingstatus voor Plugin-afhankelijkheden in de modus `openclaw doctor --fix` / `openclaw doctor --repair`: verouderde gegenereerde afhankelijkheidsroots, oude installatiestagingmappen, pakketlokale restanten van eerdere herstelcode voor afhankelijkheden van gebundelde Plugins en verweesde of herstelde beheerde npm-kopieën van gebundelde `@openclaw/*`-Plugins die het huidige gebundelde manifest kunnen overschaduwen. Doctor koppelt ook het `openclaw`-hostpakket opnieuw aan beheerde npm-Plugins die `peerDependencies.openclaw` declareren, zodat pakketlokale runtime-imports zoals `openclaw/plugin-sdk/*` na updates of npm-reparaties blijven werken.
-
-    Doctor kan ook ontbrekende downloadbare Plugins opnieuw installeren wanneer de configuratie ernaar verwijst, maar het lokale Plugin-register ze niet kan vinden (materiële `plugins.entries`, geconfigureerde kanaal-/provider-/zoekinstellingen, geconfigureerde agentruntimes). Tijdens pakketupdates vermijdt doctor het opnieuw installeren van Plugin-pakketten terwijl het kernpakket wordt vervangen; voer `openclaw doctor --fix` na de update opnieuw uit als een geconfigureerde Plugin nog steeds moet worden hersteld. Buiten de onderstaande uitzondering voor het opstarten van het container-image voeren het opstarten van de Gateway en het opnieuw laden van de configuratie geen pakketherstel uit; Plugin-installaties blijven expliciet doctor-/installatie-/updatewerk.
-
-    Het opstarten van een gecontaineriseerde Gateway heeft een beperkte upgrade-uitzondering: wanneer `openclaw gateway run` op een nieuwe OpenClaw-versie start, voert het vóór gereedheid veilige statusmigraties en de bestaande convergentie na de kernupdate van Plugins uit en registreert het vervolgens een controlepunt per versie. Deze opstartcyclus kan verouderde records van gebundelde Plugins opschonen, lokale Plugin-koppelingen herstellen, geconfigureerde Plugin-pakketten opnieuw installeren wanneer het convergentiepad dat vereist en actieve Plugin-payloads controleren. Als het opstarten geen veilig herstel kan uitvoeren, voer je hetzelfde image eenmaal uit met `openclaw doctor --fix` voor dezelfde aangekoppelde status/configuratie voordat je de container normaal opnieuw opstart.
+    Verouderde Codex OAuth-profielen waarvan de tokens in macOS Keychain staan (oudere onboarding van vóór de bestandsgebaseerde hulpbestandsindeling) worden alleen door doctor gerepareerd. Voer `openclaw doctor --fix` eenmaal uit vanuit een interactieve terminal om verouderde, door Keychain beheerde tokens rechtstreeks naar `auth-profiles.json` te migreren; daarna worden ze bij ingebedde beurten (Telegram, cron, verzending naar subagents) als canonieke OpenAI OAuth-profielen herkend.
 
   </Accordion>
-  <Accordion title="8. Migraties van Gateway-service en opschoonhints">
-    Doctor detecteert verouderde Gateway-services (launchd/systemd/schtasks) en biedt aan deze te verwijderen en de OpenClaw-service met de huidige Gateway-poort te installeren. Het kan ook zoeken naar extra Gateway-achtige services en opschoonhints tonen. OpenClaw Gateway-services met een profielnaam worden als volwaardig beschouwd en niet als "extra" gemarkeerd.
+  <Accordion title="6. Validatie van het model voor hooks">
+    Als `hooks.gmail.model` is ingesteld, valideert doctor de modelverwijzing aan de hand van de catalogus en toelatingslijst en waarschuwt het wanneer deze niet kan worden gevonden of niet is toegestaan.
+  </Accordion>
+  <Accordion title="7. Reparatie van sandbox-installatiekopieën">
+    Wanneer sandboxing is ingeschakeld, controleert doctor Docker-installatiekopieën en biedt het aan om te bouwen of naar verouderde namen over te schakelen als de huidige installatiekopie ontbreekt.
+  </Accordion>
+  <Accordion title="7b. Opschonen van Plugin-installaties">
+    Doctor verwijdert in de modus `openclaw doctor --fix` / `openclaw doctor --repair` verouderde, door OpenClaw gegenereerde tijdelijke status voor Plugin-afhankelijkheden: verouderde gegenereerde afhankelijkheidshoofdmappen, oude installatiefasemappen, pakketlokale restanten van eerdere reparatiecode voor afhankelijkheden van gebundelde Plugins en verweesde of herstelde beheerde npm-kopieën van gebundelde `@openclaw/*`-Plugins die het huidige gebundelde manifest kunnen overschaduwen. Doctor koppelt ook het `openclaw`-pakket van de host opnieuw aan beheerde npm-Plugins die `peerDependencies.openclaw` declareren, zodat pakketlokale runtime-imports zoals `openclaw/plugin-sdk/*` na updates of npm-reparaties blijven werken.
 
-    Als op Linux de Gateway-service op gebruikersniveau ontbreekt, maar er een OpenClaw Gateway-service op systeemniveau bestaat, installeert doctor niet automatisch een tweede service op gebruikersniveau. Inspecteer met `openclaw gateway status --deep` of `openclaw doctor --deep` en verwijder vervolgens het duplicaat of stel `OPENCLAW_SERVICE_REPAIR_POLICY=external` in wanneer een systeemsupervisor de levenscyclus van de Gateway beheert.
+    Doctor kan ook ontbrekende downloadbare Plugins opnieuw installeren wanneer de configuratie ernaar verwijst, maar het lokale Plugin-register ze niet kan vinden (materiële `plugins.entries`, geconfigureerde kanaal-/provider-/zoekinstellingen, geconfigureerde agentruntimes). Tijdens pakketupdates voorkomt doctor dat Plugin-pakketten opnieuw worden geïnstalleerd terwijl het kernpakket wordt vervangen; voer `openclaw doctor --fix` na de update opnieuw uit als een geconfigureerde Plugin nog moet worden hersteld. Buiten de uitzondering voor het opstarten van de containerinstallatiekopie hieronder voeren het opstarten van de Gateway en het opnieuw laden van de configuratie geen pakketreparatie uit; Plugin-installaties blijven expliciet doctor-/installatie-/updatewerk.
+
+    Het opstarten van een gecontaineriseerde Gateway heeft een beperkte upgrade-uitzondering: wanneer `openclaw gateway run` op een nieuwe OpenClaw-versie start, voert het vóór gereedheid veilige statusmigraties en de bestaande convergentie van Plugins na de kern uit en registreert het vervolgens een controlepunt per versie. Deze opstartprocedure kan verouderde records van gebundelde Plugins opschonen, lokale Plugin-koppelingen repareren, geconfigureerde Plugin-pakketten opnieuw installeren wanneer het convergentiepad dit vereist en actieve Plugin-payloads controleren. Als het opstartproces geen veilige reparatie kan uitvoeren, voer je dezelfde installatiekopie eenmaal uit met `openclaw doctor --fix` tegen dezelfde aangekoppelde status/configuratie voordat je de container normaal opnieuw opstart.
 
   </Accordion>
-  <Accordion title="8b. Matrix-migratie bij opstarten">
-    Wanneer een Matrix-kanaalaccount een wachtende of uitvoerbare migratie van verouderde status heeft, maakt doctor (in de modus `--fix` / `--repair`) een momentopname van vóór de migratie en voert het vervolgens naar beste vermogen de migratiestappen uit: migratie van verouderde Matrix-status en voorbereiding van verouderde versleutelde status. Beide stappen zijn niet-fataal; fouten worden geregistreerd en het opstarten gaat door. In de alleen-lezenmodus (`openclaw doctor` zonder `--fix`) wordt deze controle volledig overgeslagen.
+  <Accordion title="8. Migraties van Gateway-services en opschoontips">
+    Doctor detecteert verouderde Gateway-services (launchd/systemd/schtasks) en biedt aan deze te verwijderen en de OpenClaw-service met de huidige Gateway-poort te installeren. Het kan ook zoeken naar extra Gateway-achtige services en opschoontips afdrukken. OpenClaw Gateway-services met een profielnaam worden als volwaardige services beschouwd en niet als "extra" gemarkeerd.
+
+    Als op Linux de Gateway-service op gebruikersniveau ontbreekt maar er een OpenClaw Gateway-service op systeemniveau bestaat, installeert doctor niet automatisch een tweede service op gebruikersniveau. Inspecteer met `openclaw gateway status --deep` of `openclaw doctor --deep` en verwijder vervolgens het duplicaat of stel `OPENCLAW_SERVICE_REPAIR_POLICY=external` in wanneer een systeemtoezichthouder de levenscyclus van de Gateway beheert.
+
   </Accordion>
-  <Accordion title="8c. Apparaatkoppeling en authenticatieafwijking">
-    Doctor inspecteert de status van apparaatkoppelingen als onderdeel van de normale statuscontrole en meldt:
+  <Accordion title="8b. Matrix-migratie bij het opstarten">
+    Wanneer een Matrix-kanaalaccount een wachtende of uitvoerbare migratie van verouderde status heeft, maakt doctor (in de modus `--fix` / `--repair`) een momentopname vóór de migratie en voert het vervolgens de migratiestappen volgens het best-effortprincipe uit: migratie van verouderde Matrix-status en voorbereiding van verouderde versleutelde status. Beide stappen zijn niet-fataal; fouten worden geregistreerd en het opstarten gaat door. In de alleen-lezenmodus (`openclaw doctor` zonder `--fix`) wordt deze controle volledig overgeslagen.
+  </Accordion>
+  <Accordion title="8c. Apparaatkoppeling en authenticatieafwijkingen">
+    Doctor inspecteert de status van apparaatkoppelingen als onderdeel van de normale gezondheidscontrole en rapporteert:
 
-    - wachtende aanvragen voor een eerste koppeling
-    - wachtende upgrades van rollen of bereiken voor reeds gekoppelde apparaten
-    - herstel van verschillen in openbare sleutels waarbij de apparaat-id nog overeenkomt, maar de apparaatidentiteit niet langer overeenkomt met de goedgekeurde registratie
-    - gekoppelde registraties zonder actief token voor een goedgekeurde rol
-    - gekoppelde tokens waarvan de bereiken buiten de goedgekeurde koppelingsbasislijn zijn geraakt
-    - lokaal gecachete apparaattokenvermeldingen voor de huidige machine die dateren van vóór een tokenrotatie aan de Gateway-zijde of verouderde bereikmetadata bevatten
+    - wachtende eerste koppelingsverzoeken
+    - wachtende rol- of bereikupgrades voor reeds gekoppelde apparaten
+    - reparaties van niet-overeenkomende openbare sleutels waarbij de apparaat-id nog overeenkomt, maar de apparaatidentiteit niet meer overeenkomt met het goedgekeurde record
+    - gekoppelde records zonder actief token voor een goedgekeurde rol
+    - gekoppelde tokens waarvan het bereik buiten de goedgekeurde koppelingsbasislijn afwijkt
+    - lokaal gecachte apparaattokenitems voor de huidige machine die dateren van vóór een tokenrotatie aan de Gateway-zijde of verouderde bereikmetadata bevatten
 
-    Doctor keurt koppelingsaanvragen niet automatisch goed en roteert apparaattokens niet automatisch. Het toont de exacte vervolgstappen:
+    Doctor keurt koppelingsverzoeken niet automatisch goed en roteert apparaattokens niet automatisch. Het drukt de exacte vervolgstappen af:
 
-    - inspecteer wachtende aanvragen met `openclaw devices list`
-    - keur de exacte aanvraag goed met `openclaw devices approve <requestId>`
+    - inspecteer wachtende verzoeken met `openclaw devices list`
+    - keur het exacte verzoek goed met `openclaw devices approve <requestId>`
     - roteer een nieuw token met `openclaw devices rotate --device <deviceId> --role <role>`
-    - verwijder een verouderde registratie en keur deze opnieuw goed met `openclaw devices remove <deviceId>`
+    - verwijder een verouderd record en keur het opnieuw goed met `openclaw devices remove <deviceId>`
 
-    Dit maakt onderscheid tussen een eerste koppeling, wachtende upgrades van rollen/bereiken en afwijkingen door verouderde tokens/apparaatidentiteiten, waardoor het veelvoorkomende gat "al gekoppeld maar nog steeds de melding krijgen dat koppeling vereist is" wordt gedicht.
+    Hiermee wordt onderscheid gemaakt tussen een eerste koppeling, wachtende rol-/bereikupgrades en verouderde afwijkingen in tokens/apparaatidentiteiten, waarmee het veelvoorkomende probleem "al gekoppeld, maar nog steeds melding dat koppeling vereist is" wordt opgelost.
 
   </Accordion>
   <Accordion title="9. Beveiligingswaarschuwingen">
-    Doctor geeft alleen een beveiligingsmelding wanneer het een waarschuwing aantreft, zoals een provider die zonder toelatingslijst openstaat voor privéberichten of een gevaarlijk geconfigureerd beleid. Gebruik `openclaw security audit` voor de volledige beveiligingsinventaris.
+    Doctor geeft alleen een beveiligingsmelding als het een waarschuwing aantreft, zoals een provider die zonder toelatingslijst openstaat voor privéberichten of een gevaarlijk geconfigureerd beleid. Gebruik `openclaw security audit` voor de volledige beveiligingsinventaris.
   </Accordion>
   <Accordion title="10. systemd-linger (Linux)">
-    Bij uitvoering als een systemd-gebruikersservice zorgt doctor ervoor dat lingering is ingeschakeld, zodat de Gateway na afmelden actief blijft.
+    Als doctor als een systemd-gebruikersservice wordt uitgevoerd, zorgt het ervoor dat linger is ingeschakeld, zodat de Gateway actief blijft nadat je je hebt afgemeld.
   </Accordion>
   <Accordion title="11. Werkruimtestatus (Skills, Plugins en TaskFlows)">
-    Doctor toont problemen en acties voor de standaardagent, niet de inventaris voor een gezonde status:
+    Doctor drukt problemen en acties voor de standaardagent af, niet de inventaris van de gezonde status:
 
-    - **Skills**: vermeldt namen van toegestane maar onbruikbare Skills; gebruik `openclaw skills check` voor details over vereisten en volledige aantallen.
-    - **Plugins**: meldt alleen Plugin-id's met fouten; gebruik `openclaw plugins list` voor de inventaris van geladen, geïmporteerde, uitgeschakelde en gebundelde Plugins.
-    - **Waarschuwingen voor Plugin-compatibiliteit**: markeert Plugins die compatibiliteitsproblemen met de huidige runtime hebben.
-    - **Plugin-diagnostiek**: toont alle waarschuwingen of fouten tijdens het laden die door het Plugin-register zijn gegenereerd.
-    - **TaskFlow-herstel**: toont verdachte beheerde TaskFlows die handmatige inspectie of annulering vereisen.
-    - **Claude CLI**: meldt alleen problemen met het binaire bestand, de authenticatie, het profiel, de werkruimte of de projectmap; details van geslaagde controles worden weggelaten.
+    - **Skills**: vermeldt toegestane maar onbruikbare Skill-namen; gebruik `openclaw skills check` voor details over vereisten en volledige aantallen.
+    - **Plugins**: rapporteert alleen Plugin-ID's met fouten; gebruik `openclaw plugins list` voor een inventaris van geladen, geïmporteerde, uitgeschakelde en gebundelde Plugins.
+    - **Waarschuwingen voor Plugin-compatibiliteit**: markeert Plugins die compatibiliteitsproblemen hebben met de huidige runtime.
+    - **Plugin-diagnostiek**: toont waarschuwingen of fouten die tijdens het laden door het Plugin-register zijn gegenereerd.
+    - **TaskFlow-herstel**: toont verdachte beheerde TaskFlows die handmatig moeten worden geïnspecteerd of geannuleerd.
+    - **Claude CLI**: rapporteert alleen problemen met het binaire bestand, de authenticatie, het profiel, de werkruimte of de projectmap; details van geslaagde controles worden weggelaten.
 
   </Accordion>
   <Accordion title="11b. Grootte van bootstrapbestanden">
-    Doctor controleert of bootstrapbestanden van de werkruimte (bijvoorbeeld `AGENTS.md`, `CLAUDE.md` of andere geïnjecteerde contextbestanden) in de buurt van of boven het geconfigureerde tekenbudget zitten. Het meldt per bestand de onbewerkte versus geïnjecteerde aantallen tekens, het afkappingspercentage, de oorzaak van de afkapping (`max/file` of `max/total`) en het totale aantal geïnjecteerde tekens als deel van het totale budget. Wanneer bestanden zijn afgekapt of bijna de limiet bereiken, toont doctor tips voor het afstemmen van `agents.defaults.bootstrapMaxChars` en `agents.defaults.bootstrapTotalMaxChars`.
+    Doctor controleert of bootstrapbestanden van de werkruimte (bijvoorbeeld `AGENTS.md`, `CLAUDE.md` of andere geïnjecteerde contextbestanden) de geconfigureerde tekenlimiet naderen of overschrijden. Het rapporteert per bestand het aantal ruwe versus geïnjecteerde tekens, het afkappingspercentage, de oorzaak van de afkapping (`max/file` of `max/total`) en het totale aantal geïnjecteerde tekens als fractie van het totale budget. Wanneer bestanden zijn afgekapt of de limiet naderen, drukt doctor tips af voor het afstemmen van `agents.defaults.bootstrapMaxChars` en `agents.defaults.bootstrapTotalMaxChars`.
   </Accordion>
   <Accordion title="11c. Shell-aanvulling">
-    Doctor controleert of tabaanvulling voor de huidige shell is geïnstalleerd (zsh, bash, fish of PowerShell):
+    Doctor controleert of tabaanvulling is geïnstalleerd voor de huidige shell (zsh, bash, fish of PowerShell):
 
     - Als het shellprofiel een traag dynamisch aanvullingspatroon gebruikt (`source <(openclaw completion ...)`), werkt doctor dit bij naar de snellere variant met een gecachet bestand.
-    - Als aanvulling in het profiel is geconfigureerd, maar het cachebestand ontbreekt, genereert doctor de cache automatisch opnieuw.
+    - Als aanvulling in het profiel is geconfigureerd maar het cachebestand ontbreekt, genereert doctor de cache automatisch opnieuw.
     - Als er helemaal geen aanvulling is geconfigureerd, vraagt doctor om deze te installeren (alleen in interactieve modus; overgeslagen met `--non-interactive`).
 
     Voer `openclaw completion --write-state` uit om de cache handmatig opnieuw te genereren.
 
   </Accordion>
-  <Accordion title="11d. Opschoning van verouderde kanaal-Plugin">
-    Wanneer `openclaw doctor --fix` een ontbrekende kanaal-Plugin verwijdert, verwijdert het ook de loshangende kanaalspecifieke configuratie die naar die Plugin verwees: `channels.<id>`-vermeldingen, Heartbeat-doelen die het kanaal noemden en `agents.*.models["<channel>/*"]`-overschrijvingen. Dit voorkomt opstartlussen van de Gateway waarbij de kanaalruntime verdwenen is, maar de configuratie de Gateway nog steeds vraagt eraan te koppelen.
+  <Accordion title="11d. Verouderde kanaalplugin opschonen">
+    Wanneer `openclaw doctor --fix` een ontbrekende kanaalplugin verwijdert, verwijdert het ook de achtergebleven kanaalspecifieke configuratie die naar die plugin verwees: `channels.<id>`-vermeldingen, heartbeat-doelen waarin het kanaal werd genoemd en `agents.*.models["<channel>/*"]`-overschrijvingen. Dit voorkomt opstartlussen van de Gateway waarbij de kanaalruntime verdwenen is, maar de configuratie de Gateway nog steeds vraagt eraan te koppelen.
   </Accordion>
   <Accordion title="12. Gateway-authenticatiecontroles (lokaal token)">
-    Doctor controleert of lokale Gateway-tokenauthenticatie gereed is.
+    Doctor controleert of lokale Gateway-authenticatie met een token gereed is.
 
     - Als de tokenmodus een token vereist en er geen tokenbron bestaat, biedt doctor aan er een te genereren.
     - Als `gateway.auth.token` door SecretRef wordt beheerd maar niet beschikbaar is, waarschuwt doctor en overschrijft het deze niet met platte tekst.
-    - `openclaw doctor --generate-gateway-token` dwingt het genereren alleen af wanneer geen token-SecretRef is geconfigureerd.
+    - `openclaw doctor --generate-gateway-token` dwingt alleen generatie af wanneer er geen token-SecretRef is geconfigureerd.
 
   </Accordion>
-  <Accordion title="12b. Alleen-lezen, SecretRef-bewuste reparaties">
-    Sommige herstelstromen moeten geconfigureerde referenties inspecteren zonder het snelle falen van de runtime af te zwakken.
+  <Accordion title="12b. Alleen-lezen reparaties met SecretRef-ondersteuning">
+    Sommige reparatieprocessen moeten geconfigureerde aanmeldgegevens inspecteren zonder het fail-fast-gedrag van de runtime te verzwakken.
 
-    - `openclaw doctor --fix` gebruikt hetzelfde alleen-lezen SecretRef-samenvattingsmodel als statusgerelateerde opdrachten voor gerichte configuratiereparaties.
-    - Voorbeeld: reparatie van Telegram `allowFrom` / `groupAllowFrom` `@username` probeert geconfigureerde botreferenties te gebruiken wanneer die beschikbaar zijn.
-    - Als het Telegram-bottoken via SecretRef is geconfigureerd maar niet beschikbaar is in het huidige opdrachtpad, meldt doctor dat de referentie geconfigureerd maar niet beschikbaar is en slaat automatische oplossing over, in plaats van te crashen of ten onrechte te melden dat het token ontbreekt.
+    - `openclaw doctor --fix` gebruikt voor gerichte configuratiereparaties hetzelfde alleen-lezen SecretRef-overzichtsmodel als statusgerelateerde opdrachten.
+    - Voorbeeld: de reparatie van Telegram `allowFrom` / `groupAllowFrom` `@username` probeert geconfigureerde botaanmeldgegevens te gebruiken wanneer die beschikbaar zijn.
+    - Als het Telegram-bottoken via SecretRef is geconfigureerd maar niet beschikbaar is in het huidige opdrachtpad, meldt doctor dat de aanmeldgegevens geconfigureerd-maar-niet-beschikbaar zijn en slaat het automatische oplossing over, in plaats van te crashen of ten onrechte te melden dat het token ontbreekt.
 
   </Accordion>
   <Accordion title="13. Gateway-statuscontrole en herstart">
-    Doctor voert een statuscontrole uit en biedt aan de Gateway opnieuw te starten wanneer deze niet goed lijkt te functioneren.
+    Doctor voert een statuscontrole uit en biedt aan de Gateway opnieuw te starten wanneer deze niet gezond lijkt.
   </Accordion>
-  <Accordion title="13b. Gereedheid van geheugenzoekfunctie">
-    Doctor controleert of de geconfigureerde embeddingprovider voor de geheugenzoekfunctie gereed is voor de standaardagent. Het gedrag hangt af van de geconfigureerde backend en provider:
+  <Accordion title="13b. Gereedheid van geheugenzoekopdrachten">
+    Doctor controleert of de geconfigureerde embeddingprovider voor geheugenzoekopdrachten gereed is voor de standaardagent. Het gedrag hangt af van de geconfigureerde backend en provider:
 
-    - **QMD-backend**: controleert of het binaire bestand `qmd` beschikbaar en startbaar is. Zo niet, dan worden reparatie-instructies weergegeven, waaronder `npm install -g @tobilu/qmd` (of het Bun-equivalent) en een optie voor een handmatig pad naar het binaire bestand.
-    - **Expliciete lokale provider**: controleert op een lokaal modelbestand of een herkende externe/downloadbare model-URL. Als deze ontbreekt, wordt voorgesteld over te schakelen naar een externe provider.
-    - **Expliciete externe provider** (`openai`, `voyage`, enzovoort): controleert of er een API-sleutel aanwezig is in de omgeving of de authenticatieopslag. Geeft bruikbare reparatietips weer als deze ontbreekt.
-    - **Verouderde automatische provider**: behandelt `memorySearch.provider: "auto"` als OpenAI, controleert of OpenAI gereed is en herschrijft deze met `doctor --fix` naar `provider: "openai"`.
+    - **QMD-backend**: controleert of het binaire bestand `qmd` beschikbaar is en kan worden gestart. Zo niet, dan wordt reparatieadvies weergegeven, waaronder `npm install -g @tobilu/qmd` (of het Bun-equivalent) en een optie voor een handmatig pad naar het binaire bestand.
+    - **Expliciete lokale provider**: controleert op een lokaal modelbestand of een herkende externe/downloadbare model-URL. Als dit ontbreekt, wordt voorgesteld over te schakelen naar een externe provider.
+    - **Expliciete externe provider** (`openai`, `voyage`, enz.): verifieert dat er een API-sleutel aanwezig is in de omgeving of authenticatieopslag. Geeft uitvoerbare reparatietips weer als deze ontbreekt.
+    - **Verouderde automatische provider**: behandelt `memorySearch.provider: "auto"` als OpenAI, controleert of OpenAI gereed is en `doctor --fix` herschrijft deze naar `provider: "openai"`.
 
-    Wanneer een gecachet resultaat van een Gateway-controle beschikbaar is (de Gateway functioneerde goed op het moment van de controle), vergelijkt doctor dit resultaat met de via de CLI zichtbare configuratie en vermeldt eventuele afwijkingen. Doctor start in het standaardpad geen nieuwe embedding-ping; gebruik de diepgaande geheugenstatusopdracht wanneer je een live providercontrole wilt.
+    Wanneer een gecachet resultaat van een Gateway-controle beschikbaar is (de Gateway was gezond op het moment van de controle), vergelijkt doctor het resultaat met de configuratie die zichtbaar is via de CLI en vermeldt het eventuele afwijkingen. Doctor start in het standaardpad geen nieuwe embedding-ping; gebruik de uitgebreide geheugenstatusopdracht als je een livecontrole van de provider wilt.
 
-    Gebruik `openclaw memory status --deep` om tijdens runtime te controleren of embeddings gereed zijn.
+    Gebruik `openclaw memory status --deep` om tijdens runtime te verifiëren of embeddings gereed zijn.
 
   </Accordion>
   <Accordion title="14. Waarschuwingen over kanaalstatus">
-    Als de Gateway goed functioneert, voert doctor een kanaalstatuscontrole uit en meldt het waarschuwingen met voorgestelde oplossingen.
+    Als de Gateway gezond is, voert doctor een kanaalstatuscontrole uit en meldt het waarschuwingen met voorgestelde oplossingen.
   </Accordion>
-  <Accordion title="15. Audit en reparatie van supervisorconfiguratie">
-    Doctor controleert de geïnstalleerde supervisorconfiguratie (launchd/systemd/schtasks) op ontbrekende of verouderde standaardwaarden (bijvoorbeeld systemd-afhankelijkheden voor network-online en de vertraging voor opnieuw starten). Wanneer een afwijking wordt gevonden, wordt een update aanbevolen en kan doctor het servicebestand/de taak herschrijven met de huidige standaardwaarden.
+  <Accordion title="15. Controle en reparatie van supervisorconfiguratie">
+    Doctor controleert de geïnstalleerde supervisorconfiguratie (launchd/systemd/schtasks) op ontbrekende of verouderde standaardinstellingen (bijvoorbeeld systemd-afhankelijkheden voor network-online en de vertraging voor opnieuw starten). Wanneer doctor een afwijking vindt, beveelt het een update aan en kan het servicebestand of de taak worden herschreven met de huidige standaardinstellingen.
 
     Opmerkingen:
 
     - `openclaw doctor` vraagt om bevestiging voordat de supervisorconfiguratie wordt herschreven.
-    - `openclaw doctor --yes` accepteert de standaardvragen voor reparatie.
+    - `openclaw doctor --yes` accepteert de standaardvragen voor reparaties.
     - `openclaw doctor --fix` past aanbevolen oplossingen toe zonder vragen (`--repair` is een alias).
     - `openclaw doctor --fix --force` overschrijft aangepaste supervisorconfiguraties.
-    - `OPENCLAW_SERVICE_REPAIR_POLICY=external` houdt doctor alleen-lezen voor de levenscyclus van de Gateway-service. Het meldt nog steeds de servicestatus en voert reparaties uit die niet met de service samenhangen, maar slaat service-installatie/-start/-herstart/-bootstrap, het herschrijven van de supervisorconfiguratie en het opschonen van verouderde services over, omdat een externe supervisor eigenaar is van die levenscyclus.
-    - Op Linux herschrijft doctor geen metadata voor opdrachten/toegangspunten zolang de overeenkomende systemd-eenheid van de Gateway actief is. Tijdens de scan naar dubbele services negeert het ook inactieve, niet-verouderde extra Gateway-achtige eenheden, zodat aanvullende servicebestanden geen onnodige opschoningsmeldingen veroorzaken.
-    - Als tokenauthenticatie een token vereist en `gateway.auth.token` door SecretRef wordt beheerd, valideert de installatie/reparatie van de doctor-service de SecretRef, maar worden opgeloste platte-tekstwaarden van tokens niet opgeslagen in de omgevingsmetadata van de supervisorservice.
-    - Doctor detecteert beheerde, door `.env`/SecretRef ondersteunde serviceomgevingswaarden die door oudere installaties van LaunchAgent, systemd of Windows Scheduled Task inline zijn ingesloten, en herschrijft de servicemetadata zodat deze waarden vanuit de runtimebron worden geladen in plaats van uit de supervisordefinitie.
-    - Doctor detecteert wanneer de serviceopdracht na wijzigingen in `gateway.port` nog steeds een oude `--port` vastlegt en herschrijft de servicemetadata naar de huidige poort.
-    - Als tokenauthenticatie een token vereist en de geconfigureerde SecretRef voor het token niet kan worden opgelost, blokkeert doctor het installatie-/reparatiepad met bruikbare instructies.
+    - `OPENCLAW_SERVICE_REPAIR_POLICY=external` houdt doctor alleen-lezen voor de levenscyclus van de Gateway-service. Doctor meldt nog steeds de servicestatus en voert reparaties uit die geen betrekking hebben op de service, maar slaat installatie/start/herstart/bootstrap van de service, het herschrijven van de supervisorconfiguratie en het opschonen van verouderde services over, omdat een externe supervisor die levenscyclus beheert.
+    - Op Linux herschrijft doctor geen metadata van opdrachten/toegangspunten zolang de bijbehorende systemd-eenheid van de Gateway actief is. Tijdens de scan naar dubbele services negeert het ook inactieve, niet-verouderde extra Gateway-achtige eenheden, zodat aanvullende servicebestanden geen onnodige opschoonmeldingen veroorzaken.
+    - Als tokenauthenticatie een token vereist en `gateway.auth.token` door SecretRef wordt beheerd, valideert de installatie/reparatie van de doctor-service de SecretRef, maar worden opgeloste tokenwaarden in platte tekst niet opgeslagen in de omgevingsmetadata van de supervisorservice.
+    - Doctor detecteert beheerde `.env`-waarden/door SecretRef ondersteunde serviceomgevingswaarden die door oudere installaties van LaunchAgent, systemd of Windows Scheduled Task inline zijn ingesloten, en herschrijft de servicemetadata zodat die waarden vanuit de runtimebron worden geladen in plaats van vanuit de supervisordefinitie.
+    - Doctor detecteert wanneer de serviceopdracht na wijzigingen aan `gateway.port` nog steeds een oude `--port` vastlegt en herschrijft de servicemetadata naar de huidige poort.
+    - Als tokenauthenticatie een token vereist en de geconfigureerde token-SecretRef niet kan worden opgelost, blokkeert doctor het installatie-/reparatiepad met uitvoerbaar advies.
     - Als zowel `gateway.auth.token` als `gateway.auth.password` zijn geconfigureerd en `gateway.auth.mode` niet is ingesteld, blokkeert doctor installatie/reparatie totdat de modus expliciet is ingesteld.
-    - Voor Linux-eenheden van systemd voor gebruikers omvatten de controles van doctor op tokenafwijkingen zowel `Environment=`- als `EnvironmentFile=`-bronnen bij het vergelijken van authenticatiemetadata van de service.
-    - Reparaties van de doctor-service weigeren een Gateway-service vanuit een ouder binair bestand van OpenClaw te herschrijven, stoppen of opnieuw te starten wanneer de configuratie voor het laatst door een nieuwere versie is geschreven. Zie [Problemen met de Gateway oplossen](/nl/gateway/troubleshooting#split-brain-installs-and-newer-config-guard).
+    - Voor systemd-eenheden van Linux-gebruikers omvatten de controles van doctor op tokenafwijkingen zowel `Environment=`- als `EnvironmentFile=`-bronnen bij het vergelijken van metadata voor serviceauthenticatie.
+    - Reparaties door de doctor-service weigeren een Gateway-service van een ouder binair OpenClaw-bestand te herschrijven, stoppen of opnieuw te starten wanneer de configuratie het laatst door een nieuwere versie is geschreven. Zie [Problemen met de Gateway oplossen](/nl/gateway/troubleshooting#split-brain-installs-and-newer-config-guard).
     - Je kunt altijd een volledige herschrijving afdwingen via `openclaw gateway install --force`.
 
   </Accordion>
   <Accordion title="16. Diagnostiek van Gateway-runtime en poort">
-    Doctor inspecteert de serviceruntime (PID, laatste afsluitstatus) en waarschuwt wanneer de service is geïnstalleerd maar niet daadwerkelijk actief is. Het controleert ook op poortconflicten op de Gateway-poort (standaard `18789`) en meldt waarschijnlijke oorzaken (Gateway is al actief, SSH-tunnel).
+    Doctor inspecteert de serviceruntime (PID, laatste afsluitstatus) en waarschuwt wanneer de service is geïnstalleerd maar niet daadwerkelijk wordt uitgevoerd. Het controleert ook op poortconflicten op de Gateway-poort (standaard `18789`) en meldt waarschijnlijke oorzaken (Gateway wordt al uitgevoerd, SSH-tunnel).
   </Accordion>
-  <Accordion title="17. Best practices voor de Gateway-runtime">
-    Doctor waarschuwt wanneer de Gateway-service op Bun of via een door een versiebeheerder beheerd Node-pad (`nvm`, `fnm`, `volta`, `asdf`, enzovoort) wordt uitgevoerd. Bun kan de `node:sqlite`-statusopslag van OpenClaw niet openen, dus bij reparaties worden verouderde Bun-services naar Node gemigreerd. Paden van versiebeheerders kunnen na upgrades niet meer werken, omdat de service je shell-initialisatie niet laadt. Doctor biedt aan om naar een systeeminstallatie van Node te migreren wanneer die beschikbaar is (Homebrew/apt/choco).
+  <Accordion title="17. Aanbevolen procedures voor de Gateway-runtime">
+    Doctor waarschuwt wanneer de Gateway-service wordt uitgevoerd met Bun of via een door een versiebeheerder beheerd Node-pad (`nvm`, `fnm`, `volta`, `asdf`, enz.). Bun kan de `node:sqlite`-statusopslag van OpenClaw niet openen, daarom migreren reparaties verouderde Bun-services naar Node. Paden van versiebeheerders kunnen na upgrades niet meer werken, omdat de service de initialisatie van je shell niet laadt. Doctor biedt aan naar een systeeminstallatie van Node te migreren wanneer die beschikbaar is (Homebrew/apt/choco).
 
-    Nieuw geïnstalleerde of gerepareerde macOS LaunchAgents gebruiken een canoniek systeem-PATH (`/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin`) in plaats van het interactieve shell-PATH te kopiëren, zodat door Homebrew beheerde systeembinaire bestanden beschikbaar blijven, terwijl mappen van Volta, asdf, fnm, pnpm en andere versiebeheerders niet wijzigen welke onderliggende Node-processen worden gevonden. Linux-services behouden nog steeds expliciete omgevingshoofdmappen (`NVM_DIR`, `FNM_DIR`, `VOLTA_HOME`, `ASDF_DATA_DIR`, `BUN_INSTALL`, `PNPM_HOME`) en stabiele gebruikersmappen voor binaire bestanden, maar veronderstelde terugvalmappen van versiebeheerders worden alleen naar het service-PATH geschreven wanneer die mappen op schijf bestaan.
+    Nieuw geïnstalleerde of gerepareerde macOS-LaunchAgents gebruiken een canoniek systeem-PATH (`/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin`) in plaats van het interactieve shell-PATH te kopiëren. Daardoor blijven door Homebrew beheerde systeembinaire bestanden beschikbaar, terwijl mappen van Volta, asdf, fnm, pnpm en andere versiebeheerders niet wijzigen welke Node-processen door onderliggende processen worden gevonden. Linux-services behouden nog steeds expliciete omgevingshoofdmappen (`NVM_DIR`, `FNM_DIR`, `VOLTA_HOME`, `ASDF_DATA_DIR`, `BUN_INSTALL`, `PNPM_HOME`) en stabiele binaire gebruikersmappen, maar geschatte terugvalmappen van versiebeheerders worden alleen naar het service-PATH geschreven wanneer die mappen op schijf bestaan.
 
   </Accordion>
-  <Accordion title="18. Configuratie opslaan en wizardmetadata">
-    Doctor slaat alle configuratiewijzigingen op en voegt wizardmetadata toe om de uitvoering van doctor vast te leggen.
+  <Accordion title="18. Configuratie schrijven en wizardmetadata">
+    Doctor slaat alle configuratiewijzigingen op en voegt wizardmetadata toe om de doctor-uitvoering vast te leggen.
   </Accordion>
   <Accordion title="19. Werkruimtetips (back-up en geheugensysteem)">
-    Doctor stelt een geheugensysteem voor de werkruimte voor wanneer dit ontbreekt en geeft een back-uptip weer als de werkruimte nog niet onder git-versiebeheer staat.
+    Doctor stelt een geheugensysteem voor de werkruimte voor wanneer dit ontbreekt en geeft een back-uptip weer als de werkruimte nog niet onder git valt.
 
-    Zie [/concepts/agent-workspace](/nl/concepts/agent-workspace) voor een volledige handleiding over de werkruimtestructuur en git-back-ups (een privé-opslagplaats op GitHub of GitLab wordt aanbevolen).
+    Zie [/concepten/agentwerkruimte](/nl/concepts/agent-workspace) voor een volledige handleiding voor de werkruimtestructuur en git-back-ups (een privérepository op GitHub of GitLab wordt aanbevolen).
 
   </Accordion>
 </AccordionGroup>
 
 ## Gerelateerd
 
-- [Gateway-draaiboek](/nl/gateway)
+- [Draaiboek voor de Gateway](/nl/gateway)
 - [Problemen met de Gateway oplossen](/nl/gateway/troubleshooting)

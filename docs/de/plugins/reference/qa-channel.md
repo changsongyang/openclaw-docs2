@@ -4,7 +4,7 @@ read_when:
 summary: Fügt die QA-Channel-Oberfläche zum Senden und Empfangen von OpenClaw-Nachrichten hinzu.
 title: QA-Channel-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:33:53Z"
+    generated_at: "2026-07-26T18:31:06Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

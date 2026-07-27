@@ -4,7 +4,7 @@ read_when:
 summary: 为 OpenClaw 添加 ClawRouter 模型提供商支持。
 title: ClawRouter 插件
 x-i18n:
-    generated_at: "2026-07-16T11:49:10Z"
+    generated_at: "2026-07-26T06:53:07Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ x-i18n:
 - 软件包：`@openclaw/clawrouter`
 - 安装方式：内置于 OpenClaw
 
-## 接口
+## 功能范围
 
 提供商：`clawrouter`；契约：`usageProviders`
 

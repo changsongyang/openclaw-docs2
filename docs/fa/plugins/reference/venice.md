@@ -4,7 +4,7 @@ read_when:
 summary: پشتیبانی از ارائه‌دهنده مدل Venice را به OpenClaw اضافه می‌کند.
 title: Plugin ونیز
 x-i18n:
-    generated_at: "2026-07-16T17:04:33Z"
+    generated_at: "2026-07-27T15:45:31Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin Venice
+# Plugin ونیز
 
-پشتیبانی از ارائه‌دهنده مدل Venice را به OpenClaw اضافه می‌کند.
+پشتیبانی از ارائه‌دهنده مدل ونیز را به OpenClaw اضافه می‌کند.
 
 ## توزیع
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## مستندات مرتبط
 
-- [Venice](/fa/providers/venice)
+- [ونیز](/fa/providers/venice)

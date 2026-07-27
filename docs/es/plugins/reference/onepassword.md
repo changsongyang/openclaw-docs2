@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin de 1Password
+    - Está instalando, configurando o auditando el plugin onepassword
 summary: Intermediario seleccionado de secretos de 1Password con política de aprobación e historial de auditoría en SQLite.
 title: Plugin de OnePassword
 x-i18n:
-    generated_at: "2026-07-16T11:49:21Z"
+    generated_at: "2026-07-26T04:48:44Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

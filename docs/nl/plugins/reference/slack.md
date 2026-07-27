@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de Slack-plugin
 summary: OpenClaw Slack-kanaalplugin voor kanalen, DM's, opdrachten en appgebeurtenissen.
-title: Slack-plugin
+title: Slack-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:17:19Z"
+    generated_at: "2026-07-27T05:16:34Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -25,7 +25,7 @@ OpenClaw Slack-kanaalplugin voor kanalen, DM's, opdrachten en appgebeurtenissen.
 
 ## Oppervlak
 
-kanalen: `slack`; Skills
+kanalen: `slack`; skills
 
 ## Gerelateerde documentatie
 

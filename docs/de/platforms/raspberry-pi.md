@@ -3,7 +3,7 @@ redirect: /install/raspberry-pi
 summary: Weiterleitung zu /install/raspberry-pi
 title: Raspberry Pi (Plattform)
 x-i18n:
-    generated_at: "2026-07-24T03:55:33Z"
+    generated_at: "2026-07-26T17:54:07Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

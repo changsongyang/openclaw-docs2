@@ -4,7 +4,7 @@ read_when:
 summary: 为 OpenClaw 添加 Mistral 模型提供商支持。
 title: Mistral 插件
 x-i18n:
-    generated_at: "2026-07-16T11:46:23Z"
+    generated_at: "2026-07-26T06:52:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -20,8 +20,8 @@ x-i18n:
 
 ## 分发
 
-- 包：`@openclaw/mistral-provider`
-- 安装方式：内置于 OpenClaw
+- 软件包：`@openclaw/mistral-provider`
+- 安装方式：OpenClaw 内置
 
 ## 接口
 

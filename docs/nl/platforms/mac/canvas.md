@@ -2,22 +2,22 @@
 read_when:
     - Het macOS Canvas-paneel implementeren
     - Agentbesturing toevoegen voor de visuele werkruimte
-    - Fouten opsporen bij het laden van canvas in WKWebView
-summary: Door de agent aangestuurd Canvas-paneel, ingebed via WKWebView en een aangepast URL-schema
+    - Foutopsporing bij het laden van canvas in WKWebView
+summary: Door de agent aangestuurd Canvas-paneel, ingebed via WKWebView + aangepast URL-schema
 title: Canvas
 x-i18n:
-    generated_at: "2026-07-16T16:07:41Z"
+    generated_at: "2026-07-27T05:55:09Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 21955803c39debfbc34851a0c40a69c1f3c6ca009526d9929a4c429ad0b09084
+    source_hash: 56532246bc06601aa753a59f85f33bfa8d6599deecade591a03972e8b9b16fc2
     source_path: platforms/mac/canvas.md
     workflow: 16
 ---
 
-De macOS-app bevat een door een agent bestuurd **Canvas-paneel** dat gebruikmaakt van `WKWebView`, een
-lichtgewicht visuele werkruimte voor HTML/CSS/JS, A2UI en kleine interactieve
+De macOS-app bevat een door een agent aangestuurd **Canvas-paneel** met `WKWebView`, een
+lichte visuele werkruimte voor HTML/CSS/JS, A2UI en kleine interactieve
 UI-oppervlakken.
 
 ## Waar Canvas zich bevindt
@@ -37,19 +37,20 @@ Als er geen `index.html` in de hoofdmap bestaat, toont de app een ingebouwde bas
 
 ## Gedrag van het paneel
 
-- Randloos paneel waarvan de grootte kan worden aangepast, verankerd bij de menubalk (of muiscursor).
-- Onthoudt de grootte/positie per sessie.
+- Randloos paneel waarvan het formaat kan worden gewijzigd, verankerd bij de menubalk (of muiscursor).
+- Canvas weergeven wisselt niet van app en neemt de toetsenbordfocus niet over.
+- Onthoudt formaat en positie per sessie.
 - Wordt automatisch opnieuw geladen wanneer lokale Canvas-bestanden veranderen.
 - Er is slechts één Canvas-paneel tegelijk zichtbaar (er wordt indien nodig van sessie gewisseld).
 
-Canvas kan worden uitgeschakeld via Settings -> **Allow Canvas**. Wanneer het is uitgeschakeld,
-geven Canvas-Node-opdrachten `CANVAS_DISABLED` terug.
+Canvas kan worden uitgeschakeld via Settings -> **Allow Canvas**. Als Canvas is uitgeschakeld,
+retourneren Canvas-nodeopdrachten `CANVAS_DISABLED`.
 
 ## API-oppervlak voor agents
 
-Canvas wordt beschikbaar gesteld via de Gateway-WebSocket, zodat de agent het
-paneel kan tonen/verbergen, naar een pad of URL kan navigeren, JavaScript kan
-uitvoeren en een momentopname kan vastleggen:
+Canvas is beschikbaar via de Gateway-WebSocket, zodat de agent het paneel kan
+weergeven of verbergen, naar een pad of URL kan navigeren, JavaScript kan
+evalueren en een momentopname kan maken:
 
 ```bash
 openclaw nodes canvas present --node <id>
@@ -58,23 +59,28 @@ openclaw nodes canvas eval --node <id> --js "document.title"
 openclaw nodes canvas snapshot --node <id>
 ```
 
+`eval` en `a2ui.*` werken de inhoud bij zonder het paneel te openen of zichtbaar te maken. Alleen
+`present`, `navigate` of een gebruikersactie toont het; nadat het paneel is verborgen, blijven inhoudsupdates
+van toepassing op het verborgen paneel. `snapshot` vereist een zichtbaar paneel en
+retourneert anders `CANVAS_HIDDEN`; voer eerst `present` uit.
+
 `canvas.navigate` accepteert lokale Canvas-paden, `http(s)`-URL's en `file://`-
-URL's. Als je `"/"` doorgeeft, wordt de lokale basispagina of `index.html` getoond.
+URL's. Als je `"/"` doorgeeft, wordt de lokale basispagina of `index.html` weergegeven.
 
 Door de Gateway gehoste doelen onder `/__openclaw__/canvas/` en
-`/__openclaw__/a2ui/` worden omgezet via de huidige bereikgebonden
-Canvas-URL van de Node-sessie. De app vernieuwt die kortstondige mogelijkheid vóór de navigatie;
-je hoeft zelf geen mogelijkheid-URL te maken of te kopiëren.
+`/__openclaw__/a2ui/` worden omgezet via de huidige Canvas-URL met beperkt
+bereik van de nodesessie. De app vernieuwt deze kortlevende bevoegdheid vóór de navigatie;
+je hoeft niet zelf een bevoegdheids-URL samen te stellen of te kopiëren.
 
 ## A2UI in Canvas
 
-A2UI wordt gehost door de Canvas-host van de Gateway en weergegeven in het Canvas-
-paneel. Wanneer de Gateway een Canvas-host aankondigt, navigeert de macOS-app
-bij de eerste opening automatisch naar de A2UI-hostpagina.
+A2UI wordt gehost door de Canvas-host van de Gateway en weergegeven in het
+Canvas-paneel. Wanneer de Gateway een Canvas-host aankondigt, navigeert de
+macOS-app bij de eerste opening automatisch naar de A2UI-hostpagina.
 
-De aangekondigde URL is bereikgebonden, bijvoorbeeld
+De aangekondigde URL heeft een bevoegdheidsbeperkt bereik, bijvoorbeeld
 `http://<gateway-host>:18789/__openclaw__/cap/<token>/__openclaw__/a2ui/?platform=macos`.
-Behandel deze als tijdelijke aanmeldgegevens, niet als een stabiele link.
+Behandel deze als tijdelijke aanmeldgegevens, niet als een permanente link.
 
 ### A2UI-opdrachten (v0.8)
 
@@ -114,20 +120,20 @@ Ondersteunde queryparameters:
 | `thinking`                 | Optioneel denkprofiel.                                |
 | `deliver`, `to`, `channel` | Afleverdoel.                                          |
 | `timeoutSeconds`           | Optionele time-out voor de run.                       |
-| `key`                      | Door de app gegenereerd veiligheidstoken voor vertrouwde lokale aanroepers. |
+| `key`                      | Door de app gegenereerd beveiligingstoken voor vertrouwde lokale aanroepers. |
 
 De app vraagt om bevestiging, tenzij een geldige sleutel wordt verstrekt. Links
 zonder sleutel tonen vóór goedkeuring het bericht en de URL en negeren velden
-voor afleveringsroutering; links met een sleutel gebruiken het normale Gateway-pad voor runs.
+voor afleverroutering; links met een sleutel gebruiken het normale runpad van de Gateway.
 
 ## Beveiligingsopmerkingen
 
-- Het Canvas-schema blokkeert directory traversal; bestanden moeten zich onder de sessiehoofdmap bevinden.
+- Het Canvas-schema blokkeert directorytraversal; bestanden moeten zich onder de sessiehoofdmap bevinden.
 - Lokale Canvas-inhoud gebruikt een aangepast schema (geen loopbackserver vereist).
 - Externe `http(s)`-URL's zijn alleen toegestaan wanneer er expliciet naartoe wordt genavigeerd.
 - Gewone webpagina's kunnen alleen worden weergegeven. Agentacties worden alleen geaccepteerd vanuit het
-  Canvas-schema dat eigendom is van de app of het exacte bereikgebonden Gateway A2UI-document
-  dat door de app is geselecteerd; subframes, omleidingen, verlopen mogelijkheden en gewijzigde
+  Canvas-schema dat eigendom is van de app of vanuit het exacte, door een bevoegdheid beperkte Gateway A2UI-document
+  dat door de app is geselecteerd; subframes, omleidingen, verlopen bevoegdheden en gewijzigde
   query's kunnen geen acties verzenden.
 
 ## Gerelateerd

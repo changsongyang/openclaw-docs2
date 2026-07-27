@@ -4,7 +4,7 @@ read_when:
 summary: پشتیبانی از ارائه‌دهنده تولید ویدئو را اضافه می‌کند.
 title: Plugin علی‌بابا
 x-i18n:
-    generated_at: "2026-07-16T16:53:33Z"
+    generated_at: "2026-07-27T15:53:51Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin Alibaba
 
-پشتیبانی از ارائه‌دهنده تولید ویدئو را اضافه می‌کند.
+پشتیبانی از ارائه‌دهندهٔ تولید ویدئو را اضافه می‌کند.
 
 ## توزیع
 

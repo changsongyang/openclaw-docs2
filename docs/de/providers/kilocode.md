@@ -5,7 +5,7 @@ read_when:
 summary: Verwenden Sie die einheitliche API von Kilo Gateway, um in OpenClaw auf zahlreiche Modelle zuzugreifen
 title: Kilo Gateway
 x-i18n:
-    generated_at: "2026-07-24T05:13:14Z"
+    generated_at: "2026-07-26T18:43:15Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,9 +15,9 @@ x-i18n:
     workflow: 16
 ---
 
-Kilo Gateway leitet Anfragen an zahlreiche Modelle hinter einem einzigen OpenAI-kompatiblen Endpunkt und API-Schlüssel weiter.
+Kilo Gateway leitet Anfragen über einen einzigen OpenAI-kompatiblen Endpunkt und API-Schlüssel an zahlreiche Modelle weiter.
 
-| Eigenschaft | Wert                             |
+| Eigenschaft | Wert                              |
 | -------- | ---------------------------------- |
 | Provider | `kilocode`                         |
 | Authentifizierung | `KILOCODE_API_KEY`                 |
@@ -58,18 +58,18 @@ openclaw gateway restart
 
 ## Standardmodell und Katalog
 
-Das Standardmodell ist `kilocode/kilo-auto/balanced`, die ausgewogene intelligente Routing-Stufe von Kilo Gateway.
+Das Standardmodell ist `kilocode/kilo-auto/balanced`, die ausgewogene Smart-Routing-Stufe von Kilo Gateway.
 OpenClaw veröffentlicht dafür keine Zuordnung von Aufgaben zu Upstream-Modellen; das Routing hinter
 `kilo-auto/balanced` wird von Kilo Gateway verwaltet.
 
-Beim Start fragt OpenClaw `GET https://api.kilo.ai/api/gateway/models` ab und führt erkannte Modelle
-vor einem statischen Ausweichkatalog zusammen. Der statische Ausweichkatalog enthält ausschließlich
+Beim Start fragt OpenClaw `GET https://api.kilo.ai/api/gateway/models` ab und führt die ermittelten Modelle
+vor einem statischen Fallback-Katalog zusammen. Der statische Fallback enthält ausschließlich
 `kilocode/kilo-auto/balanced` (`Auto Balanced`, `input: ["text", "image"]`, `reasoning: true`,
 `contextWindow: 1000000`, `maxTokens: 65536`).
 
 Jedes Modell auf dem Gateway kann als `kilocode/<upstream-id>` adressiert werden (zum Beispiel
 `kilocode/anthropic/claude-sonnet-4`, `kilocode/openai/gpt-5.5`). Führen Sie `/models kilocode` oder
-`openclaw models list --provider kilocode` aus, um die vollständige Liste der erkannten Modelle anzuzeigen.
+`openclaw models list --provider kilocode` aus, um die vollständige ermittelte Liste anzuzeigen.
 
 ## Konfigurationsbeispiel
 
@@ -89,21 +89,21 @@ Jedes Modell auf dem Gateway kann als `kilocode/<upstream-id>` adressiert werden
 <AccordionGroup>
   <Accordion title="Transport und Kompatibilität">
     Kilo Gateway ist mit OpenRouter kompatibel und verwendet daher den Proxy-basierten OpenAI-kompatiblen
-    Anfragepfad statt der nativen OpenAI-Anfrageformung (kein `store`, keine OpenAI-Nutzlast für den Reasoning-Aufwand).
+    Anfragepfad anstelle der nativen OpenAI-Anfrageformatierung (kein `store`, keine OpenAI-Nutzlast für den Reasoning-Aufwand).
 
-    - Auf Gemini basierende Kilo-Referenzen verbleiben auf dem Proxy-Gemini-Pfad: OpenClaw bereinigt dort Gemini-Denksignaturen,
-      aktiviert jedoch weder die native Gemini-Validierung für die Wiedergabe noch Bootstrap-Umschreibungen.
-    - Anfragen verwenden ein aus Ihrem API-Schlüssel erstelltes Bearer-Token.
+    - Auf Gemini basierende Kilo-Referenzen verbleiben auf dem Proxy-Gemini-Pfad: OpenClaw bereinigt dort Gemini-Gedanken-
+      signaturen, aktiviert jedoch weder die native Gemini-Validierung für die Wiedergabe noch Bootstrap-Umschreibungen.
+    - Anfragen verwenden ein Bearer-Token, das aus Ihrem API-Schlüssel erstellt wird.
 
   </Accordion>
 
   <Accordion title="Stream-Wrapper und Reasoning">
-    Der Kilo-Stream-Wrapper fügt einen `X-KILOCODE-FEATURE`-Anfrageheader hinzu (standardmäßig `openclaw`,
+    Der Kilo-Stream-Wrapper fügt einen `X-KILOCODE-FEATURE`-Anfrage-Header hinzu (standardmäßig `openclaw`,
     überschreibbar mit der Umgebungsvariable `KILOCODE_FEATURE`) und normalisiert Nutzlasten für den Reasoning-Aufwand bei
     Modellen, die dies unterstützen.
 
     <Warning>
-    Die Referenzen `kilocode/kilo-auto/balanced` und `x-ai/*` überspringen das Einfügen des Reasoning-Aufwands. Verwenden Sie eine konkrete
+    Die Referenzen `kilocode/kilo-auto/balanced` und `x-ai/*` überspringen die Einbindung des Reasoning-Aufwands. Verwenden Sie eine konkrete
     Modellreferenz wie `kilocode/anthropic/claude-sonnet-4`, wenn Sie Reasoning-Unterstützung benötigen.
     </Warning>
 
@@ -111,7 +111,7 @@ Jedes Modell auf dem Gateway kann als `kilocode/<upstream-id>` adressiert werden
 
   <Accordion title="Fehlerbehebung">
     - Wenn die Modellerkennung beim Start fehlschlägt, greift OpenClaw auf den statischen Katalog mit `kilocode/kilo-auto/balanced` zurück.
-    - Stellen Sie sicher, dass Ihr API-Schlüssel gültig ist und die gewünschten Modelle für Ihr Kilo-Konto aktiviert sind.
+    - Vergewissern Sie sich, dass Ihr API-Schlüssel gültig ist und die gewünschten Modelle für Ihr Kilo-Konto aktiviert sind.
     - Wenn der Gateway als Daemon ausgeführt wird, stellen Sie sicher, dass `KILOCODE_API_KEY` für diesen Prozess verfügbar ist (zum Beispiel in `~/.openclaw/.env` oder über `env.shellEnv`).
 
   </Accordion>

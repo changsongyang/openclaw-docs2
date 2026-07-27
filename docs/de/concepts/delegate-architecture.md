@@ -1,10 +1,10 @@
 ---
 read_when: You want an agent with its own identity that acts on behalf of humans in an organization.
 status: active
-summary: 'Delegiertenarchitektur: OpenClaw als benannten Agenten im Namen einer Organisation ausführen'
-title: Delegiertenarchitektur
+summary: 'Delegiertenarchitektur: OpenClaw als benannten Agenten im Auftrag einer Organisation ausführen'
+title: Delegierte Architektur
 x-i18n:
-    generated_at: "2026-07-24T04:59:06Z"
+    generated_at: "2026-07-26T18:54:50Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,84 +14,84 @@ x-i18n:
     workflow: 16
 ---
 
-Führen Sie OpenClaw als **benannten Delegierten** aus: einen Agenten mit eigener Identität, der „im Auftrag von“ Personen in einer Organisation handelt. Der Agent gibt sich niemals als Mensch aus – er sendet, liest und plant unter seinem eigenen Konto mit ausdrücklichen Delegierungsberechtigungen.
+Führen Sie OpenClaw als **benannten Delegierten** aus: einen Agenten mit eigener Identität, der „im Namen von“ Personen in einer Organisation handelt. Der Agent gibt sich niemals als Mensch aus – er sendet, liest und plant unter seinem eigenen Konto mit ausdrücklichen Delegierungsberechtigungen.
 
-Dies erweitert das [Multi-Agent-Routing](/de/concepts/multi-agent) vom persönlichen Einsatz auf organisatorische Bereitstellungen.
+Dies erweitert das [Multi-Agent-Routing](/de/concepts/multi-agent) vom persönlichen Einsatz auf Bereitstellungen in Organisationen.
 
 ## Was ist ein Delegierter?
 
 Ein Delegierter ist ein OpenClaw-Agent, der:
 
 - über eine **eigene Identität** verfügt (E-Mail-Adresse, Anzeigename, Kalender).
-- **im Auftrag von** einer oder mehreren Personen handelt und niemals vorgibt, diese zu sein.
-- mit **ausdrücklichen Berechtigungen** arbeitet, die vom Identitätsprovider der Organisation gewährt wurden.
-- **[Daueraufträge](/de/automation/standing-orders)** befolgt: Regeln in der `AGENTS.md` des Agenten, die festlegen, was er autonom tun darf und wofür eine menschliche Genehmigung erforderlich ist. [Cron-Jobs](/de/automation/cron-jobs) steuern die geplante Ausführung.
+- **im Namen von** einer oder mehreren Personen handelt und niemals vorgibt, diese zu sein.
+- mit **ausdrücklichen Berechtigungen** arbeitet, die vom Identitätsprovider der Organisation erteilt wurden.
+- **[Daueranweisungen](/de/automation/standing-orders)** befolgt: Regeln in der `AGENTS.md` des Agenten, die festlegen, was er autonom tun darf und was menschliche Genehmigung erfordert. [Cron-Jobs](/de/automation/cron-jobs) steuern die geplante Ausführung.
 
-Dies entspricht der Arbeitsweise von Vorstandsassistenzen: eigene Anmeldedaten, E-Mails, die „im Auftrag von“ ihrer Führungskraft gesendet werden, und ein klar definierter Befugnisumfang.
+Dies entspricht der Arbeitsweise von Vorstandsassistenzen: eigene Anmeldedaten, E-Mails, die „im Namen“ der vorgesetzten Person gesendet werden, und ein klar definierter Befugnisumfang.
 
 ## Warum Delegierte?
 
-Der Standardmodus von OpenClaw ist ein **persönlicher Assistent** – eine Person, ein Agent. Delegierte erweitern dies auf Organisationen:
+Der Standardmodus von OpenClaw ist ein **persönlicher Assistent** – eine Person, ein Agent. Delegierte erweitern dieses Modell auf Organisationen:
 
-| Persönlicher Modus                    | Delegiertenmodus                                         |
-| ------------------------------------- | -------------------------------------------------------- |
-| Agent verwendet Ihre Anmeldedaten     | Agent verfügt über eigene Anmeldedaten                   |
-| Antworten stammen von Ihnen           | Antworten stammen vom Delegierten, in Ihrem Auftrag      |
-| Eine auftraggebende Person            | Eine oder mehrere auftraggebende Personen                |
-| Vertrauensgrenze = Sie                 | Vertrauensgrenze = Organisationsrichtlinie               |
+| Persönlicher Modus                   | Delegiertenmodus                                           |
+| ------------------------------------ | ---------------------------------------------------------- |
+| Agent verwendet Ihre Anmeldedaten    | Agent verfügt über eigene Anmeldedaten                     |
+| Antworten kommen von Ihnen           | Antworten kommen vom Delegierten in Ihrem Namen            |
+| Eine vertretene Person               | Eine oder mehrere vertretene Personen                      |
+| Vertrauensgrenze = Sie                | Vertrauensgrenze = Organisationsrichtlinie                 |
 
 Delegierte lösen zwei Probleme:
 
-1. **Verantwortlichkeit**: Vom Agenten gesendete Nachrichten stammen eindeutig vom Agenten und nicht von einem Menschen.
-2. **Umfangskontrolle**: Der Identitätsprovider erzwingt unabhängig von OpenClaws eigener Tool-Richtlinie, worauf der Delegierte zugreifen kann.
+1. **Nachvollziehbarkeit**: Vom Agenten gesendete Nachrichten stammen eindeutig vom Agenten und nicht von einem Menschen.
+2. **Umfangskontrolle**: Der Identitätsprovider erzwingt unabhängig von der eigenen Tool-Richtlinie von OpenClaw, worauf der Delegierte zugreifen darf.
 
 ## Funktionsstufen
 
-Beginnen Sie mit der niedrigsten Stufe, die Ihre Anforderungen erfüllt; wechseln Sie nur dann zu einer höheren Stufe, wenn der Anwendungsfall dies erfordert.
+Beginnen Sie mit der niedrigsten Stufe, die Ihren Anforderungen entspricht; erhöhen Sie sie nur, wenn der Anwendungsfall dies verlangt.
 
 ### Stufe 1: Schreibgeschützt + Entwurf
 
 Liest Organisationsdaten und erstellt Nachrichtenentwürfe zur menschlichen Prüfung. Ohne Genehmigung wird nichts gesendet.
 
-- E-Mail: Posteingang lesen, Threads zusammenfassen, Elemente markieren, die menschliches Handeln erfordern.
+- E-Mail: Posteingang lesen, Konversationen zusammenfassen, Elemente markieren, die menschliches Eingreifen erfordern.
 - Kalender: Termine lesen, Konflikte aufzeigen, den Tag zusammenfassen.
 - Dateien: freigegebene Dokumente lesen, Inhalte zusammenfassen.
 
-Erfordert vom Identitätsprovider lediglich Leseberechtigungen. Der Agent schreibt niemals in ein Postfach oder einen Kalender – Entwürfe und Vorschläge werden im Chat bereitgestellt, damit ein Mensch entsprechend handeln kann.
+Erfordert lediglich Leseberechtigungen vom Identitätsprovider. Der Agent schreibt niemals in ein Postfach oder einen Kalender – Entwürfe und Vorschläge werden im Chat bereitgestellt, damit ein Mensch entsprechend handeln kann.
 
-### Stufe 2: Im Auftrag senden
+### Stufe 2: Im Namen senden
 
-Sendet Nachrichten und erstellt Kalendertermine unter seiner eigenen Identität. Empfänger sehen „Name des Delegierten im Auftrag von Name der auftraggebenden Person“.
+Sendet Nachrichten und erstellt Kalendertermine unter seiner eigenen Identität. Empfänger sehen „Name des Delegierten im Namen von Name der vertretenen Person“.
 
-- E-Mail: mit einem „im Auftrag von“-Header senden.
+- E-Mail: mit einer „im Namen von“-Kopfzeile senden.
 - Kalender: Termine erstellen, Einladungen senden.
 - Chat: unter der Identität des Delegierten in Kanälen posten.
 
-Erfordert Berechtigungen zum Senden im Auftrag einer anderen Person oder entsprechende Delegierungsberechtigungen.
+Erfordert Berechtigungen zum Senden im Namen einer anderen Person (oder Delegierungsberechtigungen).
 
 ### Stufe 3: Proaktiv
 
-Arbeitet autonom nach einem Zeitplan und führt Daueraufträge ohne menschliche Genehmigung jeder einzelnen Aktion aus. Menschen prüfen die Ergebnisse asynchron.
+Arbeitet nach Zeitplan autonom und führt Daueranweisungen ohne menschliche Genehmigung jeder einzelnen Aktion aus. Menschen prüfen die Ergebnisse asynchron.
 
-- Morgendliche Briefings werden an einen Kanal gesendet.
+- Morgendliche Lageberichte werden an einen Kanal übermittelt.
 - Automatisierte Veröffentlichung in sozialen Medien über genehmigte Inhaltswarteschlangen.
 - Posteingangssichtung mit automatischer Kategorisierung und Markierung.
 
-Kombiniert Berechtigungen der Stufe 2 mit [Cron-Jobs](/de/automation/cron-jobs) und [Daueraufträgen](/de/automation/standing-orders).
+Kombiniert die Berechtigungen der Stufe 2 mit [Cron-Jobs](/de/automation/cron-jobs) und [Daueranweisungen](/de/automation/standing-orders).
 
 <Warning>
-Stufe 3 erfordert, dass zuerst feste Sperren konfiguriert werden: Aktionen, die der Agent unabhängig von Anweisungen niemals ausführen darf. Erfüllen Sie die folgenden Voraussetzungen, bevor Sie Berechtigungen des Identitätsproviders erteilen.
+Stufe 3 setzt voraus, dass zunächst feste Sperren konfiguriert werden: Aktionen, die der Agent unabhängig von Anweisungen niemals ausführen darf. Erfüllen Sie die folgenden Voraussetzungen, bevor Sie Berechtigungen des Identitätsproviders erteilen.
 </Warning>
 
-## Voraussetzungen: Isolierung und Absicherung
+## Voraussetzungen: Isolation und Härtung
 
 <Note>
-**Führen Sie dies zuerst durch.** Schränken Sie die Grenzen des Delegierten ein, bevor Sie Anmeldedaten oder Zugriff auf den Identitätsprovider gewähren. Legen Sie fest, was der Agent **nicht** tun kann, bevor Sie ihm die Fähigkeit geben, irgendetwas zu tun.
+**Führen Sie dies zuerst durch.** Sichern Sie die Grenzen des Delegierten, bevor Sie Anmeldedaten oder Zugriff auf den Identitätsprovider gewähren. Legen Sie fest, was der Agent **nicht** tun darf, bevor Sie ihm überhaupt Handlungsfähigkeiten geben.
 </Note>
 
 ### Feste Sperren (nicht verhandelbar)
 
-Definieren Sie diese in der `SOUL.md` und `AGENTS.md` des Delegierten, bevor Sie externe Konten verbinden:
+Definieren Sie Folgendes in der `SOUL.md` und `AGENTS.md` des Delegierten, bevor Sie externe Konten verbinden:
 
 - Niemals externe E-Mails ohne ausdrückliche menschliche Genehmigung senden.
 - Niemals Kontaktlisten, Spenderdaten oder Finanzunterlagen exportieren.
@@ -115,9 +115,9 @@ Verwenden Sie eine agentenspezifische Tool-Richtlinie, um Grenzen auf Gateway-Eb
 }
 ```
 
-### Sandbox-Isolierung
+### Sandbox-Isolation
 
-Bei Bereitstellungen mit hohen Sicherheitsanforderungen sollten Sie den Delegierten-Agenten in einer Sandbox ausführen, sodass er über seine erlaubten Tools hinaus weder auf das Host-Dateisystem noch auf das Netzwerk zugreifen kann:
+Für Bereitstellungen mit hohen Sicherheitsanforderungen sollten Sie den delegierten Agenten in einer Sandbox ausführen, sodass er außerhalb seiner zugelassenen Tools weder auf das Dateisystem des Hosts noch auf das Netzwerk zugreifen kann:
 
 ```json5
 {
@@ -136,17 +136,17 @@ Siehe [Sandboxing](/de/gateway/sandboxing) und [Multi-Agent-Sandbox und -Tools](
 
 Konfigurieren Sie die Protokollierung, bevor der Delegierte reale Daten verarbeitet:
 
-- Cron-Ausführungsverlauf: die gemeinsame SQLite-Zustandsdatenbank von OpenClaw.
+- Cron-Ausführungsverlauf: die gemeinsam genutzte SQLite-Zustandsdatenbank von OpenClaw.
 - Sitzungstranskripte: `~/.openclaw/agents/delegate/sessions`.
 - Audit-Protokolle des Identitätsproviders (Exchange, Google Workspace).
 
-Alle Aktionen des Delegierten durchlaufen den Sitzungsspeicher von OpenClaw. Bewahren Sie diese Protokolle für Compliance-Zwecke auf und überprüfen Sie sie.
+Alle Aktionen des Delegierten durchlaufen den Sitzungsspeicher von OpenClaw. Bewahren Sie diese Protokolle zur Einhaltung von Vorschriften auf und überprüfen Sie sie.
 
 ## Einen Delegierten einrichten
 
-Nachdem die Absicherung eingerichtet wurde, weisen Sie dem Delegierten seine Identität und Berechtigungen zu.
+Nachdem die Härtung vorgenommen wurde, weisen Sie dem Delegierten seine Identität und Berechtigungen zu.
 
-### 1. Delegierten-Agenten erstellen
+### 1. Den delegierten Agenten erstellen
 
 ```bash
 openclaw agents add delegate --workspace ~/.openclaw/workspace-delegate
@@ -158,15 +158,15 @@ Dadurch wird Folgendes erstellt:
 - Agentenzustand: `~/.openclaw/agents/delegate/agent`
 - Sitzungen: `~/.openclaw/agents/delegate/sessions`
 
-Konfigurieren Sie die Persönlichkeit des Delegierten in seinen Arbeitsbereichsdateien:
+Konfigurieren Sie die Persönlichkeit des Delegierten in den Dateien seines Arbeitsbereichs:
 
-- `AGENTS.md`: Rolle, Verantwortlichkeiten und Daueraufträge.
+- `AGENTS.md`: Rolle, Verantwortlichkeiten und Daueranweisungen.
 - `SOUL.md`: Persönlichkeit, Ton und die oben definierten festen Sicherheitsregeln.
-- `USER.md`: Informationen über die auftraggebende(n) Person(en), denen der Delegierte dient.
+- `USER.md`: Informationen über die vertretene(n) Person(en), denen der Delegierte dient.
 
-### 2. Delegierung des Identitätsproviders konfigurieren
+### 2. Delegierung beim Identitätsprovider konfigurieren
 
-Erstellen Sie für den Delegierten ein eigenes Konto bei Ihrem Identitätsprovider mit ausdrücklichen Delegierungsberechtigungen. **Wenden Sie das Prinzip der geringsten Rechte an** – beginnen Sie mit Stufe 1 (schreibgeschützt) und wechseln Sie nur dann zu einer höheren Stufe, wenn der Anwendungsfall dies erfordert.
+Geben Sie dem Delegierten ein eigenes Konto bei Ihrem Identitätsprovider mit ausdrücklichen Delegierungsberechtigungen. **Wenden Sie das Prinzip der geringsten Rechte an** – beginnen Sie mit Stufe 1 (schreibgeschützt) und erhöhen Sie die Stufe nur, wenn der Anwendungsfall dies verlangt.
 
 #### Microsoft 365
 
@@ -182,7 +182,7 @@ Set-Mailbox -Identity "principal@[organization].org" `
 
 **Lesezugriff** (Graph API mit Anwendungsberechtigungen):
 
-Registrieren Sie eine Azure-AD-Anwendung mit den Anwendungsberechtigungen `Mail.Read` und `Calendars.Read`. **Bevor Sie die Anwendung verwenden**, beschränken Sie den Zugriff mit einer [Anwendungszugriffsrichtlinie](https://learn.microsoft.com/graph/auth-limit-mailbox-access) ausschließlich auf die Postfächer des Delegierten und der auftraggebenden Person:
+Registrieren Sie eine Azure-AD-Anwendung mit den Anwendungsberechtigungen `Mail.Read` und `Calendars.Read`. **Bevor Sie die Anwendung verwenden**, beschränken Sie den Zugriff mit einer [Anwendungszugriffsrichtlinie](https://learn.microsoft.com/graph/auth-limit-mailbox-access) ausschließlich auf die Postfächer des Delegierten und der vertretenen Person:
 
 ```powershell
 New-ApplicationAccessPolicy `
@@ -192,7 +192,7 @@ New-ApplicationAccessPolicy `
 ```
 
 <Warning>
-Ohne eine Anwendungszugriffsrichtlinie gewährt die Anwendungsberechtigung `Mail.Read` Zugriff auf **jedes Postfach im Mandanten**. Erstellen Sie die Zugriffsrichtlinie, bevor die Anwendung E-Mails liest. Testen Sie dies, indem Sie bestätigen, dass die App für Postfächer außerhalb der Sicherheitsgruppe `403` zurückgibt.
+Ohne Anwendungszugriffsrichtlinie gewährt die Anwendungsberechtigung `Mail.Read` Zugriff auf **jedes Postfach im Mandanten**. Erstellen Sie die Zugriffsrichtlinie, bevor die Anwendung E-Mails liest. Testen Sie dies, indem Sie bestätigen, dass die App für Postfächer außerhalb der Sicherheitsgruppe `403` zurückgibt.
 </Warning>
 
 #### Google Workspace
@@ -205,15 +205,15 @@ https://www.googleapis.com/auth/gmail.send         # Stufe 2
 https://www.googleapis.com/auth/calendar           # Stufe 2
 ```
 
-Das Dienstkonto imitiert den Benutzer des Delegierten (nicht die auftraggebende Person) und bewahrt dadurch das Modell „im Auftrag von“.
+Das Dienstkonto nimmt die Identität des delegierten Benutzers (nicht der vertretenen Person) an und bewahrt dadurch das Modell „im Namen von“.
 
 <Warning>
-Durch die domainweite Delegierung kann das Dienstkonto **jeden Benutzer in der Domain** imitieren. Beschränken Sie die Bereiche auf das erforderliche Minimum und begrenzen Sie die Client-ID des Dienstkontos in der Admin Console (Security > API controls > Domain-wide delegation) ausschließlich auf die oben aufgeführten Bereiche. Ein offengelegter Dienstkontoschlüssel mit weitreichenden Bereichen gewährt vollständigen Zugriff auf jedes Postfach und jeden Kalender in der Organisation. Rotieren Sie Schlüssel nach einem Zeitplan und überwachen Sie das Audit-Protokoll der Admin Console auf unerwartete Identitätsübernahmeereignisse.
+Mit der domainweiten Delegierung kann das Dienstkonto die Identität **jedes Benutzers in der Domain** annehmen. Beschränken Sie die Bereiche auf das erforderliche Minimum und begrenzen Sie die Client-ID des Dienstkontos in der Admin Console ausschließlich auf die oben genannten Bereiche (Security > API controls > Domain-wide delegation). Ein offengelegter Dienstkontoschlüssel mit weitreichenden Bereichen gewährt vollständigen Zugriff auf jedes Postfach und jeden Kalender in der Organisation. Rotieren Sie Schlüssel regelmäßig und überwachen Sie das Audit-Protokoll der Admin Console auf unerwartete Identitätsübernahmeereignisse.
 </Warning>
 
-### 3. Delegierten an Kanäle binden
+### 3. Den Delegierten an Kanäle binden
 
-Leiten Sie eingehende Nachrichten mithilfe von Bindungen des [Multi-Agent-Routings](/de/concepts/multi-agent) an den Delegierten-Agenten weiter:
+Leiten Sie eingehende Nachrichten mithilfe von Bindungen des [Multi-Agent-Routings](/de/concepts/multi-agent) an den delegierten Agenten weiter:
 
 ```json5
 {
@@ -240,13 +240,13 @@ Leiten Sie eingehende Nachrichten mithilfe von Bindungen des [Multi-Agent-Routin
       agentId: "delegate",
       match: { channel: "discord", guildId: "123456789012345678" },
     },
-    // Alles andere wird an den persönlichen Hauptagenten weitergeleitet
+    // Alles andere geht an den persönlichen Hauptagenten
     { agentId: "main", match: { channel: "whatsapp" } },
   ],
 }
 ```
 
-### 4. Anmeldedaten zum Delegierten-Agenten hinzufügen
+### 4. Anmeldedaten zum delegierten Agenten hinzufügen
 
 Kopieren oder erstellen Sie Authentifizierungsprofile für die eigene `agentDir` des Delegierten:
 
@@ -255,11 +255,11 @@ Kopieren oder erstellen Sie Authentifizierungsprofile für die eigene `agentDir`
 ~/.openclaw/agents/delegate/agent/auth-profiles.json
 ```
 
-Teilen Sie niemals die `agentDir` des Hauptagenten mit dem Delegierten. Einzelheiten zur Authentifizierungsisolierung finden Sie unter [Multi-Agent-Routing](/de/concepts/multi-agent).
+Geben Sie die `agentDir` des Hauptagenten niemals für den Delegierten frei. Einzelheiten zur Authentifizierungsisolierung finden Sie unter [Multi-Agent-Routing](/de/concepts/multi-agent).
 
 ## Beispiel: Organisationsassistent
 
-Eine vollständige Delegiertenkonfiguration zur Verarbeitung von E-Mails, Kalendern und sozialen Medien:
+Eine vollständige Delegiertenkonfiguration für E-Mail, Kalender und soziale Medien:
 
 ```json5
 {
@@ -291,23 +291,23 @@ Eine vollständige Delegiertenkonfiguration zur Verarbeitung von E-Mails, Kalend
 }
 ```
 
-Die `AGENTS.md` des Delegierten definiert seine autonome Befugnis – was er ohne Nachfrage tun darf, wofür eine Genehmigung erforderlich ist und was verboten ist. [Cron-Jobs](/de/automation/cron-jobs) steuern seinen täglichen Zeitplan.
+Die `AGENTS.md` des Delegierten definiert seine autonome Befugnis – was er ohne Nachfrage tun darf, was eine Genehmigung erfordert und was verboten ist. [Cron-Jobs](/de/automation/cron-jobs) steuern seinen täglichen Zeitplan.
 
-Wenn Sie `sessions_history` gewähren, handelt es sich um eine begrenzte, sicherheitsgefilterte Erinnerungsansicht und nicht um einen Rohdatenabzug des Transkripts. OpenClaw schwärzt Text, der Anmeldedaten oder Tokens ähnelt, kürzt lange Inhalte und entfernt interne Gerüststrukturen (Signaturen von Denkblöcken, `<relevant-memories>`-Gerüst-Tags, XML-Tags für Tool-Aufrufe wie `<tool_call>`/`<function_calls>` und ähnliche offengelegte Provider-Steuerungstokens) aus der Erinnerung des Assistenten. Übergroße Zeilen können durch `[sessions_history omitted: message too large]` ersetzt werden, anstatt den Rohinhalt zurückzugeben. Verwenden Sie `nextOffset`, sofern vorhanden, um rückwärts durch ältere Transkriptfenster zu blättern.
+Wenn Sie `sessions_history` gewähren, handelt es sich um eine begrenzte, sicherheitsgefilterte Erinnerungsansicht und nicht um einen Rohdump des Transkripts. OpenClaw schwärzt Text, der Anmeldedaten oder Token ähnelt, kürzt lange Inhalte und entfernt internes Gerüst (Signaturen von Denkblöcken, `<relevant-memories>`-Gerüst-Tags, XML-Tags für Tool-Aufrufe wie `<tool_call>`/`<function_calls>` sowie ähnliche offengelegte Provider-Steuerungstoken) aus den Erinnerungen des Assistenten. Übergroße Zeilen können durch `[sessions_history omitted: message too large]` ersetzt werden, anstatt den Rohinhalt zurückzugeben. Verwenden Sie `nextOffset`, sofern vorhanden, um rückwärts durch ältere Transkriptfenster zu blättern.
 
 ## Skalierungsmuster
 
-1. **Erstellen Sie einen delegierten Agenten** pro Organisation.
-2. **Zuerst absichern** – Tool-Einschränkungen, Sandbox, harte Sperren, Audit-Trail.
-3. **Gewähren Sie begrenzte Berechtigungen** über den Identitätsprovider (Prinzip der geringsten Rechte).
-4. **Definieren Sie [Daueraufträge](/de/automation/standing-orders)** für autonome Vorgänge.
+1. **Erstellen Sie pro Organisation einen delegierten Agenten**.
+2. **Sichern Sie ihn zuerst ab** – mit Tool-Einschränkungen, Sandbox, strikten Sperren und einem Audit-Trail.
+3. **Gewähren Sie eingeschränkte Berechtigungen** über den Identitätsprovider (Prinzip der geringsten Rechte).
+4. **Definieren Sie [ständige Anweisungen](/de/automation/standing-orders)** für autonome Vorgänge.
 5. **Planen Sie Cron-Jobs** für wiederkehrende Aufgaben.
-6. **Überprüfen und justieren Sie** die Funktionsstufe mit wachsendem Vertrauen.
+6. **Überprüfen und justieren Sie** die Funktionsstufe, wenn das Vertrauen wächst.
 
-Mehrere Organisationen können sich über Multi-Agent-Routing einen Gateway-Server teilen – jede Organisation erhält einen eigenen isolierten Agenten, Arbeitsbereich und eigene Anmeldedaten.
+Mehrere Organisationen können sich mithilfe von Multi-Agent-Routing einen Gateway-Server teilen – jede Organisation erhält einen eigenen isolierten Agenten, Workspace und eigene Anmeldedaten.
 
 ## Verwandte Themen
 
-- [Agentenlaufzeit](/de/concepts/agent)
+- [Agenten-Laufzeitumgebung](/de/concepts/agent)
 - [Unteragenten](/de/tools/subagents)
 - [Multi-Agent-Routing](/de/concepts/multi-agent)

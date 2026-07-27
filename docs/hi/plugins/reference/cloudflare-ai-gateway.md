@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप cloudflare-ai-gateway Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: OpenClaw में Cloudflare AI Gateway मॉडल प्रदाता का समर्थन जोड़ता है।
+summary: OpenClaw में Cloudflare AI Gateway मॉडल प्रदाता के लिए समर्थन जोड़ता है।
 title: Cloudflare AI Gateway Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:07:01Z"
+    generated_at: "2026-07-27T18:18:02Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ OpenClaw में Cloudflare AI Gateway मॉडल प्रदाता क�
 - पैकेज: `@openclaw/cloudflare-ai-gateway-provider`
 - इंस्टॉल मार्ग: npm; ClawHub: `clawhub:@openclaw/cloudflare-ai-gateway-provider`
 
-## उपलब्ध सतह
+## सतह
 
 प्रदाता: `cloudflare-ai-gateway`
 

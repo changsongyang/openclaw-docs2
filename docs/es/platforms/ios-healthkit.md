@@ -1,12 +1,12 @@
 ---
 read_when:
-    - Activación de los resúmenes de HealthKit en un Node de iOS
-    - Invocación de health.summary o solución de problemas relacionados con métricas de estado ausentes
+    - Activación de resúmenes de HealthKit en un nodo de iOS
+    - Invocación de health.summary o solución de problemas de métricas de estado ausentes
     - Revisión de qué datos de salud pueden salir de un dispositivo iOS
-summary: Habilitar e invocar resúmenes de HealthKit protegidos por controles de privacidad desde un Node de iOS
+summary: Activar e invocar resúmenes de HealthKit sujetos a controles de privacidad desde un Node de iOS
 title: Resúmenes de HealthKit
 x-i18n:
-    generated_at: "2026-07-22T10:41:55Z"
+    generated_at: "2026-07-26T04:45:09Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,14 +18,15 @@ x-i18n:
 
 # Resúmenes de HealthKit
 
-OpenClaw puede solicitar un resumen de solo lectura del día natural actual desde un
-nodo iPhone o iPad conectado. El dispositivo calcula el agregado localmente y devuelve
+OpenClaw puede solicitar un resumen de solo lectura del día natural actual a un
+nodo iPhone o iPad conectado. El dispositivo calcula el agregado en el propio dispositivo y devuelve
 únicamente los pasos, la duración del sueño, la frecuencia cardíaca media en reposo y el
-número y la duración de los entrenamientos. No se admiten muestras individuales de
-HealthKit, fuentes, metadatos, historiales clínicos, ingesta en segundo plano ni escrituras.
+número y la duración de los entrenamientos. No se admiten muestras individuales de HealthKit,
+fuentes, metadatos, historiales clínicos, ingesta en segundo plano ni operaciones
+de escritura.
 
-Esta función está desactivada de forma predeterminada. Requiere un consentimiento
-independiente en el dispositivo iOS y autorización en el Gateway.
+Esta función está desactivada de forma predeterminada. Requiere un consentimiento independiente en el dispositivo iOS y
+autorización en el Gateway.
 
 ## Requisitos
 
@@ -33,16 +34,16 @@ independiente en el dispositivo iOS y autorización en el Gateway.
   disponibles.
 - Un nodo iOS conectado y aprobado. Consulte [Configuración de la aplicación para iOS](/es/platforms/ios).
 - Un Gateway actualizado que pueda comunicarse con el nodo iOS.
-- Datos de Salud legibles para las métricas que se espera consultar. Un Apple Watch puede
-  aportar datos al almacén de Apple Health, pero la aplicación de OpenClaw para watchOS
+- Datos de Salud legibles para todas las métricas que se espera ver. Un Apple Watch puede
+  aportar datos al repositorio de Apple Health, pero la aplicación de OpenClaw para watchOS
   no es necesaria para los resúmenes de HealthKit.
 
 ## Habilitar el acceso
 
 ### 1. Autorizar el comando del Gateway
 
-Añada `health.summary` a la matriz `gateway.nodes.commands.allow` existente en
-`openclaw.json`. Conserve los comandos que ya estén presentes:
+Añada `health.summary` al array `gateway.nodes.commands.allow` existente en
+`openclaw.json`. Conserve todos los comandos que ya estén presentes:
 
 ```json5
 {
@@ -54,33 +55,33 @@ Añada `health.summary` a la matriz `gateway.nodes.commands.allow` existente en
 }
 ```
 
-`health.summary` se clasifica como altamente sensible en materia de privacidad y nunca está permitido por la
-configuración predeterminada de la plataforma iOS. Una entrada en `gateway.nodes.commands.deny` prevalece sobre la
-entrada de autorización. Consulte [Política de comandos de Node](/es/nodes#command-policy).
+`health.summary` está clasificado como altamente sensible para la privacidad y nunca está permitido de forma predeterminada por la
+plataforma iOS. Una entrada en `gateway.nodes.commands.deny` prevalece sobre la
+entrada de permiso. Consulte [Política de comandos de Node](/es/nodes#command-policy).
 
 ### 2. Habilitar el uso compartido en el dispositivo iOS
 
 En la aplicación para iOS:
 
 1. Abra **Settings -> Permissions** y busque **Apple Health Summaries** en la sección
-   siempre visible **Apple Health**.
-2. Toque **Enable Apple Health Summaries**.
+   **Apple Health**, siempre visible.
+2. Pulse **Enable Apple Health Summaries**.
 3. Lea la información y, a continuación, elija qué categorías de Salud puede leer OpenClaw
    en la hoja de permisos de Apple.
 
 El interruptor registra la elección explícita de compartir con OpenClaw. No implica
 que Apple haya concedido acceso a todas las categorías solicitadas.
 
-Al habilitar los resúmenes de Salud, se añade `health.summary` a la superficie de comandos
-declarada por el nodo. Apruebe la actualización resultante del emparejamiento del nodo:
+Al habilitar los resúmenes de Salud, se añade `health.summary` a la superficie de comandos declarada
+por el nodo. Apruebe la actualización de emparejamiento del nodo resultante:
 
 ```bash
 openclaw nodes pending
 openclaw nodes approve <requestId>
 ```
 
-A continuación, compruebe que el dispositivo iOS conectado exponga un comando
-`health.summary` efectivo:
+A continuación, compruebe que el dispositivo iOS conectado exponga un comando `health.summary`
+efectivo:
 
 ```bash
 openclaw nodes describe --node "<iOS device name>"
@@ -99,7 +100,7 @@ openclaw nodes invoke \
   --json
 ```
 
-Los agentes pueden invocar el mismo comando con la herramienta `nodes`:
+Los agentes pueden ejecutar el mismo comando con la herramienta `nodes`:
 
 ```json
 {
@@ -119,44 +120,44 @@ La carga útil del resumen contiene:
 | `endISO`                 | Hora de la solicitud, codificada como instante ISO       |
 | `timeZoneIdentifier`     | Identificador de zona horaria del dispositivo iOS               |
 | `stepCount`              | Pasos acumulados redondeados                      |
-| `sleepDurationMinutes`   | Tiempo de sueño deduplicado, limitado al día de hoy    |
+| `sleepDurationMinutes`   | Tiempo de sueño sin duplicados, limitado al día de hoy    |
 | `restingHeartRateBpm`    | Frecuencia cardíaca media en reposo                    |
 | `workoutCount`           | Entrenamientos que comenzaron hoy                   |
 | `workoutDurationMinutes` | Duración total de esos entrenamientos              |
 
 Los campos de métricas son opcionales y se omiten cuando HealthKit no devuelve ningún
 valor legible. Las fases del sueño y las fuentes superpuestas se combinan antes de
-calcular la duración, por lo que un mismo minuto no se contabiliza dos veces.
+calcular la duración, por lo que un mismo minuto no se cuenta dos veces.
 
 ## Comportamiento de privacidad
 
 - La agregación se realiza en el dispositivo iOS. Las muestras sin procesar no salen del dispositivo.
 - El agregado solicitado sale del dispositivo a través del Gateway. Cuando un agente
   lo solicita, el agregado llega al proveedor de IA configurado y puede permanecer
-  en el historial del chat. Una invocación directa mediante la CLI lo devuelve al operador de la CLI.
-- OpenClaw solicita únicamente acceso de lectura. No puede añadir ni modificar datos de Salud.
+  en el historial del chat. Una invocación directa desde la CLI lo devuelve al operador de la CLI.
+- OpenClaw solo solicita acceso de lectura. No puede añadir ni modificar datos de Salud.
 - OpenClaw solo lee HealthKit cuando se invoca `health.summary`. No hay
   ingesta de datos de salud en segundo plano.
-- HealthKit no revela deliberadamente si se denegó el acceso de lectura. La ausencia
-  de una métrica puede significar que se denegó el acceso, que no hay muestras coincidentes o que el
-  tipo de datos no está disponible. OpenClaw no puede distinguir estos casos.
-- El resumen proporciona contexto personal sobre salud y actividad física, no un diagnóstico ni
+- HealthKit no revela deliberadamente si se ha denegado el acceso de lectura. La
+  ausencia de una métrica puede indicar acceso denegado, que no hay muestras coincidentes o que el
+  tipo de datos no está disponible. OpenClaw no puede distinguir entre esos casos.
+- El resumen proporciona contexto personal de salud y actividad física, no un diagnóstico ni
   asesoramiento médico.
 
-Para dejar de compartir, vuelva a **Apple Health Summaries** y toque **Turn Off Summaries**.
-El dispositivo iOS eliminará la capacidad de Salud y el comando `health.summary` de la superficie
+Para dejar de compartir, vuelva a **Apple Health Summaries** y pulse **Turn Off Summaries**.
+El dispositivo iOS eliminará entonces la capacidad de Salud y el comando `health.summary` de la superficie
 del nodo. También puede eliminar `health.summary` de
-`gateway.nodes.commands.allow` para cerrar el control de acceso en el Gateway.
+`gateway.nodes.commands.allow` para cerrar el acceso desde el Gateway.
 
 ## Solución de problemas
 
-### El comando no está declarado por el nodo
+### El nodo no declara el comando
 
 Confirme que los resúmenes de Apple Health estén habilitados en la aplicación para iOS y que el dispositivo esté conectado.
-Ejecute `openclaw nodes pending`, apruebe cualquier actualización de capacidades y, después, vuelva a inspeccionar
+Ejecute `openclaw nodes pending` y apruebe cualquier actualización de capacidades; a continuación, vuelva a inspeccionar
 `openclaw nodes describe --node "<iOS device name>"`.
 
-### El comando requiere una habilitación explícita
+### El comando requiere una activación explícita
 
 Añada `health.summary` a `gateway.nodes.commands.allow`. Compruebe también que
 `gateway.nodes.commands.deny` no lo contenga; la lista de denegación prevalece.
@@ -166,18 +167,18 @@ Añada `health.summary` a `gateway.nodes.commands.allow`. Compruebe también que
 El interruptor de uso compartido de la aplicación está desactivado. Habilite **Apple Health Summaries** en
 **Settings -> Permissions -> Apple Health** en el dispositivo iOS.
 
-### El resumen se genera correctamente, pero faltan métricas
+### El resumen se obtiene correctamente, pero faltan métricas
 
-Abra la aplicación Salud de Apple y confirme que existan datos del día de hoy. Revise
+Abra la aplicación Salud de Apple y confirme que existan datos para hoy. Revise
 el acceso de OpenClaw en los ajustes de Salud de Apple, pero no interprete un resultado vacío
-como prueba de que se denegó el acceso: HealthKit oculta esa distinción deliberadamente.
+como prueba de que se denegó el acceso: HealthKit oculta intencionadamente esa distinción.
 
-### Se producen errores con intervalos anteriores
+### Los intervalos anteriores fallan
 
 El comando solo acepta `{"period":"today"}`. No se admiten resúmenes
 de varios días ni históricos.
 
-## Contenido relacionado
+## Temas relacionados
 
 - [Aplicación para iOS](/es/platforms/ios)
 - [Nodes](/es/nodes)

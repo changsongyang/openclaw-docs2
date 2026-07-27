@@ -1,10 +1,10 @@
 ---
 read_when:
-    - inworld Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - inworld Plugin'ini yüklüyor, yapılandırıyor veya denetliyorsunuz
 summary: Inworld gerçek zamanlı metinden konuşmaya dönüştürme (MP3, OGG_OPUS, PCM telefon sesi).
 title: Inworld Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:30:35Z"
+    generated_at: "2026-07-26T22:55:14Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

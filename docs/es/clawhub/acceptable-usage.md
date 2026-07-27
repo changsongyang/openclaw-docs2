@@ -1,13 +1,13 @@
 ---
 read_when:
     - Revisión de cargas para detectar abusos o infracciones de las políticas
-    - Redacción de documentación de moderación o manuales operativos para revisores
-    - Decidir si una skill debe ocultarse o si se debe vetar a un usuario
+    - Redacción de documentación de moderación o guías operativas para revisores
+    - Decidir si una skill debe ocultarse o si se debe bloquear a un usuario
 sidebarTitle: Acceptable Usage
 summary: 'Política del marketplace: qué permite ClawHub y qué no alojará.'
 title: Uso aceptable
 x-i18n:
-    generated_at: "2026-07-19T01:48:25Z"
+    generated_at: "2026-07-26T04:31:41Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -20,30 +20,30 @@ x-i18n:
 # Uso aceptable
 
 ClawHub aloja Skills, plugins, paquetes y metadatos del mercado para OpenClaw.
-Esta página permite determinar si el contenido o el comportamiento de publicación corresponde a
+Utilice esta página para decidir si el contenido o el comportamiento de publicación corresponde a
 ClawHub.
 
-Estas reglas se aplican a lo que hace una publicación, a lo que pide ejecutar a los usuarios, a cómo
-se presenta y a cómo los publicadores utilizan las funciones de descubrimiento, instalación y
-confianza de ClawHub. Para consultar los estados de moderación y la situación de las cuentas, véase
+Estas reglas se aplican a lo que hace una publicación, lo que pide ejecutar a los usuarios, cómo se
+presenta y cómo utilizan los editores las funciones de descubrimiento, instalación y
+confianza de ClawHub. Para conocer los estados de moderación y la situación de las cuentas, consulte
 [Moderación y seguridad de las cuentas](/es/clawhub/moderation). Para reclamaciones de derechos de autor u otros derechos,
-véase [Solicitudes sobre derechos de contenido](/es/clawhub/content-rights).
+consulte [Solicitudes de derechos sobre el contenido](/es/clawhub/content-rights).
 
 ## Contenido permitido
 
-ClawHub admite contenido que sea útil, comprensible y publicado de
+ClawHub acepta contenido útil, comprensible y publicado de
 buena fe.
 
 | Categoría                                         | Permitido cuando                                                                                                                      |
 | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
 | Productividad de los desarrolladores                           | La publicación ayuda a los usuarios a crear, probar, migrar, depurar, documentar u operar software.                                               |
-| Flujos de trabajo de interfaz de usuario, datos y automatización               | El alcance está claro, las credenciales necesarias se indican explícitamente y las acciones arriesgadas incluyen mecanismos de revisión, simulación, vista previa o confirmación. |
+| Flujos de trabajo de interfaz de usuario, datos y automatización               | El alcance es claro, las credenciales necesarias son explícitas y las acciones de riesgo incluyen procesos de revisión, simulación, vista previa o confirmación. |
 | Seguridad defensiva, moderación y revisión de abusos | La herramienta se presenta para revisiones autorizadas, conserva las pruebas y mantiene claros los límites de aprobación humana.                          |
-| Flujos de trabajo personales o de equipos                       | El flujo de trabajo utiliza cuentas basadas en el consentimiento, una configuración transparente y permisos explícitos.                                            |
+| Flujos de trabajo personales o de equipo                       | El flujo de trabajo utiliza cuentas basadas en el consentimiento, una configuración transparente y permisos explícitos.                                            |
 | Catálogos mantenidos                              | Cada publicación es distinta, útil, está descrita con precisión y recibe un mantenimiento razonable.                                                |
 
 El contexto importa. Un mismo tema puede ser aceptable en un entorno defensivo limitado o
-basado en el consentimiento e inaceptable cuando se presenta como un flujo de trabajo abusivo.
+basado en el consentimiento e inaceptable cuando se presenta como un flujo de trabajo para cometer abusos.
 
 ## Contenido no permitido
 
@@ -52,67 +52,67 @@ insegura o la vulneración de derechos.
 
 | Categoría                                                    | No permitido                                                                                                                                                                                                                                                                                                   |
 | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Acceso no autorizado o elusión de la seguridad                      | Elusión de la autenticación, toma de control de cuentas, abuso de límites de frecuencia, toma de control de llamadas en curso o agentes, robo de sesiones reutilizables o aprobación automática de flujos de emparejamiento para usuarios no autorizados.                                                                                                                                                   |
-| Abuso de plataformas y evasión de bloqueos                              | Cuentas encubiertas tras bloqueos, preparación o cultivo de cuentas, interacción falsa, automatización de varias cuentas, publicaciones masivas, bots de spam o automatización diseñada para evitar la detección.                                                                                                                                          |
-| Fraude, estafas y flujos de trabajo financieros engañosos             | Certificados o facturas falsos, flujos de pago engañosos, captación para estafas, pruebas sociales falsas, flujos de trabajo con identidades sintéticas destinados al fraude o herramientas para gastar o efectuar cargos sin una aprobación humana clara.                                                                                                                    |
-| Enriquecimiento invasivo de la privacidad o vigilancia                 | Recopilación de contactos para spam, divulgación de datos personales, acoso, extracción de clientes potenciales combinada con contactos no solicitados, supervisión encubierta, cotejo biométrico sin consentimiento o uso de datos filtrados o volcados de brechas de seguridad.                                                                                                                  |
-| Suplantación o manipulación de identidades sin consentimiento       | Intercambio de rostros, gemelos digitales, influencers clonados, identidades falsas u otras herramientas utilizadas para suplantar o engañar.                                                                                                                                                                                                 |
-| Contenido sexual explícito o generación de contenido para adultos con las medidas de seguridad desactivadas | Generación de imágenes, vídeos o contenido NSFW; envoltorios de contenido para adultos sobre API de terceros; o publicaciones cuyo propósito principal sea el contenido sexual explícito.                                                                                                                                                       |
-| Requisitos de ejecución ocultos, inseguros o engañosos        | Comandos de instalación ofuscados, instaladores que canalizan contenido al intérprete de comandos, como contenido descargado que se ejecuta con `sh` o `bash` sin que pueda revisarse claramente, requisitos no declarados de secretos o claves privadas, ejecución remota de `npx @latest` sin que pueda revisarse claramente o metadatos que ocultan lo que la publicación necesita realmente para ejecutarse. |
-| Material que infringe derechos de autor u otros derechos           | Volver a publicar Skills, plugins, documentación, recursos de marca o código propietario de otra persona sin permiso; infringir los términos de la licencia; o suplantar al autor o publicador original.                                                                                                                            |
+| Acceso no autorizado o elusión de la seguridad                      | Elusión de la autenticación, apropiación de cuentas, abuso de límites de frecuencia, apropiación de llamadas en vivo o agentes, robo de sesiones reutilizables o aprobación automática de procesos de vinculación para usuarios no autorizados.                                                                                                                                                   |
+| Abuso de plataformas y evasión de prohibiciones                              | Cuentas encubiertas después de una prohibición, preparación o explotación masiva de cuentas, interacción falsa, automatización de múltiples cuentas, publicación masiva, bots de spam o automatización creada para evitar la detección.                                                                                                                                          |
+| Fraude, estafas y flujos de trabajo financieros engañosos             | Certificados o facturas falsos, flujos de pago engañosos, contacto para estafas, pruebas sociales falsas, flujos de trabajo con identidades sintéticas para cometer fraudes o herramientas para gastar o efectuar cargos sin una aprobación humana clara.                                                                                                                    |
+| Enriquecimiento invasivo de la privacidad o vigilancia                 | Extracción de contactos para enviar spam, divulgación de datos personales, acoso, extracción de clientes potenciales combinada con contacto no solicitado, supervisión encubierta, comparación biométrica sin consentimiento o uso de datos filtrados o volcados de brechas de seguridad.                                                                                                                  |
+| Suplantación o manipulación de identidad sin consentimiento       | Intercambio de rostros, gemelos digitales, influentes clonados, identidades falsas u otras herramientas utilizadas para suplantar o engañar.                                                                                                                                                                                                 |
+| Contenido sexual explícito o generación para adultos con la seguridad desactivada | Generación de imágenes, vídeos o contenido NSFW; envoltorios de contenido para adultos en torno a API de terceros; o publicaciones cuyo propósito principal sea el contenido sexual explícito.                                                                                                                                                       |
+| Requisitos de ejecución ocultos, inseguros o engañosos        | Comandos de instalación ofuscados, instaladores que canalizan contenido al intérprete de comandos, como contenido descargado ejecutado con `sh` o `bash` sin que pueda revisarse claramente, requisitos no declarados de secretos o claves privadas, ejecución remota de `npx @latest` sin que pueda revisarse claramente o metadatos que ocultan lo que la publicación necesita realmente para ejecutarse. |
+| Material que infringe derechos de autor u otros derechos           | Republicar Skills, plugins, documentación, recursos de marca o código propietario de otra persona sin permiso; infringir los términos de una licencia; o suplantar al autor o editor original.                                                                                                                            |
 
 ## Comportamiento no permitido en el mercado
 
-ClawHub también revisa cómo utilizan el mercado los publicadores. No se debe utilizar ClawHub para
-manipular el descubrimiento, las métricas, los indicadores de confianza, los sistemas de moderación ni la
+ClawHub también revisa cómo utilizan los editores el mercado. No utilice ClawHub para
+manipular el descubrimiento, las métricas, las señales de confianza, los sistemas de moderación ni la
 atención de los usuarios.
 
 El comportamiento no permitido en el mercado incluye:
 
-- publicar en masa grandes cantidades de publicaciones de poco esfuerzo, duplicadas, provisionales o
-  generadas automáticamente que no parezcan tener un valor real para los usuarios
+- publicar de forma masiva grandes cantidades de publicaciones de poco esfuerzo, duplicadas, provisionales o
+  generadas automáticamente que no parezcan aportar valor real a los usuarios
 - saturar las superficies de búsqueda o categorías con Skills o plugins casi idénticos
 - publicar cientos de publicaciones con poco o ningún uso, mantenimiento, claridad sobre el código fuente
   o diferenciación significativa
-- inflar artificialmente las instalaciones, descargas, estrellas u otras métricas de
+- aumentar artificialmente las instalaciones, descargas, estrellas u otras métricas de
   interacción mediante automatización, ciclos de autoinstalación, cuentas falsas, actividad
   coordinada, interacción pagada u otros comportamientos no orgánicos
-- crear o rotar cuentas para evadir la moderación, los bloqueos, los límites de los publicadores o la
+- crear o rotar cuentas para eludir la moderación, las prohibiciones, los límites para editores o la
   revisión del mercado
 - engañar a los usuarios sobre la propiedad, el código fuente, las capacidades, la postura de seguridad,
-  los requisitos de instalación o la afiliación con otro proyecto o publicador
+  los requisitos de instalación o la afiliación con otro proyecto o editor
 - subir repetidamente contenido que ya se haya ocultado, eliminado o bloqueado
   sin corregir el problema subyacente
 
-La publicación de grandes volúmenes no constituye abuso automáticamente. Los catálogos grandes son aceptables
-cuando las publicaciones son significativamente distintas, están descritas con precisión, reciben mantenimiento
+La publicación de grandes volúmenes no constituye automáticamente un abuso. Los catálogos grandes son aceptables
+cuando las publicaciones presentan diferencias significativas, están descritas con precisión, reciben mantenimiento
 y las utilizan usuarios reales. Los catálogos grandes se convierten en un problema de confianza y seguridad cuando
-el volumen se combina con publicaciones superficiales, duplicadas, engañosas, sin mantenimiento o
+el volumen se combina con publicaciones de escaso contenido, duplicadas, engañosas, sin mantenimiento o
 promocionadas artificialmente.
 
 ## Derechos sobre el contenido
 
-Si se considera que un contenido de ClawHub infringe derechos de autor u otros derechos, debe utilizarse
-[Solicitudes sobre derechos de contenido](/es/clawhub/content-rights). No se deben utilizar los informes normales del mercado
+Si considera que algún contenido de ClawHub infringe sus derechos de autor u otros derechos, utilice
+[Solicitudes de derechos sobre el contenido](/es/clawhub/content-rights). No utilice los informes normales del mercado
 para reclamaciones de derechos de autor u otros derechos, salvo que la publicación también sea insegura,
 maliciosa o engañosa.
 
-## Revisión y medidas de cumplimiento
+## Revisión y aplicación de medidas
 
-ClawHub puede utilizar comprobaciones automatizadas, indicadores estadísticos de abuso, informes de usuarios y
-revisiones del personal para identificar contenido inseguro o comportamientos de publicación abusivos. Un indicador
-no demuestra el abuso por sí solo; ayuda a ClawHub a decidir qué necesita revisión.
+ClawHub puede utilizar comprobaciones automatizadas, señales estadísticas de abuso, informes de usuarios y
+revisiones del personal para identificar contenido inseguro o comportamientos de publicación abusivos. Una señal
+no demuestra por sí sola que exista abuso; ayuda a ClawHub a decidir qué debe revisarse.
 
 Podemos:
 
-- ocultar, retener, eliminar, realizar una eliminación lógica o, cuando el tipo de recurso lo permita,
-  eliminar definitivamente las publicaciones que infrinjan las reglas
+- ocultar, retener, retirar, eliminar de forma reversible o, cuando el tipo de recurso lo permita,
+  eliminar de forma permanente las publicaciones que infrinjan las reglas
 - bloquear las descargas o instalaciones de versiones inseguras
 - revocar tokens de API
-- realizar una eliminación lógica del contenido asociado
+- eliminar de forma reversible el contenido asociado
 - restringir el acceso a la publicación
-- bloquear a los infractores reincidentes o graves
+- prohibir el acceso a los infractores reincidentes o graves
 
-No se garantiza que se emita una advertencia antes de aplicar medidas en casos de abuso evidente. Véase
-[Moderación y seguridad de las cuentas](/es/clawhub/moderation) para obtener información sobre informes, retenciones de moderación,
-publicaciones ocultas, bloqueos y situación de las cuentas.
+No garantizamos que se emita una advertencia antes de aplicar medidas contra abusos evidentes. Consulte
+[Moderación y seguridad de las cuentas](/es/clawhub/moderation) para obtener información sobre informes, retenciones por moderación,
+publicaciones ocultas, prohibiciones y situación de las cuentas.

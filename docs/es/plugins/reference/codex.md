@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin codex
-summary: Arnés de app-server de Codex y catálogo de sesiones nativas.
+    - Estás instalando, configurando o auditando el plugin codex
+summary: Harness del servidor de aplicaciones de Codex y catálogo de sesiones nativas.
 title: Plugin de Codex
 x-i18n:
-    generated_at: "2026-07-16T11:51:39Z"
+    generated_at: "2026-07-26T04:45:16Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Plugin Codex
 
-Entorno de ejecución del servidor de aplicaciones Codex y catálogo de sesiones nativas.
+Arnés de app-server de Codex y catálogo de sesiones nativas.
 
 ## Distribución
 
 - Paquete: `@openclaw/codex`
-- Vía de instalación: npm; ClawHub
+- Ruta de instalación: npm; ClawHub
 
 ## Superficie
 

@@ -5,7 +5,7 @@ read_when:
 summary: OpenClaw को पूरी तरह अनइंस्टॉल करें (CLI, सेवा, स्थिति, कार्यक्षेत्र)
 title: अनइंस्टॉल करें
 x-i18n:
-    generated_at: "2026-07-16T15:41:56Z"
+    generated_at: "2026-07-27T18:06:12Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 दो तरीके:
 
 - **आसान तरीका**, यदि `openclaw` अभी भी इंस्टॉल है।
-- **मैन्युअल सेवा हटाना**, यदि CLI हट चुका है लेकिन सेवा अभी भी चल रही है।
+- **सेवा को मैन्युअल रूप से हटाना**, यदि CLI हट चुका है लेकिन सेवा अभी भी चल रही है।
 
 ## आसान तरीका (CLI अभी भी इंस्टॉल है)
 
@@ -28,7 +28,7 @@ x-i18n:
 openclaw uninstall
 ```
 
-स्टेट हटाने पर कॉन्फ़िगर की गई वर्कस्पेस डायरेक्टरियाँ सुरक्षित रहती हैं, जब तक कि आप `--workspace` भी नहीं चुनते।
+स्थिति हटाने पर कॉन्फ़िगर की गई वर्कस्पेस डायरेक्टरियाँ सुरक्षित रहती हैं, जब तक कि आप `--workspace` को भी नहीं चुनते।
 
 क्या हटाया जाएगा, इसका पूर्वावलोकन करें (सुरक्षित):
 
@@ -36,16 +36,16 @@ openclaw uninstall
 openclaw uninstall --dry-run --all
 ```
 
-गैर-इंटरैक्टिव (ऑटोमेशन / npx)। सावधानी से और स्कोप की पुष्टि करने के बाद ही उपयोग करें:
+गैर-इंटरैक्टिव (ऑटोमेशन / npx)। सावधानी से और दायरों की पुष्टि करने के बाद ही उपयोग करें:
 
 ```bash
 openclaw uninstall --all --yes --non-interactive
 npx -y openclaw uninstall --all --yes --non-interactive
 ```
 
-फ़्लैग: `--service`, `--state`, `--workspace`, `--app` अलग-अलग स्कोप चुनते हैं; `--all` चारों को चुनता है।
+फ़्लैग: `--service`, `--state`, `--workspace`, `--app` अलग-अलग दायरे चुनते हैं; `--all` सभी चारों को चुनता है।
 
-मैन्युअल चरण (समान परिणाम):
+मैन्युअल चरण (परिणाम समान है):
 
 1. Gateway सेवा रोकें:
 
@@ -59,14 +59,14 @@ openclaw gateway stop
 openclaw gateway uninstall
 ```
 
-3. स्टेट + कॉन्फ़िग हटाएँ:
+3. स्थिति + कॉन्फ़िगरेशन हटाएँ:
 
 ```bash
 rm -rf "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"
 ```
 
-यदि आपने `OPENCLAW_CONFIG_PATH` को स्टेट डायरेक्टरी से बाहर किसी कस्टम स्थान पर सेट किया है, तो उस फ़ाइल को भी हटाएँ।
-यदि आप स्टेट डायरेक्टरी के अंदर कोई वर्कस्पेस, जैसे `~/.openclaw/workspace`, रखना चाहते हैं, तो `rm -rf` चलाने से पहले उसे दूसरी जगह ले जाएँ या स्टेट की सामग्री चुनिंदा रूप से हटाएँ।
+यदि आपने `OPENCLAW_CONFIG_PATH` को स्थिति डायरेक्टरी के बाहर किसी कस्टम स्थान पर सेट किया है, तो उस फ़ाइल को भी हटाएँ।
+यदि आप स्थिति डायरेक्टरी के अंदर कोई वर्कस्पेस, जैसे `~/.openclaw/workspace`, रखना चाहते हैं, तो `rm -rf` चलाने से पहले उसे दूसरी जगह ले जाएँ या स्थिति की सामग्री को चुनिंदा रूप से हटाएँ।
 
 4. अपना वर्कस्पेस हटाएँ (वैकल्पिक, एजेंट फ़ाइलें हटाता है):
 
@@ -74,7 +74,7 @@ rm -rf "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"
 rm -rf ~/.openclaw/workspace
 ```
 
-5. CLI इंस्टॉलेशन हटाएँ (वही चुनें जिसका आपने उपयोग किया था):
+5. CLI इंस्टॉलेशन हटाएँ (जिसका उपयोग किया था, उसे चुनें):
 
 ```bash
 npm rm -g openclaw
@@ -90,12 +90,12 @@ rm -rf /Applications/OpenClaw.app
 
 टिप्पणियाँ:
 
-- यदि आपने प्रोफ़ाइल (`--profile` / `OPENCLAW_PROFILE`) का उपयोग किया था, तो प्रत्येक स्टेट डायरेक्टरी के लिए चरण 3 दोहराएँ (डिफ़ॉल्ट `~/.openclaw-<profile>` हैं)।
-- रिमोट मोड में स्टेट डायरेक्टरी **Gateway होस्ट** पर होती है, इसलिए वहाँ भी चरण 1-4 चलाएँ।
+- यदि आपने प्रोफ़ाइलों (`--profile` / `OPENCLAW_PROFILE`) का उपयोग किया था, तो प्रत्येक स्थिति डायरेक्टरी के लिए चरण 3 दोहराएँ (डिफ़ॉल्ट `~/.openclaw-<profile>` हैं)।
+- रिमोट मोड में, स्थिति डायरेक्टरी **Gateway होस्ट** पर होती है, इसलिए चरण 1-4 वहाँ भी चलाएँ।
 
-## मैन्युअल सेवा हटाना (CLI इंस्टॉल नहीं है)
+## सेवा को मैन्युअल रूप से हटाना (CLI इंस्टॉल नहीं है)
 
-यदि Gateway सेवा चलती रहती है, लेकिन `openclaw` उपलब्ध नहीं है, तो इसका उपयोग करें।
+यदि Gateway सेवा चलती रहती है लेकिन `openclaw` उपलब्ध नहीं है, तो इसका उपयोग करें।
 
 ### macOS (launchd)
 
@@ -110,7 +110,7 @@ rm -f ~/Library/LaunchAgents/ai.openclaw.gateway.plist
 
 ### Linux (systemd उपयोगकर्ता यूनिट)
 
-डिफ़ॉल्ट यूनिट नाम `openclaw-gateway.service` है (या `openclaw-gateway-<profile>.service`)। बहुत पुराने इंस्टॉलेशन से अपग्रेड की गई मशीनों पर नाम बदलने से पहले की `clawdbot-gateway.service` यूनिट अब भी मौजूद हो सकती है; `openclaw uninstall` / `openclaw gateway uninstall` इसका स्वतः पता लगाकर इसे हटा देता है।
+डिफ़ॉल्ट यूनिट नाम `openclaw-gateway.service` है (या `openclaw-gateway-<profile>.service`)। बहुत पुराने इंस्टॉलेशन से अपग्रेड की गई मशीनों पर नाम बदलने से पहले की `clawdbot-gateway.service` यूनिट अभी भी मौजूद हो सकती है; `openclaw uninstall` / `openclaw gateway uninstall` उसका स्वतः पता लगाकर उसे हटा देता है।
 
 ```bash
 systemctl --user disable --now openclaw-gateway.service
@@ -118,10 +118,10 @@ rm -f ~/.config/systemd/user/openclaw-gateway.service
 systemctl --user daemon-reload
 ```
 
-### Windows (शेड्यूल्ड टास्क)
+### Windows (Scheduled Task)
 
-डिफ़ॉल्ट टास्क नाम `OpenClaw Gateway` है (या `OpenClaw Gateway (<profile>)`)।
-यह टास्क आपकी स्टेट डायरेक्टरी के अंतर्गत बिना विंडो वाली `gateway.vbs` स्क्रिप्ट शुरू करता है, जो आगे
+डिफ़ॉल्ट कार्य का नाम `OpenClaw Gateway` है (या `OpenClaw Gateway (<profile>)`)।
+यह कार्य आपकी स्थिति डायरेक्टरी के अंतर्गत विंडो-रहित `gateway.vbs` स्क्रिप्ट लॉन्च करता है, जो आगे
 `gateway.cmd` चलाती है; दोनों को हटाएँ।
 
 ```powershell
@@ -130,25 +130,25 @@ Remove-Item -Force "$env:USERPROFILE\.openclaw\gateway.cmd" -ErrorAction Silentl
 Remove-Item -Force "$env:USERPROFILE\.openclaw\gateway.vbs" -ErrorAction SilentlyContinue
 ```
 
-यदि आपने प्रोफ़ाइल का उपयोग किया था, तो उससे मेल खाने वाला टास्क नाम और `~\.openclaw-<profile>` के अंतर्गत `gateway.cmd` /
+यदि आपने प्रोफ़ाइल का उपयोग किया था, तो उससे मेल खाने वाला कार्य नाम और `~\.openclaw-<profile>` के अंतर्गत `gateway.cmd` /
 `gateway.vbs` फ़ाइलें हटाएँ।
 
-## सामान्य इंस्टॉलेशन बनाम सोर्स चेकआउट
+## सामान्य इंस्टॉलेशन बनाम स्रोत चेकआउट
 
 ### सामान्य इंस्टॉलेशन (install.sh / npm / pnpm / bun)
 
-यदि आपने `https://openclaw.ai/install.sh` या `install.ps1` का उपयोग किया था, तो CLI को `npm install -g openclaw@latest` से इंस्टॉल किया गया था।
+यदि आपने `https://openclaw.ai/install.sh` या `install.ps1` का उपयोग किया था, तो CLI को `npm install -g openclaw@latest` के साथ इंस्टॉल किया गया था।
 इसे `npm rm -g openclaw` से हटाएँ (या यदि आपने उस तरीके से इंस्टॉल किया था, तो `pnpm remove -g` / `bun remove -g` से)।
 
-### सोर्स चेकआउट (git clone)
+### स्रोत चेकआउट (git clone)
 
-यदि आप किसी रिपॉज़िटरी चेकआउट से चलाते हैं (`git clone` + `openclaw ...` / `bun run openclaw ...`):
+यदि आप किसी रेपो चेकआउट (`git clone` + `openclaw ...` / `bun run openclaw ...`) से चलाते हैं:
 
-1. रिपॉज़िटरी हटाने से **पहले** Gateway सेवा अनइंस्टॉल करें (ऊपर दिए आसान तरीके या मैन्युअल सेवा हटाने का उपयोग करें)।
-2. रिपॉज़िटरी डायरेक्टरी हटाएँ।
-3. ऊपर दिखाए अनुसार स्टेट + वर्कस्पेस हटाएँ।
+1. रेपो हटाने से **पहले** Gateway सेवा अनइंस्टॉल करें (ऊपर दिए आसान तरीके या सेवा को मैन्युअल रूप से हटाने की प्रक्रिया का उपयोग करें)।
+2. रेपो डायरेक्टरी हटाएँ।
+3. ऊपर दिखाए अनुसार स्थिति + वर्कस्पेस हटाएँ।
 
 ## संबंधित
 
 - [इंस्टॉलेशन का अवलोकन](/hi/install)
-- [माइग्रेशन गाइड](/hi/install/migrating)
+- [माइग्रेशन मार्गदर्शिका](/hi/install/migrating)

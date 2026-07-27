@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin msteams
-summary: Plugin de canal de Microsoft Teams de OpenClaw para conversaciones con bots.
+summary: Plugin de canal de Microsoft Teams para conversaciones con bots de OpenClaw.
 title: Plugin de Microsoft Teams
 x-i18n:
-    generated_at: "2026-07-16T11:53:57Z"
+    generated_at: "2026-07-26T05:51:01Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Plugin de Microsoft Teams
 
-Plugin del canal de Microsoft Teams para conversaciones con bots de OpenClaw.
+Plugin del canal de Microsoft Teams de OpenClaw para conversaciones con bots.
 
 ## Distribución
 
 - Paquete: `@openclaw/msteams`
-- Vía de instalación: npm; ClawHub
+- Método de instalación: npm; ClawHub
 
 ## Superficie
 

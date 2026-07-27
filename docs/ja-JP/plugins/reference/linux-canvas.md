@@ -1,10 +1,10 @@
 ---
 read_when:
-    - linux-canvas Plugin のインストール、設定、または監査を行っています
-summary: OpenClaw Linuxデスクトップアプリ向けのCanvasレンダリングブリッジ。
+    - linux-canvas Pluginのインストール、設定、または監査を行っている場合
+summary: OpenClaw Linux デスクトップアプリ用の Canvas レンダリングブリッジ。
 title: Linux Canvas Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:04:47Z"
+    generated_at: "2026-07-26T10:12:28Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Linux Canvas Plugin
 
-OpenClaw Linux デスクトップアプリ向けの Canvas レンダリングブリッジ。
+OpenClaw Linux デスクトップアプリ用の Canvas レンダリングブリッジ。
 
 ## 配布
 

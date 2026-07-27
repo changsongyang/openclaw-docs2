@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप migrate-hermes Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: Hermes कॉन्फ़िगरेशन, स्मृतियों, स्किल्स और समर्थित क्रेडेंशियल्स को OpenClaw में आयात करता है।
+summary: Hermes कॉन्फ़िगरेशन, स्मृतियों, Skills और समर्थित क्रेडेंशियल्स को OpenClaw में आयात करता है।
 title: Hermes Plugin माइग्रेट करें
 x-i18n:
-    generated_at: "2026-07-16T16:31:41Z"
+    generated_at: "2026-07-27T18:47:48Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Hermes Plugin माइग्रेट करें
 
-Hermes कॉन्फ़िगरेशन, मेमोरी, Skills और समर्थित क्रेडेंशियल को OpenClaw में इम्पोर्ट करता है।
+Hermes कॉन्फ़िगरेशन, मेमोरी, Skills और समर्थित क्रेडेंशियल को OpenClaw में आयात करता है।
 
 ## वितरण
 
 - पैकेज: `@openclaw/migrate-hermes`
-- इंस्टॉल मार्ग: OpenClaw में शामिल
+- इंस्टॉल करने का तरीका: OpenClaw में शामिल
 
 ## सतह
 

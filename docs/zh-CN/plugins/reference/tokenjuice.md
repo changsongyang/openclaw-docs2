@@ -4,7 +4,7 @@ read_when:
 summary: 使用 Tokenjuice 归约器压缩 Exec 和 Bash 工具结果。
 title: Tokenjuice 插件
 x-i18n:
-    generated_at: "2026-07-16T11:52:09Z"
+    generated_at: "2026-07-26T06:54:28Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Tokenjuice 插件
 
-使用 tokenjuice 归约器压缩 exec 和 bash 工具结果。
+使用 tokenjuice reducer 压缩 exec 和 bash 工具结果。
 
 ## 分发
 
 - 软件包：`@openclaw/tokenjuice`
-- 安装渠道：npm；ClawHub：`clawhub:@openclaw/tokenjuice`
+- 安装途径：npm；ClawHub：`clawhub:@openclaw/tokenjuice`
 
 ## 接口
 

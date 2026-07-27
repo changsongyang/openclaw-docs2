@@ -1,10 +1,10 @@
 ---
 read_when:
-    - web-readability Plugin'ini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - web-readability pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: Yerel HTML web getirme yanıtlarından okunabilir makale içeriğini ayıklayın.
 title: Web Okunabilirliği Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:32:42Z"
+    generated_at: "2026-07-26T23:34:02Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Je installeert, configureert of controleert de document-extract-Plugin
+    - Je installeert, configureert of controleert de document-extract-plugin
 summary: Extraheer tekst en fallback-pagina-afbeeldingen uit lokale documentbijlagen.
 title: Plugin voor documentextractie
 x-i18n:
-    generated_at: "2026-07-16T16:18:10Z"
+    generated_at: "2026-07-27T05:26:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Extraheer tekst en reservepagina-afbeeldingen uit lokale documentbijlagen.
 ## Distributie
 
 - Pakket: `@openclaw/document-extract-plugin`
-- Installatieroute: inbegrepen in OpenClaw
+- Installatieroute: inbegrepen bij OpenClaw
 
 ## Oppervlak
 

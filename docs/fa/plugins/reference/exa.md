@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin ‏exa هستید
-summary: پشتیبانی از ارائه‌دهنده جست‌وجوی وب را اضافه می‌کند.
-title: Plugin ‏Exa
+    - شما در حال نصب، پیکربندی یا ممیزی Plugin ‏exa هستید
+summary: پشتیبانی از ارائه‌دهندهٔ جست‌وجوی وب را اضافه می‌کند.
+title: Plugin اکسـا
 x-i18n:
-    generated_at: "2026-07-16T17:00:50Z"
+    generated_at: "2026-07-27T16:50:29Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin Exa
+# Plugin ‏Exa
 
 پشتیبانی از ارائه‌دهندهٔ جست‌وجوی وب را اضافه می‌کند.
 

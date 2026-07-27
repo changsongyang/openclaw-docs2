@@ -4,7 +4,7 @@ read_when:
 summary: 用于 NIP-04 加密私信的 OpenClaw Nostr 渠道插件。
 title: Nostr 插件
 x-i18n:
-    generated_at: "2026-07-16T11:51:09Z"
+    generated_at: "2026-07-26T06:27:02Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## 分发
 
 - 软件包：`@openclaw/nostr`
-- 安装方式：npm；ClawHub
+- 安装途径：npm；ClawHub
 
 ## 功能界面
 

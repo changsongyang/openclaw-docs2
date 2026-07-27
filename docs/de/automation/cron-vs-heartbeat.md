@@ -1,8 +1,8 @@
 ---
 summary: Weiterleitung zu /automation
-title: Cron vs. Heartbeat
+title: Cron im Vergleich zu Heartbeat
 x-i18n:
-    generated_at: "2026-07-24T03:38:13Z"
+    generated_at: "2026-07-26T17:38:13Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -12,7 +12,7 @@ x-i18n:
     workflow: 16
 ---
 
-Diese Seite wurde verschoben. Die Entscheidungstabelle finden Sie unter [Geplante Aufgaben (Cron) vs. Heartbeat](/de/automation#scheduled-tasks-cron-vs-heartbeat).
+Diese Seite wurde verschoben. Die Entscheidungstabelle finden Sie unter [Geplante Aufgaben (Cron) im Vergleich zu Heartbeat](/de/automation#scheduled-tasks-cron-vs-heartbeat).
 
 ## Verwandte Themen
 

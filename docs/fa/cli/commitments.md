@@ -6,25 +6,23 @@ read_when:
 summary: مرجع CLI برای `openclaw commitments` (بررسی و رد پیگیری‌های استنباط‌شده)
 title: '`openclaw commitments`'
 x-i18n:
-    generated_at: "2026-07-16T15:43:38Z"
+    generated_at: "2026-07-27T14:58:32Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: db8a7d8f5756ccb18ed0990fcedf50d1072bb67e775c29eefdbd1a7dd795b7b0
+    source_hash: 4a7c573daad6a9bc6ce4532514c8cc22b3c510b4fc0cf9d1a79048413f08c1a2
     source_path: cli/commitments.md
     workflow: 16
 ---
 
-تعهدهای پیگیری استنباط‌شده را فهرست و مدیریت کنید.
+رکوردهای باقی‌مانده از آزمایش بازنشسته‌شدهٔ تعهدات استنباطی را بررسی و حذف کنید.
+OpenClaw دیگر تعهد جدیدی ایجاد یا تحویل نمی‌دهد، اما فرمان نگه‌داری را حفظ می‌کند
+تا ارتقاها بتوانند ردیف‌های موجود SQLite را ممیزی و پاک‌سازی کنند.
 
-تعهدها قابلیت‌هایی اختیاری (`commitments.enabled`) و حافظه‌های پیگیری کوتاه‌مدتی هستند
-که از بافت مکالمه ایجاد و از طریق Heartbeat ارائه می‌شوند. برای راهنمای مفهومی و پیکربندی، به
-[تعهدهای استنباط‌شده](/fa/concepts/commitments) مراجعه کنید.
+اگر هیچ زیرفرمانی داده نشود، `openclaw commitments` تعهدات در انتظار را فهرست می‌کند.
 
-بدون زیرفرمان، `openclaw commitments` تعهدهای در انتظار را فهرست می‌کند.
-
-## نحوه استفاده
+## استفاده
 
 ```bash
 openclaw commitments [--all] [--agent <id>] [--status <status>] [--json]
@@ -34,24 +32,23 @@ openclaw commitments dismiss <id...> [--json]
 
 ## گزینه‌ها
 
-- `--all`: به‌جای فقط تعهدهای در انتظار، همه وضعیت‌ها را نمایش می‌دهد.
-- `--agent <id>`: نتایج را به یک شناسه عامل محدود می‌کند.
+- `--all`: همهٔ وضعیت‌ها را به‌جای فقط تعهدات در انتظار نمایش می‌دهد.
+- `--agent <id>`: نتایج را به یک شناسهٔ عامل محدود می‌کند.
 - `--status <status>`: نتایج را بر اساس وضعیت فیلتر می‌کند. مقادیر: `pending`، `sent`،
   `dismissed`، `snoozed` یا `expired`. مقادیر ناشناخته با خطا خاتمه می‌یابند.
-- `--json`: خروجی JSON قابل‌خواندن توسط ماشین تولید می‌کند.
+- `--json`: خروجی JSON قابل‌خواندن برای ماشین تولید می‌کند.
 
-`dismiss` شناسه‌های تعهد داده‌شده را با وضعیت `dismissed` علامت‌گذاری می‌کند تا Heartbeat
-آن‌ها را ارائه نکند.
+`dismiss` شناسه‌های تعهد داده‌شده را با وضعیت `dismissed` علامت‌گذاری می‌کند.
 
 ## مثال‌ها
 
-فهرست‌کردن تعهدهای در انتظار:
+فهرست‌کردن تعهدات در انتظار:
 
 ```bash
 openclaw commitments
 ```
 
-فهرست‌کردن همه تعهدهای ذخیره‌شده:
+فهرست‌کردن همهٔ تعهدات ذخیره‌شده:
 
 ```bash
 openclaw commitments --all
@@ -63,19 +60,19 @@ openclaw commitments --all
 openclaw commitments --agent main
 ```
 
-یافتن تعهدهای به‌تعویق‌افتاده:
+یافتن تعهدات به‌تعویق‌افتاده:
 
 ```bash
 openclaw commitments --status snoozed
 ```
 
-ردکردن یک یا چند تعهد:
+حذف یک یا چند تعهد:
 
 ```bash
 openclaw commitments dismiss cm_abc123 cm_def456
 ```
 
-صدور به‌صورت JSON:
+برون‌بری به‌صورت JSON:
 
 ```bash
 openclaw commitments --all --json
@@ -83,10 +80,10 @@ openclaw commitments --all --json
 
 ## خروجی
 
-خروجی متنی تعداد تعهدها، مسیر پایگاه داده مشترک SQLite، فیلترهای فعال
-و برای هر تعهد یک ردیف را چاپ می‌کند:
+خروجی متنی تعداد تعهدات، مسیر پایگاه دادهٔ مشترک SQLite، همهٔ فیلترهای فعال
+و برای هر تعهد یک ردیف چاپ می‌کند:
 
-- شناسه تعهد
+- شناسهٔ تعهد
 - وضعیت
 - نوع (`event_check_in`، `deadline_check`، `care_check_in` یا `open_loop`)
 - زودترین زمان سررسید
@@ -94,11 +91,11 @@ openclaw commitments --all --json
 - متن پیشنهادی برای پیگیری
 
 خروجی JSON شامل تعداد، فیلترهای فعال وضعیت و عامل،
-مسیر پایگاه داده مشترک SQLite و رکوردهای ذخیره‌شده کامل است.
+مسیر پایگاه دادهٔ مشترک SQLite و رکوردهای کامل ذخیره‌شده است.
 
 ## مرتبط
 
-- [تعهدهای استنباط‌شده](/fa/concepts/commitments)
+- [تعهدات استنباطی](/fa/concepts/commitments)
 - [نمای کلی حافظه](/fa/concepts/memory)
 - [Heartbeat](/fa/gateway/heartbeat)
 - [وظایف زمان‌بندی‌شده](/fa/automation/cron-jobs)

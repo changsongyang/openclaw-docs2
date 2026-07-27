@@ -4,7 +4,7 @@ read_when:
 summary: 新增媒體理解供應商支援。
 title: Senseaudio 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:53:44Z"
+    generated_at: "2026-07-26T08:36:01Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 
 新增媒體理解供應商支援。
 
-## 發佈
+## 發行方式
 
 - 套件：`@openclaw/senseaudio-provider`
 - 安裝方式：隨附於 OpenClaw

@@ -4,7 +4,7 @@ read_when:
 summary: Voegt ondersteuning voor de Synthetic-modelprovider toe aan OpenClaw.
 title: Synthetic-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:20:45Z"
+    generated_at: "2026-07-27T06:04:04Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

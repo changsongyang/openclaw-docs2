@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de reef-plugin
-summary: Beveiligd, end-to-end versleuteld claw-kanaal.
-title: Reef-Plugin
+summary: Beveiligd end-to-end versleuteld claw-kanaal.
+title: Reef-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:17:04Z"
+    generated_at: "2026-07-27T05:27:20Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Reef-Plugin
+# Reef-plugin
 
 Beveiligd end-to-end versleuteld claw-kanaal.
 
 ## Distributie
 
 - Pakket: `@openclaw/reef`
-- Installatieroute: inbegrepen bij OpenClaw
+- Installatieroute: opgenomen in OpenClaw
 
 ## Oppervlak
 

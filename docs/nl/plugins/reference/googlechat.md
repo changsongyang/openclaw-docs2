@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de googlechat-plugin
 summary: OpenClaw Google Chat-kanaalplugin voor ruimtes en directe berichten.
-title: Google Chat-Plugin
+title: Google Chat-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:14:54Z"
+    generated_at: "2026-07-27T05:26:35Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Google Chat-plugin
+# Google Chat-Plugin
 
-OpenClaw Google Chat-kanaalplugin voor ruimtes en directe berichten.
+OpenClaw Google Chat-kanaalplugin voor ruimten en directe berichten.
 
 ## Distributie
 

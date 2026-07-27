@@ -5,7 +5,7 @@ read_when:
 summary: Cerebras सेटअप (प्रमाणीकरण + मॉडल चयन)
 title: Cerebras
 x-i18n:
-    generated_at: "2026-07-19T09:45:25Z"
+    generated_at: "2026-07-27T18:52:49Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,16 +17,16 @@ x-i18n:
 
 [Cerebras](https://www.cerebras.ai) कस्टम इन्फ़रेंस हार्डवेयर पर उच्च-गति वाला OpenAI-संगत इन्फ़रेंस प्रदान करता है। Plugin में दो मॉडलों का स्थिर कैटलॉग शामिल है (कोई लाइव खोज नहीं)।
 
-| प्रॉपर्टी        | मान                                                     |
-| --------------- | --------------------------------------------------------- |
-| प्रदाता आईडी     | `cerebras`                                                |
-| Plugin          | आधिकारिक बाहरी पैकेज (`@openclaw/cerebras-provider`) |
-| प्रमाणीकरण एनवायरनमेंट वेरिएबल    | `CEREBRAS_API_KEY`                                        |
-| ऑनबोर्डिंग फ़्लैग | `--auth-choice cerebras-api-key`                          |
-| प्रत्यक्ष CLI फ़्लैग | `--cerebras-api-key <key>`                                |
-| API             | OpenAI-संगत (`openai-completions`)                  |
-| बेस URL        | `https://api.cerebras.ai/v1`                              |
-| डिफ़ॉल्ट मॉडल   | `cerebras/zai-glm-4.7`                                    |
+| गुण              | मान                                                       |
+| ---------------- | --------------------------------------------------------- |
+| प्रदाता आईडी     | `cerebras`                                        |
+| Plugin           | आधिकारिक बाहरी पैकेज (`@openclaw/cerebras-provider`)                |
+| प्रमाणीकरण एनवायरनमेंट वेरिएबल | `CEREBRAS_API_KEY`                       |
+| ऑनबोर्डिंग फ़्लैग | `--auth-choice cerebras-api-key`                                       |
+| प्रत्यक्ष CLI फ़्लैग | `--cerebras-api-key <key>`                                     |
+| API              | OpenAI-संगत (`openai-completions`)                          |
+| बेस URL          | `https://api.cerebras.ai/v1`                                        |
+| डिफ़ॉल्ट मॉडल    | `cerebras/zai-glm-4.7`                                        |
 
 ## Plugin इंस्टॉल करें
 
@@ -35,7 +35,7 @@ openclaw plugins install @openclaw/cerebras-provider
 openclaw gateway restart
 ```
 
-## शुरू करना
+## आरंभ करना
 
 <Steps>
   <Step title="API कुंजी प्राप्त करें">
@@ -66,12 +66,12 @@ export CEREBRAS_API_KEY=csk-...
     openclaw models list --provider cerebras
     ```
 
-    दोनों स्थिर मॉडलों को सूचीबद्ध करता है। यदि `CEREBRAS_API_KEY` का समाधान नहीं होता, तो `openclaw models status --json` अनुपलब्ध क्रेडेंशियल की रिपोर्ट `auth.unusableProfiles` के अंतर्गत करता है।
+    दोनों स्थिर मॉडलों को सूचीबद्ध करता है। यदि `CEREBRAS_API_KEY` का समाधान नहीं हुआ है, तो `openclaw models status --json`, `auth.unusableProfiles` के अंतर्गत अनुपलब्ध क्रेडेंशियल की सूचना देता है।
 
   </Step>
 </Steps>
 
-## गैर-इंटरैक्टिव सेटअप
+## गैर-संवादात्मक सेटअप
 
 ```bash
 openclaw onboard --non-interactive \
@@ -82,12 +82,12 @@ openclaw onboard --non-interactive \
 
 ## अंतर्निहित कैटलॉग
 
-दोनों मॉडलों में 128k कॉन्टेक्स्ट विंडो और अधिकतम 8,192 आउटपुट टोकन हैं।
+दोनों मॉडलों में 128k की कॉन्टेक्स्ट विंडो और अधिकतम 8,192 आउटपुट टोकन समान हैं।
 
-| मॉडल संदर्भ               | नाम         | रीजनिंग | टिप्पणियाँ                                  |
-| ----------------------- | ------------ | --------- | -------------------------------------- |
-| `cerebras/zai-glm-4.7`  | Z.ai GLM 4.7 | हाँ       | डिफ़ॉल्ट मॉडल; पूर्वावलोकन रीजनिंग मॉडल |
-| `cerebras/gpt-oss-120b` | GPT OSS 120B | हाँ       | प्रोडक्शन रीजनिंग मॉडल             |
+| मॉडल संदर्भ             | नाम          | रीजनिंग | टिप्पणियाँ                             |
+| ----------------------- | ------------ | ------- | -------------------------------------- |
+| `cerebras/zai-glm-4.7`      | Z.ai GLM 4.7 | हाँ     | डिफ़ॉल्ट मॉडल; पूर्वावलोकन रीजनिंग मॉडल |
+| `cerebras/gpt-oss-120b`      | GPT OSS 120B | हाँ     | प्रोडक्शन रीजनिंग मॉडल                 |
 
 ## मैन्युअल कॉन्फ़िगरेशन
 
@@ -119,7 +119,7 @@ openclaw onboard --non-interactive \
 ```
 
 <Note>
-यदि Gateway डेमन (launchd, systemd, Docker) के रूप में चलता है, तो सुनिश्चित करें कि `CEREBRAS_API_KEY` उस प्रोसेस के लिए उपलब्ध है—उदाहरण के लिए `~/.openclaw/.env` में या `env.shellEnv` के माध्यम से। केवल इंटरैक्टिव शेल में एक्सपोर्ट की गई कुंजी प्रबंधित सेवा के लिए तब तक उपयोगी नहीं होगी, जब तक एनवायरनमेंट को अलग से इंपोर्ट न किया जाए।
+यदि Gateway डेमन (launchd, systemd, Docker) के रूप में चलता है, तो सुनिश्चित करें कि `CEREBRAS_API_KEY` उस प्रक्रिया के लिए उपलब्ध हो—उदाहरण के लिए `~/.openclaw/.env` में या `env.shellEnv` के माध्यम से। केवल इंटरैक्टिव शेल में एक्सपोर्ट की गई कुंजी किसी प्रबंधित सेवा के लिए तब तक उपयोगी नहीं होगी, जब तक एनवायरनमेंट को अलग से इम्पोर्ट न किया जाए।
 </Note>
 
 ## संबंधित
@@ -128,13 +128,13 @@ openclaw onboard --non-interactive \
   <Card title="मॉडल प्रदाता" href="/hi/concepts/model-providers" icon="layers">
     प्रदाताओं, मॉडल संदर्भों और फ़ेलओवर व्यवहार का चयन।
   </Card>
-  <Card title="विचार मोड" href="/hi/tools/thinking" icon="brain">
-    रीजनिंग में सक्षम दोनों Cerebras मॉडलों के लिए रीजनिंग प्रयास के स्तर।
+  <Card title="थिंकिंग मोड" href="/hi/tools/thinking" icon="brain">
+    रीजनिंग में सक्षम दो Cerebras मॉडलों के लिए रीजनिंग प्रयास के स्तर।
   </Card>
   <Card title="कॉन्फ़िगरेशन संदर्भ" href="/hi/gateway/config-agents#agent-defaults" icon="gear">
-    एजेंट डिफ़ॉल्ट और मॉडल कॉन्फ़िगरेशन।
+    एजेंट के डिफ़ॉल्ट मान और मॉडल कॉन्फ़िगरेशन।
   </Card>
   <Card title="मॉडल संबंधी अक्सर पूछे जाने वाले प्रश्न" href="/hi/help/faq-models" icon="circle-question">
-    प्रमाणीकरण प्रोफ़ाइल, मॉडल बदलना और "कोई प्रोफ़ाइल नहीं" त्रुटियों का समाधान।
+    प्रमाणीकरण प्रोफ़ाइल, मॉडल बदलना और "no profile" त्रुटियों का समाधान करना।
   </Card>
 </CardGroup>

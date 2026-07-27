@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin Synthetic.
+    - Está instalando, configurando o auditando el plugin Synthetic
 summary: Añade compatibilidad con el proveedor de modelos Synthetic a OpenClaw.
 title: Plugin Synthetic
 x-i18n:
-    generated_at: "2026-07-16T11:54:43Z"
+    generated_at: "2026-07-26T05:23:02Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin de Synthetic
+# Plugin Synthetic
 
 Añade compatibilidad con el proveedor de modelos Synthetic a OpenClaw.
 
 ## Distribución
 
 - Paquete: `@openclaw/synthetic-provider`
-- Ruta de instalación: incluida en OpenClaw
+- Ruta de instalación: incluido en OpenClaw
 
 ## Superficie
 

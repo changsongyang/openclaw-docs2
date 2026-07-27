@@ -4,7 +4,7 @@ read_when:
 summary: テキスト読み上げプロバイダーのサポートを追加します。
 title: Gradium Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:04:30Z"
+    generated_at: "2026-07-26T09:43:42Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Gradium Plugin
+# Gradium plugin
 
 テキスト読み上げプロバイダーのサポートを追加します。
 
 ## 配布
 
 - パッケージ: `@openclaw/gradium-speech`
-- インストール方法: npm、ClawHub: `clawhub:@openclaw/gradium-speech`
+- インストール方法: npm; ClawHub: `clawhub:@openclaw/gradium-speech`
 
 ## 提供機能
 

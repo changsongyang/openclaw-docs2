@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin opencode
-summary: Añade compatibilidad con el proveedor de modelos OpenCode a OpenClaw.
+summary: Añade compatibilidad con el proveedor de modelos OpenCode en OpenClaw.
 title: Plugin de OpenCode
 x-i18n:
-    generated_at: "2026-07-16T11:49:21Z"
+    generated_at: "2026-07-26T05:22:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -32,8 +32,8 @@ proveedores: `opencode`; contratos: `mediaUnderstandingProviders`
 ## Sesiones nativas
 
 OpenClaw detecta automáticamente la CLI `opencode` en el Gateway y en los nodos emparejados. Las sesiones
-almacenadas aparecen en el grupo **OpenCode** de la barra lateral de sesiones, con exploración
-de transcripciones de solo lectura mediante los comandos oficiales `opencode --pure db ... --format json`
+almacenadas aparecen entonces en el grupo **OpenCode** de la barra lateral de sesiones, con exploración de
+transcripciones de solo lectura mediante los comandos oficiales `opencode --pure db ... --format json`
 y `opencode --pure export`. El entorno restringido y el modo `--pure`
 impiden que la exploración del catálogo cargue plugins del proyecto o herede credenciales
 del Gateway no relacionadas.

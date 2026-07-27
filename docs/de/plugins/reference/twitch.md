@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder überprüfen das Twitch-Plugin.
+    - Sie installieren, konfigurieren oder prüfen das Twitch-Plugin.
 summary: OpenClaw-Twitch-Kanal-Plugin für Chat- und Moderationsabläufe.
 title: Twitch-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:01:48Z"
+    generated_at: "2026-07-26T18:00:12Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

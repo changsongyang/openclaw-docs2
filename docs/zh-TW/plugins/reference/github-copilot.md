@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 github-copilot 外掛
-summary: 新增 GitHub Copilot 模型提供者對 OpenClaw 的支援。
+summary: 新增 OpenClaw 對 GitHub Copilot 模型供應商的支援。
 title: GitHub Copilot 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:52:05Z"
+    generated_at: "2026-07-26T08:35:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -29,4 +29,4 @@ x-i18n:
 
 ## 相關文件
 
-- [GitHub Copilot](/zh-TW/providers/github-copilot)
+- [github-copilot](/zh-TW/providers/github-copilot)

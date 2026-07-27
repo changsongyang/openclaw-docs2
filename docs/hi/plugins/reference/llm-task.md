@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप llm-task Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: वर्कफ़्लो से कॉल किए जा सकने वाले संरचित कार्यों के लिए सामान्य केवल-JSON LLM टूल।
-title: LLM कार्य Plugin
+summary: वर्कफ़्लो से कॉल किए जा सकने वाले संरचित कार्यों के लिए सामान्य, केवल-JSON LLM टूल।
+title: LLM टास्क Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:17:51Z"
+    generated_at: "2026-07-27T18:47:34Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## वितरण
 
 - पैकेज: `@openclaw/llm-task`
-- इंस्टॉल मार्ग: OpenClaw में शामिल
+- इंस्टॉलेशन माध्यम: OpenClaw में शामिल
 
 ## सतह
 

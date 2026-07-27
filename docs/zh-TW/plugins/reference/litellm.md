@@ -4,7 +4,7 @@ read_when:
 summary: 新增 OpenClaw 對 LiteLLM 模型供應商的支援。
 title: LiteLLM 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:52:25Z"
+    generated_at: "2026-07-26T07:28:32Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,10 +18,10 @@ x-i18n:
 
 為 OpenClaw 新增 LiteLLM 模型提供者支援。
 
-## 發行方式
+## 發行
 
 - 套件：`@openclaw/litellm-provider`
-- 安裝方式：隨 OpenClaw 提供
+- 安裝方式：已包含於 OpenClaw
 
 ## 介面
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## 相關文件
 
-- [LiteLLM](/zh-TW/providers/litellm)
+- [litellm](/zh-TW/providers/litellm)

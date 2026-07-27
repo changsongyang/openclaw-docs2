@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das volcengine-Plugin.
+    - Sie installieren, konfigurieren oder überprüfen das volcengine-Plugin.
 summary: Fügt OpenClaw Unterstützung für die Modell-Provider Volcengine und Volcengine Plan hinzu.
 title: Volcengine-Plugin
 x-i18n:
-    generated_at: "2026-07-24T05:16:28Z"
+    generated_at: "2026-07-26T19:10:09Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

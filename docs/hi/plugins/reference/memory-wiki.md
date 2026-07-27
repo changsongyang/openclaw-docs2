@@ -1,10 +1,10 @@
 ---
 read_when:
-    - आप memory-wiki Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: OpenClaw के लिए स्थायी विकी कंपाइलर और Obsidian-अनुकूल ज्ञान वॉल्ट।
+    - आप memory-wiki plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
+summary: OpenClaw के लिए स्थायी विकि कंपाइलर और Obsidian-अनुकूल ज्ञान वॉल्ट।
 title: मेमोरी विकी Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:35:47Z"
+    generated_at: "2026-07-27T20:14:55Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ OpenClaw के लिए स्थायी विकी कंपाइलर 
 - पैकेज: `@openclaw/memory-wiki`
 - इंस्टॉल मार्ग: OpenClaw में शामिल
 
-## सतह
+## सरफ़ेस
 
 अनुबंध: `tools`; Skills
 

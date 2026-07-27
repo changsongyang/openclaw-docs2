@@ -2,10 +2,10 @@
 read_when:
     - Sie pflegen ältere Skripte mit `openclaw clawbot ...`
     - Sie benötigen eine Migrationsanleitung für die aktuellen Befehle
-summary: CLI-Referenz für `openclaw clawbot` (Legacy-Alias-Namensraum)
+summary: CLI-Referenz für `openclaw clawbot` (Legacy-Alias-Namespace)
 title: Clawbot
 x-i18n:
-    generated_at: "2026-07-24T03:43:15Z"
+    generated_at: "2026-07-26T17:42:29Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,7 +17,7 @@ x-i18n:
 
 # `openclaw clawbot`
 
-Legacy-Alias-Namespace, der aus Gründen der Abwärtskompatibilität beibehalten wird. Er registriert denselben QR-Befehl wie die übergeordnete CLI, sodass `openclaw clawbot qr` jedes [`openclaw qr`](/de/cli/qr)-Flag akzeptiert.
+Legacy-Alias-Namensraum, der für die Abwärtskompatibilität beibehalten wird. Er registriert denselben QR-Befehl wie die übergeordnete CLI, sodass `openclaw clawbot qr` jedes [`openclaw qr`](/de/cli/qr)-Flag akzeptiert.
 
 ## Migration
 

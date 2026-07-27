@@ -4,7 +4,7 @@ read_when:
 summary: Voegt ondersteuning toe voor providers voor mediabegrip. Voegt ondersteuning toe voor providers voor realtime transcriptie. Voegt ondersteuning toe voor providers voor tekst-naar-spraak.
 title: Elevenlabs-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:14:17Z"
+    generated_at: "2026-07-27T05:59:13Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

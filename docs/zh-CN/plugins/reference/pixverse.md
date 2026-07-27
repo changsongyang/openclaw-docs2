@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw PixVerse 视频生成提供商插件。
 title: PixVerse 插件
 x-i18n:
-    generated_at: "2026-07-16T11:46:55Z"
+    generated_at: "2026-07-26T06:18:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ OpenClaw PixVerse 视频生成提供商插件。
 ## 分发
 
 - 软件包：`@openclaw/pixverse-provider`
-- 安装方式：npm；ClawHub：`clawhub:@openclaw/pixverse-provider`
+- 安装途径：npm；ClawHub：`clawhub:@openclaw/pixverse-provider`
 
 ## 接口
 

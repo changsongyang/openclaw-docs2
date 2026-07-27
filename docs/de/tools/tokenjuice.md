@@ -3,10 +3,10 @@ read_when:
     - Sie möchten kürzere `exec`- oder `bash`-Tool-Ergebnisse in OpenClaw
     - Sie möchten das Tokenjuice-Plugin installieren oder aktivieren
     - Sie müssen verstehen, was Tokenjuice verändert und was es unverarbeitet belässt.
-summary: Unübersichtliche Ergebnisse der exec- und bash-Tools mit dem optionalen Tokenjuice-Plugin kompakt darstellen
+summary: Verdichten Sie umfangreiche Ausgaben der exec- und bash-Tools mit dem optionalen Tokenjuice-Plugin.
 title: Tokenjuice
 x-i18n:
-    generated_at: "2026-07-24T04:14:49Z"
+    generated_at: "2026-07-26T18:15:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,11 +16,11 @@ x-i18n:
     workflow: 16
 ---
 
-`tokenjuice` ist ein optionales externes Plugin, das umfangreiche Ergebnisse von `exec` und `bash`
+`tokenjuice` ist ein optionales externes Plugin, das umfangreiche Tool-Ergebnisse von `exec` und `bash`
 komprimiert, nachdem der Befehl bereits ausgeführt wurde.
 
-Es verändert die zurückgegebenen `tool_result`, nicht den Befehl selbst. Tokenjuice
-schreibt weder Shell-Eingaben um noch führt es Befehle erneut aus oder ändert Exit-Codes.
+Es ändert die zurückgegebenen `tool_result`, nicht den Befehl selbst. Tokenjuice
+schreibt Shell-Eingaben nicht um, führt Befehle nicht erneut aus und ändert keine Exit-Codes.
 
 Derzeit gilt dies für eingebettete OpenClaw-Ausführungen und dynamische OpenClaw-Tools im Codex-
 App-Server-Harness. Tokenjuice bindet sich in die Tool-Ergebnis-Middleware von OpenClaw ein und
@@ -46,7 +46,7 @@ Gleichwertig:
 openclaw plugins enable tokenjuice
 ```
 
-Wenn Sie die Konfiguration lieber direkt bearbeiten:
+Falls Sie die Konfiguration lieber direkt bearbeiten:
 
 ```json5
 {
@@ -71,8 +71,8 @@ Wenn Sie die Konfiguration lieber direkt bearbeiten:
 
 1. Aktivieren Sie das Plugin.
 2. Starten Sie eine Sitzung, die `exec` aufrufen kann.
-3. Führen Sie einen ausgabereichen Befehl wie `git status` aus.
-4. Prüfen Sie, ob das zurückgegebene Tool-Ergebnis kürzer und strukturierter als die rohe Shell-Ausgabe ist.
+3. Führen Sie einen umfangreiche Ausgaben erzeugenden Befehl wie `git status` aus.
+4. Prüfen Sie, ob das zurückgegebene Tool-Ergebnis kürzer und strukturierter als die ungekürzte Shell-Ausgabe ist.
 
 ## Plugin deaktivieren
 
@@ -89,5 +89,5 @@ openclaw plugins disable tokenjuice
 ## Verwandte Themen
 
 - [Exec-Tool](/de/tools/exec)
-- [Denkstufen](/de/tools/thinking)
+- [Thinking-Stufen](/de/tools/thinking)
 - [Kontext-Engine](/de/concepts/context-engine)

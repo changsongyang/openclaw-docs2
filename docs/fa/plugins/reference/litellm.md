@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin ‏litellm هستید
+    - شما در حال نصب، پیکربندی یا ممیزی Plugin مربوط به litellm هستید
 summary: پشتیبانی از ارائه‌دهنده مدل LiteLLM را به OpenClaw اضافه می‌کند.
 title: Plugin ‏LiteLLM
 x-i18n:
-    generated_at: "2026-07-16T17:28:00Z"
+    generated_at: "2026-07-27T14:24:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin LiteLLM
+# Plugin ‏LiteLLM
 
 پشتیبانی از ارائه‌دهنده مدل LiteLLM را به OpenClaw اضافه می‌کند.
 
 ## توزیع
 
 - بسته: `@openclaw/litellm-provider`
-- مسیر نصب: در OpenClaw گنجانده شده است
+- مسیر نصب: همراه OpenClaw ارائه می‌شود
 
 ## سطح
 

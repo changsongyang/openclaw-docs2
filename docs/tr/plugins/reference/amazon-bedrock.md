@@ -1,10 +1,10 @@
 ---
 read_when:
-    - amazon-bedrock pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
-summary: Model keşfi, gömmeler ve koruma mekanizması desteği sunan OpenClaw Amazon Bedrock sağlayıcı plugini.
+    - amazon-bedrock pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+summary: Model keşfi, gömmeler ve güvenlik bariyeri desteği sunan OpenClaw Amazon Bedrock sağlayıcı Plugin'i.
 title: Amazon Bedrock Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:23:29Z"
+    generated_at: "2026-07-27T00:10:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Amazon Bedrock plugin'i
 
-Model keşfi, gömmeler ve koruma bariyeri desteği sunan OpenClaw Amazon Bedrock sağlayıcı plugin'i.
+Model keşfi, gömmeler ve koruma mekanizması desteği sunan OpenClaw Amazon Bedrock sağlayıcı plugin'i.
 
 ## Dağıtım
 

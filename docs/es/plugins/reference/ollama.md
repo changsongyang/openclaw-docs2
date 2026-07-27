@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin de ollama
-summary: Añade compatibilidad con los proveedores de modelos Ollama y Ollama Cloud en OpenClaw.
+summary: Añade compatibilidad con Ollama y con el proveedor de modelos Ollama Cloud en OpenClaw.
 title: Plugin de Ollama
 x-i18n:
-    generated_at: "2026-07-16T11:54:07Z"
+    generated_at: "2026-07-26T05:51:04Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin de Ollama
 
-Añade compatibilidad con Ollama y con el proveedor de modelos Ollama Cloud a OpenClaw.
+Añade compatibilidad con los proveedores de modelos Ollama y Ollama Cloud a OpenClaw.
 
 ## Distribución
 

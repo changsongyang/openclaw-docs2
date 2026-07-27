@@ -4,7 +4,7 @@ read_when:
 summary: 由 Crabbox 命令列介面支援的雲端工作節點提供者。
 title: Crabbox 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:47:52Z"
+    generated_at: "2026-07-26T08:42:41Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Crabbox 外掛
 
-由 Crabbox 命令列介面支援的雲端工作節點提供者。
+由 Crabbox 命令列介面支援的雲端工作執行環境提供者。
 
 ## 發佈
 
@@ -31,6 +31,6 @@ x-i18n:
 
 ## 設定
 
-如需設定檔結構描述與生命週期注意事項，請參閱[雲端工作節點環境](/zh-TW/gateway/configuration-reference#crabbox-profile)。
+如需設定檔結構描述與生命週期注意事項，請參閱[雲端工作執行環境](/zh-TW/gateway/configuration-reference#crabbox-profile)。
 
 <!-- openclaw-plugin-reference:manual-end -->

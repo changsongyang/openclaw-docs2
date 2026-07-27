@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Sie benötigen einen persistenten Speicher, der sitzungs- und kanalübergreifend funktioniert
-    - Sie möchten KI-gestütztes Erinnerungsvermögen und Nutzermodellierung
-summary: KI-nativer sitzungsübergreifender Speicher über das Honcho-Plugin
+    - Sie möchten einen persistenten Speicher, der sitzungs- und kanalübergreifend funktioniert
+    - Sie möchten KI-gestütztes Erinnern und Benutzermodellierung
+summary: KI-natives sitzungsübergreifendes Gedächtnis über das Honcho-Plugin
 title: Honcho-Speicher
 x-i18n:
-    generated_at: "2026-07-24T03:46:35Z"
+    generated_at: "2026-07-26T17:45:16Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,20 +15,20 @@ x-i18n:
     workflow: 16
 ---
 
-[Honcho](https://honcho.dev) erweitert OpenClaw über ein externes Plugin um KI-nativen Speicher. Es speichert Unterhaltungen dauerhaft in einem dedizierten Dienst und erstellt im Laufe der Zeit Benutzer- und Agentenmodelle. Dadurch erhält Ihr Agent sitzungsübergreifenden Kontext, der über Markdown-Dateien im Arbeitsbereich hinausgeht.
+[Honcho](https://honcho.dev) erweitert OpenClaw über ein externes Plugin um KI-native Speicherfunktionen. Es speichert Unterhaltungen dauerhaft in einem dedizierten Dienst und erstellt im Laufe der Zeit Benutzer- und Agentenmodelle. Dadurch erhält Ihr Agent sitzungsübergreifenden Kontext, der über Markdown-Dateien im Arbeitsbereich hinausgeht.
 
-## Funktionsumfang
+## Bereitgestellte Funktionen
 
-- **Sitzungsübergreifender Speicher** – Unterhaltungen bleiben nach jedem Durchlauf erhalten, sodass der Kontext Sitzungszurücksetzungen, Compaction und Kanalwechsel überdauert.
+- **Sitzungsübergreifender Speicher** – Unterhaltungen bleiben nach jedem Gesprächsschritt erhalten, sodass der Kontext über Sitzungszurücksetzungen, Compaction und Kanalwechsel hinweg bestehen bleibt.
 - **Benutzermodellierung** – Honcho verwaltet ein Profil für jeden Benutzer (Präferenzen, Fakten, Kommunikationsstil) und für den Agenten (Persönlichkeit, erlernte Verhaltensweisen).
-- **Semantische Suche** – Suche in Erkenntnissen aus früheren Unterhaltungen, nicht nur in der aktuellen Sitzung.
-- **Multi-Agenten-Bewusstsein** – Übergeordnete Agenten verfolgen automatisch erzeugte Unteragenten und werden in untergeordneten Sitzungen als Beobachter hinzugefügt.
+- **Semantische Suche** – durchsucht Erkenntnisse aus früheren Unterhaltungen, nicht nur die aktuelle Sitzung.
+- **Multi-Agenten-Bewusstsein** – übergeordnete Agenten verfolgen automatisch erzeugte Unteragenten und werden in untergeordneten Sitzungen als Beobachter hinzugefügt.
 
 ## Verfügbare Tools
 
-Honcho registriert Tools, die der Agent während einer Unterhaltung verwenden kann:
+Honcho registriert Tools, die der Agent während der Unterhaltung verwenden kann:
 
-**Datenabruf (schnell, kein LLM-Aufruf):**
+**Datenabruf (schnell, ohne LLM-Aufruf):**
 
 | Tool                        | Funktion                                               |
 | --------------------------- | ------------------------------------------------------ |
@@ -41,7 +41,7 @@ Honcho registriert Tools, die der Agent während einer Unterhaltung verwenden ka
 
 | Tool         | Funktion                                                                  |
 | ------------ | ------------------------------------------------------------------------- |
-| `honcho_ask` | Fragen über den Benutzer stellen. `depth='quick'` für Fakten, `'thorough'` für Synthesen |
+| `honcho_ask` | Fragen zum Benutzer stellen. `depth='quick'` für Fakten, `'thorough'` für Synthesen |
 
 ## Erste Schritte
 
@@ -53,11 +53,10 @@ openclaw honcho setup
 openclaw gateway --force
 ```
 
-Der Einrichtungsbefehl fragt Ihre API-Anmeldedaten ab, schreibt die Konfiguration und migriert optional vorhandene Speicherdateien des Arbeitsbereichs.
+Der Einrichtungsbefehl fragt Ihre API-Anmeldedaten ab, schreibt die Konfiguration und migriert optional vorhandene Speicherdateien aus dem Arbeitsbereich.
 
 <Info>
-Honcho kann vollständig lokal (selbst gehostet) oder über die verwaltete API unter
-`api.honcho.dev` ausgeführt werden. Für die selbst gehostete Option sind keine externen Abhängigkeiten erforderlich.
+Honcho kann vollständig lokal (selbst gehostet) oder über die verwaltete API unter `api.honcho.dev` ausgeführt werden. Für die selbst gehostete Option sind keine externen Abhängigkeiten erforderlich.
 </Info>
 
 ## Konfiguration
@@ -70,7 +69,7 @@ Die Einstellungen befinden sich unter `plugins.entries["openclaw-honcho"].config
     entries: {
       "openclaw-honcho": {
         config: {
-          apiKey: "your-api-key", // für selbst gehostete Instanzen weglassen
+          apiKey: "your-api-key", // bei Selbsthosting weglassen
           workspaceId: "openclaw", // Speicherisolierung
           baseUrl: "https://api.honcho.dev",
         },
@@ -80,40 +79,34 @@ Die Einstellungen befinden sich unter `plugins.entries["openclaw-honcho"].config
 }
 ```
 
-Richten Sie für selbst gehostete Instanzen `baseUrl` auf Ihren lokalen Server (zum Beispiel
-`http://localhost:8000`) und lassen Sie den API-Schlüssel weg.
+Richten Sie bei selbst gehosteten Instanzen `baseUrl` auf Ihren lokalen Server (zum Beispiel `http://localhost:8000`) und lassen Sie den API-Schlüssel weg.
 
 ## Vorhandenen Speicher migrieren
 
-Wenn Sie über vorhandene Speicherdateien im Arbeitsbereich verfügen (`USER.md`, `MEMORY.md`,
-`IDENTITY.md`, `memory/`, `canvas/`), erkennt `openclaw honcho setup` diese und
-bietet ihre Migration an.
+Wenn Sie über vorhandene Speicherdateien im Arbeitsbereich verfügen (`USER.md`, `MEMORY.md`, `IDENTITY.md`, `memory/`, `canvas/`), erkennt `openclaw honcho setup` diese und bietet ihre Migration an.
 
 <Info>
-Die Migration ist nicht destruktiv – Dateien werden zu Honcho hochgeladen. Die Originale werden
-niemals gelöscht oder verschoben.
+Die Migration ist nicht destruktiv – Dateien werden zu Honcho hochgeladen. Die Originale werden niemals gelöscht oder verschoben.
 </Info>
 
 ## Funktionsweise
 
-Nach jedem KI-Durchlauf wird die Unterhaltung dauerhaft in Honcho gespeichert. Sowohl Benutzer- als auch Agentennachrichten werden erfasst, sodass Honcho seine Modelle im Laufe der Zeit erstellen und verfeinern kann.
+Nach jedem KI-Gesprächsschritt wird die Unterhaltung dauerhaft in Honcho gespeichert. Sowohl Benutzer- als auch Agentennachrichten werden erfasst, sodass Honcho seine Modelle im Laufe der Zeit erstellen und verfeinern kann.
 
-Während der Unterhaltung fragen Honcho-Tools den Dienst über den Plugin-Hook
-`before_prompt_build` von OpenClaw ab und fügen relevanten Kontext ein, bevor das Modell
-den Prompt erhält.
+Während der Unterhaltung fragen Honcho-Tools den Dienst über den Plugin-Hook `before_prompt_build` von OpenClaw ab und fügen relevanten Kontext ein, bevor das Modell den Prompt sieht.
 
 ## Honcho im Vergleich zum integrierten Speicher
 
-|                   | Integriert / QMD             | Honcho                              |
-| ----------------- | ---------------------------- | ----------------------------------- |
-| **Speicher**      | Markdown-Dateien im Arbeitsbereich | Dedizierter Dienst (lokal oder gehostet) |
-| **Sitzungsübergreifend** | Über Speicherdateien   | Automatisch, integriert             |
-| **Benutzermodellierung** | Manuell (in MEMORY.md schreiben) | Automatische Profile          |
-| **Suche**         | Vektor + Schlüsselwort (hybrid) | Semantisch über Erkenntnisse     |
-| **Multi-Agenten** | Werden nicht verfolgt        | Bewusstsein für übergeordnete/untergeordnete Agenten |
-| **Abhängigkeiten** | Keine (integriert) oder QMD-Binärdatei | Plugin-Installation        |
+|                         | Integriert / QMD             | Honcho                              |
+| ----------------------- | ---------------------------- | ----------------------------------- |
+| **Speicherung**         | Markdown-Dateien im Arbeitsbereich | Dedizierter Dienst (lokal oder gehostet) |
+| **Sitzungsübergreifend** | Über Speicherdateien        | Automatisch, integriert             |
+| **Benutzermodellierung** | Manuell (in MEMORY.md schreiben) | Automatische Profile           |
+| **Suche**               | Vektor + Schlüsselwort (hybrid) | Semantisch über Beobachtungen   |
+| **Multi-Agenten**       | Werden nicht verfolgt        | Bewusstsein für über-/untergeordnete Agenten |
+| **Abhängigkeiten**      | Keine (integriert) oder QMD-Binärdatei | Plugin-Installation       |
 
-Honcho und das integrierte Speichersystem können zusammenarbeiten. Wenn QMD konfiguriert ist, stehen zusätzliche Tools zur Suche in lokalen Markdown-Dateien neben Honchos sitzungsübergreifendem Speicher zur Verfügung.
+Honcho und das integrierte Speichersystem können zusammenarbeiten. Wenn QMD konfiguriert ist, stehen zusätzliche Tools zur Verfügung, um lokale Markdown-Dateien neben Honchos sitzungsübergreifendem Speicher zu durchsuchen.
 
 ## CLI-Befehle
 
@@ -128,7 +121,7 @@ openclaw honcho search <query> [-k N] [-d D] # Semantische Suche im Speicher
 
 - [Plugin-Quellcode](https://github.com/plastic-labs/openclaw-honcho)
 - [Honcho-Dokumentation](https://docs.honcho.dev)
-- [Honcho-Integrationsleitfaden für OpenClaw](https://docs.honcho.dev/v3/guides/integrations/openclaw)
+- [Integrationsleitfaden für Honcho und OpenClaw](https://docs.honcho.dev/v3/guides/integrations/openclaw)
 
 ## Verwandte Themen
 

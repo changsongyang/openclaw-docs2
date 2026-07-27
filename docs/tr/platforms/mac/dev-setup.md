@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw macOS uygulaması üzerinde çalışan geliştiriciler için kurulum kılavuzu
 title: macOS geliştirme kurulumu
 x-i18n:
-    generated_at: "2026-07-16T17:22:12Z"
+    generated_at: "2026-07-27T00:05:42Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -20,8 +20,8 @@ OpenClaw macOS uygulamasını kaynak koddan derleyin ve çalıştırın.
 
 ## Ön koşullar
 
-- **Xcode 26.2+** (Swift 6.2 araç zinciri); Yazılım Güncelleme'de
-  sunulan en son macOS sürümünde.
+- Kullanılabilir en son macOS sürümünde, Software Update üzerinden
+  **Xcode 26.2+** (Swift 6.2 araç zinciri).
 - Gateway, CLI ve paketleme betikleri için **Node.js 24.15+ ve pnpm**. Node
   22.22.3+ da çalışır.
 
@@ -37,13 +37,13 @@ pnpm install
 ./scripts/package-mac-app.sh
 ```
 
-Çıktı: `dist/OpenClaw.app`. Apple Developer ID sertifikası yoksa
-betik geçici imzalamaya geri döner.
+`dist/OpenClaw.app` çıktısını oluşturur. Apple Developer ID sertifikası olmadan
+betik, geçici imzalamaya geri döner.
 
-Geliştirme çalıştırma modları, imzalama bayrakları ve Team ID sorun giderme bilgileri için
+Geliştirme çalıştırma modları, imzalama bayrakları ve Team ID sorunlarını giderme hakkında bilgi için
 [apps/macos/README.md](https://github.com/openclaw/openclaw/blob/main/apps/macos/README.md) belgesine bakın.
 Depo kökünden hızlı geliştirme döngüsü: `scripts/restart-mac.sh` (geçici imzalama için
-`--no-sign` ekleyin; `--no-sign` kullanıldığında TCC izinleri kalıcı olmaz).
+`--no-sign` ekleyin; TCC izinleri `--no-sign` ile kalıcı olmaz).
 
 <Note>
 Geçici olarak imzalanmış uygulamalar güvenlik istemlerini tetikleyebilir. Uygulama
@@ -54,9 +54,9 @@ Geçici olarak imzalanmış uygulamalar güvenlik istemlerini tetikleyebilir. Uy
 
 Paketlenmiş uygulama, standart `scripts/install-cli.sh` yükleyicisini içerir. Yeni bir
 profilde ilk katılım sırasında **This Mac** seçeneğini belirleyin; uygulama, Gateway
-sihirbazını başlatmadan önce eşleşen kullanıcı alanı CLI'sini ve çalışma zamanını yükler.
+sihirbazını başlatmadan önce eşleşen kullanıcı alanı CLI'sını ve çalışma zamanını yükler.
 
-Elle geliştirme kurtarması için eşleşen CLI'yi kendiniz yükleyin:
+Geliştirme sırasında elle kurtarma için eşleşen CLI'yı kendiniz yükleyin:
 
 ```bash
 npm install -g openclaw@<version>
@@ -82,7 +82,7 @@ Sürümler eşleşmiyorsa macOS/Xcode'u güncelleyin ve derlemeyi yeniden çalı
 ### İzin verilirken uygulama çöküyor
 
 **Speech Recognition** veya **Microphone** erişimine izin vermeye çalıştığınızda
-uygulama çöküyorsa bunun nedeni bozuk bir TCC önbelleği veya imza uyuşmazlığı olabilir.
+uygulama çöküyorsa bunun nedeni bozulmuş bir TCC önbelleği veya imza uyuşmazlığı olabilir.
 
 1. Hata ayıklama paket kimliği için TCC izinlerini sıfırlayın:
 
@@ -90,13 +90,13 @@ uygulama çöküyorsa bunun nedeni bozuk bir TCC önbelleği veya imza uyuşmazl
    tccutil reset All ai.openclaw.mac.debug
    ```
 
-2. Bu başarısız olursa macOS'ta temiz bir başlangıcı zorlamak için
+2. Bu işlem başarısız olursa macOS'ta temiz bir başlangıç sağlamak için
    [`scripts/package-mac-app.sh`](https://github.com/openclaw/openclaw/blob/main/scripts/package-mac-app.sh)
-   dosyasındaki `BUNDLE_ID` değerini geçici olarak değiştirin.
+   içindeki `BUNDLE_ID` değerini geçici olarak değiştirin.
 
 ### Gateway süresiz olarak "Starting..." durumunda kalıyor
 
-Bir zombi işlemin bağlantı noktasını tutup tutmadığını kontrol edin:
+Bir zombi işlemin bağlantı noktasını kullanıp kullanmadığını kontrol edin:
 
 ```bash
 openclaw gateway status
@@ -106,8 +106,8 @@ openclaw gateway stop
 lsof -nP -iTCP:18789 -sTCP:LISTEN
 ```
 
-Bağlantı noktasını elle başlatılmış bir işlem tutuyorsa işlemi durdurun (Ctrl+C) veya
-son çare olarak yukarıda bulunan PID'yi sonlandırın.
+Bağlantı noktası elle başlatılmış bir işlem tarafından kullanılıyorsa işlemi durdurun (Ctrl+C)
+veya son çare olarak yukarıda bulunan PID'yi sonlandırın.
 
 ## İlgili
 

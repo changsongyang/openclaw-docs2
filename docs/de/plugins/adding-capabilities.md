@@ -1,13 +1,13 @@
 ---
 read_when:
-    - Hinzufügen einer neuen Kernfunktion und einer Registrierungsoberfläche für Plugins
-    - Entscheiden, ob Code in den Kern, ein Provider-Plugin oder ein Funktions-Plugin gehört
+    - Hinzufügen einer neuen Kernfunktion und einer Plugin-Registrierungsschnittstelle
+    - Entscheiden, ob Code zum Kern, zu einem Hersteller-Plugin oder zu einem Funktions-Plugin gehört
     - Einbindung eines neuen Runtime-Helfers für Kanäle oder Tools
 sidebarTitle: Adding capabilities
-summary: Leitfaden für Mitwirkende zum Hinzufügen einer neuen gemeinsam genutzten Funktion zum Plugin-System von OpenClaw
+summary: Leitfaden für Mitwirkende zum Hinzufügen einer neuen gemeinsamen Funktion zum OpenClaw-Plugin-System
 title: Funktionen hinzufügen (Leitfaden für Mitwirkende)
 x-i18n:
-    generated_at: "2026-07-24T04:31:02Z"
+    generated_at: "2026-07-26T18:28:17Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -19,19 +19,20 @@ x-i18n:
 
 <Info>
   Dies ist ein **Leitfaden für Mitwirkende** für Entwickler des OpenClaw-Kerns. Wenn Sie
-  ein externes Plugin entwickeln, lesen Sie stattdessen [Plugins entwickeln](/de/plugins/building-plugins).
-  Die ausführliche Architekturreferenz (Fähigkeitsmodell, Zuständigkeit,
-  Ladepipeline, Laufzeithelfer) finden Sie unter [Plugin-Interna](/de/plugins/architecture).
+  ein externes Plugin erstellen, lesen Sie stattdessen [Plugins erstellen](/de/plugins/building-plugins).
+  Die ausführliche Architekturreferenz (Fähigkeitsmodell, Zuständigkeiten,
+  Lade-Pipeline, Laufzeit-Hilfsfunktionen) finden Sie unter [Plugin-Interna](/de/plugins/architecture).
 </Info>
 
-Verwenden Sie dies, wenn OpenClaw eine neue gemeinsam genutzte Domäne wie Einbettungen, Bildgenerierung, Videogenerierung oder einen zukünftigen, von einem Anbieter gestützten Funktionsbereich benötigt.
+Verwenden Sie dies, wenn OpenClaw eine neue gemeinsame Domäne benötigt, etwa für Embeddings,
+Bildgenerierung, Videogenerierung oder einen zukünftigen, von einem Anbieter gestützten Funktionsbereich.
 
 Die Regel:
 
 - **Plugin** = Zuständigkeitsgrenze
-- **Fähigkeit** = gemeinsam genutzter Kernvertrag
+- **Fähigkeit** = gemeinsamer Kernvertrag
 
-Binden Sie einen Anbieter nicht direkt an einen Kanal oder ein Tool an. Definieren Sie zuerst die Fähigkeit.
+Binden Sie einen Anbieter nicht direkt in einen Kanal oder ein Tool ein. Definieren Sie zuerst die Fähigkeit.
 
 ## Wann eine Fähigkeit erstellt werden sollte
 
@@ -41,37 +42,37 @@ Erstellen Sie eine neue Fähigkeit nur, wenn **alle** folgenden Bedingungen erf�
 2. Kanäle, Tools oder Funktions-Plugins sollen sie nutzen können, ohne den Anbieter kennen zu müssen.
 3. Der Kern muss Fallback-, Richtlinien-, Konfigurations- oder Auslieferungsverhalten verwalten.
 
-Wenn die Arbeit anbieterspezifisch ist und noch kein gemeinsamer Vertrag besteht, definieren Sie zuerst den Vertrag.
+Wenn die Funktion anbieterspezifisch ist und noch kein gemeinsamer Vertrag existiert, definieren Sie zuerst den Vertrag.
 
 ## Die Standardabfolge
 
 1. Definieren Sie den typisierten Kernvertrag.
 2. Fügen Sie die Plugin-Registrierung für diesen Vertrag hinzu.
-3. Fügen Sie einen gemeinsam genutzten Laufzeithelfer hinzu.
-4. Binden Sie als Nachweis ein echtes Anbieter-Plugin an.
-5. Stellen Sie Funktions- und Kanalnutzer auf den Laufzeithelfer um.
+3. Fügen Sie eine gemeinsame Laufzeit-Hilfsfunktion hinzu.
+4. Binden Sie als Nachweis ein echtes Anbieter-Plugin ein.
+5. Stellen Sie die Funktions- und Kanalnutzer auf die Laufzeit-Hilfsfunktion um.
 6. Fügen Sie Vertragstests hinzu.
-7. Dokumentieren Sie die betreiberrelevante Konfiguration und das Zuständigkeitsmodell.
+7. Dokumentieren Sie die betreiberseitige Konfiguration und das Zuständigkeitsmodell.
 
 ## Was wohin gehört
 
 | Ebene                      | Zuständig für                                                                                                                                                                                                                          |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Kern**                   | Anfrage-/Antworttypen; Provider-Registrierung und -Auflösung; Fallback-Verhalten; Konfigurationsschema mit weitergegebenen `title`-/`description`-Dokumentationsmetadaten auf verschachtelten Objekt-, Platzhalter-, Array-Element- und Kompositionsknoten; Oberfläche der Laufzeithelfer. |
-| **Anbieter-Plugin**        | Anbieter-API-Aufrufe, Handhabung der Anbieter-Authentifizierung, anbieterspezifische Normalisierung von Anfragen und Registrierung der Fähigkeitsimplementierung.                                                                        |
-| **Funktions-/Kanal-Plugin** | Ruft `api.runtime.*` oder den entsprechenden `plugin-sdk/*-runtime`-Helfer auf. Ruft niemals direkt eine Anbieterimplementierung auf.                                                                                                  |
+| **Kern**                   | Anfrage-/Antworttypen; Provider-Registrierung und -Auflösung; Fallback-Verhalten; Konfigurationsschema mit weitergegebenen `title`-/`description`-Dokumentationsmetadaten für verschachtelte Objekt-, Platzhalter-, Array-Element- und Kompositionsknoten; Oberfläche der Laufzeit-Hilfsfunktionen. |
+| **Anbieter-Plugin**        | Anbieter-API-Aufrufe, Verarbeitung der Anbieter-Authentifizierung, anbieterspezifische Anfragenormalisierung und Registrierung der Fähigkeitsimplementierung.                                                                            |
+| **Funktions-/Kanal-Plugin** | Ruft `api.runtime.*` oder die entsprechende `plugin-sdk/*-runtime`-Hilfsfunktion auf. Ruft niemals direkt eine Anbieterimplementierung auf.                                                                                            |
 
 ## Schnittstellen für Provider und Harness
 
-Verwenden Sie **Provider-Hooks**, wenn das Verhalten zum Vertrag des Modell-Providers und nicht zur generischen Agentenschleife gehört. Beispiele sind providerspezifische Anfrageparameter nach der Transportauswahl, die Bevorzugung von Authentifizierungsprofilen, Prompt-Erweiterungen und nachgelagertes Fallback-Routing nach einem Modell-/Profil-Failover.
+Verwenden Sie **Provider-Hooks**, wenn das Verhalten zum Vertrag des Modell-Providers und nicht zur generischen Agentenschleife gehört. Beispiele sind providerspezifische Anfrageparameter nach der Transportauswahl, die Präferenz für Authentifizierungsprofile, Prompt-Overlays und das anschließende Fallback-Routing nach einem Modell- oder Profil-Failover.
 
-Verwenden Sie **Agent-Harness-Hooks**, wenn das Verhalten zur Laufzeit gehört, die einen Durchlauf ausführt. Harnesses können explizite Protokollergebnisse wie eine leere Ausgabe, Schlussfolgerungen ohne sichtbare Ausgabe oder einen strukturierten Plan ohne endgültige Antwort klassifizieren, damit die äußere Modell-Fallback-Richtlinie über einen erneuten Versuch entscheiden kann.
+Verwenden Sie **Agenten-Harness-Hooks**, wenn das Verhalten zur Laufzeit gehört, die einen Durchlauf ausführt. Harnesses können explizite Protokollergebnisse wie eine leere Ausgabe, Schlussfolgerungen ohne sichtbare Ausgabe oder einen strukturierten Plan ohne endgültige Antwort klassifizieren, damit die äußere Modell-Fallback-Richtlinie über eine Wiederholung entscheiden kann.
 
 Halten Sie beide Schnittstellen eng begrenzt:
 
 - Der Kern verwaltet die Wiederholungs-/Fallback-Richtlinie.
-- Provider-Plugins verwalten providerspezifische Hinweise für Anfragen, Authentifizierung und Routing.
-- Harness-Plugins verwalten laufzeitspezifische Klassifizierungen von Versuchen.
+- Provider-Plugins verwalten providerspezifische Hinweise zu Anfragen, Authentifizierung und Routing.
+- Harness-Plugins verwalten die laufzeitspezifische Klassifizierung von Versuchen.
 - Plugins von Drittanbietern geben Hinweise zurück und verändern den Kernzustand nicht direkt.
 
 ## Datei-Checkliste
@@ -106,26 +107,26 @@ Der Konfigurationsschlüssel ist bewusst vom Routing für die Bildanalyse getren
 - `agents.defaults.imageModel` analysiert Bilder.
 - `agents.defaults.mediaModels.image` generiert Bilder.
 
-Halten Sie diese getrennt, damit Fallback und Richtlinien explizit bleiben.
+Halten Sie diese getrennt, damit Fallback und Richtlinie explizit bleiben.
 
-## Einbettungs-Provider
+## Embedding-Provider
 
 Verwenden Sie `registerEmbeddingProvider(...)` / Vertrag `embeddingProviders` für
-wiederverwendbare Provider von Vektoreinbettungen. Dieser Vertrag ist bewusst umfassender
+wiederverwendbare Provider für Vektor-Embeddings. Dieser Vertrag ist bewusst umfassender
 als der Speicher: Tools, Suche, Abruf, Importprogramme oder zukünftige Funktions-Plugins
-können Einbettungen nutzen, ohne von der Speicher-Engine abhängig zu sein. Die Speichersuche
-nutzt ebenfalls generische `embeddingProviders`.
+können Embeddings nutzen, ohne von der Speicher-Engine abhängig zu sein. Die Speichersuche
+nutzt ebenfalls das generische `embeddingProviders`.
 
 Die ältere speicherspezifische Registrierungs-API und der Vertrag `memoryEmbeddingProviders`
 sind veraltet. Verwenden Sie `registerEmbeddingProvider` und
-`embeddingProviders` für alle neuen Einbettungs-Provider.
+`embeddingProviders` für alle neuen Embedding-Provider.
 
 ## Review-Checkliste
 
 Prüfen Sie vor der Auslieferung einer neuen Fähigkeit Folgendes:
 
 - Kein Kanal oder Tool importiert Anbietercode direkt.
-- Der Laufzeithelfer ist der gemeinsam genutzte Pfad.
+- Die Laufzeit-Hilfsfunktion ist der gemeinsame Pfad.
 - Mindestens ein Vertragstest bestätigt die gebündelte Zuständigkeit.
 - Die Konfigurationsdokumentation nennt das neue Modell bzw. den neuen Konfigurationsschlüssel.
 - Die Plugin-Dokumentation erläutert die Zuständigkeitsgrenze.
@@ -134,7 +135,7 @@ Wenn ein PR die Fähigkeitsebene überspringt und Anbieterverhalten fest in eine
 
 ## Verwandte Themen
 
-- [Plugin-Interna](/de/plugins/architecture) — Fähigkeitsmodell, Zuständigkeit, Ladepipeline, Laufzeithelfer.
-- [Plugins entwickeln](/de/plugins/building-plugins) — Tutorial für das erste Plugin.
-- [SDK-Übersicht](/de/plugins/sdk-overview) — Referenz für Importzuordnung und Registrierungs-API.
+- [Plugin-Interna](/de/plugins/architecture) — Fähigkeitsmodell, Zuständigkeiten, Lade-Pipeline, Laufzeit-Hilfsfunktionen.
+- [Plugins erstellen](/de/plugins/building-plugins) — Tutorial für das erste Plugin.
+- [SDK-Übersicht](/de/plugins/sdk-overview) — Referenz zur Importzuordnung und Registrierungs-API.
 - [Skills erstellen](/de/tools/creating-skills) — ergänzende Oberfläche für Mitwirkende.

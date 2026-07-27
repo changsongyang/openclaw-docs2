@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin مربوط به voyage هستید
-summary: پشتیبانی از ارائه‌دهندهٔ جاسازی حافظه را اضافه می‌کند.
+    - در حال نصب، پیکربندی یا ممیزی Plugin ‏voyage هستید
+summary: پشتیبانی از ارائه‌دهندهٔ تعبیه‌سازی حافظه را اضافه می‌کند.
 title: Plugin ‏Voyage
 x-i18n:
-    generated_at: "2026-07-16T17:30:53Z"
+    generated_at: "2026-07-27T14:25:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin Voyage
+# Plugin ‏Voyage
 
 پشتیبانی از ارائه‌دهندهٔ تعبیه‌سازی حافظه را اضافه می‌کند.
 

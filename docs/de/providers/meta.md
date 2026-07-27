@@ -1,11 +1,11 @@
 ---
 read_when:
     - Sie möchten Meta mit OpenClaw verwenden
-    - Sie benötigen die Umgebungsvariable MODEL_API_KEY oder die CLI-Authentifizierungsauswahl
+    - Sie benötigen die Umgebungsvariable MODEL_API_KEY oder eine Authentifizierungsauswahl in der CLI
 summary: Meta-Einrichtung (Authentifizierung + Auswahl des Modells muse-spark-1.1)
 title: Meta
 x-i18n:
-    generated_at: "2026-07-24T04:07:17Z"
+    generated_at: "2026-07-26T18:06:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,8 +16,8 @@ x-i18n:
 ---
 
 Die **Meta API** verwendet die OpenAI-kompatible **Responses API** (`POST /v1/responses`)
-für das Reasoning-Modell `muse-spark-1.1`. Der Provider wird als gebündeltes
-OpenClaw-Plugin ausgeliefert.
+für das Reasoning-Modell `muse-spark-1.1`. Der Provider wird als gebündeltes OpenClaw-
+Plugin ausgeliefert.
 
 | Eigenschaft          | Wert                               |
 | -------------------- | ---------------------------------- |
@@ -59,7 +59,7 @@ export MODEL_API_KEY=<key>
     openclaw models list --provider meta
     ```
 
-    Listet den statischen Katalogeintrag `muse-spark-1.1` auf. Wenn `MODEL_API_KEY` nicht aufgelöst ist,
+    Listet den statischen Katalogeintrag `muse-spark-1.1` auf. Wenn `MODEL_API_KEY` nicht aufgelöst werden kann,
     meldet `openclaw models status --json` die fehlenden Anmeldedaten unter
     `auth.unusableProfiles`.
 
@@ -77,9 +77,9 @@ openclaw onboard --non-interactive --accept-risk \
 
 ## Integrierter Katalog
 
-| Modellreferenz        | Name           | Reasoning | Kontextfenster | Max. Ausgabe |
-| --------------------- | -------------- | --------- | -------------- | ------------ |
-| `meta/muse-spark-1.1` | Muse Spark 1.1 | ja        | 1,048,576      | 131,072      |
+| Modellreferenz        | Name           | Reasoning | Kontextfenster | Maximale Ausgabe |
+| --------------------- | -------------- | --------- | --------------- | ---------------- |
+| `meta/muse-spark-1.1` | Muse Spark 1.1 | ja        | 1,048,576       | 131,072          |
 
 Funktionen:
 
@@ -110,11 +110,11 @@ Funktionen:
 ```
 
 <Note>
-Wenn das Gateway als Daemon (launchd, systemd, Docker) ausgeführt wird, stellen Sie sicher,
+Wenn der Gateway als Daemon (launchd, systemd, Docker) ausgeführt wird, stellen Sie sicher,
 dass `MODEL_API_KEY` für diesen Prozess verfügbar ist – beispielsweise in
 `~/.openclaw/.env` oder über `env.shellEnv`. Ein Schlüssel, der nur in einer
-interaktiven Shell exportiert wurde, hilft einem verwalteten Dienst nicht, sofern die
-Umgebungsvariable nicht separat importiert wird.
+interaktiven Shell exportiert wurde, hilft einem verwalteten Dienst nicht, sofern die Umgebungsvariable
+nicht separat importiert wird.
 </Note>
 
 ## Smoke-Test
@@ -136,6 +136,6 @@ Live-Tests verwenden `muse-spark-1.1` für `POST /v1/responses`.
     Stufen des Reasoning-Aufwands für muse-spark-1.1.
   </Card>
   <Card title="Konfigurationsreferenz" href="/de/gateway/config-agents#agent-defaults" icon="gear">
-    Agent-Standardeinstellungen und Modellkonfiguration.
+    Agenten-Standardeinstellungen und Modellkonfiguration.
   </Card>
 </CardGroup>

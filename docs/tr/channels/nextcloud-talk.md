@@ -1,10 +1,10 @@
 ---
 read_when:
     - Nextcloud Talk kanal özellikleri üzerinde çalışma
-summary: Nextcloud Talk destek durumu, yetenekleri ve yapılandırması
+summary: Nextcloud Talk destek durumu, özellikleri ve yapılandırması
 title: Nextcloud Talk
 x-i18n:
-    generated_at: "2026-07-16T16:39:10Z"
+    generated_at: "2026-07-26T22:35:11Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-Nextcloud Talk, OpenClaw'ı bir Talk webhook botu aracılığıyla kendi barındırdığınız bir Nextcloud örneğine bağlayan indirilebilir bir kanal pluginidir (`@openclaw/nextcloud-talk`). Doğrudan mesajlar, odalar, tepkiler ve markdown mesajları desteklenir; medya URL olarak gönderilir.
+Nextcloud Talk, OpenClaw'u bir Talk webhook botu aracılığıyla kendi sunucunuzda barındırılan bir Nextcloud örneğine bağlayan, indirilebilir bir kanal pluginidir (`@openclaw/nextcloud-talk`). Doğrudan mesajlar, odalar, tepkiler ve markdown mesajları desteklenir; medya URL olarak gönderilir.
 
 ## Kurulum
 
@@ -22,7 +22,7 @@ Nextcloud Talk, OpenClaw'ı bir Talk webhook botu aracılığıyla kendi barınd
 openclaw plugins install @openclaw/nextcloud-talk
 ```
 
-Güncel resmî sürüm etiketini takip etmek için yalın paket belirtimini kullanın. Yalnızca yeniden üretilebilir bir kurulum gerektiğinde tam bir sürümü sabitleyin.
+Güncel resmî sürüm etiketini takip etmek için yalnızca paket belirtimini kullanın. Tam bir sürümü yalnızca tekrarlanabilir bir kurulum gerektiğinde sabitleyin.
 
 Yerel bir çalışma kopyasından (geliştirme iş akışları):
 
@@ -32,7 +32,7 @@ openclaw plugins install ./path/to/local/nextcloud-talk-plugin
 
 Kurduktan sonra Gateway'i yeniden başlatın. Ayrıntılar: [Pluginler](/tr/tools/plugin)
 
-## Hızlı kurulum (başlangıç)
+## Hızlı kurulum (başlangıç düzeyi)
 
 1. Plugini kurun (yukarıda).
 2. Nextcloud sunucunuzda bir bot oluşturun:
@@ -41,14 +41,14 @@ Kurduktan sonra Gateway'i yeniden başlatın. Ayrıntılar: [Pluginler](/tr/tool
    ./occ talk:bot:install "OpenClaw" "<shared-secret>" "<webhook-url>" --feature webhook --feature response --feature reaction
    ```
 
-   `--feature response` öğesini koruyun: bu olmadan giden yanıtlar 401 hatasıyla başarısız olur. Mevcut bir botu `./occ talk:bot:state --feature webhook --feature response --feature reaction <botId> 1` ile onarın.
+   `--feature response` özelliğini koruyun: bu özellik olmadan giden yanıtlar 401 hatasıyla başarısız olur. Mevcut bir botu `./occ talk:bot:state --feature webhook --feature response --feature reaction <botId> 1` ile düzeltin.
 
-3. Hedef oda ayarlarında botu etkinleştirin.
-4. OpenClaw'ı yapılandırın:
+3. Botu hedef oda ayarlarında etkinleştirin.
+4. OpenClaw'u yapılandırın:
    - Yapılandırma: `channels.nextcloud-talk.baseUrl` + `channels.nextcloud-talk.botSecret`
-   - Veya ortam değişkeni: `NEXTCLOUD_TALK_BOT_SECRET` (yalnızca varsayılan hesap)
+   - Veya ortam değişkenleri: `NEXTCLOUD_TALK_BOT_SECRET` (yalnızca varsayılan hesap)
 
-   CLI kurulumu (`--url`/`--token`, açık alanların takma adlarıdır; `nc-talk` ve `nc` kanal takma adları olarak çalışır):
+   CLI kurulumu (`--url`/`--token` açık alanların diğer adlarıdır; `nc-talk` ve `nc` kanal diğer adları olarak çalışır):
 
    ```bash
    openclaw channels add --channel nextcloud-talk \
@@ -64,7 +64,7 @@ Kurduktan sonra Gateway'i yeniden başlatın. Ayrıntılar: [Pluginler](/tr/tool
      --secret "<shared-secret>"
    ```
 
-   Dosya destekli gizli bilgi:
+   Dosya tabanlı gizli bilgi:
 
    ```bash
    openclaw channels add --channel nextcloud-talk \
@@ -92,15 +92,15 @@ Asgari yapılandırma:
 ## Notlar
 
 - Botlar doğrudan mesaj başlatamaz. Önce kullanıcının bota mesaj göndermesi gerekir.
-- Webhook URL'sine Nextcloud sunucusundan erişilebilmelidir; Gateway bir proxy'nin arkasındaysa `webhookPublicUrl` değerini ayarlayın. Webhook istekleri, botun gizli bilgisiyle HMAC-SHA256 kullanılarak imzalanır; geçersiz imzalar reddedilir ve hız sınırına tabi tutulur.
-- Bot API'si medya yüklemelerini desteklemez; giden medya bir `Attachment: <url>` satırı olarak eklenir.
-- Webhook yükü, doğrudan mesajları odalardan ayırmaz; oda türü sorgularını etkinleştirmek için `apiUser` + `apiPassword` değerlerini ayarlayın (yaklaşık 5 dakika önbelleğe alınır). Bunlar olmadan her konuşma bir oda olarak değerlendirilir.
-- Giden istekler SSRF korumasından geçer. Güvenilir bir özel/dahili ağdaki Nextcloud ana makinesi için `channels.nextcloud-talk.network.dangerouslyAllowPrivateNetwork: true` ile açıkça izin verin.
-- `apiUser`/`apiPassword` ve `webhookPublicUrl` ayarlandığında `openclaw channels status`, botu yoklar ve `response` özelliği eksikse uyarır.
+- Webhook URL'sine Nextcloud sunucusundan erişilebilmelidir; Gateway bir proxy'nin arkasındaysa `webhookPublicUrl` değerini ayarlayın. Webhook istekleri botun gizli bilgisiyle HMAC-SHA256 kullanılarak imzalanır; geçersiz imzalar reddedilir ve hız sınırlamasına tabi tutulur.
+- Medya yüklemeleri bot API'si tarafından desteklenmez; giden medya bir `Attachment: <url>` satırı olarak eklenir.
+- Webhook yükü doğrudan mesajlarla odaları birbirinden ayırmaz; oda türü sorgularını etkinleştirmek için `apiUser` + `apiPassword` değerlerini ayarlayın (yaklaşık 5 dakika önbelleğe alınır). Bunlar olmadan her konuşma bir oda olarak değerlendirilir.
+- Giden istekler SSRF korumasından geçer. Güvenilen bir özel/dahili ağdaki Nextcloud ana bilgisayarı için `channels.nextcloud-talk.network.dangerouslyAllowPrivateNetwork: true` ile açıkça izin verin.
+- `apiUser`/`apiPassword` ve `webhookPublicUrl` ayarlandığında, `openclaw channels status` botu yoklar ve `response` özelliği eksikse uyarır.
 
 ## Erişim denetimi (doğrudan mesajlar)
 
-- Varsayılan: `channels.nextcloud-talk.dmPolicy = "pairing"`. Bilinmeyen göndericiler bir eşleştirme kodu alır.
+- Varsayılan: `channels.nextcloud-talk.dmPolicy = "pairing"`. Bilinmeyen gönderenlere bir eşleştirme kodu verilir.
 - Şu yollarla onaylayın:
   - `openclaw pairing list nextcloud-talk`
   - `openclaw pairing approve nextcloud-talk <CODE>`
@@ -110,7 +110,7 @@ Asgari yapılandırma:
 ## Odalar (gruplar)
 
 - Varsayılan: `channels.nextcloud-talk.groupPolicy = "allowlist"` (bahsetme gerektirir).
-- Odaları, oda belirtecine göre anahtarlanan `channels.nextcloud-talk.rooms` ile izin verilenler listesine ekleyin; `"*"` joker karakter varsayılanını ayarlar:
+- Oda belirtecinin anahtar olarak kullanıldığı `channels.nextcloud-talk.rooms` ile odaları izin listesine alın; `"*"` joker karakterli bir varsayılan ayarlar:
 
 ```json5
 {
@@ -124,19 +124,19 @@ Asgari yapılandırma:
 }
 ```
 
-- Oda başına anahtarlar: `requireMention` (varsayılan true), `enabled` (false odayı devre dışı bırakır), `allowFrom` (oda başına gönderici izin listesi), `tools` (araç izin/reddetme geçersiz kılmaları), `skills` (yüklenen Skills öğelerini sınırlar), `systemPrompt`.
-- Hiçbir odaya izin vermemek için izin listesini boş tutun veya `channels.nextcloud-talk.groupPolicy="disabled"` değerini ayarlayın.
+- Oda başına anahtarlar: `requireMention` (varsayılan olarak true), `enabled` (false odayı devre dışı bırakır), `allowFrom` (oda başına gönderen izin listesi), `tools` (araç izin/verme-reddetme geçersiz kılmaları), `skills` (yüklenen Skills'leri sınırlar), `systemPrompt`.
+- Hiçbir odaya izin vermemek için izin listesini boş bırakın veya `channels.nextcloud-talk.groupPolicy="disabled"` değerini ayarlayın.
 
 ## Yetenekler
 
-| Özellik           | Durum              |
-| ----------------- | ------------------ |
-| Doğrudan mesajlar | Destekleniyor      |
-| Odalar            | Destekleniyor      |
-| İleti dizileri    | Desteklenmiyor     |
-| Medya             | Yalnızca URL       |
-| Tepkiler          | Destekleniyor      |
-| Yerel komutlar    | Desteklenmiyor     |
+| Özellik            | Durum              |
+| ------------------ | ------------------ |
+| Doğrudan mesajlar  | Destekleniyor      |
+| Odalar             | Destekleniyor      |
+| İleti dizileri     | Desteklenmiyor     |
+| Medya              | Yalnızca URL       |
+| Tepkiler           | Destekleniyor      |
+| Yerel komutlar     | Desteklenmiyor     |
 
 ## Yapılandırma başvurusu (Nextcloud Talk)
 
@@ -144,37 +144,37 @@ Tam yapılandırma: [Yapılandırma](/tr/gateway/configuration)
 
 Sağlayıcı seçenekleri:
 
-- `channels.nextcloud-talk.enabled`: kanal başlangıcını etkinleştirir/devre dışı bırakır.
+- `channels.nextcloud-talk.enabled`: kanal başlatmayı etkinleştirir/devre dışı bırakır.
 - `channels.nextcloud-talk.baseUrl`: Nextcloud örneğinin URL'si.
 - `channels.nextcloud-talk.botSecret`: botun paylaşılan gizli bilgisi (dize veya gizli bilgi başvurusu).
-- `channels.nextcloud-talk.botSecretFile`: normal dosya gizli bilgi yolu. Sembolik bağlantılar reddedilir.
+- `channels.nextcloud-talk.botSecretFile`: normal dosya türündeki gizli bilginin yolu. Sembolik bağlantılar reddedilir.
 - `channels.nextcloud-talk.apiUser`: oda sorguları (doğrudan mesaj algılama) ve durum yoklaması için API kullanıcısı.
 - `channels.nextcloud-talk.apiPassword`: oda sorguları için API/uygulama parolası.
-- `channels.nextcloud-talk.apiPasswordFile`: API parolası dosya yolu.
+- `channels.nextcloud-talk.apiPasswordFile`: API parola dosyasının yolu.
 - `channels.nextcloud-talk.webhookPort`: webhook dinleyici bağlantı noktası (varsayılan: 8788).
-- `channels.nextcloud-talk.webhookHost`: webhook ana makinesi (varsayılan: 0.0.0.0).
+- `channels.nextcloud-talk.webhookHost`: webhook ana bilgisayarı (varsayılan: 0.0.0.0).
 - `channels.nextcloud-talk.webhookPath`: webhook yolu (varsayılan: /nextcloud-talk-webhook).
 - `channels.nextcloud-talk.webhookPublicUrl`: dışarıdan erişilebilen webhook URL'si.
 - `channels.nextcloud-talk.dmPolicy`: `pairing | allowlist | open | disabled` (varsayılan: pairing). `open`, `allowFrom=["*"]` gerektirir.
 - `channels.nextcloud-talk.allowFrom`: doğrudan mesaj izin listesi (kullanıcı kimlikleri).
 - `channels.nextcloud-talk.groupPolicy`: `allowlist | open | disabled` (varsayılan: allowlist).
-- `channels.nextcloud-talk.groupAllowFrom`: oda göndericisi izin listesi (kullanıcı kimlikleri); ayarlanmadığında `allowFrom` değerine geri döner.
+- `channels.nextcloud-talk.groupAllowFrom`: oda gönderen izin listesi (kullanıcı kimlikleri); ayarlanmadığında `allowFrom` değerine geri döner.
 - `channels.nextcloud-talk.rooms`: oda başına ayarlar ve izin listesi (yukarıya bakın).
-- Statik gönderici erişim gruplarına `allowFrom` ve `groupAllowFrom` içinden `accessGroup:<name>` ile başvurulabilir.
+- Statik gönderen erişim gruplarına `allowFrom` ve `groupAllowFrom` içinden `accessGroup:<name>` ile başvurulabilir.
 - `channels.nextcloud-talk.historyLimit`: grup geçmişi sınırı (0 devre dışı bırakır).
 - `channels.nextcloud-talk.dmHistoryLimit`: doğrudan mesaj geçmişi sınırı (0 devre dışı bırakır).
-- `channels.nextcloud-talk.dms`: kullanıcı kimliğine göre anahtarlanan doğrudan mesaj başına geçersiz kılmalar (`historyLimit`).
-- `channels.nextcloud-talk.textChunkLimit`: giden metin parçasının karakter cinsinden boyutu (varsayılan: 4000).
-- `channels.nextcloud-talk.streaming.chunkMode`: uzunluğa göre parçalara ayırmadan önce boş satırlarda (paragraf sınırlarında) bölmek için `length` (varsayılan) veya `newline`.
+- `channels.nextcloud-talk.dms`: kullanıcı kimliğiyle anahtarlanan, doğrudan mesaj başına geçersiz kılmalar (`historyLimit`).
+- `channels.nextcloud-talk.textChunkLimit`: karakter cinsinden giden metin parçası boyutu (varsayılan: 4000).
+- `channels.nextcloud-talk.streaming.chunkMode`: uzunluğa göre parçalara ayırmadan önce boş satırlardan (paragraf sınırlarından) bölmek için `length` (varsayılan) veya `newline`.
 - `channels.nextcloud-talk.streaming.block.enabled`: bu kanal için blok akışını etkinleştirir veya devre dışı bırakır.
-- `channels.nextcloud-talk.streaming.block.coalesce`: blok akışı birleştirme ayarı.
-- `channels.nextcloud-talk.responsePrefix`: giden yanıt öneki.
+- `channels.nextcloud-talk.streaming.block.coalesce`: blok akışını birleştirme ayarı.
+- `channels.nextcloud-talk.responsePrefix`: giden yanıt ön eki.
 - `channels.nextcloud-talk.markdown.tables`: markdown tablo işleme modu (`off | bullets | code | block`).
-- `channels.nextcloud-talk.mediaMaxMb`: gelen medya üst sınırı (MB).
-- `channels.nextcloud-talk.network.dangerouslyAllowPrivateNetwork`: özel/dahili Nextcloud ana makinelerinin SSRF korumasını geçmesine izin verir.
+- `channels.nextcloud-talk.mediaMaxMb`: gelen medya sınırı (MB).
+- `channels.nextcloud-talk.network.dangerouslyAllowPrivateNetwork`: özel/dahili Nextcloud ana bilgisayarlarının SSRF korumasından geçmesine izin verir.
 - `channels.nextcloud-talk.accounts.<id>`: hesap başına geçersiz kılmalar (aynı anahtarlar); `defaultAccount` varsayılanı seçer. `NEXTCLOUD_TALK_BOT_SECRET` / `NEXTCLOUD_TALK_API_PASSWORD` ortam değişkenleri yalnızca varsayılan hesaba uygulanır.
 
-## İlgili
+## İlgili içerikler
 
 - [Kanallara Genel Bakış](/tr/channels) — desteklenen tüm kanallar
 - [Eşleştirme](/tr/channels/pairing) — doğrudan mesaj kimlik doğrulaması ve eşleştirme akışı

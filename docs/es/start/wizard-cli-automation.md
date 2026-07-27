@@ -1,12 +1,12 @@
 ---
 read_when:
-    - Se está automatizando la incorporación mediante scripts o CI
+    - Está automatizando la incorporación en scripts o CI
     - Necesita ejemplos no interactivos para proveedores específicos
 sidebarTitle: CLI automation
 summary: Incorporación mediante scripts y configuración de agentes para la CLI de OpenClaw
 title: Automatización de la CLI
 x-i18n:
-    generated_at: "2026-07-22T10:48:58Z"
+    generated_at: "2026-07-26T05:23:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,10 +16,10 @@ x-i18n:
     workflow: 16
 ---
 
-Usa `openclaw onboard --non-interactive` para automatizar la configuración. Requiere `--accept-risk`: la configuración no interactiva puede escribir credenciales y la configuración del daemon sin una solicitud de confirmación, por lo que la opción constituye el reconocimiento explícito del riesgo.
+Use `openclaw onboard --non-interactive` para automatizar la configuración mediante scripts. Requiere `--accept-risk`: la configuración no interactiva puede escribir credenciales y la configuración del daemon sin una solicitud de confirmación, por lo que la opción constituye el reconocimiento explícito del riesgo.
 
 <Note>
-`--json` no implica el modo no interactivo. Pasa `--non-interactive --accept-risk` explícitamente en los scripts.
+`--json` no implica el modo no interactivo. Pase `--non-interactive --accept-risk` explícitamente para los scripts.
 </Note>
 
 ## Ejemplo básico no interactivo
@@ -37,11 +37,11 @@ openclaw onboard --non-interactive --accept-risk \
   --skip-skills
 ```
 
-Añade `--json` para obtener un resumen legible por máquina.
+Añada `--json` para obtener un resumen legible por máquina.
 
-- `--gateway-port` usa `18789` de forma predeterminada; pásalo solo para sobrescribirlo.
-- `--skip-bootstrap` omite la creación de los archivos predeterminados del espacio de trabajo para las automatizaciones que preparan su propio espacio de trabajo.
-- `--secret-input-mode ref` almacena en el perfil de autenticación una referencia respaldada por una variable de entorno (`{ source: "env", provider: "default", id: "<ENV_VAR>" }`) en lugar de la clave en texto sin formato. En el modo no interactivo `ref`, la variable de entorno del proveedor ya debe estar definida en el entorno del proceso: si se pasa una opción de clave en línea sin su variable de entorno correspondiente, se produce un fallo inmediato.
+- `--gateway-port` usa `18789` de forma predeterminada; páselo solo para sustituir ese valor.
+- `--skip-bootstrap` omite la creación de los archivos predeterminados del espacio de trabajo, para automatizaciones que preparan previamente su propio espacio de trabajo.
+- `--secret-input-mode ref` almacena una referencia respaldada por una variable de entorno (`{ source: "env", provider: "default", id: "<ENV_VAR>" }`) en el perfil de autenticación en lugar de la clave en texto sin formato. En el modo `ref` no interactivo, la variable de entorno del proveedor ya debe estar definida en el entorno del proceso: pasar una opción de clave en línea sin su variable de entorno correspondiente produce un error inmediato.
 
 ```bash
 openclaw onboard --non-interactive --accept-risk \
@@ -117,7 +117,7 @@ openclaw onboard --non-interactive --accept-risk \
       --opencode-zen-api-key "$OPENCODE_API_KEY" \
       --gateway-bind loopback
     ```
-    Cambia a `--auth-choice opencode-go --opencode-go-api-key "$OPENCODE_API_KEY"` para usar el catálogo de Go.
+    Cambie a `--auth-choice opencode-go --opencode-go-api-key "$OPENCODE_API_KEY"` para usar el catálogo de Go.
   </Accordion>
   <Accordion title="Ejemplo de Synthetic">
     ```bash
@@ -160,9 +160,9 @@ openclaw onboard --non-interactive --accept-risk \
       --gateway-bind loopback
     ```
 
-    `--custom-api-key` es opcional; algunos endpoints no requieren autenticación. Si se omite, la incorporación comprueba `CUSTOM_API_KEY` en el entorno. `--custom-provider-id` es opcional y, si se omite, se deriva automáticamente de la URL base. `--custom-compatibility` usa `openai` de forma predeterminada (otros valores: `openai-responses`, `anthropic`).
+    `--custom-api-key` es opcional; algunos endpoints no requieren autenticación. Si se omite, la incorporación comprueba `CUSTOM_API_KEY` en el entorno. `--custom-provider-id` es opcional y, cuando se omite, se deriva automáticamente de la URL base. `--custom-compatibility` usa `openai` de forma predeterminada (otros valores: `openai-responses`, `anthropic`).
 
-    OpenClaw infiere la compatibilidad con la entrada de imágenes a partir de patrones conocidos de identificadores de modelos de visión (`gpt-4o`, `claude-3/4`, `gemini`, sufijos `-vl`/`vision` y similares). Añade `--custom-image-input` para habilitarla de forma forzada en un modelo de visión no reconocido, o `--custom-text-input` para forzar el modo de solo texto.
+    OpenClaw infiere la compatibilidad con la entrada de imágenes a partir de patrones conocidos de identificadores de modelos de visión (`gpt-4o`, `claude-3/4`, `gemini`, sufijos `-vl`/`vision` y similares). Añada `--custom-image-input` para activarla de forma forzada en un modelo de visión no reconocido, o `--custom-text-input` para forzar el uso exclusivo de texto.
 
     Variante del modo de referencia, que almacena `apiKey` como `{ source: "env", provider: "default", id: "CUSTOM_API_KEY" }`:
 
@@ -183,11 +183,11 @@ openclaw onboard --non-interactive --accept-risk \
   </Accordion>
 </AccordionGroup>
 
-La autenticación mediante token de configuración de Anthropic sigue siendo compatible, pero OpenClaw prefiere reutilizar la CLI de Claude cuando hay disponible un inicio de sesión local en dicha CLI. Para producción, se recomienda una clave de API de Anthropic.
+La autenticación mediante token de configuración de Anthropic sigue siendo compatible, pero OpenClaw prefiere reutilizar la CLI de Claude cuando hay disponible un inicio de sesión local en dicha CLI. Para producción, se recomienda usar una clave de API de Anthropic.
 
 ## Añadir otro agente
 
-`openclaw agents add <name>` crea un agente independiente con su propio espacio de trabajo, sesiones y perfiles de autenticación. Si se ejecuta sin `--workspace` (y sin otras opciones), se inicia el asistente interactivo; si se pasa cualquiera de `--workspace`, `--model`, `--agent-dir`, `--bind` o `--non-interactive`, se ejecuta de forma no interactiva y se requiere `--workspace`.
+`openclaw agents add <name>` crea un agente independiente con su propio espacio de trabajo, sus propias sesiones y sus propios perfiles de autenticación. Ejecutarlo sin `--workspace` (y sin otras opciones) inicia el asistente interactivo; pasar cualquiera de `--workspace`, `--model`, `--agent-dir`, `--bind` o `--non-interactive` lo ejecuta de forma no interactiva y requiere además `--workspace`.
 
 ```bash
 openclaw agents add work \
@@ -208,11 +208,11 @@ Claves de configuración que escribe (entrada `agents.entries.*` para el identif
 Notas:
 
 - Espacio de trabajo predeterminado (cuando se omite `--workspace` en el asistente interactivo): `~/.openclaw/workspace-<agentId>`.
-- `--bind <channel[:accountId]>` se puede repetir; añade vinculaciones para dirigir los mensajes entrantes al nuevo agente (el asistente también permite hacerlo de forma interactiva).
+- `--bind <channel[:accountId]>` se puede repetir; añada vinculaciones para dirigir los mensajes entrantes al nuevo agente (el asistente también permite hacerlo de forma interactiva).
 - El nombre del agente se normaliza como un identificador de agente válido; `main` está reservado.
 
 ## Documentación relacionada
 
 - Centro de incorporación: [Incorporación (CLI)](/es/start/wizard)
 - Referencia completa: [Referencia de configuración de la CLI](/es/start/wizard-cli-reference)
-- Referencia del comando: [`openclaw onboard`](/es/cli/onboard)
+- Referencia de comandos: [`openclaw onboard`](/es/cli/onboard)

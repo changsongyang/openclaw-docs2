@@ -1,10 +1,10 @@
 ---
 read_when:
-    - 你正在安装、配置或审计 litellm 插件
+    - 你正在安装、配置或审核 litellm 插件
 summary: 为 OpenClaw 添加 LiteLLM 模型提供商支持。
 title: LiteLLM 插件
 x-i18n:
-    generated_at: "2026-07-16T11:50:04Z"
+    generated_at: "2026-07-26T05:56:08Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

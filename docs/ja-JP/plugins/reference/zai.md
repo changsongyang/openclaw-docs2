@@ -1,10 +1,10 @@
 ---
 read_when:
-    - zai Pluginをインストール、設定、または監査している場合
+    - zai Plugin をインストール、設定、または監査しています
 summary: OpenClaw に Z.AI モデルプロバイダーのサポートを追加します。
 title: Z.AI Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:07:38Z"
+    generated_at: "2026-07-26T09:13:10Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,11 +21,11 @@ OpenClaw に Z.AI モデルプロバイダーのサポートを追加します�
 ## 配布
 
 - パッケージ: `@openclaw/zai-provider`
-- インストール経路: npm、ClawHub: `clawhub:@openclaw/zai-provider`
+- インストール経路: npm; ClawHub: `clawhub:@openclaw/zai-provider`
 
-## サーフェス
+## 公開インターフェース
 
-プロバイダー: `zai`、コントラクト: `mediaUnderstandingProviders`、`usageProviders`
+プロバイダー: `zai`; コントラクト: `mediaUnderstandingProviders`, `usageProviders`
 
 ## 関連ドキュメント
 

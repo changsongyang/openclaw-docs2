@@ -2,7 +2,7 @@
 summary: Weiterleitung zu /automation/cron-jobs
 title: Webhooks
 x-i18n:
-    generated_at: "2026-07-24T03:38:22Z"
+    generated_at: "2026-07-26T17:38:20Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

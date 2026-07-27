@@ -1,10 +1,10 @@
 ---
 read_when:
-    - line Pluginをインストール、設定、または監査しています
+    - line Plugin のインストール、設定、または監査を行っています
 summary: LINE Bot API チャット向けの OpenClaw LINE チャンネル Plugin。
 title: LINE Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:58:32Z"
+    generated_at: "2026-07-26T09:53:27Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # LINE Plugin
 
-LINE Bot API チャット向けの OpenClaw LINE チャネル Plugin。
+LINE Bot API チャット用の OpenClaw LINE チャネル Plugin。
 
 ## 配布
 

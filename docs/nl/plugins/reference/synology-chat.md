@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Je installeert, configureert of controleert de synology-chat-plugin
-summary: Synology Chat-kanaalplugin voor OpenClaw-kanalen en directe berichten.
-title: Synology Chat-plugin
+    - Je installeert, configureert of controleert de synology-chat-Plugin
+summary: Synology Chat-kanaalplugin voor OpenClaw-kanalen en privéberichten.
+title: Synology Chat-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:17:29Z"
+    generated_at: "2026-07-27T06:00:53Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

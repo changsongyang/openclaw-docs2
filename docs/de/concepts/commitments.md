@@ -1,12 +1,12 @@
 ---
 read_when:
-    - Sie aktualisieren eine Konfiguration, die abgeleitete Zusagen verwendet hat
+    - Sie aktualisieren eine Konfiguration, die abgeleitete Zusicherungen verwendet hat
     - Sie möchten zuvor gespeicherte Nachverfolgungseinträge prüfen oder verwerfen
 sidebarTitle: Commitments
-summary: Status- und Bereinigungshinweise für außer Kraft gesetzte abgeleitete Folgeaufgaben-Zusagen
+summary: Status- und Bereinigungshinweise für eingestellte abgeleitete Folgevereinbarungen
 title: Abgeleitete Verpflichtungen
 x-i18n:
-    generated_at: "2026-07-24T03:46:16Z"
+    generated_at: "2026-07-26T17:44:29Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,25 +16,25 @@ x-i18n:
     workflow: 16
 ---
 
-Das Experiment mit abgeleiteten Verpflichtungen wurde eingestellt. OpenClaw extrahiert keine neuen
-Folgeaufgaben aus Unterhaltungen mehr und übermittelt sie nicht mehr über Heartbeat; außerdem wird der frühere
-Konfigurationsblock `commitments` durch `openclaw doctor --fix` entfernt.
+Das Experiment zu abgeleiteten Verpflichtungen wurde eingestellt. OpenClaw extrahiert keine neuen
+Folgeaufgaben mehr aus Konversationen und stellt sie nicht mehr über Heartbeat zu; der frühere
+`commitments`-Konfigurationsblock wird durch `openclaw doctor --fix` entfernt.
 
 Exakte Erinnerungen und geplante Arbeiten verwenden weiterhin
-[geplante Aufgaben](/de/automation/cron-jobs). Dauerhafte Fakten aus Unterhaltungen gehören in den
+[geplante Aufgaben](/de/automation/cron-jobs). Dauerhafte Fakten aus Konversationen gehören in den
 [Speicher](/de/concepts/memory).
 
-## Vorhandene Datensätze
+## Vorhandene Einträge
 
-Zuvor gespeicherte Verpflichtungen verbleiben in der gemeinsam genutzten SQLite-Zustandsdatenbank, damit ein
-Upgrade den für Betreiber sichtbaren Verlauf nicht zerstört. Verwenden Sie die veraltete Wartungs-CLI, um diese Zeilen zu prüfen oder zu verwerfen:
+Zuvor gespeicherte Verpflichtungen verbleiben in der gemeinsamen SQLite-Zustandsdatenbank, damit ein
+Upgrade den für Betreiber sichtbaren Verlauf nicht löscht. Verwenden Sie die Legacy-Wartungs-CLI, um diese Zeilen zu prüfen oder zu verwerfen:
 
 ```bash
 openclaw commitments --all
 openclaw commitments dismiss cm_abc123
 ```
 
-Die Referenz für den Wartungsbefehl finden Sie unter [`openclaw commitments`](/de/cli/commitments).
+Die Referenz zum Wartungsbefehl finden Sie unter [`openclaw commitments`](/de/cli/commitments).
 
 ## Verwandte Themen
 

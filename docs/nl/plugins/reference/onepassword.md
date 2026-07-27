@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de onepassword-plugin
-summary: Zorgvuldig samengestelde 1Password-geheimenbroker met goedkeuringsbeleid en SQLite-auditgeschiedenis.
-title: Onepassword-Plugin
+summary: Beheerde 1Password-geheimenbroker met goedkeuringsbeleid en SQLite-auditgeschiedenis.
+title: Onepassword-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:07:04Z"
+    generated_at: "2026-07-27T05:09:53Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Onepassword-plugin
 
-Beheerde broker voor 1Password-geheimen met goedkeuringsbeleid en SQLite-auditgeschiedenis.
+Gecureerde 1Password-geheimenbroker met goedkeuringsbeleid en SQLite-auditgeschiedenis.
 
 ## Distributie
 
 - Pakket: `@openclaw/onepassword`
-- Installatieroute: inbegrepen in OpenClaw
+- Installatieroute: inbegrepen bij OpenClaw
 
 ## Oppervlak
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das together-Plugin.
-summary: Fügt OpenClaw Unterstützung für den Modell-Provider Together hinzu.
+    - Sie installieren, konfigurieren oder überprüfen das together-Plugin.
+summary: Fügt Unterstützung für den Together-Modell-Provider zu OpenClaw hinzu.
 title: Together-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:48:33Z"
+    generated_at: "2026-07-26T18:39:34Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -29,4 +29,4 @@ Provider: `together`; Verträge: `videoGenerationProviders`
 
 ## Zugehörige Dokumentation
 
-- [together](/de/providers/together)
+- [Together](/de/providers/together)

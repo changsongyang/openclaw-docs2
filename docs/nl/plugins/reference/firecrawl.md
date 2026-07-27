@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Je installeert, configureert of controleert de firecrawl-Plugin
+    - Je installeert, configureert of controleert de firecrawl-plugin
 summary: Voegt door agents aanroepbare tools toe. Voegt ondersteuning voor webfetchproviders toe. Voegt ondersteuning voor webzoekproviders toe.
 title: Firecrawl-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:14:39Z"
+    generated_at: "2026-07-27T05:41:51Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Firecrawl-plugin
+# Firecrawl-Plugin
 
-Voegt door agents aanroepbare tools toe. Voegt ondersteuning voor een webophaalprovider toe. Voegt ondersteuning voor een webzoekprovider toe.
+Voegt door agents aanroepbare tools toe. Voegt ondersteuning voor webophaalproviders toe. Voegt ondersteuning voor webzoekproviders toe.
 
 ## Distributie
 
@@ -29,4 +29,4 @@ contracten: `tools`, `webFetchProviders`, `webSearchProviders`
 
 ## Gerelateerde documentatie
 
-- [Firecrawl](/nl/tools/firecrawl)
+- [firecrawl](/nl/tools/firecrawl)

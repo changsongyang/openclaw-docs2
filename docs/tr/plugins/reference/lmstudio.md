@@ -1,10 +1,10 @@
 ---
 read_when:
-    - lmstudio pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - lmstudio Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a LM Studio model sağlayıcısı desteği ekler.
-title: LM Studio plugin'i
+title: LM Studio Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:44:56Z"
+    generated_at: "2026-07-26T23:28:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

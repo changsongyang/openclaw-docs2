@@ -1,11 +1,11 @@
 ---
 read_when:
-    - در جست‌وجوی پشتیبانی از سیستم‌عامل یا مسیرهای نصب هستید؟
-    - تصمیم‌گیری دربارهٔ محل اجرای Gateway
-summary: نمای کلی پشتیبانی از پلتفرم‌ها (Gateway + برنامه‌های همراه)
+    - در جست‌وجوی پشتیبانی از سیستم‌عامل‌ها یا مسیرهای نصب هستید؟
+    - تصمیم‌گیری درباره محل اجرای Gateway
+summary: مروری بر پشتیبانی از پلتفرم‌ها (Gateway + برنامه‌های همراه)
 title: پلتفرم‌ها
 x-i18n:
-    generated_at: "2026-07-16T16:37:54Z"
+    generated_at: "2026-07-27T16:46:15Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 ---
 
 هستهٔ OpenClaw با TypeScript نوشته شده است. **Node محیط اجرای الزامی است**، زیرا
-مخزن وضعیت متعارف از `node:sqlite` استفاده می‌کند. Bun همچنان برای
+ذخیره‌گاه وضعیت مرجع از `node:sqlite` استفاده می‌کند. Bun همچنان برای
 نصب وابستگی‌ها و اسکریپت‌های بسته در دسترس است؛ به [Bun](/fa/install/bun) مراجعه کنید.
 
-برنامه‌های همراه برای Windows Hub، macOS (برنامهٔ نوار منو) و نودهای همراه
-(iOS/Android) وجود دارند. برنامه‌های همراه Linux برنامه‌ریزی شده‌اند، اما Gateway
-در حال حاضر کاملاً پشتیبانی می‌شود. در Windows، برای برنامهٔ دسکتاپ Windows Hub،
+برنامه‌های همراه برای Windows Hub، macOS (برنامهٔ نوار منو) و Nodeهای موبایل
+(iOS/Android) وجود دارند. برنامه‌های همراه Linux در دست برنامه‌ریزی‌اند، اما Gateway
+در حال حاضر به‌طور کامل پشتیبانی می‌شود. در Windows، برای برنامهٔ دسکتاپ Windows Hub،
 برای استفادهٔ مبتنی بر ترمینال نصب بومی PowerShell، یا برای سازگارترین محیط اجرای
-Gateway با Linux، WSL2 را انتخاب کنید.
+Gateway با Linux، ‏WSL2 را انتخاب کنید.
 
 ## سیستم‌عامل خود را انتخاب کنید
 
@@ -43,7 +43,7 @@ Gateway با Linux، WSL2 را انتخاب کنید.
 - exe.dev (ماشین مجازی + پراکسی HTTPS): [exe.dev](/fa/install/exe-dev)
 - EasyRunner (Podman + Caddy): [EasyRunner](/fa/platforms/easyrunner)
 
-## پیوندهای رایج
+## پیوندهای پرکاربرد
 
 - راهنمای نصب: [شروع به کار](/fa/start/getting-started)
 - Windows Hub: [Windows](/fa/platforms/windows)
@@ -51,20 +51,20 @@ Gateway با Linux، WSL2 را انتخاب کنید.
 - پیکربندی Gateway: [پیکربندی](/fa/gateway/configuration)
 - وضعیت سرویس: `openclaw gateway status`
 
-## نصب سرویس Gateway (CLI)
+## نصب سرویس Gateway ‏(CLI)
 
 از یکی از این روش‌ها استفاده کنید (همه پشتیبانی می‌شوند):
 
-- ویزارد (توصیه‌شده): `openclaw onboard --install-daemon`
+- راه‌انداز گام‌به‌گام (توصیه‌شده): `openclaw onboard --install-daemon`
 - مستقیم: `openclaw gateway install`
-- جریان پیکربندی: `openclaw configure` → **Gateway service** را انتخاب کنید
+- جریان پیکربندی: `openclaw configure` → **سرویس Gateway** را انتخاب کنید
 - تعمیر/مهاجرت: `openclaw doctor` (نصب یا رفع اشکال سرویس را پیشنهاد می‌دهد)
 
-هدف سرویس به سیستم‌عامل بستگی دارد:
+مقصد سرویس به سیستم‌عامل بستگی دارد:
 
-- macOS: LaunchAgent (`ai.openclaw.gateway`، یا `ai.openclaw.<profile>` برای پروفایل نام‌گذاری‌شده)
+- macOS: ‏LaunchAgent ‏(`ai.openclaw.gateway`، یا `ai.openclaw.<profile>` برای یک نمایهٔ نام‌گذاری‌شده)
 - Linux/WSL2: سرویس کاربری systemd ‏(`openclaw-gateway[-<profile>].service`)
-- Windows بومی: Scheduled Task ‏(`OpenClaw Gateway` یا `OpenClaw Gateway (<profile>)`)؛ اگر ایجاد وظیفه رد شود، یک مورد ورود به سیستم برای هر کاربر در پوشهٔ Startup به‌عنوان راهکار جایگزین استفاده می‌شود
+- Windows بومی: ‏Scheduled Task ‏(`OpenClaw Gateway` یا `OpenClaw Gateway (<profile>)`)؛ اگر ایجاد وظیفه مجاز نباشد، یک مورد ورود به سیستم به‌ازای هر کاربر در پوشهٔ Startup به‌عنوان راهکار جایگزین استفاده می‌شود
 
 ## مرتبط
 

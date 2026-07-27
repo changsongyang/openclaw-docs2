@@ -3,9 +3,10 @@ redirect: /tools/tts
 summary: تغییر مسیر به /tools/tts
 title: تبدیل متن به گفتار
 x-i18n:
-    generated_at: "2026-07-12T11:01:45Z"
+    generated_at: "2026-07-27T16:07:35Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
+    prompt_version: 32
     provider: openai
     source_hash: 7a2383813c9a16e4c10e0e26b4de2e519f64425196c7cf4bb4d1bd144002662a
     source_path: tts.md

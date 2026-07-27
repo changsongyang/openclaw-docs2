@@ -4,7 +4,7 @@ read_when:
 summary: 为 OpenClaw 添加 fal 模型提供商支持。
 title: fal 插件
 x-i18n:
-    generated_at: "2026-07-16T11:49:09Z"
+    generated_at: "2026-07-26T06:57:12Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

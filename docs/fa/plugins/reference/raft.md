@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin مربوط به Raft هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin ‏Raft هستید
 summary: Plugin کانال Raft در OpenClaw برای پل‌های بیدارسازی امن CLI.
 title: Plugin Raft
 x-i18n:
-    generated_at: "2026-07-16T16:57:00Z"
+    generated_at: "2026-07-27T14:30:12Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin ‏Raft
+# Plugin Raft
 
-Plugin کانال Raft در OpenClaw برای پل‌های امن بیدارسازی CLI.
+Plugin کانال Raft برای OpenClaw جهت پل‌های بیدارسازی امن CLI.
 
 ## توزیع
 
 - بسته: `@openclaw/raft`
-- روش نصب: npm؛ ClawHub
+- مسیر نصب: npm؛ ClawHub
 
 ## سطح
 

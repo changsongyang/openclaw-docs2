@@ -1,10 +1,10 @@
 ---
 read_when:
-    - irc Pluginをインストール、設定、または監査している場合
-summary: OpenClaw メッセージを送受信するための IRC チャネル機能を追加します。
+    - irc Plugin をインストール、設定、または監査している場合
+summary: OpenClaw メッセージを送受信するための IRC チャンネルサーフェスを追加します。
 title: IRC Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:58:27Z"
+    generated_at: "2026-07-26T09:11:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # IRC Plugin
 
-OpenClaw メッセージを送受信するための IRC チャンネルサーフェスを追加します。
+OpenClaw メッセージを送受信するための IRC チャネルサーフェスを追加します。
 
 ## 配布
 
@@ -25,7 +25,7 @@ OpenClaw メッセージを送受信するための IRC チャンネルサーフ
 
 ## サーフェス
 
-チャンネル: `irc`
+チャネル: `irc`
 
 ## 関連ドキュメント
 

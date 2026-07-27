@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw'a DeepInfra model sağlayıcısı desteği ekler.
 title: DeepInfra Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:43:38Z"
+    generated_at: "2026-07-26T23:32:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# DeepInfra plugin'i
+# DeepInfra Plugin
 
 OpenClaw'a DeepInfra model sağlayıcısı desteği ekler.
 

@@ -1,40 +1,40 @@
 ---
 read_when:
-    - Gedrag of standaardinstellingen van de typindicator wijzigen
-summary: Wanneer OpenClaw typindicatoren weergeeft en hoe je ze afstelt
+    - Gedrag of standaardinstellingen van de type-indicator wijzigen
+summary: Wanneer OpenClaw typindicatoren toont en hoe je deze afstemt
 title: Typindicatoren
 x-i18n:
-    generated_at: "2026-07-16T15:47:13Z"
+    generated_at: "2026-07-27T05:45:06Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 55e5ec38f47e0612b25b5561790e9b8a17ea4e215c4038bb89af83f861089e03
+    source_hash: b3c66d61ea7e3e809b8e88ae2eabb9794f0886b629094753716ed02912843ffc
     source_path: concepts/typing-indicators.md
     workflow: 16
 ---
 
-Typindicatoren worden naar het chatkanaal verzonden terwijl een run actief is. Gebruik `agents.defaults.typingMode` om te bepalen **wanneer** het typen begint en `typingIntervalSeconds` om te bepalen **hoe vaak** het wordt vernieuwd (keepalive-interval, standaard 6 seconden).
+Typindicatoren worden naar het chatkanaal verzonden zolang een uitvoering actief is. Gebruik `agents.defaults.typingMode` om te bepalen **wanneer** het typen begint en `typingIntervalSeconds` om te bepalen **hoe vaak** de indicator wordt vernieuwd (keepalive-interval, standaard 6 seconden).
 
-## Standaardwaarden
+## Standaardinstellingen
 
 Wanneer `agents.defaults.typingMode` **niet is ingesteld**:
 
-- **Directe chats**: het typen begint onmiddellijk zodra de modellus start.
-- **Groepschats met een vermelding**: het typen begint onmiddellijk.
-- **Groepschats zonder een vermelding**: het typen begint wanneer de toegelaten run voor de gebruiker zichtbare activiteit heeft, zoals uitvoeringsactiviteit van de harness of berichttekst.
-- **Heartbeat-runs**: het typen begint wanneer de Heartbeat-run start, als het vastgestelde Heartbeat-doel een chat is die typen ondersteunt en typen niet is uitgeschakeld.
+- **Directe chats**: de typindicator start onmiddellijk zodra de modellus begint.
+- **Groepschats met een vermelding**: de typindicator start onmiddellijk.
+- **Groepschats zonder vermelding**: de typindicator start wanneer de toegelaten uitvoering gebruikerszichtbare activiteit vertoont, zoals uitvoeringsactiviteit van het harnas of berichttekst.
+- **Heartbeat-uitvoeringen**: de typindicator start wanneer de Heartbeat-uitvoering begint, als het bepaalde Heartbeat-doel een chat is die typindicatoren ondersteunt en typen niet is uitgeschakeld.
 
 ## Modi
 
 Stel `agents.defaults.typingMode` in op een van de volgende waarden:
 
 - `never` - nooit een typindicator.
-- `instant` - begin **zodra de modellus start** met typen, zelfs als de run later alleen het token voor een stil antwoord retourneert.
-- `thinking` - begin met typen bij de **eerste redeneerdelta**, of bij actieve uitvoering van de harness nadat de beurt is geaccepteerd.
-- `message` - begin met typen bij de **eerste voor de gebruiker zichtbare antwoordactiviteit**, zoals actieve uitvoering van de harness of een niet-stille tekstdelta. Tokens voor stille antwoorden, zoals `NO_REPLY`, tellen niet als tekstactiviteit.
+- `instant` - begin **zodra de modellus begint** met typen, zelfs als de uitvoering later alleen het token voor een stil antwoord retourneert.
+- `thinking` - begin met typen bij de **eerste redeneerstap**, of bij actieve uitvoering van het harnas nadat de beurt is geaccepteerd.
+- `message` - begin met typen bij de **eerste gebruikerszichtbare antwoordactiviteit**, zoals actieve uitvoering van het harnas of een niet-stille tekststap. Tokens voor stille antwoorden, zoals `NO_REPLY`, tellen niet als tekstactiviteit.
 
-Volgorde van hoe vroeg de indicator wordt geactiveerd: `never` -> `message`/`thinking` -> `instant`.
+Volgorde van „hoe vroeg de indicator wordt geactiveerd”: `never` -> `message`/`thinking` -> `instant`.
 
 ## Configuratie
 
@@ -51,32 +51,35 @@ Stel de standaardwaarde op agentniveau in:
 }
 ```
 
-Overschrijf de modus of het interval per sessie:
+Overschrijf het beleid voor één agent:
 
 ```json5
 {
-  session: {
-    typingMode: "message",
-    typingIntervalSeconds: 4,
+  agents: {
+    entries: {
+      support: {
+        typingMode: "message",
+      },
+    },
   },
 }
 ```
 
 ## Opmerkingen
 
-- De modus `message` begint niet bij tokens voor stille antwoorden, maar actieve uitvoering kan de typindicator al tonen voordat er assistenttekst beschikbaar is.
-- `thinking` reageert nog steeds op gestreamde redenering (`reasoningLevel: "stream"`) en kan ook door actieve uitvoering worden gestart voordat redeneerdelta's binnenkomen.
-- De Heartbeat-typindicator is een activiteitssignaal voor het vastgestelde afleveringsdoel. Deze start bij het begin van de Heartbeat-run in plaats van de streamtiming van `message` of `thinking` te volgen. Stel `typingMode: "never"` in om deze uit te schakelen.
-- Heartbeats tonen geen typindicator wanneer het Heartbeat-doel `"none"` is, wanneer het doel niet kan worden vastgesteld, wanneer chataflevering voor de Heartbeat is uitgeschakeld of wanneer het kanaal typen niet ondersteunt.
-- `typingIntervalSeconds` bepaalt het **vernieuwingsinterval**, niet de starttijd. Standaard: 6 seconden.
+- De modus `message` start niet bij tokens voor stille antwoorden, maar actieve uitvoering kan de typindicator al tonen voordat er tekst van de assistent beschikbaar is.
+- `thinking` reageert nog steeds op gestreamde redenering (`reasoningLevel: "stream"`) en kan ook starten bij actieve uitvoering voordat redeneerstappen binnenkomen.
+- De Heartbeat-typindicator is een beschikbaarheidssignaal voor het bepaalde afleveringsdoel. Deze start bij aanvang van de Heartbeat-uitvoering in plaats van de streamtiming van `message` of `thinking` te volgen. Stel `typingMode: "never"` in om dit uit te schakelen.
+- Heartbeats tonen geen typindicator wanneer het Heartbeat-doel `"none"` is, wanneer het doel niet kan worden bepaald, wanneer chataflevering voor de Heartbeat is uitgeschakeld of wanneer het kanaal geen typindicatoren ondersteunt.
+- `agents.defaults.typingIntervalSeconds` bepaalt voor elke agent het **vernieuwingsinterval**, niet de starttijd. Standaard: 6 seconden.
 
 ## Gerelateerd
 
 <CardGroup cols={2}>
   <Card title="Aanwezigheid" href="/nl/concepts/presence" icon="signal">
-    Hoe de Gateway verbonden clients bijhoudt voor de pagina Apparaten in de Control UI en het tabblad Instanties in macOS.
+    Hoe de Gateway verbonden clients bijhoudt voor de pagina Apparaten van de Control UI en het tabblad Instanties van macOS.
   </Card>
-  <Card title="Streaming en opdelen" href="/nl/concepts/streaming" icon="bars-staggered">
-    Gedrag van uitgaande streaming, segmentgrenzen en kanaalspecifieke aflevering.
+  <Card title="Streamen en opdelen" href="/nl/concepts/streaming" icon="bars-staggered">
+    Gedrag van uitgaande streams, segmentgrenzen en kanaalspecifieke aflevering.
   </Card>
 </CardGroup>

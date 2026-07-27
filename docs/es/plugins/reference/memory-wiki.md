@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin memory-wiki
-summary: Compilador de wiki persistente y repositorio de conocimiento compatible con Obsidian para OpenClaw.
+summary: Compilador de wikis persistente y bóveda de conocimiento compatible con Obsidian para OpenClaw.
 title: Plugin de wiki de memoria
 x-i18n:
-    generated_at: "2026-07-16T11:53:40Z"
+    generated_at: "2026-07-26T05:21:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

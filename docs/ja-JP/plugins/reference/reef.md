@@ -1,10 +1,10 @@
 ---
 read_when:
-    - reef Pluginをインストール、設定、または監査しています
+    - reef Pluginをインストール、設定、または監査している場合
 summary: 保護されたエンドツーエンド暗号化 claw チャネル。
 title: Reef Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:56:45Z"
+    generated_at: "2026-07-26T09:37:40Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Reef plugin
+# Reef Plugin
 
-保護されたエンドツーエンド暗号化 claw チャンネル。
+保護されたエンドツーエンド暗号化 claw チャネル。
 
 ## 配布
 
@@ -25,7 +25,7 @@ x-i18n:
 
 ## サーフェス
 
-チャンネル: `reef`
+チャネル: `reef`
 
 ## 関連ドキュメント
 

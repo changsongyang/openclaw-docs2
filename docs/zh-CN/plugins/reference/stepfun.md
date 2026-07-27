@@ -4,7 +4,7 @@ read_when:
 summary: 为 OpenClaw 添加 StepFun 和 StepFun Plan 模型提供商支持。
 title: StepFun 插件
 x-i18n:
-    generated_at: "2026-07-16T11:47:39Z"
+    generated_at: "2026-07-26T06:22:40Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # StepFun 插件
 
-为 OpenClaw 添加对 StepFun、StepFun Plan 模型提供商的支持。
+为 OpenClaw 添加 StepFun、StepFun Plan 模型提供商支持。
 
 ## 分发
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## 相关文档
 
-- [StepFun](/zh-CN/providers/stepfun)
+- [stepfun](/zh-CN/providers/stepfun)

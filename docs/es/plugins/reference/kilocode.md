@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin kilocode
-summary: Añade compatibilidad con el proveedor de modelos Kilocode en OpenClaw.
+summary: Añade compatibilidad con el proveedor de modelos Kilocode a OpenClaw.
 title: Plugin de Kilocode
 x-i18n:
-    generated_at: "2026-07-16T11:48:04Z"
+    generated_at: "2026-07-26T04:51:49Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin de Kilocode
+# Plugin Kilocode
 
 Añade compatibilidad con el proveedor de modelos Kilocode a OpenClaw.
 

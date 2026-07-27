@@ -2,9 +2,9 @@
 read_when:
     - acpx pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: Plugin tarafından yönetilen oturum ve aktarım yönetimine sahip OpenClaw ACP çalışma zamanı arka ucu.
-title: ACPx plugin’i
+title: ACPx plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:42:21Z"
+    generated_at: "2026-07-26T23:31:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# ACPx plugin
+# ACPx plugin'i
 
-Plugin tarafından yönetilen oturum ve aktarım yönetimine sahip OpenClaw ACP çalışma zamanı arka ucu.
+Plugin'e ait oturum ve aktarım yönetimine sahip OpenClaw ACP çalışma zamanı arka ucu.
 
 ## Dağıtım
 
 - Paket: `@openclaw/acpx`
-- Kurulum yolu: npm; ClawHub
+- Yükleme yolu: npm; ClawHub
 
 ## Yüzey
 
@@ -29,12 +29,12 @@ Skills
 
 <!-- openclaw-plugin-reference:manual-start -->
 
-## Yerel Pi oturumları
+## Pi yerel oturumları
 
 Paketle birlikte gelen çalışma zamanı, Gateway ve eşleştirilmiş
 Node'larda Pi'nin oturum deposunu otomatik olarak algılar. Depolanan oturumlar, Pi'nin belgelenmiş JSONL oturum biçiminden
-salt okunur döküm görüntüleme özelliğiyle **Pi** oturumları kenar çubuğu grubunda görünür. Katalog, proje ve genel `settings.json` oturum dizinlerinin yanı sıra
-`PI_CODING_AGENT_DIR` ve `PI_CODING_AGENT_SESSION_DIR` öğelerini de dikkate alır. Göreli yollar,
+salt okunur transkriptlere göz atma özelliğiyle **Pi** oturumları kenar çubuğu grubunda görünür. Katalog, proje ve genel `settings.json` oturum dizinlerinin yanı sıra
+`PI_CODING_AGENT_DIR` ve `PI_CODING_AGENT_SESSION_DIR` öğelerini dikkate alır. Göreli yollar,
 `settings.json` dosyalarını içeren dizinden çözümlenir.
 
 Keşfi devre dışı bırakmak için **Config > Plugins > ACPX Runtime** altındaki

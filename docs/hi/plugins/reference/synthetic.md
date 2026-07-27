@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw में Synthetic मॉडल प्रदाता का समर्थन जोड़ता है।
 title: Synthetic Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:18:18Z"
+    generated_at: "2026-07-27T20:14:15Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # Synthetic Plugin
 
-OpenClaw में Synthetic मॉडल प्रदाता समर्थन जोड़ता है।
+OpenClaw में Synthetic मॉडल प्रदाता का समर्थन जोड़ता है।
 
 ## वितरण
 
 - पैकेज: `@openclaw/synthetic-provider`
 - इंस्टॉल मार्ग: OpenClaw में शामिल
 
-## सतह
+## उपलब्ध सतह
 
 प्रदाता: `synthetic`
 

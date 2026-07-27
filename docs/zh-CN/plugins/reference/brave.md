@@ -1,10 +1,10 @@
 ---
 read_when:
-    - 你正在安装、配置或审核 brave 插件
+    - 你正在安装、配置或审计 brave 插件
 summary: 用于 Web 搜索的 OpenClaw Brave Search 提供商插件。
 title: Brave 插件
 x-i18n:
-    generated_at: "2026-07-16T11:48:47Z"
+    generated_at: "2026-07-26T06:56:40Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## 分发
 
 - 软件包：`@openclaw/brave-plugin`
-- 安装渠道：npm；ClawHub
+- 安装途径：npm；ClawHub
 
 ## 接口
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## 相关文档
 
-- [Brave](/zh-CN/tools/brave-search)
+- [brave](/zh-CN/tools/brave-search)

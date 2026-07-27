@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin de Google
-summary: Añade compatibilidad con los proveedores de modelos Google, Google Gemini CLI y Google Vertex en OpenClaw.
+summary: Añade compatibilidad con los proveedores de modelos Google, Google Gemini CLI y Google Vertex a OpenClaw.
 title: Plugin de Google
 x-i18n:
-    generated_at: "2026-07-16T11:51:55Z"
+    generated_at: "2026-07-26T04:45:59Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin de Google
 
-Añade compatibilidad con los proveedores de modelos Google, Google Gemini CLI y Google Vertex a OpenClaw.
+Añade compatibilidad con los proveedores de modelos Google, Google Gemini CLI y Google Vertex en OpenClaw.
 
 ## Distribución
 
@@ -29,4 +29,4 @@ proveedores: `google`, `google-gemini-cli`, `google-vertex`; contratos: `imageGe
 
 ## Documentación relacionada
 
-- [Google](/es/providers/google)
+- [google](/es/providers/google)

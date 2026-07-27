@@ -1,23 +1,24 @@
 ---
 read_when:
     - macOS Canvas panelini uygulama
-    - Görsel çalışma alanı için aracı denetimleri ekleme
-    - WKWebView tuval yüklemelerinde hata ayıklama
-summary: WKWebView + özel URL şeması aracılığıyla yerleştirilmiş, agent tarafından kontrol edilen Canvas paneli
+    - Görsel çalışma alanı için ajan denetimleri ekleme
+    - WKWebView canvas yüklemelerinde hata ayıklama
+summary: Özel URL şemasıyla WKWebView üzerinden yerleştirilmiş, ajan denetimli Canvas paneli
 title: Tuval
 x-i18n:
-    generated_at: "2026-07-16T17:18:57Z"
+    generated_at: "2026-07-26T23:48:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 21955803c39debfbc34851a0c40a69c1f3c6ca009526d9929a4c429ad0b09084
+    source_hash: 56532246bc06601aa753a59f85f33bfa8d6599deecade591a03972e8b9b16fc2
     source_path: platforms/mac/canvas.md
     workflow: 16
 ---
 
-macOS uygulaması; HTML/CSS/JS, A2UI ve küçük etkileşimli kullanıcı arayüzü
-yüzeyleri için hafif bir görsel çalışma alanı olan `WKWebView` kullanarak, temsilci tarafından kontrol edilen bir **Canvas paneli** yerleştirir.
+macOS uygulaması, HTML/CSS/JS, A2UI ve küçük etkileşimli kullanıcı arayüzü
+yüzeyleri için hafif bir görsel çalışma alanı olan `WKWebView` kullanarak
+ajan denetimli bir **Canvas paneli** yerleştirir.
 
 ## Canvas'ın bulunduğu yer
 
@@ -26,7 +27,7 @@ Canvas durumu Application Support altında saklanır:
 - `~/Library/Application Support/OpenClaw/canvas/<session>/...`
 
 Canvas paneli bu dosyaları özel bir URL şeması olan
-`openclaw-canvas://<session>/<path>` üzerinden sunar:
+`openclaw-canvas://<session>/<path>` aracılığıyla sunar:
 
 - `openclaw-canvas://main/` -> `<canvasRoot>/main/index.html`
 - `openclaw-canvas://main/assets/app.css` -> `<canvasRoot>/main/assets/app.css`
@@ -36,19 +37,20 @@ Kökte `index.html` yoksa uygulama yerleşik bir başlangıç sayfası gösterir
 
 ## Panel davranışı
 
-- Menü çubuğunun (veya fare imlecinin) yakınına sabitlenen, kenarlıksız ve yeniden boyutlandırılabilir panel.
-- Her oturum için boyutu/konumu hatırlar.
-- Yerel canvas dosyaları değiştiğinde otomatik olarak yeniden yüklenir.
-- Aynı anda yalnızca bir Canvas paneli görünür (gerektiğinde oturum değiştirilir).
+- Menü çubuğunun (veya fare imlecinin) yakınına sabitlenmiş, kenarlıksız ve yeniden boyutlandırılabilir panel.
+- Canvas'ın gösterilmesi uygulamalar arasında geçiş yapmaz veya klavye odağını çalmaz.
+- Boyutu/konumu oturum bazında hatırlar.
+- Yerel Canvas dosyaları değiştiğinde otomatik olarak yeniden yüklenir.
+- Aynı anda yalnızca bir Canvas paneli görünür (oturumlar gerektiğinde değiştirilir).
 
-Canvas, Settings -> **Allow Canvas** üzerinden devre dışı bırakılabilir. Devre dışı
-bırakıldığında canvas Node komutları `CANVAS_DISABLED` döndürür.
+Canvas, Settings -> **Allow Canvas** seçeneğinden devre dışı bırakılabilir. Devre dışı
+bırakıldığında Canvas Node komutları `CANVAS_DISABLED` döndürür.
 
-## Temsilci API yüzeyi
+## Ajan API yüzeyi
 
-Canvas, Gateway WebSocket üzerinden kullanıma sunulur; böylece temsilci paneli
+Canvas, Gateway WebSocket üzerinden kullanıma sunulur; böylece ajan paneli
 gösterebilir/gizleyebilir, bir yola veya URL'ye gidebilir, JavaScript
-değerlendirebilir ve anlık görüntü yakalayabilir:
+değerlendirebilir ve bir anlık görüntü yakalayabilir:
 
 ```bash
 openclaw nodes canvas present --node <id>
@@ -57,29 +59,34 @@ openclaw nodes canvas eval --node <id> --js "document.title"
 openclaw nodes canvas snapshot --node <id>
 ```
 
-`canvas.navigate`; yerel canvas yollarını, `http(s)` URL'lerini ve `file://`
+`eval` ve `a2ui.*`, paneli açmadan veya görünür hâle getirmeden içeriği günceller. Paneli yalnızca
+`present`, `navigate` veya bir kullanıcı eylemi gösterir; gizlendikten sonra içerik güncellemeleri
+gizli panele uygulanmaya devam eder. `snapshot` için görünür bir panel gerekir; aksi durumda
+`CANVAS_HIDDEN` döndürülür. Önce `present` çalıştırılmalıdır.
+
+`canvas.navigate`; yerel Canvas yollarını, `http(s)` URL'lerini ve `file://`
 URL'lerini kabul eder. `"/"` iletildiğinde yerel başlangıç sayfası veya `index.html` gösterilir.
 
-`/__openclaw__/canvas/` ve `/__openclaw__/a2ui/` altındaki Gateway tarafından barındırılan
-hedefler, Node oturumunun geçerli kapsamlı Canvas URL'si üzerinden çözümlenir.
-Uygulama, gezinmeden önce bu kısa ömürlü yeteneği yeniler; bir yetenek URL'sini
-kendiniz oluşturmanız veya kopyalamanız gerekmez.
+`/__openclaw__/canvas/` ve
+`/__openclaw__/a2ui/` altındaki Gateway tarafından barındırılan hedefler, Node oturumunun mevcut kapsamlı
+Canvas URL'si üzerinden çözümlenir. Uygulama, gezinmeden önce bu kısa ömürlü yeteneği yeniler;
+yetenek URL'sini kendiniz oluşturmanız veya kopyalamanız gerekmez.
 
 ## Canvas'ta A2UI
 
-A2UI, Gateway canvas ana bilgisayarı tarafından barındırılır ve Canvas
-panelinin içinde işlenir. Gateway bir Canvas ana bilgisayarı bildirdiğinde macOS
-uygulaması, ilk açılışta otomatik olarak A2UI ana bilgisayar sayfasına gider.
+A2UI, Gateway Canvas ana makinesi tarafından barındırılır ve Canvas
+panelinin içinde işlenir. Gateway bir Canvas ana makinesi duyurduğunda macOS uygulaması, ilk açılışta
+otomatik olarak A2UI ana makine sayfasına gider.
 
-Bildirilen URL yetenek kapsamlıdır; örneğin
+Duyurulan URL yetenek kapsamlıdır; örneğin
 `http://<gateway-host>:18789/__openclaw__/cap/<token>/__openclaw__/a2ui/?platform=macos`.
-Bunu kararlı bir bağlantı olarak değil, geçici kimlik bilgileri olarak değerlendirin.
+Bunu kalıcı bir bağlantı değil, geçici kimlik bilgileri olarak değerlendirin.
 
 ### A2UI komutları (v0.8)
 
 Canvas, A2UI v0.8 sunucudan istemciye iletilerini kabul eder: `beginRendering`,
-`surfaceUpdate`, `dataModelUpdate`, `deleteSurface`. `createSurface` (v0.9)
-henüz desteklenmemektedir.
+`surfaceUpdate`, `dataModelUpdate`, `deleteSurface`. `createSurface` (v0.9) henüz
+desteklenmemektedir.
 
 ```bash
 cat > /tmp/a2ui-v0.8.jsonl <<'EOFA2'
@@ -96,10 +103,9 @@ Hızlı duman testi:
 openclaw nodes canvas a2ui push --node <id> --text "A2UI'dan merhaba"
 ```
 
-## Canvas'tan temsilci çalıştırmalarını tetikleme
+## Canvas'tan ajan çalıştırmalarını tetikleme
 
-Canvas, `openclaw://agent?...` derin bağlantıları aracılığıyla yeni temsilci çalıştırmaları
-tetikleyebilir:
+Canvas, `openclaw://agent?...` derin bağlantıları aracılığıyla yeni ajan çalıştırmalarını tetikleyebilir:
 
 ```js
 window.location.href = "openclaw://agent?message=Review%20this%20design";
@@ -107,17 +113,17 @@ window.location.href = "openclaw://agent?message=Review%20this%20design";
 
 Desteklenen sorgu parametreleri:
 
-| Parametre                  | Anlamı                                                |
+| Parametre                  | Anlamı                                               |
 | -------------------------- | ----------------------------------------------------- |
-| `message`                  | Önceden doldurulmuş temsilci istemi.                  |
-| `sessionKey`               | Kararlı oturum tanımlayıcısı.                         |
-| `thinking`                 | İsteğe bağlı düşünme profili.                         |
+| `message`                  | Önceden doldurulmuş ajan istemi.                               |
+| `sessionKey`               | Kararlı oturum tanımlayıcısı.                            |
+| `thinking`                 | İsteğe bağlı düşünme profili.                            |
 | `deliver`, `to`, `channel` | Teslimat hedefi.                                      |
-| `timeoutSeconds`           | İsteğe bağlı çalıştırma zaman aşımı.                  |
+| `timeoutSeconds`           | İsteğe bağlı çalıştırma zaman aşımı.                                 |
 | `key`                      | Güvenilir yerel çağıranlar için uygulama tarafından oluşturulan güvenlik belirteci. |
 
 Geçerli bir anahtar sağlanmadığı sürece uygulama onay ister. Anahtarsız
-bağlantılar, onaydan önce iletiyi ve URL'yi gösterir ve teslimat yönlendirme
+bağlantılar onaydan önce iletiyi ve URL'yi gösterir ve teslimat yönlendirme
 alanlarını yok sayar; anahtarlı bağlantılar normal Gateway çalıştırma yolunu kullanır.
 
 ## Güvenlik notları
@@ -125,10 +131,10 @@ alanlarını yok sayar; anahtarlı bağlantılar normal Gateway çalıştırma y
 - Canvas şeması dizin geçişini engeller; dosyalar oturum kökü altında bulunmalıdır.
 - Yerel Canvas içeriği özel bir şema kullanır (geri döngü sunucusu gerekmez).
 - Harici `http(s)` URL'lerine yalnızca açıkça gidildiğinde izin verilir.
-- Sıradan web sayfaları yalnızca görüntülenir. Temsilci eylemleri yalnızca
-  uygulamaya ait Canvas şemasından veya uygulamanın seçtiği, tam olarak yetenek
-  kapsamlı Gateway A2UI belgesinden kabul edilir; alt çerçeveler, yönlendirmeler,
-  eski yetenekler ve değiştirilmiş sorgular eylem gönderemez.
+- Normal web sayfaları yalnızca işlenir. Ajan eylemleri yalnızca
+  uygulamaya ait Canvas şemasından veya uygulama tarafından seçilen, tam olarak yetenek kapsamlı
+  Gateway A2UI belgesinden kabul edilir; alt çerçeveler, yönlendirmeler, eskimiş yetenekler ve değiştirilmiş
+  sorgular eylem gönderemez.
 
 ## İlgili
 

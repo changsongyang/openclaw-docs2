@@ -4,7 +4,7 @@ read_when:
 summary: 新增 OpenClaw 對 DeepSeek 模型供應商的支援。
 title: DeepSeek 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:47:57Z"
+    generated_at: "2026-07-26T07:58:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,15 +18,15 @@ x-i18n:
 
 為 OpenClaw 新增 DeepSeek 模型供應商支援。
 
-## 發布方式
+## 發行
 
 - 套件：`@openclaw/deepseek-provider`
 - 安裝途徑：npm；ClawHub：`clawhub:@openclaw/deepseek-provider`
 
 ## 介面
 
-供應商：`deepseek`；合約：`usageProviders`
+供應商：`deepseek`；契約：`usageProviders`
 
 ## 相關文件
 
-- [DeepSeek](/zh-TW/providers/deepseek)
+- [deepseek](/zh-TW/providers/deepseek)

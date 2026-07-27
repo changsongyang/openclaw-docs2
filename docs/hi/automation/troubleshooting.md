@@ -2,7 +2,7 @@
 summary: /automation/cron-jobs पर रीडायरेक्ट करें
 title: ऑटोमेशन समस्या निवारण
 x-i18n:
-    generated_at: "2026-07-16T13:12:36Z"
+    generated_at: "2026-07-27T17:23:35Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -12,7 +12,7 @@ x-i18n:
     workflow: 16
 ---
 
-यह पृष्ठ स्थानांतरित हो गया है। ऑटोमेशन से जुड़ी समस्याओं का निवारण अब [निर्धारित कार्य](/hi/automation/cron-jobs#troubleshooting) पर उपलब्ध है।
+यह पृष्ठ स्थानांतरित हो गया है। ऑटोमेशन समस्या निवारण अब [शेड्यूल किए गए कार्य](/hi/automation/cron-jobs#troubleshooting) पर उपलब्ध है।
 
 ## संबंधित
 

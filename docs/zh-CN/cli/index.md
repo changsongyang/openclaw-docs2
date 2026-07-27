@@ -1,34 +1,34 @@
 ---
 read_when:
-    - 找到合适的 `openclaw` 子命令
+    - 找到正确的 `openclaw` 子命令
     - 查找全局标志或输出样式规则
 summary: OpenClaw CLI 索引：命令列表、全局标志以及各命令页面的链接
 title: CLI 参考
 x-i18n:
-    generated_at: "2026-07-16T11:32:47Z"
+    generated_at: "2026-07-26T06:43:59Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 22a2e85d4ba33aff3ad369eb3c73b07b4cbe4401c9c5c294180e2629dd2cbaa2
+    source_hash: 0f9694ac6a50a646862edda79d218786808a2e6008eaf9abdac0e634d373c1f7
     source_path: cli/index.md
     workflow: 16
 ---
 
 `openclaw` 是主要的 CLI 入口点。每个核心命令都有专门的
-参考页面，或在其别名所对应的命令中记录；本索引列出
+参考页面，或与其所别名的命令一起记录；本索引列出了
 适用于整个 CLI 的命令、全局标志和输出样式规则。
 
-按用途分类的设置命令：
+按用途划分的设置命令：
 
-- `openclaw setup` 和 `openclaw onboard` 会先验证推理，然后启动 OpenClaw，以设置 Gateway 网关、工作区、渠道、Skills 和健康状态。
+- `openclaw setup` 和 `openclaw onboard` 首先验证推理，然后启动 OpenClaw，以设置 Gateway 网关、工作区、渠道、Skills 和健康状态。
 - `openclaw setup --baseline` 创建基础配置和工作区，而不进入引导式新手引导流程。
-- `openclaw configure` 修改现有设置中的特定部分：模型身份验证、Gateway 网关、渠道、插件或 Skills。
-- `openclaw channels add` 在基础设置完成后配置渠道账户；不带标志运行可使用引导式设置，带渠道专用标志运行则适用于脚本。
+- `openclaw configure` 更改现有设置的特定部分：模型身份验证、Gateway 网关、渠道、插件或 Skills。
+- `openclaw channels add` 在基础配置就绪后配置渠道账户；仅选择渠道时使用引导式设置，而账户、凭据或渠道配置标志则使用适合脚本的直接路径。
 
 ## 命令页面
 
-| 领域                         | 命令                                                                                                                                                                                                                              |
+| 区域                         | 命令                                                                                                                                                                                                                              |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 设置和新手引导         | [`openclaw`](/zh-CN/cli/openclaw) · [`setup`](/zh-CN/cli/setup) · [`onboard`](/zh-CN/cli/onboard) · [`configure`](/zh-CN/cli/configure) · [`config`](/zh-CN/cli/config) · [`completion`](/zh-CN/cli/completion) · [`doctor`](/zh-CN/cli/doctor) · [`dashboard`](/zh-CN/cli/dashboard) |
 | 重置、备份和迁移 | [`backup`](/zh-CN/cli/backup) · [`migrate`](/zh-CN/cli/migrate) · [`reset`](/zh-CN/cli/reset) · [`uninstall`](/zh-CN/cli/uninstall) · [`update`](/zh-CN/cli/update)                                                                                                 |
@@ -43,33 +43,33 @@ x-i18n:
 | 配对和渠道         | [`pairing`](/zh-CN/cli/pairing) · [`qr`](/zh-CN/cli/qr) · [`channels`](/zh-CN/cli/channels)                                                                                                                                                             |
 | 安全和插件         | [`security`](/zh-CN/cli/security) · [`secrets`](/zh-CN/cli/secrets) · [`skills`](/zh-CN/cli/skills) · [`plugins`](/zh-CN/cli/plugins) · [`proxy`](/zh-CN/cli/proxy)                                                                                                 |
 | 旧版别名               | [`daemon`](/zh-CN/cli/daemon)（Gateway 网关服务）· [`clawbot`](/zh-CN/cli/clawbot)（命名空间）                                                                                                                                                     |
-| 插件（可选）           | [`path`](/zh-CN/cli/path) · [`policy`](/zh-CN/cli/policy) · [`voicecall`](/zh-CN/cli/voicecall) · [`workboard`](/zh-CN/cli/workboard)（如已安装）                                                                                                          |
+| 插件（可选）           | [`path`](/zh-CN/cli/path) · [`policy`](/zh-CN/cli/policy) · [`voicecall`](/zh-CN/cli/voicecall) · [`workboard`](/zh-CN/cli/workboard)（如果已安装）                                                                                                          |
 
 ## 全局标志
 
 | 标志                    | 用途                                                                                                 |
 | ----------------------- | ------------------------------------------------------------------------------------------------------- |
 | `--dev`                 | 将状态隔离在 `~/.openclaw-dev` 下，将默认 Gateway 网关端口设为 19001，并偏移派生端口              |
-| `--profile <name>`      | 将状态隔离在 `~/.openclaw-<name>` 下（`OPENCLAW_STATE_DIR`/`OPENCLAW_CONFIG_PATH`）                  |
-| `--container <name>`    | 在名为 `<name>` 的运行中 Podman/Docker 容器内运行 CLI（默认：环境变量 `OPENCLAW_CONTAINER`） |
+| `--profile <name>`      | 将状态隔离在 `~/.openclaw-<name>`（`OPENCLAW_STATE_DIR`/`OPENCLAW_CONFIG_PATH`）下                  |
+| `--container <name>`    | 在名为 `<name>` 的运行中 Podman/Docker 容器内运行 CLI（默认值：环境变量 `OPENCLAW_CONTAINER`） |
 | `--log-level <level>`   | 覆盖文件和控制台输出的全局日志级别                                                 |
 | `--no-color`            | 禁用 ANSI 颜色（也会遵循 `NO_COLOR=1`）                                                    |
-| `--update`              | [`openclaw update`](/zh-CN/cli/update) 的简写；适用于源码检出和软件包安装    |
-| `-V`, `--version`, `-v` | 输出版本并退出                                                                                  |
+| `--update`              | [`openclaw update`](/zh-CN/cli/update) 的简写；适用于源代码检出和软件包安装    |
+| `-V`, `--version`, `-v` | 打印版本并退出                                                                                  |
 
 ## 输出模式
 
 - ANSI 颜色和进度指示器仅在 TTY 会话中呈现。
-- OSC-8 超链接会在支持的环境中呈现为可点击链接；否则
-  CLI 会回退到纯文本 URL。
-- `--json`（以及支持时的 `--plain`）会禁用样式，以提供简洁输出。
+- 在支持的环境中，OSC-8 超链接会呈现为可点击链接；否则
+  CLI 会回退到纯 URL。
+- `--json`（以及支持时的 `--plain`）会禁用样式，以获得整洁输出。
 - 长时间运行的命令会显示进度指示器（支持时使用 OSC 9;4）。
 
 ## 调色板
 
 OpenClaw 的 CLI 输出使用龙虾主题调色板：
 
-| 令牌          | 十六进制值       | 用途                             |
+| 令牌          | 十六进制       | 用途                             |
 | -------------- | --------- | ------------------------------------ |
 | `accent`       | `#FF5A2D` | 标题、标签、主要高亮 |
 | `accentBright` | `#FF7A3D` | 命令名称、强调              |
@@ -80,15 +80,15 @@ OpenClaw 的 CLI 输出使用龙虾主题调色板：
 | `error`        | `#E23D2D` | 错误、失败                     |
 | `muted`        | `#8B7F77` | 弱化显示、元数据                |
 
-调色板的权威来源：`packages/terminal-core/src/palette.ts`。
+调色板的唯一事实来源：`packages/terminal-core/src/palette.ts`。
 
 ## 命令树
 
 <Accordion title="完整命令树">
 
-此图涵盖核心命令及其主要子命令。插件添加的
-子命令（例如 `skills`、`plugins` 和 `wiki` 下的子命令）会
-独立演进；运行 `<command> --help` 可获取权威的当前列表。
+此映射涵盖核心命令及其主要子命令。插件添加的
+子命令（例如 `skills`、`plugins` 和 `wiki` 下的子命令）独立演进；
+运行 `<command> --help` 可获取权威的最新列表。
 
 ```
 openclaw [--dev] [--profile <name>] <command>
@@ -432,18 +432,18 @@ openclaw [--dev] [--profile <name>] <command>
 
 聊天消息支持 `/...` 命令。请参阅[斜杠命令](/zh-CN/tools/slash-commands)。
 
-亮点：
+重点功能：
 
 - `/status` - 快速诊断。
-- `/trace` - 会话范围内的插件跟踪/调试行。
-- `/config` - 持久化的配置更改。
-- `/debug` - 仅限运行时的配置覆盖（存储在内存而非磁盘中；需要 `commands.debug: true`）。
+- `/trace` - 会话范围的插件跟踪/调试行。
+- `/config` - 持久化配置更改。
+- `/debug` - 仅运行时配置覆盖（存储在内存而非磁盘中；需要 `commands.debug: true`）。
 
-## 使用量跟踪
+## 用量跟踪
 
-当 OAuth/API 凭据可用时，`openclaw status --usage` 和 Control UI 会显示提供商的使用量/配额。数据直接来自提供商的使用量端点，并统一为 `X% left`。当前提供使用量周期数据的提供商包括：Anthropic、Gemini CLI、GitHub Copilot、MiniMax、OpenAI Codex、Xiaomi 和 z.ai。
+当 OAuth/API 凭据可用时，`openclaw status --usage` 和 Control UI 会显示提供商用量/配额。数据直接来自提供商用量端点，并被规范化为 `X% left`。目前提供用量周期数据的提供商包括：Anthropic、Gemini CLI、GitHub Copilot、MiniMax、OpenAI Codex、Xiaomi 和 z.ai。
 
-了解详情，请参阅[使用量跟踪](/zh-CN/concepts/usage-tracking)。
+有关详细信息，请参阅[用量跟踪](/zh-CN/concepts/usage-tracking)。
 
 ## 相关内容
 

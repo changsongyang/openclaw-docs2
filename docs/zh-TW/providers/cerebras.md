@@ -1,11 +1,11 @@
 ---
 read_when:
-    - 你想搭配 OpenClaw 使用 Cerebras
+    - 你想在 OpenClaw 中使用 Cerebras
     - 你需要 Cerebras API 金鑰環境變數或命令列介面驗證選項
 summary: Cerebras 設定（驗證 + 模型選擇）
 title: Cerebras
 x-i18n:
-    generated_at: "2026-07-19T13:59:52Z"
+    generated_at: "2026-07-26T08:08:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,7 +15,7 @@ x-i18n:
     workflow: 16
 ---
 
-[Cerebras](https://www.cerebras.ai) 在自訂推論硬體上提供高速、與 OpenAI 相容的推論服務。此外掛隨附靜態的雙模型目錄（不進行即時探索）。
+[Cerebras](https://www.cerebras.ai) 在自訂推論硬體上提供高速、與 OpenAI 相容的推論服務。此外掛隨附靜態的雙模型目錄（不支援即時探索）。
 
 | 屬性            | 值                                                        |
 | --------------- | --------------------------------------------------------- |
@@ -66,7 +66,7 @@ export CEREBRAS_API_KEY=csk-...
     openclaw models list --provider cerebras
     ```
 
-    列出兩個靜態模型。如果 `CEREBRAS_API_KEY` 尚未解析，`openclaw models status --json` 會在 `auth.unusableProfiles` 下回報缺少的認證資訊。
+    此命令會列出兩個靜態模型。如果 `CEREBRAS_API_KEY` 無法解析，`openclaw models status --json` 會在 `auth.unusableProfiles` 下回報缺少的認證資訊。
 
   </Step>
 </Steps>
@@ -82,7 +82,7 @@ openclaw onboard --non-interactive \
 
 ## 內建目錄
 
-兩個模型皆具有 128k 的上下文視窗，以及最多 8,192 個輸出權杖。
+兩個模型都共用 128k 上下文視窗，且輸出 Token 上限為 8,192。
 
 | 模型參照                | 名稱         | 推理 | 備註                     |
 | ----------------------- | ------------ | ---- | ------------------------ |
@@ -91,7 +91,7 @@ openclaw onboard --non-interactive \
 
 ## 手動設定
 
-大多數設定只需要 API 金鑰。若要覆寫模型中繼資料，或以 `mode: "merge"` 搭配靜態目錄執行，請使用明確的 `models.providers.cerebras` 設定：
+大多數設定只需要 API 金鑰。若要覆寫模型中繼資料，或在 `mode: "merge"` 中使用靜態目錄執行，請使用明確的 `models.providers.cerebras` 設定：
 
 ```json5
 {
@@ -119,7 +119,7 @@ openclaw onboard --non-interactive \
 ```
 
 <Note>
-如果閘道以常駐程式方式執行（launchd、systemd、Docker），請確保該程序可使用 `CEREBRAS_API_KEY`，例如在 `~/.openclaw/.env` 中設定，或透過 `env.shellEnv` 提供。除非另外匯入環境變數，否則僅在互動式 Shell 中匯出的金鑰無法供受管理的服務使用。
+如果閘道以常駐程式執行（launchd、systemd、Docker），請確保該程序可使用 `CEREBRAS_API_KEY`，例如將其設於 `~/.openclaw/.env` 中，或透過 `env.shellEnv` 提供。除非另行匯入環境變數，否則僅在互動式 Shell 中匯出的金鑰無法供受管理的服務使用。
 </Note>
 
 ## 相關內容
@@ -129,12 +129,12 @@ openclaw onboard --non-interactive \
     選擇提供者、模型參照與容錯移轉行為。
   </Card>
   <Card title="思考模式" href="/zh-TW/tools/thinking" icon="brain">
-    兩個支援推理的 Cerebras 模型可使用的推理投入程度。
+    兩個具備推理能力的 Cerebras 模型所支援的推理強度層級。
   </Card>
   <Card title="設定參考" href="/zh-TW/gateway/config-agents#agent-defaults" icon="gear">
-    Agent 預設值與模型設定。
+    代理程式預設值與模型設定。
   </Card>
   <Card title="模型常見問題" href="/zh-TW/help/faq-models" icon="circle-question">
-    驗證設定檔、切換模型，以及解決「no profile」錯誤。
+    驗證設定檔、切換模型，以及解決「無設定檔」錯誤。
   </Card>
 </CardGroup>

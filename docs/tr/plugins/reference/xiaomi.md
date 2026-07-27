@@ -2,9 +2,9 @@
 read_when:
     - xiaomi pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a Xiaomi ve Xiaomi Token Plan model sağlayıcısı desteği ekler.
-title: Xiaomi plugini
+title: Xiaomi Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:27:39Z"
+    generated_at: "2026-07-26T22:56:41Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Xiaomi plugin
+# Xiaomi plugini
 
-OpenClaw'a Xiaomi, Xiaomi Token Plan model sağlayıcısı desteği ekler.
+OpenClaw'a Xiaomi ve Xiaomi Token Plan model sağlayıcısı desteği ekler.
 
 ## Dağıtım
 

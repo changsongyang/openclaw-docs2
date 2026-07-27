@@ -2,10 +2,10 @@
 read_when:
     - Sie möchten Zugriff auf von OpenCode gehostete Modelle
     - Sie möchten zwischen den Katalogen Zen und Go wählen
-summary: OpenCode-Zen- und -Go-Kataloge mit OpenClaw verwenden
+summary: OpenCode-Zen- und Go-Kataloge mit OpenClaw verwenden
 title: OpenCode
 x-i18n:
-    generated_at: "2026-07-24T05:19:25Z"
+    generated_at: "2026-07-26T19:12:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -24,8 +24,8 @@ OpenCode stellt in OpenClaw zwei gehostete Kataloge bereit:
 
 Beide Kataloge verwenden denselben OpenCode-API-Schlüssel (`OPENCODE_API_KEY`, Alias
 `OPENCODE_ZEN_API_KEY`). OpenClaw hält die IDs der Runtime-Provider getrennt, damit
-das vorgelagerte Routing pro Modell korrekt bleibt, behandelt sie beim Onboarding und in der Dokumentation jedoch als
-eine gemeinsame OpenCode-Einrichtung.
+das Upstream-Routing pro Modell korrekt bleibt; Onboarding und Dokumentation behandeln sie jedoch als
+eine gemeinsame OpenCode-Konfiguration.
 
 ## Erste Schritte
 
@@ -61,7 +61,7 @@ eine gemeinsame OpenCode-Einrichtung.
   </Tab>
 
   <Tab title="Go-Katalog">
-    **Am besten geeignet für:** das von OpenCode gehostete Angebot an Kimi-, GLM-, MiniMax-, Qwen- und DeepSeek-Modellen.
+    **Am besten geeignet für:** die von OpenCode gehostete Auswahl an Kimi, GLM, MiniMax, Qwen und DeepSeek.
 
     <Steps>
       <Step title="Onboarding ausführen">
@@ -109,7 +109,7 @@ eine gemeinsame OpenCode-Einrichtung.
 | Beispielmodelle  | `opencode/claude-opus-4-6`, `opencode/gpt-5.5`, `opencode/gemini-3.1-pro`, `opencode/glm-5.2` |
 
 Führen Sie `openclaw models list --provider opencode` aus, um die vollständige aktuelle Liste anzuzeigen, die
-auch Einträge der kostenlosen Stufe wie `opencode/big-pickle` und
+auch Einträge des kostenlosen Tarifs wie `opencode/big-pickle` und
 `opencode/deepseek-v4-flash-free` enthält.
 
 ### Go
@@ -124,23 +124,23 @@ Die vollständige Go-Modelltabelle finden Sie unter [OpenCode Go](/de/providers/
 ## Erweiterte Konfiguration
 
 <AccordionGroup>
-  <Accordion title="API-Schlüssel-Aliasse">
+  <Accordion title="Aliasse für API-Schlüssel">
     `OPENCODE_ZEN_API_KEY` wird ebenfalls als Alias für `OPENCODE_API_KEY` akzeptiert.
   </Accordion>
 
-  <Accordion title="Gemeinsam verwendete Anmeldedaten">
-    Wenn Sie bei der Einrichtung einen OpenCode-Schlüssel eingeben, werden die Anmeldedaten für beide Runtime-
+  <Accordion title="Gemeinsam genutzte Anmeldedaten">
+    Wenn Sie während der Einrichtung einen OpenCode-Schlüssel eingeben, werden die Anmeldedaten für beide Runtime-
     Provider gespeichert. Sie müssen das Onboarding nicht für jeden Katalog separat durchführen.
   </Accordion>
 
-  <Accordion title="API-Schlüssel abrufen">
+  <Accordion title="API-Schlüssel beziehen">
     Erstellen Sie ein OpenCode-Konto und generieren Sie unter
-    [opencode.ai/auth](https://opencode.ai/auth) einen API-Schlüssel. Abrechnung und Katalogverfügbarkeit
-    werden über das OpenCode-Dashboard verwaltet.
+    [opencode.ai/auth](https://opencode.ai/auth) einen API-Schlüssel. Abrechnung und Katalog-
+    verfügbarkeit werden über das OpenCode-Dashboard verwaltet.
   </Accordion>
 
-  <Accordion title="Gemini-Replay-Verhalten">
-    Auf Gemini basierende OpenCode-Referenzen verbleiben auf dem Proxy-Gemini-Pfad, sodass OpenClaw dort
+  <Accordion title="Replay-Verhalten von Gemini">
+    Gemini-basierte OpenCode-Referenzen verbleiben im Proxy-Gemini-Pfad, sodass OpenClaw dort
     weiterhin die Bereinigung von Gemini-Denksignaturen durchführt, ohne die native Gemini-
     Replay-Validierung oder Bootstrap-Umschreibungen zu aktivieren.
   </Accordion>
@@ -157,7 +157,7 @@ Die vollständige Go-Modelltabelle finden Sie unter [OpenCode Go](/de/providers/
     Vollständige Referenz zum Go-Katalog.
   </Card>
   <Card title="Modellauswahl" href="/de/concepts/model-providers" icon="layers">
-    Auswahl von Providern und Modellreferenzen sowie Failover-Verhalten.
+    Auswahl von Providern, Modellreferenzen und Failover-Verhalten.
   </Card>
   <Card title="Konfigurationsreferenz" href="/de/gateway/configuration-reference" icon="gear">
     Vollständige Konfigurationsreferenz für Agenten, Modelle und Provider.

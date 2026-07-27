@@ -4,7 +4,7 @@ read_when:
 summary: 'चैट और कार्यस्थल टूल के लिए OpenClaw Feishu/Lark चैनल Plugin (समुदाय द्वारा अनुरक्षित: @m1heng)।'
 title: Feishu Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:29:35Z"
+    generated_at: "2026-07-27T18:18:06Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,17 +16,17 @@ x-i18n:
 
 # Feishu Plugin
 
-चैट और कार्यस्थल टूल के लिए OpenClaw Feishu/Lark चैनल Plugin (समुदाय द्वारा अनुरक्षित: @m1heng)।
+चैट और कार्यस्थल टूल के लिए OpenClaw Feishu/Lark चैनल Plugin (@m1heng द्वारा समुदाय-रखरखाव)।
 
 ## वितरण
 
 - पैकेज: `@openclaw/feishu`
-- इंस्टॉल करने का माध्यम: npm; ClawHub
+- इंस्टॉल मार्ग: npm; ClawHub
 
-## उपलब्ध सुविधाएँ
+## सतह
 
 चैनल: `feishu`; अनुबंध: `tools`; Skills
 
 ## संबंधित दस्तावेज़
 
-- [feishu](/hi/channels/feishu)
+- [Feishu](/hi/channels/feishu)

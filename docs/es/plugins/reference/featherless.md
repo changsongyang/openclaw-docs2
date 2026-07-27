@@ -4,7 +4,7 @@ read_when:
 summary: Plugin del proveedor Featherless AI para OpenClaw.
 title: Plugin Featherless
 x-i18n:
-    generated_at: "2026-07-16T11:52:39Z"
+    generated_at: "2026-07-26T04:48:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin Featherless
 
-Plugin del proveedor de IA Featherless para OpenClaw.
+Plugin del proveedor Featherless AI para OpenClaw.
 
 ## Distribución
 

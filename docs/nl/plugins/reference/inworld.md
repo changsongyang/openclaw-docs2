@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de inworld-plugin
-summary: Inworld-streaming tekst-naar-spraak (MP3, OGG_OPUS, PCM-telefonie).
+summary: Inworld-streamingtekst-naar-spraak (MP3, OGG_OPUS, PCM-telefonie).
 title: Inworld-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:06:04Z"
+    generated_at: "2026-07-27T05:09:22Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Inworld-Plugin
+# Inworld-plugin
 
-Inworld-streamingtekst-naar-spraak (MP3, OGG_OPUS, PCM-telefonie).
+Inworld streaming tekst-naar-spraak (MP3, OGG_OPUS, PCM-telefonie).
 
 ## Distributie
 

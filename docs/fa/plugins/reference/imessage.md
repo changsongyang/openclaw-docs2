@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin مربوط به iMessage هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin ‏iMessage هستید
 summary: سطح کانال iMessage را برای ارسال و دریافت پیام‌های OpenClaw اضافه می‌کند.
 title: Plugin ‏iMessage
 x-i18n:
-    generated_at: "2026-07-16T17:02:05Z"
+    generated_at: "2026-07-27T16:58:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,11 +21,11 @@ x-i18n:
 ## توزیع
 
 - بسته: `@openclaw/imessage`
-- مسیر نصب: همراه OpenClaw ارائه می‌شود
+- مسیر نصب: در OpenClaw گنجانده شده است
 
 ## سطح
 
-کانال‌ها: `imessage`؛ مهارت‌ها
+کانال‌ها: `imessage`؛ Skills
 
 ## مستندات مرتبط
 

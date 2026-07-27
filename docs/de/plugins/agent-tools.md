@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Veralteter Link zu agent-tools
+    - Legacy-Link zu agent-tools
 summary: Weiterleitung zu „Plugins erstellen“ (Abschnitt zum Registrieren von Tools)
 title: Tools registrieren
 x-i18n:
-    generated_at: "2026-07-24T05:04:23Z"
+    generated_at: "2026-07-26T18:35:08Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -19,4 +19,4 @@ Diese Seite wurde verschoben. Siehe [Plugins erstellen: Agent-Tools registrieren
 ## Verwandte Themen
 
 - [Plugins erstellen](/de/plugins/building-plugins)
-- [Plugin-SDK-Einrichtung](/de/plugins/sdk-setup)
+- [Plugin-SDK einrichten](/de/plugins/sdk-setup)

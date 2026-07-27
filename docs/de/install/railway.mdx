@@ -1,11 +1,11 @@
 ---
 read_when:
     - OpenClaw auf Railway bereitstellen
-    - Sie möchten eine Cloud-Bereitstellung mit nur einem Klick und browserbasierter Control UI
-summary: OpenClaw auf Railway mit einer Ein-Klick-Vorlage bereitstellen
+    - Sie möchten eine Cloud-Bereitstellung mit einem Klick und browserbasierter Control UI
+summary: OpenClaw mit einer Ein-Klick-Vorlage auf Railway bereitstellen
 title: Railway
 x-i18n:
-    generated_at: "2026-07-24T04:39:13Z"
+    generated_at: "2026-07-26T18:31:40Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -29,42 +29,42 @@ Stellen Sie OpenClaw mit einer Ein-Klick-Vorlage auf Railway bereit und greifen 
   </Step>
 
 <Step title="Volume hinzufügen">
-  Binden Sie ein unter `/data` eingehängtes Volume ein (für persistenten Zustand erforderlich).
+  Binden Sie ein unter `/data` eingehängtes Volume ein (für die dauerhafte Speicherung des Zustands erforderlich).
 </Step>
 
   <Step title="Variablen festlegen">
     Legen Sie die erforderlichen **Variables** für den Dienst fest:
 
     - `OPENCLAW_GATEWAY_PORT=8080` (erforderlich – muss mit dem Port unter Public Networking übereinstimmen)
-    - `OPENCLAW_GATEWAY_TOKEN` (erforderlich; als Administratorgeheimnis behandeln)
+    - `OPENCLAW_GATEWAY_TOKEN` (erforderlich; als Administrator-Secret behandeln)
     - `OPENCLAW_STATE_DIR=/data/.openclaw` (empfohlen)
     - `OPENCLAW_WORKSPACE_DIR=/data/workspace` (empfohlen)
 
   </Step>
 
 <Step title="Öffentliches Netzwerk aktivieren">
-  Aktivieren Sie unter **Public Networking** für den Dienst **HTTP Proxy** auf Port `8080`.
+  Aktivieren Sie unter **Public Networking** für den Dienst auf Port `8080` die Option **HTTP Proxy**.
 </Step>
 
   <Step title="Verbinden">
     Sie finden Ihre öffentliche URL unter **Railway -> your service -> Settings -> Domains** – entweder eine generierte Domain (häufig `https://<something>.up.railway.app`) oder Ihre verknüpfte benutzerdefinierte Domain.
 
-    Öffnen Sie `https://<your-railway-domain>/openclaw` und stellen Sie die Verbindung mit dem konfigurierten gemeinsamen Geheimnis her. Die Vorlage verwendet standardmäßig `OPENCLAW_GATEWAY_TOKEN`; wenn Sie dies durch eine Passwortauthentifizierung ersetzen, verwenden Sie stattdessen dieses Passwort.
+    Öffnen Sie `https://<your-railway-domain>/openclaw` und stellen Sie die Verbindung mit dem konfigurierten gemeinsamen Secret her. Die Vorlage verwendet standardmäßig `OPENCLAW_GATEWAY_TOKEN`; wenn Sie dies durch eine Passwortauthentifizierung ersetzen, verwenden Sie stattdessen dieses Passwort.
 
   </Step>
 </Steps>
 
-## Enthaltene Funktionen
+## Leistungsumfang
 
-- Gehostetes OpenClaw-Gateway mit Control UI
-- Persistenter Speicher über das Railway-Volume (`/data`), sodass `openclaw.json`, agentenspezifische `auth-profiles.json`, Kanal-/Provider-Zustand, Sitzungen und der Arbeitsbereich erneute Bereitstellungen überdauern
+- Gehostetes OpenClaw Gateway mit Control UI
+- Dauerhafter Speicher über das Railway-Volume (`/data`), sodass `openclaw.json`, agentenspezifische `auth-profiles.json`, Kanal-/Provider-Zustand, Sitzungen und der Arbeitsbereich erneute Bereitstellungen überstehen
 
-## Einen Kanal verbinden
+## Kanal verbinden
 
-Verwenden Sie die Control UI unter `/openclaw` oder führen Sie `openclaw onboard` über die Railway-Shell aus, um Anweisungen zur Kanaleinrichtung zu erhalten:
+Verwenden Sie die Control UI unter `/openclaw` oder führen Sie `openclaw onboard` über die Shell von Railway aus, um Anweisungen zur Kanaleinrichtung zu erhalten:
 
 - [Discord](/de/channels/discord)
-- [Telegram](/de/channels/telegram) (am schnellsten – nur ein Bot-Token erforderlich)
+- [Telegram](/de/channels/telegram) (am schnellsten – lediglich ein Bot-Token)
 - [Alle Kanäle](/de/channels)
 
 ## Sicherungen und Migration
@@ -79,6 +79,6 @@ Dadurch wird ein portables Sicherungsarchiv mit dem OpenClaw-Zustand und allen k
 
 ## Nächste Schritte
 
-- Nachrichtenkanäle einrichten: [Kanäle](/de/channels)
+- Messaging-Kanäle einrichten: [Kanäle](/de/channels)
 - Gateway konfigurieren: [Gateway-Konfiguration](/de/gateway/configuration)
 - OpenClaw auf dem neuesten Stand halten: [Aktualisierung](/de/install/updating)

@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw Linux डेस्कटॉप ऐप के लिए Canvas रेंडरिंग ब्रिज।
 title: Linux Canvas Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:30:27Z"
+    generated_at: "2026-07-27T20:13:15Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Linux Canvas Plugin
+# Linux Canvas plugin
 
 OpenClaw Linux डेस्कटॉप ऐप के लिए Canvas रेंडरिंग ब्रिज।
 
@@ -25,4 +25,4 @@ OpenClaw Linux डेस्कटॉप ऐप के लिए Canvas रें
 
 ## सतह
 
-Plugin
+plugin

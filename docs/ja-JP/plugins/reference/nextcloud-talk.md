@@ -1,10 +1,10 @@
 ---
 read_when:
-    - nextcloud-talk Pluginをインストール、設定、または監査しています
+    - nextcloud-talk Plugin のインストール、設定、または監査を行っています
 summary: 会話用の OpenClaw Nextcloud Talk チャンネル Plugin。
 title: Nextcloud Talk Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:56:20Z"
+    generated_at: "2026-07-26T09:12:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Nextcloud Talk Plugin
 
-会話用のOpenClaw Nextcloud TalkチャンネルPlugin。
+会話用の OpenClaw Nextcloud Talk チャンネル Plugin。
 
 ## 配布
 

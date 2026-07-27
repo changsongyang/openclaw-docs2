@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin de LINE
-summary: Plugin del canal LINE de OpenClaw para chats de la API de LINE Bot.
+summary: Plugin de canal LINE de OpenClaw para chats de la API de bots de LINE.
 title: Plugin de LINE
 x-i18n:
-    generated_at: "2026-07-16T11:53:19Z"
+    generated_at: "2026-07-26T05:21:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Plugin del canal LINE de OpenClaw para chats de la API de bots de LINE.
 ## Distribución
 
 - Paquete: `@openclaw/line`
-- Vía de instalación: npm; ClawHub
+- Ruta de instalación: npm; ClawHub
 
 ## Superficie
 

@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin azure-speech
-summary: Texto a voz de Azure AI Speech (MP3, notas de voz nativas en Ogg/Opus, telefonía PCM).
+summary: Síntesis de voz de Azure AI Speech (MP3, notas de voz nativas en Ogg/Opus, telefonía PCM).
 title: Plugin de Azure Speech
 x-i18n:
-    generated_at: "2026-07-16T11:49:44Z"
+    generated_at: "2026-07-26T05:13:51Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin Azure Speech
+# Plugin de Azure Speech
 
-Conversión de texto a voz de Azure AI Speech (MP3, notas de voz nativas Ogg/Opus, telefonía PCM).
+Conversión de texto a voz de Azure AI Speech (MP3, notas de voz nativas en Ogg/Opus, telefonía PCM).
 
 ## Distribución
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - senseaudio Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - senseaudio pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: Medya anlama sağlayıcısı desteği ekler.
 title: Senseaudio Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:46:30Z"
+    generated_at: "2026-07-27T00:08:58Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Senseaudio plugin
+# Senseaudio plugin'i
 
 Medya anlama sağlayıcısı desteği ekler.
 

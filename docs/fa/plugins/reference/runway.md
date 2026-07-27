@@ -1,10 +1,10 @@
 ---
 read_when:
-    - شما در حال نصب، پیکربندی یا ممیزی Plugin مربوط به Runway هستید
-summary: پشتیبانی از ارائه‌دهندهٔ تولید ویدئو را اضافه می‌کند.
-title: Plugin ‏Runway
+    - در حال نصب، پیکربندی یا ممیزی Plugin مربوط به Runway هستید
+summary: پشتیبانی از ارائه‌دهنده تولید ویدئو را اضافه می‌کند.
+title: Plugin Runway
 x-i18n:
-    generated_at: "2026-07-16T17:03:54Z"
+    generated_at: "2026-07-27T15:33:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

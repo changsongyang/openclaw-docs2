@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin Matrix
-summary: Plugin de canal Matrix de OpenClaw para salas y mensajes directos.
+summary: Plugin del canal Matrix de OpenClaw para salas y mensajes directos.
 title: Plugin de Matrix
 x-i18n:
-    generated_at: "2026-07-16T11:52:34Z"
+    generated_at: "2026-07-26T04:48:27Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

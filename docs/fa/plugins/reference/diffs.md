@@ -1,10 +1,10 @@
 ---
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin تفاوت‌ها هستید
-summary: Plugin نمایش تفاوت فقط‌خواندنی و رندرکنندهٔ فایل OpenClaw برای عامل‌ها.
+summary: Plugin نمایش تفاوت فقط‌خواندنی و رندرکننده فایل OpenClaw برای عامل‌ها.
 title: Plugin تفاوت‌ها
 x-i18n:
-    generated_at: "2026-07-16T16:54:57Z"
+    generated_at: "2026-07-27T14:23:38Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -25,4 +25,4 @@ Plugin نمایشگر فقط‌خواندنی تفاوت‌ها و رندرکن�
 
 ## سطح
 
-قراردادها: `tools`؛ مهارت‌ها
+قراردادها: `tools`؛ Skills

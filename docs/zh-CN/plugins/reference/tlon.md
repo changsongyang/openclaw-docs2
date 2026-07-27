@@ -4,7 +4,7 @@ read_when:
 summary: 用于聊天工作流的 OpenClaw Tlon/Urbit 渠道插件。
 title: Tlon 插件
 x-i18n:
-    generated_at: "2026-07-16T11:47:53Z"
+    generated_at: "2026-07-26T06:22:44Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ x-i18n:
 - 软件包：`@openclaw/tlon`
 - 安装途径：npm；ClawHub
 
-## 提供功能
+## 功能界面
 
 渠道：`tlon`；Skills
 

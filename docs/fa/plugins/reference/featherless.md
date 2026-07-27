@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی پلاگین featherless هستید
-summary: Plugin ارائه‌دهندهٔ هوش مصنوعی Featherless برای OpenClaw.
+    - در حال نصب، پیکربندی یا ممیزی Plugin ‏featherless هستید
+summary: Plugin ارائه‌دهنده Featherless AI برای OpenClaw.
 title: Plugin فدرلس
 x-i18n:
-    generated_at: "2026-07-16T17:27:13Z"
+    generated_at: "2026-07-27T14:23:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin Featherless
 
-Plugin ارائه‌دهنده Featherless AI برای OpenClaw.
+Plugin ارائه‌دهندهٔ هوش مصنوعی Featherless برای OpenClaw.
 
 ## توزیع
 

@@ -2,10 +2,10 @@
 read_when:
     - شما یک پیوند قدیمی مستندات Crestodian را دنبال کردید
 redirect: /cli/openclaw
-summary: ارجاع به مرجع عامل سیستمی OpenClaw
-title: Crestodian (تغییر مسیر)
+summary: تغییر مسیر به مرجع عامل سیستم OpenClaw
+title: Crestodian (تغییرمسیر)
 x-i18n:
-    generated_at: "2026-07-16T15:41:32Z"
+    generated_at: "2026-07-27T16:21:56Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,4 +15,4 @@ x-i18n:
     workflow: 16
 ---
 
-این صفحه به [راه‌اندازی و تعمیر OpenClaw](/cli/openclaw) منتقل شده است.
+این صفحه به [راه‌اندازی و تعمیر OpenClaw](/fa/cli/openclaw) منتقل شده است.

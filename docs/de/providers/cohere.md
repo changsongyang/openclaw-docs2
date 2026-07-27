@@ -1,11 +1,11 @@
 ---
 read_when:
     - Sie möchten Cohere mit OpenClaw verwenden
-    - Sie benötigen die Umgebungsvariable für den Cohere-API-Schlüssel oder die CLI-Authentifizierungsauswahl.
+    - Sie benötigen die Umgebungsvariable für den Cohere-API-Schlüssel oder die CLI-Authentifizierungsoption
 summary: Cohere-Einrichtung (Authentifizierung + Modellauswahl)
 title: Cohere
 x-i18n:
-    generated_at: "2026-07-24T04:04:21Z"
+    generated_at: "2026-07-26T18:02:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,31 +15,31 @@ x-i18n:
     workflow: 16
 ---
 
-[Cohere](https://cohere.com) bietet über seine Compatibility API OpenAI-kompatible Inferenz. OpenClaw bündelt den Cohere-Provider während dessen Übergangs zur Externalisierung und veröffentlicht ihn außerdem als offizielles externes Plugin.
+[Cohere](https://cohere.com) stellt über seine Compatibility API OpenAI-kompatible Inferenz bereit. OpenClaw bündelt den Cohere-Provider während seiner Auslagerungsphase und veröffentlicht ihn außerdem als offizielles externes Plugin.
 
-| Eigenschaft       | Wert                                                |
-| ----------------- | --------------------------------------------------- |
-| Provider-ID       | `cohere`                                  |
-| Plugin            | während des Übergangs gebündelt; offizielles externes Paket |
-| Authentifizierungs-Umgebungsvariable | `COHERE_API_KEY`                  |
-| Onboarding-Flag   | `--auth-choice cohere-api-key`                                  |
-| Direktes CLI-Flag | `--cohere-api-key <key>`                                  |
-| API               | OpenAI-kompatibel (`openai-completions`)              |
-| Basis-URL         | `https://api.cohere.ai/compatibility/v1`                                  |
-| Standardmodell    | `cohere/command-a-plus-05-2026`                                  |
-| Kontextfenster    | 128,000 Tokens                                      |
+| Eigenschaft     | Wert                                                 |
+| --------------- | ---------------------------------------------------- |
+| Provider-ID     | `cohere`                                   |
+| Plugin          | während der Übergangsphase gebündelt; offizielles externes Paket |
+| Auth.-Umgebungsvariable | `COHERE_API_KEY`                           |
+| Onboarding-Flag | `--auth-choice cohere-api-key`                                   |
+| Direktes CLI-Flag | `--cohere-api-key <key>`                                 |
+| API             | OpenAI-kompatibel (`openai-completions`)               |
+| Basis-URL       | `https://api.cohere.ai/compatibility/v1`                                   |
+| Standardmodell  | `cohere/command-a-plus-05-2026`                                   |
+| Kontextfenster  | 128,000 Token                                        |
 
 ## Integrierter Katalog
 
-| Modellreferenz                       | Eingabe     | Kontext | Maximale Ausgabe | Hinweise                                      |
-| ------------------------------------ | ----------- | ------- | ---------------- | --------------------------------------------- |
-| `cohere/command-a-plus-05-2026`                   | Text, Bild  | 128,000 | 64,000           | Standard; führendes agentisches Reasoning-Modell |
-| `cohere/command-a-03-2025`                   | Text        | 256,000 | 8,000            | Vorheriges Command-A-Modell                   |
-| `cohere/command-a-reasoning-08-2025`                   | Text        | 256,000 | 32,000           | Agentisches Reasoning und Werkzeugnutzung     |
-| `cohere/command-a-vision-07-2025`                   | Text, Bild  | 128,000 | 8,000            | Bild- und Dokumentanalyse; keine Werkzeugnutzung |
-| `cohere/north-mini-code-1-0`                   | Text, Bild  | 256,000 | 64,000           | Agentisches Programmieren; Reasoning; kostenlose Limits |
+| Modellreferenz                       | Eingabe     | Kontext | Max. Ausgabe | Hinweise                                      |
+| ------------------------------------ | ----------- | ------- | ------------ | --------------------------------------------- |
+| `cohere/command-a-plus-05-2026`                   | Text, Bild  | 128,000 | 64,000       | Standard; führendes agentisches Reasoning-Modell |
+| `cohere/command-a-03-2025`                   | Text        | 256,000 | 8,000        | Vorheriges Command-A-Modell                   |
+| `cohere/command-a-reasoning-08-2025`                   | Text        | 256,000 | 32,000       | Agentisches Reasoning und Werkzeugnutzung     |
+| `cohere/command-a-vision-07-2025`                   | Text, Bild  | 128,000 | 8,000        | Bild- und Dokumentanalyse; keine Werkzeugnutzung |
+| `cohere/north-mini-code-1-0`                   | Text, Bild  | 256,000 | 64,000       | Agentisches Programmieren; Reasoning; kostenlose Limits |
 
-Reasoning-fähige Cohere-Modelle unterstützen zwei Reasoning-Modi der Compatibility API. OpenClaw ordnet **aus** `none` und jede aktivierte Denkstufe `high` zu. Command A Vision unterstützt keine Werkzeugnutzung, daher lässt OpenClaw die Agentenwerkzeuge für dieses Modell deaktiviert.
+Reasoning-fähige Cohere-Modelle unterstützen zwei Reasoning-Modi der Compatibility API. OpenClaw ordnet **aus** `none` und jede aktivierte Denkstufe `high` zu. Command A Vision unterstützt keine Werkzeugnutzung, daher hält OpenClaw die Agentenwerkzeuge für dieses Modell deaktiviert.
 
 ## Erste Schritte
 
@@ -67,7 +67,7 @@ openclaw models list --provider cohere
 
 Das Onboarding legt Cohere nur dann als primäres Modell fest, wenn noch kein primäres Modell konfiguriert ist.
 
-## Einrichtung ausschließlich über Umgebungsvariablen
+## Einrichtung ausschließlich über die Umgebung
 
 Stellen Sie `COHERE_API_KEY` dem Gateway-Prozess zur Verfügung und wählen Sie anschließend das Cohere-Modell aus:
 
@@ -88,5 +88,5 @@ Wenn der Gateway als Daemon oder in Docker ausgeführt wird, legen Sie `COHERE_A
 ## Verwandte Themen
 
 - [Modell-Provider](/de/concepts/model-providers)
-- [Modelle-CLI](/de/cli/models)
+- [Modell-CLI](/de/cli/models)
 - [Provider-Verzeichnis](/de/providers/index)

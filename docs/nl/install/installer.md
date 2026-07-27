@@ -1,12 +1,12 @@
 ---
 read_when:
     - Je wilt `openclaw.ai/install.sh` begrijpen
-    - Je wilt installaties automatiseren (CI / zonder gebruikersinterface)
+    - Je wilt installaties automatiseren (CI / headless)
     - Je wilt installeren vanuit een GitHub-checkout
-summary: Hoe de installatiescripts werken (install.sh, install-cli.sh, install.ps1), opties en automatisering
+summary: Hoe de installatiescripts werken (install.sh, install-cli.sh, install.ps1), vlaggen en automatisering
 title: Interne werking van het installatieprogramma
 x-i18n:
-    generated_at: "2026-07-16T15:57:05Z"
+    generated_at: "2026-07-27T05:02:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -20,13 +20,13 @@ OpenClaw wordt geleverd met drie installatiescripts, aangeboden via `openclaw.ai
 
 | Script                             | Platform             | Wat het doet                                                                                   |
 | ---------------------------------- | -------------------- | ---------------------------------------------------------------------------------------------- |
-| [`install.sh`](#installsh)         | macOS / Linux / WSL  | Installeert indien nodig Node, installeert OpenClaw via npm (standaard) of git en kan onboarding uitvoeren.       |
-| [`install-cli.sh`](#install-clish) | macOS / Linux / WSL  | Installeert Node + OpenClaw via npm of git in een lokaal prefix (`~/.openclaw`). Geen root vereist. |
-| [`install.ps1`](#installps1)       | Windows (PowerShell) | Installeert indien nodig Node, installeert OpenClaw via npm (standaard) of git en kan onboarding uitvoeren.       |
+| [`install.sh`](#installsh)         | macOS / Linux / WSL  | Installeert indien nodig Node, installeert OpenClaw via npm (standaard) of git en kan de onboarding uitvoeren.       |
+| [`install-cli.sh`](#install-clish) | macOS / Linux / WSL  | Installeert Node + OpenClaw via npm of git in een lokaal voorvoegsel (`~/.openclaw`). Geen root vereist. |
+| [`install.ps1`](#installps1)       | Windows (PowerShell) | Installeert indien nodig Node, installeert OpenClaw via npm (standaard) of git en kan de onboarding uitvoeren.       |
 
 Alle drie ondersteunen Node **22.22.3+, 24.15+ of 25.9+**; Node 24 is het standaarddoel voor nieuwe installaties.
 
-## Snelle opdrachten
+## Snelle commando's
 
 <Tabs>
   <Tab title="install.sh">
@@ -81,30 +81,30 @@ Aanbevolen voor de meeste interactieve installaties op macOS/Linux/WSL.
   <Step title="Besturingssysteem detecteren">
     Ondersteunt macOS en Linux (inclusief WSL).
   </Step>
-  <Step title="Standaard Node.js 24 garanderen">
+  <Step title="Standaard Node.js 24 beschikbaar maken">
     Controleert de Node-versie en installeert indien nodig Node 24 (Homebrew op macOS, NodeSource-installatiescripts op Linux met apt/dnf/yum). Op macOS wordt Homebrew alleen geïnstalleerd wanneer het installatieprogramma dit nodig heeft voor Node of Git. Node 22.22.3+, Node 24.15+ en Node 25.9+ worden ondersteund; Node 23 wordt niet ondersteund.
-    Op Alpine/musl Linux gebruikt het installatieprogramma apk-pakketten in plaats van NodeSource en verifieert het de daadwerkelijk gekoppelde SQLite-versie. De huidige stabiele Alpine-pakketstromen kunnen een voldoende nieuwe Node met kwetsbare systeem-SQLite leveren; gebruik in dat geval een officiële `node:24-alpine`-container of een host op basis van glibc.
+    Op Alpine/musl Linux gebruikt het installatieprogramma apk-pakketten in plaats van NodeSource en verifieert het de daadwerkelijk gekoppelde SQLite-versie. De huidige stabiele pakketstromen van Alpine kunnen een voldoende nieuwe Node leveren met een kwetsbare systeemversie van SQLite; gebruik in dat geval een officiële `node:24-alpine`-container of een op glibc gebaseerde host.
   </Step>
-  <Step title="Git garanderen">
-    Installeert Git indien dit ontbreekt met de gedetecteerde pakketbeheerder, waaronder Homebrew op macOS en apk op Alpine.
+  <Step title="Git beschikbaar maken">
+    Installeert Git als dit ontbreekt met de gedetecteerde pakketbeheerder, waaronder Homebrew op macOS en apk op Alpine.
   </Step>
   <Step title="OpenClaw installeren">
-    - `npm`-methode (standaard): globale installatie met npm
-    - `git`-methode: kloont/werkt de repository bij, installeert afhankelijkheden met pnpm, bouwt en installeert vervolgens de wrapper in `~/.local/bin/openclaw`
+    - `npm`-methode (standaard): globale npm-installatie
+    - `git`-methode: repository klonen/bijwerken, afhankelijkheden installeren met pnpm, bouwen en vervolgens de wrapper installeren op `~/.local/bin/openclaw`
 
   </Step>
-  <Step title="Taken na installatie">
-    - Zoekt het zojuist geïnstalleerde uitvoerbare bestand `openclaw` op voor vervolgopdrachten
-    - Start voor een niet-geconfigureerde installatie de onboarding vóór doctor- of Gateway-controles. Met `--no-onboard` of zonder TTY wordt de opdracht weergegeven waarmee je de configuratie later kunt voltooien.
-    - Vernieuwt en herstart voor een geconfigureerde installatie zo goed mogelijk een geladen Gateway-service en voert doctor uit. Bij upgrades worden Plugins waar mogelijk bijgewerkt, of wordt tijdens een headless uitvoering met prompts de handmatige opdracht weergegeven.
-    - Wanneer `--verify` wordt uitgevoerd, controleert het de geïnstalleerde versie en controleert het de status van de Gateway alleen nadat een configuratie bestaat.
+  <Step title="Taken na de installatie">
+    - Zoekt het zojuist geïnstalleerde binaire bestand `openclaw` op voor vervolgcommando's
+    - Start voor een niet-geconfigureerde installatie de onboarding vóór doctor- of Gateway-controles. Met `--no-onboard` of zonder TTY wordt het commando weergegeven waarmee de configuratie later kan worden voltooid.
+    - Vernieuwt en herstart voor een geconfigureerde installatie zo goed mogelijk een geladen Gateway-service en voert doctor uit. Bij upgrades worden waar mogelijk plugins bijgewerkt, of wordt het handmatige commando weergegeven bij een headless uitvoering waarbij prompts zijn ingeschakeld.
+    - Wanneer `--verify` wordt uitgevoerd, controleert dit de geïnstalleerde versie en alleen de status van de Gateway nadat er een configuratie bestaat.
 
   </Step>
 </Steps>
 
-### Detectie van broncheckout
+### Detectie van broncode-checkout
 
-Bij uitvoering in een OpenClaw-checkout (`package.json` + `pnpm-workspace.yaml`) biedt het script het volgende aan:
+Bij uitvoering in een OpenClaw-checkout (`package.json` + `pnpm-workspace.yaml`) biedt het script de volgende opties:
 
 - checkout gebruiken (`git`), of
 - globale installatie gebruiken (`npm`)
@@ -157,16 +157,16 @@ Het script wordt afgesloten met code `2` bij een ongeldige methodeselectie of on
 | `--npm`                                 | Snelkoppeling voor de npm-methode                                                 |
 | `--git \| --github`                     | Snelkoppeling voor de git-methode                                                 |
 | `--version <version\|dist-tag\|spec>`   | npm-versie, dist-tag of pakketspecificatie (standaard: `latest`)              |
-| `--beta`                                | Beta-dist-tag gebruiken indien beschikbaar, anders terugvallen op `latest`              |
+| `--beta`                                | Indien beschikbaar de bèta-dist-tag gebruiken, anders terugvallen op `latest`              |
 | `--git-dir \| --dir <path>`             | Checkoutmap (standaard: `~/openclaw`)                              |
-| `--no-git-update`                       | `git pull` overslaan voor een bestaande checkout                                   |
+| `--no-git-update`                       | `git pull` overslaan voor bestaande checkout                                   |
 | `--no-prompt`                           | Prompts uitschakelen                                                         |
 | `--no-onboard`                          | Onboarding overslaan                                                         |
 | `--onboard`                             | Onboarding inschakelen                                                       |
-| `--verify`                              | Een snelle verificatie na installatie uitvoeren (`--version`, Gateway-status indien geladen) |
+| `--verify`                              | Een snelle verificatie na de installatie uitvoeren (`--version`, Gateway-status indien geladen) |
 | `--dry-run`                             | Acties weergeven zonder wijzigingen toe te passen                                  |
-| `--verbose`                             | Debuguitvoer inschakelen (`set -x`, npm-logboeken op kennisgevingsniveau)                   |
-| `--help \| -h`                          | Gebruik weergeven                                                              |
+| `--verbose`                             | Debuguitvoer inschakelen (`set -x`, npm-logboeken op meldingsniveau)                   |
+| `--help \| -h`                          | Gebruiksinformatie weergeven                                                              |
 
   </Accordion>
 
@@ -176,7 +176,7 @@ Het script wordt afgesloten met code `2` bij een ongeldige methodeselectie of on
 | ------------------------------------------------- | ------------------------------------------------------------------ |
 | `OPENCLAW_INSTALL_METHOD=git\|npm`                | Installatiemethode                                                     |
 | `OPENCLAW_VERSION=latest\|next\|<semver>\|<spec>` | npm-versie, dist-tag of pakketspecificatie                             |
-| `OPENCLAW_BETA=0\|1`                              | Beta gebruiken indien beschikbaar                                              |
+| `OPENCLAW_BETA=0\|1`                              | Bèta gebruiken indien beschikbaar                                              |
 | `OPENCLAW_HOME=<path>`                            | Basismap voor OpenClaw-status en standaardpaden voor git/onboarding |
 | `OPENCLAW_GIT_DIR=<path>`                         | Checkoutmap                                                 |
 | `OPENCLAW_GIT_UPDATE=0\|1`                        | Git-updates in- of uitschakelen                                                 |
@@ -185,7 +185,7 @@ Het script wordt afgesloten met code `2` bij een ongeldige methodeselectie of on
 | `OPENCLAW_NO_ONBOARD=1`                           | Onboarding overslaan                                                    |
 | `OPENCLAW_DRY_RUN=1`                              | Proefuitvoeringsmodus                                                       |
 | `OPENCLAW_VERBOSE=1`                              | Debugmodus                                                         |
-| `OPENCLAW_NPM_LOGLEVEL=error\|warn\|notice`       | npm-logniveau (standaard: `error`, verbergt npm-meldingen over verouderingen)      |
+| `OPENCLAW_NPM_LOGLEVEL=error\|warn\|notice`       | npm-logniveau (standaard: `error`, verbergt npm-meldingen over verouderde functies)      |
 
   </Accordion>
 </AccordionGroup>
@@ -197,9 +197,9 @@ Het script wordt afgesloten met code `2` bij een ongeldige methodeselectie of on
 ## install-cli.sh
 
 <Info>
-Ontworpen voor omgevingen waarin je alles onder een lokaal prefix wilt
-(standaard `~/.openclaw`) en geen systeemafhankelijkheid van Node wilt. Ondersteunt standaard npm-installaties,
-plus installaties vanuit een git-checkout binnen hetzelfde prefixverloop.
+Ontworpen voor omgevingen waarin alles onder een lokaal voorvoegsel
+(standaard `~/.openclaw`) moet staan, zonder afhankelijkheid van een systeeminstallatie van Node. Ondersteunt standaard
+npm-installaties en daarnaast git-checkoutinstallaties binnen hetzelfde voorvoegselverloop.
 </Info>
 
 ### Verloop (install-cli.sh)
@@ -207,19 +207,19 @@ plus installaties vanuit een git-checkout binnen hetzelfde prefixverloop.
 <Steps>
   <Step title="Lokale Node-runtime installeren">
     Downloadt een vastgezette, ondersteunde Node LTS-tarball (de versie is in het script opgenomen en wordt onafhankelijk bijgewerkt, standaard `24.15.0`) naar `<prefix>/tools/node-v<version>` en verifieert SHA-256.
-    Linux ARMv7 gebruikt Node `22.22.3`, omdat officiële Node 24+-binaire bestanden voor ARMv7 niet beschikbaar zijn.
-    Op Alpine/musl Linux, waarvoor Node geen compatibele tarballs voor de vastgezette runtime publiceert, worden `nodejs` en `npm` geïnstalleerd met `apk`, waarna zowel Node als de daadwerkelijk gekoppelde SQLite-bibliotheek worden geverifieerd. De huidige stabiele Alpine-pakketstromen kunnen ondanks een voldoende nieuwe Node nog steeds aan een kwetsbare SQLite koppelen; gebruik een officiële `node:24-alpine`-container of een host op basis van glibc wanneer de veiligheidscontrole het pakket afwijst.
+    Linux ARMv7 gebruikt Node `22.22.3`, omdat officiële binaire bestanden van Node 24+ voor ARMv7 niet beschikbaar zijn.
+    Op Alpine/musl Linux, waarvoor Node geen compatibele tarballs voor de vastgezette runtime publiceert, worden `nodejs` en `npm` geïnstalleerd met `apk`, waarna zowel Node als de daadwerkelijk gekoppelde SQLite-bibliotheek worden geverifieerd. De huidige stabiele pakketstromen van Alpine kunnen zelfs met een voldoende nieuwe Node nog steeds een kwetsbare SQLite-versie koppelen; gebruik een officiële `node:24-alpine`-container of een op glibc gebaseerde host wanneer het pakket door de veiligheidscontrole wordt afgewezen.
   </Step>
-  <Step title="Git garanderen">
-    Als Git ontbreekt, wordt geprobeerd het te installeren via apt/dnf/yum/apk op Linux of Homebrew op macOS.
+  <Step title="Git beschikbaar maken">
+    Als Git ontbreekt, wordt geprobeerd dit te installeren via apt/dnf/yum/apk op Linux of Homebrew op macOS.
   </Step>
-  <Step title="OpenClaw onder het prefix installeren">
-    - `npm`-methode (standaard): installeert met npm onder het prefix en schrijft vervolgens de wrapper naar `<prefix>/bin/openclaw`
+  <Step title="OpenClaw onder het voorvoegsel installeren">
+    - `npm`-methode (standaard): installeert met npm onder het voorvoegsel en schrijft vervolgens de wrapper naar `<prefix>/bin/openclaw`
     - `git`-methode: kloont/werkt een checkout bij (standaard `~/openclaw`) en schrijft de wrapper nog steeds naar `<prefix>/bin/openclaw`
 
   </Step>
   <Step title="Geladen Gateway-service vernieuwen">
-    Als er al een Gateway-service vanuit hetzelfde prefix is geladen, voert het script
+    Als er al een Gateway-service vanuit hetzelfde voorvoegsel is geladen, voert het script
     `openclaw gateway install --force` uit, waarmee de vervangende service wordt geactiveerd,
     en controleert het vervolgens zo goed mogelijk de status van de Gateway.
   </Step>
@@ -233,7 +233,7 @@ plus installaties vanuit een git-checkout binnen hetzelfde prefixverloop.
     curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install-cli.sh | bash
     ```
   </Tab>
-  <Tab title="Aangepast prefix + versie">
+  <Tab title="Aangepast voorvoegsel + versie">
     ```bash
     curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install-cli.sh | bash -s -- --prefix /opt/openclaw --version latest
     ```
@@ -270,12 +270,12 @@ plus installaties vanuit een git-checkout binnen hetzelfde prefixverloop.
 | `--json`                                | NDJSON-gebeurtenissen uitvoeren                                                              |
 | `--onboard`                             | `openclaw onboard` uitvoeren na installatie                                            |
 | `--no-onboard`                          | Onboarding overslaan (standaard)                                                       |
-| `--set-npm-prefix`                      | Op Linux het npm-voorvoegsel instellen op `~/.npm-global` als het huidige voorvoegsel niet beschrijfbaar is |
+| `--set-npm-prefix`                      | Op Linux het npm-voorvoegsel forceren naar `~/.npm-global` als het huidige voorvoegsel niet beschrijfbaar is |
 | `--help \| -h`                          | Gebruik tonen                                                                      |
 
   </Accordion>
 
-  <Accordion title="Overzicht van omgevingsvariabelen">
+  <Accordion title="Naslag voor omgevingsvariabelen">
 
 | Variabele                                    | Beschrijving                                                        |
 | ------------------------------------------- | ------------------------------------------------------------------ |
@@ -285,7 +285,7 @@ plus installaties vanuit een git-checkout binnen hetzelfde prefixverloop.
 | `OPENCLAW_NODE_VERSION=<ver>`               | Node-versie                                                       |
 | `OPENCLAW_HOME=<path>`                      | Basismap voor OpenClaw-status en standaardpaden voor git/onboarding |
 | `OPENCLAW_GIT_DIR=<path>`                   | Git-checkoutmap voor git-installaties                            |
-| `OPENCLAW_GIT_UPDATE=0\|1`                  | Git-updates voor bestaande checkouts in- of uitschakelen                          |
+| `OPENCLAW_GIT_UPDATE=0\|1`                  | Git-updates in- of uitschakelen voor bestaande checkouts                          |
 | `OPENCLAW_NO_ONBOARD=1`                     | Onboarding overslaan                                                    |
 | `OPENCLAW_NPM_LOGLEVEL=error\|warn\|notice` | npm-logniveau (standaard: `error`)                                   |
 
@@ -305,25 +305,25 @@ plus installaties vanuit een git-checkout binnen hetzelfde prefixverloop.
 ### Verloop (install.ps1)
 
 <Steps>
-  <Step title="PowerShell- en Windows-omgeving controleren">
+  <Step title="PowerShell- en Windows-omgeving garanderen">
     Vereist PowerShell 5+.
   </Step>
-  <Step title="Standaard Node.js 24 waarborgen">
-    Indien dit ontbreekt, wordt installatie geprobeerd via winget, vervolgens Chocolatey en daarna Scoop. Als er geen pakketbeheerder beschikbaar is, downloadt het script het officiële Windows-zipbestand van Node.js 24 naar `%LOCALAPPDATA%\OpenClaw\deps\portable-node` en voegt het deze map toe aan het PATH van het huidige proces en de gebruiker. Node 22.22.3+, Node 24.15+ en Node 25.9+ worden ondersteund; Node 23 wordt niet ondersteund.
+  <Step title="Standaard Node.js 24 garanderen">
+    Als deze ontbreekt, wordt eerst installatie via winget geprobeerd, daarna Chocolatey en vervolgens Scoop. Als er geen pakketbeheerder beschikbaar is, downloadt het script het officiële Windows-zipbestand van Node.js 24 naar `%LOCALAPPDATA%\OpenClaw\deps\portable-node` en voegt het dit toe aan het PATH van het huidige proces en de gebruiker. Node 22.22.3+, Node 24.15+ en Node 25.9+ worden ondersteund; Node 23 wordt niet ondersteund.
   </Step>
   <Step title="OpenClaw installeren">
-    - `npm`-methode (standaard): globale npm-installatie met de geselecteerde `-Tag`, gestart vanuit een beschrijfbare tijdelijke installatiemap, zodat shells die zijn geopend in beveiligde mappen zoals `C:\` blijven werken
-    - `git`-methode: repository klonen/bijwerken, installeren/bouwen met pnpm en wrapper installeren in `%USERPROFILE%\.local\bin\openclaw.cmd`. Als Git ontbreekt, installeert het script een lokale MinGit voor de gebruiker onder `%LOCALAPPDATA%\OpenClaw\deps\portable-git` en voegt het deze map toe aan het PATH van het huidige proces en de gebruiker.
+    - `npm`-methode (standaard): globale npm-installatie met de geselecteerde `-Tag`, gestart vanuit een beschrijfbare tijdelijke installatiemap zodat shells die in beveiligde mappen zoals `C:\` zijn geopend, blijven werken
+    - `git`-methode: repository klonen/bijwerken, installeren/bouwen met pnpm en wrapper installeren in `%USERPROFILE%\.local\bin\openclaw.cmd`. Als Git ontbreekt, initialiseert het script gebruikerslokale MinGit onder `%LOCALAPPDATA%\OpenClaw\deps\portable-git` en voegt het dit toe aan het PATH van het huidige proces en de gebruiker.
 
   </Step>
-  <Step title="Taken na de installatie">
-    - Voegt indien mogelijk de benodigde bin-map toe aan het PATH van de gebruiker
-    - Vernieuwt zo goed mogelijk een geladen Gateway-service (`openclaw gateway install --force`, daarna opnieuw opstarten)
+  <Step title="Taken na installatie">
+    - Voegt waar mogelijk de benodigde bin-map toe aan het gebruikers-PATH
+    - Vernieuwt zo goed mogelijk een geladen Gateway-service (`openclaw gateway install --force`, daarna opnieuw starten)
     - Voert `openclaw doctor --non-interactive` uit bij upgrades en git-installaties (zo goed mogelijk)
 
   </Step>
   <Step title="Fouten afhandelen">
-    Installaties via `iwr ... | iex` en scriptblokken melden een beëindigende fout zonder de huidige PowerShell-sessie te sluiten. Rechtstreekse installaties via `powershell -File` / `pwsh -File` worden voor automatisering nog steeds afgesloten met een niet-nulstatus.
+    `iwr ... | iex`- en scriptblock-installaties melden een beëindigende fout zonder de huidige PowerShell-sessie te sluiten. Directe installaties via `powershell -File` / `pwsh -File` worden voor automatisering nog steeds afgesloten met een niet-nulstatus.
   </Step>
 </Steps>
 
@@ -358,7 +358,7 @@ plus installaties vanuit een git-checkout binnen hetzelfde prefixverloop.
 </Tabs>
 
 <AccordionGroup>
-  <Accordion title="Overzicht van vlaggen">
+  <Accordion title="Naslag voor vlaggen">
 
 | Vlag                        | Beschrijving                                                |
 | --------------------------- | ---------------------------------------------------------- |
@@ -371,7 +371,7 @@ plus installaties vanuit een git-checkout binnen hetzelfde prefixverloop.
 
   </Accordion>
 
-  <Accordion title="Overzicht van omgevingsvariabelen">
+  <Accordion title="Naslag voor omgevingsvariabelen">
 
 | Variabele                           | Beschrijving        |
 | ---------------------------------- | ------------------ |
@@ -385,7 +385,7 @@ plus installaties vanuit een git-checkout binnen hetzelfde prefixverloop.
 </AccordionGroup>
 
 <Note>
-Als `-InstallMethod git` wordt gebruikt en Git ontbreekt, probeert het script eerst een lokale MinGit voor de gebruiker te installeren voordat het de koppeling naar Git for Windows weergeeft.
+Als `-InstallMethod git` wordt gebruikt en Git ontbreekt, probeert het script gebruikerslokale MinGit te initialiseren voordat de koppeling naar Git for Windows wordt weergegeven.
 </Note>
 
 ---
@@ -424,19 +424,19 @@ Gebruik niet-interactieve vlaggen/omgevingsvariabelen voor voorspelbare uitvoeri
 
 <AccordionGroup>
   <Accordion title="Waarom is Git vereist?">
-    Git is vereist voor de installatiemethode `git`. Voor installaties via `npm` wordt Git nog steeds gecontroleerd/geïnstalleerd om fouten met `spawn git ENOENT` te voorkomen wanneer afhankelijkheden git-URL's gebruiken.
+    Git is vereist voor de installatiemethode `git`. Voor `npm`-installaties wordt Git nog steeds gecontroleerd/geïnstalleerd om `spawn git ENOENT`-fouten te voorkomen wanneer afhankelijkheden git-URL's gebruiken.
   </Accordion>
 
   <Accordion title="Waarom treedt bij npm EACCES op Linux op?">
-    Sommige Linux-configuraties laten het globale npm-voorvoegsel verwijzen naar paden die eigendom zijn van root. `install.sh` kan het voorvoegsel wijzigen in `~/.npm-global` en PATH-exports toevoegen aan shell-rc-bestanden (wanneer die bestanden bestaan).
+    Sommige Linux-configuraties verwijzen met het globale npm-voorvoegsel naar paden die eigendom zijn van root. `install.sh` kan het voorvoegsel wijzigen in `~/.npm-global` en PATH-exports toevoegen aan shell-rc-bestanden (wanneer die bestanden bestaan).
   </Accordion>
 
   <Accordion title='Windows: "npm error spawn git / ENOENT"'>
-    Voer het installatieprogramma opnieuw uit zodat het een lokale MinGit voor de gebruiker kan installeren, of installeer Git for Windows en open PowerShell opnieuw.
+    Voer het installatieprogramma opnieuw uit zodat het gebruikerslokale MinGit kan initialiseren, of installeer Git for Windows en open PowerShell opnieuw.
   </Accordion>
 
   <Accordion title='Windows: "openclaw is not recognized"'>
-    Voer `npm config get prefix` uit en voeg die map toe aan het PATH van je gebruiker (op Windows is geen achtervoegsel `\bin` nodig). Open PowerShell daarna opnieuw.
+    Voer `npm config get prefix` uit en voeg die map toe aan je gebruikers-PATH (op Windows is geen achtervoegsel `\bin` nodig). Open daarna PowerShell opnieuw.
   </Accordion>
 
   <Accordion title="Windows: uitgebreide uitvoer van het installatieprogramma verkrijgen">
@@ -452,7 +452,7 @@ Gebruik niet-interactieve vlaggen/omgevingsvariabelen voor voorspelbare uitvoeri
   </Accordion>
 
   <Accordion title="openclaw niet gevonden na installatie">
-    Dit is meestal een PATH-probleem. Zie [Probleemoplossing voor Node.js](/nl/install/node#troubleshooting).
+    Meestal is dit een PATH-probleem. Zie [Probleemoplossing voor Node.js](/nl/install/node#troubleshooting).
   </Accordion>
 </AccordionGroup>
 

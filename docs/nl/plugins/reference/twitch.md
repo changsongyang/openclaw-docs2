@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Je installeert, configureert of controleert de twitch-Plugin
+    - Je installeert, configureert of controleert de twitch-plugin
 summary: OpenClaw Twitch-kanaalplugin voor chat- en moderatieworkflows.
 title: Twitch-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:17:49Z"
+    generated_at: "2026-07-27T05:10:17Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

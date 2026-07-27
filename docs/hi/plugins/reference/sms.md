@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw टेक्स्ट संदेशों के लिए Twilio SMS चैनल Plugin।
 title: Sms Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:36:06Z"
+    generated_at: "2026-07-27T18:48:34Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ OpenClaw टेक्स्ट संदेशों के लिए Twilio SMS
 - पैकेज: `@openclaw/sms`
 - इंस्टॉल मार्ग: npm; ClawHub: `clawhub:@openclaw/sms`
 
-## उपलब्ध सतह
+## सतह
 
 चैनल: `sms`
 

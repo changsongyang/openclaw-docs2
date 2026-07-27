@@ -2,11 +2,11 @@
 read_when:
     - Sie möchten Volcano-Engine- oder Doubao-Modelle mit OpenClaw verwenden
     - Sie müssen den Volcengine-API-Schlüssel einrichten
-    - Sie möchten Volcengine Speech für Text-to-Speech verwenden
-summary: Einrichtung von Volcano Engine (Doubao-Modelle, Coding-Endpunkte und Seed Speech TTS)
+    - Sie möchten die Text-zu-Sprache-Funktion von Volcengine Speech verwenden
+summary: Volcano-Engine-Einrichtung (Doubao-Modelle, Coding-Endpunkte und Seed Speech TTS)
 title: Volcengine (Doubao)
 x-i18n:
-    generated_at: "2026-07-24T04:04:43Z"
+    generated_at: "2026-07-26T18:02:53Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
     workflow: 16
 ---
 
-Der Volcengine-Provider ermöglicht den Zugriff auf Doubao-Modelle und auf Volcano Engine gehostete Modelle von Drittanbietern, mit separaten Endpunkten für allgemeine und Coding-Workloads. Dasselbe mitgelieferte Plugin registriert außerdem Volcengine Speech als TTS-Provider.
+Der Volcengine-Provider bietet Zugriff auf Doubao-Modelle und Drittanbietermodelle, die auf Volcano Engine gehostet werden, mit separaten Endpunkten für allgemeine und Coding-Workloads. Dasselbe gebündelte Plugin registriert außerdem Volcengine Speech als TTS-Provider.
 
-| Detail              | Wert                                                       |
-| ------------------- | ---------------------------------------------------------- |
-| Provider            | `volcengine` (allgemein + TTS), `volcengine-plan` (Coding)   |
+| Detail            | Wert                                                       |
+| ----------------- | ---------------------------------------------------------- |
+| Provider          | `volcengine` (allgemein + TTS), `volcengine-plan` (Coding)   |
 | Modellauthentifizierung | `VOLCANO_ENGINE_API_KEY`                                   |
 | TTS-Authentifizierung   | `VOLCENGINE_TTS_API_KEY` oder `BYTEPLUS_SEED_SPEECH_API_KEY` |
-| API                 | OpenAI-kompatible Modelle, BytePlus Seed Speech TTS        |
+| API               | OpenAI-kompatible Modelle, BytePlus Seed Speech TTS        |
 
 ## Erste Schritte
 
@@ -35,7 +35,7 @@ Der Volcengine-Provider ermöglicht den Zugriff auf Doubao-Modelle und auf Volca
     openclaw onboard --auth-choice volcengine-api-key
     ```
 
-    Dadurch werden sowohl der allgemeine Provider (`volcengine`) als auch der Coding-Provider (`volcengine-plan`) mit einem einzigen API-Schlüssel registriert.
+    Dadurch werden sowohl der allgemeine (`volcengine`) als auch der Coding-Provider (`volcengine-plan`) mit einem einzigen API-Schlüssel registriert.
 
   </Step>
   <Step title="Standardmodell festlegen">
@@ -58,7 +58,7 @@ Der Volcengine-Provider ermöglicht den Zugriff auf Doubao-Modelle und auf Volca
 </Steps>
 
 <Tip>
-Übergeben Sie den Schlüssel für eine nicht interaktive Einrichtung (CI, Skripting) direkt:
+Übergeben Sie den Schlüssel für die nicht interaktive Einrichtung (CI, Skripterstellung) direkt:
 
 ```bash
 openclaw onboard --non-interactive \
@@ -77,15 +77,15 @@ openclaw onboard --non-interactive \
 | `volcengine-plan` | `ark.cn-beijing.volces.com/api/coding/v3` | Coding-Modelle       |
 
 <Note>
-Beide Provider werden mit einem einzigen API-Schlüssel konfiguriert. Die Einrichtung registriert beide automatisch, und die Modellauswahl des Coding-Providers verwendet ebenfalls die Authentifizierung des allgemeinen Providers (`volcengine-plan` ist ein Authentifizierungsalias von `volcengine`).
+Beide Provider werden mit einem einzigen API-Schlüssel konfiguriert. Die Einrichtung registriert beide automatisch, und die Modellauswahl des Coding-Providers verwendet außerdem die Authentifizierung des allgemeinen Providers (`volcengine-plan` ist ein Authentifizierungsalias von `volcengine`).
 </Note>
 
 ## Integrierter Katalog
 
 <Tabs>
   <Tab title="Allgemein (volcengine)">
-    | Modellreferenz                               | Name                            | Eingabe     | Kontext |
-    | -------------------------------------------- | ------------------------------- | ----------- | ------- |
+    | Modellreferenz                                | Name                            | Eingabe     | Kontext |
+    | --------------------------------------------- | ------------------------------- | ----------- | ------- |
     | `volcengine/deepseek-v3-2-251201`            | DeepSeek V3.2                   | Text, Bild  | 128,000 |
     | `volcengine/doubao-seed-1-8-251228`          | Doubao Seed 1.8                 | Text, Bild  | 256,000 |
     | `volcengine/doubao-seed-code-preview-251028` | doubao-seed-code-preview-251028 | Text, Bild  | 256,000 |
@@ -100,18 +100,18 @@ Beide Provider werden mit einem einzigen API-Schlüssel konfiguriert. Die Einric
   </Tab>
 </Tabs>
 
-Beide Kataloge sind statisch (kein `/models`-Ermittlungsaufruf) und unterstützen OpenAI-kompatible Nutzungsabrechnung für Streaming. Tool-Schemas für beide Provider entfernen automatisch die Schlüsselwörter `minLength`, `maxLength`, `minItems`, `maxItems`, `minContains` und `maxContains`, da die Tool-Call-API von Volcengine sie ablehnt.
+Beide Kataloge sind statisch (kein `/models`-Discovery-Aufruf) und unterstützen OpenAI-kompatible, gestreamte Nutzungsabrechnung. Die Tool-Schemas beider Provider entfernen automatisch die Schlüsselwörter `minLength`, `maxLength`, `minItems`, `maxItems`, `minContains` und `maxContains`, da die Tool-Call-API von Volcengine diese ablehnt.
 
 ## Text-to-Speech
 
-Volcengine TTS verwendet die BytePlus Seed Speech HTTP API (`voice.ap-southeast-1.bytepluses.com`) und wird getrennt vom API-Schlüssel der OpenAI-kompatiblen Doubao-Modell-API konfiguriert. Öffnen Sie in der BytePlus-Konsole Seed Speech > Settings > API Keys, kopieren Sie den API-Schlüssel und legen Sie anschließend Folgendes fest:
+Volcengine TTS verwendet die BytePlus Seed Speech HTTP API (`voice.ap-southeast-1.bytepluses.com`) und wird separat vom API-Schlüssel für die OpenAI-kompatible Doubao-Modell-API konfiguriert. Öffnen Sie in der BytePlus-Konsole Seed Speech > Settings > API Keys, kopieren Sie den API-Schlüssel und legen Sie anschließend Folgendes fest:
 
 ```bash
 export VOLCENGINE_TTS_API_KEY="byteplus_seed_speech_api_key"
 export VOLCENGINE_TTS_RESOURCE_ID="seed-tts-1.0"
 ```
 
-Aktivieren Sie es anschließend in `openclaw.json`:
+Aktivieren Sie ihn anschließend in `openclaw.json`:
 
 ```json5
 {
@@ -129,17 +129,17 @@ Aktivieren Sie es anschließend in `openclaw.json`:
 }
 ```
 
-Verfügbare Felder unter `tts.providers.volcengine`: `apiKey`, `voice`, `speedRatio` (0.2-3.0), `emotion`, `cluster`, `resourceId`, `appKey` und `baseUrl`. `!emotion=<value>` funktioniert ebenfalls als Inline-Stimmanweisung, wenn Überschreibungen der Stimmeinstellung zulässig sind.
+Verfügbare Felder unter `tts.providers.volcengine`: `apiKey`, `voice`, `speedRatio` (0.2-3.0), `emotion`, `cluster`, `resourceId`, `appKey` und `baseUrl`. `!emotion=<value>` funktioniert ebenfalls als Inline-Stimmanweisung, wenn Überschreibungen der Spracheinstellung zulässig sind.
 
-Für Ziele mit Sprachnachrichten fordert OpenClaw das native Format `ogg_opus` des Providers an. Für normale Audioanhänge fordert es `mp3` an. Die Provider-Aliasse `bytedance` und `doubao` werden ebenfalls diesem Sprach-Provider zugeordnet.
+Für Sprachnachrichtenziele fordert OpenClaw das Provider-native `ogg_opus` an. Für normale Audioanhänge fordert es `mp3` an. Die Provider-Aliase `bytedance` und `doubao` werden ebenfalls diesem Sprach-Provider zugeordnet.
 
-Die Standardressourcen-ID lautet `seed-tts-1.0`; dies ist die Berechtigung, die BytePlus neu erstellten Seed-Speech-API-Schlüsseln standardmäßig gewährt. Wenn Ihr Projekt über eine TTS-2.0-Berechtigung verfügt, legen Sie `VOLCENGINE_TTS_RESOURCE_ID=seed-tts-2.0` fest.
+Die standardmäßige Ressourcen-ID ist `seed-tts-1.0`, die Berechtigung, die BytePlus neu erstellten Seed-Speech-API-Schlüsseln standardmäßig gewährt. Wenn Ihr Projekt über eine TTS-2.0-Berechtigung verfügt, legen Sie `VOLCENGINE_TTS_RESOURCE_ID=seed-tts-2.0` fest.
 
 <Warning>
-`VOLCANO_ENGINE_API_KEY` ist für die ModelArk-/Doubao-Modellendpunkte vorgesehen und kein Seed-Speech-API-Schlüssel. TTS benötigt einen Seed-Speech-API-Schlüssel aus der BytePlus Speech Console oder ein Legacy-Paar aus AppID und Token der Speech Console.
+`VOLCANO_ENGINE_API_KEY` ist für die ModelArk-/Doubao-Modellendpunkte bestimmt und kein Seed-Speech-API-Schlüssel. TTS benötigt einen Seed-Speech-API-Schlüssel aus der BytePlus Speech Console oder ein älteres AppID-/Token-Paar aus der Speech Console.
 </Warning>
 
-Die Legacy-Authentifizierung mit AppID und Token wird für ältere Speech-Console-Anwendungen weiterhin unterstützt:
+Die ältere AppID-/Token-Authentifizierung wird für ältere Speech-Console-Anwendungen weiterhin unterstützt:
 
 ```bash
 export VOLCENGINE_TTS_APPID="speech_app_id"
@@ -153,20 +153,20 @@ Weitere optionale TTS-Umgebungsvariablen: `VOLCENGINE_TTS_VOICE`, `VOLCENGINE_TT
 
 <AccordionGroup>
   <Accordion title="Standardmodell nach dem Onboarding">
-    `openclaw onboard --auth-choice volcengine-api-key` legt `volcengine-plan/ark-code-latest` als Standardmodell fest und registriert zugleich den allgemeinen Katalog `volcengine`.
+    `openclaw onboard --auth-choice volcengine-api-key` legt `volcengine-plan/ark-code-latest` als Standardmodell fest und registriert gleichzeitig den allgemeinen `volcengine`-Katalog.
   </Accordion>
 
   <Accordion title="Fallback-Verhalten der Modellauswahl">
-    Bei der Modellauswahl während des Onboardings oder der Konfiguration bevorzugt die Volcengine-Authentifizierungsoption sowohl die Zeilen `volcengine/*` als auch `volcengine-plan/*`. Wenn diese Modelle noch nicht geladen sind, greift OpenClaw auf den ungefilterten Katalog zurück, statt eine leere, auf den Provider beschränkte Auswahl anzuzeigen.
+    Bei der Modellauswahl während des Onboardings oder der Konfiguration bevorzugt die Volcengine-Authentifizierungsoption sowohl `volcengine/*`- als auch `volcengine-plan/*`-Zeilen. Wenn diese Modelle noch nicht geladen sind, greift OpenClaw auf den ungefilterten Katalog zurück, statt eine leere, auf den Provider beschränkte Modellauswahl anzuzeigen.
   </Accordion>
 
   <Accordion title="Umgebungsvariablen für Daemon-Prozesse">
-    Wenn das Gateway als Daemon (launchd/systemd) ausgeführt wird, stellen Sie sicher, dass Modell- und TTS-Umgebungsvariablen wie `VOLCANO_ENGINE_API_KEY`, `VOLCENGINE_TTS_API_KEY`, `BYTEPLUS_SEED_SPEECH_API_KEY`, `VOLCENGINE_TTS_APPID` und `VOLCENGINE_TTS_TOKEN` für diesen Prozess verfügbar sind (beispielsweise in `~/.openclaw/.env` oder über `env.shellEnv`).
+    Wenn das Gateway als Daemon (launchd/systemd) ausgeführt wird, stellen Sie sicher, dass Modell- und TTS-Umgebungsvariablen wie `VOLCANO_ENGINE_API_KEY`, `VOLCENGINE_TTS_API_KEY`, `BYTEPLUS_SEED_SPEECH_API_KEY`, `VOLCENGINE_TTS_APPID` und `VOLCENGINE_TTS_TOKEN` für diesen Prozess verfügbar sind (zum Beispiel in `~/.openclaw/.env` oder über `env.shellEnv`).
   </Accordion>
 </AccordionGroup>
 
 <Warning>
-Wenn OpenClaw als Hintergrunddienst ausgeführt wird, werden die in Ihrer interaktiven Shell festgelegten Umgebungsvariablen nicht automatisch übernommen. Beachten Sie den obigen Hinweis zum Daemon.
+Wenn OpenClaw als Hintergrunddienst ausgeführt wird, werden in Ihrer interaktiven Shell festgelegte Umgebungsvariablen nicht automatisch übernommen. Beachten Sie den obigen Hinweis zum Daemon.
 </Warning>
 
 ## Verwandte Themen

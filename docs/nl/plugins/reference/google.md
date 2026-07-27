@@ -4,7 +4,7 @@ read_when:
 summary: Voegt ondersteuning voor de modelproviders Google, Google Gemini CLI en Google Vertex toe aan OpenClaw.
 title: Google-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:05:48Z"
+    generated_at: "2026-07-27T05:15:24Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Google-plugin
 
-Voegt ondersteuning voor Google-, Google Gemini CLI- en Google Vertex-modelproviders toe aan OpenClaw.
+Voegt ondersteuning voor Google, Google Gemini CLI en de Google Vertex-modelprovider toe aan OpenClaw.
 
 ## Distributie
 
 - Pakket: `@openclaw/google-plugin`
-- Installatieroute: inbegrepen bij OpenClaw
+- Installatieroute: inbegrepen in OpenClaw
 
 ## Oppervlak
 

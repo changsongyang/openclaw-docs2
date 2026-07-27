@@ -2,7 +2,7 @@
 summary: Weiterleitung zu /plugins/sdk-channel-inbound
 title: Kanalrunde
 x-i18n:
-    generated_at: "2026-07-24T05:08:40Z"
+    generated_at: "2026-07-26T18:39:12Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -12,7 +12,7 @@ x-i18n:
     workflow: 16
 ---
 
-Diese Seite wurde zu [API für eingehende Channel-Nachrichten](/de/plugins/sdk-channel-inbound) verschoben.
+Diese Seite wurde nach [API für eingehende Kanalnachrichten](/de/plugins/sdk-channel-inbound) verschoben.
 
-Die alten Laufzeit-Aliasse für Channel-Turns wurden entfernt. Plugin-Code sollte
+Die alten Runtime-Aliasse für Kanal-Turns wurden entfernt. Plugin-Code sollte
 `runtime.channel.inbound.*`, `channel-inbound` und `channel-outbound` verwenden.

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - canvas Plugin のインストール、設定、または監査を行っています
-summary: ペアリングされた Node 向けの実験的な Canvas 制御および A2UI レンダリングサーフェス。
+    - canvas Plugin をインストール、設定、または監査している場合
+summary: ペアリングされたノード向けの実験的な Canvas 制御および A2UI レンダリングサーフェス。
 title: Canvas Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:57:09Z"
+    generated_at: "2026-07-26T09:34:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## 配布
 
 - パッケージ: `@openclaw/canvas-plugin`
-- インストール経路: OpenClaw に同梱
+- インストール方法: OpenClaw に同梱
 
 ## サーフェス
 

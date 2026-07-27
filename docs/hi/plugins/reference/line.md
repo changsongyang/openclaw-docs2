@@ -4,7 +4,7 @@ read_when:
 summary: LINE Bot API चैट के लिए OpenClaw LINE चैनल Plugin।
 title: LINE Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:15:52Z"
+    generated_at: "2026-07-27T20:14:22Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ LINE Bot API चैट के लिए OpenClaw LINE चैनल Plugin।
 - पैकेज: `@openclaw/line`
 - इंस्टॉल मार्ग: npm; ClawHub
 
-## सतह
+## उपलब्ध क्षेत्र
 
 चैनल: `line`
 

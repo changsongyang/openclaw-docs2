@@ -1,11 +1,11 @@
 ---
 read_when:
     - Sie möchten Together AI mit OpenClaw verwenden
-    - Sie benötigen die API-Schlüssel-Umgebungsvariable oder die CLI-Authentifizierungsauswahl.
-summary: Einrichtung von Together AI (Authentifizierung + Modellauswahl)
+    - Sie benötigen die Umgebungsvariable für den API-Schlüssel oder die CLI-Authentifizierungsauswahl
+summary: Together AI einrichten (Authentifizierung + Modellauswahl)
 title: Together AI
 x-i18n:
-    generated_at: "2026-07-24T04:53:41Z"
+    generated_at: "2026-07-26T18:44:32Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,12 +17,12 @@ x-i18n:
 
 [Together AI](https://together.ai) bietet über eine einheitliche API Zugriff auf führende Open-Source-
 Modelle, darunter Llama, DeepSeek, Kimi und weitere.
-OpenClaw bündelt es als Provider `together`.
+OpenClaw bündelt den Dienst als Provider `together`.
 
 | Eigenschaft | Wert                         |
 | -------- | ----------------------------- |
 | Provider | `together`                    |
-| Authentifizierung     | `TOGETHER_API_KEY`            |
+| Authentifizierung | `TOGETHER_API_KEY`            |
 | API      | OpenAI-kompatibel             |
 | Basis-URL | `https://api.together.xyz/v1` |
 
@@ -30,8 +30,8 @@ OpenClaw bündelt es als Provider `together`.
 
 <Steps>
   <Step title="API-Schlüssel abrufen">
-    Erstellen Sie unter
-    [api.together.ai/settings/api-keys](https://api.together.ai/settings/api-keys) einen API-Schlüssel.
+    Erstellen Sie einen API-Schlüssel unter
+    [api.together.ai/settings/api-keys](https://api.together.ai/settings/api-keys).
   </Step>
   <Step title="Onboarding ausführen">
     ```bash
@@ -71,7 +71,7 @@ Standardmodell festgelegt.
 
 Die Kosten werden in USD pro Million Token angegeben.
 
-| Modellreferenz                                          | Name                         | Eingabe       | Kontext | Maximale Ausgabe | Kosten (Ein-/Ausgabe) | Hinweise               |
+| Modellreferenz                                      | Name                         | Eingabe     | Kontext | Max. Ausgabe | Kosten (Ein-/Ausgabe) | Hinweise               |
 | -------------------------------------------------- | ---------------------------- | ----------- | ------- | ---------- | ------------- | ------------------- |
 | `together/meta-llama/Llama-3.3-70B-Instruct-Turbo` | Llama 3.3 70B Instruct Turbo | Text        | 131,072 | 8,192      | 0.88 / 0.88   | Standardmodell       |
 | `together/moonshotai/Kimi-K2.6`                    | Kimi K2.6 FP4                | Text, Bild | 262,144 | 32,768     | 1.20 / 4.50   | Reasoning-Modell     |
@@ -84,15 +84,15 @@ Die Kosten werden in USD pro Million Token angegeben.
 Das gebündelte Plugin `together` registriert außerdem die Videogenerierung über das
 gemeinsame Tool `video_generate`.
 
-| Eigenschaft             | Wert                                                                                     |
+| Eigenschaft          | Wert                                                                                      |
 | -------------------- | ----------------------------------------------------------------------------------------- |
-| Standard-Videomodell  | `Wan-AI/Wan2.2-T2V-A14B`                                                                  |
-| Weitere Modelle         | `Wan-AI/Wan2.2-I2V-A14B`, `minimax/hailuo-02`, `kwaivgI/kling-2.1-master`                 |
-| Modi                | Text-zu-Video; Bild-zu-Video nur mit `Wan-AI/Wan2.2-I2V-A14B` (einzelnes Referenzbild) |
-| Dauer             | 1-10 Sekunden                                                                              |
+| Standard-Videomodell | `Wan-AI/Wan2.2-T2V-A14B`                                                                  |
+| Weitere Modelle      | `Wan-AI/Wan2.2-I2V-A14B`, `minimax/hailuo-02`, `kwaivgI/kling-2.1-master`                 |
+| Modi                 | Text-zu-Video; Bild-zu-Video nur mit `Wan-AI/Wan2.2-I2V-A14B` (einzelnes Referenzbild) |
+| Dauer                | 1-10 Sekunden                                                                             |
 | Unterstützte Parameter | `size` (als `<width>x<height>` geparst); `aspectRatio`/`resolution` werden nicht gelesen            |
 
-So verwenden Sie Together als Standard-Provider für Videos:
+So verwenden Sie Together als standardmäßigen Video-Provider:
 
 ```json5
 {
@@ -107,8 +107,8 @@ So verwenden Sie Together als Standard-Provider für Videos:
 ```
 
 <Tip>
-Unter [Videogenerierung](/de/tools/video-generation) finden Sie die gemeinsamen Tool-Parameter,
-die Provider-Auswahl und das Failover-Verhalten.
+Unter [Videogenerierung](/de/tools/video-generation) finden Sie Informationen zu den gemeinsamen Tool-Parametern,
+zur Provider-Auswahl und zum Failover-Verhalten.
 </Tip>
 
 <AccordionGroup>
@@ -118,16 +118,16 @@ die Provider-Auswahl und das Failover-Verhalten.
     `~/.openclaw/.env` oder über `env.shellEnv`).
 
     <Warning>
-    Schlüssel, die nur in Ihrer interaktiven Shell festgelegt sind, sind für von einem Daemon verwaltete
-    Gateway-Prozesse nicht sichtbar. Verwenden Sie für die
-    dauerhafte Verfügbarkeit die Konfiguration `~/.openclaw/.env` oder `env.shellEnv`.
+    Schlüssel, die nur in Ihrer interaktiven Shell festgelegt sind, sind für vom Daemon verwaltete
+    Gateway-Prozesse nicht sichtbar. Verwenden Sie für dauerhafte Verfügbarkeit
+    `~/.openclaw/.env` oder die Konfiguration `env.shellEnv`.
     </Warning>
 
   </Accordion>
 
   <Accordion title="Fehlerbehebung">
     - Überprüfen Sie, ob Ihr Schlüssel funktioniert: `openclaw models list --provider together`
-    - Wenn Modelle nicht angezeigt werden, vergewissern Sie sich, dass der API-Schlüssel in der richtigen
+    - Wenn keine Modelle angezeigt werden, vergewissern Sie sich, dass der API-Schlüssel in der richtigen
       Umgebung für Ihren Gateway-Prozess festgelegt ist.
     - Modellreferenzen verwenden das Format `together/<model-id>`.
 
@@ -144,7 +144,7 @@ die Provider-Auswahl und das Failover-Verhalten.
     Gemeinsame Parameter des Videogenerierungs-Tools und Provider-Auswahl.
   </Card>
   <Card title="Konfigurationsreferenz" href="/de/gateway/configuration-reference" icon="gear">
-    Vollständiges Konfigurationsschema einschließlich der Provider-Einstellungen.
+    Vollständiges Konfigurationsschema einschließlich Provider-Einstellungen.
   </Card>
   <Card title="Together AI" href="https://together.ai" icon="arrow-up-right-from-square">
     Together-AI-Dashboard, API-Dokumentation und Preise.

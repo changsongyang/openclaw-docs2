@@ -4,7 +4,7 @@ read_when:
 summary: Voegt ondersteuning voor de modelproviders Tencent TokenHub en Tencent Tokenplan toe aan OpenClaw.
 title: Tencent-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:20:48Z"
+    generated_at: "2026-07-27T05:27:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Tencent-plugin
 
-Voegt ondersteuning voor de modelproviders Tencent TokenHub en Tencent Tokenplan toe aan OpenClaw.
+Voegt ondersteuning voor Tencent TokenHub- en Tencent Tokenplan-modelproviders toe aan OpenClaw.
 
 ## Distributie
 
@@ -29,4 +29,4 @@ providers: `tencent-tokenhub`, `tencent-tokenplan`
 
 ## Gerelateerde documentatie
 
-- [Tencent](/nl/providers/tencent)
+- [tencent](/nl/providers/tencent)

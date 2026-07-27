@@ -4,7 +4,7 @@ read_when:
 summary: 用于 WhatsApp Web 聊天的 OpenClaw WhatsApp 渠道插件。
 title: WhatsApp 插件
 x-i18n:
-    generated_at: "2026-07-16T11:52:39Z"
+    generated_at: "2026-07-26T06:53:17Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -20,10 +20,10 @@ x-i18n:
 
 ## 分发
 
-- 软件包：`@openclaw/whatsapp`
+- 包：`@openclaw/whatsapp`
 - 安装途径：ClawHub：`clawhub:@openclaw/whatsapp`；npm
 
-## 接口范围
+## 接口
 
 渠道：`whatsapp`；契约：`tools`；Skills
 

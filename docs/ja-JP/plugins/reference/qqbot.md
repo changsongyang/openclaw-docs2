@@ -1,10 +1,10 @@
 ---
 read_when:
-    - qqbot Pluginのインストール、設定、または監査を行っています
-summary: グループおよびダイレクトメッセージのワークフロー向けOpenClaw QQ BotチャンネルPlugin。
+    - qqbot Plugin のインストール、設定、または監査を行う場合です
+summary: グループおよびダイレクトメッセージのワークフロー向け OpenClaw QQ Bot チャンネル Plugin。
 title: QQ Bot Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:56:37Z"
+    generated_at: "2026-07-26T10:25:34Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # QQ Bot Plugin
 
-グループおよびダイレクトメッセージのワークフローに対応するOpenClaw QQ BotチャンネルPlugin。
+グループおよびダイレクトメッセージのワークフロー向けOpenClaw QQ BotチャンネルPlugin。
 
 ## 配布
 
 - パッケージ: `@openclaw/qqbot`
-- インストール方法: npm、ClawHub
+- インストール経路: npm、ClawHub
 
-## 対応範囲
+## 対象
 
 チャンネル: `qqbot`、コントラクト: `tools`、Skills
 

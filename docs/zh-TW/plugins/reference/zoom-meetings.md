@@ -4,12 +4,12 @@ read_when:
 summary: 以 Chrome 瀏覽器訪客身分加入 Zoom 會議。
 title: Zoom 會議外掛
 x-i18n:
-    generated_at: "2026-07-19T13:53:04Z"
+    generated_at: "2026-07-26T08:29:59Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 5a0899b4b445911c7021ed372bd2b73f29f484b8cde15953003e0fb351f172f4
+    source_hash: d9794fc6a756e27160e2e58008967298cbec73b5214271dbd851c42b64480e47
     source_path: plugins/reference/zoom-meetings.md
     workflow: 16
 ---
@@ -18,15 +18,15 @@ x-i18n:
 
 以 Chrome 瀏覽器訪客身分加入 Zoom 會議。
 
-## 發布
+## 發佈
 
 - 套件：`@openclaw/zoom-meetings`
 - 安裝途徑：隨附於 OpenClaw
 
 ## 介面
 
-合約：`tools`
+合約：`tools`、`transcriptSourceProviders`
 
 ## 相關文件
 
-- [zoom-meetings](/plugins/zoom-meetings)
+- [zoom-meetings](/zh-TW/plugins/zoom-meetings)

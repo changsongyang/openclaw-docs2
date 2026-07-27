@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das Canvas-Plugin.
+    - Sie installieren, konfigurieren oder überprüfen das Canvas-Plugin.
 summary: Experimentelle Canvas-Steuerungs- und A2UI-Rendering-Oberflächen für gekoppelte Nodes.
 title: Canvas-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:03:19Z"
+    generated_at: "2026-07-26T18:01:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Canvas-Plugin
 
-Experimentelle Oberflächen zur Canvas-Steuerung und A2UI-Darstellung für gekoppelte Nodes.
+Experimentelle Canvas-Steuerungs- und A2UI-Rendering-Oberflächen für gekoppelte Nodes.
 
 ## Distribution
 

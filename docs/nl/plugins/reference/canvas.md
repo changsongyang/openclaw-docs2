@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Je installeert, configureert of controleert de canvas-Plugin
-summary: Experimentele oppervlakken voor Canvas-bediening en A2UI-rendering voor gekoppelde nodes.
+    - Je installeert, configureert of controleert de canvasplugin
+summary: Experimentele Canvas-besturing en A2UI-renderingoppervlakken voor gekoppelde nodes.
 title: Canvas-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:13:27Z"
+    generated_at: "2026-07-27T05:25:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Canvas-Plugin
+# Canvas-plugin
 
 Experimentele oppervlakken voor Canvas-besturing en A2UI-rendering voor gekoppelde nodes.
 
@@ -25,4 +25,4 @@ Experimentele oppervlakken voor Canvas-besturing en A2UI-rendering voor gekoppel
 
 ## Oppervlak
 
-contracten: `tools`; Skills
+contracten: `tools`; skills

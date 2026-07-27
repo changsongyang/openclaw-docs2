@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Quieres buscar los identificadores de contactos, grupos o propios de un canal
-    - Estás desarrollando un adaptador de directorio de canales
+    - Quiere consultar los identificadores de contactos, grupos o propios de un canal
+    - Está desarrollando un adaptador de directorio de canales
 summary: Referencia de la CLI para `openclaw directory` (propio, pares, grupos)
 title: Directorio
 x-i18n:
-    generated_at: "2026-07-19T01:49:22Z"
+    generated_at: "2026-07-26T05:06:17Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,7 +17,7 @@ x-i18n:
 
 # `openclaw directory`
 
-Consultas de directorio para los canales que las admiten: contactos/pares, grupos y «yo» (la propia identidad).
+Consultas de directorio para los canales que las admiten: contactos/pares, grupos y «yo» (propio).
 
 Los resultados están pensados para pegarse en otros comandos, especialmente `openclaw message send --target ...`.
 
@@ -31,7 +31,7 @@ La salida predeterminada (no JSON) es `id` (y, a veces, `name`), separada por un
 
 ## Notas
 
-- En muchos canales, los resultados proceden de la configuración (listas de permitidos/grupos configurados), en lugar de un directorio activo del proveedor.
+- Para muchos canales, los resultados se basan en la configuración (listas de permitidos/grupos configurados), en lugar de proceder de un directorio del proveedor en tiempo real.
 - La lista de grupos de WhatsApp se obtiene en tiempo real. Las consultas del Gateway reutilizan la conexión que este administra; un comando independiente abre la sesión vinculada solo cuando ningún otro proceso administra esa cuenta y, de lo contrario, informa de que los grupos en tiempo real no están disponibles.
 - Es posible que un plugin de canal ya instalado no admita directorios. En ese caso, el comando informa de que la operación no es compatible; no intenta reinstalar ni actualizar el plugin para añadir compatibilidad.
 
@@ -56,7 +56,7 @@ openclaw message send --channel slack --target user:U012ABCDEF --message "hello"
 | Zalo (plugin)                       | Id de usuario (API del bot)                                                                                                 |
 | Zalo Personal / `zalouser` (plugin) | Id del hilo (mensaje directo/grupo), de `zca` (`me`, `friend list`, `group list`) |
 
-## Identidad propia («yo»)
+## Propio («yo»)
 
 ```bash
 openclaw directory self --channel zalouser

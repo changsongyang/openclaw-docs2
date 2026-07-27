@@ -4,7 +4,7 @@ read_when:
 summary: 用於聊天工作流程的 OpenClaw Tlon/Urbit 頻道外掛。
 title: Tlon 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:50:59Z"
+    generated_at: "2026-07-26T07:59:41Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,9 +16,9 @@ x-i18n:
 
 # Tlon 外掛
 
-用於聊天工作流程的 OpenClaw Tlon/Urbit 頻道外掛。
+適用於聊天工作流程的 OpenClaw Tlon/Urbit 頻道外掛。
 
-## 發布
+## 發布方式
 
 - 套件：`@openclaw/tlon`
 - 安裝途徑：npm；ClawHub

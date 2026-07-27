@@ -1,65 +1,55 @@
 ---
 read_when:
     - Je wilt een betrouwbare terugvaloptie wanneer API-providers uitvallen
-    - Je draait lokale AI-CLI's en wilt ze hergebruiken
-    - Je wilt de MCP-loopbackbridge voor tooltoegang via de CLI-backend begrijpen
-summary: 'CLI-backends: terugvaloptie voor lokale AI-CLI met optionele MCP-toolbridge'
+    - Je voert lokale AI-CLI's uit en wilt ze hergebruiken
+    - Je wilt de MCP-loopbackbridge voor toegang tot CLI-backendtools begrijpen
+summary: 'CLI-backends: lokale AI-CLI als fallback met optionele MCP-toolbridge'
 title: CLI-backends
 x-i18n:
-    generated_at: "2026-07-16T15:35:03Z"
+    generated_at: "2026-07-27T05:09:46Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: ffeb19e582819f511212326da83381ba2c52e9f5743263f1ef9e0dc0fbbaf08e
+    source_hash: 0ce0427c587bf2a1e0a2ff24b5e76952eecae059e6f900af777b897b2d8d4210
     source_path: gateway/cli-backends.md
     workflow: 16
 ---
 
-OpenClaw kan een lokale AI-CLI uitvoeren als tekstuele terugvaloptie wanneer API-providers niet beschikbaar zijn, beperkt worden vanwege aanvraaglimieten of zich onjuist gedragen. Dit is bewust conservatief opgezet:
+OpenClaw kan een lokale AI-CLI uitvoeren als een uitsluitend tekstuele fallback wanneer API-providers niet beschikbaar zijn, rate limits toepassen of zich onjuist gedragen. Dit is bewust conservatief:
 
 - OpenClaw-tools worden niet rechtstreeks geïnjecteerd, maar een backend met `bundleMcp: true` kan Gateway-tools ontvangen via een loopback-MCP-bridge.
 - JSONL-streaming voor CLI's die dit ondersteunen.
 - Sessies worden ondersteund, zodat vervolgbeurten coherent blijven.
 - Afbeeldingen worden doorgegeven als de CLI afbeeldingspaden accepteert.
 
-Gebruik dit als vangnet voor tekstreacties die "altijd werken", niet als primair pad. Gebruik in plaats daarvan [ACP-agents](/nl/tools/acp-agents) voor een volledige harness-runtime met ACP-sessiebediening, achtergrondtaken, thread-/gesprekskoppeling en persistente externe codeersessies; CLI-backends zijn geen ACP.
+Gebruik dit als vangnet voor tekstreacties die 'altijd werken', niet als primair pad. Gebruik in plaats daarvan [ACP-agents](/nl/tools/acp-agents) voor een volledige harness-runtime met ACP-sessiebediening, achtergrondtaken, koppeling aan threads/gesprekken en persistente externe codeersessies; CLI-backends zijn geen ACP.
 
 <Tip>
-  Een nieuwe backend-Plugin bouwen? Zie [CLI-backend-Plugins](/nl/plugins/cli-backend-plugins). Deze pagina behandelt het configureren en gebruiken van een reeds geregistreerde backend.
+  Een nieuwe backendplugin bouwen? Zie [CLI-backendplugins](/nl/plugins/cli-backend-plugins). Deze pagina behandelt het configureren en gebruiken van een reeds geregistreerde backend.
 </Tip>
 
 ## Snel aan de slag
 
-De meegeleverde Anthropic-Plugin registreert een standaardbackend `claude-cli`, zodat deze zonder verdere configuratie werkt als Claude Code is geïnstalleerd en je bent aangemeld:
+De gebundelde Anthropic-plugin registreert een standaardbackend `claude-cli`, zodat deze zonder configuratie werkt, afgezien van de vereiste dat Claude Code geïnstalleerd is en je bent ingelogd:
 
 ```bash
 openclaw agent --agent main --message "hi" --model claude-cli/claude-sonnet-4-6
 ```
 
-`main` is de standaard-agent-id wanneer geen expliciete agentlijst is geconfigureerd; gebruik anders je eigen agent-id.
+`main` is de standaard-agent-id wanneer geen expliciete lijst met agents is geconfigureerd; gebruik anders je eigen agent-id.
 
-Als de Gateway onder launchd/systemd met een minimale `PATH` draait, verwijs dan expliciet naar het binaire bestand:
+De Gateway-service moet de CLI in zijn `PATH` hebben. Als een implementatie een
+niet-standaardpad naar het uitvoerbare bestand of niet-standaardargumenten nodig heeft, registreer die adapter dan in een
+[CLI-backendplugin](/nl/plugins/cli-backend-plugins) in plaats van de startmechanismen
+in `openclaw.json` te plaatsen.
 
-```json5
-{
-  agents: {
-    defaults: {
-      cliBackends: {
-        "claude-cli": {
-          command: "/opt/homebrew/bin/claude",
-        },
-      },
-    },
-  },
-}
-```
+OpenClaw laadt automatisch een gebundelde eigenaarplugin wanneer de modelselectie of een
+modelgebonden `agentRuntime.id` naar de backend ervan verwijst.
 
-Als je een meegeleverde CLI-backend als primaire berichtenprovider op een Gateway-host gebruikt, laadt OpenClaw de bijbehorende meegeleverde Plugin automatisch wanneer je configuratie naar die backend verwijst in een modelreferentie of onder `agents.defaults.cliBackends`.
+## Gebruiken als fallback
 
-## Als terugvaloptie gebruiken
-
-Voeg de CLI-backend toe aan je lijst met terugvalopties, zodat deze alleen wordt uitgevoerd wanneer primaire modellen mislukken:
+Voeg de CLI-backend toe aan je lijst met fallbacks, zodat deze alleen wordt uitgevoerd wanneer primaire modellen mislukken:
 
 ```json5
 {
@@ -78,43 +68,21 @@ Voeg de CLI-backend toe aan je lijst met terugvalopties, zodat deze alleen wordt
 }
 ```
 
-Als je `agents.defaults.models` als toelatingslijst gebruikt, neem daar dan ook je CLI-backendmodellen in op. Wanneer de primaire provider mislukt (authenticatie, aanvraaglimieten, time-outs), probeert OpenClaw vervolgens de CLI-backend.
+Geconfigureerde fallbacks blijven beschikbaar wanneer de primaire provider mislukt (authenticatie, rate limits, time-outs), zelfs wanneer ze niet in `agents.defaults.modelPolicy.allow` staan. Voeg een CLI-backendmodel alleen aan dat beleid toe wanneer gebruikers het ook rechtstreeks moeten kunnen selecteren via `/model`, een sessie-override of `--model`. `agents.defaults.models` beheert alleen aliassen, parameters en metadata per model.
 
 ## Configuratie
 
-Alle CLI-backends staan onder `agents.defaults.cliBackends`, met de provider-id als sleutel (bijvoorbeeld `claude-cli`, `my-cli`). De provider-id wordt de linkerkant van de modelreferentie: `<provider>/<model>`.
+Gebruikers kiezen een geregistreerde backend via het model- en runtimebeleid. Houd
+de modelverwijzing canoniek en selecteer de CLI-runtime per model:
 
 ```json5
 {
   agents: {
     defaults: {
-      cliBackends: {
-        "my-cli": {
-          command: "my-cli",
-          args: ["--json"],
-          output: "json",
-          input: "arg",
-          modelArg: "--model",
-          modelAliases: {
-            "claude-opus-4-6": "opus",
-            "claude-sonnet-4-6": "sonnet",
-          },
-          sessionArg: "--session",
-          sessionMode: "existing",
-          sessionIdFields: ["session_id", "conversation_id"],
-          systemPromptArg: "--system",
-          // Specifieke vlag voor promptbestanden:
-          // systemPromptFileArg: "--system-file",
-          // Of een configuratie-overschrijvingsvlag in Codex-stijl:
-          // systemPromptFileConfigArg: "-c",
-          // systemPromptFileConfigKey: "model_instructions_file",
-          systemPromptWhen: "first",
-          imageArg: "--image",
-          imageMode: "repeat",
-          // Schakel dit alleen in als deze backend ongeldige sessies opnieuw mag vullen
-          // vanuit begrensde onbewerkte OpenClaw-transcriptgeschiedenis vóór Compaction.
-          reseedFromRawTranscriptWhenUncompacted: true,
-          serialize: true,
+      model: "anthropic/claude-opus-5",
+      models: {
+        "anthropic/claude-opus-5": {
+          agentRuntime: { id: "claude-cli" },
         },
       },
     },
@@ -122,21 +90,52 @@ Alle CLI-backends staan onder `agents.defaults.cliBackends`, met de provider-id 
 }
 ```
 
-## Werking
+Referenties blijven in OpenClaw-authenticatieprofielen of de configuratie van de eigenaarplugin.
+Mechanismen voor opdrachten, argv, omgeving, parsing, sessies, afbeeldingen en watchdogs zijn
+plugincode die met `api.registerCliBackend(...)` is geregistreerd.
+
+## Hoe het werkt
 
 1. Selecteert een backend op basis van het providerprefix (`claude-cli/...`).
 2. Bouwt een systeemprompt met dezelfde OpenClaw-prompt en werkruimtecontext.
-3. Voert de CLI uit met een sessie-id (indien ondersteund), zodat de geschiedenis consistent blijft. De meegeleverde backend `claude-cli` houdt per OpenClaw-sessie een Claude-stdio-proces actief en verzendt vervolgbeurten via stream-json-stdin.
-4. Parseert de uitvoer (JSON of platte tekst) en retourneert de uiteindelijke tekst.
+3. Voert de CLI uit met een sessie-id (indien ondersteund), zodat de geschiedenis consistent blijft. De gebundelde backend `claude-cli` houdt per OpenClaw-sessie een Claude-stdio-proces actief en verzendt vervolgbeurten via stream-json-stdin.
+4. Verwerkt de uitvoer (JSON of platte tekst) en retourneert de uiteindelijke tekst.
 5. Slaat sessie-id's per backend persistent op, zodat vervolgbeurten dezelfde CLI-sessie hergebruiken.
+
+## Time-outs en langdurige taken
+
+CLI-backends hebben twee onafhankelijke limieten:
+
+- `agents.defaults.timeoutSeconds` beperkt de volledige agentbeurt. Normale Gateway-beurten nemen de standaardwaarde van 48 uur over; `0` maakt het budget voor de beurt onbeperkt. Een opgeslagen override zoals `600` vervangt die standaardwaarde.
+- De watchdog voor ontbrekende CLI-uitvoer stopt een subproces dat stil blijft. Elke backendplugin beheert afzonderlijke profielen voor nieuwe en hervatte sessies, en de watchdog blijft actief, zelfs wanneer het totale budget voor de beurt onbeperkt is.
+
+Verwijder een override voor een korte totale time-out om terug te keren naar de standaardwaarde van 48 uur, of stel een expliciet budget in, zoals 12 uur:
+
+```bash
+# Terugkeren naar de standaardwaarde van 48 uur:
+openclaw config unset agents.defaults.timeoutSeconds
+
+# Of een expliciete limiet van 12 uur kiezen:
+openclaw config set agents.defaults.timeoutSeconds 43200
+```
+
+Achtergrondwerk dat binnen een CLI wordt gestart, blijft onderdeel van dat CLI-subproces. Als de bovenliggende beurt zijn totale limiet bereikt, stopt OpenClaw het subproces en de interne achtergrondtaken van de CLI gezamenlijk. Gebruik voor duurzaam langdurig werk een losgekoppelde OpenClaw-[sub-agent](/nl/tools/subagents) of [ACP-agent](/nl/tools/acp-agents); losgekoppelde sub-agents hebben standaard geen uitvoeringstime-out.
+
+De opdracht `openclaw agent` heeft ook een eigen aanvraagdeadline. De fallbackstandaard van 600 seconden geldt voor die opdrachtaanroep, niet voor gewone Gateway-beurten; zie [`openclaw agent`](/nl/cli/agent).
 
 ### Bijzonderheden van Claude CLI
 
-De meegeleverde backend `claude-cli` geeft de voorkeur aan de ingebouwde Skills-resolver van Claude Code. Wanneer de huidige Skills-momentopname ten minste één geselecteerde Skill met een gematerialiseerd pad bevat, geeft OpenClaw via `--plugin-dir` een tijdelijke Claude Code-Plugin door en laat het de dubbele OpenClaw-Skills-catalogus weg uit de toegevoegde systeemprompt. Zonder een gematerialiseerde Plugin-Skill behoudt OpenClaw de promptcatalogus als terugvaloptie. Overschrijvingen van Skill-omgevingsvariabelen/API-sleutels blijven van toepassing op de omgeving van het onderliggende proces voor de uitvoering.
+De gebundelde backend `claude-cli` geeft de voorkeur aan de systeemeigen skillresolver van Claude Code. Wanneer de huidige Skills-snapshot ten minste één geselecteerde skill met een gematerialiseerd pad bevat, geeft OpenClaw een tijdelijke Claude Code-plugin door via `--plugin-dir` en laat het de dubbele OpenClaw-skillscatalogus weg uit de toegevoegde systeemprompt. Zonder een gematerialiseerde pluginskill behoudt OpenClaw de promptcatalogus als fallback. Overrides voor skillomgevingsvariabelen/API-sleutels blijven tijdens de uitvoering van toepassing op de omgeving van het onderliggende proces.
 
-Claude CLI heeft een eigen niet-interactieve machtigingsmodus; OpenClaw koppelt die aan het bestaande uitvoeringsbeleid in plaats van Claude-specifieke configuratie toe te voegen. Voor door OpenClaw beheerde live Claude-sessies is het effectieve uitvoeringsbeleid leidend: YOLO (`tools.exec.security: "full"` en `tools.exec.ask: "off"`) start Claude normaal gesproken met `--permission-mode bypassPermissions`, terwijl een beperkend beleid Claude met `--permission-mode default` start. Gateways die als root worden uitgevoerd, gebruiken ook `default`, omdat Claude Code de bypassmodus voor root weigert; OpenClaw beantwoordt de stdio-verzoeken van Claude voor toolbediening nog steeds volgens het geconfigureerde uitvoeringsbeleid. Instellingen van `agents.list[].tools.exec` per agent overschrijven voor die agent de globale `tools.exec`. Onbewerkte backendargumenten kunnen nog steeds `--permission-mode` bevatten, maar live Claude-starts normaliseren die vlag zodat deze overeenkomt met het effectieve beleid en de hostbeperking.
+Claude CLI heeft een eigen niet-interactieve machtigingsmodus; OpenClaw koppelt deze aan het bestaande uitvoeringsbeleid in plaats van Claude-specifieke configuratie toe te voegen. Voor door OpenClaw beheerde live Claude-sessies is het effectieve uitvoeringsbeleid leidend: YOLO (`tools.exec.mode: "full"`) start Claude normaal gesproken met `--permission-mode bypassPermissions`, terwijl een restrictief beleid Claude start met `--permission-mode default`. Gateways die als root worden uitgevoerd, gebruiken ook `default`, omdat Claude Code de bypassmodus voor root weigert. Instellingen per agent in `agents.entries.*.tools.exec` overschrijven voor die agent de globale `tools.exec`. De Anthropic-plugin normaliseert de machtigingsvlaggen van Claude zodat ze overeenkomen met het effectieve beleid en de hostbeperking.
 
-De backend koppelt ook de OpenClaw-niveaus `/think` aan de ingebouwde vlag `--effort` van Claude Code: `minimal`/`low` -> `low`, `medium` -> `medium`, en `high`/`xhigh`/`max` worden rechtstreeks doorgegeven. Hierdoor blijven de ondersteunde Fable 5-inspanningsniveaus gelijk voor Claude CLI via een abonnement en routes met een API-sleutel. `adaptive` verwijdert geconfigureerde `--effort`-vlaggen en levert geen vervanging, zodat Claude Code de effectieve inspanning bepaalt op basis van zijn eigen omgeving, instellingen en modelstandaarden. Voor andere CLI-backends moet de bijbehorende Plugin een gelijkwaardige argv-mapper declareren voordat `/think` invloed heeft op de gestarte CLI.
+Onder een restrictief beleid vraagt Claude OpenClaw via stdio om toestemming voordat het een van zijn systeemeigen tools of extensietools gebruikt (zijn eigen Bash-, WebFetch- of Claude in Chrome-browsertools). Wanneer de effectieve vraaginstelling voor uitvoering `on-miss` of `always` is, stuurt OpenClaw elk verzoek als interactieve goedkeuring door naar het kanaal van de sessie: **Allow once** staat de afzonderlijke aanroep toe, **Allow always** staat die toolnaam toe voor de rest van de live Claude-sessie (alleen in het geheugen, nooit persistent opgeslagen) en **Deny**, een time-out of een onbereikbare goedkeuringsroute weigeren allemaal de aanroep. Beleid dat nooit om toestemming vraagt, behoudt het oude gedrag: `security: "deny"` weigert elk verzoek, en vragen met `off` en minder dan volledige beveiliging (uitvoeringsmodus `allowlist`) weigert zonder het te vragen.
+
+### Claude-browsertools en aanmelden bij 1Password
+
+Claude Code kan een Chrome-browser besturen via de [Claude in Chrome-extensie](https://code.claude.com/docs/en/chrome), inclusief het automatisch invullen van referenties door [1Password for Claude](/nl/gateway/1password#browser-sign-in-with-1password-for-claude). De gebundelde backend schakelt dit niet in; registreer een [CLI-backendplugin](/nl/plugins/cli-backend-plugins) die `--chrome` toevoegt aan de startargumenten van een backend met het dialect `claude-stream-json`. OpenClaw behoudt een geconfigureerde `--chrome` bij normale uitvoeringen en dwingt altijd `--no-chrome` af bij uitvoeringen met een restrictief toolbeleid, zoals zijvragen. Het Chrome-venster, de extensie en eventuele goedkeuringsprompts van 1Password bevinden zich op de Gateway-host, dus er moet iemand bij die machine aanwezig zijn om het gebruik van referenties goed te keuren.
+
+De backend koppelt ook OpenClaw-niveaus voor `/think` aan de systeemeigen vlag `--effort` van Claude Code: `minimal`/`low` -> `low`, `medium` -> `medium`, en `high`/`xhigh`/`max` worden rechtstreeks doorgegeven. Hierdoor blijven de ondersteunde inspanningsniveaus van Fable 5 gelijk voor Claude CLI met een abonnement en routes met een API-sleutel. `adaptive` verwijdert geconfigureerde vlaggen voor `--effort` en levert geen vervanging, zodat Claude Code de effectieve inspanning bepaalt aan de hand van zijn eigen omgeving, instellingen en modelstandaarden. Andere CLI-backends vereisen dat hun eigenaarplugin een gelijkwaardige argv-mapper declareert voordat `/think` invloed heeft op de gestarte CLI.
 
 Voordat OpenClaw `claude-cli` kan gebruiken, moet Claude Code zelf op dezelfde host zijn aangemeld:
 
@@ -146,51 +145,52 @@ claude auth status --text
 openclaw models auth login --provider anthropic --method cli --set-default
 ```
 
-Bij Docker-installaties moet Claude Code binnen de persistente home-map van de container zijn geïnstalleerd en aangemeld, niet alleen op de host; zie [Claude CLI-backend in Docker](/nl/install/docker#claude-cli-backend-in-docker).
+Voor Docker-installaties moet Claude Code geïnstalleerd zijn en moet je zijn aangemeld binnen de persistente thuismap van de container, niet alleen op de host; zie [Claude CLI-backend in Docker](/nl/install/docker#claude-cli-backend-in-docker).
 
-Stel `agents.defaults.cliBackends.claude-cli.command` alleen in wanneer het binaire bestand `claude` nog niet op `PATH` staat.
+De Gateway-service moet `claude` kunnen vinden via `PATH`. Registreer voor een niet-standaardpad
+een kleine wrapper-backendplugin.
 
 ## Sessies
 
-- Als de CLI sessies ondersteunt, stel je `sessionArg` in (bijvoorbeeld `--session-id`), of `sessionArgs` (tijdelijke aanduiding `{sessionId}`) wanneer de id in meerdere vlaggen moet terechtkomen.
-- Als de CLI een hervattingssubopdracht met andere vlaggen gebruikt, stel je `resumeArgs` in (vervangt `args` bij hervatten) en eventueel `resumeOutput` voor hervattingen zonder JSON.
+- Als de CLI sessies ondersteunt, stel je `sessionArgs` in met een tijdelijke aanduiding `{sessionId}` (bijvoorbeeld `["--session-id", "{sessionId}"]`).
+- Als de CLI een subopdracht voor hervatten met andere vlaggen gebruikt, stel je `resumeArgs` in (vervangt `args` bij het hervatten) en eventueel `resumeOutput` voor hervattingen zonder JSON.
 - `sessionMode`:
-  - `always`: verzend altijd een sessie-id (een nieuwe UUID als er geen is opgeslagen).
-  - `existing`: verzend alleen een sessie-id als er eerder een is opgeslagen.
-  - `none`: verzend nooit een sessie-id.
-- `claude-cli` gebruikt standaard `liveSession: "claude-stdio"`, `output: "jsonl"` en `input: "stdin"`, zodat vervolgbeurten het actieve Claude-proces hergebruiken, ook voor aangepaste configuraties waarin transportvelden ontbreken. Als de Gateway opnieuw wordt gestart of het inactieve proces wordt afgesloten, hervat OpenClaw vanaf de opgeslagen Claude-sessie-id. Opgeslagen sessie-id's worden vóór hervatting gecontroleerd aan de hand van een leesbaar projecttranscript; als het transcript ontbreekt, wordt de koppeling gewist (vastgelegd als `reason=transcript-missing`) in plaats van ongemerkt een nieuwe sessie onder `--resume` te starten.
-- Live Claude-sessies hanteren begrensde beveiligingen voor JSONL-uitvoer: standaard 8 MiB en 20,000 onbewerkte JSONL-regels per beurt. Verhoog deze per backend met `agents.defaults.cliBackends.claude-cli.reliability.outputLimits.maxTurnRawChars` en `maxTurnLines`; OpenClaw begrenst die instellingen op 64 MiB en 100,000 regels.
-- Opgeslagen CLI-sessies vormen continuïteit die eigendom is van de provider. De impliciete dagelijkse sessiereset onderbreekt ze niet; `/reset` en expliciete `session.reset`-beleidsregels doen dat nog steeds.
-- Nieuwe CLI-sessies worden normaal gesproken alleen opnieuw gevuld vanuit de Compaction-samenvatting van OpenClaw plus het deel na de Compaction. Om korte sessies te herstellen die vóór Compaction ongeldig zijn geworden, kan een backend dit inschakelen met `reseedFromRawTranscriptWhenUncompacted: true`. Het opnieuw vullen vanuit een onbewerkt transcript blijft begrensd en beperkt tot veilige ongeldigverklaringen, zoals een ontbrekend CLI-transcript, een verweesd toolgebruikseinde, wijzigingen in berichtenbeleid/systeemprompt/werkmap/MCP of een nieuwe poging na het verlopen van een sessie; wijzigingen in het authenticatieprofiel of credentialtijdperk vullen de onbewerkte transcriptgeschiedenis nooit opnieuw.
+  - `always`: altijd een sessie-id verzenden (een nieuwe UUID als er geen is opgeslagen).
+  - `existing`: alleen een sessie-id verzenden als er eerder een is opgeslagen.
+  - `none`: nooit een sessie-id verzenden.
+- `claude-cli` gebruikt standaard `liveSession: "claude-stdio"`, `output: "jsonl"` en `input: "stdin"`, zodat vervolgbeurten het actieve Claude-proces hergebruiken zolang dit actief is, ook voor aangepaste configuraties waarin transportvelden ontbreken. Als de Gateway opnieuw wordt gestart of het inactieve proces wordt afgesloten, hervat OpenClaw vanaf de opgeslagen Claude-sessie-id. Opgeslagen sessie-id's worden vóór hervatting gecontroleerd aan de hand van een leesbaar projecttranscript; bij een ontbrekend transcript wordt de koppeling verwijderd (geregistreerd als `reason=transcript-missing`) in plaats van stilzwijgend een nieuwe sessie te starten onder `--resume`.
+- Live Claude-sessies gebruiken begrensde beveiligingen voor JSONL-uitvoer: 8 MiB en 20.000 onbewerkte JSONL-regels per beurt.
+- Opgeslagen CLI-sessies vormen door de provider beheerde continuïteit. Automatisch resetten is standaard uitgeschakeld; `/reset` en expliciet dagelijks of bij inactiviteit toegepast `session.reset`-beleid beëindigen ze nog steeds.
+- Nieuwe CLI-sessies worden normaal gesproken alleen opnieuw gevuld vanuit de Compaction-samenvatting van OpenClaw plus het deel na de Compaction. Om korte sessies te herstellen die vóór Compaction ongeldig zijn geworden, kan een backend zich aanmelden met `reseedFromRawTranscriptWhenUncompacted: true`. Het opnieuw vullen vanuit het onbewerkte transcript blijft begrensd en beperkt tot veilige ongeldigverklaringen, zoals een ontbrekend CLI-transcript, een verweesd uiteinde met toolgebruik, wijzigingen in berichtenbeleid/systeemprompt/cwd/MCP of een nieuwe poging na het verlopen van een sessie; wijzigingen in het authenticatieprofiel of credentialtijdperk vullen de onbewerkte transcriptgeschiedenis nooit opnieuw.
 
-Serialisatie: `serialize: true` houdt uitvoeringen binnen dezelfde baan op volgorde (de meeste CLI's serialiseren binnen één providerbaan). OpenClaw hergebruikt opgeslagen CLI-sessies ook niet meer wanneer de geselecteerde authenticatie-identiteit verandert, waaronder een gewijzigde authenticatieprofiel-id, statische API-sleutel, statisch token of OAuth-accountidentiteit wanneer de CLI die beschikbaar stelt; alleen rotatie van OAuth-toegangs-/vernieuwingstokens onderbreekt de sessie niet. Als een CLI geen stabiele OAuth-account-id heeft, laat OpenClaw die CLI zijn eigen hervattingsmachtigingen afdwingen.
+Serialisatie: `serialize: true` houdt uitvoeringen in dezelfde baan op volgorde (de meeste CLI's serialiseren binnen één providerbaan). OpenClaw stopt ook met het hergebruiken van opgeslagen CLI-sessies wanneer de geselecteerde authenticatie-identiteit verandert, waaronder een gewijzigd authenticatieprofiel-id, statische API-sleutel, statisch token of OAuth-accountidentiteit wanneer de CLI er een beschikbaar stelt; alleen rotatie van OAuth-toegangs-/vernieuwingstokens beëindigt de sessie niet. Als een CLI geen stabiele OAuth-account-id heeft, laat OpenClaw die CLI zijn eigen hervattingsmachtigingen afdwingen.
 
-## Terugvalinleiding vanuit claude-cli-sessies
+## Fallbackvoorwoord uit claude-cli-sessies
 
-Wanneer een poging via `claude-cli` terugvalt op een niet-CLI-kandidaat in [`agents.defaults.model.fallbacks`](/nl/concepts/model-failover), voorziet OpenClaw de volgende poging van een contextinleiding uit het lokale JSONL-transcript van Claude Code (onder `~/.claude/projects/`, per werkruimte als sleutel). Zonder deze uitgangscontext begint de terugvalprovider zonder context, omdat het eigen sessietranscript van OpenClaw leeg is voor uitvoeringen via `claude-cli`.
+Wanneer een `claude-cli`-poging uitwijkt naar een niet-CLI-kandidaat in [`agents.defaults.model.fallbacks`](/nl/concepts/model-failover), voorziet OpenClaw de volgende poging van een contextpreambule die uit het lokale JSONL-transcript van Claude Code is opgehaald (onder `~/.claude/projects/`, per werkruimte geïndexeerd). Zonder deze aanvangscontext begint de fallbackprovider zonder context, omdat het eigen sessietranscript van OpenClaw leeg is voor `claude-cli`-uitvoeringen.
 
-- De inleiding geeft de voorkeur aan de nieuwste `/compact`-samenvatting of `compact_boundary`-markering en voegt vervolgens de meest recente beurten na de grens toe tot aan een tekenbudget. Beurten vóór de grens worden verwijderd omdat de samenvatting ze al vertegenwoordigt.
-- Toolblokken worden samengevoegd tot compacte aanwijzingen `(tool call: name)` en `(tool result: …)` om het promptbudget correct te houden; een te grote samenvatting wordt afgekapt en gelabeld als `(truncated)`.
-- Terugvalopties van dezelfde provider van `claude-cli` naar `claude-cli` vertrouwen op Claude's eigen `--resume` en slaan de inleiding over.
-- De uitgangscontext hergebruikt de bestaande validatie van het Claude-sessiebestandspad, zodat willekeurige paden niet kunnen worden gelezen.
+- De preambule geeft de voorkeur aan de meest recente `/compact`-samenvatting of `compact_boundary`-markering en voegt vervolgens de meest recente beurten na de grens toe tot aan een tekenbudget. Beurten van vóór de grens worden weggelaten omdat de samenvatting ze al vertegenwoordigt.
+- Toolblokken worden samengevoegd tot compacte `(tool call: name)`- en `(tool result: …)`-aanwijzingen om het promptbudget realistisch te houden; een te grote samenvatting wordt afgekapt en gelabeld als `(truncated)`.
+- Fallbacks van dezelfde provider van `claude-cli` naar `claude-cli` vertrouwen op Claude's eigen `--resume` en slaan de preambule over.
+- De aanvangscontext hergebruikt de bestaande validatie van het Claude-sessiebestandspad, zodat willekeurige paden niet kunnen worden gelezen.
 
 ## Afbeeldingen
 
-Als je CLI afbeeldingspaden accepteert, stel je `imageArg` in:
+Pluginauteurs declareren ondersteuning voor afbeeldingspaden met `imageArg`:
 
 ```json5
 imageArg: "--image",
 imageMode: "repeat"
 ```
 
-OpenClaw schrijft base64-afbeeldingen naar tijdelijke bestanden. Als `imageArg` is ingesteld, worden die paden als CLI-argumenten doorgegeven; anders voegt OpenClaw de bestandspaden toe aan de prompt (padinjectie), wat werkt voor CLI's die lokale bestanden automatisch via platte paden laden.
+OpenClaw schrijft base64-afbeeldingen naar tijdelijke bestanden. Als `imageArg` is ingesteld, worden die paden doorgegeven als CLI-argumenten; zo niet, dan voegt OpenClaw de bestandspaden toe aan de prompt (padinjectie), wat werkt voor CLI's die lokale bestanden automatisch vanuit platte paden laden.
 
 ## Invoer en uitvoer
 
-- `output: "text"` (standaard) behandelt stdout als de uiteindelijke reactie.
-- `output: "json"` probeert JSON te parseren en tekst plus een sessie-id te extraheren.
-- `output: "jsonl"` parseert een JSONL-stream en extraheert het uiteindelijke agentbericht plus sessie-id's wanneer die aanwezig zijn.
-- Voor JSON-uitvoer van Gemini CLI leest OpenClaw de antwoordtekst uit `response` en het gebruik uit `stats` wanneer `usage` ontbreekt of leeg is. De meegeleverde standaardinstelling voor Gemini CLI gebruikt `stream-json`; oude overschrijvingen van `--output-format json` gebruiken nog steeds de JSON-parser.
+- `output: "text"` (standaard) behandelt stdout als het definitieve antwoord.
+- `output: "json"` probeert JSON te parseren en tekst plus een sessie-ID te extraheren.
+- `output: "jsonl"` parseert een JSONL-stream en extraheert het definitieve agentbericht plus sessie-ID's wanneer die aanwezig zijn.
+- Voor JSON-uitvoer van Gemini CLI leest OpenClaw de antwoordtekst uit `response` en het gebruik uit `stats` wanneer `usage` ontbreekt of leeg is. De gebundelde Gemini CLI-adapter gebruikt `stream-json`.
 
 Invoermodi:
 
@@ -198,27 +198,27 @@ Invoermodi:
 - `input: "stdin"` verzendt de prompt via stdin.
 - Als de prompt zeer lang is en `maxPromptArgChars` is ingesteld, wordt in plaats daarvan stdin gebruikt.
 
-## Standaardwaarden van Plugins
+## Standaardwaarden van de Plugin
 
 Standaardwaarden voor CLI-backends maken deel uit van het Plugin-oppervlak:
 
-- Plugins registreren deze met `api.registerCliBackend(...)`.
-- De backend-`id` wordt het providervoorvoegsel in modelreferenties.
-- Gebruikersconfiguratie in `agents.defaults.cliBackends.<id>` overschrijft nog steeds de standaardwaarde van de Plugin.
-- Backend-specifieke configuratieopschoning blijft eigendom van de Plugin via de optionele `normalizeConfig`-hook.
+- Plugins registreren ze met `api.registerCliBackend(...)`.
+- De backend-`id` wordt het providervoorvoegsel in modelverwijzingen.
+- Het gedrag van opdracht, argv, omgeving, parser, sessie en watchdog blijft in de Plugincode.
+- Backendspecifieke normalisatie blijft eigendom van de Plugin via de optionele `normalizeConfig`-hook.
 
-Anthropic beheert `claude-cli` en Google beheert `google-gemini-cli`. OpenAI Codex-agentuitvoeringen gebruiken de Codex-app-serverharness via `openai/*`; OpenClaw registreert niet langer een gebundelde `codex-cli`-backend.
+Anthropic beheert `claude-cli` en Google beheert `google-gemini-cli`. Uitvoeringen van OpenAI Codex-agenten gebruiken de Codex-app-serverharness via `openai/*`; OpenClaw registreert niet langer een gebundelde `codex-cli`-backend.
 
 De gebundelde Anthropic-Plugin registreert voor `claude-cli`:
 
-| Sleutel               | Waarde                                                                                                                                                                                                        |
+| Sleutel                | Waarde                                                                                                                                                                                                        |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `command`             | `claude`                                                                                                                                                                                                      |
 | `args`                | `-p --output-format stream-json --include-partial-messages --verbose --setting-sources user --allowedTools mcp__openclaw__* --disallowedTools ScheduleWakeup,CronCreate,Bash(run_in_background:true),Monitor` |
 | `output`              | `jsonl`                                                                                                                                                                                                       |
 | `input`               | `stdin`                                                                                                                                                                                                       |
 | `modelArg`            | `--model`                                                                                                                                                                                                     |
-| `sessionArg`          | `--session-id`                                                                                                                                                                                                |
+| `sessionArgs`         | `["--session-id", "{sessionId}"]`                                                                                                                                                                             |
 | `sessionMode`         | `always`                                                                                                                                                                                                      |
 | `imageArg`            | `@`                                                                                                                                                                                                           |
 | `imagePathScope`      | `workspace`                                                                                                                                                                                                   |
@@ -231,7 +231,7 @@ De gebundelde Google-Plugin registreert voor `google-gemini-cli`:
 | ------------------------- | -------------------------------------------------------------------------------------- |
 | `command`                 | `gemini`                                                                               |
 | `args`                    | `--skip-trust --approval-mode auto_edit --output-format stream-json --prompt {prompt}` |
-| `resumeArgs`              | hetzelfde, met `--resume {sessionId}`                                                 |
+| `resumeArgs`              | hetzelfde, met `--resume {sessionId}`                                                  |
 | `output` / `resumeOutput` | `jsonl`                                                                                |
 | `jsonlDialect`            | `gemini-stream-json`                                                                   |
 | `imageArg`                | `@`                                                                                    |
@@ -240,19 +240,16 @@ De gebundelde Google-Plugin registreert voor `google-gemini-cli`:
 | `sessionMode`             | `existing`                                                                             |
 | `sessionIdFields`         | `["session_id", "sessionId"]`                                                          |
 
-Vereiste: de lokale Gemini CLI moet zijn geïnstalleerd en als `gemini` beschikbaar zijn op `PATH` (`brew install gemini-cli` of `npm install -g @google/gemini-cli`).
+Vereiste: de lokale Gemini CLI moet zijn geïnstalleerd en zich op `PATH` bevinden als `gemini` (`brew install gemini-cli` of `npm install -g @google/gemini-cli`).
 
 Opmerkingen over Gemini CLI-uitvoer:
 
-- De standaard `stream-json`-parser leest assistent-`message`-gebeurtenissen, toolgebeurtenissen, het uiteindelijke `result`-gebruik en fatale Gemini-foutgebeurtenissen.
-- Als je de Gemini-argumenten overschrijft met `--output-format json`, normaliseert OpenClaw die backend terug naar `output: "json"` en leest het antwoordtekst uit het JSON-veld `response`.
+- De standaard `stream-json`-parser leest assistent-`message`-gebeurtenissen, toolgebeurtenissen, het definitieve `result`-gebruik en fatale Gemini-foutgebeurtenissen.
 - Het gebruik valt terug op `stats` wanneer `usage` ontbreekt of leeg is; `stats.cached` wordt genormaliseerd naar OpenClaw-`cacheRead`, en als `stats.input` ontbreekt, worden invoertokens afgeleid van `stats.input_tokens - stats.cached`.
 
-Overschrijf standaardwaarden alleen indien nodig (meestal een absoluut `command`-pad).
+## Teksttransformatie-overlays
 
-## Overlays voor teksttransformaties
-
-Plugins die kleine compatibiliteitsshimmen voor prompts/berichten nodig hebben, kunnen bidirectionele teksttransformaties declareren zonder een provider of CLI-backend te vervangen:
+Plugins die kleine compatibiliteitsshims voor prompts of berichten nodig hebben, kunnen bidirectionele teksttransformaties declareren zonder een provider of CLI-backend te vervangen:
 
 ```typescript
 api.registerTextTransforms({
@@ -261,60 +258,77 @@ api.registerTextTransforms({
 });
 ```
 
-`input` herschrijft de systeemprompt en gebruikersprompt die aan de CLI worden doorgegeven. `output` herschrijft gestreamde assistenttekst en geparseerde definitieve tekst voordat OpenClaw zijn eigen besturingsmarkeringen en kanaalaflevering verwerkt; bij modelaanroepen via een provider herstelt het ook tekenreekswaarden in gestructureerde toolaanroepargumenten na streamherstel en vóór tooluitvoering. Ruwe JSON-fragmenten van de provider blijven ongewijzigd; afnemers moeten de gestructureerde gedeeltelijke, eind- of resultaatpayload gebruiken.
+`input` herschrijft de systeemprompt en gebruikersprompt die aan de CLI worden doorgegeven. `output` herschrijft gestreamde assistenttekst en geparseerde definitieve tekst voordat OpenClaw zijn eigen besturingsmarkeringen en kanaalbezorging afhandelt; voor providergebaseerde modelaanroepen herstelt dit ook tekenreekswaarden in gestructureerde toolaanroepargumenten na streamherstel en vóór de tooluitvoering. Ruwe JSON-fragmenten van providers blijven ongewijzigd; consumenten moeten de gestructureerde gedeeltelijke, eind- of resultaatpayload gebruiken.
 
-Stel voor CLI's die providerspecifieke JSONL-gebeurtenissen uitvoeren `jsonlDialect` in binnen de configuratie van die backend: `claude-stream-json` voor Claude Code-compatibele streams, `gemini-stream-json` voor Gemini CLI-`stream-json`-gebeurtenissen.
+Stel voor CLI's die providerspecifieke JSONL-gebeurtenissen uitsturen `jsonlDialect` in bij de configuratie van die backend: `claude-stream-json` voor Claude Code-compatibele streams, `gemini-stream-json` voor Gemini CLI-`stream-json`-gebeurtenissen.
 
-## Eigenaarschap van native Compaction
+## Eigendom van native Compaction
 
-Sommige CLI-backends voeren een agent uit die zijn eigen transcript compacteert, waardoor OpenClaw zijn beveiligende samenvatter niet voor deze backends mag uitvoeren — anders werkt deze de eigen Compaction van de backend tegen en kan de beurt onherstelbaar mislukken.
+Sommige CLI-backends voeren een agent uit die zijn eigen transcript compacter maakt, zodat OpenClaw zijn beveiligende samenvatter er niet op mag uitvoeren — dat zou de eigen Compaction van de backend tegenwerken en kan de beurt onherstelbaar laten mislukken.
 
-`claude-cli` heeft geen harness-eindpunt (Claude Code voert intern Compaction uit) en declareert daarom `ownsNativeCompaction: true`, waarna het Compaction-pad van OpenClaw de sessie-invoer ongewijzigd retourneert. OpenClaw geeft het effectieve contextbudget van de uitvoering door via de gedocumenteerde [`CLAUDE_CODE_AUTO_COMPACT_WINDOW`](https://code.claude.com/docs/en/env-vars) van Claude Code, zodat native automatische Compaction afgestemd blijft op de geconfigureerde Anthropic-`contextTokens`-limieten. Sessies met een native harness, zoals Codex, blijven in plaats daarvan naar hun harness-eindpunt voor Compaction worden gerouteerd.
+`claude-cli` heeft geen harness-eindpunt (Claude Code voert intern Compaction uit), dus declareert deze `ownsNativeCompaction: true` en retourneert het Compaction-pad van OpenClaw de sessievermelding ongewijzigd. OpenClaw geeft het effectieve contextbudget van de uitvoering door via de gedocumenteerde [`CLAUDE_CODE_AUTO_COMPACT_WINDOW`](https://code.claude.com/docs/en/env-vars) van Claude Code, zodat native automatische Compaction blijft afgestemd op de geconfigureerde Anthropic-`contextTokens`-limieten. Sessies met een native harness, zoals Codex, blijven in plaats daarvan naar het Compaction-eindpunt van hun harness worden gerouteerd.
 
 ```typescript
 api.registerCliBackend({ id: "my-cli", ownsNativeCompaction: true /* ... */ });
 ```
 
-Declareer `ownsNativeCompaction` alleen voor een backend die daadwerkelijk eigenaar is van Compaction: deze moet zijn eigen transcript betrouwbaar begrenzen rond het contextvenster en een hervatbare sessie behouden (bijvoorbeeld `--resume` / `--session-id`), anders kan een uitgestelde sessie het budget blijven overschrijden.
+Declareer `ownsNativeCompaction` alleen voor een backend die daadwerkelijk eigenaar is van Compaction: deze moet zijn eigen transcript betrouwbaar begrenzen nabij het contextvenster en een hervatbare sessie opslaan (bijvoorbeeld `--resume` / `--session-id`), anders kan een uitgestelde sessie boven het budget blijven.
 
 ## MCP-overlays bundelen
 
-CLI-backends ontvangen OpenClaw-toolaanroepen niet rechtstreeks, maar een backend kan met `bundleMcp: true` kiezen voor een gegenereerde MCP-configuratie-overlay. Huidig gebundeld gedrag:
+CLI-backends ontvangen OpenClaw-toolaanroepen niet rechtstreeks, maar een backend kan zich met `bundleMcp: true` aanmelden voor een gegenereerde MCP-configuratie-overlay. Huidig gebundeld gedrag:
 
 - `claude-cli`: gegenereerd strikt MCP-configuratiebestand.
 - `google-gemini-cli`: gegenereerd Gemini-systeeminstellingenbestand.
 
-Wanneer gebundelde MCP is ingeschakeld, doet OpenClaw het volgende:
+Wanneer bundel-MCP is ingeschakeld, doet OpenClaw het volgende:
 
-- start een loopback HTTP-MCP-server die Gateway-tools beschikbaar stelt aan het CLI-proces, geauthenticeerd met een contexttoekenning per uitvoering (`OPENCLAW_MCP_TOKEN`) die alleen actief is voor de huidige uitvoeringspoging;
-- koppelt tooltoegang aan de door de Gateway geselecteerde sessie-, account- en kanaalcontext in plaats van headers van onderliggende processen te vertrouwen;
-- laadt ingeschakelde gebundelde MCP-servers voor de huidige werkruimte en voegt deze samen met een eventuele bestaande MCP-configuratie-/instellingenvorm van de backend;
-- herschrijft de startconfiguratie met de integratiemodus die wordt beheerd door de verantwoordelijke Plugin.
+- start een loopback HTTP MCP-server die Gateway-tools beschikbaar stelt aan het CLI-proces, geverifieerd met een contexttoekenning per uitvoering (`OPENCLAW_MCP_TOKEN`) die alleen actief is voor de huidige uitvoeringspoging;
+- koppelt tooltoegang aan de door de Gateway geselecteerde sessie-, account- en kanaalcontext in plaats van headers van het onderliggende proces te vertrouwen;
+- laadt ingeschakelde bundel-MCP-servers voor de huidige werkruimte en voegt ze samen met elke bestaande MCP-configuratie- of instellingenstructuur van de backend;
+- herschrijft de startconfiguratie met de integratiemodus van de backend die door de beherende Plugin wordt bepaald.
 
-Als er geen MCP-servers zijn ingeschakeld, injecteert OpenClaw nog steeds een strikte configuratie wanneer een backend kiest voor gebundelde MCP, zodat achtergronduitvoeringen geïsoleerd blijven.
+Beperkte uitvoeringen, zoals cron-taken met `toolsAllow`, vereisen een exacte
+vertaling die door de backend wordt beheerd. De gebundelde backend `claude-cli` schakelt de
+native tools en aanpassingen van Claude op gebruikers-, project- en lokaal niveau uit, waaronder hooks,
+plugins, agents, skills en `CLAUDE.md`. Vervolgens stelt deze elke toegestane
+OpenClaw-tool beschikbaar via de MCP-server met een tot de toekenning beperkt bereik. Hierdoor blijft het beleid voor het bestandssysteem,
+processen, exec, goedkeuringen en de sandbox binnen OpenClaw, in plaats van de
+bevoegdheden uit te breiden naar de native tools of aanpassingsprocessen van Claude. Dezelfde MCP-
+lijst wordt afgedwongen in de gegenereerde configuratie van Claude en opnieuw door de Gateway bij het
+weergeven en uitvoeren van tools. Voordat de toekenning wordt aangemaakt, weigert de kern
+backendvertalingen die een MCP-machtiging noemen die buiten de oorspronkelijke lijst met toegestane items valt.
+Backends zonder exacte vertaling blijven gesloten bij fouten.
 
-Gebundelde MCP-runtimes met sessiebereik worden in de cache bewaard voor hergebruik binnen een sessie en vervolgens opgeruimd na `mcp.sessionIdleTtlMs` milliseconden inactiviteit (standaard 10 minuten; stel `0` in om dit uit te schakelen). Eenmalige ingebedde uitvoeringen, zoals authenticatiecontroles, sluggeneratie en het ophalen van Active Memory, vragen om opschoning aan het einde van de uitvoering, zodat stdio-onderliggende processen en Streamable HTTP/SSE-streams niet langer blijven bestaan dan de uitvoering.
+Als er geen MCP-servers zijn ingeschakeld, injecteert OpenClaw nog steeds een strikte configuratie wanneer een backend gebundelde MCP inschakelt, zodat uitvoeringen op de achtergrond geïsoleerd blijven.
+
+Gebundelde MCP-runtimes met sessiebereik worden tijdens een sessie in de cache opgeslagen voor hergebruik en vervolgens na 10 minuten inactiviteit opgeruimd. Eenmalige ingebedde uitvoeringen, zoals authenticatiecontroles, het genereren van slugs en het ophalen van Active Memory, vragen aan het einde van de uitvoering om opschoning, zodat stdio-subprocessen en Streamable HTTP/SSE-streams niet langer blijven bestaan dan de uitvoering.
+
+Voor `claude-cli` wordt een compatibel geselecteerd of geordend OpenClaw OAuth-/tokenprofiel
+doorgestuurd naar dat Claude-subproces. Hierdoor zijn profielen per agent bepalend
+voor de beurt, terwijl de native hostaanmelding van Claude behouden blijft wanneer er geen compatibel
+profiel bestaat.
 
 ## Limiet voor opnieuw ingezaaide geschiedenis
 
-Wanneer een nieuwe CLI-sessie wordt ingezaaid vanuit een eerder OpenClaw-transcript (bijvoorbeeld na een `session_expired`-hernieuwde poging), wordt het gerenderde `<conversation_history>`-blok begrensd om te voorkomen dat prompts voor opnieuw inzaaien buitensporig groot worden. De standaardwaarde is 12.288 tekens (ongeveer 3.000 tokens).
+Wanneer een nieuwe CLI-sessie wordt ingezaaid vanuit een eerder OpenClaw-transcript (bijvoorbeeld na een nieuwe poging met `session_expired`), wordt het gerenderde blok `<conversation_history>` begrensd om te voorkomen dat prompts voor opnieuw inzaaien explosief groeien. De standaard is 12,288 tekens (ongeveer 3,000 tokens).
 
-Claude CLI-backends schalen deze limiet in plaats daarvan met het bepaalde Claude-contextvenster: grotere contextvensters krijgen een groter fragment van de eerdere geschiedenis, tot een vast plafond; andere CLI-backends behouden de conservatieve standaardwaarde. Deze limiet is alleen van toepassing op het blok met eerdere geschiedenis in de prompt voor opnieuw inzaaien — uitvoerlimieten van live sessies worden afzonderlijk afgestemd onder `reliability.outputLimits` (zie [Sessies](#sessions)).
+Claude CLI-backends schalen deze limiet in plaats daarvan met het bepaalde Claude-contextvenster: grotere contextvensters krijgen een groter fragment van de eerdere geschiedenis, tot een vaste bovengrens; andere CLI-backends behouden de conservatieve standaard. Deze limiet geldt alleen voor het blok met eerdere geschiedenis in de prompt voor opnieuw inzaaien.
 
 ## Beperkingen
 
-- Geen rechtstreekse OpenClaw-toolaanroepen: OpenClaw injecteert geen toolaanroepen in het CLI-backendprotocol. Backends zien Gateway-tools alleen wanneer ze kiezen voor `bundleMcp: true`.
+- OpenClaw injecteert geen toolaanroepen in het CLI-backendprotocol. Backends zien Gateway-tools alleen wanneer ze `bundleMcp: true` inschakelen.
 - Streaming is backendspecifiek: sommige backends streamen JSONL, andere bufferen tot het proces wordt afgesloten.
 - Gestructureerde uitvoer is afhankelijk van de eigen JSON-indeling van de CLI.
 
 ## Probleemoplossing
 
-| Symptoom                  | Oplossing                                                                         |
-| ------------------------ | --------------------------------------------------------------------------------- |
-| CLI niet gevonden        | Stel `command` in op een volledig pad.                                   |
-| Verkeerde modelnaam      | Gebruik `modelAliases` om `provider/model` toe te wijzen aan de model-id van de CLI. |
-| Geen sessiecontinuïteit  | Zorg dat `sessionArg` is ingesteld en `sessionMode` niet `none` is. |
-| Afbeeldingen genegeerd   | Stel `imageArg` in en controleer of de CLI bestandspaden ondersteunt.     |
+| Symptoom                  | Oplossing                                                                                                  |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| CLI niet gevonden         | Plaats de CLI in `PATH` van de Gateway-service of werk de geregistreerde opdracht van de beherende Plugin bij. |
+| Verkeerde modelnaam       | Werk de toewijzing `modelAliases` van de Plugin bij.                                                   |
+| Geen sessiecontinuïteit   | Controleer `sessionArgs` en `sessionMode` van de Plugin.                                         |
+| Afbeeldingen genegeerd    | Controleer `imageArg` van de Plugin en de ondersteuning van de CLI voor bestandspaden.              |
 
 ## Gerelateerd
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin Runway
+    - Está instalando, configurando o auditando el Plugin Runway
 summary: Añade compatibilidad con proveedores de generación de vídeo.
 title: Plugin de Runway
 x-i18n:
-    generated_at: "2026-07-16T11:54:32Z"
+    generated_at: "2026-07-26T05:15:08Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

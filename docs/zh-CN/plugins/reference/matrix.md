@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安装、配置或审计 Matrix 插件
-summary: 用于聊天室和私信的 OpenClaw Matrix 渠道插件。
+summary: 适用于房间和私信的 OpenClaw Matrix 渠道插件。
 title: Matrix 插件
 x-i18n:
-    generated_at: "2026-07-16T11:50:21Z"
+    generated_at: "2026-07-26T05:56:14Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # Matrix 插件
 
-用于聊天室和私信的 OpenClaw Matrix 渠道插件。
+用于房间和私信的 OpenClaw Matrix 渠道插件。
 
 ## 分发
 
 - 包：`@openclaw/matrix`
-- 安装方式：ClawHub：`clawhub:@openclaw/matrix`；npm
+- 安装途径：ClawHub：`clawhub:@openclaw/matrix`；npm
 
-## 接口
+## 功能范围
 
 渠道：`matrix`
 

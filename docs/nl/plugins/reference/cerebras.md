@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Je installeert, configureert of controleert de Cerebras-plugin
+    - Je installeert, configureert of controleert de cerebras-plugin
 summary: Voegt ondersteuning voor de Cerebras-modelprovider toe aan OpenClaw.
-title: Cerebras-Plugin
+title: Cerebras-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:17:27Z"
+    generated_at: "2026-07-27T05:41:11Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Cerebras-Plugin
+# Cerebras-plugin
 
 Voegt ondersteuning voor de Cerebras-modelprovider toe aan OpenClaw.
 

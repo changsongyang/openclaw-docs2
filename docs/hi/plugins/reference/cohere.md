@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw Cohere प्रदाता Plugin।
 title: Cohere Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:28:17Z"
+    generated_at: "2026-07-27T18:46:04Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ OpenClaw Cohere प्रदाता Plugin।
 - पैकेज: `@openclaw/cohere-provider`
 - इंस्टॉल मार्ग: OpenClaw में शामिल; npm; ClawHub: `clawhub:@openclaw/cohere-provider`
 
-## सतह
+## इंटरफ़ेस
 
 प्रदाता: `cohere`
 

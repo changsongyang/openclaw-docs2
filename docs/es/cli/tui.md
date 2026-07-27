@@ -1,13 +1,13 @@
 ---
 read_when:
-    - Se necesita una interfaz de terminal para el Gateway (apta para acceso remoto)
-    - Se desea pasar la URL, el token o la sesión desde scripts
-    - Desea ejecutar la TUI en modo integrado local sin un Gateway
+    - Quiere una interfaz de terminal para el Gateway (apta para acceso remoto)
+    - Se desea pasar la URL, el token y la sesión desde scripts
+    - Quiere ejecutar la TUI en modo integrado local sin un Gateway
     - Quiere usar openclaw chat u openclaw tui --local
-summary: Referencia de la CLI para `openclaw tui` (interfaz de usuario de terminal integrada local o respaldada por el Gateway)
+summary: Referencia de la CLI para `openclaw tui` (interfaz de usuario de terminal respaldada por el Gateway o integrada localmente)
 title: TUI
 x-i18n:
-    generated_at: "2026-07-19T13:34:34Z"
+    generated_at: "2026-07-26T04:34:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -19,8 +19,8 @@ x-i18n:
 
 # `openclaw tui`
 
-Abra la interfaz de terminal conectada al Gateway o ejecútela en modo
-local integrado.
+Abra la interfaz de terminal conectada al Gateway o ejecútela en modo local
+integrado.
 
 Guía relacionada: [TUI](/es/web/tui)
 
@@ -28,17 +28,17 @@ Guía relacionada: [TUI](/es/web/tui)
 
 | Indicador                    | Valor predeterminado                      | Descripción                                                                        |
 | ---------------------------- | ----------------------------------------- | ---------------------------------------------------------------------------------- |
-| `--local`                    | `false`                                   | Se ejecuta con el entorno de ejecución del agente local integrado en lugar de un Gateway. |
-| `--url <url>`                | `gateway.remote.url` de la configuración | URL de WebSocket del Gateway.                                                       |
+| `--local`                    | `false`                                   | Ejecuta el entorno de ejecución local integrado del agente en lugar de un Gateway. |
+| `--url <url>`                | `gateway.remote.url` de la configuración | URL WebSocket del Gateway.                                                         |
 | `--token <token>`            | (ninguno)                                 | Token del Gateway, si es necesario.                                                |
 | `--password <pass>`          | (ninguna)                                 | Contraseña del Gateway, si es necesaria.                                           |
-| `--tls-fingerprint <sha256>` | `gateway.remote.tlsFingerprint`           | Huella digital esperada del certificado TLS para un Gateway `wss://` anclado. |
-| `--session <key>`            | `main` (o `global` cuando el ámbito es global) | Clave de sesión. Dentro del espacio de trabajo de un agente, selecciona automáticamente ese agente a menos que se use un prefijo. |
+| `--tls-fingerprint <sha256>` | `gateway.remote.tlsFingerprint`           | Huella digital esperada del certificado TLS para un Gateway `wss://` fijado.       |
+| `--session <key>`            | `main` (o `global` cuando el ámbito es global) | Clave de sesión. Dentro del espacio de trabajo de un agente, selecciona automáticamente ese agente, salvo que tenga un prefijo. |
 | `--deliver`                  | `false`                                   | Entrega las respuestas del asistente mediante los canales configurados.            |
-| `--thinking <level>`         | (valor predeterminado del modelo)         | Sustitución del nivel de razonamiento.                                              |
-| `--message <text>`           | (ninguno)                                 | Envía un mensaje inicial después de conectarse.                                    |
+| `--thinking <level>`         | (valor predeterminado del modelo)         | Anulación del nivel de razonamiento.                                                |
+| `--message <text>`           | (ninguno)                                 | Envía un mensaje inicial tras conectarse.                                           |
 | `--timeout-ms <ms>`          | `agents.defaults.timeoutSeconds`          | Tiempo de espera del agente. Los valores no válidos registran una advertencia y se ignoran. |
-| `--history-limit <n>`        | `200`                                     | Entradas del historial que se cargarán al conectarse.                              |
+| `--history-limit <n>`        | `200`                                     | Entradas del historial que se cargarán al conectarse.                               |
 
 Los alias `openclaw chat` y `openclaw terminal` invocan este comando con
 `--local` implícito.
@@ -46,20 +46,20 @@ Los alias `openclaw chat` y `openclaw terminal` invocan este comando con
 ## Notas
 
 - `--local` no se puede combinar con `--url`, `--token`, `--password` ni `--tls-fingerprint`.
-- `tui` resuelve las SecretRefs de autenticación del Gateway configuradas para la autenticación mediante token/contraseña
+- `tui` resuelve las SecretRefs de autenticación del Gateway configuradas para la autenticación mediante token o contraseña
   cuando es posible (proveedores `env`/`file`/`exec`).
-- Sin una URL o un puerto explícitos, `tui` utiliza el puerto activo del Gateway local
+- Sin una URL ni un puerto explícitos, `tui` utiliza el puerto local activo del Gateway
   registrado por el Gateway en ejecución. La configuración explícita de `--url`, `OPENCLAW_GATEWAY_URL`,
-  `OPENCLAW_GATEWAY_PORT` y del Gateway remoto conserva la precedencia.
-- Cuando se inicia desde el directorio del espacio de trabajo de un agente configurado, TUI selecciona
-  automáticamente ese agente como valor predeterminado de la clave de sesión (a menos que `--session` sea explícitamente
+  `OPENCLAW_GATEWAY_PORT` y del Gateway remoto conserva la prioridad.
+- Cuando se inicia desde un directorio configurado como espacio de trabajo de un agente, la TUI selecciona automáticamente
+  ese agente como valor predeterminado de la clave de sesión (salvo que `--session` sea explícitamente
   `agent:<id>:...`).
-- El modo local utiliza directamente el entorno de ejecución del agente integrado. La mayoría de las herramientas locales funcionan,
+- El modo local utiliza directamente el entorno de ejecución integrado del agente. La mayoría de las herramientas locales funcionan,
   pero las funciones exclusivas del Gateway no están disponibles.
-- El modo local añade `/auth [provider]` a la superficie de comandos de TUI.
-- Las puertas de aprobación de los plugins siguen aplicándose en modo local: las herramientas que requieren aprobación
+- El modo local añade `/auth [provider]` a la superficie de comandos de la TUI.
+- Las restricciones de aprobación de los plugins siguen aplicándose en modo local: las herramientas que requieren aprobación
   solicitan una decisión en el terminal; nada se aprueba automáticamente de forma silenciosa.
-- Los [objetivos](/es/tools/goal) de la sesión aparecen en el pie y se pueden gestionar con
+- Los [objetivos](/es/tools/goal) de la sesión aparecen en el pie de página y se pueden gestionar con
   `/goal`.
 
 ## Ejemplos
@@ -71,7 +71,7 @@ openclaw tui
 openclaw tui --url ws://127.0.0.1:18789 --token <token>
 openclaw tui --session main --deliver
 openclaw chat --message "Compara mi configuración con la documentación y dime qué debo corregir"
-# cuando se ejecuta dentro del espacio de trabajo de un agente, infiere automáticamente ese agente
+# cuando se ejecuta dentro del espacio de trabajo de un agente, deduce automáticamente ese agente
 openclaw tui --session bugfix
 ```
 
@@ -88,7 +88,7 @@ protección contra configuraciones no válidas.
 openclaw chat
 ```
 
-A continuación, dentro de TUI:
+A continuación, dentro de la TUI:
 
 ```text
 !openclaw config file
@@ -101,7 +101,7 @@ Aplique correcciones específicas con `openclaw config set` o `openclaw configur
 vuelva a ejecutar `openclaw config validate`. Consulte [TUI](/es/web/tui) y
 [Configuración](/es/cli/config).
 
-## Contenido relacionado
+## Relacionado
 
 - [Referencia de la CLI](/es/cli)
 - [TUI](/es/web/tui)

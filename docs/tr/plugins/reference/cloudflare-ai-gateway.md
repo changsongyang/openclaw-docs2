@@ -1,10 +1,10 @@
 ---
 read_when:
-    - cloudflare-ai-gateway Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - cloudflare-ai-gateway pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a Cloudflare AI Gateway model sağlayıcısı desteği ekler.
 title: Cloudflare AI Gateway plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:29:26Z"
+    generated_at: "2026-07-26T22:54:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Cloudflare AI Gateway plugini
+# Cloudflare AI Gateway Plugin’i
 
-OpenClaw'a Cloudflare AI Gateway model sağlayıcısı desteği ekler.
+OpenClaw’a Cloudflare AI Gateway model sağlayıcısı desteği ekler.
 
 ## Dağıtım
 
 - Paket: `@openclaw/cloudflare-ai-gateway-provider`
-- Kurulum yolu: npm; ClawHub: `clawhub:@openclaw/cloudflare-ai-gateway-provider`
+- Yükleme yolu: npm; ClawHub: `clawhub:@openclaw/cloudflare-ai-gateway-provider`
 
 ## Yüzey
 

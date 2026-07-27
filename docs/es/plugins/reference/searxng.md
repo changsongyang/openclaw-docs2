@@ -4,7 +4,7 @@ read_when:
 summary: Añade compatibilidad con proveedores de búsqueda web.
 title: Plugin de SearXNG
 x-i18n:
-    generated_at: "2026-07-16T11:49:56Z"
+    generated_at: "2026-07-26T05:22:14Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin SearXNG
+# Plugin de SearXNG
 
-Añade compatibilidad con el proveedor de búsqueda web.
+Añade compatibilidad con proveedores de búsqueda web.
 
 ## Distribución
 

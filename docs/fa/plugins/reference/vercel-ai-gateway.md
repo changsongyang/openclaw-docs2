@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin vercel-ai-gateway هستید
-summary: پشتیبانی از ارائه‌دهندهٔ مدل Vercel AI Gateway را به OpenClaw اضافه می‌کند.
+    - در حال نصب، پیکربندی یا ممیزی Plugin ‏vercel-ai-gateway هستید
+summary: پشتیبانی از ارائه‌دهنده مدل Vercel AI Gateway را به OpenClaw اضافه می‌کند.
 title: Plugin درگاه هوش مصنوعی Vercel
 x-i18n:
-    generated_at: "2026-07-16T16:57:49Z"
+    generated_at: "2026-07-27T15:33:17Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin درگاه هوش مصنوعی Vercel
+# Plugin‏ Vercel AI Gateway
 
-پشتیبانی از ارائه‌دهنده مدل درگاه هوش مصنوعی Vercel را به OpenClaw اضافه می‌کند.
+پشتیبانی از ارائه‌دهنده مدل Vercel AI Gateway را به OpenClaw اضافه می‌کند.
 
 ## توزیع
 
 - بسته: `@openclaw/vercel-ai-gateway-provider`
-- روش نصب: npm؛ ClawHub: `clawhub:@openclaw/vercel-ai-gateway-provider`
+- مسیر نصب: npm؛ ClawHub: `clawhub:@openclaw/vercel-ai-gateway-provider`
 
 ## سطح
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## مستندات مرتبط
 
-- [درگاه هوش مصنوعی Vercel](/fa/providers/vercel-ai-gateway)
+- [Vercel AI Gateway](/fa/providers/vercel-ai-gateway)

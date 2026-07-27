@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin ‏volcengine هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin مربوط به volcengine هستید
 summary: پشتیبانی از ارائه‌دهندگان مدل Volcengine و Volcengine Plan را به OpenClaw اضافه می‌کند.
 title: Plugin ولک‌انجین
 x-i18n:
-    generated_at: "2026-07-16T16:58:03Z"
+    generated_at: "2026-07-27T16:59:42Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Plugin Volcengine
 
-پشتیبانی از ارائه‌دهندگان مدل Volcengine و Volcengine Plan را به OpenClaw اضافه می‌کند.
+پشتیبانی از ارائه‌دهنده مدل Volcengine و Volcengine Plan را به OpenClaw اضافه می‌کند.
 
 ## توزیع
 
 - بسته: `@openclaw/volcengine-provider`
-- مسیر نصب: همراه OpenClaw ارائه می‌شود
+- مسیر نصب: در OpenClaw گنجانده شده است
 
 ## سطح
 

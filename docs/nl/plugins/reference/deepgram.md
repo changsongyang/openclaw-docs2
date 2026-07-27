@@ -4,7 +4,7 @@ read_when:
 summary: Voegt ondersteuning toe voor providers voor mediabegrip. Voegt ondersteuning toe voor providers voor realtime transcriptie.
 title: Deepgram-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:05:08Z"
+    generated_at: "2026-07-27T05:14:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Deepgram-plugin
 
-Voegt ondersteuning voor providers voor mediabegrip toe. Voegt ondersteuning voor providers voor realtime transcriptie toe.
+Voegt ondersteuning toe voor providers die media begrijpen. Voegt ondersteuning toe voor providers van realtime transcriptie.
 
 ## Distributie
 
 - Pakket: `@openclaw/deepgram-provider`
-- Installatieroute: inbegrepen in OpenClaw
+- Installatieroute: inbegrepen bij OpenClaw
 
 ## Oppervlak
 

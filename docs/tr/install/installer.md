@@ -1,12 +1,12 @@
 ---
 read_when:
-    - '`openclaw.ai/install.sh` öğesini anlamak istiyorsunuz.'
-    - Kurulumları otomatikleştirmek istiyorsunuz (CI / grafik arayüzsüz)
+    - '`openclaw.ai/install.sh` öğesini anlamak istiyorsunuz'
+    - Kurulumları otomatikleştirmek istiyorsunuz (CI / gözetimsiz)
     - Bir GitHub çalışma kopyasından yüklemek istiyorsunuz
-summary: Yükleyici betiklerinin çalışma şekli (install.sh, install-cli.sh, install.ps1), bayraklar ve otomasyon
-title: Yükleyicinin iç işleyişi
+summary: Yükleyici betiklerinin (install.sh, install-cli.sh, install.ps1) çalışma şekli, bayraklar ve otomasyon
+title: Yükleyici iç işleyişi
 x-i18n:
-    generated_at: "2026-07-16T17:13:39Z"
+    generated_at: "2026-07-26T22:48:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,11 +18,11 @@ x-i18n:
 
 OpenClaw, `openclaw.ai` üzerinden sunulan üç yükleyici betiğiyle birlikte gelir.
 
-| Betik                              | Platform             | İşlevi                                                                                             |
-| ---------------------------------- | -------------------- | -------------------------------------------------------------------------------------------------- |
-| [`install.sh`](#installsh)         | macOS / Linux / WSL  | Gerektiğinde Node'u yükler, OpenClaw'ı npm (varsayılan) veya git aracılığıyla yükler; ilk kurulumu çalıştırabilir. |
-| [`install-cli.sh`](#install-clish) | macOS / Linux / WSL  | Node + OpenClaw'ı npm veya git aracılığıyla yerel bir ön eke (`~/.openclaw`) yükler. Kök yetkisi gerekmez. |
-| [`install.ps1`](#installps1)       | Windows (PowerShell) | Gerektiğinde Node'u yükler, OpenClaw'ı npm (varsayılan) veya git aracılığıyla yükler; ilk kurulumu çalıştırabilir. |
+| Betik                              | Platform             | İşlevi                                                                                              |
+| ---------------------------------- | -------------------- | --------------------------------------------------------------------------------------------------- |
+| [`install.sh`](#installsh)         | macOS / Linux / WSL  | Gerekirse Node'u yükler, OpenClaw'u npm (varsayılan) veya git aracılığıyla yükler, ilk kurulumu çalıştırabilir. |
+| [`install-cli.sh`](#install-clish) | macOS / Linux / WSL  | Node + OpenClaw'u npm veya git aracılığıyla yerel bir ön eke (`~/.openclaw`) yükler. Root yetkisi gerekmez. |
+| [`install.ps1`](#installps1)       | Windows (PowerShell) | Gerekirse Node'u yükler, OpenClaw'u npm (varsayılan) veya git aracılığıyla yükler, ilk kurulumu çalıştırabilir. |
 
 Üçü de Node **22.22.3+, 24.15+ veya 25.9+** sürümlerini destekler; yeni yüklemelerde varsayılan hedef Node 24'tür.
 
@@ -82,34 +82,34 @@ macOS/Linux/WSL üzerindeki çoğu etkileşimli yükleme için önerilir.
     macOS ve Linux'u (WSL dâhil) destekler.
   </Step>
   <Step title="Varsayılan olarak Node.js 24'ü sağla">
-    Node sürümünü denetler ve gerekirse Node 24'ü yükler (macOS'ta Homebrew, Linux'ta apt/dnf/yum için NodeSource kurulum betikleri). macOS'ta Homebrew yalnızca yükleyicinin Node veya Git için buna ihtiyaç duyması durumunda yüklenir. Node 22.22.3+, Node 24.15+ ve Node 25.9+ desteklenir; Node 23 desteklenmez.
-    Alpine/musl Linux'ta yükleyici, NodeSource yerine apk paketlerini kullanır ve bağlı gerçek SQLite sürümünü doğrular. Güncel kararlı Alpine paket akışları, güvenlik açığı bulunan sistem SQLite'ı ile yeterince yeni bir Node sağlayabilir; böyle bir durumda bunun yerine resmî bir `node:24-alpine` konteyneri veya glibc tabanlı bir ana makine kullanın.
+    Node sürümünü denetler ve gerekirse Node 24'ü yükler (macOS'te Homebrew, Linux'ta apt/dnf/yum için NodeSource kurulum betikleri). macOS'te Homebrew yalnızca yükleyicinin Node veya Git için buna ihtiyaç duyması durumunda yüklenir. Node 22.22.3+, Node 24.15+ ve Node 25.9+ desteklenir; Node 23 desteklenmez.
+    Alpine/musl Linux'ta yükleyici, NodeSource yerine apk paketlerini kullanır ve gerçekten bağlanan SQLite sürümünü doğrular. Güncel kararlı Alpine paket akışları, güvenlik açığı bulunan sistem SQLite'ı ile birlikte yeterince yeni bir Node sağlayabilir; bu durumda bunun yerine resmî bir `node:24-alpine` konteyneri veya glibc tabanlı bir ana makine kullanın.
   </Step>
   <Step title="Git'i sağla">
-    Git eksikse macOS'ta Homebrew ve Alpine'da apk dâhil olmak üzere algılanan paket yöneticisini kullanarak yükler.
+    Git yoksa macOS'te Homebrew ve Alpine'da apk dâhil olmak üzere algılanan paket yöneticisini kullanarak yükler.
   </Step>
-  <Step title="OpenClaw'ı yükle">
+  <Step title="OpenClaw'u yükle">
     - `npm` yöntemi (varsayılan): genel npm yüklemesi
     - `git` yöntemi: depoyu klonlar/günceller, bağımlılıkları pnpm ile yükler, derler ve ardından sarmalayıcıyı `~/.local/bin/openclaw` konumuna yükler
 
   </Step>
   <Step title="Yükleme sonrası görevler">
-    - Takip eden komutlar için yeni yüklenen `openclaw` ikili dosyasını çözümler
-    - Yapılandırılmamış bir yüklemede doctor veya gateway yoklamalarından önce ilk kurulumu başlatır. `--no-onboard` kullanıldığında veya TTY olmadığında, kurulumu daha sonra tamamlamak için gereken komutu yazdırır.
-    - Yapılandırılmış bir yüklemede, yüklenmiş bir gateway hizmetini mümkün olan en iyi şekilde yeniler ve yeniden başlatır, ardından doctor'ı çalıştırır. Yükseltmeler mümkün olduğunda pluginleri günceller veya istemlerin etkin olduğu başsız bir çalıştırmada manuel komutu yazdırır.
-    - `--verify` çalıştırıldığında yüklü sürümü denetler ve yalnızca yapılandırma mevcutsa gateway durumunu denetler.
+    - Sonraki komutlar için yeni yüklenen `openclaw` ikili dosyasını çözümler
+    - Yapılandırılmamış bir yüklemede doctor veya gateway yoklamalarından önce ilk kurulumu başlatır. `--no-onboard` kullanıldığında veya TTY bulunmadığında, kurulumu daha sonra tamamlamak için gereken komutu yazdırır.
+    - Yapılandırılmış bir yüklemede, yüklenmiş bir gateway hizmetini mümkün olan en iyi şekilde yenileyip yeniden başlatır ve doctor'ı çalıştırır. Yükseltmeler mümkün olduğunda plugin'leri günceller veya istemlerin etkin olduğu başsız bir çalıştırmada manuel komutu yazdırır.
+    - `--verify` çalıştırıldığında, yüklü sürümü denetler ve gateway durumunu yalnızca yapılandırma mevcutsa denetler.
 
   </Step>
 </Steps>
 
-### Kaynak kod deposu algılama
+### Kaynak kod çıkışını algılama
 
-Betik bir OpenClaw deposunun içinde (`package.json` + `pnpm-workspace.yaml`) çalıştırılırsa şu seçenekleri sunar:
+Betik bir OpenClaw kaynak kod çıkışının (`package.json` + `pnpm-workspace.yaml`) içinde çalıştırılırsa şu seçenekleri sunar:
 
-- depoyu kullan (`git`) veya
+- kaynak kod çıkışını kullan (`git`) veya
 - genel yüklemeyi kullan (`npm`)
 
-TTY yoksa ve yükleme yöntemi ayarlanmamışsa varsayılan olarak `npm` kullanılır ve bir uyarı gösterilir.
+TTY bulunmuyorsa ve herhangi bir yükleme yöntemi ayarlanmamışsa varsayılan olarak `npm` kullanılır ve bir uyarı gösterilir.
 
 Betik, geçersiz yöntem seçimi veya geçersiz `--install-method` değerleri için `2` koduyla çıkar.
 
@@ -131,7 +131,7 @@ Betik, geçersiz yöntem seçimi veya geçersiz `--install-method` değerleri i�
     curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash -s -- --install-method git
     ```
   </Tab>
-  <Tab title="GitHub ana dal deposu">
+  <Tab title="GitHub ana dal kaynak kod çıkışı">
     ```bash
     curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash -s -- --install-method git --version main
     ```
@@ -153,39 +153,39 @@ Betik, geçersiz yöntem seçimi veya geçersiz `--install-method` değerleri i�
 
 | Bayrak                                  | Açıklama                                                                |
 | --------------------------------------- | ----------------------------------------------------------------------- |
-| `--install-method \| --method npm\|git` | Yükleme yöntemini seçer (varsayılan: `npm`)                          |
-| `--npm`                                 | npm yöntemi için kısayol                                                |
-| `--git \| --github`                     | git yöntemi için kısayol                                                |
-| `--version <version\|dist-tag\|spec>`   | npm sürümü, dağıtım etiketi veya paket belirtimi (varsayılan: `latest`) |
-| `--beta`                                | Varsa beta dağıtım etiketini kullanır, yoksa `latest` değerine geri döner |
-| `--git-dir \| --dir <path>`             | Depo dizini (varsayılan: `~/openclaw`)                                  |
-| `--no-git-update`                       | Mevcut depo için `git pull` işlemini atlar                              |
-| `--no-prompt`                           | İstemleri devre dışı bırakır                                           |
-| `--no-onboard`                          | İlk kurulumu atlar                                                      |
-| `--onboard`                             | İlk kurulumu etkinleştirir                                              |
+| `--install-method \| --method npm\|git` | Yükleme yöntemini seçer (varsayılan: `npm`)                                  |
+| `--npm`                                 | npm yöntemi için kısayol                                                 |
+| `--git \| --github`                     | git yöntemi için kısayol                                                 |
+| `--version <version\|dist-tag\|spec>`   | npm sürümü, dağıtım etiketi veya paket belirtimi (varsayılan: `latest`)              |
+| `--beta`                                | Varsa beta dağıtım etiketini kullanır, yoksa `latest` sürümüne geri döner              |
+| `--git-dir \| --dir <path>`             | Kaynak kod çıkışı dizini (varsayılan: `~/openclaw`)                              |
+| `--no-git-update`                       | Mevcut kaynak kod çıkışı için `git pull` işlemini atlar                                   |
+| `--no-prompt`                           | İstemleri devre dışı bırakır                                                         |
+| `--no-onboard`                          | İlk kurulumu atlar                                                         |
+| `--onboard`                             | İlk kurulumu etkinleştirir                                                       |
 | `--verify`                              | Yükleme sonrası hızlı doğrulama çalıştırır (`--version`, yüklüyse gateway durumu) |
-| `--dry-run`                             | Değişiklikleri uygulamadan eylemleri yazdırır                           |
-| `--verbose`                             | Hata ayıklama çıktısını etkinleştirir (`set -x`, npm bildirim düzeyi günlükleri) |
-| `--help \| -h`                          | Kullanım bilgisini gösterir                                             |
+| `--dry-run`                             | Değişiklikleri uygulamadan eylemleri yazdırır                                  |
+| `--verbose`                             | Hata ayıklama çıktısını etkinleştirir (`set -x`, npm bildirim düzeyi günlükleri)                   |
+| `--help \| -h`                          | Kullanım bilgisini gösterir                                                              |
 
   </Accordion>
 
   <Accordion title="Ortam değişkenleri başvurusu">
 
-| Değişken                                          | Açıklama                                                           |
+| Değişken                                          | Açıklama                                                        |
 | ------------------------------------------------- | ------------------------------------------------------------------ |
 | `OPENCLAW_INSTALL_METHOD=git\|npm`                | Yükleme yöntemi                                                     |
-| `OPENCLAW_VERSION=latest\|next\|<semver>\|<spec>` | npm sürümü, dağıtım etiketi veya paket belirtimi                    |
-| `OPENCLAW_BETA=0\|1`                              | Varsa beta sürümünü kullanır                                        |
-| `OPENCLAW_HOME=<path>`                            | OpenClaw durumu ve varsayılan git/ilk kurulum yolları için temel dizin |
-| `OPENCLAW_GIT_DIR=<path>`                         | Depo dizini                                                         |
-| `OPENCLAW_GIT_UPDATE=0\|1`                        | git güncellemelerini açar veya kapatır                              |
-| `OPENCLAW_NO_PROMPT=1`                            | İstemleri devre dışı bırakır                                        |
-| `OPENCLAW_VERIFY_INSTALL=1`                       | Yükleme sonrası hızlı doğrulamayı çalıştırır                        |
-| `OPENCLAW_NO_ONBOARD=1`                           | İlk kurulumu atlar                                                  |
-| `OPENCLAW_DRY_RUN=1`                              | Deneme çalıştırması modu                                             |
-| `OPENCLAW_VERBOSE=1`                              | Hata ayıklama modu                                                   |
-| `OPENCLAW_NPM_LOGLEVEL=error\|warn\|notice`       | npm günlük düzeyi (varsayılan: `error`, npm kullanımdan kaldırma gürültüsünü gizler) |
+| `OPENCLAW_VERSION=latest\|next\|<semver>\|<spec>` | npm sürümü, dağıtım etiketi veya paket belirtimi                             |
+| `OPENCLAW_BETA=0\|1`                              | Varsa beta sürümünü kullanır                                              |
+| `OPENCLAW_HOME=<path>`                            | OpenClaw durumu ile varsayılan git/ilk kurulum yollarının temel dizini |
+| `OPENCLAW_GIT_DIR=<path>`                         | Kaynak kod çıkışı dizini                                                 |
+| `OPENCLAW_GIT_UPDATE=0\|1`                        | git güncellemelerini açar/kapatır                                                 |
+| `OPENCLAW_NO_PROMPT=1`                            | İstemleri devre dışı bırakır                                                    |
+| `OPENCLAW_VERIFY_INSTALL=1`                       | Yükleme sonrası hızlı doğrulamayı çalıştırır                                  |
+| `OPENCLAW_NO_ONBOARD=1`                           | İlk kurulumu atlar                                                    |
+| `OPENCLAW_DRY_RUN=1`                              | Deneme çalıştırması modu                                                       |
+| `OPENCLAW_VERBOSE=1`                              | Hata ayıklama modu                                                         |
+| `OPENCLAW_NPM_LOGLEVEL=error\|warn\|notice`       | npm günlük düzeyi (varsayılan: `error`, npm kullanımdan kaldırma gürültüsünü gizler)      |
 
   </Accordion>
 </AccordionGroup>
@@ -197,26 +197,25 @@ Betik, geçersiz yöntem seçimi veya geçersiz `--install-method` değerleri i�
 ## install-cli.sh
 
 <Info>
-Her şeyi yerel bir ön ek altında (varsayılan `~/.openclaw`) tutmak ve
-sistem Node bağımlılığı kullanmamak istediğiniz ortamlar için tasarlanmıştır.
-Varsayılan olarak npm yüklemelerini ve aynı ön ek akışı altında git deposu
-yüklemelerini destekler.
+Her şeyin yerel bir ön ek altında (varsayılan `~/.openclaw`) bulunmasını
+ve sistem Node bağımlılığı olmamasını istediğiniz ortamlar için tasarlanmıştır. Varsayılan olarak
+npm yüklemelerini ve aynı ön ek akışı altında git kaynak kod çıkışı yüklemelerini destekler.
 </Info>
 
 ### Akış (install-cli.sh)
 
 <Steps>
   <Step title="Yerel Node çalışma zamanını yükle">
-    Sabitlenmiş ve desteklenen bir Node LTS tarball'ını (sürüm betiğe gömülüdür ve bağımsız olarak güncellenir; varsayılan `24.15.0`) `<prefix>/tools/node-v<version>` konumuna indirir ve SHA-256'yı doğrular.
+    Sabitlenmiş ve desteklenen bir Node LTS tarball'ını (sürüm betiğe gömülüdür ve bağımsız olarak güncellenir, varsayılan `24.15.0`) `<prefix>/tools/node-v<version>` konumuna indirir ve SHA-256'yı doğrular.
     Resmî Node 24+ ARMv7 ikili dosyaları bulunmadığından Linux ARMv7, Node `22.22.3` kullanır.
-    Node'un sabitlenmiş çalışma zamanı için uyumlu tarball'lar yayımlamadığı Alpine/musl Linux'ta, `apk` ile `nodejs` ve `npm` paketlerini yükler; ardından hem Node'u hem de bağlı gerçek SQLite kitaplığını doğrular. Güncel kararlı Alpine paket akışları, yeterince yeni bir Node ile bile güvenlik açığı bulunan SQLite'a bağlanabilir; güvenlik denetimi paketi reddettiğinde resmî bir `node:24-alpine` konteyneri veya glibc tabanlı bir ana makine kullanın.
+    Node'un sabitlenmiş çalışma zamanı için uyumlu tarball'lar yayımlamadığı Alpine/musl Linux'ta `nodejs` ve `npm` paketlerini `apk` ile yükler, ardından hem Node'u hem de gerçekten bağlanan SQLite kitaplığını doğrular. Güncel kararlı Alpine paket akışları, yeterince yeni bir Node ile bile güvenlik açığı bulunan SQLite'a bağlanabilir; güvenlik denetimi paketi reddettiğinde resmî bir `node:24-alpine` konteyneri veya glibc tabanlı bir ana makine kullanın.
   </Step>
   <Step title="Git'i sağla">
-    Git eksikse Linux'ta apt/dnf/yum/apk veya macOS'ta Homebrew aracılığıyla yüklemeyi dener.
+    Git yoksa Linux'ta apt/dnf/yum/apk veya macOS'te Homebrew aracılığıyla yüklemeyi dener.
   </Step>
-  <Step title="OpenClaw'ı ön ek altına yükle">
+  <Step title="OpenClaw'u ön ek altına yükle">
     - `npm` yöntemi (varsayılan): npm ile ön ek altına yükler, ardından sarmalayıcıyı `<prefix>/bin/openclaw` konumuna yazar
-    - `git` yöntemi: bir depoyu klonlar/günceller (varsayılan `~/openclaw`) ve sarmalayıcıyı yine `<prefix>/bin/openclaw` konumuna yazar
+    - `git` yöntemi: bir kaynak kod çıkışını (varsayılan `~/openclaw`) klonlar/günceller ve yine sarmalayıcıyı `<prefix>/bin/openclaw` konumuna yazar
 
   </Step>
   <Step title="Yüklü gateway hizmetini yenile">
@@ -259,36 +258,36 @@ yüklemelerini destekler.
 <AccordionGroup>
   <Accordion title="Bayrak başvurusu">
 
-| Bayrak                                  | Açıklama                                                                        |
+| Bayrak                                    | Açıklama                                                                     |
 | --------------------------------------- | ------------------------------------------------------------------------------- |
 | `--prefix <path>`                       | Kurulum öneki (varsayılan: `~/.openclaw`)                                         |
-| `--install-method \| --method npm\|git` | Kurulum yöntemini seçer (varsayılan: `npm`)                                          |
-| `--npm`                                 | npm yöntemi için kısayol                                                        |
-| `--git \| --github`                     | git yöntemi için kısayol                                                        |
-| `--git-dir \| --dir <path>`             | Git çalışma kopyası dizini (varsayılan: `~/openclaw`)                           |
-| `--version <ver>`                       | OpenClaw sürümü veya dist-tag (varsayılan: `latest`)                            |
-| `--node-version <ver>`                  | Node sürümü (varsayılan: `24.15.0`; Linux ARMv7'de `22.22.3`)                  |
-| `--json`                                | NDJSON olayları yayınlar                                                        |
-| `--onboard`                             | Kurulumdan sonra `openclaw onboard` komutunu çalıştırır                         |
-| `--no-onboard`                          | İlk kurulumu atlar (varsayılan)                                                 |
-| `--set-npm-prefix`                      | Linux'ta mevcut önek yazılabilir değilse npm önekini `~/.npm-global` olarak ayarlar |
-| `--help \| -h`                          | Kullanım bilgisini gösterir                                                     |
+| `--install-method \| --method npm\|git` | Kurulum yöntemini seçin (varsayılan: `npm`)                                          |
+| `--npm`                                 | npm yöntemi için kısayol                                                         |
+| `--git \| --github`                     | git yöntemi için kısayol                                                         |
+| `--git-dir \| --dir <path>`             | Git çalışma kopyası dizini (varsayılan: `~/openclaw`)                                  |
+| `--version <ver>`                       | OpenClaw sürümü veya dağıtım etiketi (varsayılan: `latest`)                                |
+| `--node-version <ver>`                  | Node sürümü (varsayılan: `24.15.0`; Linux ARMv7'de `22.22.3`)                     |
+| `--json`                                | NDJSON olayları yayınla                                                              |
+| `--onboard`                             | Kurulumdan sonra `openclaw onboard` çalıştır                                            |
+| `--no-onboard`                          | İlk kurulumu atla (varsayılan)                                                       |
+| `--set-npm-prefix`                      | Linux'ta geçerli önek yazılabilir değilse npm önekini `~/.npm-global` olarak zorla |
+| `--help \| -h`                          | Kullanımı göster                                                                      |
 
   </Accordion>
 
   <Accordion title="Ortam değişkenleri referansı">
 
-| Değişken                                    | Açıklama                                                           |
+| Değişken                                    | Açıklama                                                        |
 | ------------------------------------------- | ------------------------------------------------------------------ |
-| `OPENCLAW_PREFIX=<path>`                    | Kurulum öneki                                                      |
-| `OPENCLAW_INSTALL_METHOD=git\|npm`          | Kurulum yöntemi                                                    |
-| `OPENCLAW_VERSION=<ver>`                    | OpenClaw sürümü veya dist-tag                                      |
-| `OPENCLAW_NODE_VERSION=<ver>`               | Node sürümü                                                        |
+| `OPENCLAW_PREFIX=<path>`                    | Kurulum öneki                                                     |
+| `OPENCLAW_INSTALL_METHOD=git\|npm`          | Kurulum yöntemi                                                     |
+| `OPENCLAW_VERSION=<ver>`                    | OpenClaw sürümü veya dağıtım etiketi                                       |
+| `OPENCLAW_NODE_VERSION=<ver>`               | Node sürümü                                                       |
 | `OPENCLAW_HOME=<path>`                      | OpenClaw durumu ve varsayılan git/ilk kurulum yolları için temel dizin |
-| `OPENCLAW_GIT_DIR=<path>`                   | Git kurulumları için çalışma kopyası dizini                        |
-| `OPENCLAW_GIT_UPDATE=0\|1`                  | Mevcut çalışma kopyaları için git güncellemelerini açar veya kapatır |
-| `OPENCLAW_NO_ONBOARD=1`                     | İlk kurulumu atlar                                                 |
-| `OPENCLAW_NPM_LOGLEVEL=error\|warn\|notice` | npm günlük düzeyi (varsayılan: `error`)                            |
+| `OPENCLAW_GIT_DIR=<path>`                   | git kurulumları için Git çalışma kopyası dizini                            |
+| `OPENCLAW_GIT_UPDATE=0\|1`                  | Mevcut çalışma kopyaları için git güncellemelerini aç/kapat                          |
+| `OPENCLAW_NO_ONBOARD=1`                     | İlk kurulumu atla                                                    |
+| `OPENCLAW_NPM_LOGLEVEL=error\|warn\|notice` | npm günlük düzeyi (varsayılan: `error`)                                   |
 
   </Accordion>
 </AccordionGroup>
@@ -306,25 +305,25 @@ yüklemelerini destekler.
 ### Akış (install.ps1)
 
 <Steps>
-  <Step title="PowerShell ve Windows ortamını hazırla">
+  <Step title="PowerShell + Windows ortamını sağlama">
     PowerShell 5+ gerektirir.
   </Step>
-  <Step title="Varsayılan olarak Node.js 24'ü hazırla">
-    Eksikse önce winget, ardından Chocolatey, sonra Scoop aracılığıyla kurmayı dener. Hiçbir paket yöneticisi yoksa betik, resmi Node.js 24 Windows zip dosyasını `%LOCALAPPDATA%\OpenClaw\deps\portable-node` içine indirir ve mevcut işlemin ve kullanıcının PATH'ine ekler. Node 22.22.3+, Node 24.15+ ve Node 25.9+ desteklenir; Node 23 desteklenmez.
+  <Step title="Varsayılan olarak Node.js 24'ü sağlama">
+    Eksikse önce winget, ardından Chocolatey, sonra Scoop aracılığıyla kurmayı dener. Kullanılabilir paket yöneticisi yoksa betik, resmi Node.js 24 Windows zip dosyasını `%LOCALAPPDATA%\OpenClaw\deps\portable-node` içine indirir ve geçerli işlemin ve kullanıcının PATH'ine ekler. Node 22.22.3+, Node 24.15+ ve Node 25.9+ desteklenir; Node 23 desteklenmez.
   </Step>
-  <Step title="OpenClaw'ı kur">
+  <Step title="OpenClaw'ı kurma">
     - `npm` yöntemi (varsayılan): seçilen `-Tag` kullanılarak genel npm kurulumu; `C:\` gibi korumalı klasörlerde açılan kabukların da çalışabilmesi için yazılabilir bir geçici yükleyici dizininden başlatılır
-    - `git` yöntemi: depoyu klonlar/günceller, pnpm ile kurar/derler ve sarmalayıcıyı `%USERPROFILE%\.local\bin\openclaw.cmd` konumuna kurar. Git eksikse betik, `%LOCALAPPDATA%\OpenClaw\deps\portable-git` altında kullanıcıya özel MinGit'i hazırlar ve mevcut işlemin ve kullanıcının PATH'ine ekler.
+    - `git` yöntemi: depoyu klonlar/günceller, pnpm ile kurar/derler ve sarmalayıcıyı `%USERPROFILE%\.local\bin\openclaw.cmd` konumuna kurar. Git eksikse betik, kullanıcıya özel MinGit'i `%LOCALAPPDATA%\OpenClaw\deps\portable-git` altında önyükler ve geçerli işlemin ve kullanıcının PATH'ine ekler.
 
   </Step>
-  <Step title="Kurulum sonrası görevleri gerçekleştir">
-    - Mümkün olduğunda gerekli ikili dosya dizinini kullanıcının PATH'ine ekler
-    - Yüklenmiş bir gateway hizmetini en iyi çabayla yeniler (`openclaw gateway install --force`, ardından yeniden başlatma)
-    - Yükseltmelerde ve git kurulumlarında `openclaw doctor --non-interactive` komutunu çalıştırır (en iyi çaba)
+  <Step title="Kurulum sonrası görevler">
+    - Gerektiğinde gerekli ikili dosya dizinini kullanıcı PATH'ine ekler
+    - Yüklü bir Gateway hizmetini mümkün olan en iyi şekilde yeniler (önce `openclaw gateway install --force`, ardından yeniden başlatma)
+    - Yükseltmelerde ve git kurulumlarında `openclaw doctor --non-interactive` çalıştırır (mümkün olan en iyi şekilde)
 
   </Step>
-  <Step title="Hataları işle">
-    `iwr ... | iex` ve betik bloğu kurulumları, mevcut PowerShell oturumunu kapatmadan sonlandırıcı bir hata bildirir. Doğrudan `powershell -File` / `pwsh -File` kurulumları, otomasyon için yine sıfırdan farklı bir kodla çıkar.
+  <Step title="Hataları işleme">
+    `iwr ... | iex` ve betik bloğu kurulumları, geçerli PowerShell oturumunu kapatmadan sonlandırıcı bir hata bildirir. Doğrudan `powershell -File` / `pwsh -File` kurulumları, otomasyon için yine sıfırdan farklı bir kodla çıkar.
   </Step>
 </Steps>
 
@@ -351,7 +350,7 @@ yüklemelerini destekler.
     & ([scriptblock]::Create((iwr -useb https://openclaw.ai/install.ps1))) -InstallMethod git -GitDir "C:\openclaw"
     ```
   </Tab>
-  <Tab title="Deneme çalıştırması">
+  <Tab title="Kuru çalıştırma">
     ```powershell
     & ([scriptblock]::Create((iwr -useb https://openclaw.ai/install.ps1))) -DryRun
     ```
@@ -361,39 +360,39 @@ yüklemelerini destekler.
 <AccordionGroup>
   <Accordion title="Bayraklar referansı">
 
-| Bayrak                      | Açıklama                                                   |
+| Bayrak                        | Açıklama                                                |
 | --------------------------- | ---------------------------------------------------------- |
-| `-InstallMethod npm\|git`   | Kurulum yöntemi (varsayılan: `npm`)                       |
-| `-Tag <tag\|version\|spec>` | npm dist-tag, sürüm veya paket belirtimi (varsayılan: `latest`) |
-| `-GitDir <path>`            | Çalışma kopyası dizini (varsayılan: `%USERPROFILE%\openclaw`) |
-| `-NoOnboard`                | İlk kurulumu atlar                                        |
-| `-NoGitUpdate`              | `git pull` adımını atlar                                  |
-| `-DryRun`                   | Yalnızca eylemleri yazdırır                               |
+| `-InstallMethod npm\|git`   | Kurulum yöntemi (varsayılan: `npm`)                            |
+| `-Tag <tag\|version\|spec>` | npm dağıtım etiketi, sürümü veya paket belirtimi (varsayılan: `latest`) |
+| `-GitDir <path>`            | Çalışma kopyası dizini (varsayılan: `%USERPROFILE%\openclaw`)     |
+| `-NoOnboard`                | İlk kurulumu atla                                            |
+| `-NoGitUpdate`              | `git pull` atla                                            |
+| `-DryRun`                   | Yalnızca eylemleri yazdır                                         |
 
   </Accordion>
 
   <Accordion title="Ortam değişkenleri referansı">
 
-| Değişken                           | Açıklama                 |
-| ---------------------------------- | ------------------------ |
-| `OPENCLAW_INSTALL_METHOD=git\|npm` | Kurulum yöntemi          |
-| `OPENCLAW_GIT_DIR=<path>`          | Çalışma kopyası dizini   |
-| `OPENCLAW_NO_ONBOARD=1`            | İlk kurulumu atlar       |
-| `OPENCLAW_GIT_UPDATE=0`            | git pull işlemini devre dışı bırakır |
-| `OPENCLAW_DRY_RUN=1`               | Deneme çalıştırması modu |
+| Değişken                           | Açıklama        |
+| ---------------------------------- | ------------------ |
+| `OPENCLAW_INSTALL_METHOD=git\|npm` | Kurulum yöntemi     |
+| `OPENCLAW_GIT_DIR=<path>`          | Çalışma kopyası dizini |
+| `OPENCLAW_NO_ONBOARD=1`            | İlk kurulumu atla    |
+| `OPENCLAW_GIT_UPDATE=0`            | git pull'u devre dışı bırak   |
+| `OPENCLAW_DRY_RUN=1`               | Kuru çalıştırma modu       |
 
   </Accordion>
 </AccordionGroup>
 
 <Note>
-`-InstallMethod git` kullanılırsa ve Git eksikse betik, Git for Windows bağlantısını yazdırmadan önce kullanıcıya özel bir MinGit hazırlamayı dener.
+`-InstallMethod git` kullanılır ve Git eksikse betik, Git for Windows bağlantısını yazdırmadan önce kullanıcıya özel bir MinGit önyüklemesi dener.
 </Note>
 
 ---
 
 ## CI ve otomasyon
 
-Öngörülebilir çalıştırmalar için etkileşimsiz bayraklar/ortam değişkenleri kullanın.
+Öngörülebilir çalıştırmalar için etkileşimsiz bayrakları/ortam değişkenlerini kullanın.
 
 <Tabs>
   <Tab title="install.sh (etkileşimsiz npm)">
@@ -428,16 +427,16 @@ yüklemelerini destekler.
     Git, `git` kurulum yöntemi için gereklidir. `npm` kurulumlarında da bağımlılıklar git URL'leri kullandığında oluşabilecek `spawn git ENOENT` hatalarını önlemek için Git denetlenir/kurulur.
   </Accordion>
 
-  <Accordion title="npm Linux'ta neden EACCES hatası verir?">
+  <Accordion title="npm neden Linux'ta EACCES hatası veriyor?">
     Bazı Linux kurulumları npm'in genel önekini root'a ait yollara yönlendirir. `install.sh`, öneki `~/.npm-global` olarak değiştirebilir ve kabuk rc dosyalarına PATH dışa aktarımlarını ekleyebilir (bu dosyalar mevcutsa).
   </Accordion>
 
   <Accordion title='Windows: "npm error spawn git / ENOENT"'>
-    Kullanıcıya özel MinGit'i hazırlayabilmesi için yükleyiciyi yeniden çalıştırın veya Git for Windows'u kurup PowerShell'i yeniden açın.
+    Kullanıcıya özel MinGit'i önyükleyebilmesi için yükleyiciyi yeniden çalıştırın veya Git for Windows'u kurup PowerShell'i yeniden açın.
   </Accordion>
 
   <Accordion title='Windows: "openclaw is not recognized"'>
-    `npm config get prefix` komutunu çalıştırın ve bu dizini kullanıcınızın PATH'ine ekleyin (Windows'ta `\bin` son eki gerekmez), ardından PowerShell'i yeniden açın.
+    `npm config get prefix` çalıştırın ve bu dizini kullanıcı PATH'inize ekleyin (Windows'ta `\bin` soneki gerekmez), ardından PowerShell'i yeniden açın.
   </Accordion>
 
   <Accordion title="Windows: ayrıntılı yükleyici çıktısı nasıl alınır">
@@ -453,7 +452,7 @@ yüklemelerini destekler.
   </Accordion>
 
   <Accordion title="Kurulumdan sonra openclaw bulunamadı">
-    Genellikle bir PATH sorunudur. Bkz. [Node.js sorun giderme](/tr/install/node#troubleshooting).
+    Bu genellikle bir PATH sorunudur. Bkz. [Node.js sorun giderme](/tr/install/node#troubleshooting).
   </Accordion>
 </AccordionGroup>
 

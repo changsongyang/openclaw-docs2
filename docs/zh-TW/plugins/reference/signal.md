@@ -4,7 +4,7 @@ read_when:
 summary: 新增 Signal 頻道介面，用於傳送及接收 OpenClaw 訊息。
 title: Signal 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:50:43Z"
+    generated_at: "2026-07-26T07:29:15Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 
 新增 Signal 頻道介面，用於傳送及接收 OpenClaw 訊息。
 
-## 發布方式
+## 發布
 
 - 套件：`@openclaw/signal`
 - 安裝途徑：npm；ClawHub：`clawhub:@openclaw/signal`

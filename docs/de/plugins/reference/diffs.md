@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das Diffs-Plugin.
+    - Sie installieren, konfigurieren oder prüfen das diffs-Plugin.
 summary: OpenClaw-Plugin zur schreibgeschützten Diff-Anzeige und Dateidarstellung für Agenten.
 title: Diffs-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:00:25Z"
+    generated_at: "2026-07-26T17:58:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Diffs-Plugin
 
-Schreibgeschütztes OpenClaw-Plugin zur Diff-Anzeige und zum Rendern von Dateien für Agenten.
+Schreibgeschütztes Diff-Anzeige-Plugin und Dateirenderer für OpenClaw-Agenten.
 
 ## Distribution
 

@@ -4,7 +4,7 @@ read_when:
 summary: वेब खोज प्रदाता के लिए समर्थन जोड़ता है।
 title: DuckDuckGo Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:07:17Z"
+    generated_at: "2026-07-27T19:38:26Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # DuckDuckGo Plugin
 
-वेब खोज प्रदाता समर्थन जोड़ता है।
+वेब खोज प्रदाता के लिए समर्थन जोड़ता है।
 
 ## वितरण
 

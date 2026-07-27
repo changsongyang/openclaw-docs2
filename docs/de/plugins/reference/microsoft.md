@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das microsoft-Plugin.
+    - Sie installieren, konfigurieren oder prüfen das microsoft-Plugin
 summary: Fügt Unterstützung für Text-to-Speech-Provider hinzu.
 title: Microsoft-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:01:06Z"
+    generated_at: "2026-07-26T17:59:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

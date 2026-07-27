@@ -4,7 +4,7 @@ read_when:
 summary: 为 OpenClaw 添加 Vydra 模型提供商支持。
 title: Vydra 插件
 x-i18n:
-    generated_at: "2026-07-16T11:52:25Z"
+    generated_at: "2026-07-26T06:18:51Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## 分发
 
 - 软件包：`@openclaw/vydra-provider`
-- 安装方式：随 OpenClaw 提供
+- 安装方式：内置于 OpenClaw
 
 ## 接口
 

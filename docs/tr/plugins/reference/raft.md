@@ -1,10 +1,10 @@
 ---
 read_when:
     - Raft pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: Güvenli CLI uyandırma köprüleri için OpenClaw Raft kanal plugini.
+summary: Güvenli CLI uyandırma köprüleri için OpenClaw Raft kanal Plugin'i.
 title: Raft Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:31:49Z"
+    generated_at: "2026-07-26T22:56:23Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Raft plugin
+# Raft plugin’i
 
-Güvenli CLI uyandırma köprüleri için OpenClaw Raft kanal plugini.
+Güvenli CLI uyandırma köprüleri için OpenClaw Raft kanal plugin’i.
 
 ## Dağıtım
 

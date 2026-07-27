@@ -1,12 +1,12 @@
 ---
 read_when:
-    - 瞭解如何設定 OpenClaw
+    - 了解如何設定 OpenClaw
     - 尋找設定範例
     - 首次設定 OpenClaw
 summary: 常見 OpenClaw 設定的結構描述精確範例
 title: 設定範例
 x-i18n:
-    generated_at: "2026-07-22T10:33:54Z"
+    generated_at: "2026-07-26T07:41:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
     workflow: 16
 ---
 
-以下範例符合目前的設定結構描述。如需完整參考資料及各欄位說明，請參閱[設定](/zh-TW/gateway/configuration)。
+以下範例與目前的設定結構描述一致。如需完整參考資料與各欄位的說明，請參閱[設定](/zh-TW/gateway/configuration)。
 
 ## 快速開始
 
@@ -68,11 +68,11 @@ x-i18n:
 
 ## 展開範例（主要選項）
 
-> JSON5 允許使用註解和尾隨逗號。一般 JSON 也可使用。
+> JSON5 允許使用註解與尾隨逗號。一般 JSON 也可以使用。
 
 ```json5
 {
-  // 環境變數 + shell
+  // 環境與殼層
   env: {
     OPENROUTER_API_KEY: "sk-or-...",
     vars: {
@@ -84,7 +84,7 @@ x-i18n:
     },
   },
 
-  // 驗證設定檔中繼資料（密鑰存放於 auth-profiles.json）
+  // 驗證設定檔中繼資料（密鑰儲存在 auth-profiles.json）
   auth: {
     profiles: {
       "anthropic:default": { provider: "anthropic", mode: "api_key" },
@@ -98,7 +98,7 @@ x-i18n:
     },
   },
 
-  // 身分是各代理程式專屬的——請在下方的 agents.entries.<id>.identity 設定。
+  // 身分設定以代理程式為單位——請在下方的 agents.entries.<id>.identity 設定。
 
   // 記錄
   logging: {
@@ -117,7 +117,7 @@ x-i18n:
     ackReactionScope: "group-mentions",
     groupChat: {
       historyLimit: 50,
-      visibleReplies: "message_tool", // 搭配工具使用可靠的模型時，為共用聊天室選擇啟用
+      visibleReplies: "message_tool", // 對具備可靠工具能力的模型，在共用聊天室中選擇啟用
       unmentionedInbound: "room_event",
     },
     queue: {
@@ -235,7 +235,7 @@ x-i18n:
         "anthropic/claude-sonnet-4-6": { alias: "sonnet" },
         "openai/gpt-5.4": { alias: "gpt" },
       },
-      skills: ["github", "weather"], // 未設定 list[].skills 的代理程式會繼承此項目
+      skills: ["github", "weather"], // 未設定 list[].skills 的代理程式會繼承此設定
       thinkingDefault: "low",
       verboseDefault: "off",
       toolProgressDetail: "explain",
@@ -262,7 +262,7 @@ x-i18n:
         every: "30m",
         model: "anthropic/claude-sonnet-4-6",
         target: "last",
-        directPolicy: "allow", // 允許（預設）| 封鎖
+        directPolicy: "allow", // allow（預設）| block
         to: "+15555550123",
         prompt: "HEARTBEAT",
         ackMaxChars: 300,
@@ -292,17 +292,17 @@ x-i18n:
           theme: "helpful sloth",
           emoji: "🦥",
         },
-        // 繼承 defaults.skills -> github、weather
+        // 繼承 defaults.skills -> github, weather
         groupChat: {
           mentionPatterns: ["@openclaw", "openclaw"],
         },
-        thinkingDefault: "high", // 各代理程式的思考設定覆寫
-        reasoningDefault: "on", // 各代理程式的推理可見性
-        fastModeDefault: false, // 各代理程式的快速模式
+        thinkingDefault: "high", // 每個代理程式的思考設定覆寫
+        reasoningDefault: "on", // 每個代理程式的推理可見度
+        fastModeDefault: false, // 每個代理程式的快速模式
       },
       quick: {
         skills: [], // 此代理程式不使用 Skills
-        fastModeDefault: true, // 此代理程式一律快速執行
+        fastModeDefault: true, // 此代理程式一律以快速模式執行
         thinkingDefault: "off",
       },
     },
@@ -425,7 +425,7 @@ x-i18n:
     },
   },
 
-  // 閘道 + 網路
+  // 閘道與網路
   gateway: {
     mode: "local",
     port: 18789,
@@ -464,9 +464,10 @@ x-i18n:
 }
 ```
 
-### 以符號連結連接的同層 Skill 儲存庫
+### 以符號連結連至同層的 Skills 儲存庫
 
-當內建 Skill 根目錄包含指向同層儲存庫的符號連結時，請使用此設定，例如 `~/.agents/skills/manager -> ~/Projects/manager/skills`。
+當內建 Skills 根目錄包含指向同層儲存庫的符號連結時使用此設定，例如
+`~/.agents/skills/manager -> ~/Projects/manager/skills`。
 
 ```json5
 {
@@ -479,15 +480,15 @@ x-i18n:
 }
 ```
 
-- `extraDirs` 會將同層級的儲存庫掃描為明確的 Skills 根目錄。
-- `allowSymlinkTargets` 可讓以符號連結連結的 Skills 資料夾解析至該受信任的
+- `extraDirs` 會將同層存放區掃描為明確的 Skill 根目錄。
+- `allowSymlinkTargets` 可讓以符號連結連結的 Skill 資料夾解析至該受信任的
   實際目標根目錄，同時不允許任意符號連結逸出。
 - 若要讓 Skill Workshop 透過相同的受信任符號連結目標套用寫入，
   請設定 `skills.workshop.allowSymlinkTargetWrites: true`。
 
 ## 常見模式
 
-### 共用 Skills 基準並提供一項覆寫
+### 共用 Skill 基準搭配單一覆寫
 
 ```json5
 {
@@ -505,8 +506,8 @@ x-i18n:
 ```
 
 - `agents.defaults.skills` 是共用基準。
-- `agents.entries.*.skills` 會為單一代理程式取代該基準。
-- 當代理程式不應看到任何 Skills 時，請使用 `skills: []`。
+- `agents.entries.*.skills` 會為單一代理取代該基準。
+- 當代理不應看到任何 Skill 時，請使用 `skills: []`。
 
 ### 多平台設定
 
@@ -531,8 +532,8 @@ x-i18n:
 
 ### 受信任節點網路自動核准
 
-除非你能控制網路路徑，否則請維持手動裝置配對。對於專用的
-實驗室或 tailnet 子網路，你可以使用精確的 CIDR 或 IP，選擇啟用首次節點裝置自動核准：
+除非你能控制網路路徑，否則請維持手動裝置配對。若是專用的
+實驗室或 tailnet 子網路，你可以透過精確的 CIDR 或 IP 選擇啟用首次節點裝置自動核准：
 
 ```json5
 {
@@ -546,27 +547,27 @@ x-i18n:
 }
 ```
 
-未設定時，此功能仍為停用。它僅適用於未要求任何範圍的新 `role: node` 配對。
-操作員／瀏覽器用戶端，以及角色、範圍、中繼資料或公開金鑰升級，
-仍需手動核准。
+未設定時，此功能仍為關閉。它僅適用於未要求任何範圍的新 `role: node` 配對。
+操作員／瀏覽器用戶端，以及角色、範圍、中繼資料或
+公開金鑰升級，仍需手動核准。
 
 ### 安全私訊模式（共用收件匣／多使用者私訊）
 
-如果有多位使用者可以私訊你的機器人（`allowFrom` 中有多個項目、已核准多位使用者的配對，或 `dmPolicy: "open"`），請啟用**安全私訊模式**，讓不同寄件者的私訊預設不會共用同一個上下文：
+如果有多個人可以私訊你的機器人（`allowFrom` 中有多個項目、核准多人的配對，或 `dmPolicy: "open"`），請啟用**安全私訊模式**，如此不同傳送者的私訊預設不會共用同一個情境：
 
 ```json5
 {
-  // 安全私訊模式（建議用於多使用者或敏感的私訊代理程式）
+  // Secure DM mode (recommended for multi-user or sensitive DM agents)
   session: { dmScope: "per-channel-peer" },
 
   channels: {
-    // 範例：WhatsApp 多使用者收件匣
+    // Example: WhatsApp multi-user inbox
     whatsapp: {
       dmPolicy: "allowlist",
       allowFrom: ["+15555550123", "+15555550124"],
     },
 
-    // 範例：Discord 多使用者收件匣
+    // Example: Discord multi-user inbox
     discord: {
       enabled: true,
       token: "YOUR_DISCORD_BOT_TOKEN",
@@ -576,10 +577,10 @@ x-i18n:
 }
 ```
 
-對於 Discord／Google Chat／IRC／Mattermost／Microsoft Teams／Slack，寄件者授權預設會優先使用 ID。
-只有在你明確接受相關風險時，才透過各頻道的 `dangerouslyAllowNameMatching: true` 啟用直接比對可變動的名稱／電子郵件／暱稱。
+對於 Discord／Google Chat／IRC／Mattermost／Microsoft Teams／Slack，傳送者授權預設優先使用 ID。
+只有在你明確接受風險時，才透過各頻道的 `dangerouslyAllowNameMatching: true` 啟用直接比對可變動的名稱／電子郵件／暱稱。
 
-### Anthropic API 金鑰與 MiniMax 後援
+### Anthropic API 金鑰 + MiniMax 備援
 
 ```json5
 {
@@ -615,7 +616,7 @@ x-i18n:
 }
 ```
 
-### 工作機器人（限制存取）
+### 工作機器人（受限存取）
 
 ```json5
 {
@@ -683,9 +684,9 @@ x-i18n:
 ## 提示
 
 - 如果你設定 `dmPolicy: "open"`，相符的 `allowFrom` 清單必須包含 `"*"`。
-- 供應商 ID 各不相同（電話號碼、使用者 ID、頻道 ID）。請查閱供應商文件以確認格式。
-- 稍後可新增的選用區段：`web`、`browser`、`ui`、`discovery`、`plugins`、`talk`、`signal`、`imessage`。
-- 如需更深入的設定說明，請參閱[供應商](/zh-TW/providers)和[疑難排解](/zh-TW/gateway/troubleshooting)。
+- 提供者 ID 各不相同（電話號碼、使用者 ID、頻道 ID）。請查閱提供者文件以確認格式。
+- 之後可新增的選用區段：`web`、`browser`、`ui`、`discovery`、`plugins`、`talk`、`signal`、`imessage`。
+- 如需更深入的設定說明，請參閱[提供者](/zh-TW/providers)和[疑難排解](/zh-TW/gateway/troubleshooting)。
 
 ## 相關內容
 

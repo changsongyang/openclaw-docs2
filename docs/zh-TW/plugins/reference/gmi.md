@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw GMI Cloud 供應商外掛。
 title: Gmi 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:54:02Z"
+    generated_at: "2026-07-26T08:43:01Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

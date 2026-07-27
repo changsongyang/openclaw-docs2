@@ -3,10 +3,10 @@ read_when:
     - 設定 Mattermost
     - 偵錯 Mattermost 路由
 sidebarTitle: Mattermost
-summary: Mattermost 機器人設定與 OpenClaw 設定
+summary: Mattermost 機器人設定與 OpenClaw 設定組態
 title: Mattermost
 x-i18n:
-    generated_at: "2026-07-19T13:35:03Z"
+    generated_at: "2026-07-26T08:16:12Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -38,8 +38,8 @@ x-i18n:
 ## 快速設定
 
 <Steps>
-  <Step title="確認外掛可用">
-    使用上述命令安裝 `@openclaw/mattermost`，若閘道已在執行，請重新啟動。
+  <Step title="確保外掛可用">
+    使用上方命令安裝 `@openclaw/mattermost`，若閘道已在執行，請接著重新啟動閘道。
   </Step>
   <Step title="建立 Mattermost 機器人">
     建立 Mattermost 機器人帳號、複製**機器人權杖**，並將機器人加入其應讀取的團隊和頻道。
@@ -63,7 +63,7 @@ x-i18n:
     }
     ```
 
-    非互動式替代方案：
+    非互動式替代方式：
 
     ```bash
     openclaw channels add --channel mattermost --bot-token <token> --http-url https://chat.example.com
@@ -73,12 +73,12 @@ x-i18n:
 </Steps>
 
 <Note>
-在私人／區域網路／tailnet 位址上自行託管 Mattermost：對外 Mattermost API 要求會通過 SSRF 防護機制，預設會封鎖私人和內部 IP。使用 `channels.mattermost.network.dangerouslyAllowPrivateNetwork: true` 選擇加入（各帳號：`channels.mattermost.accounts.<id>.network.dangerouslyAllowPrivateNetwork`）。
+位於私人／區域網路／tailnet 位址上的自行託管 Mattermost：對外的 Mattermost API 請求會通過 SSRF 防護機制，預設會封鎖私人和內部 IP。請使用 `channels.mattermost.network.dangerouslyAllowPrivateNetwork: true` 選擇啟用（每個帳號：`channels.mattermost.accounts.<id>.network.dangerouslyAllowPrivateNetwork`）。
 </Note>
 
 ## 原生斜線命令
 
-原生斜線命令須選擇加入。啟用後，OpenClaw 會在機器人所屬的每個團隊註冊 `oc_*` 斜線命令，並在閘道 HTTP 伺服器上接收回呼 POST。
+原生斜線命令需選擇啟用。啟用後，OpenClaw 會在機器人所屬的每個團隊註冊 `oc_*` 斜線命令，並在閘道 HTTP 伺服器上接收回呼 POST。
 
 ```json5
 {
@@ -88,7 +88,7 @@ x-i18n:
         native: true,
         nativeSkills: true,
         callbackPath: "/api/channels/mattermost/command",
-        // 當 Mattermost 無法直接連線至閘道時使用（反向 Proxy／公開 URL）。
+        // 當 Mattermost 無法直接連上閘道時使用（反向代理／公開 URL）。
         callbackUrl: "https://gateway.example.com/api/channels/mattermost/command",
       },
     },
@@ -96,32 +96,32 @@ x-i18n:
 }
 ```
 
-已註冊的命令：`/oc_status`、`/oc_model`、`/oc_models`、`/oc_new`、`/oc_help`、`/oc_think`、`/oc_reasoning`、`/oc_verbose`、`/oc_queue`。使用 `nativeSkills: true` 時，技能命令也會註冊為 `/oc_<skill>`。
+已註冊的命令：`/oc_status`、`/oc_model`、`/oc_models`、`/oc_new`、`/oc_help`、`/oc_think`、`/oc_reasoning`、`/oc_verbose`、`/oc_queue`。啟用 `nativeSkills: true` 後，Skill 命令也會註冊為 `/oc_<skill>`。
 
 <AccordionGroup>
   <Accordion title="行為注意事項">
     - `native` 和 `nativeSkills` 預設為 `"auto"`，對 Mattermost 而言會解析為停用。請明確將其設為 `true`。
     - `callbackPath` 預設為 `/api/channels/mattermost/command`。
-    - 若省略 `callbackUrl`，OpenClaw 會衍生 `http://<gateway.customBindHost or localhost>:<gateway.port, default 18789><callbackPath>`。萬用字元繫結主機（`0.0.0.0`、`::`）會退回使用 `localhost`。
-    - 對於多帳號設定，`commands` 可設於頂層或 `channels.mattermost.accounts.<id>.commands` 下（帳號值會覆寫頂層欄位）。
-    - 由其他整合建立且觸發詞相同的現有斜線命令不會遭到變更（註冊時會略過）；機器人建立的命令則會在回呼 URL 發生偏移時更新或重新建立。
-    - 命令回呼會使用 OpenClaw 註冊 `oc_*` 命令時由 Mattermost 傳回的各命令權杖進行驗證。
-    - OpenClaw 會在接受每個回呼前重新整理目前的 Mattermost 命令註冊，因此已刪除或重新產生的斜線命令所留下的過時權杖，無須重新啟動閘道便會停止被接受。
-    - 若 Mattermost API 無法確認命令仍為最新，回呼驗證會採取封閉式失敗；失敗的驗證會短暫快取、並行查詢會合併，且每個命令的新查詢啟動都會受到速率限制，以約束重播壓力。
-    - 若註冊失敗、啟動不完整，或回呼權杖與解析所得命令的已註冊權杖不符，斜線回呼會採取封閉式失敗（一個命令的有效權杖無法針對另一個命令進入上游驗證）。
-    - 已接受的回呼會以暫時性的「處理中...」回覆確認；實際答案會以一般訊息送達。
+    - 若省略 `callbackUrl`，OpenClaw 會推導 `http://<gateway.customBindHost or localhost>:<gateway.port, default 18789><callbackPath>`。萬用字元繫結主機（`0.0.0.0`、`::`）會退回使用 `localhost`。
+    - 對於多帳號設定，`commands` 可設於頂層或 `channels.mattermost.accounts.<id>.commands` 下方（帳號值會覆寫頂層欄位）。
+    - 由其他整合建立且觸發詞相同的既有斜線命令會保持不變（註冊時會略過）；若回呼 URL 發生偏移，機器人建立的命令會更新或重新建立。
+    - 命令回呼會使用 OpenClaw 註冊 `oc_*` 命令時由 Mattermost 傳回的每命令權杖進行驗證。
+    - OpenClaw 在接受每個回呼前都會重新整理目前的 Mattermost 命令註冊，因此來自已刪除或重新產生之斜線命令的過期權杖，無須重新啟動閘道便不再獲得接受。
+    - 若 Mattermost API 無法確認命令仍為目前有效，回呼驗證會採取失敗關閉；失敗的驗證會短暫快取、並行查詢會合併，而且每個命令的新查詢啟動次數會受到速率限制，以約束重播壓力。
+    - 若註冊失敗、啟動不完整，或回呼權杖與解析後命令的已註冊權杖不符，斜線回呼會採取失敗關閉（對某個命令有效的權杖無法通過另一個命令的上游驗證）。
+    - 接受的回呼會以短暫顯示的「處理中...」回覆確認；真正的回答會以一般訊息送達。
 
   </Accordion>
   <Accordion title="可連線性要求">
-    Mattermost 伺服器必須能連線至回呼端點。
+    Mattermost 伺服器必須能連上回呼端點。
 
-    - 除非 Mattermost 與 OpenClaw 在同一主機／網路命名空間中執行，否則請勿將 `callbackUrl` 設為 `localhost`。
-    - 除非 Mattermost 基底 URL 會將 `/api/channels/mattermost/command` 反向代理至 OpenClaw，否則請勿將 `callbackUrl` 設為該基底 URL。
-    - 快速檢查方式為 `curl https://<gateway-host>/api/channels/mattermost/command`；GET 應從 OpenClaw 傳回 `405 Method Not Allowed`，而不是 `404`。
+    - 除非 Mattermost 與 OpenClaw 在相同主機／網路命名空間中執行，否則請勿將 `callbackUrl` 設為 `localhost`。
+    - 除非你的 Mattermost 基底 URL 會將 `/api/channels/mattermost/command` 反向代理至 OpenClaw，否則請勿將 `callbackUrl` 設為該基底 URL。
+    - 快速檢查方式是 `curl https://<gateway-host>/api/channels/mattermost/command`；GET 應由 OpenClaw 傳回 `405 Method Not Allowed`，而非 `404`。
 
   </Accordion>
-  <Accordion title="Mattermost 對外連線允許清單">
-    若回呼目標為私人／tailnet／內部位址，請設定 Mattermost `ServiceSettings.AllowedUntrustedInternalConnections`，使其包含回呼主機／網域。
+  <Accordion title="Mattermost 輸出允許清單">
+    若回呼以私人／tailnet／內部位址為目標，請設定 Mattermost `ServiceSettings.AllowedUntrustedInternalConnections`，以包含回呼主機／網域。
 
     請使用主機／網域項目，而非完整 URL。
 
@@ -139,24 +139,24 @@ x-i18n:
 - `MATTERMOST_URL=https://chat.example.com`
 
 <Note>
-環境變數僅套用至**預設**帳號（`default`）。其他帳號必須使用設定值。
+環境變數只會套用至**預設**帳號（`default`）。其他帳號必須使用設定值。
 
-`MATTERMOST_URL` 無法從工作區 `.env` 設定；請參閱[工作區 .env 檔案](/zh-TW/gateway/security)。
+`MATTERMOST_URL` 無法透過工作區 `.env` 設定；請參閱[工作區 .env 檔案](/zh-TW/gateway/security)。
 </Note>
 
 ## 聊天模式
 
-Mattermost 會自動回應私訊。頻道行為由 `chatmode` 控制：
+Mattermost 會自動回覆私訊。頻道行為由 `chatmode` 控制：
 
 <Tabs>
-  <Tab title="oncall（預設）">
-    僅在頻道中被 @提及時回應。
+  <Tab title="oncall (預設)">
+    僅在頻道中被 @提及時回覆。
   </Tab>
   <Tab title="onmessage">
-    回應每則頻道訊息。
+    回覆每一則頻道訊息。
   </Tab>
   <Tab title="onchar">
-    當訊息以觸發前綴開頭時回應。
+    當訊息以觸發前綴開頭時回覆。
   </Tab>
 </Tabs>
 
@@ -167,7 +167,7 @@ Mattermost 會自動回應私訊。頻道行為由 `chatmode` 控制：
   channels: {
     mattermost: {
       chatmode: "onchar",
-      oncharPrefixes: [">", "!"], // 預設值
+      oncharPrefixes: [">", "!"], // 預設
     },
   },
 }
@@ -175,24 +175,24 @@ Mattermost 會自動回應私訊。頻道行為由 `chatmode` 控制：
 
 注意事項：
 
-- `onchar` 仍會回應明確的 @提及。
-- 仍支援 `channels.mattermost.requireMention`，但建議使用 `chatmode`。各頻道的 `groups.<channelId>.requireMention` 設定優先於兩者。
-- 機器人在頻道討論串中傳送可見回覆後，該討論串中的後續訊息不必再次 @提及或加上 `onchar` 前綴便會獲得回應，讓多輪討論串對話得以持續。參與狀態會從機器人上次在該討論串回覆起保留 7 天，並在閘道重新啟動後持續保留。機器人僅觀察而未回覆的討論串不受影響；若要再次要求明確提及，請建立新的頂層訊息。
-- 將 `channels.mattermost.implicitMentions.threadParticipation: false` 設為停止讓已參與討論串的後續訊息略過提及限制。帳號覆寫使用 `channels.mattermost.accounts.<id>.implicitMentions`。Mattermost 目前不會產生 `replyToBot` 或 `quotedBot` 事實，因此這些旗標在此處沒有作用。
+- `onchar` 仍會回覆明確的 @提及。
+- 仍會遵循 `channels.mattermost.requireMention`，但建議使用 `chatmode`。各頻道的 `groups.<channelId>.requireMention` 設定優先於這兩者。
+- 機器人在頻道討論串中傳送可見回覆後，該討論串內的後續訊息不需要新的 @提及或 `onchar` 前綴也會獲得回覆，讓多輪討論串對話得以持續進行。機器人最後一次在該討論串中回覆後，參與狀態會保留 7 天，且會在閘道重新啟動後持續存在。機器人僅觀察但未參與的討論串不受影響；若要再次要求明確提及，請發起新的頂層訊息。
+- 設定 `channels.mattermost.implicitMentions.threadParticipation: false`，可防止已參與討論串的後續訊息略過提及閘控。帳號覆寫使用 `channels.mattermost.accounts.<id>.implicitMentions`。Mattermost 目前不會產生 `replyToBot` 或 `quotedBot` 事實，因此這些旗標在此不會生效。
 
 ## 討論串與工作階段
 
-使用 `channels.mattermost.replyToMode` 控制頻道和群組回覆要留在主頻道，還是在觸發貼文下建立討論串。
+使用 `channels.mattermost.replyToMode` 控制頻道和群組回覆是保留在主頻道中，還是在觸發貼文下方建立討論串。
 
-- `off`（預設）：僅在傳入貼文本來就在討論串中時，才於討論串回覆。
-- `first`：對於頂層頻道／群組貼文，在該貼文下建立討論串，並將對話路由至討論串範圍的工作階段。
-- 目前在 Mattermost 中，`all` 和 `batched` 的行為與 `first` 相同，因為 Mattermost 一旦有討論串根貼文，後續區塊和媒體就會繼續留在同一討論串中。
-- 即使設定了 `replyToMode`，私訊仍預設為 `off`。
+- `off`（預設）：僅當傳入貼文本身已位於討論串中時，才在討論串中回覆。
+- `first`：對於頂層頻道／群組貼文，在該貼文下方建立討論串，並將對話路由至討論串範圍的工作階段。
+- `all` 和 `batched`：目前在 Mattermost 中的行為與 `first` 相同，因為 Mattermost 一旦有討論串根貼文，後續區塊和媒體便會繼續留在同一討論串中。
+- 即使已設定 `replyToMode`，私訊仍預設使用 `off`。
 
-使用 `channels.mattermost.replyToModeByChatType` 覆寫 `direct`、`group` 或 `channel` 聊天的模式。設定 `direct`，讓私訊選擇加入討論串：
+使用 `channels.mattermost.replyToModeByChatType` 覆寫 `direct`、`group` 或 `channel` 聊天的模式。設定 `direct`，讓私訊採用討論串：
 
-- `off`（預設）：私訊不使用討論串，並留在單一持續更新的工作階段中。
-- `first`、`all` 或 `batched`：每則頂層私訊都會建立 Mattermost 討論串，並由全新、獨立的工作階段支援。
+- `off`（預設）：私訊維持不使用討論串，並保留在單一滾動工作階段中。
+- `first`、`all` 或 `batched`：每則頂層私訊都會建立 Mattermost 討論串，並由全新且獨立的工作階段支援。
 
 ```json5
 {
@@ -209,29 +209,29 @@ Mattermost 會自動回應私訊。頻道行為由 `chatmode` 控制：
 
 注意事項：
 
-- 討論串範圍的工作階段會使用觸發貼文 ID 作為討論串根。
-- `first` 和 `all` 目前等同，因為 Mattermost 一旦有討論串根貼文，後續區塊和媒體就會繼續留在同一討論串中。
-- 各聊天類型的覆寫優先於 `replyToMode`。若沒有 `direct` 覆寫，現有部署會維持平面、非討論串式的私訊。
+- 討論串範圍的工作階段會使用觸發貼文 ID 作為討論串根貼文。
+- `first` 和 `all` 目前效果相同，因為 Mattermost 一旦有討論串根貼文，後續區塊和媒體便會繼續留在同一討論串中。
+- 各聊天類型的覆寫優先於 `replyToMode`。若沒有 `direct` 覆寫，現有部署會維持扁平、不使用討論串的私訊。
 
 ## 存取控制（私訊）
 
-- 預設值：`channels.mattermost.dmPolicy = "pairing"`（未知傳送者會收到配對碼）。其他值：`allowlist`、`open`、`disabled`。
+- 預設：`channels.mattermost.dmPolicy = "pairing"`（未知傳送者會取得配對碼）。其他值：`allowlist`、`open`、`disabled`。
 - 核准方式：
   - `openclaw pairing list mattermost`
   - `openclaw pairing approve mattermost <CODE>`
-- 公開私訊：`channels.mattermost.dmPolicy="open"` 加上 `channels.mattermost.allowFrom=["*"]`（設定結構描述會強制要求萬用字元）。
+- 公開私訊：`channels.mattermost.dmPolicy="open"` 加上 `channels.mattermost.allowFrom=["*"]`（設定結構描述會強制使用萬用字元）。
 - `channels.mattermost.allowFrom` 接受使用者 ID（建議）和 `accessGroup:<name>` 項目。請參閱[存取群組](/zh-TW/channels/access-groups)。
 
 ## 頻道（群組）
 
-- 預設值：`channels.mattermost.groupPolicy = "allowlist"`（須提及）。
+- 預設：`channels.mattermost.groupPolicy = "allowlist"`（需要提及）。
 - 使用 `channels.mattermost.groupAllowFrom` 將傳送者加入允許清單（建議使用使用者 ID）。
 - `channels.mattermost.groupAllowFrom` 接受 `accessGroup:<name>` 項目。請參閱[存取群組](/zh-TW/channels/access-groups)。
-- 各頻道的提及覆寫位於 `channels.mattermost.groups.<channelId>.requireMention` 下，或使用 `channels.mattermost.groups["*"].requireMention` 設定預設值。
-- `@username` 比對是可變動的，且僅在 `channels.mattermost.dangerouslyAllowNameMatching: true` 時啟用。
-- 開放頻道：`channels.mattermost.groupPolicy="open"`（須提及）。
-- 解析順序：`channels.mattermost.groupPolicy`，接著是 `channels.defaults.groupPolicy`，再來是 `"allowlist"`。
-- 執行階段注意事項：若完全缺少 `channels.mattermost` 區段，執行階段會針對群組檢查採取封閉式失敗並使用 `groupPolicy="allowlist"`（即使已設定 `channels.defaults.groupPolicy`），同時記錄一次性警告。
+- 各頻道的提及覆寫位於 `channels.mattermost.groups.<channelId>.requireMention` 下方，或使用 `channels.mattermost.groups["*"].requireMention` 設定預設值。
+- `@username` 比對可變更，且僅在 `channels.mattermost.dangerouslyAllowNameMatching: true` 時啟用。
+- 開放頻道：`channels.mattermost.groupPolicy="open"`（需要提及）。
+- 解析順序：`channels.mattermost.groupPolicy`，接著是 `channels.defaults.groupPolicy`，最後是 `"allowlist"`。
+- 執行階段注意事項：若完全缺少 `channels.mattermost` 區段，執行階段會對群組檢查採用失敗關閉的 `groupPolicy="allowlist"`（即使已設定 `channels.defaults.groupPolicy`），並記錄一次性警告。
 
 範例：
 
@@ -249,28 +249,28 @@ Mattermost 會自動回應私訊。頻道行為由 `chatmode` 控制：
 }
 ```
 
-## 對外傳遞目標
+## 對外傳送目標
 
-將下列目標格式搭配 `openclaw message send` 或排程／網路鉤子使用：
+搭配 `openclaw message send` 或排程／網路鉤子使用下列目標格式：
 
-| 目標                                | 傳遞至                                                        |
+| 目標                                | 傳送至                                                        |
 | ----------------------------------- | ------------------------------------------------------------- |
 | `channel:<id>`                      | 依 ID 指定的頻道                                              |
-| `channel:<name>` 或 `#channel-name` | 依名稱指定的頻道，搜尋機器人所屬的所有團隊                    |
+| `channel:<name>` 或 `#channel-name` | 依名稱指定的頻道，會在機器人所屬的所有團隊中搜尋              |
 | `user:<id>` 或 `mattermost:<id>`    | 與該使用者的私訊                                              |
-| `@username`                         | 私訊（透過 Mattermost API 解析使用者名稱）                     |
+| `@username`                         | 私訊（透過 Mattermost API 解析使用者名稱）                    |
 
-對外傳送每則訊息最多支援一個附件；請將多個檔案分成多次傳送。
+每則對外傳送的訊息最多支援一個附件；請將多個檔案拆分成多次傳送。
 
 <Warning>
-在 Mattermost 中，裸露的不透明 ID（例如 `64ifufp...`）具有**歧義**（使用者 ID 或頻道 ID）。
+在 Mattermost 中，單獨的不透明 ID（例如 `64ifufp...`）具有**歧義**（使用者 ID 或頻道 ID）。
 
 OpenClaw 會**優先解析為使用者**：
 
-- 如果該 ID 是既有使用者（`GET /api/v4/users/<id>` 成功），OpenClaw 會透過 `/api/v4/channels/direct` 解析直接頻道並傳送**私訊**。
+- 如果該 ID 是現有使用者（`GET /api/v4/users/<id>` 成功），OpenClaw 會透過 `/api/v4/channels/direct` 解析直接頻道，以傳送**私訊**。
 - 否則，該 ID 會被視為**頻道 ID**。
 
-若需要確定性行為，請一律使用明確的前綴（`user:<id>` / `channel:<id>`）。
+如果需要確定性的行為，請一律使用明確前置詞（`user:<id>` / `channel:<id>`）。
 </Warning>
 
 ## 私訊頻道重試
@@ -296,21 +296,21 @@ OpenClaw 會**優先解析為使用者**：
 
 注意事項：
 
-- 這僅適用於私訊頻道建立（`/api/v4/channels/direct`），而非每個 Mattermost API 呼叫。
-- 重試會使用含隨機抖動的指數退避，並套用於速率限制、5xx 回應，以及網路或逾時錯誤等暫時性失敗。
+- 這僅適用於私訊頻道建立（`/api/v4/channels/direct`），不適用於所有 Mattermost API 呼叫。
+- 重試會使用帶有抖動的指數退避，並套用於速率限制、5xx 回應，以及網路或逾時錯誤等暫時性失敗。
 - 除了 `429` 之外的 4xx 用戶端錯誤會被視為永久性錯誤，不會重試。
 
 ## 預覽串流
 
-Mattermost 會將思考、工具活動和部分回覆文字串流至**預覽草稿貼文**，並在最終答案可安全傳送時就地完成該貼文。在 `partial` 模式下，預覽會更新相同的貼文 ID，而不會以每個區塊一則訊息的方式洗版頻道。在 `block` 模式下，預覽會在已完成文字與工具活動區塊之間輪替，因此較早的區塊會保留為各自的貼文，而不會被下一個區塊覆寫。媒體或錯誤的最終回覆會取消待處理的預覽編輯，並改用一般傳遞，而不會送出一次性的預覽貼文。
+Mattermost 會將思考內容、工具活動和部分回覆文字串流至**草稿預覽貼文**，並在最終答案可安全傳送時原地完成該貼文。在 `partial` 模式下，預覽會更新相同的貼文 ID，而不會用每個區塊各自的訊息洗版頻道。在 `block` 模式下，預覽會在已完成文字與工具活動區塊之間輪替，因此較早的區塊會各自保留為獨立貼文，而不會被下一個區塊覆寫。包含媒體或錯誤的最終回覆會取消待處理的預覽編輯，改用一般傳送方式，而不會送出無用的預覽貼文。
 
-預覽串流在 `partial` 模式下**預設開啟**。透過 `channels.mattermost.streaming.mode` 設定（舊版純量／布林值 `streaming` 會由 `openclaw doctor --fix` 遷移）：
+在 `partial` 模式下，預覽串流**預設為開啟**。透過 `channels.mattermost.streaming.mode` 設定（舊版純量／布林值 `streaming` 會由 `openclaw doctor --fix` 遷移）：
 
 ```json5
 {
   channels: {
     mattermost: {
-      streaming: { mode: "partial" }, // 關閉 | 部分 | 區塊 | 進度
+      streaming: { mode: "partial" }, // off | partial | block | progress
     },
   },
 }
@@ -318,15 +318,15 @@ Mattermost 會將思考、工具活動和部分回覆文字串流至**預覽草�
 
 <AccordionGroup>
   <Accordion title="串流模式">
-    - `partial`（預設）：使用單一預覽貼文，隨著回覆增加而編輯，然後以完整答案完成。
-    - `block` 會在已完成文字與工具活動區塊之間輪替預覽，使每個區塊都保留為各自的貼文，而不會就地覆寫。平行和連續的工具更新會共用目前的工具活動貼文。
-    - `progress` 會在產生期間顯示狀態預覽，並僅在完成時發布最終答案。
-    - `off` 會停用預覽串流。搭配 `streaming.block.enabled: true` 時，已完成的助理區塊仍會以一般區塊回覆（獨立貼文）傳遞，而不是合併為單一最終貼文。
+    - `partial`（預設）：使用單一預覽貼文，隨著回覆增加而編輯，最後以完整答案完成。
+    - `block` 會讓預覽在已完成文字與工具活動區塊之間輪替，使每個區塊各自保留為獨立貼文，而不會原地遭到覆寫。平行及連續的工具更新會共用目前的工具活動貼文。
+    - `progress` 會在產生內容時顯示狀態預覽，並僅在完成時發布最終答案。
+    - `off` 會停用預覽串流。搭配 `streaming.block.enabled: true` 時，已完成的助理區塊仍會以一般區塊回覆（獨立貼文）傳送，而非合併成單一最終貼文。
 
   </Accordion>
   <Accordion title="串流行為注意事項">
-    - 如果串流無法就地完成（例如貼文在串流期間遭到刪除），OpenClaw 會改為傳送新的最終貼文，確保回覆絕不遺失。
-    - 僅含思考內容的承載資料不會發布至頻道，包括以 `> Thinking` 引用區塊形式抵達的文字。設定 `/reasoning on` 可在其他介面查看思考內容；Mattermost 的最終貼文只會保留答案。
+    - 如果串流無法原地完成（例如貼文在串流期間遭刪除），OpenClaw 會改為傳送新的最終貼文，確保回覆絕不遺失。
+    - 僅含思考內容的承載資料不會發布至頻道，包括以 `> Thinking` 引用區塊傳入的文字。設定 `/reasoning on` 可在其他介面查看思考內容；Mattermost 最終貼文只會保留答案。
     - 如需頻道對應矩陣，請參閱[串流](/zh-TW/concepts/streaming#preview-streaming-modes)。
 
   </Accordion>
@@ -336,9 +336,9 @@ Mattermost 會將思考、工具活動和部分回覆文字串流至**預覽草�
 
 - 搭配 `channel=mattermost` 使用 `message action=react`。
 - `messageId` 是 Mattermost 貼文 ID。
-- `emoji` 接受如 `thumbsup` 或 `:+1:` 的名稱（冒號可省略）。
-- 將 `remove=true`（布林值）設為移除表情回應。
-- 新增／移除表情回應事件會以系統事件轉送至已路由的代理程式工作階段，並套用與訊息相同的私訊／群組政策檢查。
+- `emoji` 接受 `thumbsup` 或 `:+1:` 等名稱（冒號可省略）。
+- 設定 `remove=true`（布林值）以移除表情回應。
+- 新增／移除表情回應事件會作為系統事件轉送至已路由的代理程式工作階段，並接受與訊息相同的私訊／群組政策檢查。
 
 範例：
 
@@ -354,12 +354,12 @@ message action=react channel=mattermost target=channel:<channelId> messageId=<po
 
 ## 互動式按鈕（訊息工具）
 
-傳送含可點擊按鈕的訊息。當使用者點擊按鈕時，代理程式會收到選取結果並可回應。
+傳送包含可點擊按鈕的訊息。當使用者點擊按鈕時，代理程式會收到選取項目並可回應。
 
-按鈕來自語意化的 `presentation` 承載資料（用於一般代理程式回覆及 `message action=send`）。OpenClaw 會將值按鈕呈現為 Mattermost 互動式按鈕、讓 URL 按鈕顯示於訊息文字中，並將選取選單降級為可讀文字。
+按鈕來自語意化的 `presentation` 承載資料（用於一般代理程式回覆及 `message action=send`）。OpenClaw 會將值按鈕轉譯為 Mattermost 互動式按鈕、讓 URL 按鈕在訊息文字中保持可見，並將選取選單降級為可讀文字。
 
 ```text
-message action=send channel=mattermost target=channel:<channelId> presentation={"blocks":[{"type":"buttons","buttons":[{"label":"是","value":"yes"},{"label":"否","value":"no"}]}]}
+message action=send channel=mattermost target=channel:<channelId> presentation={"blocks":[{"type":"buttons","buttons":[{"label":"Yes","value":"yes"},{"label":"No","value":"no"}]}]}
 ```
 
 呈現按鈕欄位：
@@ -371,13 +371,13 @@ message action=send channel=mattermost target=channel:<channelId> presentation={
   點擊時傳回的值，用作動作 ID（別名：`callback_data`、`callbackData`）。除非已設定 `url`，否則可點擊按鈕必須提供此值。
 </ParamField>
 <ParamField path="url" type="string">
-  連結按鈕；在訊息本文中呈現為 `label: url` 文字，而非互動式按鈕。
+  連結按鈕；在訊息本文中轉譯為 `label: url` 文字，而非互動式按鈕。
 </ParamField>
 <ParamField path="style" type='"primary" | "secondary" | "success" | "danger"'>
-  按鈕樣式。對於不支援的值，Mattermost 會套用預設樣式。
+  按鈕樣式。對於 Mattermost 不支援的值，會套用預設樣式。
 </ParamField>
 
-若要在代理程式系統提示詞中宣告按鈕支援，請將 `inlineButtons` 新增至頻道功能：
+若要在代理程式系統提示中宣告支援按鈕，請將 `inlineButtons` 加入頻道功能：
 
 ```json5
 {
@@ -393,62 +393,62 @@ message action=send channel=mattermost target=channel:<channelId> presentation={
 
 <Steps>
   <Step title="存取檢查">
-    點擊者必須通過與訊息傳送者相同的私訊／群組政策檢查；未授權的點擊會收到暫時性通知並被忽略。
+    點擊者必須通過與訊息傳送者相同的私訊／群組政策檢查；未經授權的點擊會收到僅本人可見的通知，且該點擊會被忽略。
   </Step>
   <Step title="以確認訊息取代按鈕">
-    所有按鈕都會被確認行取代（例如「✓ **是**，由 @user 選取」）。
+    所有按鈕都會由確認行取代（例如 “✓ **Yes** selected by @user”）。
   </Step>
-  <Step title="代理程式收到選取結果">
-    代理程式會以輸入訊息（另加一個系統事件）的形式收到選取結果並回應。
+  <Step title="代理程式收到選取項目">
+    代理程式會以傳入訊息（以及系統事件）的形式收到選取項目，並予以回應。
   </Step>
 </Steps>
 
 <AccordionGroup>
   <Accordion title="實作注意事項">
-    - 按鈕回呼使用 HMAC-SHA256 驗證（自動進行，不需設定）。
-    - 點擊時會取代整個附件區塊，因此所有按鈕會一併移除，無法只移除部分按鈕。
+    - 按鈕回呼使用 HMAC-SHA256 驗證（自動進行，無需設定）。
+    - 點擊時會取代整個附件區塊，因此所有按鈕會一起移除，無法僅移除部分按鈕。
     - 包含連字號或底線的動作 ID 會自動清理（Mattermost 路由限制）。
-    - `action_id` 與原始貼文中的任何動作不符的點擊，會以 `403`（「未知動作」）拒絕。
+    - `action_id` 與原始貼文中任何動作不相符的點擊，會遭到拒絕並顯示 `403`（“Unknown action”）。
 
   </Accordion>
   <Accordion title="設定與可連線性">
-    - `channels.mattermost.capabilities`：功能字串陣列。新增 `"inlineButtons"`，可在代理程式系統提示詞中啟用按鈕工具說明。
-    - `channels.mattermost.interactions.callbackBaseUrl`：用於按鈕回呼的選用外部基底 URL（例如 `https://gateway.example.com`）。當 Mattermost 無法透過閘道的繫結主機直接連線時，請使用此設定。
+    - `channels.mattermost.capabilities`：功能字串陣列。加入 `"inlineButtons"`，以在代理程式系統提示中啟用按鈕工具說明。
+    - `channels.mattermost.interactions.callbackBaseUrl`：按鈕回呼的選用外部基底 URL（例如 `https://gateway.example.com`）。當 Mattermost 無法直接透過閘道的繫結主機連線時，請使用此設定。
     - 在多帳號設定中，也可以在 `channels.mattermost.accounts.<id>.interactions.callbackBaseUrl` 下設定相同欄位。
-    - 如果省略 `interactions.callbackBaseUrl`，OpenClaw 會從 `gateway.customBindHost` + `gateway.port`（預設為 18789）推導回呼 URL，接著回退至 `http://localhost:<port>`。回呼路徑為 `/mattermost/interactions/<accountId>`。
-    - 可連線性規則：Mattermost 伺服器必須能連線至按鈕回呼 URL。僅當 Mattermost 與 OpenClaw 在相同主機／網路命名空間中執行時，`localhost` 才能運作。
-    - `channels.mattermost.interactions.allowedSourceIps`：按鈕回呼的來源 IP 允許清單。若未設定，僅接受回送來源（`127.0.0.1`、`::1`），因此遠端 Mattermost 伺服器必須列入此處的允許清單，否則其點擊會以 `403` 拒絕。若位於反向代理後方，也請設定 `gateway.trustedProxies`，以便從轉送標頭取得真實的用戶端 IP。
-    - 如果你的回呼目標是私有／tailnet／內部位址，請將其主機／網域新增至 Mattermost `ServiceSettings.AllowedUntrustedInternalConnections`。
+    - 如果省略 `interactions.callbackBaseUrl`，OpenClaw 會從 `gateway.customBindHost` + `gateway.port`（預設為 18789）推導回呼 URL，接著再退回使用 `http://localhost:<port>`。回呼路徑為 `/mattermost/interactions/<accountId>`。
+    - 可連線性規則：Mattermost 伺服器必須能連線至按鈕回呼 URL。只有在 Mattermost 與 OpenClaw 執行於相同主機／網路命名空間時，`localhost` 才可運作。
+    - `channels.mattermost.interactions.allowedSourceIps`：按鈕回呼的來源 IP 允許清單。若未設定，僅接受回送來源（`127.0.0.1`、`::1`），因此遠端 Mattermost 伺服器必須列於此允許清單中，否則其點擊會遭拒絕並顯示 `403`。若位於反向代理後方，也請設定 `gateway.trustedProxies`，以從轉送標頭推導真實用戶端 IP。
+    - 如果回呼目標是私有／tailnet／內部位址，請將其主機／網域加入 Mattermost `ServiceSettings.AllowedUntrustedInternalConnections`。
 
   </Accordion>
 </AccordionGroup>
 
 ### 直接 API 整合（外部指令碼）
 
-外部指令碼和網路鉤子可以透過 Mattermost REST API 直接發布按鈕，而不必經由代理程式的 `message` 工具。建議優先使用 OpenClaw 的 `message` 工具。若為直接整合，請從 `@openclaw/mattermost/api.js` 匯入 `buildButtonAttachments`；若發布原始 JSON，請遵循以下規則：
+外部指令碼與網路鉤子可以直接透過 Mattermost REST API 發布按鈕，而不必經過代理程式的 `message` 工具。建議使用 OpenClaw 的 `message` 工具。對於直接整合，請從 `@openclaw/mattermost/api.js` 匯入 `buildButtonAttachments`；若要發布原始 JSON，請遵循以下規則：
 
 **承載資料結構：**
 
 ```json5
 {
   channel_id: "<channelId>",
-  message: "選擇一個選項：",
+  message: "Choose an option:",
   props: {
     attachments: [
       {
         actions: [
           {
-            id: "mybutton01", // 僅限英數字元，請參閱下方
-            type: "button", // 必填，否則點擊會被無聲忽略
-            name: "核准", // 顯示標籤
-            style: "primary", // 選填："default"、"primary"、"danger"
+            id: "mybutton01", // alphanumeric only - see below
+            type: "button", // required, or clicks are silently ignored
+            name: "Approve", // display label
+            style: "primary", // optional: "default", "primary", "danger"
             integration: {
               url: "https://gateway.example.com/mattermost/interactions/default",
               context: {
-                action_id: "mybutton01", // 必須與按鈕 ID 相符
+                action_id: "mybutton01", // must match button id
                 action: "approve",
-                // ...任何自訂欄位...
-                _token: "<hmac>", // 請參閱下方 HMAC 章節
+                // ... any custom fields ...
+                _token: "<hmac>", // see HMAC section below
               },
             },
           },
@@ -460,14 +460,14 @@ message action=send channel=mattermost target=channel:<channelId> presentation={
 ```
 
 <Warning>
-**關鍵規則**
+**重要規則**
 
-1. 附件應放在 `props.attachments` 中，而非頂層 `attachments`（否則會被無聲忽略）。
-2. 每個動作都需要 `type: "button"`，否則點擊會被無聲吞掉。
+1. 附件應放在 `props.attachments` 中，而非最上層的 `attachments`（會被無聲忽略）。
+2. 每個動作都需要 `type: "button"`，否則點擊會被無聲吞沒。
 3. 每個動作都需要 `id` 欄位，Mattermost 會忽略沒有 ID 的動作。
-4. 動作 `id` 必須**僅包含英數字元**（`[a-zA-Z0-9]`）。連字號和底線會破壞 Mattermost 的伺服器端動作路由（傳回 404）。使用前請移除它們。
+4. 動作 `id` 必須**僅包含英數字元**（`[a-zA-Z0-9]`）。連字號和底線會破壞 Mattermost 的伺服器端動作路由（傳回 404）。使用前請將其移除。
 5. `context.action_id` 必須與按鈕的 `id` 相符；如果 `action_id` 不存在於貼文中，閘道會拒絕該點擊。
-6. `context.action_id` 為必填，缺少時互動處理常式會傳回 400。
+6. 必須提供 `context.action_id`，否則互動處理常式會傳回 400。
 7. 回呼來源 IP 必須獲得允許（請參閱上方的 `interactions.allowedSourceIps`）。
 
 </Warning>
@@ -480,17 +480,17 @@ message action=send channel=mattermost target=channel:<channelId> presentation={
   <Step title="從機器人權杖衍生密鑰">
     `HMAC-SHA256(key="openclaw-mattermost-interactions", data=botToken)`，以十六進位編碼。
   </Step>
-  <Step title="建構內容物件">
-    使用**除了** `_token` 以外的所有欄位建構內容物件。
+  <Step title="建立內容物件">
+    使用**除了** `_token` 之外的所有欄位建立內容物件。
   </Step>
-  <Step title="使用已排序的鍵進行序列化">
-    使用**遞迴排序的鍵**且**不含空格**進行序列化（閘道也會將巢狀物件正規化，並產生精簡 JSON）。
+  <Step title="使用排序後的鍵序列化">
+    使用**遞迴排序的鍵**且**不含空格**進行序列化（閘道也會正規化巢狀物件，並產生精簡 JSON）。
   </Step>
   <Step title="簽署承載資料">
     `HMAC-SHA256(key=secret, data=serializedContext)`
   </Step>
-  <Step title="新增權杖">
-    將產生的十六進位摘要以 `_token` 加入內容中。
+  <Step title="加入權杖">
+    將產生的十六進位摘要作為內容中的 `_token` 加入。
   </Step>
 </Steps>
 
@@ -513,19 +513,19 @@ context = {**ctx, "_token": token}
 
 <AccordionGroup>
   <Accordion title="常見的 HMAC 陷阱">
-    - Python 的 `json.dumps` 預設會加入空格（`{"key": "val"}`）。使用 `separators=(",", ":")` 以符合 JavaScript 的緊湊輸出（`{"key":"val"}`）。
-    - 一律簽署**所有**內容欄位（`_token` 除外）。閘道會移除 `_token`，然後簽署剩餘的所有內容。只簽署部分欄位會導致驗證無聲失敗。
-    - 使用 `sort_keys=True`——閘道會在簽署前排序鍵，而 Mattermost 儲存承載資料時可能會重新排列內容欄位。
-    - 請從機器人權杖衍生密鑰（具確定性），不要使用隨機位元組。建立按鈕的處理程序與執行驗證的閘道必須使用相同的密鑰。
+    - Python 的 `json.dumps` 預設會加入空格（`{"key": "val"}`）。請使用 `separators=(",", ":")`，以符合 JavaScript 的緊湊輸出（`{"key":"val"}`）。
+    - 一律簽署**所有**情境欄位（`_token` 除外）。閘道會移除 `_token`，然後簽署其餘所有內容。只簽署部分欄位會導致驗證無聲失敗。
+    - 請使用 `sort_keys=True`——閘道會在簽署前排序鍵，而 Mattermost 儲存承載資料時可能會重新排列情境欄位。
+    - 請從機器人權杖衍生密鑰（具確定性），不要使用隨機位元組。建立按鈕的程序與執行驗證的閘道必須使用相同的密鑰。
 
   </Accordion>
 </AccordionGroup>
 
 ## 目錄配接器
 
-Mattermost 外掛包含一個目錄配接器，可透過 Mattermost API 解析頻道與使用者名稱。這可讓 `#channel-name` 與 `@username` 目標用於 `openclaw message send` 及排程／網路鉤子遞送。
+Mattermost 外掛包含目錄配接器，可透過 Mattermost API 解析頻道與使用者名稱。這讓 `openclaw message send` 與排程／網路鉤子傳送能使用 `#channel-name` 和 `@username` 目標。
 
-不需要任何設定——配接器會使用帳號設定中的機器人權杖。
+不需要設定——配接器會使用帳號設定中的機器人權杖。
 
 ## 多帳號
 
@@ -553,30 +553,30 @@ Mattermost 支援在 `channels.mattermost.accounts` 下設定多個帳號：
     請確認機器人已加入頻道並提及它（oncall）、使用觸發前綴（onchar），或設定 `chatmode: "onmessage"`。
   </Accordion>
   <Accordion title="驗證或多帳號錯誤">
-    - 檢查機器人權杖、基底 URL，以及帳號是否已啟用。
-    - 多帳號問題：環境變數只會套用至 `default` 帳號。
-    - 私人／區域網路中的 Mattermost 主機需要 `network.dangerouslyAllowPrivateNetwork: true`（SSRF 防護機制預設會封鎖私人 IP）。
+    - 檢查機器人權杖、基礎 URL，以及帳號是否已啟用。
+    - 多帳號問題：環境變數僅適用於 `default` 帳號。
+    - 私人／區域網路 Mattermost 主機需要 `network.dangerouslyAllowPrivateNetwork: true`（SSRF 防護預設會封鎖私人 IP）。
 
   </Accordion>
   <Accordion title="原生斜線命令失敗">
     - `Unauthorized: invalid command token.`：OpenClaw 未接受回呼權杖。常見原因：
-      - 斜線命令註冊失敗，或啟動時僅完成部分註冊
-      - 回呼送至錯誤的閘道／帳號
+      - 啟動時斜線命令註冊失敗，或只完成部分註冊
+      - 回呼傳送至錯誤的閘道／帳號
       - Mattermost 仍保留指向先前回呼目標的舊命令
-      - 閘道重新啟動後未重新啟用斜線命令
-    - 如果原生斜線命令停止運作，請檢查日誌中是否有 `mattermost: failed to register slash commands` 或 `mattermost: native slash commands enabled but no commands could be registered`。
-    - 如果省略 `callbackUrl`，且日誌警告回呼解析為類似 `http://localhost:18789/...` 的迴路位址 URL，則只有當 Mattermost 與 OpenClaw 在相同主機／網路命名空間中執行時，該 URL 才可能可供存取。請改為明確設定可從外部存取的 `commands.callbackUrl`。
+      - 閘道重新啟動，但未重新啟用斜線命令
+    - 如果原生斜線命令停止運作，請檢查日誌中是否出現 `mattermost: failed to register slash commands` 或 `mattermost: native slash commands enabled but no commands could be registered`。
+    - 如果省略 `callbackUrl`，且日誌警告回呼解析為類似 `http://localhost:18789/...` 的迴環 URL，該 URL 可能僅在 Mattermost 與 OpenClaw 執行於相同主機／網路命名空間時才能連線。請改為明確設定可從外部連線的 `commands.callbackUrl`。
 
   </Accordion>
   <Accordion title="按鈕問題">
-    - 按鈕顯示為白色方塊或完全不顯示：按鈕資料格式錯誤。每個呈現按鈕都需要 `label` 與 `value`（缺少其中任一項的按鈕都會遭到捨棄）。
-    - 按鈕可正常顯示，但點擊後沒有反應：請確認 Mattermost 伺服器可連線至閘道、Mattermost 伺服器 IP 已包含在 `channels.mattermost.interactions.allowedSourceIps` 中（若未設定，僅接受迴路位址），且對於私人目標，`ServiceSettings.AllowedUntrustedInternalConnections` 包含回呼主機。
-    - 點擊按鈕時傳回 404：按鈕的 `id` 可能包含連字號或底線。Mattermost 的動作路由器無法處理非英數字元的 ID。請只使用 `[a-zA-Z0-9]`。
-    - 閘道日誌顯示 `rejected callback source`：點擊來自 `interactions.allowedSourceIps` 範圍外的 IP。請將 Mattermost 伺服器或你的入口加入允許清單；若位於反向 Proxy 後方，請設定 `gateway.trustedProxies`。
-    - 閘道日誌顯示 `invalid _token`：HMAC 不相符。請檢查是否簽署所有內容欄位（而非僅部分欄位）、使用已排序的鍵，並使用緊湊 JSON（不含空格）。請參閱上方的 HMAC 章節。
-    - 閘道日誌顯示 `missing _token in context`：按鈕的內容中沒有 `_token` 欄位。建立整合承載資料時，請確認已包含此欄位。
-    - 閘道以 `Unknown action` 拒絕點擊：`context.action_id` 與貼文上的任何動作 `id` 都不相符。請將兩者設定為相同的清理後值。
-    - 代理程式未提供按鈕：將 `capabilities: ["inlineButtons"]` 加入 Mattermost 頻道設定。
+    - 按鈕顯示為白色方塊或完全不顯示：按鈕資料格式錯誤。每個呈現按鈕都需要 `label` 和 `value`（缺少任一項的按鈕會被捨棄）。
+    - 按鈕可以顯示，但點擊後沒有反應：請確認 Mattermost 伺服器能連線至閘道、Mattermost 伺服器 IP 已包含在 `channels.mattermost.interactions.allowedSourceIps` 中（未設定時只接受迴環位址），且私人目標的 `ServiceSettings.AllowedUntrustedInternalConnections` 包含回呼主機。
+    - 點擊按鈕時傳回 404：按鈕的 `id` 可能包含連字號或底線。Mattermost 的動作路由器無法處理非英數字元的 ID。請僅使用 `[a-zA-Z0-9]`。
+    - 閘道記錄 `rejected callback source`：點擊來自 `interactions.allowedSourceIps` 以外的 IP。請將 Mattermost 伺服器或你的輸入端加入允許清單，並在反向代理後方設定 `gateway.trustedProxies`。
+    - 閘道記錄 `invalid _token`：HMAC 不相符。請檢查是否簽署所有情境欄位（而非部分欄位）、使用已排序的鍵，並使用緊湊 JSON（不含空格）。請參閱上方的 HMAC 章節。
+    - 閘道記錄 `missing _token in context`：按鈕的情境中沒有 `_token` 欄位。請確保建立整合承載資料時已包含此欄位。
+    - 閘道以 `Unknown action` 拒絕點擊：`context.action_id` 與貼文上任何動作的 `id` 都不相符。請將兩者設為相同的清理後值。
+    - 代理程式未提供按鈕：請將 `capabilities: ["inlineButtons"]` 加入 Mattermost 頻道設定。
 
   </Accordion>
 </AccordionGroup>
@@ -585,6 +585,6 @@ Mattermost 支援在 `channels.mattermost.accounts` 下設定多個帳號：
 
 - [頻道路由](/zh-TW/channels/channel-routing)——訊息的工作階段路由
 - [頻道概覽](/zh-TW/channels)——所有支援的頻道
-- [群組](/zh-TW/channels/groups)——群組聊天行為與提及限制
+- [群組](/zh-TW/channels/groups)——群組聊天行為與提及閘控
 - [配對](/zh-TW/channels/pairing)——私訊驗證與配對流程
 - [安全性](/zh-TW/gateway/security)——存取模型與強化措施

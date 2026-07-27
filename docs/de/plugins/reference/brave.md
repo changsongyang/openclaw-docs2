@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw-Provider-Plugin für Brave Search zur Websuche.
 title: Brave-Plugin
 x-i18n:
-    generated_at: "2026-07-24T05:14:39Z"
+    generated_at: "2026-07-26T19:08:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -27,6 +27,6 @@ OpenClaw-Provider-Plugin für Brave Search zur Websuche.
 
 Verträge: `webSearchProviders`
 
-## Verwandte Dokumentation
+## Zugehörige Dokumentation
 
-- [brave](/de/tools/brave-search)
+- [Brave](/de/tools/brave-search)

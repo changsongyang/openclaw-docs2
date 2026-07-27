@@ -1,10 +1,10 @@
 ---
 read_when:
-    - alibaba Pluginをインストール、設定、または監査しています
+    - alibaba Plugin のインストール、設定、または監査を行っています
 summary: 動画生成プロバイダーのサポートを追加します。
 title: Alibaba Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:53:02Z"
+    generated_at: "2026-07-26T09:51:49Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,16 +14,16 @@ x-i18n:
     workflow: 16
 ---
 
-# Alibaba Plugin
+# Alibaba plugin
 
 動画生成プロバイダーのサポートを追加します。
 
 ## 配布
 
 - パッケージ: `@openclaw/alibaba-provider`
-- インストール経路: OpenClaw に同梱
+- インストール方法: OpenClaw に同梱
 
-## サーフェス
+## 公開機能
 
 コントラクト: `videoGenerationProviders`
 

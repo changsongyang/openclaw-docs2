@@ -1,10 +1,10 @@
 ---
 read_when: You are managing sandbox runtimes or debugging sandbox/tool-policy behavior.
 status: active
-summary: Gestionar los entornos de ejecución del sandbox e inspeccionar la política de sandbox efectiva
-title: CLI del sandbox
+summary: Gestionar los entornos de ejecución del sandbox e inspeccionar la política efectiva del sandbox
+title: CLI del entorno aislado
 x-i18n:
-    generated_at: "2026-07-22T10:29:57Z"
+    generated_at: "2026-07-26T05:09:04Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,13 +14,13 @@ x-i18n:
     workflow: 16
 ---
 
-Administra entornos de ejecución de sandbox para la ejecución aislada de agentes: contenedores Docker, destinos SSH o backends de OpenShell.
+Administra los entornos de ejecución de sandbox para la ejecución aislada de agentes: contenedores Docker, destinos SSH o backends de OpenShell.
 
 ## Comandos
 
 ### `openclaw sandbox list`
 
-Enumera los entornos de ejecución de sandbox con su estado, backend, coincidencia de configuración, antigüedad, tiempo de inactividad y sesión/agente asociado.
+Enumera los entornos de ejecución de sandbox con su estado, backend, coincidencia de configuración, antigüedad, tiempo de inactividad y sesión/agente asociados.
 
 ```bash
 openclaw sandbox list
@@ -30,7 +30,7 @@ openclaw sandbox list --json
 
 ### `openclaw sandbox recreate`
 
-Elimina entornos de ejecución de sandbox para forzar su recreación con la configuración actual. Los entornos de ejecución se recrean automáticamente la próxima vez que se utiliza el agente.
+Elimina entornos de ejecución de sandbox para forzar su recreación con la configuración actual. Los entornos de ejecución se recrean automáticamente la próxima vez que se usa el agente.
 
 ```bash
 openclaw sandbox recreate --all
@@ -43,9 +43,9 @@ openclaw sandbox recreate --all --force        # omite la confirmación
 Opciones:
 
 - `--all`: recrea todos los contenedores de sandbox
-- `--session <key>`: recrea el entorno de ejecución con esta clave de ámbito exacta (como muestra `sandbox list`); no expande nombres cortos
+- `--session <key>`: recrea el entorno de ejecución con esta clave de ámbito exacta (como se muestra mediante `sandbox list`); no expande nombres cortos
 - `--agent <id>`: recrea los entornos de ejecución de un agente (coincide con `agent:<id>` y `agent:<id>:*`)
-- `--browser`: afecta únicamente a los contenedores de navegador
+- `--browser`: solo afecta a los contenedores de navegador
 - `--force`: omite la solicitud de confirmación
 
 Pasa exactamente uno de `--all`, `--session` o `--agent`.
@@ -54,9 +54,9 @@ Para `ssh` y `remote` de OpenShell, la recreación es más importante que con Do
 
 ### `openclaw sandbox explain`
 
-Inspecciona el modo, el ámbito y el acceso al espacio de trabajo efectivos del sandbox, la política de herramientas del sandbox y las restricciones de las herramientas con privilegios elevados (con rutas de claves de configuración para corregirlos).
+Inspecciona el modo, el ámbito y el acceso al espacio de trabajo efectivos del sandbox, la política de herramientas del sandbox y los controles de herramientas con privilegios elevados (con rutas de claves de configuración para corregirlos).
 
-El informe conserva `workspaceRoot` como raíz configurada del sandbox y muestra por separado el espacio de trabajo efectivo del host, el directorio de trabajo del entorno de ejecución del backend y la tabla de montajes de Docker. Para `workspaceAccess: "rw"`, el espacio de trabajo efectivo del host es el espacio de trabajo del agente, en lugar de un directorio situado bajo `workspaceRoot`.
+El informe conserva `workspaceRoot` como la raíz de sandbox configurada y muestra por separado el espacio de trabajo efectivo del host, el directorio de trabajo del entorno de ejecución del backend y la tabla de montajes de Docker. Para `workspaceAccess: "rw"`, el espacio de trabajo efectivo del host es el espacio de trabajo del agente, en lugar de un directorio bajo `workspaceRoot`.
 
 ```bash
 openclaw sandbox explain
@@ -67,12 +67,12 @@ openclaw sandbox explain --json
 
 A diferencia de `recreate --session`, acepta nombres cortos de sesión (por ejemplo, `main`) y los expande según el agente resuelto.
 
-## Por qué es necesario recrear
+## Por qué es necesaria la recreación
 
-Actualizar la configuración del sandbox no afecta a los contenedores en ejecución: los entornos de ejecución existentes conservan su configuración anterior y los entornos inactivos solo se eliminan después de `prune.idleHours` (valor predeterminado: 24 h). Los agentes utilizados habitualmente pueden mantener activos indefinidamente entornos de ejecución obsoletos. `openclaw sandbox recreate` elimina el entorno de ejecución anterior para que el siguiente uso lo reconstruya con la configuración actual.
+Actualizar la configuración del sandbox no afecta a los contenedores en ejecución: los entornos de ejecución existentes conservan su configuración anterior y los entornos inactivos solo se eliminan después de `prune.idleHours` (valor predeterminado: 24h). Los agentes que se usan con regularidad pueden mantener activos indefinidamente entornos de ejecución obsoletos. `openclaw sandbox recreate` elimina el entorno de ejecución anterior para que el siguiente uso lo reconstruya con la configuración actual.
 
 <Tip>
-Es preferible usar `openclaw sandbox recreate` en lugar de realizar una limpieza manual específica del backend. Utiliza el registro de entornos de ejecución del Gateway y evita discrepancias cuando cambian las claves de ámbito o de sesión.
+Es preferible usar `openclaw sandbox recreate` en lugar de una limpieza manual específica del backend. Utiliza el registro de entornos de ejecución del Gateway y evita discrepancias cuando cambian las claves de ámbito o de sesión.
 </Tip>
 
 ## Desencadenantes habituales
@@ -82,11 +82,11 @@ Es preferible usar `openclaw sandbox recreate` en lugar de realizar una limpieza
 | Actualización de la imagen de Docker (`agents.defaults.sandbox.docker.image`)                                                                                                   | `openclaw sandbox recreate --all`                                   |
 | Configuración del sandbox (`agents.defaults.sandbox.*`)                                                                                                                   | `openclaw sandbox recreate --all`                                   |
 | Destino/autenticación SSH (`agents.defaults.sandbox.ssh.{target,workspaceRoot,identityFile,certificateFile,knownHostsFile,identityData,certificateData,knownHostsData}`) | `openclaw sandbox recreate --all`                                   |
-| Origen/política/modo de OpenShell (`plugins.entries.openshell.config.{from,mode,policy}`)                                                                           | `openclaw sandbox recreate --all`                                   |
+| Fuente/política/modo de OpenShell (`plugins.entries.openshell.config.{from,mode,policy}`)                                                                           | `openclaw sandbox recreate --all`                                   |
 | `setupCommand`                                                                                                                                                 | `openclaw sandbox recreate --all` (o `--agent <id>` para un agente) |
 
 <Note>
-Los entornos de ejecución se recrean automáticamente la próxima vez que se utiliza el agente.
+Los entornos de ejecución se recrean automáticamente la próxima vez que se usa el agente.
 </Note>
 
 ## Migración del registro
@@ -101,14 +101,14 @@ Ejecuta `openclaw doctor --fix` para migrar las entradas heredadas válidas a SQ
 
 ## Configuración
 
-La configuración del sandbox se encuentra en `~/.openclaw/openclaw.json`, bajo `agents.defaults.sandbox` (las anulaciones específicas de cada agente se incluyen en `agents.entries.*.sandbox`):
+La configuración del sandbox se encuentra en `~/.openclaw/openclaw.json`, bajo `agents.defaults.sandbox` (las sustituciones por agente se incluyen en `agents.entries.*.sandbox`):
 
 ```jsonc
 {
   "agents": {
     "defaults": {
       "sandbox": {
-        "mode": "all", // desactivado, excepto principal, todo
+        "mode": "all", // desactivado, no principal, todos
         "backend": "docker", // docker, ssh, openshell (proporcionado por un plugin)
         "scope": "agent", // sesión, agente, compartido
         "docker": {
@@ -117,7 +117,7 @@ La configuración del sandbox se encuentra en `~/.openclaw/openclaw.json`, bajo 
           // ... más opciones de Docker
         },
         "prune": {
-          "idleHours": 24, // eliminación automática tras 24 h de inactividad
+          "idleHours": 24, // eliminación automática tras 24h de inactividad
           "maxAgeDays": 7, // eliminación automática después de 7 días
         },
       },
@@ -126,7 +126,7 @@ La configuración del sandbox se encuentra en `~/.openclaw/openclaw.json`, bajo 
 }
 ```
 
-## Temas relacionados
+## Contenido relacionado
 
 - [Referencia de la CLI](/es/cli)
 - [Aislamiento en sandbox](/es/gateway/sandboxing)

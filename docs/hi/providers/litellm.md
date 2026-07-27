@@ -5,19 +5,18 @@ read_when:
 summary: एकीकृत मॉडल एक्सेस और लागत ट्रैकिंग के लिए LiteLLM Proxy के माध्यम से OpenClaw चलाएँ
 title: LiteLLM
 x-i18n:
-    generated_at: "2026-07-16T16:44:35Z"
+    generated_at: "2026-07-27T21:36:22Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 797b7d02a80a4cd37b92553665e260532af49e011398202d3504a28c511cee2f
+    source_hash: 22451f0eefcf991a602409701fc752f97600a67752c67304137c7f17f3dd1a16
     source_path: providers/litellm.md
     workflow: 16
 ---
 
-[LiteLLM](https://litellm.ai) एक ओपन-सोर्स LLM Gateway है, जो 100+ मॉडल
-प्रदाताओं के लिए एक एकीकृत API प्रदान करता है। OpenClaw कॉन्फ़िगरेशन बदले बिना केंद्रीकृत लागत ट्रैकिंग, लॉगिंग, खर्च
-सीमाओं वाली वर्चुअल कुंजियों और बैकएंड फ़ेलओवर के लिए OpenClaw को LiteLLM के माध्यम से रूट करें।
+[LiteLLM](https://litellm.ai) 100+ मॉडल प्रदाताओं के लिए एकीकृत API वाला एक ओपन-सोर्स LLM Gateway है।
+OpenClaw की कॉन्फ़िगरेशन बदले बिना केंद्रीकृत लागत ट्रैकिंग, लॉगिंग, खर्च सीमाओं वाली वर्चुअल कुंजियों और बैकएंड फ़ेलओवर के लिए OpenClaw को LiteLLM के माध्यम से रूट करें।
 
 ## त्वरित शुरुआत
 
@@ -27,7 +26,7 @@ x-i18n:
     openclaw onboard --auth-choice litellm-api-key
     ```
 
-    किसी रिमोट प्रॉक्सी के साथ गैर-इंटरैक्टिव सेटअप के लिए, प्रॉक्सी URL स्पष्ट रूप से दें:
+    रिमोट प्रॉक्सी के साथ गैर-इंटरैक्टिव सेटअप के लिए, प्रॉक्सी URL स्पष्ट रूप से दें:
 
     ```bash
     openclaw onboard --non-interactive --accept-risk --auth-choice litellm-api-key \
@@ -44,7 +43,7 @@ x-i18n:
         litellm --model claude-opus-4-6
         ```
       </Step>
-      <Step title="OpenClaw को LiteLLM से कनेक्ट करें">
+      <Step title="OpenClaw को LiteLLM की ओर निर्देशित करें">
         ```bash
         export LITELLM_API_KEY="your-litellm-key"
         openclaw
@@ -97,9 +96,7 @@ x-i18n:
 
 ## इमेज जनरेशन
 
-LiteLLM, OpenAI-संगत `/images/generations` और
-`/images/edits` रूट के माध्यम से `image_generate` टूल का बैकएंड बन सकता है। डिफ़ॉल्ट इमेज मॉडल `gpt-image-2` है; किसी अन्य मॉडल को
-`agents.defaults.imageGenerationModel` के अंतर्गत कॉन्फ़िगर करें:
+LiteLLM, OpenAI-संगत `/images/generations` और `/images/edits` रूट के माध्यम से `image_generate` टूल को बैक कर सकता है। डिफ़ॉल्ट इमेज मॉडल `gpt-image-2` है; किसी अन्य को `agents.defaults.mediaModels.image` के अंतर्गत कॉन्फ़िगर करें:
 
 ```json5
 {
@@ -122,8 +119,7 @@ LiteLLM, OpenAI-संगत `/images/generations` और
 }
 ```
 
-लूपबैक LiteLLM URL (`http://localhost:4000`, `127.0.0.1`, `::1`, `host.docker.internal`) किसी वैश्विक
-निजी-नेटवर्क ओवरराइड के बिना काम करते हैं। LAN पर होस्ट किए गए प्रॉक्सी के लिए,
+लूपबैक LiteLLM URL (`http://localhost:4000`, `127.0.0.1`, `::1`, `host.docker.internal`) वैश्विक निजी-नेटवर्क ओवरराइड के बिना काम करते हैं। LAN पर होस्ट किए गए प्रॉक्सी के लिए,
 `models.providers.litellm.request.allowPrivateNetwork: true` सेट करें, क्योंकि API कुंजी उस होस्ट को भेजी जाती है।
 
 ## उन्नत
@@ -148,7 +144,7 @@ LiteLLM, OpenAI-संगत `/images/generations` और
   </Accordion>
 
   <Accordion title="मॉडल रूटिंग">
-    LiteLLM मॉडल अनुरोधों को अलग-अलग बैकएंड पर रूट कर सकता है। अपने LiteLLM `config.yaml` में कॉन्फ़िगर करें:
+    LiteLLM मॉडल अनुरोधों को अलग-अलग बैकएंड पर रूट कर सकता है। अपनी LiteLLM `config.yaml` में कॉन्फ़िगर करें:
 
     ```yaml
     model_list:
@@ -163,7 +159,7 @@ LiteLLM, OpenAI-संगत `/images/generations` और
           api_key: os.environ/OPENAI_API_KEY
     ```
 
-    OpenClaw, `claude-opus-4-6` का अनुरोध करना जारी रखता है; LiteLLM रूटिंग संभालता है।
+    OpenClaw `claude-opus-4-6` का अनुरोध करना जारी रखता है; LiteLLM रूटिंग संभालता है।
 
   </Accordion>
 
@@ -183,11 +179,11 @@ LiteLLM, OpenAI-संगत `/images/generations` और
   <Accordion title="प्रॉक्सी व्यवहार संबंधी टिप्पणियाँ">
     - LiteLLM डिफ़ॉल्ट रूप से `http://localhost:4000` पर चलता है।
     - OpenClaw, LiteLLM के प्रॉक्सी-शैली वाले OpenAI-संगत `/v1` एंडपॉइंट के माध्यम से कनेक्ट होता है।
-    - केवल नेटिव OpenAI के लिए अनुरोध संरचना, कॉन्फ़िगर किए गए LiteLLM बेस URL के माध्यम से लागू नहीं होती:
-      न `service_tier`, न Responses `store`, न प्रॉम्प्ट-कैश संकेत, न OpenAI रीजनिंग-एफ़र्ट
-      पेलोड संरचना।
+    - कॉन्फ़िगर किए गए LiteLLM बेस URL के माध्यम से केवल नेटिव OpenAI के लिए अनुरोध आकार-निर्धारण लागू नहीं होता:
+      न `service_tier`, न Responses `store`, न प्रॉम्प्ट-कैश संकेत और न OpenAI रीजनिंग-एफ़र्ट
+      पेलोड आकार-निर्धारण।
     - छिपे हुए OpenClaw एट्रिब्यूशन हेडर (`originator`, `version`, `User-Agent`) केवल
-      सत्यापित नेटिव OpenAI एंडपॉइंट को भेजे जाते हैं, इसलिए उन्हें किसी कस्टम LiteLLM बेस URL पर इंजेक्ट नहीं किया जाता।
+      सत्यापित नेटिव OpenAI एंडपॉइंट को भेजे जाते हैं, इसलिए उन्हें कस्टम LiteLLM बेस URL पर इंजेक्ट नहीं किया जाता।
   </Accordion>
 </AccordionGroup>
 

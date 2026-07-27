@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Synthetic Plugin をインストール、設定、または監査しています
+    - Synthetic Plugin のインストール、設定、または監査を行っている場合
 summary: OpenClaw に Synthetic モデルプロバイダーのサポートを追加します。
-title: Synthetic Plugin
+title: Synthetic plugin
 x-i18n:
-    generated_at: "2026-07-16T12:00:08Z"
+    generated_at: "2026-07-26T10:13:14Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ OpenClaw に Synthetic モデルプロバイダーのサポートを追加しま
 - パッケージ: `@openclaw/synthetic-provider`
 - インストール経路: OpenClaw に同梱
 
-## 提供機能
+## 公開インターフェース
 
 プロバイダー: `synthetic`
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin مربوط به Brave هستید
-summary: Plugin ارائه‌دهنده Brave Search برای جست‌وجوی وب در OpenClaw.
+    - در حال نصب، پیکربندی یا ممیزی Plugin ‏brave هستید
+summary: Plugin ارائه‌دهندهٔ Brave Search در OpenClaw برای جست‌وجوی وب.
 title: Plugin بریو
 x-i18n:
-    generated_at: "2026-07-16T17:26:12Z"
+    generated_at: "2026-07-27T16:57:20Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin Brave
+# Plugin ‏Brave
 
-Plugin ارائه‌دهندهٔ Brave Search در OpenClaw برای جست‌وجوی وب.
+Plugin ارائه‌دهندهٔ جست‌وجوی Brave در OpenClaw برای جست‌وجوی وب.
 
 ## توزیع
 

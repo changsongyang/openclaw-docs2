@@ -1,10 +1,10 @@
 ---
 read_when:
-    - volcengine pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - volcengine Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a Volcengine ve Volcengine Plan model sağlayıcısı desteği ekler.
 title: Volcengine Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:32:36Z"
+    generated_at: "2026-07-27T00:12:42Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

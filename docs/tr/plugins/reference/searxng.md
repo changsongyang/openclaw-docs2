@@ -1,10 +1,10 @@
 ---
 read_when:
-    - searxng pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: Web arama sağlayıcısı desteği ekler.
+    - searxng pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+summary: Web araması sağlayıcısı desteği ekler.
 title: SearXNG Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:31:55Z"
+    generated_at: "2026-07-26T23:53:38Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# SearXNG Plugin
+# SearXNG plugin
 
 Web arama sağlayıcısı desteği ekler.
 

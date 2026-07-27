@@ -1,10 +1,10 @@
 ---
 read_when:
-    - msteams Plugin のインストール、設定、または監査を行っています
+    - msteams Plugin のインストール、設定、または監査を行っている場合
 summary: ボットとの会話に対応する OpenClaw Microsoft Teams チャンネル Plugin。
 title: Microsoft Teams Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:59:05Z"
+    generated_at: "2026-07-26T10:25:16Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Microsoft Teams Plugin
 
-ボットとの会話用の OpenClaw Microsoft Teams チャネル Plugin。
+ボットとの会話用の OpenClaw Microsoft Teams チャンネル Plugin。
 
 ## 配布
 
@@ -25,7 +25,7 @@ x-i18n:
 
 ## 対応範囲
 
-チャネル: `msteams`
+チャンネル: `msteams`
 
 ## 関連ドキュメント
 

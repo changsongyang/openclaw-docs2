@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin qa-lab
-summary: Plugin de laboratorio de control de calidad de OpenClaw con interfaz privada de depuración y ejecutor de escenarios.
+summary: Plugin del laboratorio de control de calidad de OpenClaw con interfaz privada del depurador y ejecutor de escenarios.
 title: Plugin de QA Lab
 x-i18n:
-    generated_at: "2026-07-16T11:54:20Z"
+    generated_at: "2026-07-26T05:22:09Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Plugin de QA Lab
 
-Plugin del laboratorio de QA de OpenClaw con interfaz privada de depuración y ejecutor de escenarios.
+Plugin de laboratorio de control de calidad de OpenClaw con interfaz de depuración privada y ejecutor de escenarios.
 
 ## Distribución
 
 - Paquete: `@openclaw/qa-lab`
-- Ruta de instalación: solo mediante una copia local del código fuente
+- Ruta de instalación: solo desde una copia de trabajo del código fuente
 
 ## Superficie
 

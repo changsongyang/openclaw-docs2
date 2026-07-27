@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप onepassword Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: अनुमोदन नीति और SQLite ऑडिट इतिहास वाला क्यूरेटेड 1Password सीक्रेट्स ब्रोकर।
+summary: अनुमोदन नीति और SQLite ऑडिट इतिहास वाला सुव्यवस्थित 1Password सीक्रेट्स ब्रोकर।
 title: Onepassword Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:17:05Z"
+    generated_at: "2026-07-27T18:20:08Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Onepassword Plugin
 
-अनुमोदन नीति और SQLite ऑडिट इतिहास के साथ क्यूरेट किया गया 1Password सीक्रेट ब्रोकर।
+अनुमोदन नीति और SQLite ऑडिट इतिहास के साथ क्यूरेट किया गया 1Password सीक्रेट्स ब्रोकर।
 
 ## वितरण
 
 - पैकेज: `@openclaw/onepassword`
-- इंस्टॉल मार्ग: OpenClaw में शामिल
+- इंस्टॉल करने का तरीका: OpenClaw में शामिल
 
 ## सतह
 

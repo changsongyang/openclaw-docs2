@@ -5,9 +5,10 @@ read_when:
 summary: Hızlı başlangıç, Başlarken bölümüne taşındı.
 title: Hızlı başlangıç
 x-i18n:
-    generated_at: "2026-07-12T12:45:54Z"
+    generated_at: "2026-07-26T23:02:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
+    prompt_version: 32
     provider: openai
     source_hash: faff0c266d7e509952e1492ef224a83c39379461c7258e379296b167beb68ad0
     source_path: start/quickstart.md
@@ -27,7 +28,7 @@ Hızlı başlangıç artık [Başlarken](/tr/start/getting-started) bölümünü
   </Card>
 </Columns>
 
-## İlgili içerikler
+## İlgili
 
 - [Başlarken](/tr/start/getting-started)
-- [Kuruluma genel bakış](/tr/install)
+- [Yüklemeye genel bakış](/tr/install)

@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 featherless 外掛
-summary: OpenClaw Featherless AI 提供者外掛。
+summary: OpenClaw Featherless AI 供應商外掛。
 title: Featherless 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:53:48Z"
+    generated_at: "2026-07-26T07:27:56Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,16 +16,16 @@ x-i18n:
 
 # Featherless 外掛
 
-OpenClaw Featherless AI 供應商外掛。
+OpenClaw Featherless AI 提供者外掛。
 
-## 發布方式
+## 發佈
 
 - 套件：`@openclaw/featherless-provider`
 - 安裝管道：npm；ClawHub：`clawhub:@openclaw/featherless-provider`
 
 ## 介面
 
-供應商：`featherless`
+提供者：`featherless`
 
 ## 相關文件
 

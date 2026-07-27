@@ -1,10 +1,10 @@
 ---
 read_when:
-    - matrix Pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
-summary: Odalar ve doğrudan mesajlar için OpenClaw Matrix kanal Plugin'i.
-title: Matrix Plugin'i
+    - Matrix Pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+summary: Odalar ve doğrudan mesajlar için OpenClaw Matrix kanal plugini.
+title: Matrix plugin
 x-i18n:
-    generated_at: "2026-07-16T17:44:50Z"
+    generated_at: "2026-07-26T22:55:26Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Matrix Plugin
+# Matrix plugin'i
 
-Odalar ve doğrudan mesajlar için OpenClaw Matrix kanal Plugin'i.
+Odalar ve doğrudan mesajlar için OpenClaw Matrix kanal plugin'i.
 
 ## Dağıtım
 

@@ -1,12 +1,12 @@
 ---
 read_when:
-    - Sie müssen beantworten, wer einen Agenten oder ein Tool ausgeführt hat, wann die Ausführung stattfand und wie sie endete.
+    - Sie müssen beantworten können, wer einen Agenten oder ein Tool ausgeführt hat, wann die Ausführung erfolgte und wie sie endete
     - Sie benötigen inhaltsfreie Metadaten zum Lebenszyklus eingehender oder ausgehender Nachrichten
-    - Sie benötigen einen begrenzten, redaktionssicheren Aktivitätsexport
+    - Sie benötigen einen begrenzten, schwärzungssicheren Aktivitätsexport
 summary: CLI-Referenz für reine Metadaten-Audit-Datensätze zum Lebenszyklus von Ausführungen, Tools und Nachrichten
 title: Auditdatensätze
 x-i18n:
-    generated_at: "2026-07-24T04:17:28Z"
+    generated_at: "2026-07-26T18:16:38Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,15 +23,15 @@ optional aktivierten Datensätzen zum Nachrichtenlebenszyklus ab.
 
 Das Ledger ist für Ausführungs- und Tool-Ereignisse standardmäßig aktiviert. Legen Sie
 [`audit.enabled: false`](/de/gateway/configuration-reference#audit) fest und starten Sie das
-Gateway neu, um die Erfassung aller neuen Ereignisdatensätze zu beenden. Nachrichtendatensätze sind separat
-standardmäßig deaktiviert; legen Sie `audit.messages` auf `direct` oder `all` fest und starten Sie das Gateway neu, um
+Gateway neu, um alle neuen Ereignisdatensätze zu unterbinden. Nachrichtendatensätze sind separat
+standardmäßig deaktiviert; setzen Sie `audit.messages` auf `direct` oder `all` und starten Sie das Gateway neu, um
 sie aufzuzeichnen. Vorhandene Datensätze bleiben bis zu ihrem Ablauf (30 Tage) abfragbar.
 
-Das Ledger ist von Gesprächstranskripten getrennt: Es erfasst Identität,
-Reihenfolge, Herkunft, Aktion, Status und normalisierte Ergebniscodes, speichert jedoch niemals
-Inhalte, und Nachrichtenkennungen erscheinen nur als installationslokale
-verschlüsselte Pseudonyme. Der [Audit-Verlauf](/de/gateway/audit) beschreibt das vollständige Datenmodell,
-die Datenschutzsemantik, Speicher- und Aufbewahrungsgrenzen sowie Abdeckungsbeschränkungen; diese Seite
+Das Ledger ist von Konversationstranskripten getrennt: Es zeichnet Identität,
+Reihenfolge, Herkunft, Aktion, Status und normalisierte Ergebniscodes auf, speichert jedoch niemals
+Inhalte, und Nachrichtenkennungen erscheinen nur als installationslokale,
+schlüsselbasierte Pseudonyme. [Audit-Verlauf](/de/gateway/audit) beschreibt das vollständige Datenmodell,
+die Datenschutzsemantik, Speicher-/Aufbewahrungsgrenzen und Abdeckungsbeschränkungen; diese Seite
 behandelt die Befehlsoberfläche.
 
 ```bash
@@ -53,10 +53,10 @@ openclaw audit --kind message --direction outbound --channel telegram --json
   `timed_out`, `blocked` oder `unknown`
 - `--direction <direction>`: Nachrichtenrichtung, `inbound` oder `outbound`
 - `--channel <channel>`: exakter Nachrichtenkanal
-- `--after <timestamp>` / `--before <timestamp>`: inklusiver ISO-Zeitstempel oder
+- `--after <timestamp>` / `--before <timestamp>`: einschließlich ISO-Zeitstempel oder
   Unix-Millisekunden
 - `--limit <count>`: Seitengröße von 1 bis 500; Standardwert `100`
-- `--cursor <sequence>`: eine vorherige Abfrage in absteigender Reihenfolge fortsetzen
+- `--cursor <sequence>`: eine vorherige Abfrage mit neuesten Einträgen zuerst fortsetzen
 - `--json`: die begrenzte Seite als JSON ausgeben
 
 Die CLI fragt den versionierten Aktivitäts-RPC ab, sodass ein Befehl das vollständige
@@ -66,15 +66,15 @@ erfindet keine Agent- oder Ausführungs-IDs. Tool-Aktionen zeigen außerdem den 
 Ausgabe enthält `nextCursor`, wenn eine weitere Seite vorhanden ist. Übergeben Sie diesen Wert an
 `--cursor`, um fortzufahren, ohne Datensätze neu zu ordnen, die während der Seitennavigation eintreffen.
 
-Diese Exporte bleiben sensible betriebliche Metadaten, obwohl Nachrichteninhalte
+Diese Exporte bleiben sensible betriebliche Metadaten, obwohl Nachrichtentexte
 und unverarbeitete Nachrichtenidentitätsfelder fehlen. Agent-, Sitzungs- und Ausführungs-IDs, Zeitangaben,
-Kanäle, Ergebnisse und stabile HMAC-Referenzen können Aktivitäten miteinander verknüpfen. Schützen Sie
-sie mit denselben Zugriffskontrollen und Aufbewahrungsverfahren wie andere
-Betriebsdatensätze.
+Kanäle, Ergebnisse und stabile HMAC-Referenzen können Aktivitäten korrelieren. Schützen Sie
+sie mit denselben Zugriffskontrollen und Aufbewahrungspraktiken wie andere
+Betreiberdatensätze.
 
 ## Aufgezeichnete Ereignisse
 
-Das Gateway überführt vertrauenswürdige Lebenszyklus-Datenströme in sechs Aktionen:
+Das Gateway projiziert vertrauenswürdige Lebenszyklus-Datenströme auf sechs Aktionen:
 
 - `agent.run.started`
 - `agent.run.finished`
@@ -83,60 +83,60 @@ Das Gateway überführt vertrauenswürdige Lebenszyklus-Datenströme in sechs Ak
 - `message.inbound.processed`
 - `message.outbound.finished`
 
-Jeder zurückgegebene Datensatz besitzt eine stabile Ereignis-ID, eine monoton steigende Ledger-
-Sequenz, einen Lebenszyklus-Zeitstempel, einen Akteur, eine Aktion, einen Status, eine
-`schemaVersion: 1`-Markierung, eine Quellsequenz und `redaction: "metadata_only"`.
-Herkunftsangaben zu Agent, Sitzung und Ausführung sowie ereignisspezifische Felder sind nur vorhanden, wenn
-die vertrauenswürdige Quelle sie bereitstellt. Nachrichtendatensätze lassen
-`sessionKey` und `sessionId` absichtlich aus, sodass `--session`-Filter nur Ausführungs- und Tool-Datensätze erfassen.
+Jeder zurückgegebene Datensatz enthält eine stabile Ereignis-ID, eine monoton steigende Ledger-
+Sequenz, einen Lebenszyklus-Zeitstempel, Akteur, Aktion, Status, eine
+`schemaVersion: 1`-Markierung, Quellsequenz und `redaction: "metadata_only"`.
+Die Herkunft von Agent, Sitzung und Ausführung sowie ereignisspezifische Felder sind nur vorhanden, wenn
+die vertrauenswürdige Quelle sie bereitstellt. Nachrichtendatensätze lassen absichtlich
+`sessionKey` und `sessionId` aus, sodass `--session` nur Ausführungs- und Tool-Datensätze filtert.
 
 Abschließende Ausführungs- und Tool-Datensätze unterscheiden Erfolg, Fehler, Abbruch,
 Zeitüberschreitung und Richtlinienblockierungen anhand geschlossener Status- und Fehlercodes. `unknown` ist ein
 explizites nicht erfolgreiches Ergebnis, wenn eine vorgelagerte Laufzeitumgebung kein
-maßgebliches abschließendes Ergebnis bereitstellt. Tool-Aufruf-IDs werden nur als stabile
-Fingerabdrücke exportiert. Tool-Namen müssen dem Vertrag für kompakte, dem Modell angezeigte Namen
+maßgebliches Endergebnis bereitstellt. Tool-Aufruf-IDs werden nur als stabile
+Fingerabdrücke exportiert. Tool-Namen müssen dem kompakten, modellseitigen Namensvertrag
 entsprechen; andere Werte werden zu `unknown`.
 
-Nachrichtendatensätze ergänzen Richtung, Kanal, Gesprächsart, Ergebnis und
+Nachrichtendatensätze ergänzen Richtung, Kanal, Konversationsart, Ergebnis und
 optional Zustellungsart, Fehlerphase, Dauer, Ergebnisanzahl, normalisierten
-Ursachencode und verschlüsselte Konto-, Gesprächs-, Nachrichten- und Zielpseudonyme. Die
-aktuelle Eingangsgrenze umfasst akzeptierte Nachrichten, die die zentrale Weiterleitung erreichen,
-einschließlich zentraler Duplikat- und abschließender Verarbeitungsergebnisse. Die Ausgangsgrenze
-schreibt eine abschließende Zeile pro ursprünglicher logischer Antwortnutzlast, die die
-gemeinsame dauerhafte Zustellung erreicht; Aufteilung und Adapter-Auffächerung werden in
-`resultCount` zusammengefasst. Wiederholbare oder mehrdeutige Sendungen in der Warteschlange werden erst aufgezeichnet, nachdem eine
-Bestätigung, Unzustellbarkeitsablage oder Abstimmung das Ergebnis abschließend macht.
-Plugin-lokale und direkte Sendepfade, die diese gemeinsamen Grenzen umgehen, werden noch
-nicht abgedeckt; das Fehlen einer Zeile beweist nicht, dass keine Nachricht existierte.
+Ursachencode sowie schlüsselbasierte Konto-/Konversations-/Nachrichten-/Zielpseudonyme. Die
+aktuelle Eingangsgrenze umfasst akzeptierte Nachrichten, die die Kerndispatch-Verarbeitung erreichen,
+einschließlich Kernduplikaten und abschließenden Verarbeitungsergebnissen. Die Ausgangsgrenze
+schreibt eine Abschlusszeile pro ursprünglicher logischer Antwortnutzlast, die die
+gemeinsame dauerhafte Zustellung erreicht; Segmentierung und Adapter-Auffächerung werden in
+`resultCount` aggregiert. In die Warteschlange gestellte, wiederholbare oder mehrdeutige Sendevorgänge werden erst aufgezeichnet, nachdem eine
+Bestätigung, ein Dead Letter oder ein Abgleich das Ergebnis endgültig gemacht hat.
+Plugin-lokale und direkte Sendepfade, die diese gemeinsamen Grenzen umgehen, sind
+noch nicht abgedeckt; das Fehlen einer Zeile beweist nicht, dass keine Nachricht existiert hat.
 
-Das Audit-Ledger ersetzt weder Transkripte, Aufgabenverlauf, Cron-Ausführungsverlauf
-noch Protokolle. Es stellt einen kleinen ausführungsübergreifenden Index für betriebliche Abfragen bereit, ohne
-Gesprächsinhalte in einen weiteren Speicher zu kopieren.
+Das Audit-Ledger ersetzt weder Transkripte noch Aufgabenverlauf, Cron-Ausführungsverlauf
+oder Protokolle. Es stellt einen kleinen ausführungsübergreifenden Index für Betreiberfragen bereit, ohne
+Konversationsinhalte in einen weiteren Speicher zu kopieren.
 
-Bei Eingangszeilen misst `durationMs` die zentrale Weiterleitung, und `resultCount` zählt
-abgeschlossene Tool-, Blockierungs- und Antwortnutzlasten in der Warteschlange. Bei Ausgangszeilen
+Bei Eingangszeilen misst `durationMs` den Kerndispatch und `resultCount` zählt
+finalisierte, in die Warteschlange gestellte Tool-, Blockierungs- und Antwortnutzlasten. Bei Ausgangszeilen
 umfasst `durationMs` die Zustellungsverantwortung bis zu ihrem Abschluss (und damit
-die Wartezeit in der Warteschlange), während `resultCount` identifizierte physische Sendungen an die Plattform
-zählt. `deliveryKind` beschreibt, sofern vorhanden, die effektive Nutzlast nach Hooks und
-Rendering; unterdrückte und durch Abstürze mehrdeutige Zeilen lassen dieses Feld aus.
+die Wartezeit in der Warteschlange), während `resultCount` identifizierte physische Sendevorgänge der Plattform
+zählt. `deliveryKind` beschreibt, sofern vorhanden, die effektive Nutzlast nach Hook-
+und Rendering-Verarbeitung; unterdrückte und durch Abstürze mehrdeutige Zeilen lassen sie aus.
 
 ## Gateway-RPC
 
 `audit.activity.list` erfordert `operator.read` und akzeptiert dieselben Filter. Er
-gibt die benannte V1-Union der Aktivitätsereignisse zurück, einschließlich Ausführungs-, Tool-, Eingangs- und
-Ausgangsnachrichtendatensätzen.
+gibt die benannte V1-Union von Aktivitätsereignissen zurück, einschließlich Ausführungs-, Tool-, Eingangs-
+und Ausgangsnachrichtendatensätzen.
 
 ```bash
 openclaw gateway call audit.activity.list --params '{"channel":"telegram","limit":50}'
 ```
 
 Das Ergebnis ist `{ "events": AuditActivityEventV1[], "nextCursor"?: string }`.
-Die Ergebnisse sind nach dem neuesten Eintrag zuerst sortiert und auf 500 Datensätze pro Anfrage begrenzt.
+Die Ergebnisse werden mit den neuesten zuerst angezeigt und sind auf 500 Datensätze pro Anfrage begrenzt.
 
-Der ausgelieferte `audit.list`-RPC bleibt für ältere Ausführungs-/Tool-Clients unverändert. Wenn
+Der ausgelieferte RPC `audit.list` bleibt für ältere Ausführungs-/Tool-Clients unverändert. Wenn
 `audit.activity.list` auf einem älteren Gateway nicht verfügbar ist, versucht die CLI
-`audit.list` nur dann erneut, wenn jeder angeforderte Filter von dieser älteren Methode unterstützt wird. `--kind message`,
-`--direction` und `--channel` schlagen auf einem älteren Gateway mit einer Aufforderung zum Upgrade fehl,
+`audit.list` nur erneut, wenn jeder angeforderte Filter von dieser Legacy-Methode unterstützt wird. `--kind message`,
+`--direction` und `--channel` schlagen auf einem älteren Gateway mit einer Upgrade-Meldung fehl,
 anstatt stillschweigend verworfen zu werden.
 
 ## Verwandte Themen

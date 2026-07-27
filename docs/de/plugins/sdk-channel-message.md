@@ -2,7 +2,7 @@
 summary: Weiterleitung zu /plugins/sdk-channel-outbound
 title: Kanalnachrichten-API
 x-i18n:
-    generated_at: "2026-07-24T04:05:15Z"
+    generated_at: "2026-07-26T18:03:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -12,7 +12,7 @@ x-i18n:
     workflow: 16
 ---
 
-Diese Seite wurde zu [API für ausgehende Kanalnachrichten](/de/plugins/sdk-channel-outbound) verschoben.
+Diese Seite wurde zu [API für ausgehende Kanalkommunikation](/de/plugins/sdk-channel-outbound) verschoben.
 
 `openclaw/plugin-sdk/channel-message` bleibt ein veralteter Kompatibilitäts-
 Unterpfad für ältere Plugins. Neue Kanal-Plugins sollten
@@ -20,6 +20,6 @@ Unterpfad für ältere Plugins. Neue Kanal-Plugins sollten
 dauerhaften Versand und Hilfsfunktionen für die Live-Vorschau verwenden, statt dem
 veralteten Unterpfad neue Hilfsfunktionen hinzuzufügen.
 
-Entfernungsplan: Diese Aliasse bleiben während des Migrations-
-zeitraums für externe Plugins erhalten und werden anschließend bei der nächsten großen SDK-Bereinigung entfernt, nachdem die Aufrufer
+Entfernungsplan: Diese Aliasse bleiben während des Migrationszeitraums für externe Plugins
+erhalten und werden anschließend bei der nächsten umfassenden SDK-Bereinigung entfernt, nachdem die Aufrufer
 zu `channel-outbound` migriert wurden.

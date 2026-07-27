@@ -1,10 +1,10 @@
 ---
 read_when:
     - Sie möchten eine vollständige Übersicht über die Dokumentation
-summary: Hubs mit Links zu allen OpenClaw-Dokumentationsseiten
-title: Dokumentationszentren
+summary: Übersichtsseiten mit Links zu allen OpenClaw-Dokumentationsseiten
+title: Dokumentationsportale
 x-i18n:
-    generated_at: "2026-07-24T04:07:16Z"
+    generated_at: "2026-07-26T18:05:12Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 Wenn Sie OpenClaw noch nicht kennen, beginnen Sie mit [Erste Schritte](/de/start/getting-started).
 </Note>
 
-Über diese Übersichtsseiten finden Sie alle Seiten, einschließlich ausführlicher Erläuterungen und Referenzdokumentation, die nicht in der linken Navigation erscheinen.
+Über diese Übersichtsseiten können Sie alle Seiten entdecken, einschließlich ausführlicher Erläuterungen und Referenzdokumentation, die nicht in der linken Navigation erscheinen.
 
 ## Hier beginnen
 
@@ -27,23 +27,23 @@ Wenn Sie OpenClaw noch nicht kennen, beginnen Sie mit [Erste Schritte](/de/start
 - [Onboarding](/de/start/onboarding)
 - [Onboarding (CLI)](/de/start/wizard)
 - [Einrichtung](/de/start/setup)
-- [Dashboard (lokales Gateway)](http://127.0.0.1:18789/)
+- [Dashboard (lokaler Gateway)](http://127.0.0.1:18789/)
 - [Hilfe](/de/help)
 - [Dokumentationsverzeichnis](/de/start/docs-directory)
 - [Konfiguration](/de/gateway/configuration)
 - [Konfigurationsbeispiele](/de/gateway/configuration-examples)
 - [OpenClaw-Assistent](/de/start/openclaw)
-- [Beispiele](/de/start/showcase)
+- [Präsentation](/de/start/showcase)
 - [Hintergrundgeschichte](/de/start/lore)
 
 ## Installation und Aktualisierungen
 
 - [Docker](/de/install/docker)
 - [Nix](/de/install/nix)
-- [Aktualisierung / Rollback](/de/install/updating)
+- [Aktualisierung und Rollback](/de/install/updating)
 - [Bun-Arbeitsablauf (experimentell)](/de/install/bun)
 
-## Kernkonzepte
+## Grundkonzepte
 
 - [Architektur](/de/concepts/architecture)
 - [Funktionen](/de/concepts/features)
@@ -61,7 +61,7 @@ Wenn Sie OpenClaw noch nicht kennen, beginnen Sie mit [Erste Schritte](/de/start
 - [Warteschlange](/de/concepts/queue)
 - [Slash-Befehle](/de/tools/slash-commands)
 - [RPC-Adapter](/de/reference/rpc)
-- [TypeBox-Schemas](/de/concepts/typebox)
+- [TypeBox-Schemata](/de/concepts/typebox)
 - [Zeitzonenbehandlung](/de/concepts/timezone)
 - [Präsenz](/de/concepts/presence)
 - [Erkennung und Transporte](/de/gateway/discovery)
@@ -103,7 +103,7 @@ Wenn Sie OpenClaw noch nicht kennen, beginnen Sie mit [Erste Schritte](/de/start
 - [Sandboxing](/de/gateway/sandboxing)
 - [Dashboard](/de/web/dashboard)
 - [Steuerungsoberfläche](/de/web/control-ui)
-- [Fernzugriff](/de/gateway/remote)
+- [Remotezugriff](/de/gateway/remote)
 - [README zum Remote-Gateway](/de/gateway/remote-gateway-readme)
 - [Tailscale](/de/gateway/tailscale)
 - [Sicherheit](/de/gateway/security)
@@ -114,18 +114,18 @@ Wenn Sie OpenClaw noch nicht kennen, beginnen Sie mit [Erste Schritte](/de/start
 - [Werkzeugübersicht](/de/tools)
 - [OpenProse](/de/prose)
 - [CLI-Referenz](/de/cli)
-- [Exec-Werkzeug](/de/tools/exec)
+- [Ausführungswerkzeug](/de/tools/exec)
 - [PDF-Werkzeug](/de/tools/pdf)
-- [Modus mit erhöhten Rechten](/de/tools/elevated)
+- [Erweiterter Modus](/de/tools/elevated)
 - [Cron-Aufgaben](/de/automation/cron-jobs)
 - [Automatisierung](/de/automation)
-- [Denken und ausführliche Ausgabe](/de/tools/thinking)
+- [Denkmodus und ausführliche Ausgabe](/de/tools/thinking)
 - [Modelle](/de/concepts/models)
-- [Untergeordnete Agenten](/de/tools/subagents)
-- [CLI zum Senden an Agenten](/de/tools/agent-send)
-- [Terminal-Benutzeroberfläche](/de/web/tui)
+- [Untergeordnete Agents](/de/tools/subagents)
+- [CLI zum Senden an Agents](/de/tools/agent-send)
+- [Terminal-Oberfläche](/de/web/tui)
 - [Browsersteuerung](/de/tools/browser)
-- [Browser (Fehlerbehebung unter Linux)](/de/tools/browser-linux-troubleshooting)
+- [Browser (Linux-Fehlerbehebung)](/de/tools/browser-linux-troubleshooting)
 - [Umfragen](/de/cli/message)
 
 ## Nodes, Medien und Sprache
@@ -156,12 +156,12 @@ Wenn Sie OpenClaw noch nicht kennen, beginnen Sie mit [Erste Schritte](/de/start
 - [macOS-Sprach-Overlay](/de/platforms/mac/voice-overlay)
 - [macOS-WebChat](/de/platforms/mac/webchat)
 - [macOS-Canvas](/de/platforms/mac/canvas)
-- [macOS-Kindprozess](/de/platforms/mac/child-process)
+- [Untergeordneter macOS-Prozess](/de/platforms/mac/child-process)
 - [macOS-Systemzustand](/de/platforms/mac/health)
 - [macOS-Symbol](/de/platforms/mac/icon)
 - [macOS-Protokollierung](/de/platforms/mac/logging)
 - [macOS-Berechtigungen](/de/platforms/mac/permissions)
-- [macOS-Fernzugriff](/de/platforms/mac/remote)
+- [macOS-Remotezugriff](/de/platforms/mac/remote)
 - [macOS-Signierung](/de/platforms/mac/signing)
 - [macOS-Gateway (launchd)](/de/platforms/mac/bundled-gateway)
 - [macOS-XPC](/de/platforms/mac/xpc)
@@ -171,14 +171,14 @@ Wenn Sie OpenClaw noch nicht kennen, beginnen Sie mit [Erste Schritte](/de/start
 ## Plugins
 
 - [Plugin-Übersicht](/de/tools/plugin)
-- [Plugins erstellen](/de/plugins/building-plugins)
+- [Plugins entwickeln](/de/plugins/building-plugins)
 - [Plugin-Hooks](/de/plugins/hooks)
 - [Plugin-Manifest](/de/plugins/manifest)
 - [Agent-Werkzeuge](/de/plugins/building-plugins#registering-agent-tools)
 - [Plugin-Pakete](/de/plugins/bundles)
 - [ClawHub](/de/clawhub)
-- [Rezeptsammlung für Funktionen](/de/plugins/adding-capabilities)
-- [Plugin für Sprachanrufe](/de/plugins/voice-call)
+- [Funktionsleitfaden](/de/plugins/adding-capabilities)
+- [Sprachanruf-Plugin](/de/plugins/voice-call)
 - [Zalo-Benutzer-Plugin](/de/plugins/zalouser)
 
 ## Arbeitsbereich und Vorlagen

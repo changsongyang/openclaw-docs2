@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin qwen
-summary: Añade compatibilidad con los proveedores de modelos Qwen, Qwen Cloud, Model Studio, DashScope, Qwen Token Plan y Bailian Token Plan en OpenClaw.
+summary: Añade a OpenClaw compatibilidad con los proveedores de modelos Qwen, Qwen Cloud, Model Studio, DashScope, Qwen Token Plan y Bailian Token Plan.
 title: Plugin de Qwen
 x-i18n:
-    generated_at: "2026-07-19T02:17:08Z"
+    generated_at: "2026-07-26T04:48:55Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Añade compatibilidad con los proveedores de modelos Qwen, Qwen Cloud, Model Stu
 ## Distribución
 
 - Paquete: `@openclaw/qwen-provider`
-- Ruta de instalación: npm; ClawHub: `clawhub:@openclaw/qwen-provider`
+- Método de instalación: npm; ClawHub: `clawhub:@openclaw/qwen-provider`
 
 ## Superficie
 

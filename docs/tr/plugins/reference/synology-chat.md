@@ -1,10 +1,10 @@
 ---
 read_when:
-    - synology-chat pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - synology-chat Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw kanalları ve doğrudan mesajları için Synology Chat kanal plugini.
-title: Synology Chat plugin'i
+title: Synology Chat Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:46:47Z"
+    generated_at: "2026-07-26T23:53:45Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Synology Chat plugin'i
+# Synology Chat plugini
 
-OpenClaw kanalları ve doğrudan mesajlar için Synology Chat kanal plugin'i.
+OpenClaw kanalları ve doğrudan mesajlar için Synology Chat kanal plugini.
 
 ## Dağıtım
 

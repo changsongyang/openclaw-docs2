@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin tavily
-summary: Añade herramientas que puede invocar el agente. Añade compatibilidad con proveedores de búsqueda web.
+summary: Añade herramientas que pueden invocar los agentes. Añade compatibilidad con proveedores de búsqueda web.
 title: Plugin de Tavily
 x-i18n:
-    generated_at: "2026-07-16T11:50:21Z"
+    generated_at: "2026-07-26T05:51:27Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin Tavily
 
-Añade herramientas que los agentes pueden invocar. Añade compatibilidad con el proveedor de búsqueda web.
+Añade herramientas que puede invocar el agente. Añade compatibilidad con el proveedor de búsqueda web.
 
 ## Distribución
 

@@ -4,7 +4,7 @@ read_when:
 summary: پشتیبانی از ارائه‌دهنده مدل Cerebras را به OpenClaw اضافه می‌کند.
 title: Plugin سربراس
 x-i18n:
-    generated_at: "2026-07-16T16:59:01Z"
+    generated_at: "2026-07-27T15:29:58Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin Cerebras
+# Plugin ‏Cerebras
 
 پشتیبانی از ارائه‌دهنده مدل Cerebras را به OpenClaw اضافه می‌کند.
 

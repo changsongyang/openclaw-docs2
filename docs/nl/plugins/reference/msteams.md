@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de msteams-plugin
 summary: OpenClaw Microsoft Teams-kanaalplugin voor botgesprekken.
-title: Microsoft Teams-plugin
+title: Microsoft Teams-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:19:43Z"
+    generated_at: "2026-07-27T06:28:16Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

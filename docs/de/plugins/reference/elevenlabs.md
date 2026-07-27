@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder überprüfen das elevenlabs-Plugin
-summary: Fügt Unterstützung für Provider zur Medienanalyse hinzu. Fügt Unterstützung für Provider zur Echtzeittranskription hinzu. Fügt Unterstützung für Provider zur Text-zu-Sprache-Konvertierung hinzu.
+    - Sie installieren, konfigurieren oder überprüfen das elevenlabs-Plugin.
+summary: Fügt Unterstützung für Provider zur Medienanalyse hinzu. Fügt Unterstützung für Provider zur Echtzeittranskription hinzu. Fügt Unterstützung für Provider zur Text-zu-Sprache-Synthese hinzu.
 title: Elevenlabs-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:47:00Z"
+    generated_at: "2026-07-26T18:38:01Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Elevenlabs-Plugin
 
-Fügt Provider-Unterstützung für das Verstehen von Medien hinzu. Fügt Provider-Unterstützung für Echtzeittranskription hinzu. Fügt Provider-Unterstützung für Text-to-Speech hinzu.
+Fügt Provider-Unterstützung für Medienverständnis hinzu. Fügt Provider-Unterstützung für Echtzeittranskription hinzu. Fügt Provider-Unterstützung für Text-to-Speech hinzu.
 
 ## Distribution
 
@@ -27,6 +27,6 @@ Fügt Provider-Unterstützung für das Verstehen von Medien hinzu. Fügt Provide
 
 Verträge: `mediaUnderstandingProviders`, `realtimeTranscriptionProviders`, `speechProviders`
 
-## Verwandte Dokumentation
+## Zugehörige Dokumentation
 
 - [elevenlabs](/de/providers/elevenlabs)

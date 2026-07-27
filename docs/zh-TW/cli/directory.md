@@ -1,11 +1,11 @@
 ---
 read_when:
-    - 你想查詢某個頻道的聯絡人／群組／自己的 ID
+    - 你想查詢某個頻道的聯絡人／群組／自身 ID
     - 你正在開發頻道目錄介接器
 summary: '`openclaw directory`（自身、對等節點、群組）的命令列介面參考資料'
 title: 目錄
 x-i18n:
-    generated_at: "2026-07-19T13:39:15Z"
+    generated_at: "2026-07-26T08:13:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,9 +17,9 @@ x-i18n:
 
 # `openclaw directory`
 
-針對支援目錄查詢的頻道：聯絡人／對等端、群組，以及「我」（自己）。
+查詢支援目錄功能之頻道的目錄：聯絡人／對等端、群組，以及「我」（自己）。
 
-查詢結果可貼入其他命令中使用，尤其是 `openclaw message send --target ...`。
+查詢結果可貼到其他命令中使用，尤其是 `openclaw message send --target ...`。
 
 ## 通用旗標
 
@@ -27,13 +27,13 @@ x-i18n:
 - `--account <id>`：帳號 ID（預設：頻道預設值）
 - `--json`：輸出 JSON
 
-預設（非 JSON）輸出為 `id`（有時也包含 `name`），並以定位字元分隔。
+預設（非 JSON）輸出為 `id`（有時也包含 `name`），以定位字元分隔。
 
 ## 注意事項
 
-- 對許多頻道而言，結果來自設定（允許清單／已設定的群組），而不是即時的提供者目錄。
-- WhatsApp 群組清單是即時取得的。閘道查詢會重複使用其擁有的連線；只有在沒有其他程序擁有該帳號時，獨立命令才會開啟已連結的工作階段，否則會回報無法取得即時群組。
-- 已安裝的頻道外掛可能不支援目錄。在這種情況下，命令會回報不支援的操作；不會嘗試重新安裝或升級外掛以新增支援。
+- 對許多頻道而言，結果來自設定（允許清單／已設定的群組），而非即時的供應商目錄。
+- WhatsApp 群組清單為即時資料。閘道查詢會重複使用其擁有的連線；獨立命令僅會在沒有其他程序擁有該帳號時開啟已連結的工作階段，否則會回報即時群組無法使用。
+- 已安裝的頻道外掛可能不支援目錄功能。在此情況下，命令會回報不支援的操作；不會嘗試重新安裝或升級外掛以新增支援。
 
 ## 搭配 `message send` 使用結果
 
@@ -54,7 +54,7 @@ openclaw message send --channel slack --target user:U012ABCDEF --message "hello"
 | Matrix（外掛）                     | `user:@user:server`、`room:!roomId:server` 或 `#alias:server`                                                              |
 | Microsoft Teams（外掛）            | `user:<id>` 和 `conversation:<id>`                                                                                         |
 | Zalo（外掛）                       | 使用者 ID（Bot API）                                                                                                           |
-| Zalo Personal／`zalouser`（外掛） | 對話串 ID（私訊／群組），來自 `zca`（`me`、`friend list`、`group list`）                                                        |
+| Zalo Personal／`zalouser`（外掛） | 執行緒 ID（私訊／群組），來自 `zca`（`me`、`friend list`、`group list`）                                                        |
 
 ## 自己（「我」）
 

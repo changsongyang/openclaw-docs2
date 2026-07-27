@@ -4,7 +4,7 @@ read_when:
 summary: 精选的 1Password 密钥代理，支持审批策略和 SQLite 审计历史记录。
 title: 1Password 插件
 x-i18n:
-    generated_at: "2026-07-16T11:46:43Z"
+    generated_at: "2026-07-26T05:56:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Onepassword 插件
 
-精选的 1Password 密钥代理，提供审批策略和 SQLite 审计历史记录。
+精选的 1Password 密钥代理，支持审批策略和 SQLite 审计历史记录。
 
 ## 分发
 
 - 软件包：`@openclaw/onepassword`
-- 安装方式：OpenClaw 内置
+- 安装方式：内置于 OpenClaw
 
 ## 接口
 

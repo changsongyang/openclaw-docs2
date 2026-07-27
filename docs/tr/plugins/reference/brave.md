@@ -1,10 +1,10 @@
 ---
 read_when:
-    - brave pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
-summary: Web araması için OpenClaw Brave Search sağlayıcı plugini.
+    - brave pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+summary: Web araması için OpenClaw Brave Search sağlayıcı Plugin'i.
 title: Brave eklentisi
 x-i18n:
-    generated_at: "2026-07-16T17:42:52Z"
+    generated_at: "2026-07-27T00:10:50Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

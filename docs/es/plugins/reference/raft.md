@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin Raft.
+    - Está instalando, configurando o auditando el plugin Raft
 summary: Plugin de canal Raft de OpenClaw para puentes seguros de activación de la CLI.
 title: Plugin de Raft
 x-i18n:
-    generated_at: "2026-07-16T11:49:46Z"
+    generated_at: "2026-07-26T04:46:48Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Plugin Raft
 
-Plugin de canal Raft de OpenClaw para puentes seguros de activación de la CLI.
+Plugin del canal Raft de OpenClaw para puentes seguros de activación de la CLI.
 
 ## Distribución
 
 - Paquete: `@openclaw/raft`
-- Ruta de instalación: npm; ClawHub
+- Vía de instalación: npm; ClawHub
 
 ## Superficie
 

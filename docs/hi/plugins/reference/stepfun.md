@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप stepfun Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: OpenClaw में StepFun और StepFun Plan मॉडल प्रदाता के लिए समर्थन जोड़ता है।
+summary: OpenClaw में StepFun और StepFun Plan मॉडल प्रदाता समर्थन जोड़ता है।
 title: StepFun Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:17:56Z"
+    generated_at: "2026-07-27T19:40:50Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -29,4 +29,4 @@ OpenClaw में StepFun और StepFun Plan मॉडल प्रदात�
 
 ## संबंधित दस्तावेज़
 
-- [StepFun](/hi/providers/stepfun)
+- [stepfun](/hi/providers/stepfun)

@@ -2,9 +2,9 @@
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin ‏kimi هستید
 summary: پشتیبانی از ارائه‌دهندگان مدل Kimi و Kimi Coding را به OpenClaw اضافه می‌کند.
-title: Plugin کیمی
+title: Plugin ‏Kimi
 x-i18n:
-    generated_at: "2026-07-16T16:55:45Z"
+    generated_at: "2026-07-27T15:31:32Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin Kimi
 
-پشتیبانی از ارائه‌دهندهٔ مدل‌های Kimi و Kimi Coding را به OpenClaw اضافه می‌کند.
+پشتیبانی از ارائه‌دهنده مدل‌های Kimi و Kimi Coding را به OpenClaw اضافه می‌کند.
 
 ## توزیع
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## مستندات مرتبط
 
-- [Kimi](/fa/providers/moonshot)
+- [kimi](/fa/providers/moonshot)

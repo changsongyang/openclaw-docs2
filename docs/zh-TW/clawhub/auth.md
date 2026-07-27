@@ -5,7 +5,7 @@ read_when:
     - 偵錯 401 錯誤
 summary: ClawHub 登入、API 權杖、命令列介面登入、權杖儲存與撤銷。
 x-i18n:
-    generated_at: "2026-07-19T13:37:29Z"
+    generated_at: "2026-07-26T07:44:59Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,14 +17,14 @@ x-i18n:
 
 # 驗證
 
-ClawHub 使用 GitHub 進行網頁登入。命令列介面使用透過該已登入帳戶建立的 ClawHub API 權杖。
+ClawHub 使用 GitHub 進行網頁登入。命令列介面使用透過該已登入帳號建立的 ClawHub API 權杖。
 
 ## 網頁登入
 
 使用 GitHub 登入 [clawhub.ai](https://clawhub.ai)。
 
-已刪除、遭封鎖或已停用的帳戶無法完成一般的 ClawHub 登入。
-如果登入後又回到登出狀態，你的帳戶可能並非正常狀態。如果你的帳戶遭封鎖或停用，且你認為這是誤判，請使用
+已刪除、遭封鎖或停用的帳號無法完成一般的 ClawHub 登入。
+如果登入後回到登出狀態，你的帳號可能並非處於良好狀態。如果你的帳號遭到封鎖或停用，且你認為這是誤判，請使用
 [ClawHub 申訴表單](https://appeals.openclaw.ai/)。
 
 ## 命令列介面登入
@@ -40,32 +40,32 @@ clawhub whoami
 
 1. 命令列介面會在 `127.0.0.1` 啟動暫時的回呼伺服器。
 2. 瀏覽器會開啟 ClawHub 登入頁面。
-3. 使用 GitHub 登入後，ClawHub 會建立 API 權杖。
+3. 透過 GitHub 登入後，ClawHub 會建立 API 權杖。
 4. 瀏覽器會重新導向至本機回呼。
 5. 命令列介面會將權杖儲存在你的 ClawHub 設定檔中。
 
-如果瀏覽器因防火牆、VPN 或 Proxy 規則而無法連線至本機回呼，請使用無介面權杖流程。
+如果瀏覽器因防火牆、VPN 或 Proxy 規則而無法連線至本機回呼，請使用無頭權杖流程。
 
-## 無介面登入
+## 無頭登入
 
-在 ClawHub 網頁使用者介面中建立權杖，然後將其傳給命令列介面：
+在 ClawHub 網頁介面中建立權杖，然後將其傳給命令列介面：
 
 ```bash
 clawhub login --token clh_...
 ```
 
-伺服器、CI 工作或僅有終端機的環境請使用此流程。
+伺服器、CI 工作或純終端環境請使用此流程。
 
-若使用遠端 Shell，且可在其他位置開啟瀏覽器，請執行：
+若使用遠端 Shell，並且可以在其他地方開啟瀏覽器，請執行：
 
 ```bash
 clawhub login --device
 ```
 
 命令列介面會顯示一次性代碼，並在你於
-`https://clawhub.ai/cli/device` 授權時等待。
+`https://clawhub.ai/cli/device` 授權時等候。
 
-## 權杖儲存
+## 權杖儲存位置
 
 預設設定路徑：
 
@@ -73,13 +73,13 @@ clawhub login --device
 - Linux/XDG：`$XDG_CONFIG_HOME/clawhub/config.json` 或 `~/.config/clawhub/config.json`
 - Windows：`%APPDATA%\\clawhub\\config.json`
 
-使用以下方式覆寫路徑：
+使用下列方式覆寫路徑：
 
 ```bash
 export CLAWHUB_CONFIG_PATH=/path/to/config.json
 ```
 
-使用以下指令輸出已儲存的權杖，以便設定 CI：
+使用下列指令輸出已儲存的權杖，以進行 CI 設定：
 
 ```bash
 clawhub token
@@ -87,10 +87,10 @@ clawhub token
 
 ## 撤銷
 
-你可以在 ClawHub 網頁使用者介面中撤銷 API 權杖。
+你可以在 ClawHub 網頁介面中撤銷 API 權杖。
 
 已撤銷、無效或遺失的權杖會傳回 `401 Unauthorized`。請使用 `clawhub login` 重新登入，或使用 `clawhub login --token` 提供新的權杖。
 
-已刪除、遭封鎖或已停用的帳戶無法繼續使用現有的 API 權杖。
-如果你的帳戶遭封鎖或停用，且你認為這是誤判，請使用
+已刪除、遭封鎖或停用的帳號無法繼續使用現有的 API 權杖。
+如果你的帳號遭到封鎖或停用，且你認為這是誤判，請使用
 [ClawHub 申訴表單](https://appeals.openclaw.ai/)。

@@ -1,46 +1,46 @@
 ---
 doc-schema-version: 1
 read_when:
-    - QAスタックの全体的な構成を理解する
+    - QA スタックの全体的な連携を理解する
     - qa-lab、qa-channel、またはトランスポートアダプターの拡張
-    - リポジトリベースの QA シナリオの追加
-    - Gateway ダッシュボードを対象とした、よりリアリティの高い QA 自動化の構築
-summary: 'QAスタックの概要: qa-lab、qa-channel、リポジトリに基づくシナリオ、ライブトランスポートレーン、トランスポートアダプター、レポート。'
-title: QA概要
+    - リポジトリに基づく QA シナリオの追加
+    - Gateway ダッシュボードを対象とした、より現実に近い QA 自動化の構築
+summary: QA スタックの概要：qa-lab、qa-channel、リポジトリベースのシナリオ、ライブトランスポートレーン、トランスポートアダプター、レポート。
+title: QA の概要
 x-i18n:
-    generated_at: "2026-07-16T11:41:15Z"
+    generated_at: "2026-07-26T09:39:04Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 8dcb506cedb57289f29938eb55b5f11ceedfaabba88364dce8249116010ce859
+    source_hash: 91c34a50e6197195d57228d92b19caff1785ceaa5d82d7c88a1ec0ed76abd635
     source_path: concepts/qa-e2e-automation.md
     workflow: 16
 ---
 
-プライベート QA スタックは、単体テストでは実現できない、現実的でチャネルに即した方法で OpenClaw を検証します。
+プライベート QA スタックは、単体テストでは不可能な、実際のチャネルを模した現実的な方法で OpenClaw を検証します。
 
 構成要素:
 
 - `extensions/qa-channel`: DM、チャネル、スレッド、リアクション、編集、削除の各サーフェスを備えた合成メッセージチャネル。
-- `extensions/qa-lab`: トランスクリプトの観察、受信メッセージの注入、Markdown レポートのエクスポートを行うためのデバッガー UI、QA バス、シナリオプロファイル、ライブトランスポートアダプター。
-- `qa/`: キックオフタスクとベースライン QA シナリオ用のリポジトリ管理シードアセット。
-- [Mantis](/ja-JP/concepts/mantis): 実際のトランスポート、ブラウザーのスクリーンショット、VM の状態、PR の証拠を必要とするバグ向けの修正前後のライブ検証。
+- `extensions/qa-lab`: トランスクリプトの観察、受信メッセージの注入、Markdown レポートのエクスポートに使用するデバッガー UI、QA バス、シナリオプロファイル、ライブトランスポートアダプター。
+- `qa/`: キックオフタスクとベースライン QA シナリオ用のリポジトリに基づくシードアセット。
+- [Mantis](/ja-JP/concepts/mantis): 実際のトランスポート、ブラウザーのスクリーンショット、VM の状態、PR の証拠を必要とするバグの修正前後のライブ検証。
 
 ## コマンドサーフェス
 
-すべての QA フローは `pnpm openclaw qa <subcommand>` 配下で実行されます。多くのフローには `pnpm qa:*` スクリプトエイリアスがあり、どちらの形式でも動作します。
+すべての QA フローは `pnpm openclaw qa <subcommand>` で実行されます。多くには `pnpm qa:*` のスクリプトエイリアスがあり、どちらの形式でも動作します。
 
-| コマンド                                             | 目的                                                                                                                                                                                                                                                             |
+| コマンド                                            | 目的                                                                                                                                                                                                                                                             |
 | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `qa run`                                            | `--qa-profile` を使用しないバンドル済み QA セルフチェック。`--qa-profile smoke-ci`、`--qa-profile release`、または `--qa-profile all` を使用する、タクソノミーに基づく成熟度プロファイルランナー。                                                                                                  |
-| `qa suite`                                          | QA Gateway レーンに対してリポジトリ管理シナリオを実行します。`--runner multipass` はホストの代わりに使い捨て Linux VM を使用します。                                                                                                                                         |
-| `qa coverage`                                       | YAML シナリオカバレッジ一覧を出力します（マシン出力には `--json`、変更対象の動作に対応するシナリオの検索には `--match <query>`、ランタイムツールのフィクスチャカバレッジには `--tools`）。                                                                                  |
-| `qa parity-report`                                  | モデル軸のパリティゲート用に 2 つの `qa-suite-summary.json` ファイルを比較します。または `--runtime-axis --token-efficiency` を使用して、Codex と OpenClaw のランタイムパリティおよびトークン効率レポートを書き出します。                                                                          |
-| `qa confidence-report`                              | マニフェストに照らして QA 証拠アーティファクトを分類し、不明項目ゼロの信頼度レポートを作成します。                                                                                                                                                                               |
+| `qa run`                                            | `--qa-profile` を使用しないバンドル済み QA セルフチェック。`--qa-profile smoke-ci`、`--qa-profile release`、または `--qa-profile all` を使用する、分類体系に基づく成熟度プロファイルランナー。                                                                                                  |
+| `qa suite`                                          | QA Gateway レーンに対して、リポジトリに基づくシナリオを実行します。`--runner multipass` はホストの代わりに使い捨ての Linux VM を使用します。                                                                                                                                         |
+| `qa coverage`                                       | YAML シナリオカバレッジインベントリを出力します（マシン出力には `--json`、変更した動作に対応するシナリオの検索には `--match <query>`、ランタイムツールのフィクスチャカバレッジには `--tools`）。                                                                                  |
+| `qa parity-report`                                  | モデル軸のパリティゲート向けに 2 つの `qa-suite-summary.json` ファイルを比較します。または、`--runtime-axis --token-efficiency` を使用して Codex と OpenClaw のランタイムパリティおよびトークン効率レポートを書き出します。                                                                          |
+| `qa confidence-report`                              | マニフェストに照らして QA 証拠アーティファクトを分類し、不明項目ゼロの信頼度レポートを生成します。                                                                                                                                                                               |
 | `qa confidence-self-test`                           | 信頼度ゲートがドリフトを検出することを証明する、シード済みネガティブコントロールカナリアを書き出します。                                                                                                                                                                                   |
 | `qa jsonl-replay`                                   | 厳選された JSONL トランスクリプトをランタイムパリティ再生ハーネスで再生します。                                                                                                                                                                                         |
-| `qa character-eval`                                 | 複数のライブモデルに対してキャラクター QA シナリオを実行し、評価済みレポートを作成します。[レポート](#reporting)を参照してください。                                                                                                                                                        |
+| `qa character-eval`                                 | 複数のライブモデルでキャラクター QA シナリオを実行し、評価済みレポートを生成します。[レポート](#reporting)を参照してください。                                                                                                                                                        |
 | `qa manual`                                         | 選択したプロバイダー／モデルレーンに対して単発のプロンプトを実行します。                                                                                                                                                                                                      |
 | `qa ui`                                             | QA デバッガー UI とローカル QA バスを起動します（エイリアス: `pnpm qa:lab:ui`）。                                                                                                                                                                                                |
 | `qa docker-build-image`                             | 事前構築済み QA Docker イメージをビルドします。                                                                                                                                                                                                                                 |
@@ -49,29 +49,29 @@ x-i18n:
 | `qa aimock`                                         | AIMock プロバイダーサーバーのみを起動します。                                                                                                                                                                                                                              |
 | `qa mock-openai`                                    | シナリオ対応の `mock-openai` プロバイダーサーバーのみを起動します。                                                                                                                                                                                                        |
 | `qa credentials doctor` / `add` / `list` / `remove` | 共有 Convex 認証情報プールを管理します。                                                                                                                                                                                                                           |
-| `qa discord`                                        | 実際のプライベート Discord ギルドチャネルに対するライブトランスポートレーン。                                                                                                                                                                                                   |
-| `qa matrix`                                         | 使い捨て Tuwunel ホームサーバーに対する QA Lab Matrix プロファイル。[Matrix スモークレーン](#matrix-smoke-lanes)を参照してください。                                                                                                                                                      |
-| `qa slack`                                          | 実際のプライベート Slack チャネルに対するライブトランスポートレーン。                                                                                                                                                                                                           |
-| `qa telegram`                                       | 実際のプライベート Telegram グループに対するライブトランスポートレーン。                                                                                                                                                                                                          |
+| `qa discord`                                        | 実際の非公開 Discord ギルドチャネルに対するライブトランスポートレーン。                                                                                                                                                                                                   |
+| `qa matrix`                                         | 使い捨ての Tuwunel ホームサーバーに対する QA Lab Matrix プロファイル。[Matrix スモークレーン](#matrix-smoke-lanes)を参照してください。                                                                                                                                                      |
+| `qa slack`                                          | 実際の非公開 Slack チャネルに対するライブトランスポートレーン。                                                                                                                                                                                                           |
+| `qa telegram`                                       | 実際の非公開 Telegram グループに対するライブトランスポートレーン。                                                                                                                                                                                                          |
 | `qa whatsapp`                                       | 実際の WhatsApp Web アカウントに対するライブトランスポートレーン。                                                                                                                                                                                                             |
-| `qa mantis`                                         | ライブトランスポートのバグ向けの修正前後検証ランナー。Discord のステータスリアクション証拠、Crabbox のデスクトップ／ブラウザースモーク、Slack-in-VNC スモークを含みます。[Mantis](/ja-JP/concepts/mantis) および [Mantis Slack デスクトップランブック](/ja-JP/concepts/mantis-slack-desktop-runbook)を参照してください。 |
+| `qa mantis`                                         | ライブトランスポートのバグ向けの修正前後検証ランナー。Discord のステータスリアクションによる証拠、Crabbox のデスクトップ／ブラウザースモーク、Slack-in-VNC スモークを備えています。[Mantis](/ja-JP/concepts/mantis) および [Mantis Slack Desktop ランブック](/ja-JP/concepts/mantis-slack-desktop-runbook)を参照してください。 |
 
-### プロファイルベースの `qa run`
+### プロファイルに基づく `qa run`
 
-プロファイルベースの `qa run` は `taxonomy.yaml` からメンバー構成を読み取り、解決されたシナリオを `qa suite` 経由でディスパッチします。`--surface` と `--category` は、個別のレーンを定義するのではなく、選択したプロファイルをフィルタリングします。生成される `qa-evidence.json` には、選択されたカテゴリの件数と不足しているカバレッジ ID を含むプロファイルスコアカードの概要が含まれます。個々の証拠エントリは引き続き、テスト、カバレッジロール、結果に関する信頼できる唯一の情報源です。タクソノミー機能のカバレッジ ID は別名ではなく、厳密な証明対象です。プライマリシナリオのカバレッジは一致する ID を満たしますが、セカンダリカバレッジは参考情報にとどまります。カバレッジ ID は、小文字の英数字／ダッシュ区切りセグメントによるドット区切りの `namespace.behavior` 形式を使用します。プロファイル、サーフェス、カテゴリの ID には、既存のダッシュ区切りまたはドット区切りのタクソノミー ID を引き続き使用できます。
+プロファイルに基づく `qa run` は `taxonomy.yaml` からメンバーシップを読み取り、解決されたシナリオを `qa suite` 経由でディスパッチします。`--surface` と `--category` は、個別のレーンを定義するのではなく、選択したプロファイルを絞り込みます。生成される `qa-evidence.json` には、選択したカテゴリの件数と不足しているカバレッジ ID を含むプロファイルスコアカードの概要が含まれます。個々の証拠エントリは、テスト、カバレッジの役割、結果に関する信頼できる唯一の情報源のままです。分類体系の機能カバレッジ ID は別名ではなく、厳密な証明対象です。プライマリシナリオのカバレッジは一致する ID を満たしますが、セカンダリカバレッジは参考情報にとどまります。各カバレッジ ID は、`taxonomy.yaml` の短いサーフェス ID を使用した正確な `taxonomy-surface.feature` です。シナリオの独立した `surface` フィールドは、実行／レポート用のラベル（たとえば `channel` や `runtime-tool`）であり、分類体系の所有権を定義するものではありません。
 
-簡略化された証拠では、エントリごとの `execution` が省略され、`evidenceMode: "slim"` が設定されます。`smoke-ci` はデフォルトで簡略形式を使用し、`--evidence-mode full` で完全なエントリに戻せます。
+スリム証拠ではエントリごとの `execution` が省略され、`evidenceMode: "slim"` が設定されます。`smoke-ci` のデフォルトはスリムで、`--evidence-mode full` を指定すると完全なエントリに戻ります。
 
 ```bash
 pnpm openclaw qa run \
   --qa-profile smoke-ci \
-  --category channel-framework.conversation-routing-and-delivery \
+  --category channels.conversation-routing-and-delivery \
   --provider-mode mock-openai \
   --output-dir .artifacts/qa-e2e/smoke-ci-profile-dispatch
 ```
 
-モックモデルプロバイダーと Crabline ローカルプロバイダーサーバーを使用した決定論的なプロファイル証明には `smoke-ci` を使用します。ライブチャネルに対する Stable/LTS 証明には `release` を使用します。明示的な完全タクソノミー証拠の実行にのみ `all` を使用してください。これはすべてのアクティブな成熟度カテゴリを選択し、`QA
-Profile Evidence` GitHub Actions ワークフローから `qa_profile=all` を指定してディスパッチできます。コマンドで OpenClaw のルートプロファイルも必要な場合は、ルートプロファイルを QA コマンドの前に置きます。
+モックモデルプロバイダーと Crabline ローカルプロバイダーサーバーによる決定論的なプロファイル証明には `smoke-ci` を使用します。ライブチャネルに対する Stable/LTS 証明には `release` を使用します。`all` は、完全な分類体系の証拠を明示的に実行する場合にのみ使用してください。これは有効な成熟度カテゴリをすべて選択し、`qa_profile=all` を使用して `QA
+Profile Evidence` GitHub Actions ワークフローからディスパッチできます。コマンドで OpenClaw のルートプロファイルも必要な場合は、ルートプロファイルを QA コマンドの前に指定します。
 
 ```bash
 pnpm openclaw --profile work qa run --qa-profile smoke-ci
@@ -90,7 +90,7 @@ pnpm openclaw --profile work qa run --qa-profile smoke-ci
 pnpm qa:lab:up
 ```
 
-このコマンドは QA サイトをビルドし、Docker ベースの Gateway レーンを起動して、QA Lab ページを公開します。このページでは、オペレーターまたは自動化ループがエージェントに QA ミッションを与え、実際のチャネル動作を観察し、成功したこと、失敗したこと、またはブロックされたままのことを記録できます。
+これにより QA サイトがビルドされ、Docker ベースの Gateway レーンが起動し、QA Lab ページが公開されます。オペレーターまたは自動化ループは、このページでエージェントに QA ミッションを与え、実際のチャネル動作を観察し、成功したこと、失敗したこと、ブロックされたままのことを記録できます。
 
 毎回 Docker イメージを再ビルドせずに QA Lab UI をすばやく反復開発するには、QA Lab バンドルをバインドマウントしてスタックを起動します。
 
@@ -101,12 +101,12 @@ pnpm qa:lab:up:fast
 pnpm qa:lab:watch
 ```
 
-`qa:lab:up:fast` は Docker サービスで事前構築済みイメージを使い続け、`extensions/qa-lab/web/dist` を `qa-lab` コンテナにバインドマウントします。`qa:lab:watch` は変更時にそのバンドルを再ビルドし、QA Lab アセットのハッシュが変わるとブラウザーが自動的に再読み込みされます。
+`qa:lab:up:fast` は Docker サービスで事前構築済みイメージを使用し続け、`extensions/qa-lab/web/dist` を `qa-lab` コンテナにバインドマウントします。`qa:lab:watch` は変更時にそのバンドルを再ビルドし、QA Lab のアセットハッシュが変更されるとブラウザーが自動的に再読み込みされます。
 
-### オブザーバビリティスモーク
+### オブザーバビリティのスモークテスト
 
 <Note>
-オブザーバビリティ QA はソースチェックアウト専用のままです。npm tarball では意図的に QA Lab（および `qa-channel`）を省略しているため、パッケージ Docker リリースレーンでは `qa` コマンドを実行しません。診断計測を変更する場合は、ビルド済みのソースチェックアウトからこれらを実行してください。
+オブザーバビリティ QA はソースチェックアウト専用のままです。npm tarball では意図的に QA Lab（および `qa-channel`）を省略しているため、パッケージ Docker リリースレーンでは `qa` コマンドを実行しません。診断インストルメンテーションを変更する場合は、ビルド済みのソースチェックアウトからこれらを実行してください。
 </Note>
 
 | エイリアス                                   | 実行内容                                                                                                                            |
@@ -114,33 +114,33 @@ pnpm qa:lab:watch
 | `pnpm qa:otel:smoke`                    | ローカルの OpenTelemetry レシーバーに加え、`diagnostics-otel` を有効にした `otel-trace-smoke` シナリオ。                                      |
 | `pnpm qa:otel:collector-smoke`          | 実際の OpenTelemetry Collector Docker コンテナを介した同じレーン。エンドポイントの配線または Collector/OTLP の互換性を変更する場合に使用します。 |
 | `pnpm qa:prometheus:smoke`              | `diagnostics-prometheus` を有効にした `docker-prometheus-smoke` シナリオ。                                                           |
-| `pnpm qa:observability:smoke`           | `qa:otel:smoke` に続いて `qa:prometheus:smoke` を実行。                                                                                      |
-| `pnpm qa:observability:collector-smoke` | `qa:otel:collector-smoke` に続いて `qa:prometheus:smoke` を実行。                                                                            |
+| `pnpm qa:observability:smoke`           | `qa:otel:smoke`、続いて `qa:prometheus:smoke`。                                                                                      |
+| `pnpm qa:observability:collector-smoke` | `qa:otel:collector-smoke`、続いて `qa:prometheus:smoke`。                                                                            |
 
-`qa:otel:smoke` はローカルの OTLP/HTTP レシーバーを起動し、最小限の QA チャネルの
-エージェントターンを実行してから、トレース、メトリクス、ログがエクスポートされることを検証します。
-エクスポートされた protobuf トレーススパンをデコードし、リリースに不可欠な構造を確認します。
+`qa:otel:smoke` はローカルの OTLP/HTTP レシーバーを起動し、最小限の QA-channel
+エージェントターンを実行してから、トレース、メトリクス、ログがエクスポートされたことを検証します。エクスポートされた
+protobuf トレーススパンをデコードし、リリースに不可欠な構造として、
 `openclaw.run`、`openclaw.harness.run`、最新の GenAI セマンティック規約に準拠した
-モデル呼び出しスパン、`openclaw.context.assembled`、および `openclaw.message.delivery`
-がすべて存在する必要があります。このスモークは
+モデル呼び出しスパン、`openclaw.context.assembled`、`openclaw.message.delivery`
+がすべて存在することを確認します。このスモークは
 `OTEL_SEMCONV_STABILITY_OPT_IN=gen_ai_latest_experimental` を強制するため、モデル呼び出し
-スパンは `{gen_ai.operation.name} {gen_ai.request.model}` という名前を使用する必要があります。正常なターンでは、モデル
+スパンは `{gen_ai.operation.name} {gen_ai.request.model}` という名前を使用する必要があります。成功したターンでは、モデル
 呼び出しが `StreamAbandoned` をエクスポートしてはなりません。また、生の診断
-ID と `openclaw.content.*` 属性をトレースに含めてはなりません。このシナリオの
-プロンプトは、固定マーカーを返し、固定された秘密文字列を出力しないようモデルに要求します。
-生の OTLP ペイロードには、そのどちらも、シナリオ ID から派生した QA
-セッションキーも含まれていてはなりません。QA スイートの成果物の隣に
-`otel-smoke-summary.json` を書き込みます。
+ID と `openclaw.content.*` 属性をトレースに含めてはなりません。シナリオの
+プロンプトは、固定マーカーで応答し、固定の秘密文字列を出力しないようモデルに要求します。生の OTLP
+ペイロードには、そのどちらも、シナリオ ID から導出された QA
+セッションキーも含まれていてはなりません。QA スイートのアーティファクトの隣に `otel-smoke-summary.json`
+を書き込みます。
 
-`qa:prometheus:smoke` は、未認証のスクレイプが拒否されることを検証してから、
-認証済みのスクレイプに、プロンプト内容、応答内容、生の診断識別子、認証
+`qa:prometheus:smoke` は認証されていないスクレイプが拒否されることを検証してから、
+認証済みスクレイプに、プロンプト内容、応答内容、生の診断識別子、認証
 トークン、ローカルパスを含まずに、リリースに不可欠なメトリクスファミリーが含まれることを
 確認します。
 
 ### Matrix スモークレーン
 
 モデルプロバイダーの認証情報を必要としない、実際のトランスポートを使用する Matrix スモークレーンでは、
-決定論的なモック OpenAI プロバイダーを使用してリリースプロファイルを実行します。
+決定論的なモック OpenAI プロバイダーを指定してリリースプロファイルを実行します。
 
 ```bash
 pnpm openclaw qa matrix --provider-mode mock-openai --profile release
@@ -154,84 +154,84 @@ OPENCLAW_LIVE_OPENAI_KEY="${OPENAI_API_KEY}" \
   pnpm openclaw qa matrix --provider-mode live-frontier --profile release
 ```
 
-単純な `pnpm openclaw qa matrix` は完全な `all` プロファイルを実行し、
-シナリオが失敗しても続行します。より短いフィードバックループには `--fail-fast` を使用するか、
+引数なしの `pnpm openclaw qa matrix` は完全な `all` プロファイルを実行し、
+シナリオが失敗しても続行します。短いフィードバックループには `--fail-fast` を使用するか、
 `--scenario <id>` を繰り返して個別のシナリオを選択します。明示的なシナリオ ID は
 `--profile` より優先されます。
 
 | プロファイル      | シナリオ | 目的                                                                                                                                  |
 | ------------ | --------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | `all`        | 93        | 完全なカタログ（デフォルト）。                                                                                                              |
-| `release`    | 2         | リリースに不可欠なチャネルのベースラインとライブ許可リストの再読み込み。                                                                             |
-| `fast`       | 12        | スレッド、リアクション、承認、ポリシー、ボットゲーティング、暗号化された返信を重点的に網羅。                                               |
-| `transport`  | 50        | スレッド、DM/ルームのルーティング、自動参加、承認、リアクション、再起動、メンション/許可リストのポリシー、編集、複数アクターの順序付け。         |
-| `media`      | 7         | 画像、生成画像、音声、添付ファイル、未対応メディア、暗号化メディアを網羅。                                              |
-| `e2ee-smoke` | 8         | 暗号化された返信、スレッド、ブートストラップ、復旧、再起動、秘匿化、障害を最小限に網羅。                                       |
+| `release`    | 2         | リリースに不可欠なチャンネルベースラインと allowlist のライブ再読み込み。                                                                             |
+| `fast`       | 12        | スレッド、リアクション、承認、ポリシー、ボットゲーティング、暗号化返信に焦点を当てたカバレッジ。                                               |
+| `transport`  | 50        | スレッド、DM/ルームのルーティング、自動参加、承認、リアクション、再起動、メンション/allowlist ポリシー、編集、複数アクターの順序付け。         |
+| `media`      | 7         | 画像、生成画像、音声、添付ファイル、未対応メディア、暗号化メディアのカバレッジ。                                              |
+| `e2ee-smoke` | 8         | 暗号化された返信、スレッド、ブートストラップ、復旧、再起動、墨消し、失敗に関する最小限のカバレッジ。                                       |
 | `e2ee-deep`  | 18        | 状態喪失、バックアップ、キー復旧、デバイス衛生、SAS/QR/DM 検証。                                                            |
-| `e2ee-cli`   | 9         | ハーネスを介した `openclaw matrix encryption setup`、復旧キー、複数アカウント、Gateway のラウンドトリップ、自己検証コマンド。 |
+| `e2ee-cli`   | 9         | ハーネスを通じた `openclaw matrix encryption setup`、復旧キー、複数アカウント、Gateway ラウンドトリップ、自己検証コマンド。 |
 
-プロファイルの所属とチャネル要件は、`qa/scenarios/channels/` 以下の宣言的な Matrix
-シナリオに定義されています。実行時にチャネルドライバーが選択されます。
+プロファイルの所属とチャンネル要件は、`qa/scenarios/channels/` 配下の宣言的な Matrix
+シナリオとともに定義されています。実行時にチャンネルドライバーが選択されます。
 それらのライブ実装は
-`extensions/qa-lab/src/live-transports/matrix/scenarios/` 以下にあります。
+`extensions/qa-lab/src/live-transports/matrix/scenarios/` 配下にあります。
 
 アダプターは Docker 内に使い捨ての Tuwunel ホームサーバー（デフォルト
 イメージ `ghcr.io/matrix-construct/tuwunel:v1.5.1`、サーバー名 `matrix-qa.test`、
 ポート `28008`）をプロビジョニングし、一時的なドライバー、SUT、オブザーバーユーザーを登録し、必要な
-ルームを準備して、秘匿化したリクエスト/レスポンス境界を記録します。その後、
-そのトランスポートに限定された子 QA Gateway 内で実際の Matrix Plugin を
-実行し（`qa-channel` は使用しません）、環境を破棄します。
+ルームを準備して、秘匿化されたリクエスト/レスポンス境界を記録します。次に、
+そのトランスポートに限定された子 QA Gateway 内で実際の Matrix Plugin を実行し
+（`qa-channel` は使用しません）、環境を破棄します。
 
-一般的なオプション:
+共通オプション：
 
 | フラグ                     | デフォルト           | 目的                                                                              |
 | ------------------------ | ----------------- | ------------------------------------------------------------------------------------ |
-| `--profile <profile>`    | `all`             | 上記のプロファイルから 1 つを選択します。                                                    |
+| `--profile <profile>`    | `all`             | 上記のプロファイルから 1 つ選択します。                                                    |
 | `--scenario <id>`        | -                 | シナリオを 1 つ選択します。繰り返し指定できます。                                                     |
-| `--fail-fast`            | オフ               | 最初にチェックまたはシナリオが失敗した時点で停止します。                                       |
-| `--allow-failures`       | オフ               | シナリオが失敗しても失敗終了コードを返さずに成果物を書き込みます。         |
-| `--provider-mode <mode>` | `live-frontier`   | 決定論的なディスパッチには `mock-openai`、ライブプロバイダーには `live-frontier` を使用します。 |
+| `--fail-fast`            | オフ               | 最初に失敗したチェックまたはシナリオの後で停止します。                                       |
+| `--allow-failures`       | オフ               | シナリオが失敗しても失敗終了コードを返さずにアーティファクトを書き込みます。         |
+| `--provider-mode <mode>` | `live-frontier`   | 決定論的ディスパッチには `mock-openai`、ライブプロバイダーには `live-frontier` を使用します。 |
 | `--model <ref>`          | プロバイダーのデフォルト  | プライマリ `provider/model` 参照を設定します。                                          |
 | `--alt-model <ref>`      | プロバイダーのデフォルト  | モデルを切り替えるシナリオで使用する代替モデルを設定します。                        |
-| `--fast`                 | オフ               | サポートされている場合にプロバイダーの高速モードを有効にします。                                           |
+| `--fast`                 | オフ               | 対応している場合、プロバイダーの高速モードを有効にします。                                           |
 | `--output-dir <path>`    | 自動生成         | レポートディレクトリを選択します。相対パスは `--repo-root` を基準に解決されます。           |
 | `--repo-root <path>`     | 現在のディレクトリ | 中立的な作業ディレクトリから実行します。                                                |
-| `--sut-account <id>`     | `sut`             | 子 Gateway の設定で Matrix アカウント ID を選択します。                            |
+| `--sut-account <id>`     | `sut`             | 子 Gateway 設定内の Matrix アカウント ID を選択します。                            |
 
-Matrix QA は共有 Matrix 認証情報をリースしません。アダプターがローカルで
-使い捨てユーザーを作成するため、`--credential-source` または
-`--credential-role` は受け付けません。ホームサーバーのイメージは
-`OPENCLAW_QA_MATRIX_TUWUNEL_IMAGE` で上書きできます。応答なしの否定検証は
+Matrix QA は共有 Matrix 認証情報をリースしません。アダプターが
+使い捨てユーザーをローカルで作成するため、`--credential-source` または
+`--credential-role` は受け付けません。ホームサーバーイメージは
+`OPENCLAW_QA_MATRIX_TUWUNEL_IMAGE` で上書きし、否定的な無応答アサーションは
 `OPENCLAW_QA_MATRIX_NO_REPLY_WINDOW_MS`（デフォルト `8000`、アクティブな
-シナリオのタイムアウト以下に制限）で調整します。Matrix の暗号化ネイティブハンドルはクリーンアップ後も
-存続する可能性があるため、単発コマンドは通常、成果物をフラッシュした後にクリーン終了を強制します。
-代わりにコマンドが戻る必要のある直接テストハーネスの場合に限り、
+シナリオのタイムアウト以内に制限）で調整します。Matrix 暗号化のネイティブハンドルはクリーンアップ後も存続する可能性があるため、
+単発コマンドは通常、アーティファクトのフラッシュ後にクリーンな終了を強制します。代わりに
+コマンドが戻る必要がある直接テストハーネスでのみ、
 `OPENCLAW_QA_MATRIX_DISABLE_FORCE_EXIT=1` を設定します。
 
-各実行では、選択した出力ディレクトリ以下に通常の QA Lab 成果物である
-`qa-suite-report.md`、`qa-suite-summary.json`、`qa-evidence.json`、
-および秘匿化された `matrix-harness-*/matrix-qa-harness.json` マニフェストを書き込みます。クリーンアップに
-失敗した場合は、表示された `docker compose ... down --remove-orphans` 復旧
-コマンドを実行します。低速なランナーでは応答なしの待機時間を延長します。高速な CI では、短い
-待機時間により否定検証を短縮できます。
+各実行では、選択した出力ディレクトリに通常の QA Lab アーティファクト、
+`qa-suite-report.md`、`qa-suite-summary.json`、
+`qa-evidence.json` が書き込まれます。クリーンアップが失敗した場合は、出力された
+`docker compose ... down --remove-orphans` 復旧コマンドを実行します。低速なランナーでは
+無応答ウィンドウを増やします。高速な CI では、ウィンドウを小さくすると否定的
+アサーションを短縮できます。
 
-これらのシナリオは、ユニットテストではエンドツーエンドに証明できないトランスポート動作を
-網羅します。メンションゲーティング、ボット許可ポリシー、許可リスト、トップレベルおよびスレッド内の
+シナリオは、単体テストではエンドツーエンドで証明できないトランスポート動作を対象とします。
+メンションゲーティング、ボット許可ポリシー、allowlist、トップレベルおよびスレッド内の
 返信、DM ルーティング、リアクション処理、受信編集の抑制、再起動時のリプレイ重複排除、
 ホームサーバー中断からの復旧、承認メタデータの配信、メディア処理、Matrix E2EE の
-ブートストラップ/復旧/検証フローが対象です。E2EE CLI プロファイルは、
-Gateway の返信を確認する前に、同じ使い捨てホームサーバーを介して `openclaw matrix encryption setup`
-および検証コマンドも実行します。
+ブートストラップ/復旧/検証フローが含まれます。E2EE CLI プロファイルは、
+Gateway の返信を確認する前に、同じ使い捨てホームサーバーを通じて `openclaw matrix encryption setup` と
+検証コマンドも実行します。
 
 `matrix-room-block-streaming` と `subagent-thread-spawn` は、
-明示的な `--scenario` の選択によって引き続き利用できますが、デフォルトの `all` プロファイルには
-含まれません。
+`--scenario` で明示的に選択すれば引き続き利用できますが、
+デフォルトの `all` プロファイルには含まれません。
 
 CI は
 `.github/workflows/qa-live-transports-convex.yml` で同じコマンドサーフェスを使用します。スケジュール実行とリリース実行では、
 リリースシナリオを実行します。手動の `matrix_profile=all` ディスパッチでは、
 `transport`、`media`、`e2ee-smoke`、`e2ee-deep`、`e2ee-cli` の各プロファイルを
-並列展開します。絞り込みディスパッチでは、1 つのジョブで `fast`、`release`、または `transport` を選択します。
+並列展開します。対象を絞ったディスパッチでは、1 つのジョブで `fast`、`release`、`transport` のいずれかを選択します。
 
 ### Discord Mantis シナリオ
 
@@ -239,14 +239,15 @@ Discord には、バグ再現用の Mantis 専用オプトインシナリオも�
 リアクションのタイムラインには `--scenario discord-status-reactions-tool-only` を使用し、
 実際の Discord スレッドを作成して `message.thread-reply` が
 `filePath` 添付ファイルを保持することを検証するには `--scenario discord-thread-reply-filepath-attachment`
-を使用します。これらのシナリオは、広範なスモーク網羅ではなく修正前後の再現プローブであるため、
-デフォルトのライブ Discord レーンには含まれません。スレッド添付ファイル用の Mantis ワークフローでは、
-QA 環境に `MANTIS_DISCORD_VIEWER_CHROME_PROFILE_DIR` または
-`MANTIS_DISCORD_VIEWER_CHROME_PROFILE_TGZ_B64` が設定されている場合、ログイン済みの
-Discord Web による証跡動画を追加することもできます。このビューワープロファイルは視覚的な記録専用です。
-合否判定は引き続き Discord REST オラクルによって行われます。
+を使用します。これらのシナリオは広範なスモークカバレッジではなく変更前後の再現プローブであるため、デフォルトの
+ライブ Discord レーンには含まれません。スレッド添付ファイルの Mantis ワークフローでは、
+QA 環境に
+`MANTIS_DISCORD_VIEWER_CHROME_PROFILE_DIR` または
+`MANTIS_DISCORD_VIEWER_CHROME_PROFILE_TGZ_B64` が設定されている場合、ログイン済みの Discord Web 証跡動画を追加することもできます。
+このビューワープロファイルは視覚的なキャプチャ専用です。合否判定は
+引き続き Discord REST オラクルに基づきます。
 
-実際のトランスポートを使用するその他のスモークレーン:
+その他の実際のトランスポートを使用するスモークレーン：
 
 ```bash
 pnpm openclaw qa discord
@@ -256,12 +257,13 @@ pnpm openclaw qa whatsapp
 ```
 
 これらは、2 つのボットまたはアカウント（ドライバー +
-SUT）を持つ既存の実チャネルを対象とします。これら 4 つのトランスポートに必要な環境変数、
-シナリオ一覧、出力成果物、Convex 認証情報プールについては、
-以下の [Discord、Slack、Telegram、WhatsApp の QA リファレンス](#discord-slack-telegram-and-whatsapp-qa-reference)
+SUT）が存在する既存の実チャンネルを対象とします。これら 4 つのトランスポートに必要な環境変数、
+シナリオ一覧、出力アーティファクト、Convex
+認証情報プールについては、以下の
+[Discord、Slack、Telegram、WhatsApp の QA リファレンス](#discord-slack-telegram-and-whatsapp-qa-reference)
 で説明しています。
 
-### Mantis Slack デスクトップおよび視覚タスクランナー
+### Mantis Slack デスクトップおよびビジュアルタスクランナー
 
 VNC レスキューを備えた完全な Slack デスクトップ VM 実行では、次を実行します。
 
@@ -276,23 +278,24 @@ pnpm openclaw qa mantis slack-desktop-smoke \
 レーンを実行し、VNC ブラウザで Slack Web を開き、デスクトップをキャプチャして、
 `slack-qa/`、`slack-desktop-smoke.png`、および
 `slack-desktop-smoke.mp4`（動画キャプチャが利用可能な場合）を
-Mantis アーティファクトディレクトリへコピーします。Crabbox のデスクトップ/ブラウザリースでは、
-キャプチャツールとブラウザ/ネイティブビルドのヘルパーパッケージがあらかじめ提供されるため、このシナリオで
-フォールバックをインストールする必要があるのは古いリースの場合だけです。Mantis は合計および
-フェーズごとの所要時間を `mantis-slack-desktop-smoke-report.md` に記録するため、実行が遅い場合に
-リースのウォームアップ、認証情報の取得、リモートセットアップ、アーティファクトのコピーの
-どこに時間がかかったかを確認できます。VNC 経由で Slack Web に手動ログインした後は
-`--lease-id <cbx_...>` を再利用してください。再利用したリースでは Crabbox の pnpm ストアキャッシュも
-ウォーム状態に保たれます。デフォルトの `--hydrate-mode source` はソースチェックアウトから検証し、
-VM 内でインストール/ビルドを実行します。再利用するリモートワークスペースに
-`node_modules` とビルド済みの `dist/` がすでにある場合に限り、
-`--hydrate-mode prehydrated` を使用してください。このモードではコストの高いインストール/ビルド手順を省略し、
-ワークスペースの準備が整っていない場合は安全側に失敗します。`--gateway-setup` を指定すると、Mantis は
-永続的な OpenClaw Slack Gateway を VM 内のポート `38973` で実行したままにします。指定しない場合、
-コマンドは通常の bot 間 Slack QA レーンを実行し、アーティファクトの
-キャプチャ後に終了します。
+Mantis アーティファクトディレクトリへコピーします。Crabbox のデスクトップ/ブラウザリースには、
+キャプチャツールとブラウザ/ネイティブビルド用ヘルパーパッケージがあらかじめ用意されているため、
+このシナリオでフォールバックをインストールするのは古いリースの場合だけです。Mantis は
+`mantis-slack-desktop-smoke-report.md` に合計およびフェーズごとの所要時間を報告するため、
+実行が遅い場合、リースのウォームアップ、認証情報の取得、リモートセットアップ、
+アーティファクトのコピーのどこに時間がかかったかを確認できます。VNC 経由で Slack Web に
+手動ログインした後は、`--lease-id <cbx_...>` を再利用してください。再利用したリースでは、
+Crabbox の pnpm ストアキャッシュもウォーム状態に保たれます。デフォルトの
+`--hydrate-mode source` はソースチェックアウトから検証し、VM 内でインストール/ビルドを
+実行します。再利用するリモートワークスペースに `node_modules` とビルド済みの
+`dist/` がすでに存在する場合にのみ、`--hydrate-mode prehydrated` を使用してください。
+このモードではコストの高いインストール/ビルド手順を省略し、ワークスペースの準備が
+できていない場合はフェイルクローズします。`--gateway-setup` を指定すると、Mantis は
+ポート `38973` で永続的な OpenClaw Slack Gateway を VM 内に残して実行します。
+指定しない場合、このコマンドは通常のボット間 Slack QA レーンを実行し、
+アーティファクトのキャプチャ後に終了します。
 
-デスクトップ証拠を伴うネイティブ Slack 承認 UI を実証するには、Mantis の
+デスクトップの証拠を使用してネイティブ Slack 承認 UI を実証するには、Mantis の
 承認チェックポイントモードを実行します。
 
 ```bash
@@ -302,30 +305,28 @@ pnpm openclaw qa mantis slack-desktop-smoke \
   --credential-role maintainer
 ```
 
-このモードは `--gateway-setup` と同時には使用できません。Slack の
-承認シナリオを実行し、承認以外のシナリオ ID を拒否し、保留中および
-解決済みの各承認状態で待機し、観測された Slack API メッセージを
-`approval-checkpoints/<scenario>-pending.png` と
-`approval-checkpoints/<scenario>-resolved.png` にレンダリングした後、チェックポイント、
-メッセージ証拠、確認応答、またはレンダリングされたスクリーンショットのいずれかが欠落しているか
-空の場合は失敗します。コールド状態の CI リースでは
-`slack-desktop-smoke.png` に Slack のサインイン画面が表示されることがありますが、承認チェックポイント画像がこのレーンの視覚的な
-証拠になります。
+このモードは `--gateway-setup` と同時には使用できません。Slack の承認シナリオを
+実行し、承認以外のシナリオ ID を拒否し、保留中および解決済みの各承認状態で待機し、
+観測された Slack API メッセージを `approval-checkpoints/<scenario>-pending.png` と
+`approval-checkpoints/<scenario>-resolved.png` にレンダリングします。その後、チェックポイント、
+メッセージの証拠、確認応答、またはレンダリング済みスクリーンショットのいずれかが
+欠落しているか空の場合は失敗します。コールド状態の CI リースでは、
+`slack-desktop-smoke.png` に Slack のサインイン画面が表示される場合があります。このレーンの
+視覚的証拠には、承認チェックポイント画像を使用します。
 
 デフォルトのチェックポイント実行では、2 つの標準 Slack 承認シナリオが維持されます。
 オプトインの Codex 承認ルートのいずれかをキャプチャするには、
 `--scenario slack-codex-approval-exec-native` または
 `--scenario slack-codex-approval-plugin-native` で明示的に選択します。Mantis は両方を受け付け、
-同じ保留中/解決済みのスクリーンショットペアを出力します。ランナーは、選択された各 Codex ルートについてチェックポイントと
-リモートコマンドの期限を延長し、承認全体、エージェントの完了、および解決済みへの更新シーケンスを
-完了できるようにします。
+同じ保留中/解決済みスクリーンショットのペアを出力します。ランナーは、選択された各
+Codex ルートについてチェックポイントとリモートコマンドの期限を延長し、
+承認、エージェントの完了、解決済み更新の一連の処理全体が完了できるようにします。
 
-オペレーター用チェックリスト、GitHub ワークフローのディスパッチコマンド、証拠コメントの
-契約、ハイドレートモードの判断表、所要時間の解釈、および障害
-処理手順については、
+オペレーターチェックリスト、GitHub ワークフローディスパッチコマンド、証拠コメントの
+契約、ハイドレートモードの判断表、所要時間の解釈、および障害処理手順については、
 [Mantis Slack デスクトップランブック](/ja-JP/concepts/mantis-slack-desktop-runbook)を参照してください。
 
-エージェント/CV 形式のデスクトップタスクを実行するには、次を実行します。
+エージェント/CV 形式のデスクトップタスクを実行するには、次を使用します。
 
 ```bash
 pnpm openclaw qa mantis visual-task \
@@ -335,23 +336,25 @@ pnpm openclaw qa mantis visual-task \
 ```
 
 `visual-task` は Crabbox のデスクトップ/ブラウザマシンをリースまたは再利用し、
-`crabbox record --while` を起動し、入れ子になった
-`visual-driver` を介して表示中のブラウザを操作し、`visual-task.png` をキャプチャし、`--vision-mode image-describe` が
-選択されている場合はスクリーンショットに対して `openclaw infer image
+`crabbox record --while` を起動し、ネストされた `visual-driver` を介して
+表示中のブラウザを操作し、`visual-task.png` をキャプチャします。
+`--vision-mode image-describe` が選択されている場合は、スクリーンショットに対して
+`openclaw infer image
 describe` を実行し、`visual-task.mp4`、`mantis-visual-task-summary.json`、
 `mantis-visual-task-driver-result.json`、および
-`mantis-visual-task-report.md` を書き込みます。`--expect-text` が設定されている場合、ビジョン
-プロンプトは構造化 JSON の判定（`visible`、`evidence`、`reason`）を要求し、
-モデルが、期待されるテキストを引用する証拠とともに `visible: true` を報告した場合にのみ
-成功します。対象テキストを単に引用しただけの `visible: false` 応答では、
-引き続きアサーションに失敗します。画像理解プロバイダーを呼び出さずに
-デスクトップ、ブラウザ、スクリーンショット、および動画の配管を実証するモデルなしのスモークには、
-`--vision-mode metadata` を使用します。録画は
-`visual-task` の必須アーティファクトです。Crabbox が空でない
-`visual-task.mp4` を録画しなかった場合、視覚ドライバーが成功していてもタスクは失敗します。
-失敗時、タスクがすでに成功しており `--keep-lease` が設定されていなかった場合を除き、Mantis は VNC 用にリースを維持します。
+`mantis-visual-task-report.md` を書き込みます。`--expect-text` が設定されている場合、
+ビジョンプロンプトは構造化 JSON 判定（`visible`、`evidence`、
+`reason`）を要求し、期待されるテキストを引用する証拠とともにモデルが
+`visible: true` を報告した場合にのみ成功します。対象テキストを単に引用するだけの
+`visible: false` 応答では、引き続きアサーションに失敗します。
+画像理解プロバイダーを呼び出さずに、デスクトップ、ブラウザ、スクリーンショット、
+動画の一連の処理を実証するモデルなしのスモークテストには、
+`--vision-mode metadata` を使用します。録画は `visual-task` の必須アーティファクトです。
+Crabbox が空でない `visual-task.mp4` を録画しなかった場合、視覚ドライバーが
+成功していてもタスクは失敗します。失敗時、タスクがすでに成功しており
+`--keep-lease` が設定されていない場合を除き、Mantis は VNC 用にリースを維持します。
 
-### 認証情報プールのヘルスチェック
+### 認証情報プールの健全性チェック
 
 プールされたライブ認証情報を使用する前に、次を実行します。
 
@@ -359,74 +362,75 @@ describe` を実行し、`visual-task.mp4`、`mantis-visual-task-summary.json`�
 pnpm openclaw qa credentials doctor
 ```
 
-doctor は Convex ブローカーの環境変数（`OPENCLAW_QA_CONVEX_SITE_URL`、
+doctor は Convex ブローカー環境変数（`OPENCLAW_QA_CONVEX_SITE_URL`、
 `OPENCLAW_QA_CONVEX_ENDPOINT_PREFIX`）を確認し、エンドポイント設定を検証し、
-`OPENCLAW_QA_CONVEX_SECRET_CI` と
-`OPENCLAW_QA_CONVEX_SECRET_MAINTAINER` については設定済み/未設定の状態のみを報告し、
-メンテナーシークレットが存在する場合は admin/list への到達可能性を検証します。
+`OPENCLAW_QA_CONVEX_SECRET_CI` と `OPENCLAW_QA_CONVEX_SECRET_MAINTAINER` については
+設定済み/未設定の状態だけを報告します。また、メンテナーシークレットが存在する場合は、
+管理および一覧取得が可能かを検証します。
 
 ## 正規シナリオカバレッジ
 
-ルートの `taxonomy.yaml` はセマンティックカバレッジ ID を定義します。`qa/scenarios/` 配下のシナリオ YAML ファイルは
-各シナリオをそれらの ID にマッピングし、実行
-メタデータを所有します。`channel` が唯一のチャンネル要件であり、`profiles` は
-名前付き実行への所属を宣言します。チャンネルドライバーは、実行レベルで交換可能な
-実装上の選択肢です。TypeScript
-ランナーはそのカタログを照会し、並行するシナリオまたはカバレッジの
-インベントリを維持しません。
+ルートの `taxonomy.yaml` は意味的カバレッジ ID を定義します。
+`qa/scenarios/` 配下のシナリオ YAML ファイルは、各シナリオをそれらの ID に
+マッピングし、実行メタデータを所有します。`channel` が唯一のチャネル要件であり、
+`profiles` は名前付き実行への所属を宣言します。チャネルドライバーは、
+実行レベルで交換可能な実装上の選択肢です。TypeScript ランナーはそのカタログを
+クエリし、並行するシナリオまたはカバレッジのインベントリを維持しません。
 
-静的な `qa coverage` の出力は、タクソノミーからシナリオへのマッピングを報告します。実際の
-証明は `qa-evidence.json` から得られます。ここには、実行されたシナリオ、
-カバレッジ ID、チャンネル、実際に使用されたドライバー、および結果が記録されます。チャンネルとドライバーは
-レポートのディメンションであり、追加のカバレッジ ID 語彙やシナリオ
-適格性の軸ではありません。
+静的な `qa coverage` 出力は、分類体系からシナリオへのマッピングを報告します。
+実際の証明は `qa-evidence.json` から得られます。ここには、実行されたシナリオ、
+カバレッジ ID、チャネル、実際に使用されたドライバー、および結果が記録されます。
+チャネルとドライバーは報告のディメンションであり、追加のカバレッジ ID 語彙や
+シナリオ適格性の軸ではありません。
 
-QA パスに Docker を持ち込まず、使い捨て Linux VM レーンを実行するには、次を実行します。
+QA パスに Docker を持ち込まず、使い捨ての Linux VM レーンを実行するには、
+次を使用します。
 
 ```bash
 pnpm openclaw qa suite --runner multipass --scenario channel-chat-baseline
 ```
 
-これにより新しい Multipass ゲストが起動し、依存関係がインストールされ、ゲスト内で OpenClaw が
-ビルドされ、`qa suite` が実行された後、通常の QA レポートと
-サマリーがホスト上の `.artifacts/qa-e2e/...` にコピーされます。ホスト上の
+これは新しい Multipass ゲストを起動し、依存関係をインストールし、ゲスト内で
+OpenClaw をビルドし、`qa suite` を実行してから、通常の QA レポートと
+サマリーをホスト上の `.artifacts/qa-e2e/...` にコピーします。ホスト上の
 `qa suite` と同じシナリオ選択動作を再利用します。
 
-ホストおよび Multipass のスイート実行では、デフォルトで分離された Gateway ワーカーを使用して、
-選択された複数のシナリオを並列実行します。`qa-channel` のデフォルトは
-同時実行数 4 で、選択されたシナリオ数が上限です。ワーカー数を調整するには `--concurrency
-<count>` を、
-逐次実行するには `--concurrency 1` を使用します。
-パーソナルアシスタントのベンチマークパック（10
-シナリオ）を実行するには、`--pack personal-agent` を使用します。パックセレクターは、繰り返し指定する `--scenario` フラグに対して加算的に動作します。
-明示的なシナリオが先に実行され、その後、重複を除去したうえでパックの順序に従って
-パックのシナリオが実行されます。カスタム QA ランナーが OpenTelemetry コレクターのセットアップをすでに提供している場合に、
-`otel-trace-smoke` と `docker-prometheus-smoke` のシナリオをまとめて選択するには
+ホストおよび Multipass のスイート実行では、デフォルトで、分離された Gateway
+ワーカーを使用して複数の選択済みシナリオを並列実行します。`qa-channel` の
+デフォルトの並行数は 4 で、選択されたシナリオ数を上限とします。ワーカー数を調整するには
+`--concurrency
+<count>`、直列実行には `--concurrency 1` を使用します。
+パーソナルアシスタントのベンチマークパック（10 シナリオ）を実行するには、
+`--pack personal-agent` を使用します。パックセレクターは、繰り返し指定される
+`--scenario` フラグに対して加算的に動作します。明示的なシナリオを先に実行し、
+その後、パック内の順序でパックシナリオを実行し、重複は削除されます。カスタム QA
+ランナーが OpenTelemetry コレクターのセットアップをすでに提供している場合に、
+`otel-trace-smoke` と `docker-prometheus-smoke` のシナリオをまとめて選択するには、
 `--pack observability` を使用します。
 
-いずれかのシナリオが失敗すると、コマンドはゼロ以外で終了します。終了コードを失敗にせずに
+いずれかのシナリオが失敗すると、コマンドは非ゼロで終了します。終了コードを失敗にせず
 アーティファクトを取得する場合は、`--allow-failures` を使用します。
 
-ライブ実行では、ゲストで実用可能なサポート対象の QA 認証入力が転送されます。
-環境変数ベースのプロバイダーキー、QA ライブプロバイダー設定パス、および
-存在する場合は `CODEX_HOME` です。ゲストがマウントされたワークスペース経由で書き戻せるように、
-`--output-dir` はリポジトリルート配下に置いてください。
+ライブ実行では、ゲストで実用的な、サポート対象の QA 認証入力を転送します。
+これには、環境変数ベースのプロバイダーキー、QA ライブプロバイダー設定パス、および
+存在する場合の `CODEX_HOME` が含まれます。ゲストがマウントされたワークスペースを
+介して書き戻せるよう、`--output-dir` はリポジトリルート配下に置いてください。
 
 ## Discord、Slack、Telegram、WhatsApp の QA リファレンス
 
 Matrix アダプターは、前述の使い捨て Docker ベースレーンを使用します。
-Discord、Slack、Telegram、WhatsApp は既存の実際の
-トランスポートに対して実行されるため、それらのリファレンスをここに記載します。
+Discord、Slack、Telegram、WhatsApp は既存の実トランスポートに対して実行されるため、
+それらのリファレンスをここに記載します。
 
 ### 共通 CLI フラグ
 
 これらのレーンは
-`extensions/qa-lab/src/live-transports/shared/live-transport-cli.ts` を通じて登録され、
+`extensions/qa-lab/src/live-transports/shared/live-transport-cli.ts` を介して登録され、
 同じフラグを受け付けます。
 
 | フラグ                                  | デフォルト                                            | 説明                                                                                                                                     |
 | ------------------------------------- | -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--scenario <id>`                     | -                                                  | このシナリオのみを実行します。繰り返し指定できます。                                                                                                             |
+| `--scenario <id>`                     | -                                                  | このシナリオだけを実行します。繰り返し指定できます。                                                                                                             |
 | `--output-dir <path>`                 | `<repo>/.artifacts/qa-e2e/<transport>-<timestamp>` | レポート、サマリー、証拠、トランスポート固有のアーティファクト、および出力ログの書き込み先です。相対パスは `--repo-root` を基準に解決されます。 |
 | `--repo-root <path>`                  | `process.cwd()`                                    | 中立的な cwd から呼び出す場合のリポジトリルートです。                                                                                               |
 | `--sut-account <id>`                  | `sut`                                              | QA Gateway 設定内の一時アカウント ID です。                                                                                              |
@@ -434,13 +438,13 @@ Discord、Slack、Telegram、WhatsApp は既存の実際の
 | `--model <ref>` / `--alt-model <ref>` | プロバイダーのデフォルト                                   | プライマリ/代替モデル参照です。                                                                                                                   |
 | `--fast`                              | オフ                                                | サポートされている場合のプロバイダー高速モードです。                                                                                                             |
 | `--credential-source <env\|convex>`   | `env`                                              | [Convex 認証情報プール](#convex-credential-pool)を参照してください。                                                                                          |
-| `--credential-role <maintainer\|ci>`  | CI では `ci`、それ以外では `maintainer`                 | `--credential-source convex` の場合に使用されるロールです。                                                                                                    |
-| `--allow-failures`                    | オフ                                                | シナリオが失敗した場合でも失敗終了コードを返さずにアーティファクトを書き込みます。                                                                      |
+| `--credential-role <maintainer\|ci>`  | CI では `ci`、それ以外では `maintainer`                 | `--credential-source convex` の場合に使用するロールです。                                                                                                    |
+| `--allow-failures`                    | オフ                                                | シナリオが失敗しても失敗終了コードを返さずにアーティファクトを書き込みます。                                                                      |
 
-各レーンは、いずれかのシナリオが失敗するとゼロ以外で終了します。`--allow-failures` は、
-失敗終了コードを設定せずにアーティファクトを書き込みます。Telegram は、利用可能なシナリオ ID を表示して終了する
-`--list-scenarios` も受け付けますが、他のレーンでは
-このフラグを公開していません。
+各レーンは、いずれかのシナリオが失敗すると非ゼロで終了します。
+`--allow-failures` は、失敗終了コードを設定せずにアーティファクトを書き込みます。
+Telegram は、利用可能なシナリオ ID を出力して終了するための
+`--list-scenarios` も受け付けます。他のレーンではこのフラグは公開されていません。
 
 ### Telegram QA
 
@@ -448,20 +452,21 @@ Discord、Slack、Telegram、WhatsApp は既存の実際の
 pnpm openclaw qa telegram
 ```
 
-2 つの異なる bot（ドライバー +
-SUT）を持つ 1 つの実際の非公開 Telegram グループを対象にします。SUT bot には Telegram ユーザー名が必要です。bot 間の観測は、
-両方の bot で `@BotFather` の **Bot-to-Bot Communication Mode** が有効になっている場合に
-最も適切に動作します。
+2 つの異なるボット（ドライバー + SUT）が参加する、実在する 1 つの非公開 Telegram
+グループを対象とします。SUT ボットには Telegram ユーザー名が必要です。両方のボットで
+`@BotFather` の **Bot-to-Bot Communication Mode** が有効になっていると、
+ボット間の観測が最も安定します。
 
-`--credential-source env` の場合に必要な環境変数:
+`--credential-source env` の場合に必要な環境変数：
 
-- `OPENCLAW_QA_TELEGRAM_GROUP_ID` - 数値のチャット ID（文字列）。
+- `OPENCLAW_QA_TELEGRAM_GROUP_ID` - 数値形式のチャット ID（文字列）。
 - `OPENCLAW_QA_TELEGRAM_DRIVER_BOT_TOKEN`
 - `OPENCLAW_QA_TELEGRAM_SUT_BOT_TOKEN`
 
-`release` プロファイルは、メンテナンス対象の Telegram YAML シナリオを選択します。`all` は、
-オプトインのセッション、使用量、返信チェーン、およびストリーミングのストレスチェックを追加します。明示的な
-`--scenario` の値はプロファイルを上書きします。
+`release` プロファイルは、メンテナンス対象の Telegram YAML シナリオを
+選択します。`all` は、オプトインのセッション、使用量、返信チェーン、
+ストリーミングのストレスチェックを追加します。明示的な `--scenario` の値は、
+プロファイルより優先されます。
 
 - `channel-canary`
 - `channel-mention-gating`
@@ -481,28 +486,28 @@ SUT）を持つ 1 つの実際の非公開 Telegram グループを対象にし�
 - `telegram-long-final-three-chunks`
 
 `release` プロファイルは、canary、メンションゲーティング、ネイティブコマンドの
-応答、コマンドの宛先指定、bot 間のグループ応答を常に対象とします。`mock-openai`
-には、決定論的な長い最終プレビューチェックも含まれます。
+返信、コマンドの宛先指定、bot 間のグループ返信を常に対象とします。`mock-openai`
+には、決定論的な長い最終プレビューのチェックも含まれます。
 `telegram-current-session-status-tool` と
 `telegram-tool-only-usage-footer` は引き続きオプトインです。前者が安定するのは、
-canary の直後にスレッド化した場合のみです。後者は、ツールのみの応答に付く
+canary の直後にスレッド化した場合のみです。後者は、ツールのみの返信に付く
 `/usage` フッターを実際の Telegram で検証します。現在の
-デフォルト／オプションの区分をリグレッション参照付きで表示するには、`pnpm openclaw qa telegram
+デフォルトとオプションの区分を回帰参照付きで出力するには、`pnpm openclaw qa telegram
 --list-scenarios --provider-mode mock-openai` を使用します。すべての
-Telegram ライブアダプターシナリオでは `--profile all` を使用します。
+Telegram ライブアダプターシナリオでは、`--profile all` を使用します。
 
-出力アーティファクト：
+出力アーティファクト:
 
 - `qa-suite-report.md`
 - `qa-suite-summary.json`
 - `qa-evidence.json` - ライブトランスポートチェックのエビデンスエントリ。
-  プロファイル、カバレッジ、プロバイダー、チャンネル、アーティファクト、結果、RTT
-  フィールドが含まれます。
+  プロファイル、カバレッジ、プロバイダー、チャネル、アーティファクト、結果、RTT
+  フィールドを含みます。
 
-パッケージの Telegram 実行では、同じ Telegram 認証情報コントラクトを使用します。RTT の反復
-測定は、通常のパッケージ Telegram ライブレーンの一部です。RTT
-分布は、選択された RTT チェックの `result.timing` の下にある `qa-evidence.json` に
-組み込まれます。
+パッケージの Telegram 実行では、同じ Telegram 認証情報コントラクトを使用します。RTT の
+反復測定は、通常のパッケージ Telegram ライブレーンの一部です。選択した RTT チェックの
+RTT 分布は、`result.timing` の下にある `qa-evidence.json` に
+統合されます。
 
 ```bash
 OPENCLAW_QA_CREDENTIAL_SOURCE=convex \
@@ -510,12 +515,13 @@ pnpm test:docker:npm-telegram-live
 ```
 
 `OPENCLAW_QA_CREDENTIAL_SOURCE=convex` が設定されている場合、パッケージライブラッパーは
-`kind: "telegram"` 認証情報をリースし、リースされたグループ／ドライバー／SUT
-bot の環境変数をインストール済みパッケージの実行へエクスポートし、リースに Heartbeat を送信し、シャットダウン時に
-解放します。パッケージラッパーのデフォルトは、`channel-canary` の RTT チェック 20 回、
-RTT タイムアウト 30s、Convex が選択されている CI 外では Convex ロール
-`maintainer` です。別の RTT コマンドや Telegram 固有の要約形式を
-作成せずに RTT 測定を調整するには、`OPENCLAW_NPM_TELEGRAM_RTT_SAMPLES`、`OPENCLAW_NPM_TELEGRAM_RTT_TIMEOUT_MS`、
+`kind: "telegram"` 認証情報をリースし、リースされたグループ、ドライバー、SUT
+bot の環境変数をインストール済みパッケージの実行へエクスポートし、リースに Heartbeat を送信して、
+シャットダウン時に解放します。パッケージラッパーのデフォルトは、
+`channel-canary` の RTT チェック 20 回、RTT タイムアウト 30s、Convex が選択されている場合の
+CI 外での Convex ロール `maintainer` です。RTT 専用コマンドや
+Telegram 固有のサマリー形式を作成せずに RTT 測定を調整するには、
+`OPENCLAW_NPM_TELEGRAM_RTT_SAMPLES`、`OPENCLAW_NPM_TELEGRAM_RTT_TIMEOUT_MS`、
 または `OPENCLAW_NPM_TELEGRAM_RTT_MAX_FAILURES` を上書きします。
 
 ### Discord QA
@@ -524,47 +530,47 @@ RTT タイムアウト 30s、Convex が選択されている CI 外では Convex
 pnpm openclaw qa discord
 ```
 
-2 つの bot が存在する、実際の非公開 Discord ギルドチャンネル 1 つを対象とします。一方は
-ハーネスが制御するドライバー bot、もう一方はバンドル済み Discord Plugin を介して
-子 OpenClaw Gateway が起動する SUT bot です。チャンネルでのメンション処理、
-SUT bot がネイティブ `/help` コマンドを Discord に登録したこと、および
-オプトインの Mantis エビデンスシナリオを検証します。
+実際の非公開 Discord ギルドチャネル 1 つを、2 つの bot で対象にします。1 つは
+ハーネスが制御するドライバー bot、もう 1 つはバンドルされた Discord Plugin を介して
+子 OpenClaw Gateway が起動する SUT bot です。チャネルでのメンション処理、
+SUT bot がネイティブの `/help` コマンドを Discord に登録済みであること、
+およびオプトインの Mantis エビデンスシナリオを検証します。
 
-`--credential-source env` の場合に必要な環境変数：
+`--credential-source env` の場合に必要な環境変数:
 
 - `OPENCLAW_QA_DISCORD_GUILD_ID`
 - `OPENCLAW_QA_DISCORD_CHANNEL_ID`
 - `OPENCLAW_QA_DISCORD_DRIVER_BOT_TOKEN`
 - `OPENCLAW_QA_DISCORD_SUT_BOT_TOKEN`
-- `OPENCLAW_QA_DISCORD_SUT_APPLICATION_ID` - Discord から返される SUT bot のユーザー ID と
+- `OPENCLAW_QA_DISCORD_SUT_APPLICATION_ID` - Discord が返す SUT bot のユーザー ID と
   一致する必要があります（一致しない場合、レーンは即座に失敗します）。
 
-オプション：
+オプション:
 
-- `OPENCLAW_QA_DISCORD_VOICE_CHANNEL_ID` は、`discord-voice-autojoin` の音声／ステージチャンネルを
-  選択します。指定しない場合、シナリオは SUT bot に表示される最初の
-  音声／ステージチャンネルを選択します。
+- `OPENCLAW_QA_DISCORD_VOICE_CHANNEL_ID` は、`discord-voice-autojoin` 用の
+  ボイス/ステージチャネルを選択します。指定しない場合、シナリオは SUT bot から見える
+  最初のボイス/ステージチャネルを選択します。
 
-Discord YAML モジュールシナリオ（`qa/scenarios/channels/discord-*.yaml`）：
+Discord YAML モジュールシナリオ（`qa/scenarios/channels/discord-*.yaml`）:
 
 - `discord-canary`
 - `discord-mention-gating`
 - `discord-native-help-command-registration`
-- `discord-voice-autojoin` - オプトインの音声シナリオです。単独で実行され、
-  `channels.discord.voice.autoJoin` を有効化し、SUT bot の現在の
-  Discord 音声状態が対象の音声／ステージチャンネルであることを検証します。Convex の Discord
+- `discord-voice-autojoin` - オプトインのボイスシナリオ。単独で実行され、
+  `channels.discord.voice.autoJoin` を有効にして、SUT bot の現在の
+  Discord ボイス状態が対象のボイス/ステージチャネルであることを検証します。Convex の Discord
   認証情報には、オプションの `voiceChannelId` を含められます。含まれない場合、ランナー
-  アダプターがギルド内で最初に表示される音声／ステージチャンネルを検出します。
-- `discord-status-reactions-tool-only` - オプトインの Mantis シナリオです。SUT を
-  `messages.statusReactions.enabled=true` により常時有効なツールのみのギルド応答へ
+  アダプターがギルド内で最初に見えるボイス/ステージチャネルを検出します。
+- `discord-status-reactions-tool-only` - オプトインの Mantis シナリオ。SUT を
+  `messages.statusReactions.enabled=true` により常時有効なツールのみのギルド返信へ
   切り替えるため、単独で実行されます。その後、REST
-  リアクションタイムラインと HTML／PNG ビジュアルアーティファクトを取得します。Mantis の実行前／実行後
+  リアクションタイムラインと HTML/PNG ビジュアルアーティファクトを取得します。Mantis の前後
   レポートでは、シナリオが提供した MP4 アーティファクトも `baseline.mp4`
   および `candidate.mp4` として保持されます。
-- `discord-thread-reply-filepath-attachment` - オプトインの Mantis シナリオです。
+- `discord-thread-reply-filepath-attachment` - オプトインの Mantis シナリオ。詳細は
   [Discord Mantis シナリオ](#discord-mantis-scenarios)を参照してください。
 
-Discord 音声自動参加シナリオを明示的に実行します：
+Discord ボイス自動参加シナリオを明示的に実行します:
 
 ```bash
 pnpm openclaw qa discord \
@@ -572,7 +578,7 @@ pnpm openclaw qa discord \
   --provider-mode mock-openai
 ```
 
-Mantis ステータスリアクションシナリオを明示的に実行します：
+Mantis ステータスリアクションシナリオを明示的に実行します:
 
 ```bash
 pnpm openclaw qa discord \
@@ -583,14 +589,13 @@ pnpm openclaw qa discord \
   --fast
 ```
 
-出力アーティファクト：
+出力アーティファクト:
 
 - `qa-suite-report.md`
 - `qa-suite-summary.json`
-- `qa-evidence.json` - ライブトランスポートチェックのエビデンスエントリです。
+- `qa-evidence.json` - ライブトランスポートチェックのエビデンスエントリ。
 - `discord-qa-reaction-timelines.json` および
-  ステータスリアクションシナリオの実行時の
-  `discord-status-reactions-tool-only-timeline.png`。
+  ステータスリアクションシナリオの実行時に `discord-status-reactions-tool-only-timeline.png`。
 
 ### Slack QA
 
@@ -598,18 +603,18 @@ pnpm openclaw qa discord \
 pnpm openclaw qa slack
 ```
 
-2 つの異なる bot が存在する、実際の非公開 Slack チャンネル 1 つを対象とします。一方は
-ハーネスが制御するドライバー bot、もう一方はバンドル済み Slack Plugin を介して
+実際の非公開 Slack チャネル 1 つを、異なる 2 つの bot で対象にします。1 つは
+ハーネスが制御するドライバー bot、もう 1 つはバンドルされた Slack Plugin を介して
 子 OpenClaw Gateway が起動する SUT bot です。
 
-`--credential-source env` の場合に必要な環境変数：
+`--credential-source env` の場合に必要な環境変数:
 
 - `OPENCLAW_QA_SLACK_CHANNEL_ID`
 - `OPENCLAW_QA_SLACK_DRIVER_BOT_TOKEN`
 - `OPENCLAW_QA_SLACK_SUT_BOT_TOKEN`
 - `OPENCLAW_QA_SLACK_SUT_APP_TOKEN`
 
-オプション：
+オプション:
 
 - `OPENCLAW_QA_SLACK_APPROVAL_CHECKPOINT_DIR` は、Mantis のビジュアル承認
   チェックポイントを有効にします。アダプターは `<scenario>.pending.json` と
@@ -617,111 +622,110 @@ pnpm openclaw qa slack
 - `OPENCLAW_QA_SLACK_APPROVAL_CHECKPOINT_TIMEOUT_MS` は、チェックポイントの
   確認応答タイムアウトを上書きします。デフォルトは `120000` です。
 
-Slack ライブアダプターを通じて公開される正規 YAML シナリオ：
+Slack ライブアダプターを通じて公開される正規 YAML シナリオ:
 
 - `thread-follow-up`
 - `thread-isolation`
 
-Slack YAML モジュールシナリオ（`qa/scenarios/channels/slack-*.yaml`）：
+Slack YAML モジュールシナリオ（`qa/scenarios/channels/slack-*.yaml`）:
 
 - `slack-canary`
 - `slack-mention-gating`
 - `slack-allowlist-block`
-- `slack-channel-disabled-warning` - 設定上無効なチャンネルが、応答せずに
-  構造化された警告を発することを確認する、オプトインの実 Slack プローブです。
+- `slack-channel-disabled-warning` - 設定上無効なチャネルが返信せずに
+  構造化された警告を出力することを確認する、オプトインの実 Slack プローブ。
 - `slack-top-level-reply-shape`
 - `slack-restart-resume`
 - `slack-progress-commentary-true`、`slack-progress-commentary-false`、
   `slack-progress-commentary-omitted`、および
-  `slack-progress-commentary-verbose-dedupe` - 独立したコメント／ツール進行状況の制御、
-  キー省略時のレガシーデフォルト、および永続的な詳細進行状況が有効な場合の単一配信動作を
-  検証する、オプトインの実 Slack プローブです。
-- `slack-reaction-glyph-native` - オプトインのライブメッセージツールリアクションシナリオです。
-  エージェントに正確な `✅` グリフを渡すよう指示し、対象メッセージ上の SUT bot に対して
-  Slack が `white_check_mark` を保存したことを確認します。
-- `slack-chart-presentation-native` - ネイティブ `data_visualization` ブロックと正確なアクセシブルテキストを
-  検証する、オプトインのポータブルチャートシナリオです。
-- `slack-table-presentation-native` - ネイティブ `data_table` ブロック、正確な行、およびアクセシブルテキストを
-  検証する、オプトインのポータブルテーブルシナリオです。
-- `slack-table-invalid-blocks-fallback` - 本番の Slack 送信パスを介して、
-  ヘッダーと 101 データ行を持つ、構造的に読み取り可能な上限超過の生テーブルを送信し、
-  Slack 自体が `invalid_blocks` を返すことを証明し、保存された書式無効時のフォールバックが完全であり、
-  ネイティブデータブロックを持たないことを検証する、オプトインの直接トランスポートシナリオです。
-  シナリオの詳細には、安全なエラーコード、件数、ブール値の
+  `slack-progress-commentary-verbose-dedupe` - 独立した解説/ツール進捗制御、
+  キー省略時のレガシーデフォルト、および永続的な詳細進捗が有効な場合の単一配信動作を確認する、
+  オプトインの実 Slack プローブ。
+- `slack-reaction-glyph-native` - オプトインのライブメッセージツールリアクションシナリオ。
+  エージェントに正確な `✅` グリフを渡すよう指示し、対象メッセージ上で
+  Slack が SUT bot 用に `white_check_mark` を保存したことを確認します。
+- `slack-chart-presentation-native` - ネイティブの `data_visualization` ブロックと
+  正確なアクセシブルテキストを検証する、オプトインのポータブルチャートシナリオ。
+- `slack-table-presentation-native` - ネイティブの `data_table` ブロック、
+  正確な行、アクセシブルテキストを検証する、オプトインのポータブルテーブルシナリオ。
+- `slack-table-invalid-blocks-fallback` - 101 データ行とヘッダーを含む、
+  構造的に読み取り可能な制限超過の raw テーブルを本番の Slack 送信パス経由で送信する、
+  オプトインのダイレクトトランスポートシナリオ。Slack 自体が `invalid_blocks` を返すことを証明し、
+  保存された書式無効時のフォールバックが完全で、ネイティブデータブロックを含まないことを
+  検証します。シナリオ詳細には、安全なエラーコード、件数、真偽値の
   エビデンスのみを保持します。
-- `slack-approval-exec-native` - オプトインのネイティブ Slack exec 承認シナリオです。
-  Gateway を介して exec 承認を要求し、Slack メッセージに
-  ネイティブの承認ボタンがあることを検証し、承認を解決して、解決済みの Slack
+- `slack-approval-exec-native` - オプトインのネイティブ Slack exec 承認シナリオ。
+  Gateway を介して exec 承認を要求し、Slack メッセージにネイティブの承認ボタンが
+  あることを検証して承認を解決し、解決済みの Slack
   更新を検証します。
 - `slack-approval-plugin-native` - オプトインのネイティブ Slack Plugin 承認
-  シナリオです。exec と Plugin の承認転送を同時に有効化し、exec 承認のルーティングによって
-  Plugin イベントが抑制されないようにしてから、同じ
-  保留中／解決済みのネイティブ Slack UI パスを検証します。
+  シナリオ。exec と Plugin の承認転送を同時に有効化し、Plugin
+  イベントが exec 承認ルーティングによって抑制されないようにしたうえで、同じ
+  保留中/解決済みのネイティブ Slack UI パスを検証します。
 - `slack-codex-approval-exec-native` - オプトインの Codex Guardian コマンド承認
-  シナリオです。Guardian モードで Codex Plugin を有効化し、
-  Slack から開始された Gateway エージェントターンを Codex app-server ハーネス経由でルーティングし、
-  `openclaw-codex-app-server` に対するネイティブ Slack Plugin 承認プロンプトを
-  待機して解決し、Codex ターンが想定されるコマンド出力と
-  アシスタントマーカーを伴って完了することを検証します。
+  シナリオ。Codex Plugin を Guardian モードで有効化し、Slack を起点とする
+  Gateway エージェントターンを Codex app-server ハーネス経由でルーティングし、
+  `openclaw-codex-app-server` に対するネイティブ Slack Plugin 承認プロンプトを待って
+  解決し、Codex ターンが想定されるコマンド出力マーカーとアシスタントマーカーで
+  完了することを検証します。
 - `slack-codex-approval-plugin-native` - オプトインの Codex Guardian ファイル承認
-  シナリオです。ワークスペース外の `apply_patch` 命令を使用して、Codex が
-  app-server のファイル変更承認ルートを発行するようにします。その後、同じネイティブ
-  Slack の保留中／解決済み承認パス、最終アシスタントマーカー、および正確なファイル
-  内容をクリーンアップ前に検証します。
+  シナリオ。ワークスペース外の `apply_patch` 命令を使用して Codex に
+  app-server のファイル変更承認ルートを出力させた後、同じネイティブ Slack の
+  保留中/解決済み承認パス、最終アシスタントマーカー、正確なファイル内容を検証してから
+  クリーンアップします。
 
-Codex 承認シナリオには、`openai/*` または `codex/*` `--model`、
+Codex 承認シナリオには、`openai/*` または `codex/*` の `--model`、
 通常のライブモデル認証情報、および Codex Plugin が受け入れる Codex 認証または API キー認証が必要です。
-シナリオの詳細には、秘匿化された Slack 承認メタデータに加えて、
-Codex app-server メソッド、選択された Codex モデルキー、最終的な Codex ターンステータス、
-および操作マーカーの検証が含まれます。
+シナリオ詳細には、秘匿化された Slack 承認メタデータに加えて、Codex app-server メソッド、
+選択された Codex モデルキー、最終 Codex ターンステータス、操作マーカーの検証が含まれます。
 
-出力アーティファクト：
+出力アーティファクト:
 
 - `qa-suite-report.md`
 - `qa-suite-summary.json`
-- `qa-evidence.json` - ライブトランスポートチェックのエビデンスエントリです。
+- `qa-evidence.json` - ライブトランスポートチェックのエビデンスエントリ。
 - `approval-checkpoints/` - Mantis が
   `OPENCLAW_QA_SLACK_APPROVAL_CHECKPOINT_DIR` を設定した場合のみ。チェックポイント JSON、
-  確認応答 JSON、および保留中／解決済みのスクリーンショットが含まれます。
+  確認応答 JSON、保留中/解決済みのスクリーンショットを含みます。
 
 #### Slack ワークスペースのセットアップ
 
-このレーンには、1 つのワークスペース内に 2 つの異なる Slack アプリと、両方の
-bot が参加しているチャンネルが必要です：
+このレーンには、1 つのワークスペース内に異なる 2 つの Slack アプリと、両方の
+bot が参加しているチャネルが必要です:
 
-- `channelId` - 両方の bot が招待されているチャンネルの `Cxxxxxxxxxx` ID。
-  専用チャンネルを使用してください。このレーンは実行のたびに投稿します。
-- `driverBotToken` - **Driver** アプリの bot トークン（`xoxb-...`）。
+- `channelId` - 両方の bot が招待されているチャネルの `Cxxxxxxxxxx` ID。
+  専用チャネルを使用してください。このレーンは実行のたびに投稿します。
+- `driverBotToken` - **ドライバー**アプリの bot トークン（`xoxb-...`）。
 - `sutBotToken` - **SUT** アプリの bot トークン（`xoxb-...`）。bot ユーザー ID を
-  別にするため、ドライバーとは異なる Slack アプリでなければなりません。
+  区別できるよう、ドライバーとは別の Slack アプリである必要があります。
 - `sutAppToken` - `connections:write` を持つ SUT アプリの
-  アプリレベルトークン（`xapp-...`）。SUT アプリがイベントを受信できるよう、Socket Mode で使用されます。
+  アプリレベルトークン（`xapp-...`）。SUT アプリがイベントを受信できるよう、Socket Mode で使用します。
 
 本番ワークスペースを再利用するよりも、QA 専用の Slack ワークスペースを
-推奨します。
+使用することを推奨します。
 
-以下の SUT マニフェストでは、バンドル済み Slack Plugin の
-本番インストール（`extensions/slack/src/setup-shared.ts:12`）を、ライブ Slack QA スイートの対象となる
-権限とイベントに意図的に限定しています。ユーザーから見た
-本番チャンネルのセットアップについては、
-[Slack チャンネルのクイックセットアップ](/ja-JP/channels/slack#quick-setup)を参照してください。QA の Driver／SUT
-ペアは、1 つのワークスペース内で 2 つの異なる bot ユーザー ID がレーンに必要なため、意図的に分離されています。
+以下の SUT マニフェストは、バンドルされた Slack Plugin の
+本番インストール（`extensions/slack/src/setup-shared.ts:12`）を、ライブ Slack QA スイートが対象とする
+権限とイベントに意図的に限定しています。ユーザーから見た本番チャネルのセットアップについては、
+[Slack チャネルのクイックセットアップ](/ja-JP/channels/slack#quick-setup)を参照してください。QA のドライバー/SUT
+ペアが意図的に分離されているのは、このレーンが 1 つのワークスペース内で異なる 2 つの bot ユーザー
+ID を必要とするためです。
 
-**1. Driver アプリを作成する**
+**1. ドライバーアプリを作成する**
 
 [api.slack.com/apps](https://api.slack.com/apps) → _Create New App_ →
-_From a manifest_ に移動し、QA ワークスペースを選択して、次のマニフェストを貼り付け、
-_Install to Workspace_ を実行します：
+_From a manifest_ に移動し、QA ワークスペースを選択して次のマニフェストを貼り付け、
+_Install to Workspace_ を実行します:
 
 ```json
 {
   "display_information": {
-    "name": "OpenClaw QA Driver",
-    "description": "OpenClaw QA Slack ライブレーン用テストドライバー bot"
+    "name": "OpenClaw QA ドライバー",
+    "description": "OpenClaw QA Slack ライブレーン用のテストドライバー bot"
   },
   "features": {
     "bot_user": {
-      "display_name": "OpenClaw QA Driver",
+      "display_name": "OpenClaw QA ドライバー",
       "always_online": true
     }
   },
@@ -737,21 +741,21 @@ _Install to Workspace_ を実行します：
 ```
 
 _Bot User OAuth Token_（`xoxb-...`）をコピーします。これが
-`driverBotToken` になります。ドライバーに必要なのはメッセージの投稿と自身の識別のみです。
-イベントも Socket Mode も必要ありません。
+`driverBotToken` になります。ドライバーに必要なのは、メッセージの投稿と自身の識別のみです。
+イベントも Socket Mode も不要です。
 
 **2. SUT アプリを作成する**
 
-同じワークスペースで _Create New App → From a manifest_ を繰り返します。この QA アプリでは、
-バンドル済み Slack Plugin の本番マニフェスト（`extensions/slack/src/setup-shared.ts:12`）を
-意図的に限定しています。ライブ Slack QA スイートではリアクション処理をまだ対象としていないため、
+同じワークスペースで _Create New App → From a manifest_ を繰り返します。この QA アプリは、
+バンドルされた Slack Plugin の本番マニフェスト（`extensions/slack/src/setup-shared.ts:12`）を意図的に
+縮小したものを使用します。ライブ Slack QA スイートではまだリアクション処理を対象としていないため、
 リアクションのスコープとイベントは省略されています。
 
 ```json
 {
   "display_information": {
     "name": "OpenClaw QA SUT",
-    "description": "OpenClaw QA SUT connector for OpenClaw"
+    "description": "OpenClaw 用 OpenClaw QA SUT コネクタ"
   },
   "features": {
     "bot_user": {
@@ -816,18 +820,15 @@ Slack がアプリを作成したら、その設定ページで次の 2 つを�
 
 - _Install to Workspace_ → _Bot User OAuth Token_ をコピー → これが
   `sutBotToken` になります。
-- _Basic Information → App-Level Tokens → Generate Token and Scopes_ → スコープ
-  `connections:write` を追加 → 保存 → `xapp-...` の値をコピー → これが
+- _Basic Information → App-Level Tokens → Generate Token and Scopes_ → 
+  スコープ `connections:write` を追加 → 保存 → `xapp-...` の値をコピー → これが
   `sutAppToken` になります。
 
-各トークンで `auth.test` を呼び出し、2 つのボットのユーザー ID が異なることを確認します。
-ランタイムはユーザー ID によってドライバーと SUT を区別します。同じアプリを
-両方に再利用すると、メンションゲート処理が直ちに失敗します。
+各トークンで `auth.test` を呼び出し、2 つのボットのユーザー ID が異なることを確認します。ランタイムはユーザー ID によってドライバーと SUT を区別します。両方に同じアプリを再利用すると、メンションゲーティングが直ちに失敗します。
 
 **3. チャンネルを作成する**
 
-QA ワークスペースでチャンネル（例: `#openclaw-qa`）を作成し、チャンネル内から
-両方のボットを招待します。
+QA ワークスペースでチャンネル（例: `#openclaw-qa`）を作成し、チャンネル内から両方のボットを招待します。
 
 ```text
 /invite @OpenClaw QA Driver
@@ -835,15 +836,12 @@ QA ワークスペースでチャンネル（例: `#openclaw-qa`）を作成し�
 ```
 
 _channel info → About → Channel ID_ から `Cxxxxxxxxxx` ID をコピーします。これが
-`channelId` になります。公開チャンネルを使用できます。非公開チャンネルを使用する場合も、
-両方のアプリにはすでに `groups:history` があるため、ハーネスによる履歴の読み取りは
-引き続き成功します。
+`channelId` になります。パブリックチャンネルを使用できます。プライベートチャンネルを使用する場合でも、両方のアプリにはすでに `groups:history` があるため、ハーネスによる履歴の読み取りは引き続き成功します。
 
 **4. 認証情報を登録する**
 
-選択肢は 2 つあります。単一マシンでのデバッグには環境変数を使用し（4 つの
-`OPENCLAW_QA_SLACK_*` 変数を設定して `--credential-source env` を渡します）、または
-共有 Convex プールに登録して、CI や他のメンテナーがリースできるようにします。
+方法は 2 つあります。単一マシンでのデバッグには環境変数を使用するか（4 つの
+`OPENCLAW_QA_SLACK_*` 変数を設定して `--credential-source env` を渡します）、共有 Convex プールにシードして CI や他のメンテナーがリースできるようにします。
 
 Convex プールの場合は、4 つのフィールドを JSON ファイルに書き込みます。
 
@@ -856,8 +854,7 @@ Convex プールの場合は、4 つのフィールドを JSON ファイルに�
 }
 ```
 
-シェルで `OPENCLAW_QA_CONVEX_SITE_URL` と `OPENCLAW_QA_CONVEX_SECRET_MAINTAINER` を
-エクスポートした状態で、登録して確認します。
+シェルで `OPENCLAW_QA_CONVEX_SITE_URL` と `OPENCLAW_QA_CONVEX_SECRET_MAINTAINER` をエクスポートした状態で、登録して確認します。
 
 ```bash
 pnpm openclaw qa credentials add \
@@ -870,10 +867,9 @@ pnpm openclaw qa credentials list --kind slack --status all --json
 
 `count: 1`、`status: "active"` があり、`lease` フィールドがないことを確認します。
 
-**5. エンドツーエンドで確認する**
+**5. エンドツーエンドで検証する**
 
-両方のボットがブローカーを介して相互に通信できることを確認するため、ローカルでレーンを
-実行します。
+両方のボットがブローカー経由で相互に通信できることを確認するため、ローカルでレーンを実行します。
 
 ```bash
 pnpm openclaw qa slack \
@@ -882,10 +878,9 @@ pnpm openclaw qa slack \
   --output-dir .artifacts/qa-e2e/slack-local
 ```
 
-正常な実行は 30 秒を大きく下回る時間で完了し、`qa-suite-report.md` では
-`slack-canary` と `slack-mention-gating` の両方がステータス `pass` として表示されます。レーンが
-約 90 秒間停止した後に `Convex credential pool exhausted
-for kind "slack"` で終了する場合は、プールが空であるか、すべての行がリース中です。どちらなのかは `qa
+正常な実行は 30 秒を大幅に下回る時間で完了し、`qa-suite-report.md` では
+`slack-canary` と `slack-mention-gating` の両方のステータスが `pass` と表示されます。レーンが約 90 秒間停止して `Convex credential pool exhausted
+for kind "slack"` で終了する場合、プールが空であるか、すべての行がリース中です。どちらであるかは `qa
 credentials list --kind slack --status all --json` で確認できます。
 
 ### WhatsApp QA
@@ -894,9 +889,7 @@ credentials list --kind slack --status all --json` で確認できます。
 pnpm openclaw qa whatsapp
 ```
 
-専用の 2 つの WhatsApp Web アカウントを対象とします。1 つはハーネスが制御する
-ドライバーアカウント、もう 1 つは子 OpenClaw Gateway がバンドルされた
-WhatsApp Plugin を介して起動する SUT アカウントです。
+2 つの専用 WhatsApp Web アカウントを対象とします。1 つはハーネスによって制御されるドライバーアカウントで、もう 1 つはバンドルされた WhatsApp Plugin を通じて子 OpenClaw Gateway が起動する SUT アカウントです。
 
 `--credential-source env` の場合に必要な環境変数:
 
@@ -905,17 +898,17 @@ WhatsApp Plugin を介して起動する SUT アカウントです。
 - `OPENCLAW_QA_WHATSAPP_DRIVER_AUTH_ARCHIVE_BASE64`
 - `OPENCLAW_QA_WHATSAPP_SUT_AUTH_ARCHIVE_BASE64`
 
-任意:
+オプション:
 
 - `OPENCLAW_QA_WHATSAPP_GROUP_JID` は、
   `whatsapp-mention-gating`、`whatsapp-group-pending-history-context`、
   `whatsapp-broadcast-group-fanout`、`whatsapp-group-activation-always`、
-  `whatsapp-group-reply-to-bot-triggers`、グループのアクション／メディア／投票シナリオ、
+  `whatsapp-group-reply-to-bot-triggers`、グループアクション／メディア／投票シナリオ、
   および `whatsapp-group-allowlist-block` などのグループシナリオを有効にします。
 
 WhatsApp YAML シナリオ（`qa/scenarios/channels/whatsapp-*.yaml`）:
 
-- ベースラインとグループゲート処理: `whatsapp-canary`、`whatsapp-pairing-block`、
+- ベースラインとグループゲーティング: `whatsapp-canary`、`whatsapp-pairing-block`、
   `whatsapp-mention-gating`、`whatsapp-group-pending-history-context`、
   `whatsapp-group-activation-always`、`whatsapp-group-reply-to-bot-triggers`、
   `whatsapp-top-level-reply-shape`、`whatsapp-restart-resume`、
@@ -930,20 +923,20 @@ WhatsApp YAML シナリオ（`qa/scenarios/channels/whatsapp-*.yaml`）:
   `whatsapp-reply-delivery-shape`、`whatsapp-stream-final-message-accounting`。
 - ユーザーパスのメッセージアクション: `whatsapp-agent-message-action-react` は
   実際のドライバー DM から開始し、モデルに `message` ツールを呼び出させ、
-  ネイティブ WhatsApp リアクションを観測します。`whatsapp-agent-message-action-upload-file` は
-  `message(action=upload-file)` に対して同じ構成を使用し、
-  ネイティブ WhatsApp メディアを観測します。`whatsapp-group-agent-message-action-react` と
-  `whatsapp-group-agent-message-action-upload-file` は、実際の WhatsApp グループで同じ
-  ユーザー可視アクションを実証します。
-- グループファンアウト: `whatsapp-broadcast-group-fanout` は、メンションを含む 1 件の
-  WhatsApp グループメッセージから開始し、`main`
-  と `qa-second` から別々の可視返信が届くことを確認します。
+  WhatsApp のネイティブリアクションを監視します。`whatsapp-agent-message-action-upload-file` は
+  `message(action=upload-file)` に同じ実行姿勢を使用し、
+  WhatsApp のネイティブメディアを監視します。`whatsapp-group-agent-message-action-react` と
+  `whatsapp-group-agent-message-action-upload-file` は、実際の WhatsApp グループで
+  同じユーザー可視アクションを実証します。
+- グループファンアウト: `whatsapp-broadcast-group-fanout` は、メンションを含む
+  1 件の WhatsApp グループメッセージから開始し、`main`
+  と `qa-second` から個別の可視返信があることを検証します。
 - グループのアクティベーション: `whatsapp-group-activation-always` は実際のグループ
-  セッションを `/activation always` に変更し、メンションのないグループメッセージで
+  セッションを `/activation always` に変更し、メンションのないグループメッセージによって
   エージェントが起動することを実証した後、`/activation mention` に戻します。
-  `whatsapp-group-reply-to-bot-triggers` はボットの返信を準備し、それに対して明示的なメンションなしで
-  ネイティブの引用返信を送信し、その返信コンテキストからエージェントが
-  起動することを確認します。
+  `whatsapp-group-reply-to-bot-triggers` はボットの返信をシードし、明示的なメンションなしで
+  それに対するネイティブな引用返信を送信し、その返信コンテキストから
+  エージェントが起動することを検証します。
 - 受信メディアと構造化メッセージ: `whatsapp-inbound-image-caption`、
   `whatsapp-audio-preflight`、`whatsapp-inbound-structured-messages`、
   `whatsapp-group-audio-gating`、`whatsapp-inbound-reaction-no-trigger`。
@@ -955,8 +948,8 @@ WhatsApp YAML シナリオ（`qa/scenarios/channels/whatsapp-*.yaml`）:
   `whatsapp-group-outbound-media`、`whatsapp-group-outbound-poll`、
   `whatsapp-message-actions`、`whatsapp-reply-context-isolation`、
   `whatsapp-reply-delivery-shape`。これらは意図的にモデルへのプロンプトを迂回し、
-  決定論的な Gateway／チャンネルの `send`、`poll`、および
-  `message.action` コントラクトを実証します。
+  決定論的な Gateway／チャネルの `send`、`poll`、
+  および `message.action` コントラクトを実証します。
 - アクセス制御のカバレッジ: `whatsapp-access-control-dm-open`、
   `whatsapp-access-control-dm-disabled`、`whatsapp-access-control-group-open`、
   `whatsapp-access-control-group-disabled`、`whatsapp-group-allowlist-block`。
@@ -967,43 +960,43 @@ WhatsApp YAML シナリオ（`qa/scenarios/channels/whatsapp-*.yaml`）:
 - ステータスリアクション: `whatsapp-status-reactions`、
   `whatsapp-status-reaction-lifecycle`。
 
-カタログには現在 52 個のシナリオが含まれています。`live-frontier` のデフォルトレーンは、
-高速なスモークカバレッジのため 8 シナリオに抑えられています。`mock-openai` の
-デフォルトレーンは、モデル出力のみをモックしながら、実際の WhatsApp
-トランスポートを介して 39 シナリオを決定論的に実行します。承認シナリオと、一部の
-負荷が高い／ブロッキングするチェックは、引き続きシナリオ ID で明示的に指定します。
+カタログには現在 52 個のシナリオがあります。`live-frontier` のデフォルトレーンは、
+高速なスモークカバレッジのため 8 個のシナリオに抑えられています。`mock-openai`
+のデフォルトレーンは、モデル出力のみをモックしながら、実際の WhatsApp
+トランスポートを通じて 39 個のシナリオを決定論的に実行します。承認シナリオと、
+一部の高負荷／ブロッキングチェックは、引き続きシナリオ ID で明示的に指定します。
 
-WhatsApp QA ドライバーは構造化されたライブイベント（`text`、`media`、
-`location`、`reaction`、`poll`）を観測し、メディア、投票、
-連絡先、位置情報、ステッカーを能動的に送信できます。QA Lab は非公開の
-WhatsApp ランタイムファイルに直接アクセスせず、`@openclaw/whatsapp/api.js` パッケージサーフェスを介して
-そのドライバーをインポートします。グループの観測では、`fromJid` がグループ JID、
-`participantJid` と `fromPhoneE164` が参加者である送信者を識別します。
-メッセージ内容はデフォルトで秘匿化されます。Gateway への直接の投票、ファイルアップロード、
-メディア、グループ投票、グループメディア、返信形式のプローブは、トランスポート／API
-コントラクトのチェックです。ユーザープロンプトによってエージェントが同じアクションを
-選択したことの証明としては扱われません。ユーザーパスのアクション証明は、
-`whatsapp-agent-message-action-react` や
-`whatsapp-group-agent-message-action-react` などのシナリオから得られます。これらでは、ドライバーが通常の
-WhatsApp メッセージを送信し、QA Lab が生成されたネイティブ WhatsApp 成果物を観測します。
-WhatsApp シナリオの詳細には、各シナリオの構成（`user-path`、
-`direct-gateway`、または `native-approval`）が含まれるため、実際に証明されたものより
-強いコントラクトの証拠と誤認されることはありません。
+WhatsApp QA ドライバーは、構造化されたライブイベント（`text`、`media`、
+`location`、`reaction`、および `poll`）を監視し、メディア、投票、
+連絡先、位置情報、ステッカーを能動的に送信できます。QA Lab は、WhatsApp の非公開
+ランタイムファイルへ直接アクセスするのではなく、`@openclaw/whatsapp/api.js` パッケージ
+サーフェスを通じてそのドライバーをインポートします。グループ監視では、`fromJid` が
+グループ JID であり、`participantJid` と `fromPhoneE164` が参加者である送信者を識別します。
+メッセージ内容はデフォルトで秘匿化されます。Gateway による投票、ファイルアップロード、
+メディア、グループ投票、グループメディア、返信形式の直接プローブは、トランスポート／API
+コントラクトのチェックです。ユーザーのプロンプトによってエージェントが同じアクションを
+選択したことの証明としては扱われません。ユーザーパスによるアクションの証明は、
+`whatsapp-agent-message-action-react` や `whatsapp-group-agent-message-action-react` などのシナリオから得られます。
+これらでは、ドライバーが通常の WhatsApp メッセージを送信し、
+QA Lab が結果として生成される WhatsApp のネイティブ成果物を監視します。
+WhatsApp シナリオの詳細には、各シナリオの実行姿勢（`user-path`、
+`direct-gateway`、または `native-approval`）が含まれるため、エビデンスが
+実際に実証するものより強いコントラクトだと誤解されることはありません。
 
 出力成果物:
 
 - `qa-suite-report.md`
 - `qa-suite-summary.json`
-- `qa-evidence.json` - ライブトランスポートチェックの証拠エントリ。
+- `qa-evidence.json` - ライブトランスポートチェックのエビデンスエントリ。
 
 ### Convex 認証情報プール
 
 Discord、Slack、Telegram、WhatsApp の各レーンは、上記の環境変数を読み取る代わりに、
 共有 Convex プールから認証情報をリースできます。
 `--credential-source convex` を渡します（または `OPENCLAW_QA_CREDENTIAL_SOURCE=convex` を設定します）。
-QA Lab は排他的リースを取得し、実行中は Heartbeat を送信し、
+QA Lab は排他的リースを取得し、実行中は Heartbeat を送り、
 シャットダウン時にリースを解放します。プールの種類は `"discord"`、`"slack"`、
-`"telegram"`、`"whatsapp"` です。
+`"telegram"`、および `"whatsapp"` です。
 
 ブローカーが `admin/add` で検証するペイロード形式:
 
@@ -1011,7 +1004,7 @@ QA Lab は排他的リースを取得し、実行中は Heartbeat を送信し�
 driverBotToken: string, sutBotToken: string, sutApplicationId: string }`。
 - Telegram（`kind: "telegram"`）: `{ groupId: string, driverToken: string,
 sutToken: string }` - `groupId` は数値のチャット ID 文字列でなければなりません。
-- Telegram 実ユーザー（`kind: "telegram-user"`）: `{ groupId: string, sutToken:
+- Telegram の実ユーザー（`kind: "telegram-user"`）: `{ groupId: string, sutToken:
 string, testerUserId: string, testerUsername: string, telegramApiId:
 string, telegramApiHash: string, tdlibDatabaseEncryptionKey: string,
 tdlibArchiveBase64: string, tdlibArchiveSha256: string,
@@ -1020,63 +1013,63 @@ desktopTdataArchiveBase64: string, desktopTdataArchiveSha256: string }` -
   この種類を取得してはなりません。
 - WhatsApp（`kind: "whatsapp"`）: `{ driverPhoneE164: string, sutPhoneE164:
 string, driverAuthArchiveBase64: string, sutAuthArchiveBase64: string,
-groupJid?: string }` - 電話番号は異なる E.164 文字列でなければなりません。
+groupJid?: string }` - 電話番号は互いに異なる E.164 文字列でなければなりません。
 
-Mantis Telegram Desktop の証明ワークフローは、TDLib CLI ドライバーと Telegram Desktop
-監視の両方に対して 1 つの排他的な Convex `telegram-user` リースを保持し、
-証明を公開した後に解放します。
+Mantis Telegram Desktop の証明ワークフローは、TDLib CLI ドライバーと
+Telegram Desktop の立会いの両方に対して 1 つの排他的な Convex
+`telegram-user` リースを保持し、証明の公開後に解放します。
 
 PR で決定論的なビジュアル差分が必要な場合、Telegram のフォーマッターまたは
-配信レイヤーを変更しながら、Mantis は `main` と PR head で同じモック
-モデル返信を使用できます。キャプチャのデフォルトは PR コメント向けに調整されています。
-標準 Crabbox クラス、24fps のデスクトップ録画、24fps のモーション GIF、1920px のプレビュー
-幅です。変更前／変更後のコメントでは、意図した GIF のみを含むクリーンなバンドルを
-公開する必要があります。
+配信レイヤーを変更しながら、Mantis は `main` と PR の head で同じ
+モックモデル返信を使用できます。キャプチャのデフォルトは PR コメント向けに調整されています。
+標準 Crabbox クラス、24fps のデスクトップ録画、24fps のモーション GIF、
+1920px のプレビュー幅です。変更前／変更後のコメントでは、意図した GIF のみを含む
+クリーンなバンドルを公開する必要があります。
 
-Slack レーンもプールを使用できます。Slack ペイロード形式のチェックは現在、ブローカーではなく
-Slack QA ランナーにあります。`{ channelId: string,
-driverBotToken: string, sutBotToken: string, sutAppToken: string }` を使用し、Slack チャンネル ID には
-`Cxxxxxxxxxx` のような値を指定します。アプリとスコープのプロビジョニングについては、
+Slack レーンもこのプールを使用できます。Slack のペイロード形式チェックは現在、
+ブローカーではなく Slack QA ランナーにあります。`{ channelId: string,
+driverBotToken: string, sutBotToken: string, sutAppToken: string }` を、
+`Cxxxxxxxxxx` のような Slack チャネル ID とともに使用します。アプリと
+スコープのプロビジョニングについては、
 [Slack ワークスペースのセットアップ](#setting-up-the-slack-workspace)を参照してください。
 
 運用環境変数と Convex ブローカーのエンドポイントコントラクトについては、
-[テスト → Convex を介した共有 Telegram 認証情報](/ja-JP/help/testing#shared-telegram-credentials-via-convex-v1)
-を参照してください（このセクション名はマルチチャンネルプールより前から存在しますが、
-リースのセマンティクスは各種類で共通です）。
+[テスト → Convex 経由の共有 Telegram 認証情報](/ja-JP/help/testing#shared-telegram-credentials-via-convex-v1)
+を参照してください（このセクション名はマルチチャネルプールより前から存在します。
+リースのセマンティクスは各種類で共有されています）。
 
-## リポジトリ管理のシード
+## リポジトリに格納されたシード
 
-シードアセットは `qa/` にあります。
+シードアセットは `qa/` にあります:
 
 - `qa/scenarios/index.yaml`
 - `qa/scenarios/<theme>/*.yaml`
 
-QA 計画を人間とエージェントの両方から確認できるようにするため、これらは意図的に git に
-含まれています。
+これらは意図的に git に含められており、人間とエージェントの両方が
+QA 計画を確認できます。
 
-`qa-lab` は汎用 YAML シナリオランナーのままです。各シナリオ YAML ファイルは
-1 回のテスト実行における信頼できる唯一の情報源であり、次を定義する必要があります。
+`qa-lab` は汎用 YAML シナリオランナーのままです。各シナリオ YAML ファイルは、
+1 回のテスト実行における信頼できる唯一の情報源であり、次を定義する必要があります:
 
 - トップレベルの `title`
 - `scenario` メタデータ
-- `scenario` 内の任意のカテゴリ、機能、レーン、リスクのメタデータ
+- `scenario` 内のオプションのカテゴリ、機能、レーン、リスクのメタデータ
 - `scenario` 内のドキュメントおよびコード参照
-- `scenario` 内の任意の Plugin 要件
-- `scenario` 内の任意の Gateway 設定パッチ
-- フローシナリオ用の実行可能なトップレベルの `flow`、または
+- `scenario` 内のオプションの Plugin 要件
+- `scenario` 内のオプションの Gateway 設定パッチ
+- フローシナリオ用の実行可能なトップレベル `flow`、または
   Vitest および Playwright シナリオ用の `scenario.execution.kind`／`scenario.execution.path`
 
-`flow` を支える再利用可能なランタイムサーフェスは、汎用的かつ
-横断的なまま維持します。たとえば、YAML シナリオでは、特別なケースのランナーを追加せずに、
-Gateway の `browser.request` シームを通じて組み込みの Control UI を操作する
-ブラウザ側ヘルパーとトランスポート側ヘルパーを組み合わせられます。
+`flow` を支える再利用可能なランタイムサーフェスは、汎用かつ
+横断的なままにします。たとえば、YAML シナリオでは、特別なケースのランナーを追加せずに、
+Gateway の `browser.request` シームを介して埋め込みの Control UI を操作する
+ブラウザ側ヘルパーと、トランスポート側ヘルパーを組み合わせられます。
 
-シナリオファイルは、ソースツリーのフォルダーではなく、製品の機能別に
-グループ化してください。ファイルを移動してもシナリオ ID は安定させ、
-実装の追跡可能性には `docsRefs` と
-`codeRefs` を使用します。
+シナリオファイルは、ソースツリーのフォルダーではなく、プロダクト機能ごとに
+グループ化してください。ファイルを移動してもシナリオ ID は安定させ、実装の
+トレーサビリティには `docsRefs` と `codeRefs` を使用します。
 
-ベースライン一覧は、少なくとも次をカバーできる十分な広さを維持してください。
+ベースラインの一覧は、少なくとも次をカバーできる十分な広さを維持してください。
 
 - DM とチャンネルチャット
 - スレッドの動作
@@ -1090,44 +1083,45 @@ Gateway の `browser.request` シームを通じて組み込みの Control UI �
 
 ## プロバイダーモックレーン
 
-`qa suite` には、ローカルプロバイダーモックレーンが 2 つあります。
+`qa suite` には、2 つのローカルプロバイダーモックレーンがあります。
 
 - `mock-openai` は、シナリオ対応の OpenClaw モックです。リポジトリベースの QA と
-パリティゲート向けの、デフォルトの決定論的モックレーンとして維持されます。
-- `aimock` は、実験的なプロトコル、フィクスチャ、記録/再生、
-カオスカバレッジ向けに AIMock ベースのプロバイダーサーバーを起動します。これは追加的なものであり、
-`mock-openai` シナリオディスパッチャーを置き換えるものではありません。
+  パリティゲート向けのデフォルトの決定論的モックレーンとして維持されます。
+- `aimock` は、実験的なプロトコル、フィクスチャ、記録・再生、および
+  カオスカバレッジ向けに AIMock ベースのプロバイダーサーバーを起動します。
+  これは追加的なものであり、`mock-openai` シナリオディスパッチャーを置き換えません。
 
 プロバイダーレーンの実装は `extensions/qa-lab/src/providers/` 配下にあります。
-各プロバイダーは、そのデフォルト、ローカルサーバーの起動、Gateway のモデル設定、
-認証プロファイルのステージング要件、ライブ/モックの機能フラグを所有します。共有スイートと
-Gateway のコードは、プロバイダー名で分岐せず、プロバイダーレジストリを通じてルーティングします。
+各プロバイダーは、独自のデフォルト、ローカルサーバーの起動、Gateway のモデル設定、
+認証プロファイルのステージング要件、およびライブ／モック機能フラグを所有します。
+共有スイートと Gateway のコードは、プロバイダー名による分岐ではなく、
+プロバイダーレジストリを介してルーティングします。
 
 ## トランスポートアダプター
 
 `qa-lab` は、YAML QA シナリオ向けの汎用トランスポートシームを所有します。`qa-channel` は
-合成デフォルトです。`crabline` はローカルのプロバイダー形式のサーバーを起動し、
-それらに対して OpenClaw の通常のチャンネル Plugin を実行します。`live` は、
+合成デフォルトです。`crabline` はローカルのプロバイダー形式サーバーを起動し、
+OpenClaw の通常のチャンネル Plugin をそれらに対して実行します。`live` は、
 実際のプロバイダー認証情報と外部チャンネル用に予約されています。
 
-アーキテクチャレベルでは、分担は次のとおりです。
+アーキテクチャレベルでは、責務の分割は次のとおりです。
 
 - `qa-lab` は、汎用シナリオ実行、ワーカーの並行処理、アーティファクトの
-  書き込み、レポート作成を所有します。
-- トランスポートアダプターは、Gateway の設定、準備完了状態、受信と送信の
-  観測、トランスポートアクション、正規化されたトランスポート状態を所有します。
+  書き込み、およびレポート作成を所有します。
+- トランスポートアダプターは、Gateway の設定、準備完了確認、受信と送信の
+  監視、トランスポートアクション、および正規化されたトランスポート状態を所有します。
 - `qa/scenarios/` 配下の YAML シナリオファイルがテスト実行を定義し、`qa-lab` が
   それらを実行する再利用可能なランタイムサーフェスを提供します。
 
 ### チャンネルの追加
 
 YAML QA システムにチャンネルを追加するには、チャンネル実装に加えて、
-チャンネル契約を検証するシナリオパックが必要です。スモーク CI
-カバレッジのため、対応する Crabline ローカルプロバイダーサーバーを追加し、
-`crabline` ドライバーを通じて公開します。
+チャンネル契約を検証するシナリオパックが必要です。スモーク CI の
+カバレッジには、対応する Crabline ローカルプロバイダーサーバーを追加し、
+`crabline` ドライバーを介して公開します。
 
-共有 `qa-lab` ホストがフローを所有できる場合は、
-新しいトップレベル QA コマンドルートを追加しないでください。
+共有の `qa-lab` ホストがフローを所有できる場合は、新しいトップレベルの
+QA コマンドルートを追加しないでください。
 
 `qa-lab` は、共有ホストの仕組みを所有します。
 
@@ -1135,49 +1129,52 @@ YAML QA システムにチャンネルを追加するには、チャンネル実
 - スイートの起動と終了処理
 - ワーカーの並行処理
 - アーティファクトの書き込み
-- レポート生成
-- シナリオ実行
-- 旧 `qa-channel` シナリオ向けの互換性エイリアス
+- レポートの生成
+- シナリオの実行
+- 以前の `qa-channel` シナリオ向けの互換性エイリアス
 
 ランナー Plugin はトランスポート契約を所有します。
 
-- 共有 `qa` ルート配下に `openclaw qa <runner>` をマウントする方法
-- そのトランスポート向けに Gateway を設定する方法
-- 準備完了状態を確認する方法
+- `openclaw qa <runner>` を共有の `qa` ルート配下にマウントする方法
+- そのトランスポート用に Gateway を設定する方法
+- 準備完了を確認する方法
 - 受信イベントを注入する方法
-- 送信メッセージを観測する方法
+- 送信メッセージを監視する方法
 - トランスクリプトと正規化されたトランスポート状態を公開する方法
-- トランスポートに基づくアクションを実行する方法
+- トランスポートを利用するアクションを実行する方法
 - トランスポート固有のリセットまたはクリーンアップを処理する方法
 
 新しいチャンネルを採用するための最低要件は次のとおりです。
 
-1. 共有 `qa` ルートの所有者として `qa-lab` を維持します。
-2. 共有 `qa-lab` ホストシーム上にトランスポートランナーを実装します。
+1. 共有の `qa` ルートの所有者は `qa-lab` のままにします。
+2. 共有の `qa-lab` ホストシーム上にトランスポートランナーを実装します。
 3. トランスポート固有の仕組みは、ランナー Plugin またはチャンネル
-   ハーネス内に維持します。
-4. 競合するルートコマンドを登録する代わりに、ランナーを `openclaw qa <runner>` として
-   マウントします。ランナー Plugin は `openclaw.plugin.json` で `qaRunners` を宣言し、
-   `runtime-api.ts` から対応する `qaRunnerCliRegistrations`
-   配列をエクスポートする必要があります。`runtime-api.ts` は軽量に保ち、遅延 CLI と
-   ランナーの実行は別々のエントリポイントの背後に維持してください。オプションの
-   `adapterFactory` は、コマンドの既存シナリオカタログを変更せずに、
-   トランスポートを共有シナリオへ公開します。
-5. テーマ別の `qa/scenarios/` ディレクトリ配下で YAML シナリオを
-   作成または適応します。
-6. 新しいシナリオには汎用シナリオヘルパーを使用します。
-7. リポジトリが意図的な移行を実施している場合を除き、
-   既存の互換性エイリアスを動作させ続けます。
+   ハーネス内に保持します。
+4. 競合するルートコマンドを登録するのではなく、ランナーを
+   `openclaw qa <runner>` としてマウントします。ランナー Plugin は
+   `openclaw.plugin.json` で `qaRunners` を宣言し、`runtime-api.ts` から対応する
+   `qaRunnerCliRegistrations` 配列をエクスポートする必要があります。`runtime-api.ts` は
+   軽量に保ち、遅延 CLI とランナー実行は別々のエントリポイントの背後に
+   置いてください。任意の `adapterFactory` を使用すると、コマンドの既存の
+   シナリオカタログを変更せずに、共有シナリオへトランスポートを公開できます。
+   ファクトリが、すべてのインスタンスで分離された認証情報または使い捨てサーバー、
+   Gateway 状態、アーティファクトパスを所有すると宣言しない限り、同一チャンネルの
+   パーティションは直列に実行されます。
+5. テーマ別の `qa/scenarios/` ディレクトリ配下で YAML シナリオを作成または
+   適応します。
+6. 新しいシナリオでは汎用シナリオヘルパーを使用します。
+7. リポジトリが意図的な移行を行っている場合を除き、既存の互換性
+   エイリアスを機能させ続けます。
 
-判断ルールは厳格です。
+判断規則は厳格です。
 
 - 動作を `qa-lab` で一度だけ表現できる場合は、`qa-lab` に配置します。
 - 動作が 1 つのチャンネルトランスポートに依存する場合は、そのランナー
-  Plugin または Plugin ハーネス内に維持します。
-- 複数のチャンネルで使用できる新しい機能がシナリオに必要な場合は、
-  `suite.ts` にチャンネル固有の分岐を追加せず、汎用ヘルパーを追加します。
-- ある動作が 1 つのトランスポートでのみ意味を持つ場合は、シナリオを
-  トランスポート固有のまま維持し、そのことをシナリオ契約で明示します。
+  Plugin または Plugin ハーネス内に保持します。
+- 複数のチャンネルで使用できる新しい機能をシナリオが必要とする場合は、
+  `suite.ts` にチャンネル固有の分岐を追加するのではなく、汎用ヘルパーを追加します。
+- 動作が 1 つのトランスポートでのみ意味を持つ場合は、シナリオを
+  トランスポート固有のままにし、そのことをシナリオ契約で明示します。
 
 ### シナリオヘルパー名
 
@@ -1196,52 +1193,52 @@ YAML QA システムにチャンネルを追加するには、チャンネル実
 - `formatTransportTranscript`
 - `resetTransport`
 
-既存のシナリオでは、互換性エイリアス
+既存のシナリオでは、互換性エイリアスである
 `waitForQaChannelReady`、`waitForOutboundMessage`、`waitForNoOutbound`、
-`formatConversationTranscript`、`resetBus` を引き続き使用できますが、
-新しいシナリオの作成には汎用名を使用してください。エイリアスは
-一斉移行を避けるために存在するものであり、今後のモデルではありません。
+`formatConversationTranscript`、`resetBus` を引き続き使用できますが、新しいシナリオの
+作成には汎用名を使用してください。これらのエイリアスは一斉移行を避けるために
+存在するものであり、今後のモデルではありません。
 
 ## レポート
 
-`qa-lab` は、観測されたバスタイムラインから Markdown プロトコルレポートをエクスポートします。
-レポートでは次に回答する必要があります。
+`qa-lab` は、観測されたバスタイムラインから Markdown プロトコルレポートを
+エクスポートします。レポートでは次の問いに答える必要があります。
 
-- 正常に動作したもの
+- 機能したもの
 - 失敗したもの
 - ブロックされたままのもの
 - 追加する価値があるフォローアップシナリオ
 
-利用可能なシナリオの一覧を確認するには（フォローアップ作業の規模を見積もる場合や、
-新しいトランスポートを接続する場合に便利です）、`pnpm openclaw qa coverage` を実行します
-（機械可読出力には `--json` を追加します）。
-変更対象の動作またはファイルパスに対する重点的な検証を選ぶ場合は、
-`pnpm openclaw qa coverage --match <query>` を実行します。照合レポートは、
-シナリオメタデータ、ドキュメント参照、コード参照、カバレッジ ID、
-Plugin、プロバイダー要件を検索し、一致する `qa suite
+利用可能なシナリオの一覧を確認するには、`pnpm openclaw qa coverage` を実行します
+（機械可読出力には `--json` を追加します）。これは、フォローアップ作業の
+規模を見積もる場合や、新しいトランスポートを接続する場合に役立ちます。変更した
+動作またはファイルパスに対する対象を絞った検証を選択する場合は、
+`pnpm openclaw qa coverage --match <query>` を実行します。照合レポートは、シナリオメタデータ、
+ドキュメント参照、コード参照、カバレッジ ID、Plugin、プロバイダー要件を検索し、
+一致する `qa suite
 --scenario ...` ターゲットを出力します。
 
-`qa suite` を実行するたびに、選択したシナリオセット向けのトップレベル
-`qa-evidence.json`、`qa-suite-summary.json`、`qa-suite-report.md`
-アーティファクトが書き込まれます。`execution.kind: vitest` または
-`execution.kind: playwright` を宣言するシナリオは、対応するテストパスを実行し、
-シナリオごとのログも書き込みます。`execution.kind: script` を宣言するシナリオは、
-`node --import tsx` を通じて `execution.path` にあるエビデンス生成処理を実行します
-（`${outputDir}` と `${scenarioId}` は `execution.args` で展開されます）。
-生成処理は独自の `qa-evidence.json` を書き込み、そのエントリはスイート出力に
-インポートされ、アーティファクトパスはその生成処理の `qa-evidence.json` を基準に
-解決されます。`qa run
---qa-profile` を通じて `qa suite` に到達すると、
-同じ `qa-evidence.json` に、選択した分類カテゴリのプロファイル
-スコアカード概要も含まれます。
+各 `qa suite` 実行では、選択したシナリオセットに対してトップレベルの
+`qa-evidence.json`、`qa-suite-summary.json`、`qa-suite-report.md` アーティファクトが
+書き込まれます。`execution.kind: vitest` または `execution.kind: playwright` を宣言するシナリオは、
+対応するテストパスを実行し、シナリオごとのログも書き込みます。
+`execution.kind: script` を宣言するシナリオは、`node --import tsx` を介して
+`execution.path` のエビデンス生成プログラムを実行します
+（`${outputDir}` と `${scenarioId}` は `execution.args` 内で展開されます）。
+生成プログラムは独自の `qa-evidence.json` を書き込み、そのエントリはスイート出力に
+インポートされ、アーティファクトパスはその生成プログラムの `qa-evidence.json` を
+基準に解決されます。`qa run
+--qa-profile` を介して `qa suite` に到達した場合、
+同じ `qa-evidence.json` に、選択した分類カテゴリのプロファイルスコアカード概要も
+含まれます。
 
-カバレッジ出力は検出支援として扱い、ゲートの代替として扱わないでください。
-選択したシナリオには、テスト対象の動作に適したプロバイダーモード、ライブトランスポート、
-Multipass、Testbox、またはリリースレーンが引き続き必要です。
+カバレッジ出力は探索の補助として扱い、ゲートの代わりにはしないでください。
+選択したシナリオには、テスト対象の動作に応じた適切なプロバイダーモード、
+ライブトランスポート、Multipass、Testbox、またはリリースレーンが依然として必要です。
 スコアカードの背景情報については、[成熟度スコアカード](/ja-JP/maturity/scorecard)を参照してください。
 
-キャラクターとスタイルを確認するには、複数のライブモデル参照で同じシナリオを実行し、
-判定済みの Markdown レポートを作成します。
+キャラクターとスタイルを検査するには、複数のライブモデル参照に対して同じシナリオを
+実行し、判定済みの Markdown レポートを作成します。
 
 ```bash
 pnpm openclaw qa character-eval \
@@ -1261,36 +1258,37 @@ pnpm openclaw qa character-eval \
 ```
 
 このコマンドは Docker ではなく、ローカル QA Gateway の子プロセスを実行します。
-キャラクター評価シナリオでは `SOUL.md` を通じてペルソナを設定し、その後、
+キャラクター評価シナリオでは、`SOUL.md` を介してペルソナを設定し、その後、
 チャット、ワークスペースのヘルプ、小規模なファイルタスクなどの通常のユーザーターンを
-実行してください。候補モデルには、評価されていることを伝えないでください。このコマンドは
-各完全なトランスクリプトを保持し、基本的な実行統計を記録した後、サポートされている場合は
+実行してください。候補モデルには、評価中であることを伝えないでください。このコマンドは、
+各トランスクリプト全体を保持し、基本的な実行統計を記録した後、対応している場合は
 `xhigh` 推論を使用した高速モードで判定モデルに問い合わせ、自然さ、雰囲気、
-ユーモアに基づいて実行を順位付けします。プロバイダーを比較する場合は
+ユーモアによって実行結果を順位付けします。プロバイダーを比較する場合は
 `--blind-judge-models` を使用します。判定プロンプトには引き続きすべてのトランスクリプトと
-実行状態が渡されますが、候補参照は `candidate-01` などの中立的なラベルに
-置き換えられます。レポートは解析後に順位を実際の参照へ対応付けます。
+実行ステータスが渡されますが、候補参照は `candidate-01` などの中立的なラベルに
+置き換えられます。レポートでは、解析後にランキングを実際の参照へ対応付け直します。
 
-候補実行のデフォルトは `high` thinking で、GPT-5.6 Luna には
-`medium`、それをサポートする旧 OpenAI 評価参照には
-`xhigh` が使用されます。特定の候補は `--model provider/model,thinking=<level>` で
-インライン上書きできます。インラインオプションは `fast`、
-`no-fast`、`fast=<bool>` もサポートします。`--thinking
-<level>` は
-引き続きグローバルフォールバックを設定し、旧 `--model-thinking
-<provider/model=level>` 形式は互換性のために
-維持されます。OpenAI の候補参照では、プロバイダーがサポートしている場合に優先処理が
-使用されるよう、高速モードがデフォルトになります。すべての候補モデルで高速モードを
-強制的に有効にする場合にのみ、`--fast` を渡してください。候補と判定の所要時間は
-ベンチマーク分析用にレポートへ記録されますが、判定プロンプトには速度で順位付けしないよう
-明示されています。候補モデルと判定モデルの実行は、どちらも並行数 16 がデフォルトです。
-プロバイダーの制限またはローカル Gateway の負荷によって実行のノイズが大きくなりすぎる場合は、
-`--concurrency` または `--judge-concurrency` を下げてください。
+候補の実行では、デフォルトで `high` thinking を使用し、GPT-5.6 Luna では
+`medium`、対応している以前の OpenAI 評価参照では `xhigh` を
+使用します。特定の候補を上書きするには、`--model provider/model,thinking=<level>` をインラインで指定します。
+インラインオプションでは、`fast`、`no-fast`、
+`fast=<bool>` もサポートされます。`--thinking
+<level>` は引き続きグローバルな
+フォールバックを設定し、以前の `--model-thinking
+<provider/model=level>` 形式も互換性のために維持されます。
+OpenAI の候補参照では、プロバイダーが対応している場合に優先処理が使用されるよう、
+デフォルトで高速モードになります。すべての候補モデルで高速モードを強制的に有効に
+したい場合のみ、`--fast` を渡してください。候補と判定の所要時間は
+ベンチマーク分析用にレポートへ記録されますが、判定プロンプトでは速度によって
+順位付けしないよう明示されます。候補モデルと判定モデルの実行は、どちらも
+デフォルトで並行数 16 です。プロバイダーの制限またはローカル Gateway の負荷によって
+実行時のノイズが多すぎる場合は、`--concurrency` または `--judge-concurrency` を
+引き下げてください。
 
-候補 `--model` が渡されない場合、キャラクター評価のデフォルトは
+候補の `--model` が渡されない場合、キャラクター評価ではデフォルトで
 `openai/gpt-5.6-luna`、`openai/gpt-5.2`、`openai/gpt-5`、
 `anthropic/claude-opus-4-8`、`anthropic/claude-sonnet-4-6`、`zai/glm-5.1`、
-`moonshot/kimi-k2.5`、`google/gemini-3.1-pro-preview` です。
+`moonshot/kimi-k2.5`、`google/gemini-3.1-pro-preview` を使用します。
 `--judge-model` が渡されない場合、判定モデルのデフォルトは
 `openai/gpt-5.6-sol,thinking=xhigh,fast` と
 `anthropic/claude-opus-4-8,thinking=high` です。

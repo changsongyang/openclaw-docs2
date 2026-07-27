@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin opencode-go
-summary: Añade compatibilidad con el proveedor de modelos OpenCode Go a OpenClaw.
+summary: Añade compatibilidad con el proveedor de modelos OpenCode Go en OpenClaw.
 title: Plugin OpenCode Go
 x-i18n:
-    generated_at: "2026-07-16T11:54:09Z"
+    generated_at: "2026-07-26T05:15:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

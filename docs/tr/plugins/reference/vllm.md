@@ -1,10 +1,10 @@
 ---
 read_when:
-    - vllm Pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+    - vllm pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a vLLM model sağlayıcısı desteği ekler.
 title: vLLM Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:47:14Z"
+    generated_at: "2026-07-26T23:53:57Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# vLLM Plugin
+# vLLM plugin'i
 
 OpenClaw'a vLLM model sağlayıcısı desteği ekler.
 

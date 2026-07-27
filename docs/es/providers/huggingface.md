@@ -2,10 +2,10 @@
 read_when:
     - Quieres usar Hugging Face Inference con OpenClaw
     - Se necesita la variable de entorno del token de HF o la opción de autenticación de la CLI
-summary: Configuración de Hugging Face Inference (autenticación + selección de modelo)
+summary: Configuración de Hugging Face Inference (autenticación + selección del modelo)
 title: Hugging Face (inferencia)
 x-i18n:
-    generated_at: "2026-07-19T02:10:05Z"
+    generated_at: "2026-07-26T04:49:18Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,29 +15,29 @@ x-i18n:
     workflow: 16
 ---
 
-[Proveedores de inferencia de Hugging Face](https://huggingface.co/docs/inference-providers) expone un enrutador de completado de chat compatible con OpenAI para numerosos modelos alojados (DeepSeek, Llama y otros) mediante un único token. OpenClaw se comunica **únicamente con el endpoint de completado de chat**; para texto a imagen, embeddings o voz, use directamente los [clientes de inferencia de HF](https://huggingface.co/docs/api-inference/quicktour).
+[Proveedores de inferencia de Hugging Face](https://huggingface.co/docs/inference-providers) ofrece un enrutador de finalizaciones de chat compatible con OpenAI para numerosos modelos alojados (DeepSeek, Llama y más) mediante un único token. OpenClaw se comunica **únicamente con el endpoint de finalizaciones de chat**; para texto a imagen, embeddings o voz, use directamente los [clientes de inferencia de HF](https://huggingface.co/docs/api-inference/quicktour).
 
-| Propiedad       | Valor                                                                                                                           |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| Id. del proveedor | `huggingface`                                                                                                           |
-| Plugin          | incluido (habilitado de forma predeterminada, sin paso de instalación)                                                          |
-| Variable de entorno de autenticación | `HUGGINGFACE_HUB_TOKEN` o `HF_TOKEN` (token con permisos específicos)                                  |
-| API             | Compatible con OpenAI (`https://router.huggingface.co/v1`)                                                                                      |
-| Facturación     | Un único token de HF; los [precios](https://huggingface.co/docs/inference-providers/pricing) siguen las tarifas del proveedor con un nivel gratuito |
+| Propiedad                 | Valor                                                                                                                                         |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Id. del proveedor         | `huggingface`                                                                                                                            |
+| Plugin                    | incluido (habilitado de forma predeterminada, sin ningún paso de instalación)                                                                 |
+| Variable de entorno de autenticación | `HUGGINGFACE_HUB_TOKEN` o `HF_TOKEN` (token específico)                                                                       |
+| API                       | Compatible con OpenAI (`https://router.huggingface.co/v1`)                                                                                                    |
+| Facturación               | Un único token de HF; los [precios](https://huggingface.co/docs/inference-providers/pricing) siguen las tarifas del proveedor con un nivel gratuito |
 
 ## Primeros pasos
 
 <Steps>
-  <Step title="Crear un token con permisos específicos">
-    Vaya a [Hugging Face Settings Tokens](https://huggingface.co/settings/tokens/new?ownUserPermissions=inference.serverless.write&tokenType=fineGrained) y cree un nuevo token con permisos específicos.
+  <Step title="Crear un token específico">
+    Vaya a [Hugging Face Settings Tokens](https://huggingface.co/settings/tokens/new?ownUserPermissions=inference.serverless.write&tokenType=fineGrained) y cree un nuevo token específico.
 
     <Warning>
-    El token debe tener habilitado el permiso **Make calls to Inference Providers**; de lo contrario, se rechazarán las solicitudes a la API.
+    El token debe tener habilitado el permiso **Make calls to Inference Providers**; de lo contrario, se rechazarán las solicitudes de la API.
     </Warning>
 
   </Step>
   <Step title="Ejecutar la incorporación">
-    Elija **Hugging Face** en la lista desplegable de proveedores y, cuando se solicite, introduzca su clave de API:
+    Elija **Hugging Face** en la lista desplegable de proveedores y, cuando se le solicite, introduzca su clave de API:
 
     ```bash
     openclaw onboard --auth-choice huggingface-api-key
@@ -45,7 +45,7 @@ x-i18n:
 
   </Step>
   <Step title="Seleccionar un modelo predeterminado">
-    En la lista desplegable **Default Hugging Face model**, elija un modelo. La lista se carga desde la API de inferencia cuando el token es válido; de lo contrario, OpenClaw muestra el catálogo integrado que aparece a continuación. La selección se guarda como `agents.defaults.model.primary`:
+    En la lista desplegable **Modelo predeterminado de Hugging Face**, elija un modelo. La lista se carga desde la API de inferencia cuando el token es válido; de lo contrario, OpenClaw muestra el catálogo integrado que aparece a continuación. La selección se guarda como `agents.defaults.model.primary`:
 
     ```json5
     {
@@ -76,34 +76,34 @@ openclaw onboard --non-interactive \
 
 Establece `huggingface/deepseek-ai/DeepSeek-R1` como modelo predeterminado.
 
-## Identificadores de modelos
+## Id. de modelos
 
-Las referencias de modelos usan el formato `huggingface/<org>/<model>` (identificadores con el estilo de Hub). Catálogo integrado de OpenClaw:
+Las referencias de modelos usan el formato `huggingface/<org>/<model>` (id. al estilo de Hub). Catálogo integrado de OpenClaw:
 
-| Modelo        | Referencia (con el prefijo `huggingface/`) |
-| ------------- | ---------------------------------------------- |
-| DeepSeek R1   | `deepseek-ai/DeepSeek-R1`                             |
-| DeepSeek V3.1 | `deepseek-ai/DeepSeek-V3.1`                             |
-| GPT-OSS 120B  | `openai/gpt-oss-120b`                             |
+| Modelo        | Ref. (con el prefijo `huggingface/`) |
+| ------------- | ----------------------------------------- |
+| DeepSeek R1   | `deepseek-ai/DeepSeek-R1`                       |
+| DeepSeek V3.1 | `deepseek-ai/DeepSeek-V3.1`                       |
+| GPT-OSS 120B  | `openai/gpt-oss-120b`                       |
 
 <Tip>
-Cuando el token es válido, OpenClaw también detecta cualquier otro modelo mediante **GET** `https://router.huggingface.co/v1/models` durante la incorporación y el inicio del Gateway, por lo que el catálogo puede incluir muchos más modelos que los tres anteriores. Puede añadir `:fastest` o `:cheapest` a cualquier identificador de modelo; el enrutador de HF lo dirige al proveedor de inferencia correspondiente. Establezca el orden predeterminado de proveedores en [Inference Provider settings](https://hf.co/settings/inference-providers).
+Cuando el token es válido, OpenClaw también detecta cualquier otro modelo mediante **GET** `https://router.huggingface.co/v1/models` durante la incorporación y el inicio del Gateway, por lo que el catálogo puede incluir muchos más que los tres modelos anteriores. Puede añadir `:fastest` o `:cheapest` a cualquier id. de modelo; el enrutador de HF dirige la solicitud al proveedor de inferencia correspondiente. Establezca el orden predeterminado de los proveedores en [la configuración de proveedores de inferencia](https://hf.co/settings/inference-providers).
 </Tip>
 
 ## Configuración avanzada
 
 <AccordionGroup>
   <Accordion title="Detección de modelos y lista desplegable de incorporación">
-    OpenClaw detecta modelos mediante:
+    OpenClaw detecta los modelos mediante:
 
     ```bash
     GET https://router.huggingface.co/v1/models
     Authorization: Bearer $HUGGINGFACE_HUB_TOKEN   # o $HF_TOKEN
     ```
 
-    La respuesta sigue el formato de OpenAI: `{ "object": "list", "data": [ { "id": "Qwen/Qwen3-8B", "owned_by": "Qwen", ... }, ... ] }`.
+    La respuesta sigue el estilo de OpenAI: `{ "object": "list", "data": [ { "id": "Qwen/Qwen3-8B", "owned_by": "Qwen", ... }, ... ] }`.
 
-    Con una clave configurada (mediante la incorporación, `HUGGINGFACE_HUB_TOKEN` o `HF_TOKEN`), la lista desplegable **Default Hugging Face model** de la configuración interactiva se rellena desde este endpoint. Al iniciarse, el Gateway repite la misma llamada para actualizar el catálogo. Los modelos detectados se combinan con el catálogo integrado anterior (que se usa para metadatos como la ventana de contexto y el coste cuando coincide un identificador). Si la solicitud falla, no devuelve datos o no se ha establecido ninguna clave, OpenClaw recurre únicamente al catálogo integrado.
+    Con una clave configurada (incorporación, `HUGGINGFACE_HUB_TOKEN` o `HF_TOKEN`), la lista desplegable **Modelo predeterminado de Hugging Face** durante la configuración interactiva se rellena desde este endpoint. El inicio del Gateway repite la misma llamada para actualizar el catálogo. Los modelos detectados se combinan con el catálogo integrado anterior (que se usa para metadatos como la ventana de contexto y el coste cuando coincide un id.). Si la solicitud falla, no devuelve datos o no se ha establecido ninguna clave, OpenClaw recurre únicamente al catálogo integrado.
 
     Para deshabilitar la detección sin eliminar el proveedor:
 
@@ -114,8 +114,8 @@ Cuando el token es válido, OpenClaw también detecta cualquier otro modelo medi
   </Accordion>
 
   <Accordion title="Nombres de modelos, alias y sufijos de políticas">
-    - **Nombre de la API:** los modelos detectados usan `name`, `title` o `display_name` de la API cuando están presentes; de lo contrario, OpenClaw deriva un nombre del identificador del modelo (por ejemplo, `deepseek-ai/DeepSeek-R1` se convierte en "DeepSeek R1").
-    - **Anular el nombre mostrado:** establezca una etiqueta personalizada por modelo en la configuración:
+    - **Nombre de la API:** los modelos detectados usan `name`, `title` o `display_name` de la API cuando están presentes; de lo contrario, OpenClaw deriva un nombre del id. del modelo (por ejemplo, `deepseek-ai/DeepSeek-R1` se convierte en "DeepSeek R1").
+    - **Sobrescribir el nombre para mostrar:** establezca una etiqueta personalizada para cada modelo en la configuración:
 
     ```json5
     {
@@ -130,16 +130,16 @@ Cuando el token es válido, OpenClaw también detecta cualquier otro modelo medi
     }
     ```
 
-    - **Sufijos de políticas:** `:fastest` y `:cheapest` son convenciones del enrutador de HF, no elementos que OpenClaw reescriba: el sufijo se envía literalmente como parte del identificador del modelo y el enrutador de HF selecciona el proveedor de inferencia correspondiente. Añada cada variante como una entrada independiente en `models.providers.huggingface.models` (o en `model.primary`) si desea un alias distinto para cada sufijo.
-    - **Combinación de configuración:** las entradas existentes en `models.providers.huggingface.models` (por ejemplo, en `models.json`) se conservan al combinar la configuración, por lo que cualquier `name`, `alias` u opción de modelo personalizada que se establezca allí persiste entre reinicios.
+    - **Sufijos de políticas:** `:fastest` y `:cheapest` son convenciones del enrutador de HF, no algo que OpenClaw reescriba: el sufijo se envía literalmente como parte del id. del modelo y el enrutador de HF elige el proveedor de inferencia correspondiente. Añada cada variante como su propia entrada en `models.providers.huggingface.models` (o en `model.primary`) si desea un alias distinto para cada sufijo.
+    - **Combinación de la configuración:** las entradas existentes en `models.providers.huggingface.models` (por ejemplo, en `models.json`) se conservan al combinar la configuración, por lo que cualquier `name`, `alias` u opción de modelo personalizada que establezca allí se mantiene tras los reinicios.
 
   </Accordion>
 
-  <Accordion title="Configuración del entorno y del daemon">
-    Si el Gateway se ejecuta como daemon (launchd/systemd), asegúrese de que `HUGGINGFACE_HUB_TOKEN` o `HF_TOKEN` estén disponibles para ese proceso (por ejemplo, en `~/.openclaw/.env` o mediante `env.shellEnv`).
+  <Accordion title="Configuración del entorno y del demonio">
+    Si el Gateway se ejecuta como demonio (launchd/systemd), asegúrese de que `HUGGINGFACE_HUB_TOKEN` o `HF_TOKEN` esté disponible para ese proceso (por ejemplo, en `~/.openclaw/.env` o mediante `env.shellEnv`).
 
     <Note>
-    OpenClaw acepta tanto `HUGGINGFACE_HUB_TOKEN` como `HF_TOKEN`. Si se establecen ambas, `HUGGINGFACE_HUB_TOKEN` tiene prioridad.
+    OpenClaw acepta tanto `HUGGINGFACE_HUB_TOKEN` como `HF_TOKEN`. Si se establecen ambos, `HUGGINGFACE_HUB_TOKEN` tiene prioridad.
     </Note>
 
   </Accordion>
@@ -213,6 +213,6 @@ Cuando el token es válido, OpenClaw también detecta cualquier otro modelo medi
     Documentación oficial de los proveedores de inferencia de Hugging Face.
   </Card>
   <Card title="Configuración" href="/es/gateway/configuration" icon="gear">
-    Referencia completa de configuración.
+    Referencia completa de la configuración.
   </Card>
 </CardGroup>

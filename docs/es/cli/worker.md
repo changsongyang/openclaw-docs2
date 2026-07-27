@@ -5,78 +5,93 @@ read_when:
 summary: Referencia interna para operadores del entorno de ejecución restringido de trabajadores en la nube
 title: Trabajador
 x-i18n:
-    generated_at: "2026-07-16T11:36:40Z"
+    generated_at: "2026-07-26T04:35:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 6591eb66c201a56e60638ce832c569b030d2d4a01b984d577e0ea44c10a0fa5e
+    source_hash: 0c4749e2abaf4fca00d903114b0661454d67207547fe17711dc5315656e0cd14
     source_path: cli/worker.md
     workflow: 16
 ---
 
 # `openclaw worker`
 
-`openclaw worker` es el punto de entrada de entorno de ejecución restringido que un orquestador de trabajadores
-en la nube inicia dentro de un entorno de trabajador preparado. No es un
-comando de uso general para registrar trabajadores manualmente.
+`openclaw worker` es el punto de entrada de ejecución restringido que un
+orquestador de trabajadores en la nube inicia dentro de un entorno de trabajador
+preparado. No es un comando de uso general para registrar trabajadores manualmente.
 
-El Gateway instala el paquete de OpenClaw correspondiente y abre el túnel SSH
-inverso con la clave del host fijada. El iniciador de trabajadores ejecuta este comando con una
-asignación preparada. El comando se conecta a través del socket local reenviado por el túnel y
-se admite con el rol dedicado `worker`.
+El Gateway instala el paquete de OpenClaw correspondiente y abre el túnel SSH inverso
+con la clave del host fijada. El iniciador del trabajador ejecuta este comando con una
+asignación preparada. El comando se conecta a través del socket local reenviado por el
+túnel y se admite con el rol dedicado `worker`.
 
 ## Contrato de inicio
 
-El comando lee exactamente un sobre JSON de inicio acotado desde la entrada estándar.
-El sobre contiene la ubicación del socket local, la credencial de trabajador emitida, la identidad
-del paquete y del protocolo, la época del propietario y la única sesión y turno asignados.
-La credencial nunca se acepta mediante argumentos de la línea de comandos, y esta página
-no proporciona intencionadamente ningún ejemplo de credencial ni de sobre creado manualmente.
+El comando lee exactamente un sobre de inicio JSON acotado desde la entrada estándar.
+El sobre contiene la ubicación del socket local, la credencial emitida del trabajador,
+la identidad del paquete y del protocolo, la época del propietario, la única sesión y
+el único turno asignados, y los nombres exactos de las herramientas locales del
+trabajador autorizadas para ese turno. El Gateway resuelve este conjunto final de
+herramientas a partir de la política vigente antes de la transferencia; la configuración
+sin procesar y la identidad del propietario programado nunca entran en el sobre del
+trabajador.
+La credencial nunca se acepta mediante argumentos de línea de comandos, y esta página
+no proporciona intencionadamente ningún ejemplo de credencial ni de sobre elaborado
+manualmente.
 
-La admisión se cierra ante errores si el sobre no es válido, se rechaza la credencial,
-las funciones del paquete o del protocolo no coinciden, o la sesión y la época del propietario
-ya no están vigentes. Los operadores deben iniciar los trabajadores mediante el orquestador de trabajadores
-en la nube en lugar de invocar directamente este punto de entrada.
+La admisión se deniega de forma segura si el sobre no es válido, se rechaza la
+credencial, las características del paquete o del protocolo no coinciden, o la sesión
+y la época del propietario ya no están vigentes. Los nombres de herramientas ausentes,
+duplicados o desconocidos también invalidan el sobre. Los operadores deben iniciar los
+trabajadores mediante el orquestador de trabajadores en la nube en lugar de invocar
+directamente este punto de entrada.
 
-## Límite del entorno de ejecución
+## Límite de ejecución
 
 El proceso ejecuta el bucle normal del agente integrado con un backend restringido:
 
 - Las herramientas de programación `read`, `write`, `edit`, `apply_patch`, `exec` y `process`
-  se ejecutan localmente en el espacio de trabajo del trabajador.
-- Las llamadas al modelo utilizan el proxy de inferencia del Gateway. No se carga ningún perfil local
-  de autenticación del modelo.
-- Las escrituras de la transcripción utilizan la RPC de confirmación de transcripciones del Gateway.
-- Las actualizaciones de transmisión y del ciclo de vida de las herramientas utilizan la RPC de eventos en vivo del Gateway.
+  se ejecutan localmente en el espacio de trabajo del trabajador cuando están presentes
+  en la autoridad de turno emitida por el Gateway. Una autoridad vacía ejecuta el modelo
+  sin herramientas.
+- Las llamadas al modelo utilizan el proxy de inferencia del Gateway. No se carga
+  ningún perfil local de autenticación del modelo.
+- Las escrituras de la transcripción utilizan la RPC de confirmación de
+  transcripciones del Gateway.
+- La transmisión y las actualizaciones del ciclo de vida de las herramientas
+  utilizan la RPC de eventos en directo del Gateway.
 - Solo se aceptan la sesión y el turno asignados.
 
-El modo de trabajador no inicia canales, superficies HTTP del Gateway ni el inicio automático de plugins
-más allá del conjunto de herramientas de la sesión asignada. Utiliza un directorio de estado desechable y no dispone
-de credenciales persistentes de proveedores ni de forjas.
+El modo de trabajador no inicia canales, superficies HTTP del Gateway ni el inicio
+automático de plugins más allá del conjunto de herramientas de la sesión asignada.
+Utiliza un directorio de estado desechable y no dispone de credenciales permanentes
+de proveedor ni de plataforma de desarrollo.
 
-El envío de sesiones entre trabajadores no está disponible en este modo. La ubicación y
-el envío siguen bajo control del Gateway: un operador puede enviar una sesión local existente
-de un árbol de trabajo administrado a través del Gateway, mientras que un proceso de trabajador no puede
-enviarse a sí mismo ni enviar a otro trabajador.
+El envío de sesiones entre trabajadores no está expuesto en este modo. La ubicación
+y el envío siguen siendo propiedad del Gateway: un operador puede enviar mediante el
+Gateway una sesión local existente de un árbol de trabajo administrado, mientras que
+un proceso de trabajador no puede enviarse a sí mismo ni enviar a otro trabajador.
 
-La asignación preparada contiene el contexto de la transcripción, la hoja base aceptada,
-la secuencia de confirmaciones y el cursor de eventos en vivo. Al reconectarse el túnel, el proceso
-vuelve a admitirse con la misma credencial y época del propietario, conserva la base
-de la transcripción aceptada, reproduce la cola de eventos en vivo no confirmados y vuelve a asociarse a un
-turno de inferencia en curso con la misma identidad. El mensaje de inferencia terminal
-es la fuente autoritativa si se perdieron deltas transmitidos. Una época del propietario posterior
-impone una barrera al proceso y provoca una salida limpia.
+La asignación preparada contiene el contexto de la transcripción, la hoja base
+aceptada, la secuencia de confirmaciones y el cursor de eventos en directo. Cuando se
+vuelve a conectar el túnel, el proceso se readmite con la misma credencial y época del
+propietario, conserva la base aceptada de la transcripción, reproduce la cola de eventos
+en directo que no se ha confirmado y vuelve a adjuntarse a un turno de inferencia en
+curso con la misma identidad. El mensaje de inferencia terminal es la fuente de
+autoridad si se perdieron deltas transmitidos. Una época del propietario que sustituya
+a la anterior aísla el proceso y provoca una salida limpia.
 
-Un rechazo de transcripción `stale-base-leaf` detiene inmediatamente la ejecución actual. El modo de
-trabajador no reintenta la secuencia rechazada en una hoja diferente, por lo que no
-se produce ninguna confirmación duplicada; cualquier cola aún no confirmada que permanezca en memoria de esa
-ejecución se pierde. El reinicio corresponde al propietario de ubicación del hito 3, que debe
-crear una asignación nueva a partir de la transcripción autoritativa y
-el registro de confirmaciones del Gateway. Del mismo modo, el reinicio de un proceso del Gateway finaliza un turno de
-inferencia pendiente con un error del proveedor; solo la reconexión de un túnel o del WebSocket
-del trabajador puede volver a asociarse a un flujo de inferencia activo del mismo proceso.
+Un rechazo de transcripción `stale-base-leaf` detiene de inmediato la ejecución
+actual. El modo de trabajador no reintenta la secuencia rechazada contra una hoja
+diferente, por lo que no se genera ninguna confirmación duplicada; se pierde cualquier
+cola en memoria de esa ejecución que todavía no se haya confirmado. El reinicio
+corresponde al propietario de ubicación del hito 3, que debe crear una asignación nueva
+a partir de la transcripción y el registro de confirmaciones autoritativos del Gateway.
+Asimismo, el reinicio de un proceso del Gateway termina un turno de inferencia pendiente
+con un error del proveedor; solo la reconexión del túnel o del WebSocket del trabajador
+puede volver a adjuntarse a un flujo de inferencia activo del mismo proceso.
 
-Consulte [Protocolo del Gateway](/es/gateway/protocol#worker-role-and-closed-protocol) para conocer la
-superficie RPC cerrada del trabajador y [Plan de trabajadores en la nube](/es/plan/cloud-workers) para conocer el
-modelo de arquitectura y seguridad.
+Consulte [Protocolo del Gateway](/es/gateway/protocol#worker-role-and-closed-protocol) para
+conocer la superficie RPC cerrada del trabajador y el [Plan de trabajadores en la nube](/es/plan/cloud-workers)
+para conocer la arquitectura y el modelo de seguridad.

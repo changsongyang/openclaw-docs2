@@ -4,7 +4,7 @@ read_when:
 summary: Voegt ondersteuning voor webzoekproviders toe.
 title: DuckDuckGo-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:05:22Z"
+    generated_at: "2026-07-27T05:41:41Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# DuckDuckGo-Plugin
+# DuckDuckGo-plugin
 
 Voegt ondersteuning voor een webzoekprovider toe.
 

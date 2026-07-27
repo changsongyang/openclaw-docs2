@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de qa-lab-plugin
-summary: OpenClaw QA-labplugin met een privé-debuggerinterface en scenariorunner.
-title: QA Lab-plugin
+summary: OpenClaw QA-labplugin met privédebuggerinterface en scenariorunner.
+title: QA Lab-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:20:15Z"
+    generated_at: "2026-07-27T06:00:35Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ OpenClaw QA Lab-Plugin met een privédebuggerinterface en scenariorunner.
 ## Distributie
 
 - Pakket: `@openclaw/qa-lab`
-- Installatieroute: alleen uitchecken van de broncode
+- Installatieroute: alleen vanuit een broncode-checkout
 
 ## Oppervlak
 

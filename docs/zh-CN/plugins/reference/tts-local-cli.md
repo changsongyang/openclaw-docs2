@@ -4,7 +4,7 @@ read_when:
 summary: 添加文本转语音提供商支持。
 title: TTS 本地 CLI 插件
 x-i18n:
-    generated_at: "2026-07-16T11:48:01Z"
+    generated_at: "2026-07-26T06:58:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

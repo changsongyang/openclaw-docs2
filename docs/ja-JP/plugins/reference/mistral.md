@@ -1,10 +1,10 @@
 ---
 read_when:
-    - mistral Pluginのインストール、設定、または監査を行っています
+    - mistral Plugin のインストール、設定、または監査を行っています
 summary: OpenClaw に Mistral モデルプロバイダーのサポートを追加します。
 title: Mistral Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:05:29Z"
+    generated_at: "2026-07-26T09:53:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,12 +21,12 @@ OpenClaw に Mistral モデルプロバイダーのサポートを追加しま�
 ## 配布
 
 - パッケージ: `@openclaw/mistral-provider`
-- インストール経路: OpenClaw に同梱
+- インストール方法: OpenClaw に同梱
 
-## サーフェス
+## 公開インターフェース
 
 プロバイダー: `mistral`; コントラクト: `mediaUnderstandingProviders`, `memoryEmbeddingProviders`, `realtimeTranscriptionProviders`
 
 ## 関連ドキュメント
 
-- [mistral](/ja-JP/providers/mistral)
+- [Mistral](/ja-JP/providers/mistral)

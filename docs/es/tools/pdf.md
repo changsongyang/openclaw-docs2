@@ -2,11 +2,11 @@
 read_when:
     - Quiere analizar archivos PDF de agentes
     - Necesita los parámetros y límites exactos de la herramienta de PDF
-    - Está depurando el modo PDF nativo frente al modo alternativo de extracción
+    - Estás depurando el modo PDF nativo frente al modo alternativo de extracción
 summary: Analiza uno o más documentos PDF con compatibilidad nativa del proveedor y extracción alternativa
 title: Herramienta de PDF
 x-i18n:
-    generated_at: "2026-07-22T10:51:22Z"
+    generated_at: "2026-07-26T05:32:56Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,18 +16,18 @@ x-i18n:
     workflow: 16
 ---
 
-`pdf` analiza uno o más documentos PDF y devuelve texto. Usa la entrada nativa de documentos en los modelos de Anthropic y Google, y recurre a la extracción de texto e imágenes para todos los demás proveedores.
+`pdf` analiza uno o varios documentos PDF y devuelve texto. Utiliza la entrada nativa de documentos en los modelos de Anthropic y Google, y recurre a la extracción de texto/imágenes para todos los demás proveedores.
 
 ## Disponibilidad
 
-La herramienta se registra solo cuando OpenClaw puede resolver un modelo compatible con PDF para el agente. Orden de resolución:
+La herramienta solo se registra cuando OpenClaw puede resolver un modelo compatible con PDF para el agente. Orden de resolución:
 
 1. `agents.defaults.pdfModel` (modelo principal y alternativas explícitos)
 2. `agents.defaults.imageModel` (modelo principal y alternativas explícitos)
-3. El modelo predeterminado o resuelto para la sesión del agente, si su proveedor admite la entrada nativa de PDF (Anthropic, Google) o ya tiene configurado un modelo de visión
-4. Proveedores compatibles con imágenes o visión detectados automáticamente y con autenticación utilizable, dando prioridad a los proveedores con PDF nativo
+3. El modelo resuelto de la sesión o predeterminado del agente, si su proveedor admite entrada nativa de PDF (Anthropic, Google) o ya tiene configurado un modelo de visión
+4. Proveedores compatibles con imágenes/visión detectados automáticamente y con autenticación utilizable, dando prioridad a los proveedores con PDF nativo
 
-Se comprueba la autenticación de cada modelo alternativo candidato antes de usarlo, por lo que un `provider/model` configurado solo cuenta si OpenClaw puede autenticar ese proveedor para el agente. Si no se resuelve ningún modelo utilizable, la herramienta `pdf` no se expone.
+La autenticación de cada modelo alternativo candidato se comprueba antes de usarlo, por lo que un `provider/model` configurado solo cuenta si OpenClaw puede autenticar ese proveedor para el agente. Si no se resuelve ningún modelo utilizable, la herramienta `pdf` no se expone.
 
 ## Referencia de entrada
 
@@ -44,11 +44,11 @@ Instrucción de análisis.
 </ParamField>
 
 <ParamField path="pages" type="string">
-Filtro de páginas como `1-5` o `1,3,7-9`. No se admite en el modo de proveedor nativo.
+Filtro de páginas como `1-5` o `1,3,7-9`. No se admite en el modo nativo del proveedor.
 </ParamField>
 
 <ParamField path="password" type="string">
-Contraseña para archivos PDF cifrados. Se aplica a todos los PDF de la solicitud; solo se usa en el modo alternativo de extracción.
+Contraseña para PDF cifrados. Se aplica a todos los PDF de la solicitud; solo se utiliza en el modo alternativo de extracción.
 </ParamField>
 
 <ParamField path="model" type="string">
@@ -61,8 +61,8 @@ Límite de tamaño por PDF en MB. El valor predeterminado es `agents.defaults.pd
 
 Notas:
 
-- `pdf` y `pdfs` se combinan y se eliminan los duplicados antes de la carga; se requiere al menos uno.
-- `pages` se interpreta como números de página basados en 1, se eliminan los duplicados, se ordenan y se limitan a `agents.defaults.pdfMaxPages` (valor predeterminado: `20`). Un intervalo que no coincida con ninguna página dentro de los límites genera un error antes de llamar al modelo.
+- `pdf` y `pdfs` se combinan y deduplican antes de la carga; se requiere al menos uno.
+- `pages` se interpreta como números de página con base 1, se deduplica, se ordena y se limita a `agents.defaults.pdfMaxPages` (valor predeterminado: `20`). Un intervalo que no coincida con ninguna página dentro de los límites produce un error antes de llamar al modelo.
 
 ## Referencias de PDF compatibles
 
@@ -71,31 +71,31 @@ Notas:
 - URL `http://` y `https://`
 - Referencias entrantes administradas por OpenClaw, como `media://inbound/<id>`
 
-Otros esquemas de URI (por ejemplo, `ftp://`) devuelven `details.error = "unsupported_pdf_reference"`. Las URL remotas `http(s)` se rechazan cuando la herramienta se ejecuta en un entorno aislado. Cuando está habilitada la política de archivos exclusiva del espacio de trabajo, se rechazan las rutas locales fuera de las raíces permitidas; las referencias entrantes administradas y las rutas reproducidas dentro del almacén de medios entrantes de OpenClaw siguen estando permitidas.
+Otros esquemas de URI (por ejemplo, `ftp://`) devuelven `details.error = "unsupported_pdf_reference"`. Las URL `http(s)` remotas se rechazan cuando la herramienta se ejecuta en un entorno aislado. Cuando está habilitada la política de archivos limitada al espacio de trabajo, se rechazan las rutas locales que estén fuera de las raíces permitidas; las referencias entrantes administradas y las rutas reproducidas bajo el almacén de contenido multimedia entrante de OpenClaw siguen estando permitidas.
 
 ## Modos de ejecución
 
-### Modo de proveedor nativo
+### Modo nativo del proveedor
 
-Se utiliza para los proveedores `anthropic` y `google` (los únicos proveedores que actualmente declaran compatibilidad nativa con documentos PDF). Los bytes sin procesar de cada PDF se envían directamente a la API del proveedor como una parte de documento nativo o PDF insertado por archivo.
+Se utiliza para los proveedores `anthropic` y `google` (los únicos proveedores que actualmente declaran compatibilidad nativa con documentos PDF). Los bytes sin procesar del PDF se envían directamente a la API del proveedor como un documento nativo o una parte de PDF insertada por cada archivo.
 
 Límites:
 
 - `pages` no se admite; si se establece, la herramienta genera `pages is not supported with native PDF providers`.
-- `password` no se admite; si se establece, la herramienta genera `password is not supported with native PDF providers`. Use un modelo no nativo para archivos PDF cifrados.
+- `password` no se admite; si se establece, la herramienta genera `password is not supported with native PDF providers`. Utilice un modelo no nativo para los PDF cifrados.
 
 ### Modo alternativo de extracción
 
 Se utiliza para todos los demás proveedores.
 
-1. Extrae el texto de las páginas seleccionadas (hasta `agents.defaults.pdfMaxPages`, con un valor predeterminado de `20`) mediante el Plugin `document-extract` incluido, que usa el paquete `clawpdf` (PDFium WebAssembly) para extraer texto e imágenes.
-2. Si el texto extraído tiene menos de `200` caracteres, representa las mismas páginas como imágenes PNG. El presupuesto de representación es de `4,000,000` píxeles en total, compartido entre todas las páginas que necesitan imágenes (asignado proporcionalmente por cada página restante, no por página), por lo que las páginas de texto que ya contienen suficiente texto omiten por completo la representación.
+1. Extrae el texto de las páginas seleccionadas (hasta `agents.defaults.pdfMaxPages`, valor predeterminado: `20`) mediante el Plugin `document-extract` incluido, que utiliza el paquete `clawpdf` (PDFium WebAssembly) para extraer texto e imágenes.
+2. Si el texto extraído tiene menos de `200` caracteres, representa las mismas páginas como imágenes PNG. El presupuesto de representación es de `4,000,000` píxeles en total, compartidos entre todas las páginas que necesitan imágenes (asignados proporcionalmente por cada página restante, no por página), por lo que las páginas que ya contienen suficiente texto omiten por completo la representación.
 3. Envía el texto extraído (y cualquier imagen representada), junto con la instrucción, al modelo seleccionado.
 
 Detalles:
 
-- Los archivos PDF cifrados se abren con el parámetro de nivel superior `password`.
-- Si el modelo no admite entrada de imágenes y no hay texto extraíble, la herramienta genera un error.
+- Los PDF cifrados se abren con el parámetro de nivel superior `password`.
+- Si el modelo no admite entrada de imágenes y no hay texto extraíble, la herramienta produce un error.
 - Si falla la representación de imágenes, OpenClaw descarta las imágenes y continúa con el texto extraído.
 - Si el modelo de destino solo admite texto y la extracción produjo imágenes, OpenClaw descarta las imágenes y envía únicamente el texto.
 
@@ -124,31 +124,31 @@ Detalles:
 
 Consulte la [Referencia de configuración](/es/gateway/config-agents#agent-defaults) para obtener todos los detalles de los campos.
 
-## Detalles de salida
+## Detalles de la salida
 
 La herramienta devuelve texto en `content[0].text` y metadatos estructurados en `details`.
 
 Campos habituales de `details`:
 
 - `model`: referencia del modelo resuelto (`provider/model`)
-- `native`: `true` para el modo de proveedor nativo, `false` para el modo alternativo
-- `attempts`: intentos alternativos que fallaron antes de obtener un resultado satisfactorio
+- `native`: `true` para el modo nativo del proveedor, `false` para el modo alternativo
+- `attempts`: intentos con modelos alternativos que fallaron antes de lograr el resultado
 
 Campos de ruta:
 
-- Entrada de un solo PDF: `details.pdf`
-- Entradas de varios PDF: `details.pdfs[]` con entradas `pdf`
+- Entrada de un único PDF: `details.pdf`
+- Entradas de varios PDF: `details.pdfs[]` con elementos `pdf`
 - Metadatos de reescritura de rutas del entorno aislado (cuando corresponda): `rewrittenFrom`
 
 ## Comportamiento ante errores
 
-| Condición                              | Resultado                                                    |
-| -------------------------------------- | ------------------------------------------------------------ |
-| No se proporciona ningún PDF           | Genera `pdf required: provide a path or URL to a PDF document`                                    |
-| Más de 10 archivos PDF                 | `details.error = "too_many_pdfs"`                                           |
-| Esquema de referencia no compatible    | `details.error = "unsupported_pdf_reference"`                                           |
-| `pages` con un proveedor nativo | Genera `pages is not supported with native PDF providers`                                |
-| `password` con un proveedor nativo | Genera `password is not supported with native PDF providers`                                |
+| Condición                              | Resultado                                                   |
+| -------------------------------------- | ----------------------------------------------------------- |
+| No se proporciona ningún PDF           | Genera `pdf required: provide a path or URL to a PDF document`                                   |
+| Más de 10 PDF                          | `details.error = "too_many_pdfs"`                                          |
+| Esquema de referencia no compatible    | `details.error = "unsupported_pdf_reference"`                                          |
+| `pages` con un proveedor nativo | Genera `pages is not supported with native PDF providers`                               |
+| `password` con un proveedor nativo | Genera `password is not supported with native PDF providers`                               |
 
 ## Ejemplos
 

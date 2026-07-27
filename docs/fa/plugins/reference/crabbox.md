@@ -1,10 +1,10 @@
 ---
 read_when:
-    - شما در حال نصب، پیکربندی یا ممیزی Plugin مربوط به crabbox هستید
-summary: ارائه‌دهندهٔ عامل ابری مبتنی بر Crabbox CLI.
-title: Plugin کرب‌باکس
+    - در حال نصب، پیکربندی یا ممیزی Plugin ‏crabbox هستید
+summary: ارائه‌دهنده worker ابری با پشتیبانی CLI مربوط به Crabbox.
+title: Plugin‏ Crabbox
 x-i18n:
-    generated_at: "2026-07-16T16:59:51Z"
+    generated_at: "2026-07-27T16:57:49Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin Crabbox
+# Plugin ‏Crabbox
 
-ارائه‌دهندهٔ کارگر ابری مبتنی بر CLI ‏Crabbox.
+ارائه‌دهندهٔ کارگر ابری با پشتیبانی CLI ‏Crabbox.
 
 ## توزیع
 
 - بسته: `@openclaw/crabbox-provider`
-- مسیر نصب: در OpenClaw گنجانده شده است
+- مسیر نصب: همراه OpenClaw ارائه می‌شود
 
 ## سطح
 
@@ -31,6 +31,6 @@ x-i18n:
 
 ## پیکربندی
 
-برای طرح‌وارهٔ نمایه و نکات چرخهٔ عمر، به [محیط‌های کارگر ابری](/fa/gateway/configuration-reference#crabbox-profile) مراجعه کنید.
+برای طرح‌وارهٔ پروفایل و نکات چرخهٔ حیات، به [محیط‌های کارگر ابری](/fa/gateway/configuration-reference#crabbox-profile) مراجعه کنید.
 
 <!-- openclaw-plugin-reference:manual-end -->

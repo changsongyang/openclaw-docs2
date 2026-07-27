@@ -1,11 +1,11 @@
 ---
 read_when:
-    - आप OpenCode द्वारा होस्ट किए गए मॉडल का एक्सेस चाहते हैं
+    - आप OpenCode-होस्टेड मॉडल एक्सेस चाहते हैं
     - आप Zen और Go कैटलॉग में से किसी एक को चुनना चाहते हैं
 summary: OpenClaw के साथ OpenCode Zen और Go कैटलॉग का उपयोग करें
 title: OpenCode
 x-i18n:
-    generated_at: "2026-07-19T09:19:08Z"
+    generated_at: "2026-07-27T21:37:01Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,19 +15,19 @@ x-i18n:
     workflow: 16
 ---
 
-OpenCode, OpenClaw में दो होस्टेड कैटलॉग उपलब्ध कराता है:
+OpenCode, OpenClaw में दो होस्ट किए गए कैटलॉग उपलब्ध कराता है:
 
 | कैटलॉग | प्रीफ़िक्स            | रनटाइम प्रदाता |
 | ------- | ----------------- | ---------------- |
 | **Zen** | `opencode/...`    | `opencode`       |
 | **Go**  | `opencode-go/...` | `opencode-go`    |
 
-दोनों कैटलॉग एक OpenCode API कुंजी (`OPENCODE_API_KEY`, उपनाम
-`OPENCODE_ZEN_API_KEY`) साझा करते हैं। OpenClaw रनटाइम प्रदाता आईडी को अलग रखता है, ताकि
+दोनों कैटलॉग एक ही OpenCode API कुंजी साझा करते हैं (`OPENCODE_API_KEY`, उपनाम
+`OPENCODE_ZEN_API_KEY`)। OpenClaw रनटाइम प्रदाता आईडी को अलग रखता है, ताकि
 अपस्ट्रीम प्रति-मॉडल रूटिंग सही बनी रहे, लेकिन ऑनबोर्डिंग और दस्तावेज़ इन्हें
 एक ही OpenCode सेटअप मानते हैं।
 
-## शुरू करना
+## आरंभ करना
 
 <Tabs>
   <Tab title="Zen कैटलॉग">
@@ -61,7 +61,7 @@ OpenCode, OpenClaw में दो होस्टेड कैटलॉग उ
   </Tab>
 
   <Tab title="Go कैटलॉग">
-    **इनके लिए सर्वोत्तम:** OpenCode द्वारा होस्ट किए गए Kimi, GLM, MiniMax, Qwen और DeepSeek मॉडल।
+    **इनके लिए सर्वोत्तम:** OpenCode द्वारा होस्ट की गई Kimi, GLM, MiniMax, Qwen और DeepSeek मॉडल शृंखला।
 
     <Steps>
       <Step title="ऑनबोर्डिंग चलाएँ">
@@ -103,18 +103,18 @@ OpenCode, OpenClaw में दो होस्टेड कैटलॉग उ
 
 ### Zen
 
-| प्रॉपर्टी         | मान                                                                                         |
+| गुण         | मान                                                                                         |
 | ---------------- | --------------------------------------------------------------------------------------------- |
 | रनटाइम प्रदाता | `opencode`                                                                                    |
 | उदाहरण मॉडल   | `opencode/claude-opus-4-6`, `opencode/gpt-5.5`, `opencode/gemini-3.1-pro`, `opencode/glm-5.2` |
 
 पूरी वर्तमान सूची के लिए `openclaw models list --provider opencode` चलाएँ, जिसमें
-`opencode/big-pickle` और `opencode/deepseek-v4-flash-free` जैसी मुफ़्त-स्तर की पंक्तियाँ भी
+`opencode/big-pickle` और `opencode/deepseek-v4-flash-free` जैसी निःशुल्क-स्तर की पंक्तियाँ भी
 शामिल हैं।
 
 ### Go
 
-| प्रॉपर्टी         | मान                                                                    |
+| गुण         | मान                                                                    |
 | ---------------- | ------------------------------------------------------------------------ |
 | रनटाइम प्रदाता | `opencode-go`                                                            |
 | उदाहरण मॉडल   | `opencode-go/kimi-k2.6`, `opencode-go/glm-5`, `opencode-go/minimax-m2.5` |
@@ -125,28 +125,28 @@ OpenCode, OpenClaw में दो होस्टेड कैटलॉग उ
 
 <AccordionGroup>
   <Accordion title="API कुंजी के उपनाम">
-    `OPENCODE_ZEN_API_KEY` को `OPENCODE_API_KEY` के उपनाम के रूप में भी स्वीकार किया जाता है।
+    `OPENCODE_ZEN_API_KEY` को भी `OPENCODE_API_KEY` के उपनाम के रूप में स्वीकार किया जाता है।
   </Accordion>
 
   <Accordion title="साझा क्रेडेंशियल">
     सेटअप के दौरान एक OpenCode कुंजी दर्ज करने पर दोनों रनटाइम
-    प्रदाताओं के क्रेडेंशियल संग्रहीत हो जाते हैं। आपको प्रत्येक कैटलॉग को अलग से ऑनबोर्ड करने की आवश्यकता नहीं है।
+    प्रदाताओं के लिए क्रेडेंशियल संग्रहीत हो जाते हैं। आपको प्रत्येक कैटलॉग को अलग से ऑनबोर्ड करने की आवश्यकता नहीं है।
   </Accordion>
 
   <Accordion title="API कुंजी प्राप्त करना">
-    एक OpenCode खाता बनाएँ और
+    OpenCode खाता बनाएँ और
     [opencode.ai/auth](https://opencode.ai/auth) पर API कुंजी जनरेट करें। बिलिंग और कैटलॉग की
     उपलब्धता OpenCode डैशबोर्ड से प्रबंधित की जाती है।
   </Accordion>
 
   <Accordion title="Gemini रीप्ले व्यवहार">
-    Gemini-समर्थित OpenCode रेफ़रेंस प्रॉक्सी-Gemini पथ पर बने रहते हैं, इसलिए OpenClaw वहाँ
-    Gemini विचार-हस्ताक्षर सैनिटाइज़ेशन बनाए रखता है, लेकिन नेटिव Gemini
-    रीप्ले सत्यापन या बूटस्ट्रैप पुनर्लेखन सक्षम नहीं करता।
+    Gemini-समर्थित OpenCode संदर्भ प्रॉक्सी-Gemini पथ पर बने रहते हैं, इसलिए OpenClaw वहाँ
+    मूल Gemini रीप्ले सत्यापन या बूटस्ट्रैप पुनर्लेखन सक्षम किए बिना
+    Gemini थॉट-सिग्नेचर शुद्धिकरण बनाए रखता है।
   </Accordion>
 
   <Accordion title="गैर-Gemini रीप्ले व्यवहार">
-    गैर-Gemini OpenCode रेफ़रेंस न्यूनतम OpenAI-संगत रीप्ले नीति बनाए रखते हैं।
+    गैर-Gemini OpenCode संदर्भ न्यूनतम OpenAI-संगत रीप्ले नीति बनाए रखते हैं।
   </Accordion>
 </AccordionGroup>
 
@@ -154,12 +154,12 @@ OpenCode, OpenClaw में दो होस्टेड कैटलॉग उ
 
 <CardGroup cols={2}>
   <Card title="OpenCode Go" href="/hi/providers/opencode-go" icon="server">
-    पूरा Go कैटलॉग संदर्भ।
+    संपूर्ण Go कैटलॉग संदर्भ।
   </Card>
   <Card title="मॉडल चयन" href="/hi/concepts/model-providers" icon="layers">
-    प्रदाताओं, मॉडल रेफ़रेंस और फ़ेलओवर व्यवहार का चयन।
+    प्रदाताओं, मॉडल संदर्भों और फ़ेलओवर व्यवहार का चयन।
   </Card>
   <Card title="कॉन्फ़िगरेशन संदर्भ" href="/hi/gateway/configuration-reference" icon="gear">
-    एजेंटों, मॉडलों और प्रदाताओं के लिए पूरा कॉन्फ़िगरेशन संदर्भ।
+    एजेंटों, मॉडलों और प्रदाताओं के लिए संपूर्ण कॉन्फ़िगरेशन संदर्भ।
   </Card>
 </CardGroup>

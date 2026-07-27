@@ -1,10 +1,10 @@
 ---
 read_when:
     - Sie installieren, konfigurieren oder prüfen das mxc-Plugin.
-summary: 'Toolausführung in einer Sandbox auf Betriebssystemebene über MXC: Führt Befehle in einem Windows ProcessContainer mit konfigurierten MXC-Richtliniendateien aus.'
+summary: 'Tool-Ausführung in einer Sandbox auf Betriebssystemebene über MXC: Führt Befehle in einem Windows ProcessContainer mit konfigurierten MXC-Richtliniendateien aus.'
 title: Mxc-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:01:15Z"
+    generated_at: "2026-07-26T17:59:31Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Mxc-Plugin
 
-Sandbox-isolierte Tool-Ausführung auf Betriebssystemebene über MXC: Führt Befehle in einem Windows ProcessContainer mit konfigurierten MXC-Richtliniendateien aus.
+Sandbox-Ausführung von Tools auf Betriebssystemebene über MXC: Führt Befehle in einem Windows ProcessContainer mit konfigurierten MXC-Richtliniendateien aus.
 
 ## Distribution
 

@@ -1,11 +1,11 @@
 ---
 read_when:
     - Sie binden Oberflächen für Provider-Nutzung und -Kontingente an
-    - Sie müssen das Verhalten der Nutzungsverfolgung oder die Authentifizierungsanforderungen erläutern
-summary: Oberflächen zur Nutzungsverfolgung und Anforderungen an Anmeldedaten
+    - Sie müssen das Verhalten der Nutzungsverfolgung oder die Authentifizierungsanforderungen erläutern.
+summary: Oberflächen zur Nutzungsverfolgung und Anforderungen an Zugangsdaten
 title: Nutzungsverfolgung
 x-i18n:
-    generated_at: "2026-07-24T04:54:07Z"
+    generated_at: "2026-07-26T18:25:55Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,39 +17,39 @@ x-i18n:
 
 ## Was es ist
 
-- Ruft Nutzung/Kontingent direkt vom Nutzungsendpunkt jedes Providers ab. Keine geschätzte Provider-Abrechnung; nur vom Provider gemeldete Tarifnamen, Kontingentzeiträume, Guthaben, Ausgaben, Budgets, täglicher Kostenverlauf, Token-/Modellzuordnung oder Zusammenfassungen des Kontostatus.
-- Die menschenlesbare Ausgabe für Kontingentzeiträume wird auf `X% left` normalisiert, auch wenn ein Provider verbrauchtes Kontingent, verbleibendes Kontingent oder nur Rohzahlen meldet. Provider ohne zurücksetzbare Kontingentzeiträume zeigen stattdessen einen Provider-Zusammenfassungstext an (beispielsweise ein Guthaben).
-- Das `/status` auf Sitzungsebene und das Tool `session_status` greifen auf das Transkriptprotokoll der Sitzung zurück, wenn in der Live-Sitzungsmomentaufnahme Token-/Modelldaten fehlen. Dieser Rückgriff ergänzt fehlende Token-/Cache-Zähler, kann die Bezeichnung des aktiven Laufzeitmodells wiederherstellen und bevorzugt die größere promptorientierte Gesamtsumme, wenn Sitzungsmetadaten fehlen oder kleiner sind (`totalTokensFresh !== true`, null oder unter dem aus dem Transkript abgeleiteten Wert). Live-Werte ungleich null haben immer Vorrang vor dem Rückgriff.
+- Ruft Nutzung/Kontingent direkt vom Nutzungsendpunkt jedes Providers ab. Keine geschätzte Provider-Abrechnung; ausschließlich vom Provider gemeldete Plannamen, Kontingentzeiträume, Guthaben, Ausgaben, Budgets, täglicher Kostenverlauf, Token-/Modellzuordnung oder Zusammenfassungen des Kontostatus.
+- Die menschenlesbare Ausgabe für Kontingentzeiträume wird auf `X% left` normalisiert, selbst wenn ein Provider verbrauchtes Kontingent, verbleibendes Kontingent oder nur Rohwerte meldet. Provider ohne zurücksetzbare Kontingentzeiträume zeigen stattdessen einen Provider-Zusammenfassungstext an (beispielsweise ein Guthaben).
+- Das sitzungsbezogene `/status` und das Tool `session_status` greifen auf das Transkriptprotokoll der Sitzung zurück, wenn im Live-Sitzungssnapshot Token-/Modelldaten fehlen. Dieser Rückgriff ergänzt fehlende Token-/Cache-Zähler, kann die Bezeichnung des aktiven Laufzeitmodells wiederherstellen und bevorzugt den größeren promptorientierten Gesamtwert, wenn Sitzungsmetadaten fehlen oder kleiner sind (`totalTokensFresh !== true`, null oder unter dem aus dem Transkript abgeleiteten Wert). Live-Werte ungleich null haben stets Vorrang vor diesem Rückgriff.
 
 ## Wo es angezeigt wird
 
 - `/status` in Chats: Statuskarte mit Sitzungstoken und geschätzten Kosten (nur Modelle mit API-Schlüssel). Die Provider-Nutzung wird, sofern verfügbar, für den **Provider des aktuellen Modells** als normalisierter Zeitraum `X% left` oder als Provider-Zusammenfassungstext angezeigt.
 - `/usage off|tokens|full` in Chats: Nutzungsfußzeile pro Antwort.
 - `/usage cost` in Chats: lokale Kostenzusammenfassung, aggregiert aus OpenClaw-Sitzungsprotokollen.
-- CLI: `openclaw status --usage` gibt eine vollständige Aufschlüsselung der Nutzung/des Kontingents pro Provider aus.
-- CLI: `openclaw models status` listet OAuth-/Token-Authentifizierungsprofile auf und zeigt neben jedem Provider mit Nutzungszeitraum eine entsprechende Zusammenfassung an.
-- Control UI: **Nutzung** zeigt Karten zum Provider-Tarif und zur Abrechnung über der aus OpenClaw-Sitzungen abgeleiteten Token- und geschätzten Kostenanalyse. Anmeldedaten für die Anthropic- und OpenAI-Admin-API ergänzen die vom Provider gemeldeten Ausgaben für heute, 7 Tage und 30 Tage, tägliche Trends, Token-Gesamtsummen, meistgenutzte Modelle und Kostenkategorien.
-- Control UI: Das Kontext-Ring-Popover des Chat-Eingabefelds zeigt die **Tarifnutzung** für Abonnement-Provider – Balken pro Zeitraum (5 Stunden, wöchentlich, modellspezifisch) mit Rücksetzzeiten, den Provider-Tarif, sofern bekannt (beispielsweise `Max (20x)`), und Guthaben für zusätzliche Nutzung. Über einen Tarif abgerechnete Sitzungen blenden Dollar-Schätzungen pro Token aus; über die API abgerechnete Sitzungen behalten `Est. cost` und die Kostenaufschlüsselung nach Typ bei. Einrichtungen mit der Claude Code CLI (`claude-cli`) verwenden dieselbe Anthropic-Abonnementnutzung.
-- macOS-Menüleiste: Unter „Kontext“ wird ein Stammabschnitt „Nutzung“ angezeigt, wenn Momentaufnahmen der Provider-Nutzung verfügbar sind. Siehe [Menüleiste](/de/platforms/mac/menu-bar).
+- CLI: `openclaw status --usage` gibt eine vollständige Aufschlüsselung von Nutzung und Kontingent pro Provider aus.
+- CLI: `openclaw models status` listet OAuth-/Token-Authentifizierungsprofile auf und zeigt neben jedem Provider, für den eine solche vorhanden ist, eine Zusammenfassung des Nutzungszeitraums an.
+- Control UI: **Nutzung** zeigt Karten für Provider-Plan und -Abrechnung oberhalb der aus OpenClaw-Sitzungen abgeleiteten Token- und geschätzten Kostenanalyse. Anmeldedaten für die Admin-APIs von Anthropic und OpenAI ergänzen vom Provider gemeldete Ausgaben für heute, 7 Tage und 30 Tage, tägliche Trends, Token-Gesamtwerte, meistgenutzte Modelle und Kostenkategorien.
+- Control UI: Das Kontextkreis-Popover des Chat-Eingabefelds zeigt die **Plannutzung** für Abonnement-Provider – Balken pro Zeitraum (5 Stunden, wöchentlich, modellspezifisch) mit Rücksetzzeiten, den Provider-Plan, sofern bekannt (beispielsweise `Max (20x)`), und Guthaben für zusätzliche Nutzung. Über einen Plan abgerechnete Sitzungen blenden Dollar-Schätzungen pro Token aus; über die API abgerechnete Sitzungen behalten `Est. cost` und die Kostenaufschlüsselung nach Typ bei. Claude-Code-CLI-Konfigurationen (`claude-cli`) verwenden dieselbe Anthropic-Abonnementnutzung.
+- macOS-Menüleiste: Unter Kontext wird ein Hauptabschnitt „Nutzung“ angezeigt, wenn Snapshots der Provider-Nutzung verfügbar sind. Siehe [Menüleiste](/de/platforms/mac/menu-bar).
 
-`openclaw channels list` gibt die Provider-Nutzung nicht mehr aus; stattdessen werden Benutzer auf `openclaw status` oder `openclaw models list` verwiesen.
+`openclaw channels list` gibt die Provider-Nutzung nicht mehr aus; stattdessen verweist es Benutzer auf `openclaw status` oder `openclaw models list`.
 
 ## Kostenverlauf von Anthropic und OpenAI
 
 Abonnementkontingent und API-Abrechnung sind unterschiedliche Provider-Oberflächen:
 
-- Anmeldedaten für Anthropic-Abonnements/-Einrichtungen zeigen weiterhin Claude-Kontingentzeiträume und optionale Budgets für zusätzliche Nutzung an. Legen Sie `ANTHROPIC_ADMIN_KEY` oder `ANTHROPIC_ADMIN_API_KEY` fest, um stattdessen den Verlauf der organisationsweiten Nutzungs- und Kosten-API anzuzeigen. Anmeldedaten eines Anthropic-Providers, die mit `sk-ant-admin` beginnen, werden automatisch erkannt.
-- OpenAI ChatGPT/Codex OAuth zeigt weiterhin Tarif, Kontingentzeiträume und Guthaben an. Legen Sie `OPENAI_ADMIN_KEY` fest, um stattdessen den Verlauf der organisationsweiten Kosten und Abschlussnutzung anzuzeigen; legen Sie optional `OPENAI_PROJECT_ID` fest, um den Umfang auf ein Projekt zu beschränken. OpenClaw sendet niemals Inferenz-Anmeldedaten aus `OPENAI_API_KEY`, der Provider-Konfiguration oder Authentifizierungsprofilen an Organisations-APIs, da diese Schlüssel zu benutzerdefinierten Endpunkten gehören können.
+- Anmeldedaten für Anthropic-Abonnements/-Konfigurationen zeigen weiterhin Claude-Kontingentzeiträume und optionale Budgets für zusätzliche Nutzung an. Legen Sie `ANTHROPIC_ADMIN_KEY` oder `ANTHROPIC_ADMIN_API_KEY` fest, um stattdessen den Verlauf der organisationsweiten Usage and Cost API anzuzeigen. Provider-Anmeldedaten von Anthropic, die mit `sk-ant-admin` beginnen, werden automatisch erkannt.
+- OpenAI-ChatGPT-/Codex-OAuth zeigt weiterhin Plan, Kontingentzeiträume und Guthaben an. Legen Sie `OPENAI_ADMIN_KEY` fest, um stattdessen den Verlauf der organisationsweiten Kosten und Abschlussnutzung anzuzeigen; legen Sie optional `OPENAI_PROJECT_ID` fest, um ihn auf ein Projekt zu beschränken. OpenClaw sendet niemals Inferenz-Anmeldedaten aus `OPENAI_API_KEY`, der Provider-Konfiguration oder Authentifizierungsprofilen an Organisations-APIs, da diese Schlüssel zu benutzerdefinierten Endpunkten gehören können.
 
-Admin-Anmeldedaten haben Vorrang, da sie die tatsächliche Organisationsabrechnung bereitstellen. OpenClaw kombiniert diese vom Provider gemeldeten Gesamtsummen nicht mit seinen lokalen Sitzungsschätzungen; die beiden Abschnitte beantworten bewusst unterschiedliche Fragen.
+Admin-Anmeldedaten haben Vorrang, da sie die tatsächliche Organisationsabrechnung bereitstellen. OpenClaw kombiniert diese vom Provider gemeldeten Gesamtwerte nicht mit seinen lokalen Sitzungsschätzungen; die beiden Abschnitte beantworten absichtlich unterschiedliche Fragen.
 
 ## Standardmodus der Nutzungsfußzeile
 
 `/usage off|tokens|full` legt die Fußzeile für eine Sitzung fest und wird für diese
-Sitzung gespeichert. `messages.responseUsage` legt den Ausgangswert dieses Modus für Sitzungen fest, die noch keinen
+Sitzung gespeichert. `messages.responseUsage` legt diesen Modus als Ausgangswert für Sitzungen fest, die noch keinen
 ausgewählt haben, sodass die Fußzeile standardmäßig aktiviert sein kann, ohne jedes Mal `/usage` einzugeben.
 
-Legen Sie einen Modus für jeden Kanal oder eine kanalbezogene Zuordnung mit einem `default`-Rückgriff fest:
+Legen Sie einen Modus für jeden Kanal oder eine kanalspezifische Zuordnung mit einem `default`-Rückgriff fest:
 
 ```jsonc
 {
@@ -64,29 +64,29 @@ Akzeptierte Werte: `"off"`, `"tokens"`, `"full"` und der veraltete Alias `"on"` 
 
 ### Drei unterschiedliche Sitzungszustände
 
-Das Feld `responseUsage` einer Sitzung besitzt drei darstellbare Zustände mit jeweils
-unterschiedlicher Semantik:
+Das Feld `responseUsage` einer Sitzung kann drei Zustände darstellen, die jeweils
+unterschiedliche Semantiken haben:
 
-| Zustand                       | Gespeicherter Wert                       | Effektiver Modus                                                                 |
-| ----------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------- |
-| **Nicht gesetzt / vererben**  | `undefined` (nicht vorhanden)     | Greift auf den Konfigurationsstandard `messages.responseUsage`, dann auf `off` zurück. |
-| **Explizit aus**              | `"off"` (gespeichert)         | Immer aus; ein Konfigurationsstandard ungleich „aus“ kann die Fußzeile nicht wieder aktivieren. |
-| **Explizit ein**              | `"tokens"` oder `"full"` (gespeichert) | Dieser Modus gilt unabhängig vom Konfigurationsstandard.                         |
+| Zustand                         | Gespeicherter Wert                       | Wirksamer Modus                                                                      |
+| ------------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------ |
+| **Nicht gesetzt / übernehmen**  | `undefined` (nicht vorhanden)     | Greift auf den Konfigurationsstandard `messages.responseUsage`, dann auf `off` zurück. |
+| **Explizit aus**                | `"off"` (gespeichert)         | Immer aus; ein Konfigurationsstandard ungleich „aus“ kann die Fußzeile nicht erneut aktivieren. |
+| **Explizit ein**                | `"tokens"` oder `"full"` (gespeichert) | Dieser Modus gilt unabhängig vom Konfigurationsstandard.                              |
 
 ### Rangfolge
 
-Effektiver Modus = Sitzungsüberschreibung → Kanalkonfigurationseintrag → `default` → `off`.
+Wirksamer Modus = Sitzungsüberschreibung → Kanalkonfigurationseintrag → `default` → `off`.
 
 Ein explizites `/usage off` wird als Literalwert `"off"` in der
-Sitzung **gespeichert** und entspricht nicht „nicht gesetzt“. Ein `messages.responseUsage`-Standard
-ungleich „aus“ kann die Fußzeile nicht wieder aktivieren, nachdem der Benutzer sie explizit deaktiviert hat.
+Sitzung **dauerhaft gespeichert** und ist nicht dasselbe wie „nicht gesetzt“. Ein Standardwert `messages.responseUsage`,
+der nicht „aus“ ist, kann die Fußzeile nicht wieder aktivieren, nachdem der Benutzer sie ausdrücklich deaktiviert hat.
 
-### Zurücksetzen im Vergleich zum Ausschalten
+### Zurücksetzen oder Ausschalten
 
-- `/usage off` erzwingt das Ausschalten der Fußzeile und speichert diese Auswahl. Ein konfigurierter
-  Standard ungleich „aus“ kann dies nicht überschreiben.
+- `/usage off` erzwingt das Ausschalten der Fußzeile und speichert diese Auswahl dauerhaft. Ein konfigurierter
+  Standardwert ungleich „aus“ kann dies nicht überschreiben.
 - `/usage reset` (Aliasse: `default`, `inherit`, `inherited`, `clear`, `unpin`) löscht die Sitzungsüberschreibung.
-  Die Sitzung **erbt** anschließend den effektiven Konfigurationsstandard
+  Die Sitzung **übernimmt** anschließend den wirksamen Konfigurationsstandard
   (`messages.responseUsage`). Ist kein Standard konfiguriert, bleibt die Fußzeile ausgeschaltet.
 - Ein vollständiges Zurücksetzen der Sitzung (`/reset` oder `/new`) oder ein Sitzungswechsel **behält**
   die explizite Einstellung des Nutzungsmodus bei, sodass die Anzeigeauswahl des Benutzers
@@ -94,29 +94,29 @@ ungleich „aus“ kann die Fußzeile nicht wieder aktivieren, nachdem der Benut
 
 ### Umschaltverhalten
 
-`/usage` ohne Argumente durchläuft: aus → Token → vollständig → aus. Ausgangspunkt
-des Zyklus ist der **effektive** aktuelle Modus (die Sitzungsüberschreibung greift bei fehlendem Wert
+`/usage` ohne Argumente wechselt zyklisch: aus → Token → vollständig → aus. Der Ausgangspunkt
+des Zyklus ist der **wirksame** aktuelle Modus (die Sitzungsüberschreibung greift, wenn sie nicht gesetzt ist,
 auf den Konfigurationsstandard zurück), sodass der Zyklus stets dem entspricht, was
-der Benutzer aktuell in der Fußzeile sieht.
+der Benutzer derzeit in der Fußzeile sieht.
 
 ### Konfiguration
 
-Ohne Konfiguration gilt das bisherige Verhalten (Fußzeile aus, bis `/usage`). Verwenden Sie
-`/usage reset`, um eine Sitzungsüberschreibung zu löschen und den konfigurierten Standard erneut zu erben.
+Ohne Konfiguration bleibt das bisherige Verhalten bestehen (Fußzeile aus, bis `/usage`). Verwenden Sie
+`/usage reset`, um eine Sitzungsüberschreibung zu löschen und den konfigurierten Standard erneut zu übernehmen.
 
 ## Benutzerdefinierte `/usage full`-Fußzeile
 
-`/usage tokens` rendert immer eine einfache `Usage: X in / Y out`-Zeile (zuzüglich Cache- und
+`/usage tokens` rendert stets eine einfache `Usage: X in / Y out`-Zeile (zuzüglich Cache- und
 geschätzter Kostenzusätze, sofern verfügbar). Nur `/usage full` rendert die nachfolgend beschriebene
 umfangreichere Fußzeile.
 
 `/usage full` zeigt eine integrierte kompakte Fußzeile mit Modell, Reasoning, schnell/langsam,
-Kontextfenster und Kosten an, sofern diese Felder verfügbar sind. Für die integrierte Fußzeile ist
-keine Vorlagendatei erforderlich.
+Kontextfenster und Kosten an, sofern diese Felder verfügbar sind. Für die integrierte Fußzeile
+ist keine Vorlagendatei erforderlich.
 
-`messages.usageTemplate` ist ausschließlich für erweiterte benutzerdefinierte Layouts vorgesehen. Der Wert ist ein
-JSON-Dateipfad (unterstützt `~`) oder ein Inline-Objekt und ersetzt bei Gültigkeit die integrierte
-Fußzeile. Ein Dateipfad wird überwacht und bei Änderungen live neu geladen.
+`messages.usageTemplate` ist ausschließlich für fortgeschrittene benutzerdefinierte Layouts vorgesehen. Der Wert ist ein
+JSON-Dateipfad (unterstützt `~`) oder ein Inline-Objekt und ersetzt die integrierte
+Fußzeile, wenn er gültig ist. Ein Dateipfad wird überwacht und bei Änderungen live neu geladen.
 
 ```json
 {
@@ -126,9 +126,9 @@ Fußzeile. Ein Dateipfad wird überwacht und bei Änderungen live neu geladen.
 }
 ```
 
-Fehlende oder leere Vorlagen greifen unauffällig auf die integrierte Fußzeile zurück. Nicht lesbare
+Fehlende oder leere Vorlagen greifen ohne Meldung auf die integrierte Fußzeile zurück. Nicht lesbare
 oder ungültige konfigurierte Vorlagen (fehlerhaftes JSON oder eine Struktur ohne renderbare
-Ausgabeteile) greifen ebenfalls auf die integrierte Fußzeile zurück und geben eine Warnung für den Betreiber aus.
+Ausgabebestandteile) greifen ebenfalls auf die integrierte Fußzeile zurück und geben eine Warnung für den Betreiber aus.
 
 Beginnen Sie benutzerdefinierte Vorlagen mit der integrierten Struktur und bearbeiten Sie anschließend die Teile, die Sie
 ändern möchten:
@@ -204,7 +204,7 @@ Beginnen Sie benutzerdefinierte Vorlagen mit der integrierten Struktur und bearb
   "scales": { "<name>": "Glyphen von niedrig bis hoch" }, // Zeichenfolge (1 Glyphe/Zeichen) oder Array
   "aliases": { "<table>": { "<value>": "<label>" } },
   "output": {
-    "sep": "", // verbindet verbleibende Teile
+    "sep": "", // verbindet verbleibende Bestandteile
     "default": [/* pieces */], // Rückgriff für jede Oberfläche
     "surfaces": {
       "discord": [/* pieces */],
@@ -214,39 +214,39 @@ Beginnen Sie benutzerdefinierte Vorlagen mit der integrierten Struktur und bearb
 }
 ```
 
-Jede Oberfläche ist eine geordnete Liste von **Teilen**; die Engine rendert jedes davon, verwirft
-leere Teile und verbindet die verbleibenden mit `sep`. Eine Oberfläche ohne Eintrag verwendet
+Jede Oberfläche ist eine geordnete Liste von **Bestandteilen**; die Engine rendert jeden Bestandteil, verwirft
+leere und verbindet die verbleibenden mit `sep`. Eine Oberfläche ohne Eintrag verwendet
 `output.default`.
 
 ### Vertragspfade
 
-Ein Teil liest Werte über einen durch Punkte getrennten Pfad aus dem Vertrag des jeweiligen Durchlaufs. Fehlende Werte sind
-leer (sodass eine `when`-Bedingung oder ein `|fallback` das Teil sauber hält).
+Ein Bestandteil liest Werte über einen Punktpfad aus dem Vertrag pro Durchlauf. Nicht vorhandene Werte sind
+leer (sodass eine `when`-Bedingung oder ein `|fallback` den Bestandteil sauber hält).
 
 | Pfad                                                                                | Bedeutung                                                                                              |
 | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `surface`                                                                           | Kanal-ID (`discord`/`telegram`/usw.)                                                               |
 | `agentId` / `chat_type`                                                             | ID des zuständigen Agenten / Art der Chat-Oberfläche                                                                  |
 | `model.id` / `model.display_name` / `model.provider`                                | Modell-ID / Anzeigename / Provider-ID                                                                |
-| `model.actual`, `model.resolved_ref`                                                | für den Turn tatsächlich verwendete Provider-/Modellreferenz                                                        |
+| `model.actual`, `model.resolved_ref`                                                | tatsächlich für den Turn verwendete Provider-/Modellreferenz                                                        |
 | `model.requested`                                                                   | angeforderte Provider-/Modellreferenz (vor dem Fallback)                                                       |
 | `model.reasoning`                                                                   | Aufwand (`off` bis `xhigh`)                                                                       |
-| `model.is_fallback` / `model.is_override`                                           | boolescher Wert: Fallback verwendet / Modell fixiert                                                                   |
+| `model.is_fallback` / `model.is_override`                                           | boolescher Wert: Fallback verwendet / Modell festgelegt                                                                   |
 | `model.override_source` / `model.auth_mode`                                         | Bezeichnung der Override-Quelle / Anmeldedatenmodus (`oauth`, `api-key`, `token`, `mixed`, `aws-sdk`, `unknown`) |
 | `state.fast_mode`                                                                   | boolescher Wert: schnell oder langsam                                                                                   |
 | `state.compactions`                                                                 | Anzahl der Compactions für die Sitzung                                                                     |
-| `context.max_tokens` / `context.used_tokens` / `context.pct_used`                   | Fensterbudget / belegte Tokens / 0–100 verwendet                                                         |
+| `context.max_tokens` / `context.used_tokens` / `context.pct_used`                   | Fensterbudget / belegte Token / 0–100 verwendet                                                         |
 | `usage.input_tokens` / `usage.output_tokens` / `usage.total_tokens`                 | Turn-Aggregat                                                                                       |
-| `usage.cache_read_tokens` / `usage.cache_write_tokens`                              | Cache-Lese- und Cache-Schreib-Tokens für den Turn                                                       |
+| `usage.cache_read_tokens` / `usage.cache_write_tokens`                              | Cache-Lese- und Cache-Schreib-Token für den Turn                                                       |
 | `usage.has_tokens` / `usage.has_split_tokens` / `usage.has_total_only_tokens`       | Schutzbedingungen für die Token-Anzeige                                                                                 |
-| `usage.cache_hit_pct`                                                               | Anteil der Cache-Lese-Tokens an allen Prompt-Tokens                                                              |
-| `usage.last.input_tokens` / `usage.last.output_tokens` / `usage.last.cache_hit_pct` | nur endgültiger Modellaufruf (enthält auch `cache_read_tokens`, `cache_write_tokens`, `total_tokens`)           |
+| `usage.cache_hit_pct`                                                               | Anteil der Cache-Lese-Token an allen Prompt-Token                                                              |
+| `usage.last.input_tokens` / `usage.last.output_tokens` / `usage.last.cache_hit_pct` | nur der letzte Modellaufruf (enthält außerdem `cache_read_tokens`, `cache_write_tokens`, `total_tokens`)           |
 | `cost.turn_usd` / `cost.available`                                                  | geschätzte Turn-Kosten / ob eine Kostentabelle aufgelöst wurde                                                  |
 | `timing.duration_ms`                                                                | Turn-Dauer nach Wanduhrzeit                                                                             |
 | `identity.name` / `identity.emoji` / `identity.avatar`                              | Name / Emoji / Avatar der Agentenidentität                                                                 |
 | `session.id`                                                                        | Sitzungs-ID                                                                                           |
 
-(Zeitfenster für Provider-Ratenlimits sind **nicht** Teil dieses Vertrags; derzeit gibt es keinen Pfad mit Array-Wert, sodass ein `each`-Element nichts zu durchlaufen hat.)
+(Provider-Zeitfenster für Ratenbegrenzungen sind **nicht** Teil dieses Vertrags; derzeit gibt es keinen Pfad mit einem Array-Wert, daher kann ein `each`-Element über nichts iterieren.)
 
 ### Verben
 
@@ -256,24 +256,24 @@ Leiten Sie einen Wert von links nach rechts durch Verben; ein Segment, das kein 
 | --------------- | ------------------------------------- | --------------------------------- |
 | `num`           | kompakte Anzahl                         | `272000 -> 272k`                  |
 | `fixed:N`       | N Dezimalstellen (`0..100`, Standardwert 2)      | `0.0377`                          |
-| `dur`           | Sekunden in Dauer umwandeln                   | `14820 -> 4h07m`                  |
+| `dur`           | Sekunden in eine Dauer umwandeln                   | `14820 -> 4h07m`                  |
 | `pct`           | `%` anhängen                            | `96 -> 96%`                       |
-| `inv`           | `100 - x`                             | zur Umwandlung von verwendet in verbleibend             |
-| `alias:TABLE`   | in `aliases` nachschlagen, bei fehlendem Eintrag unverändert ausgeben | `medium -> 🌗`                    |
+| `inv`           | `100 - x`                             | um „verwendet“ in „verbleibend“ umzuwandeln             |
+| `alias:TABLE`   | in `aliases` nachschlagen, nicht aufgeführte Werte unverändert ausgeben | `medium -> 🌗`                    |
 | `meter:W:SCALE` | W-Zellen-Glyphenleiste für einen Wert von 0–100   | `[⣿⣿⠐⠐⠐]` (`meter:1` = eine Glyphe) |
 
 `fixed:N` akzeptiert nur eine vollständige dezimale Ganzzahl von 0 bis 100. Ungültige
 Genauigkeitsargumente führen dazu, dass diese Interpolation leer bleibt.
 
-`meter:W:SCALE` akzeptiert nur eine vollständige dezimale ganzzahlige Breite von 1 bis 100. Lassen Sie die Breite leer, um den Standardwert 5 (`meter::braille`) zu verwenden; ungültige
+`meter:W:SCALE` akzeptiert nur eine vollständige dezimale Ganzzahl als Breite von 1 bis 100. Lassen Sie die Breite leer, um den Standardwert 5 (`meter::braille`) zu verwenden; ungültige
 Breiten führen dazu, dass diese Interpolation leer bleibt.
 
 ### Elementformen
 
 - `{ "text": "📚 {context.max_tokens|num}" }`: Literal + Interpolation.
-- `{ "when": "<path>", "text": "..." }`: nur rendern, wenn der Pfad einen wahren Wert hat.
-- `{ "map": "<path>", "cases": { "true": "⚡", "false": "🐌" } }`: Wert in Glyphe umwandeln (ein `_default`-Fall deckt nicht übereinstimmende Werte ab).
-- `{ "each": "<array-path>", "item": "{label}" }`: einen Pfad mit Array-Wert durchlaufen (kein aktueller Vertragspfad ist ein Array).
+- `{ "when": "<path>", "text": "..." }`: nur rendern, wenn der Pfad einen Wahrheitswert ergibt.
+- `{ "map": "<path>", "cases": { "true": "⚡", "false": "🐌" } }`: Wert einer Glyphe zuordnen (ein `_default`-Fall deckt nicht übereinstimmende Werte ab).
+- `{ "each": "<array-path>", "item": "{label}" }`: über einen Pfad mit Array-Wert iterieren (kein aktueller Vertragspfad ist ein Array).
 
 ### Beispiel
 
@@ -298,65 +298,65 @@ Breiten führen dazu, dass diese Interpolation leer bleibt.
 }
 ```
 
-rendert z. B. `claude-sonnet-4-6 🌗 🐌 | 📚 [⣿⣿⣿⣿⣧]272k`.
+rendert beispielsweise `claude-sonnet-4-6 🌗 🐌 | 📚 [⣿⣿⣿⣿⣧]272k`.
 
 ## Provider + Anmeldedaten
 
-Die Nutzung wird ausgeblendet, wenn keine verwendbare Provider-Authentifizierung für Nutzungsdaten ermittelt werden kann. OpenClaw
+Die Nutzung wird ausgeblendet, wenn keine verwendbare Provider-Authentifizierung für Nutzungsdaten aufgelöst werden kann. OpenClaw
 erkennt automatisch aktivierte Provider-Plugins, die
 `contracts.usageProviders` deklarieren und sowohl `resolveUsageAuth` als auch
-`fetchUsageSnapshot` implementieren; es gibt keine separate Provider-Zulassungsliste im Kern. Der statische
-Vertrag begrenzt den Erkennungsumfang, ohne jedes Provider-Plugin zu importieren. Jedes
-Plugin ist für seinen Upstream-Endpunkt und die Antwortzuordnung zuständig. Der
-gemeinsame Snapshot hält Tarifnamen, Kontingentfenster, Guthaben, Ausgaben und Budgets
-für Nutzer der CLI, App und Control UI providerneutral.
+`fetchUsageSnapshot` implementieren; es gibt keine separate Zulassungsliste für Core-Provider. Der statische
+Vertrag begrenzt den Umfang der Erkennung, ohne jedes Provider-Plugin zu importieren. Jedes
+Plugin ist für seinen Upstream-Endpunkt und die Zuordnung der Antworten zuständig. Der
+gemeinsame Snapshot hält Plannamen, Kontingentfenster, Salden, Ausgaben und Budgets
+Provider-neutral für Verbraucher in CLI, App und Control UI.
 
-- **Anthropic (Claude)**: OAuth-Tokens in Authentifizierungsprofilen. Wenn dem OAuth-Token der
-  Geltungsbereich `user:profile` fehlt, wird auf eine `claude.ai`-Websitzung zurückgegriffen (`CLAUDE_AI_SESSION_KEY`,
-  `CLAUDE_WEB_SESSION_KEY` oder, sofern festgelegt, ein `sessionKey=`-Cookie in `CLAUDE_WEB_COOKIE`).
-  Modellbezogene Limits sowie aktivierte monatliche Ausgaben und Budgets für Zusatznutzung werden einbezogen,
+- **Anthropic (Claude)**: OAuth-Token in Authentifizierungsprofilen. Wenn dem OAuth-Token der
+  Geltungsbereich `user:profile` fehlt, erfolgt bei entsprechender Konfiguration ein Fallback auf eine `claude.ai`-Websitzung (`CLAUDE_AI_SESSION_KEY`,
+  `CLAUDE_WEB_SESSION_KEY` oder ein `sessionKey=`-Cookie in `CLAUDE_WEB_COOKIE`).
+  Modellspezifische Limits sowie aktivierte monatliche Ausgaben/Budgets für zusätzliche Nutzung werden einbezogen,
   wenn Anthropic sie meldet. Ein expliziter Anthropic-Admin-API-Schlüssel oder ein
-  automatisch erkanntes `sk-ant-admin...`-Provider-Profil zeigt stattdessen die
-  Organisationskosten der letzten 30 Tage und den Messages-API-Verlauf.
-- **ClawRouter**: API-Schlüssel (`CLAWROUTER_API_KEY`). Zeigt bei entsprechender Konfiguration ein monatliches Budgetfenster
-  und ein typisiertes USD-Budget; andernfalls werden die Gesamtausgaben sowie eine
-  Zusammenfassung von Anfragen, Tokens und Kosten angezeigt.
+  automatisch erkanntes `sk-ant-admin...`-Providerprofil zeigt stattdessen die
+  Organisationskosten der letzten 30 Tage und den Verlauf der Messages API.
+- **ClawRouter**: API-Schlüssel (`CLAWROUTER_API_KEY`). Zeigt ein monatliches Budgetfenster
+  und ein typisiertes USD-Budget an, wenn es konfiguriert ist; andernfalls werden die Gesamtausgaben und eine
+  Zusammenfassung von Anfragen, Token und Kosten angezeigt.
 - **DeepSeek**: API-Schlüssel über Umgebung/Konfiguration/Authentifizierungsspeicher (`DEEPSEEK_API_KEY`).
-  Zeigt jedes vom Provider gemeldete Währungsguthaben.
-- **GitHub Copilot**: OAuth-Tokens in Authentifizierungsprofilen.
-- **Gemini CLI**: OAuth-Tokens in Authentifizierungsprofilen.
+  Zeigt jeden vom Provider gemeldeten Währungssaldo an.
+- **GitHub Copilot**: OAuth-Token in Authentifizierungsprofilen.
+- **Gemini CLI**: OAuth-Token in Authentifizierungsprofilen.
 - **MiniMax**: API-Schlüssel oder MiniMax-OAuth-Authentifizierungsprofil. OpenClaw behandelt
   `minimax`, `minimax-cn` und `minimax-portal` als dieselbe MiniMax-Kontingentoberfläche,
-  bevorzugt gespeichertes MiniMax-OAuth, sofern vorhanden, und greift andernfalls
-  auf `MINIMAX_CODE_PLAN_KEY`, `MINIMAX_CODING_API_KEY` oder `MINIMAX_API_KEY` zurück.
+  bevorzugt vorhandenes gespeichertes MiniMax-OAuth und verwendet andernfalls als Fallback
+  `MINIMAX_CODE_PLAN_KEY`, `MINIMAX_CODING_API_KEY` oder `MINIMAX_API_KEY`.
   Die Nutzungsabfrage leitet den Coding-Plan-Host aus `models.providers.minimax-portal.baseUrl`
-  oder `models.providers.minimax.baseUrl` ab, sofern konfiguriert, und verwendet andernfalls den
+  oder `models.providers.minimax.baseUrl` ab, wenn diese konfiguriert sind, und verwendet andernfalls den
   MiniMax-CN-Host.
   Die Rohfelder `usage_percent` / `usagePercent` von MiniMax geben das **verbleibende**
-  Kontingent an, daher invertiert OpenClaw sie vor der Anzeige; anzahlbasierte Felder haben Vorrang,
-  sofern vorhanden.
+  Kontingent an, daher invertiert OpenClaw sie vor der Anzeige; anzahlbasierte Felder haben Vorrang, wenn
+  sie vorhanden sind.
   - Fensterbezeichnungen stammen, sofern vorhanden, aus den Stunden-/Minutenfeldern des Providers und
-    greifen anschließend auf die Zeitspanne `start_time` / `end_time` zurück.
+    verwenden anschließend als Fallback die Spanne `start_time` / `end_time`.
   - Wenn der Coding-Plan-Endpunkt `model_remains` zurückgibt, bevorzugt OpenClaw den
     Chatmodelleintrag, leitet die Fensterbezeichnung aus Zeitstempeln ab, wenn explizite
     Felder `window_hours` / `window_minutes` fehlen, und nimmt den Modellnamen
-    in die Tarifbezeichnung auf.
-- **OpenAI (Codex-/ChatGPT-Tarif)**: OAuth-Tokens in Authentifizierungsprofilen (der Header `ChatGPT-Account-Id`
-  wird gesendet, wenn eine Konto-ID vorhanden ist). Zeigt den ChatGPT-Tarif, zurücksetzbare
-  Codex-Fenster und ein Guthaben, sofern gemeldet. Guthaben bleibt Provider-Guthaben;
-  OpenClaw kennzeichnet es nicht als Dollar. `OPENAI_ADMIN_KEY` ergänzt
+    in die Planbezeichnung auf.
+- **OpenAI (Codex-/ChatGPT-Plan)**: OAuth-Token in Authentifizierungsprofilen (der `ChatGPT-Account-Id`-Header
+  wird gesendet, wenn eine Konto-ID vorhanden ist). Zeigt den ChatGPT-Plan, zurücksetzbare
+  Codex-Fenster und einen Kreditsaldo an, wenn diese gemeldet werden. Kredite bleiben Provider-
+  Kredite; OpenClaw kennzeichnet sie nicht als Dollar. `OPENAI_ADMIN_KEY` ergänzt
   die Organisationskosten der letzten 30 Tage und den Verlauf der Completions-Nutzung, wenn der Schlüssel Zugriff auf das Usage
-  Dashboard hat. Inferenz-Anmeldedaten werden niemals an Organisations-APIs weitergeleitet.
-- **OpenRouter**: API-Schlüssel oder OAuth-gestützter API-Schlüssel (`OPENROUTER_API_KEY` oder ein
-  Authentifizierungsprofil). Kombiniert den Endpunkt für Kontoguthaben mit dem Endpunkt für Schlüssellimits,
-  sodass Kontostand/-ausgaben, Schlüsselbudget und tägliche/wöchentliche/monatliche Nutzung angezeigt werden,
-  wenn die Anmeldedaten darauf zugreifen können. Jeder der beiden Endpunkte kann den Snapshot
-  unabhängig ergänzen.
+  Dashboard hat. Anmeldedaten für Inferenz werden niemals an Organisations-APIs weitergeleitet.
+- **OpenRouter**: API-Schlüssel oder OAuth-gestützter API-Schlüssel (`OPENROUTER_API_KEY` oder ein Authentifizierungsprofil).
+  Kombiniert den Endpunkt für Kontoguthaben mit dem Endpunkt für Schlüssellimits,
+  sodass Kontosaldo/-ausgaben, Schlüsselbudget und tägliche/wöchentliche/monatliche Nutzung angezeigt werden,
+  wenn die Anmeldedaten darauf zugreifen können. Beide Endpunkte können den Snapshot
+  unabhängig voneinander anreichern.
 - **Venice**: API-Schlüssel über Umgebung/Konfiguration/Authentifizierungsspeicher (`VENICE_API_KEY`). Zeigt USD- und
-  DIEM-Guthaben sowie die Nutzung der DIEM-Epochenzuteilung, sofern gemeldet.
+  DIEM-Salden sowie die Nutzung der DIEM-Epochenzuweisung an, wenn diese gemeldet werden.
 - **Xiaomi MiMo**: zwei separate Nutzungsoberflächen. Die nutzungsabhängige Abrechnung verwendet einen API-Schlüssel
-  (`XIAOMI_API_KEY`); der Token-Tarif verwendet einen separaten Schlüssel (`XIAOMI_TOKEN_PLAN_API_KEY`).
-  Derzeit meldet keiner von beiden Kontingentfenster.
+  (`XIAOMI_API_KEY`); der Token-Plan verwendet einen separaten Schlüssel (`XIAOMI_TOKEN_PLAN_API_KEY`).
+  Derzeit meldet keine der beiden Oberflächen Kontingentfenster.
 - **z.ai**: API-Schlüssel über Umgebung/Konfiguration/Authentifizierungsspeicher (`ZAI_API_KEY` oder `Z_AI_API_KEY`).
 
 ## Verwandte Themen

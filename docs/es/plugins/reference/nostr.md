@@ -4,7 +4,7 @@ read_when:
 summary: Plugin de canal Nostr de OpenClaw para mensajes directos cifrados con NIP-04.
 title: Plugin de Nostr
 x-i18n:
-    generated_at: "2026-07-16T11:54:09Z"
+    generated_at: "2026-07-26T04:52:10Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin de Nostr
+# Plugin Nostr
 
 Plugin del canal Nostr de OpenClaw para mensajes directos cifrados con NIP-04.
 
 ## Distribución
 
 - Paquete: `@openclaw/nostr`
-- Vía de instalación: npm; ClawHub
+- Ruta de instalación: npm; ClawHub
 
 ## Superficie
 
@@ -29,4 +29,4 @@ canales: `nostr`
 
 ## Documentación relacionada
 
-- [Nostr](/es/channels/nostr)
+- [nostr](/es/channels/nostr)

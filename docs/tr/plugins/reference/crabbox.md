@@ -1,10 +1,10 @@
 ---
 read_when:
-    - crabbox Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: Crabbox CLI tarafından desteklenen bulut worker sağlayıcısı.
-title: Crabbox plugin'i
+    - crabbox Plugin'ini kuruyor, yapılandırıyor veya denetliyorsunuz
+summary: Crabbox CLI tarafından desteklenen bulut çalışanı sağlayıcısı.
+title: Crabbox Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:24:36Z"
+    generated_at: "2026-07-27T00:11:01Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Crabbox plugin’i
+# Crabbox plugin'i
 
 Crabbox CLI tarafından desteklenen bulut çalışanı sağlayıcısı.
 
 ## Dağıtım
 
 - Paket: `@openclaw/crabbox-provider`
-- Kurulum yolu: OpenClaw’a dahildir
+- Kurulum yolu: OpenClaw'a dahildir
 
 ## Yüzey
 

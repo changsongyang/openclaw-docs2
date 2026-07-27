@@ -4,7 +4,7 @@ read_when:
 summary: Desktop-Benachrichtigungen, Kameraaufnahmen und Standort für Linux-Node-Hosts.
 title: Linux-Node-Plugin
 x-i18n:
-    generated_at: "2026-07-24T05:15:41Z"
+    generated_at: "2026-07-26T19:09:17Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Linux-Node-Plugin
 
-Desktop-Benachrichtigungen, Kameraaufnahmen und Standort für Linux-Node-Hosts.
+Desktop-Benachrichtigungen, Kameraaufnahmen und Standortermittlung für Linux-Node-Hosts.
 
 ## Distribution
 

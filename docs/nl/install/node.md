@@ -1,12 +1,12 @@
 ---
 read_when:
     - Je moet Node.js installeren voordat je OpenClaw installeert
-    - Je hebt OpenClaw geïnstalleerd, maar `openclaw` geeft ‘opdracht niet gevonden’ aan
+    - Je hebt OpenClaw geïnstalleerd, maar `openclaw` geeft ‘command not found’ aan
     - npm install -g mislukt door problemen met machtigingen of PATH
-summary: Node.js installeren en configureren voor OpenClaw - versievereisten, installatieopties en probleemoplossing voor PATH
+summary: Node.js voor OpenClaw installeren en configureren - versievereisten, installatieopties en probleemoplossing voor PATH
 title: Node.js
 x-i18n:
-    generated_at: "2026-07-16T15:59:38Z"
+    generated_at: "2026-07-27T05:04:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
     workflow: 16
 ---
 
-OpenClaw vereist **Node 22.22.3+, Node 24.15+ of Node 25.9+**. **Node 24 is de standaard en aanbevolen runtime** voor installaties, CI en releaseworkflows; Node 22 blijft ondersteund via de actieve LTS-lijn. Node 23 wordt niet ondersteund. Het [installatiescript](/nl/install#alternative-install-methods) detecteert en installeert Node automatisch — gebruik deze pagina als je Node zelf wilt configureren (versies, PATH, globale installaties).
+OpenClaw vereist **Node 22.22.3+, Node 24.15+ of Node 25.9+**. **Node 24 is de standaard en aanbevolen runtime** voor installaties, CI en releaseworkflows; Node 22 blijft ondersteund via de actieve LTS-lijn. Node 23 wordt niet ondersteund. Het [installatiescript](/nl/install#alternative-install-methods) detecteert en installeert Node automatisch — gebruik deze pagina als je Node zelf wilt instellen (versies, PATH, globale installaties).
 
 ## Controleer je versie
 
@@ -24,7 +24,7 @@ OpenClaw vereist **Node 22.22.3+, Node 24.15+ of Node 25.9+**. **Node 24 is de s
 node -v
 ```
 
-`v24.15.0` of een nieuwere 24.x-versie is de aanbevolen standaard. `v22.22.3` of een nieuwere 22.x-versie is het ondersteunde Node 22 LTS-traject; Node `v25.9.0+` wordt ook ondersteund. Node 23 wordt niet ondersteund. Als Node ontbreekt of buiten het ondersteunde bereik valt, kies dan hieronder een installatiemethode.
+`v24.15.0` of nieuwer binnen 24.x is de aanbevolen standaard. `v22.22.3` of nieuwer binnen 22.x is het ondersteunde Node 22 LTS-traject; Node `v25.9.0+` wordt ook ondersteund. Node 23 wordt niet ondersteund. Als Node ontbreekt of buiten het ondersteunde bereik valt, kies dan hieronder een installatiemethode.
 
 ## Node installeren
 
@@ -75,7 +75,7 @@ node -v
 </Tabs>
 
 <Accordion title="Een versiebeheerder gebruiken (nvm, fnm, mise, asdf)">
-  Met versiebeheerders kun je eenvoudig tussen Node-versies schakelen. Populaire opties:
+  Met versiebeheerders kun je eenvoudig tussen Node-versies wisselen. Populaire opties:
 
 - [**fnm**](https://github.com/Schniz/fnm) - snel, platformonafhankelijk
 - [**nvm**](https://github.com/nvm-sh/nvm) - veelgebruikt op macOS/Linux
@@ -116,13 +116,13 @@ Dit betekent bijna altijd dat de globale bin-map van npm niet in je PATH staat.
   <Step title="Voeg deze toe aan het opstartbestand van je shell">
     <Tabs>
       <Tab title="macOS / Linux">
-        Voeg het volgende toe aan `~/.zshrc` of `~/.bashrc`:
+        Voeg dit toe aan `~/.zshrc` of `~/.bashrc`:
 
         ```bash
         export PATH="$(npm prefix -g)/bin:$PATH"
         ```
 
-        Open daarna een nieuwe terminal (of voer `rehash` uit in zsh / `hash -r` in bash).
+        Open vervolgens een nieuwe terminal (of voer `rehash` uit in zsh / `hash -r` in bash).
       </Tab>
       <Tab title="Windows">
         Voeg de uitvoer van `npm prefix -g` toe aan je systeem-PATH via Settings → System → Environment Variables.

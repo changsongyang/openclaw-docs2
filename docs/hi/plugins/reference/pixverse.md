@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw PixVerse वीडियो जनरेशन प्रदाता Plugin।
 title: PixVerse Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:17:16Z"
+    generated_at: "2026-07-27T18:19:12Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,16 +14,16 @@ x-i18n:
     workflow: 16
 ---
 
-# PixVerse plugin
+# PixVerse Plugin
 
-OpenClaw PixVerse वीडियो जनरेशन प्रदाता plugin।
+OpenClaw PixVerse वीडियो जनरेशन प्रदाता Plugin।
 
 ## वितरण
 
 - पैकेज: `@openclaw/pixverse-provider`
 - इंस्टॉल मार्ग: npm; ClawHub: `clawhub:@openclaw/pixverse-provider`
 
-## सरफ़ेस
+## सतह
 
 अनुबंध: `videoGenerationProviders`
 

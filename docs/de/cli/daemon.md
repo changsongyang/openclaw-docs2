@@ -1,11 +1,11 @@
 ---
 read_when:
     - Sie verwenden weiterhin `openclaw daemon ...` in Skripten
-    - Sie benötigen Befehle für den Dienstlebenszyklus (Installieren/Starten/Stoppen/Neustarten/Status)
-summary: CLI-Referenz für `openclaw daemon` (veralteter Alias für die Gateway-Dienstverwaltung)
+    - Sie benötigen Befehle für den Dienstlebenszyklus (installieren/starten/stoppen/neu starten/Status anzeigen)
+summary: CLI-Referenz für `openclaw daemon` (veralteter Alias für die Verwaltung des Gateway-Dienstes)
 title: Daemon
 x-i18n:
-    generated_at: "2026-07-24T03:42:01Z"
+    generated_at: "2026-07-26T17:41:58Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,7 +17,7 @@ x-i18n:
 
 # `openclaw daemon`
 
-Veralteter Alias für die Gateway-Dienstverwaltung. `openclaw daemon ...` wird denselben Dienststeuerungsbefehlen wie `openclaw gateway ...` zugeordnet. Verwenden Sie für die aktuelle Dokumentation und Beispiele vorzugsweise [`openclaw gateway`](/de/cli/gateway).
+Veralteter Alias für die Gateway-Dienstverwaltung. `openclaw daemon ...` wird denselben Befehlen zur Dienststeuerung zugeordnet wie `openclaw gateway ...`. Verwenden Sie für aktuelle Dokumentation und Beispiele vorzugsweise [`openclaw gateway`](/de/cli/gateway).
 
 ## Verwendung
 
@@ -42,20 +42,20 @@ openclaw daemon uninstall
 | `restart`   | `--force`, `--safe`, `--skip-deferral`, `--wait <duration>`, `--json`                            |
 
 - `status`: Zeigt den Installationsstatus des Dienstes (launchd/systemd/schtasks) an und prüft den Zustand des Gateways.
-- `install`: Installiert den Dienst; `--force` installiert eine vorhandene Installation erneut bzw. überschreibt sie.
-- `restart --safe`: Fordert das laufende Gateway auf, aktive Aufgaben vorab zu prüfen und nach deren Abschluss einen einzigen zusammengefassten Neustart zu planen, begrenzt auf 5 Minuten. Nach Ablauf dieses Zeitbudgets wird der Neustart dennoch erzwungen. Der einfache Befehl `restart` verwendet direkt die Dienstverwaltung; `--force` setzt dies sofort außer Kraft.
-- `restart --safe --skip-deferral`: Umgeht die Verzögerungssperre für aktive Aufgaben, sodass das Gateway sofort neu startet, selbst wenn Blockierungen gemeldet werden. Erfordert `--safe`.
+- `install`: Installiert den Dienst; `--force` installiert eine vorhandene Installation neu bzw. überschreibt sie.
+- `restart --safe`: Weist das laufende Gateway an, aktive Aufgaben vorab zu prüfen und einen einzigen zusammengefassten Neustart zu planen, nachdem die Aufgaben abgeschlossen sind, begrenzt auf 5 Minuten. Nach Ablauf dieses Zeitbudgets wird der Neustart dennoch erzwungen. Ein einfaches `restart` verwendet direkt den Dienstmanager; `--force` bewirkt die sofortige Außerkraftsetzung.
+- `restart --safe --skip-deferral`: Umgeht die Verzögerungssperre für aktive Aufgaben, sodass das Gateway auch bei gemeldeten Blockaden sofort neu startet. Erfordert `--safe`.
 
 ## Hinweise
 
-- `status` löst konfigurierte Authentifizierungs-SecretRefs nach Möglichkeit für die Prüfauthentifizierung auf. Wenn eine erforderliche SecretRef nicht aufgelöst ist, meldet `status --json` `rpc.authWarning`; übergeben Sie `--token`/`--password` ausdrücklich oder lösen Sie zuerst die Quelle des Secrets auf. Warnungen wegen nicht aufgelöster Authentifizierung werden unterdrückt, sobald die Prüfung ansonsten erfolgreich ist.
-- `status --deep` ergänzt eine nach bestem Bemühen ausgeführte systemweite Suche nach anderen Gateway-ähnlichen Diensten (gibt Bereinigungshinweise aus; weiterhin wird ein Gateway pro Rechner empfohlen) und führt die Konfigurationsvalidierung im Plugin-kompatiblen Modus aus. Dabei werden Warnungen zu Plugin-Manifesten angezeigt, die der schnelle Standardpfad überspringt.
-- Bei Linux-Installationen mit systemd prüfen Token-Abweichungsprüfungen sowohl die Unit-Quellen `Environment=` als auch `EnvironmentFile=`.
-- Token-Abweichungsprüfungen lösen `gateway.auth.token`-SecretRefs mithilfe der zusammengeführten Laufzeitumgebung auf (zuerst die Umgebung des Dienstbefehls, danach die Prozessumgebung). Wenn die Token-Authentifizierung nicht tatsächlich aktiv ist (`gateway.auth.mode` von `password`/`none`/`trusted-proxy` oder nicht festgelegt, während das Passwort Vorrang erhalten kann), wird die Auflösung des Konfigurationstokens übersprungen.
-- `install` prüft, ob ein über eine SecretRef verwaltetes `gateway.auth.token` aufgelöst werden kann, speichert den aufgelösten Wert jedoch niemals in den Umgebungsmetadaten des Dienstes. Wenn die Auflösung fehlschlägt, wird die Installation sicher abgebrochen.
-- Wenn sowohl `gateway.auth.token` als auch `gateway.auth.password` konfiguriert sind und `gateway.auth.mode` nicht festgelegt ist, blockiert `install`, bis Sie den Modus ausdrücklich festlegen.
-- Unter macOS beschränkt `install` den Zugriff auf LaunchAgent-plist-Dateien und die generierte Umgebungsdatei bzw. den Wrapper auf den Eigentümer (Modus `0600`/`0700`), anstatt Secrets in `EnvironmentVariables` einzubetten.
-- Wenn mehrere Gateways auf einem Host ausgeführt werden, isolieren Sie Ports, Konfiguration/Zustand und Arbeitsbereiche. Siehe [Mehrere Gateways](/de/gateway#multiple-gateways-same-host).
+- `status` löst konfigurierte SecretRefs für die Authentifizierung der Prüfung nach Möglichkeit auf. Wenn eine erforderliche SecretRef nicht aufgelöst ist, meldet `status --json` `rpc.authWarning`; übergeben Sie `--token`/`--password` explizit oder lösen Sie zuerst die Quelle des Secrets auf. Warnungen zu nicht aufgelöster Authentifizierung werden unterdrückt, sobald die Prüfung ansonsten erfolgreich ist.
+- `status --deep` fügt eine nach bestem Bemühen ausgeführte systemweite Suche nach anderen Gateway-ähnlichen Diensten hinzu (gibt Hinweise zur Bereinigung aus; die Empfehlung bleibt ein Gateway pro Rechner) und führt die Konfigurationsvalidierung im Plugin-bewussten Modus aus. Dabei werden Warnungen aus Plugin-Manifesten angezeigt, die der schnelle Standardpfad überspringt.
+- Bei Linux-Installationen mit systemd prüfen Kontrolldurchläufe auf Token-Abweichungen sowohl die Unit-Quellen `Environment=` als auch `EnvironmentFile=`.
+- Kontrolldurchläufe auf Token-Abweichungen lösen `gateway.auth.token`-SecretRefs anhand der zusammengeführten Laufzeitumgebung auf (zuerst die Umgebung des Dienstbefehls, dann die Prozessumgebung). Wenn die Token-Authentifizierung nicht tatsächlich aktiv ist (`gateway.auth.mode` von `password`/`none`/`trusted-proxy` oder nicht gesetzt, wobei das Passwort Vorrang erhalten kann), wird die Auflösung des Konfigurationstokens übersprungen.
+- `install` überprüft, ob ein über SecretRef verwalteter `gateway.auth.token` auflösbar ist, speichert den aufgelösten Wert jedoch niemals in den Umgebungsmetadaten des Dienstes. Wenn er nicht aufgelöst werden kann, schlägt die Installation sicher geschlossen fehl.
+- Wenn sowohl `gateway.auth.token` als auch `gateway.auth.password` konfiguriert sind und `gateway.auth.mode` nicht gesetzt ist, blockiert `install`, bis Sie den Modus explizit festlegen.
+- Unter macOS beschränkt `install` den Zugriff auf LaunchAgent-plist-Dateien sowie auf die generierte Umgebungsdatei und den Wrapper auf den Eigentümer (Modus `0600`/`0700`), statt Secrets in `EnvironmentVariables` einzubetten.
+- Beim Betrieb mehrerer Gateways auf einem Host müssen Ports, Konfiguration/Zustand und Arbeitsbereiche voneinander isoliert werden. Siehe [Mehrere Gateways](/de/gateway#multiple-gateways-same-host).
 
 ## Verwandte Themen
 

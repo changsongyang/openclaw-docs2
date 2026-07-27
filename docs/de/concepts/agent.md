@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Ändern der Agent-Runtime, des Workspace-Bootstraps oder des Sitzungsverhaltens
-summary: Agentenlaufzeit, Workspace-Vertrag und Sitzungs-Bootstrap
+    - Ändern der Agent-Laufzeit, des Workspace-Bootstraps oder des Sitzungsverhaltens
+summary: Agentenlaufzeit, Workspace-Vertrag und Sitzungsinitialisierung
 title: Agentenlaufzeit
 x-i18n:
-    generated_at: "2026-07-24T04:58:47Z"
+    generated_at: "2026-07-26T18:54:20Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,61 +14,60 @@ x-i18n:
     workflow: 16
 ---
 
-OpenClaw enthält eine **eingebettete Agent-Runtime**: eine integrierte Agent-Schleife, Tool-
-Anbindung und Prompt-Zusammenstellung, unabhängig davon, Ausführungsrunden an einen externen
-Harness-Prozess zu delegieren. Jeder konfigurierte Agent (Informationen zur parallelen Ausführung
-mehrerer Agenten finden Sie unter [Multi-Agent-Routing](/de/concepts/multi-agent))
-verfügt über einen eigenen Workspace, eigene Bootstrap-Dateien und einen eigenen
-Sitzungsspeicher. Diese Seite beschreibt den Vertrag dieser Runtime: was der Workspace
-enthalten muss, welche Dateien eingefügt werden und wie Sitzungen anhand dieser Dateien initialisiert werden.
+OpenClaw wird mit einer **eingebetteten Agentenlaufzeit** ausgeliefert: einer integrierten Agentenschleife, Tool-
+Anbindung und Prompt-Zusammenstellung, die sich von der Delegierung von Durchläufen an einen externen
+Harness-Prozess unterscheidet. Jeder konfigurierte Agent (siehe [Multi-Agenten-Routing](/de/concepts/multi-agent)
+zum Ausführen mehrerer Agenten) verfügt über einen eigenen Arbeitsbereich, Bootstrap-Dateien und
+Sitzungsspeicher. Diese Seite beschreibt den Laufzeitvertrag: was der Arbeitsbereich
+enthalten muss, welche Dateien injiziert werden und wie Sitzungen anhand dieses Bereichs initialisiert werden.
 
-## Workspace (erforderlich)
+## Arbeitsbereich (erforderlich)
 
-Jeder Agent verwendet ein einzelnes Workspace-Verzeichnis (`agents.defaults.workspace` oder
+Jeder Agent verwendet ein einzelnes Arbeitsbereichsverzeichnis (`agents.defaults.workspace` oder
 `agents.entries.*.workspace` je Agent) als sein **einziges** Arbeitsverzeichnis (`cwd`)
 für Tools und Kontext.
 
-Empfehlung: Verwenden Sie `openclaw setup`, um `~/.openclaw/openclaw.json` bei Bedarf zu erstellen und die Workspace-Dateien zu initialisieren.
+Empfehlung: Verwenden Sie `openclaw setup`, um `~/.openclaw/openclaw.json` zu erstellen, falls es fehlt, und die Arbeitsbereichsdateien zu initialisieren.
 
-Vollständige Workspace-Struktur und Anleitung zur Sicherung: [Agent-Workspace](/de/concepts/agent-workspace)
+Vollständiges Arbeitsbereichslayout und Sicherungsanleitung: [Agentenarbeitsbereich](/de/concepts/agent-workspace)
 
-Wenn `agents.defaults.sandbox` aktiviert ist, können Sitzungen außerhalb der Hauptsitzung dies mit
-sitzungsspezifischen Workspaces unter `agents.defaults.sandbox.workspaceRoot` überschreiben (siehe
+Wenn `agents.defaults.sandbox` aktiviert ist, können Sitzungen, die nicht die Hauptsitzung sind, dies mit
+sitzungsspezifischen Arbeitsbereichen unter `agents.defaults.sandbox.workspaceRoot` überschreiben (siehe
 [Gateway-Konfiguration](/de/gateway/configuration)).
 
-## Bootstrap-Dateien (eingefügt)
+## Bootstrap-Dateien (injiziert)
 
-Im Workspace erwartet OpenClaw die folgenden vom Benutzer bearbeitbaren Dateien:
+Im Arbeitsbereich erwartet OpenClaw die folgenden vom Benutzer bearbeitbaren Dateien:
 
-| Datei          | Zweck                                                |
+| Datei           | Zweck                                              |
 | -------------- | ---------------------------------------------------- |
-| `AGENTS.md`    | Betriebsanweisungen und „Gedächtnis“                  |
-| `SOUL.md`      | Persona, Grenzen, Tonfall                              |
-| `TOOLS.md`     | Vom Benutzer gepflegte Tool-Hinweise und Konventionen |
-| `IDENTITY.md`  | Name/Stimmung/Emoji des Agenten                       |
-| `USER.md`      | Benutzerprofil und bevorzugte Anrede                  |
-| `HEARTBEAT.md` | Heartbeat-spezifische Anweisungen                     |
-| `BOOTSTRAP.md` | Einmaliges Erstritual (wird nach Abschluss gelöscht)  |
-| `MEMORY.md`    | Übergeordnete Datei für das Langzeitgedächtnis, sofern vorhanden |
+| `AGENTS.md`    | Betriebsanweisungen und „Gedächtnis“                    |
+| `SOUL.md`      | Persona, Grenzen, Ton                            |
+| `TOOLS.md`     | Vom Benutzer gepflegte Tool-Hinweise und Konventionen           |
+| `IDENTITY.md`  | Name/Stimmung/Emoji des Agenten                                |
+| `USER.md`      | Benutzerprofil und bevorzugte Anrede                     |
+| `HEARTBEAT.md` | Heartbeat-spezifische Anweisungen                      |
+| `BOOTSTRAP.md` | Einmaliges Ritual beim ersten Start (wird nach Abschluss gelöscht) |
+| `MEMORY.md`    | Stammdatei des Langzeitgedächtnisses, falls vorhanden               |
 
-In der ersten Ausführungsrunde einer neuen Sitzung fügt OpenClaw den Inhalt dieser Dateien in den Projektkontext des System-Prompts ein. `MEMORY.md` wird nur eingefügt, wenn die Datei im Stammverzeichnis des Workspace vorhanden ist.
+Beim ersten Durchlauf einer neuen Sitzung injiziert OpenClaw den Inhalt dieser Dateien in den Projektkontext des System-Prompts. `MEMORY.md` wird nur injiziert, wenn es im Stammverzeichnis des Arbeitsbereichs vorhanden ist.
 
-Leere Dateien werden übersprungen. Große Dateien werden gekürzt und mit einer Markierung abgeschnitten, damit Prompts kompakt bleiben (lesen Sie die Datei, um den vollständigen Inhalt zu erhalten). Für eine fehlende Datei (außer `MEMORY.md`) wird stattdessen eine einzelne Markierungszeile „Datei fehlt“ eingefügt; `openclaw setup` erstellt dafür eine sichere Standardvorlage.
+Leere Dateien werden übersprungen. Große Dateien werden gekürzt und mit einer Markierung abgeschnitten, damit Prompts kompakt bleiben (lesen Sie die Datei, um den vollständigen Inhalt zu erhalten). Bei einer fehlenden Datei (außer `MEMORY.md`) wird stattdessen eine einzelne Markierungszeile „Datei fehlt“ injiziert; `openclaw setup` erstellt dafür eine sichere Standardvorlage.
 
-`BOOTSTRAP.md` wird nur für einen **völlig neuen Workspace** erstellt (wenn keine anderen Bootstrap-Dateien vorhanden sind). Solange die Datei aussteht, behält OpenClaw sie im Projektkontext und ergänzt den System-Prompt um Bootstrap-Anweisungen für das Erstritual, anstatt sie in die Benutzernachricht zu kopieren. Wenn Sie die Datei nach Abschluss des Rituals löschen, wird sie bei späteren Neustarts nicht erneut erstellt.
+`BOOTSTRAP.md` wird nur für einen **vollständig neuen Arbeitsbereich** erstellt (wenn keine anderen Bootstrap-Dateien vorhanden sind). Solange sie aussteht, behält OpenClaw sie im Projektkontext und ergänzt den System-Prompt um Bootstrap-Anweisungen für das anfängliche Ritual, anstatt sie in die Benutzernachricht zu kopieren. Wenn Sie sie nach Abschluss des Rituals löschen, wird sie bei späteren Neustarts nicht erneut erstellt.
 
-Nachdem ein Workspace erkannt wurde, speichert OpenClaw dessen Einrichtungsstatus und
+Nachdem ein Arbeitsbereich erfasst wurde, speichert OpenClaw dessen Einrichtungsstatus und
 Bestätigung in der gemeinsam genutzten SQLite-Datenbank unter
-`~/.openclaw/state/openclaw.sqlite`. Wenn ein kürzlich bestätigter Workspace
-verschwindet oder gelöscht wird, verweigert der Start die unbemerkte erneute Erzeugung von `BOOTSTRAP.md`;
-stellen Sie den Workspace wieder her oder führen Sie eine vollständige Zurücksetzung des Onboardings durch, damit der Workspace und sein
+`~/.openclaw/state/openclaw.sqlite`. Wenn ein kürzlich bestätigter Arbeitsbereich
+verschwindet oder gelöscht wird, verweigert der Start das stillschweigende erneute Anlegen von `BOOTSTRAP.md`;
+stellen Sie den Arbeitsbereich wieder her oder führen Sie ein vollständiges Onboarding-Zurücksetzen durch, damit der Arbeitsbereich und sein
 Datenbankstatus gemeinsam gelöscht werden.
 
-Ältere Versionen verwendeten Workspace-JSON-Dateien und `.attested`-Sidecar-Dateien. Die Runtime liest
-diese Dateien nicht. Führen Sie `openclaw doctor --fix` aus, um sie zu validieren, ihren
+Ältere Versionen verwendeten Arbeitsbereichs-JSON- und `.attested`-Sidecar-Dateien. Die Laufzeit
+liest diese Dateien nicht. Führen Sie `openclaw doctor --fix` aus, um sie zu validieren, ihren
 Status in SQLite zu importieren und jede Quelldatei zu entfernen, nachdem die importierten Zeilen überprüft wurden.
 
-Um die Erstellung von Bootstrap-Dateien vollständig zu deaktivieren (für vorab befüllte Workspaces), legen Sie Folgendes fest:
+Um die Erstellung von Bootstrap-Dateien vollständig zu deaktivieren (für vorab eingerichtete Arbeitsbereiche), legen Sie Folgendes fest:
 
 ```json5
 { agents: { defaults: { skipBootstrap: true } } }
@@ -76,33 +75,33 @@ Um die Erstellung von Bootstrap-Dateien vollständig zu deaktivieren (für vorab
 
 ## Integrierte Tools
 
-Die Core-Tools (Lesen/Ausführen/Bearbeiten/Schreiben und zugehörige System-Tools) sind,
-vorbehaltlich der Tool-Richtlinie, immer verfügbar. `apply_patch` ist für OpenAI-Modelle standardmäßig aktiviert und wird durch
-`tools.exec.applyPatch` (`enabled`, `workspaceOnly`, `allowModels`) gesteuert. `TOOLS.md` bestimmt **nicht**, welche Tools vorhanden sind; es dient
-als Vorgabe dafür, wie diese nach Ihren Vorstellungen verwendet werden sollen.
+Kern-Tools (Lesen/Ausführen/Bearbeiten/Schreiben und zugehörige System-Tools) sind vorbehaltlich der Tool-Richtlinie immer verfügbar.
+`apply_patch` ist für OpenAI-Modelle standardmäßig aktiviert und wird durch
+`tools.exec.applyPatch` gesteuert (`enabled`, `workspaceOnly`, `allowModels`). `TOOLS.md` steuert **nicht**, welche Tools vorhanden sind; es handelt sich um
+Vorgaben dazu, wie _Sie_ deren Verwendung wünschen.
 
 ## Skills
 
 OpenClaw lädt Skills aus den folgenden Speicherorten (mit absteigender Priorität):
 
-- Workspace: `<workspace>/skills`
-- Projektbezogene Agent-Skills: `<workspace>/.agents/skills`
-- Persönliche Agent-Skills: `~/.agents/skills`
+- Arbeitsbereich: `<workspace>/skills`
+- Projekt-Agenten-Skills: `<workspace>/.agents/skills`
+- Persönliche Agenten-Skills: `~/.agents/skills`
 - Verwaltet/lokal: `~/.openclaw/skills`
-- Integriert (im Lieferumfang der Installation enthalten)
+- Gebündelt (mit der Installation ausgeliefert)
 - Zusätzliche Skill-Ordner: `skills.load.extraDirs`
 
-Skill-Stammverzeichnisse können gruppierte Ordner wie
-`<workspace>/skills/personal/foo/SKILL.md` enthalten; der Skill wird dennoch unter seinem
-flachen Frontmatter-Namen bereitgestellt, zum Beispiel `foo`.
+Skill-Stammverzeichnisse können gruppierte Ordner enthalten, beispielsweise
+`<workspace>/skills/personal/foo/SKILL.md`; der Skill wird dennoch unter seinem
+flachen Frontmatter-Namen bereitgestellt, beispielsweise `foo`.
 
 Skills können durch Konfiguration/Umgebungsvariablen eingeschränkt werden (siehe `skills` unter [Gateway-Konfiguration](/de/gateway/configuration)).
 
-## Runtime-Grenzen
+## Laufzeitgrenzen
 
-Die eingebettete Agent-Runtime gehört zu OpenClaw: Modellerkennung, Tool-Anbindung,
-Prompt-Zusammenstellung, Sitzungsverwaltung und Kanalauslieferung nutzen eine gemeinsame integrierte
-Runtime-Oberfläche.
+Die eingebettete Agentenlaufzeit wird von OpenClaw verwaltet: Modellerkennung, Tool-Anbindung,
+Prompt-Zusammenstellung, Sitzungsverwaltung und Kanalauslieferung bilden eine gemeinsame integrierte
+Laufzeitoberfläche.
 
 ## Sitzungen
 
@@ -118,24 +117,24 @@ OpenClaw festgelegt. OpenClaw liest keine Sitzungsordner anderer Tools.
 
 ## Steuerung während des Streamings
 
-Eingehende Prompts, die während einer laufenden Ausführung eintreffen, werden standardmäßig in die aktuelle Ausführung eingespeist.
-Die Steuerung erfolgt, **nachdem die aktuelle Assistentenrunde die Ausführung ihrer
-Tool-Aufrufe abgeschlossen hat**, jedoch vor dem nächsten LLM-Aufruf. Verbleibende Tool-Aufrufe
-der aktuellen Assistentennachricht werden nicht mehr übersprungen.
+Eingehende Prompts, die während eines laufenden Durchlaufs eintreffen, werden standardmäßig in den aktuellen Durchlauf eingespeist.
+Die Steuerung erfolgt **nachdem der aktuelle Assistentendurchlauf die Ausführung seiner
+Tool-Aufrufe beendet hat**, vor dem nächsten LLM-Aufruf, und überspringt nicht mehr die verbleibenden Tool-Aufrufe
+der aktuellen Assistentennachricht.
 
-`/queue steer` ist das Standardverhalten für aktive Ausführungen. Mit `/queue followup` und
-`/queue collect` warten Nachrichten auf eine spätere Ausführungsrunde, anstatt zur Steuerung verwendet zu werden.
-`/queue interrupt` bricht stattdessen die aktive Ausführung ab. Informationen zum Verhalten von Warteschlangen und Grenzen finden Sie unter [Warteschlange](/de/concepts/queue)
+`/queue steer` ist das Standardverhalten bei einem aktiven Durchlauf. `/queue followup` und
+`/queue collect` lassen Nachrichten auf einen späteren Durchlauf warten, anstatt sie einzuspeisen.
+`/queue interrupt` bricht stattdessen den aktiven Durchlauf ab. Informationen zum Warteschlangen- und Grenzverhalten finden Sie unter [Warteschlange](/de/concepts/queue)
 und [Steuerungswarteschlange](/de/concepts/queue-steering).
 
-Beim Block-Streaming werden abgeschlossene Assistentenblöcke gesendet, sobald sie fertiggestellt sind; diese Funktion ist
+Beim Block-Streaming werden abgeschlossene Assistentenblöcke gesendet, sobald sie fertiggestellt sind; es ist
 **standardmäßig deaktiviert** (`agents.defaults.blockStreamingDefault: "off"`).
-Passen Sie die Grenze über `agents.defaults.blockStreamingBreak` an (`text_end` gegenüber `message_end`; Standardwert ist `text_end`).
-Steuern Sie die weiche Blockaufteilung mit `agents.defaults.blockStreamingChunk` (standardmäßig
-800–1200 Zeichen; bevorzugt Absatzumbrüche, dann Zeilenumbrüche und zuletzt Satzgrenzen).
-Fassen Sie gestreamte Abschnitte mit `agents.defaults.blockStreamingCoalesce` zusammen, um
-einzeilige Nachrichtenfluten zu reduzieren (inaktivitätsbasiertes Zusammenführen vor dem Senden). Bei Kanälen außer Telegram muss
-`*.streaming.block.enabled: true` explizit aktiviert werden, um Blockantworten zu verwenden (QQ Bot
+Passen Sie die Grenze über `agents.defaults.blockStreamingBreak` an (`text_end` gegenüber `message_end`; Standardwert: `text_end`).
+Steuern Sie die weiche Blockaufteilung mit `agents.defaults.blockStreamingChunk` (Standardwert:
+800-1200 Zeichen; bevorzugt Absatzumbrüche, dann Zeilenumbrüche; Sätze zuletzt).
+Fassen Sie gestreamte Blöcke mit `agents.defaults.blockStreamingCoalesce` zusammen, um
+Spam durch einzelne Zeilen zu reduzieren (leerlaufbasierte Zusammenführung vor dem Senden). Für Kanäle außer Telegram ist
+`*.streaming.block.enabled: true` erforderlich, um Blockantworten explizit zu aktivieren (QQ Bot
 streamt Blockantworten hingegen, sofern `channels.qqbot.streaming.mode` nicht `"off"` ist).
 Ausführliche Tool-Zusammenfassungen werden beim Start des Tools ausgegeben (ohne Entprellung); die Control UI
 streamt die Tool-Ausgabe über Agentenereignisse, sofern verfügbar.
@@ -143,15 +142,15 @@ Weitere Einzelheiten: [Streaming und Aufteilung](/de/concepts/streaming).
 
 ## Modellreferenzen
 
-Modellreferenzen in der Konfiguration (zum Beispiel `agents.defaults.model` und `agents.defaults.models`) werden am **ersten** `/` getrennt.
+Modellreferenzen in der Konfiguration (beispielsweise `agents.defaults.model` und `agents.defaults.models`) werden analysiert, indem sie am **ersten** `/` getrennt werden.
 
 - Verwenden Sie beim Konfigurieren von Modellen `provider/model`.
 - Wenn die Modell-ID selbst `/` enthält (im OpenRouter-Stil), geben Sie das Provider-Präfix an (Beispiel: `openrouter/moonshotai/kimi-k2`).
-- Wenn Sie den Provider weglassen, versucht OpenClaw zunächst, einen Alias aufzulösen, dann eine eindeutige
-  Übereinstimmung bei den konfigurierten Providern für genau diese Modell-ID zu finden, und greift erst anschließend
+- Wenn Sie den Provider weglassen, versucht OpenClaw zuerst einen Alias, dann eine eindeutige
+  Übereinstimmung mit einem konfigurierten Provider für genau diese Modell-ID und greift erst danach
   auf den konfigurierten Standard-Provider zurück. Wenn dieser Provider das
   konfigurierte Standardmodell nicht mehr bereitstellt, greift OpenClaw auf den ersten konfigurierten
-  Provider und dessen Modell zurück, anstatt einen veralteten Standardwert eines entfernten Providers auszugeben.
+  Provider bzw. das erste konfigurierte Modell zurück, anstatt einen veralteten Standardwert eines entfernten Providers auszugeben.
 
 ## Konfiguration (minimal)
 
@@ -162,7 +161,7 @@ Legen Sie mindestens Folgendes fest:
 
 ## Verwandte Themen
 
-- [Agent-Workspace](/de/concepts/agent-workspace)
-- [Multi-Agent-Routing](/de/concepts/multi-agent)
+- [Agentenarbeitsbereich](/de/concepts/agent-workspace)
+- [Multi-Agenten-Routing](/de/concepts/multi-agent)
 - [Sitzungsverwaltung](/de/concepts/session)
 - [Gruppenchats](/de/channels/group-messages)

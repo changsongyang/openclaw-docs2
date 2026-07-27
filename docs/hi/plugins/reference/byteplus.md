@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप byteplus Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: OpenClaw में BytePlus और BytePlus Plan मॉडल प्रदाता का समर्थन जोड़ता है।
+summary: OpenClaw में BytePlus और BytePlus Plan मॉडल प्रदाता के लिए समर्थन जोड़ता है।
 title: BytePlus Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:16:58Z"
+    generated_at: "2026-07-27T18:17:18Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# BytePlus Plugin
+# BytePlus plugin
 
 OpenClaw में BytePlus, BytePlus Plan मॉडल प्रदाता समर्थन जोड़ता है।
 

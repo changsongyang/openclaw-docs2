@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw LongCat 提供商插件。
 title: LongCat 插件
 x-i18n:
-    generated_at: "2026-07-16T11:45:59Z"
+    generated_at: "2026-07-26T06:57:26Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ OpenClaw LongCat 提供商插件。
 ## 分发
 
 - 软件包：`@openclaw/longcat-provider`
-- 安装途径：npm；ClawHub：`clawhub:@openclaw/longcat-provider`
+- 安装方式：npm；ClawHub：`clawhub:@openclaw/longcat-provider`
 
 ## 接口
 

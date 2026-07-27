@@ -1,10 +1,10 @@
 ---
 read_when:
-    - 你正在安装、配置或审核 duckduckgo 插件
+    - 你正在安装、配置或审计 duckduckgo 插件
 summary: 添加 Web 搜索提供商支持。
 title: DuckDuckGo 插件
 x-i18n:
-    generated_at: "2026-07-16T11:48:57Z"
+    generated_at: "2026-07-26T06:21:39Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -20,7 +20,7 @@ x-i18n:
 
 ## 分发
 
-- 包：`@openclaw/duckduckgo-plugin`
+- 软件包：`@openclaw/duckduckgo-plugin`
 - 安装方式：内置于 OpenClaw
 
 ## 接口

@@ -1,10 +1,10 @@
 ---
 read_when:
     - Sie installieren, konfigurieren oder prüfen das copilot-proxy-Plugin.
-summary: Fügt OpenClaw Unterstützung für den Modell-Provider Copilot Proxy hinzu.
+summary: Fügt OpenClaw Unterstützung für den Copilot-Proxy-Modell-Provider hinzu.
 title: Copilot-Proxy-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:46:36Z"
+    generated_at: "2026-07-26T18:37:41Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

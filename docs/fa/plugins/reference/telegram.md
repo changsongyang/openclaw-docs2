@@ -4,7 +4,7 @@ read_when:
 summary: سطح کانال Telegram را برای ارسال و دریافت پیام‌های OpenClaw اضافه می‌کند.
 title: Plugin تلگرام
 x-i18n:
-    generated_at: "2026-07-16T17:30:22Z"
+    generated_at: "2026-07-27T14:30:24Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

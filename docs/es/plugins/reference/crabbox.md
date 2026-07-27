@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin crabbox
-summary: Proveedor de trabajadores en la nube basado en la CLI de Crabbox.
-title: Plugin Crabbox
+summary: Proveedor de workers en la nube respaldado por la CLI de Crabbox.
+title: Plugin de Crabbox
 x-i18n:
-    generated_at: "2026-07-16T11:47:01Z"
+    generated_at: "2026-07-26T05:50:21Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin Crabbox
 
-Proveedor de trabajadores en la nube respaldado por la CLI de Crabbox.
+Proveedor de workers en la nube respaldado por la CLI de Crabbox.
 
 ## Distribución
 
@@ -31,6 +31,6 @@ contratos: `workerProviders`
 
 ## Configuración
 
-Consulte [Entornos de trabajadores en la nube](/es/gateway/configuration-reference#crabbox-profile) para conocer el esquema del perfil y las notas sobre el ciclo de vida.
+Consulte [Entornos de workers en la nube](/es/gateway/configuration-reference#crabbox-profile) para conocer el esquema del perfil y las notas sobre el ciclo de vida.
 
 <!-- openclaw-plugin-reference:manual-end -->

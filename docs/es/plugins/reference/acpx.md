@@ -4,7 +4,7 @@ read_when:
 summary: Backend de ejecución ACP de OpenClaw con gestión de sesiones y transporte a cargo del plugin.
 title: Plugin ACPx
 x-i18n:
-    generated_at: "2026-07-16T11:50:17Z"
+    generated_at: "2026-07-26T04:50:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Plugin ACPx
 
-Backend del entorno de ejecución ACP de OpenClaw con gestión de sesiones y transporte a cargo del Plugin.
+Backend de ejecución ACP de OpenClaw con gestión de sesiones y transporte a cargo del plugin.
 
 ## Distribución
 
 - Paquete: `@openclaw/acpx`
-- Vía de instalación: npm; ClawHub
+- Ruta de instalación: npm; ClawHub
 
 ## Superficie
 
@@ -31,10 +31,10 @@ Skills
 
 ## Sesiones nativas de Pi
 
-El entorno de ejecución incluido detecta automáticamente el almacén de sesiones de Pi en el Gateway y los nodos
-emparejados. Las sesiones almacenadas aparecen en el grupo **Pi** de la barra lateral de sesiones, con
-exploración de transcripciones de solo lectura a partir del formato de sesiones JSONL documentado de Pi. El
-catálogo admite los directorios de sesiones `settings.json` del proyecto y globales, además de
+El entorno de ejecución incluido detecta automáticamente el almacén de sesiones de Pi en el Gateway y en los
+nodos emparejados. Las sesiones almacenadas aparecen en el grupo **Pi** de la barra lateral de sesiones, con
+exploración de transcripciones de solo lectura a partir del formato de sesión JSONL documentado de Pi. El
+catálogo admite los directorios de sesiones `settings.json` globales y del proyecto, además de
 `PI_CODING_AGENT_DIR` y `PI_CODING_AGENT_SESSION_DIR`. Las rutas relativas se resuelven
 desde el directorio que contiene su archivo `settings.json`.
 

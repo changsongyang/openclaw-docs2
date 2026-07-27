@@ -1,10 +1,10 @@
 ---
 read_when:
-    - migrate-hermes Plugin のインストール、設定、または監査を行っています
-summary: Hermes の設定、メモリ、Skills、サポートされている認証情報を OpenClaw にインポートします。
-title: Hermes Pluginを移行する
+    - migrate-hermes Pluginのインストール、設定、または監査を行っています
+summary: Hermes の設定、メモリ、Skills、対応する認証情報を OpenClaw にインポートします。
+title: Hermes Plugin を移行する
 x-i18n:
-    generated_at: "2026-07-16T11:55:47Z"
+    generated_at: "2026-07-26T09:36:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Hermes Plugin の移行
 
-Hermes の設定、メモリ、Skills、対応する認証情報を OpenClaw にインポートします。
+Hermes の設定、メモリ、Skills、対応している認証情報を OpenClaw にインポートします。
 
 ## 配布
 
 - パッケージ: `@openclaw/migrate-hermes`
-- インストール方法: OpenClaw に同梱
+- インストール経路: OpenClaw に同梱
 
 ## サーフェス
 

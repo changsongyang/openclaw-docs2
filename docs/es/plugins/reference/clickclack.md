@@ -4,7 +4,7 @@ read_when:
 summary: Añade la interfaz del canal Clickclack para enviar y recibir mensajes de OpenClaw.
 title: Plugin Clickclack
 x-i18n:
-    generated_at: "2026-07-21T09:02:59Z"
+    generated_at: "2026-07-26T05:50:10Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Añade la superficie del canal Clickclack para enviar y recibir mensajes de Open
 ## Distribución
 
 - Paquete: `@openclaw/clickclack`
-- Método de instalación: npm; ClawHub: `clawhub:@openclaw/clickclack`
+- Ruta de instalación: npm; ClawHub: `clawhub:@openclaw/clickclack`
 
 ## Superficie
 
@@ -29,8 +29,8 @@ canales: `clickclack`; contratos: `tools`
 
 <!-- openclaw-plugin-reference:manual-start -->
 
-El plugin puede crear opcionalmente un canal ClickClack sincronizado con el ciclo de vida
-para cada sesión de OpenClaw. Los canales de discusión gestionados usan una sesión
+El plugin puede crear opcionalmente un canal de ClickClack sincronizado con el ciclo de vida
+para cada sesión de OpenClaw. Los canales de discusión gestionados utilizan una sesión
 secundaria del mismo agente para la observación y la retransmisión, mientras que la sesión
 principal adjunta recibe una herramienta `discussion` de solo extracción. Consulte
 [Discusiones de sesión de ClickClack](/es/channels/clickclack#session-discussions)

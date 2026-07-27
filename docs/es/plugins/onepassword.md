@@ -1,12 +1,12 @@
 ---
 read_when:
     - Quiere que los agentes soliciten secretos seleccionados de 1Password
-    - Se necesita una política de aprobación por secreto y un historial de auditoría.
+    - Necesita una política de aprobación por secreto y un historial de auditoría
     - Está configurando una cuenta de servicio de 1Password para OpenClaw
-summary: Usa el plugin opcional de 1Password como intermediario auditado de secretos para agentes
+summary: Usar el plugin opcional de 1Password como intermediario auditado de secretos para agentes
 title: Intermediario de secretos de 1Password
 x-i18n:
-    generated_at: "2026-07-19T02:16:26Z"
+    generated_at: "2026-07-26T05:49:48Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,12 +18,12 @@ x-i18n:
 
 # Intermediario de secretos de 1Password
 
-El plugin incluido `onepassword` proporciona a los agentes una herramienta controlada por políticas para
+El plugin `onepassword` incluido proporciona a los agentes una herramienta controlada mediante políticas para
 leer un conjunto seleccionado de campos de 1Password. Está deshabilitado de forma predeterminada y no hace
 nada hasta que `plugins.entries.onepassword.config` esté presente.
 
-Esta es una herramienta de agente, no un proveedor de SecretRef. No inyecta variables
-de entorno ni resuelve secretos de configuración de OpenClaw.
+Esta es una herramienta de agente, no un proveedor de SecretRef. No inyecta variables de
+entorno ni resuelve secretos de configuración de OpenClaw.
 
 ## Modelo de seguridad
 
@@ -31,23 +31,23 @@ de entorno ni resuelve secretos de configuración de OpenClaw.
   y nunca se acepta en `openclaw.json`.
 - Solo registro seleccionado. Los agentes pueden enumerar los slugs configurados, pero el plugin nunca
   enumera una bóveda de 1Password.
-- Política por slug `auto`, `approve` o `deny`.
+- Política `auto`, `approve` o `deny` por slug.
 - Las concesiones de aprobación caducan. Un valor almacenado en caché nunca elude la política vigente.
 - Cada intento de acceso se registra en el estado SQLite compartido de OpenClaw. Las filas de auditoría
   incluyen el motivo proporcionado; los motivos no deben contener información confidencial. El intermediario
   nunca copia un valor obtenido ni el token de servicio en una fila de auditoría.
-- Después de la ejecución actual de la herramienta, la persistencia de transcripciones propiedad de OpenClaw
-  sustituye un valor `get` obtenido correctamente por metadatos censurados.
+- Después de la ejecución actual de la herramienta, la persistencia de transcripciones gestionada por OpenClaw
+  reemplaza un valor `get` correcto por metadatos censurados.
 - El valor es visible para el modelo durante esa ejecución. Si el modelo lo copia en una
-  llamada posterior a una herramienta o en una respuesta, ese registro independiente queda fuera del enlace de persistencia
-  de este plugin. Mantenga las políticas restringidas y no solicite al modelo que repita un
+  llamada posterior a una herramienta o en una respuesta, ese registro independiente queda fuera del enlace de
+  persistencia de este plugin. Mantenga políticas restrictivas y no pida al modelo que repita un
   valor.
 - El plugin invoca `op` una vez por cada fallo de caché. No reintenta tras límites de frecuencia ni
   otros fallos.
-- Cada llamada a `op` se ejecuta con un entorno mínimo que deshabilita la integración con la aplicación
-  de escritorio de 1Password (`OP_LOAD_DESKTOP_APP_SETTINGS=false`,
-  `OP_BIOMETRIC_UNLOCK_ENABLED=false`), para que una aplicación de 1Password instalada en el
-  host del Gateway nunca active diálogos biométricos ni de permisos de macOS.
+- Cada llamada a `op` se ejecuta con un entorno mínimo que deshabilita la integración con la
+  aplicación de escritorio de 1Password (`OP_LOAD_DESKTOP_APP_SETTINGS=false`,
+  `OP_BIOMETRIC_UNLOCK_ENABLED=false`), de modo que una aplicación de 1Password instalada en el
+  host del Gateway nunca active diálogos de permisos biométricos o de macOS.
 
 Conceda a la cuenta de servicio acceso de lectura únicamente a las bóvedas y los elementos registrados en
 la configuración del plugin.
@@ -58,7 +58,7 @@ Se necesita:
 
 - la CLI de 1Password (`op`) instalada en el host del Gateway
 - una cuenta de servicio de 1Password con acceso a los elementos seleccionados
-- un archivo dedicado para el token de la cuenta de servicio
+- un archivo de token dedicado para la cuenta de servicio
 
 Habilite el plugin incluido:
 
@@ -77,11 +77,11 @@ chmod 600 ~/.openclaw/credentials/onepassword/service-account-token
 unset OP_SERVICE_ACCOUNT_TOKEN
 ```
 
-Cuando `OPENCLAW_STATE_DIR` esté establecido, sustituya `~/.openclaw` por ese directorio.
-El plugin muestra una advertencia una vez cuando el archivo del token puede ser leído o escrito por el grupo u
+Cuando `OPENCLAW_STATE_DIR` esté definido, sustituya `~/.openclaw` por ese directorio.
+El plugin muestra una advertencia una vez cuando el archivo del token permite la lectura o escritura al grupo o a
 otros usuarios.
 
-## Configurar secretos registrados
+## Configurar los secretos registrados
 
 Añada la configuración del plugin a `openclaw.json`:
 
@@ -121,7 +121,7 @@ Los slugs usan letras minúsculas, números y guiones, comienzan con una letra o
 número y contienen como máximo 64 caracteres. Un registro puede contener hasta 32
 slugs; las descripciones pueden contener hasta 200 caracteres. `field` acepta una etiqueta
 o un ID de campo, no debe contener comas y su valor predeterminado es `credential`.
-Un `vault` a nivel de elemento sustituye la bóveda predeterminada. `opBin` puede establecer una ruta
+Un valor `vault` a nivel de elemento sustituye la bóveda predeterminada. `opBin` puede establecer una ruta
 absoluta al ejecutable `op`; de lo contrario, el plugin resuelve `op` desde `PATH`.
 Los títulos de los elementos no deben comenzar con un guion.
 
@@ -148,14 +148,14 @@ Solicite un secreto:
 }
 ```
 
-`reason` es obligatorio, no debe estar vacío y está limitado a 300 caracteres. Una
-operación `get` correcta devuelve el valor junto con el slug configurado, el título del elemento y la
+`reason` es obligatorio, no debe estar vacío y tiene un límite de 300 caracteres. Una operación
+`get` correcta devuelve el valor junto con el slug configurado, el título del elemento y la
 etiqueta del campo.
 
 El esquema de la herramienta también declara un parámetro interno `authorizationNonce`. La
 capa de políticas lo inyecta después de evaluar la solicitud para transferir la autorización
-a la llamada de herramienta que la ejecuta. Nunca lo establezca manualmente: el enlace de políticas sobrescribe
-cualquier valor proporcionado y un valor desconocido hace que la solicitud falle.
+a la llamada de herramienta que realiza la ejecución. Nunca lo establezca manualmente: el enlace de políticas sobrescribe
+cualquier valor proporcionado y un valor desconocido provoca el fallo de la solicitud.
 
 ## Niveles de políticas y aprobaciones
 
@@ -164,27 +164,27 @@ cualquier valor proporcionado y un valor desconocido hace que la solicitud falle
 - `approve`: usa una concesión permanente que no haya caducado o solicita a una persona que permita una vez,
   permita siempre o deniegue.
 
-Permitir una vez autoriza únicamente la llamada de herramienta actual. Permitir siempre escribe una concesión
-permanente para ese agente y slug en SQLite; los demás agentes deben obtener su propia
-aprobación. OpenClaw solo ofrece permitir siempre cuando el autor de la llamada tiene una identidad de agente
+Permitir una vez autoriza únicamente la llamada actual a la herramienta. Permitir siempre escribe una concesión
+permanente para ese agente y slug en SQLite; los demás agentes deben recibir su propia
+aprobación. OpenClaw ofrece permitir siempre únicamente cuando el autor de la llamada tiene una identidad de agente
 concreta. La concesión caduca después de `grantTtlHours`, cuyo valor predeterminado es 720 horas.
-Una aprobación sin resolver o que supere el tiempo de espera deniega la solicitud; el tiempo máximo de espera de
+Una aprobación sin resolver o que agote el tiempo de espera deniega la solicitud; el tiempo máximo de espera de
 aprobación es de 600 segundos. El plugin conserva hasta 1.024 concesiones permanentes; al alcanzar ese
-límite, se expulsa la concesión más antigua y su agente debe aprobar el siguiente acceso.
+límite, se elimina la concesión más antigua y su agente debe aprobar el siguiente acceso.
 
-Cada autorización evaluada es de un solo uso y se transfiere a la llamada de herramienta
-que la ejecuta mediante el estado SQLite compartido, por lo que la transferencia también funciona cuando hay más de una
+Cada autorización evaluada es de un solo uso y se transfiere a la llamada de herramienta que realiza la ejecución
+mediante el estado SQLite compartido, por lo que la transferencia también funciona cuando hay más de una
 instancia del plugin activa en el proceso del Gateway. Las autorizaciones sin usar caducan
-después del periodo de aprobación de 600 segundos.
+después del intervalo de aprobación de 600 segundos.
 
-El valor predeterminado de la caché en memoria es de 300 segundos y su tamaño está limitado por el registro de
+La caché en memoria tiene un valor predeterminado de 300 segundos y está limitada por el registro de
 slugs configurado. Establezca `cacheTtlSeconds` en `0` para deshabilitarla. La política se evalúa
-antes de cada consulta de la caché y los aciertos de caché se auditan. Las recargas de la configuración en tiempo de ejecución
+antes de cada consulta de caché y los aciertos de caché se auditan. Las recargas de configuración en tiempo de ejecución
 surten efecto en cada límite de política y ejecución; deshabilitar el plugin o
-eliminar, denegar o cambiar el destino de un slug invalida las autorizaciones pendientes y
+eliminar, denegar o reasignar un slug invalida las autorizaciones pendientes y
 los valores almacenados en caché.
 
-## Consultar el estado y el historial de auditoría
+## Inspeccionar el estado y el historial de auditoría
 
 Muestre la disponibilidad y los recuentos del registro:
 
@@ -192,8 +192,8 @@ Muestre la disponibilidad y los recuentos del registro:
 openclaw onepassword status
 ```
 
-Esto informa si existe el archivo del token, si se resolvió `op` y cuál es su ruta,
-el número de elementos registrados y los recuentos por política. Nunca lee ni muestra el
+Esto informa de si existe el archivo del token, si se resolvió `op` y su ruta,
+el número de elementos registrados y los recuentos por política. Nunca lee ni imprime el
 token ni los valores secretos.
 
 Muestre las 50 filas de auditoría más recientes:
@@ -204,19 +204,19 @@ openclaw onepassword audit --limit 100
 ```
 
 Las filas se muestran de la más reciente a la más antigua e indican la marca de tiempo, el agente, el slug, el resultado, un `errorCode`
-cuando el intento falló y un motivo truncado. El motivo se almacena tal como se
-proporcionó; el intermediario nunca añade el valor obtenido al registro de auditoría.
+cuando el intento falla y un motivo truncado. El motivo se almacena tal como se
+proporciona; el intermediario nunca añade el valor obtenido al registro de auditoría.
 
 ## Comportamiento de la CLI de 1Password
 
 Cada fallo de caché ejecuta `op item get` con el elemento y la bóveda configurados, el selector de
 campo exacto, salida JSON, un tiempo de espera limitado y `--cache=false`. El proceso secundario
-recibe únicamente ese campo en lugar del elemento completo. Solo
+recibe únicamente ese campo, no el elemento completo. Solo
 `OP_SERVICE_ACCOUNT_TOKEN` y `HOME` están presentes en el entorno del proceso secundario.
 
-El plugin realiza un solo intento. Los errores `RATE_LIMITED` deben gestionarse esperando
-antes de realizar una solicitud posterior del agente; el plugin no crea un bucle automático de
-reintentos.
+El plugin realiza un intento. Los errores `RATE_LIMITED` deben gestionarse esperando
+antes de una solicitud posterior del agente; el plugin no crea un bucle de reintentos
+automático.
 
 ## Códigos de error
 
@@ -225,25 +225,25 @@ auditoría.
 
 Errores de acceso a 1Password:
 
-| Código              | Significado                                                          |
+| Código            | Significado                                                       |
 | ----------------- | ---------------------------------------------------------------- |
-| `TOKEN_MISSING`   | El archivo del token no existe o está vacío                                   |
-| `OP_NOT_FOUND`    | No se pudo resolver el binario `op`                                |
-| `ITEM_NOT_FOUND`  | El elemento configurado no está en la bóveda                              |
+| `TOKEN_MISSING`   | El archivo del token falta o está vacío                          |
+| `OP_NOT_FOUND`    | No se pudo resolver el binario `op`                             |
+| `ITEM_NOT_FOUND`  | El elemento configurado no está en la bóveda                     |
 | `FIELD_NOT_FOUND` | El campo configurado no está en el elemento; se enumeran las etiquetas disponibles |
-| `RATE_LIMITED`    | Se alcanzó el límite de frecuencia de la cuenta de servicio de 1Password                     |
-| `AUTH_FAILED`     | Falló la autenticación de la cuenta de servicio                            |
-| `TIMEOUT`         | `op` superó `opTimeoutMs`                                      |
-| `OP_ERROR`        | Cualquier otro fallo de `op` o salida no válida                         |
+| `RATE_LIMITED`    | Se alcanzó el límite de frecuencia de la cuenta de servicio de 1Password |
+| `AUTH_FAILED`     | Falló la autenticación de la cuenta de servicio                  |
+| `TIMEOUT`         | `op` superó `opTimeoutMs`                                  |
+| `OP_ERROR`        | Cualquier otro fallo de `op` o salida no válida                 |
 
 Errores de políticas y validación:
 
-| Código                                               | Significado                                                                      |
+| Código                                             | Significado                                                                   |
 | -------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `INVALID_ACTION`, `INVALID_REASON`, `INVALID_SLUG` | La solicitud no superó la validación de entrada                                              |
-| `UNKNOWN_SLUG`                                     | El slug no está en el registro configurado                                       |
-| `TOOL_CALL_ID_MISSING`                             | La llamada llegó sin un ID de llamada de herramienta                                          |
+| `INVALID_ACTION`, `INVALID_REASON`, `INVALID_SLUG` | La solicitud no superó la validación de entrada                              |
+| `UNKNOWN_SLUG`                                     | El slug no está en el registro configurado                                   |
+| `TOOL_CALL_ID_MISSING`                             | La llamada llegó sin un ID de llamada de herramienta                         |
 | `POLICY_NOT_EVALUATED`                             | No hay una autorización coincidente para esta llamada; la solicitud no fue aprobada por la política |
-| `POLICY_CHANGED`                                   | La configuración cambió entre la aprobación y la ejecución                                |
-| `GRANT_EXPIRED`                                    | La concesión permanente caducó antes de la ejecución                                       |
-| `APPROVAL_CANCELLED`                               | La ejecución se canceló mientras la aprobación estaba pendiente                           |
+| `POLICY_CHANGED`                                   | La configuración cambió entre la aprobación y la ejecución                   |
+| `GRANT_EXPIRED`                                    | La concesión permanente caducó antes de la ejecución                          |
+| `APPROVAL_CANCELLED`                               | La ejecución se canceló mientras la aprobación estaba pendiente              |

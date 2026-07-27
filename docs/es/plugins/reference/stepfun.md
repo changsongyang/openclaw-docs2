@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin stepfun
-summary: Añade a OpenClaw compatibilidad con StepFun y con el proveedor de modelos StepFun Plan.
-title: Plugin de StepFun
+summary: Añade compatibilidad con StepFun y el proveedor de modelos StepFun Plan a OpenClaw.
+title: Plugin StepFun
 x-i18n:
-    generated_at: "2026-07-16T11:50:10Z"
+    generated_at: "2026-07-26T05:15:16Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Plugin StepFun
 
-Añade compatibilidad con StepFun y con el proveedor de modelos StepFun Plan en OpenClaw.
+Añade compatibilidad con StepFun y con el proveedor de modelos StepFun Plan a OpenClaw.
 
 ## Distribución
 
 - Paquete: `@openclaw/stepfun-provider`
-- Método de instalación: npm; ClawHub: `clawhub:@openclaw/stepfun-provider`
+- Ruta de instalación: npm; ClawHub: `clawhub:@openclaw/stepfun-provider`
 
 ## Superficie
 

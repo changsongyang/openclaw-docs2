@@ -5,7 +5,7 @@ read_when:
 summary: Verwenden Sie den OpenCode-Go-Katalog mit der gemeinsamen OpenCode-Einrichtung
 title: OpenCode Go
 x-i18n:
-    generated_at: "2026-07-24T05:14:05Z"
+    generated_at: "2026-07-26T18:44:06Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,8 +23,8 @@ korrekt bleibt.
 | Eigenschaft      | Wert                                               |
 | ---------------- | -------------------------------------------------- |
 | Runtime-Provider | `opencode-go`                                 |
-| Authentifizierung | `OPENCODE_API_KEY` (Alias: `OPENCODE_ZEN_API_KEY`) |
-| Übergeordnete Einrichtung | [OpenCode](/de/providers/opencode)          |
+| Authentifizierung | `OPENCODE_API_KEY` (Alias: `OPENCODE_ZEN_API_KEY`)    |
+| Übergeordnete Einrichtung | [OpenCode](/de/providers/opencode)           |
 
 ## Erste Schritte
 
@@ -77,7 +77,7 @@ korrekt bleibt.
 ## Integrierter Katalog
 
 Führen Sie `openclaw models list --provider opencode-go` aus, um die aktuelle Modellliste anzuzeigen.
-Enthaltene Einträge:
+Mitgelieferte Einträge:
 
 | Modellreferenz                  | Name              | Kontext   | Maximale Ausgabe | Bildeingabe |
 | ------------------------------- | ----------------- | --------- | ---------------- | ----------- |
@@ -114,13 +114,13 @@ Enthaltene Einträge:
   </Accordion>
 
   <Accordion title="Gemeinsame Anmeldedaten">
-    Ein `OPENCODE_API_KEY` deckt sowohl den Zen- als auch den Go-Katalog ab. Bei der Eingabe des
-    Schlüssels während der Einrichtung werden Anmeldedaten für beide Runtime-Provider gespeichert.
+    Ein `OPENCODE_API_KEY` deckt sowohl den Zen- als auch den Go-Katalog ab. Wenn der
+    Schlüssel während der Einrichtung eingegeben wird, werden die Anmeldedaten für beide Runtime-Provider gespeichert.
   </Accordion>
 </AccordionGroup>
 
 <Tip>
-Unter [OpenCode](/de/providers/opencode) finden Sie eine Übersicht über das gemeinsame Onboarding und die vollständige
+Unter [OpenCode](/de/providers/opencode) finden Sie die gemeinsame Onboarding-Übersicht und die vollständige
 Katalogreferenz für Zen und Go.
 </Tip>
 
@@ -128,7 +128,7 @@ Katalogreferenz für Zen und Go.
 
 <CardGroup cols={2}>
   <Card title="OpenCode (übergeordnet)" href="/de/providers/opencode" icon="server">
-    Gemeinsames Onboarding, Katalogübersicht und weiterführende Hinweise.
+    Gemeinsames Onboarding, Katalogübersicht und erweiterte Hinweise.
   </Card>
   <Card title="Modellauswahl" href="/de/concepts/model-providers" icon="layers">
     Auswahl von Providern, Modellreferenzen und Failover-Verhalten.

@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin deepinfra
-summary: Añade compatibilidad con el proveedor de modelos DeepInfra a OpenClaw.
+summary: Añade compatibilidad con el proveedor de modelos DeepInfra en OpenClaw.
 title: Plugin de DeepInfra
 x-i18n:
-    generated_at: "2026-07-16T11:52:02Z"
+    generated_at: "2026-07-26T04:51:24Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Añade compatibilidad con el proveedor de modelos DeepInfra a OpenClaw.
 ## Distribución
 
 - Paquete: `@openclaw/deepinfra-provider`
-- Método de instalación: npm; ClawHub: `clawhub:@openclaw/deepinfra-provider`
+- Ruta de instalación: npm; ClawHub: `clawhub:@openclaw/deepinfra-provider`
 
 ## Superficie
 

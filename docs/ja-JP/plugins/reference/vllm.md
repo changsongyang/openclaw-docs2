@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw に vLLM モデルプロバイダーのサポートを追加します。
 title: vLLM Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:57:14Z"
+    generated_at: "2026-07-26T09:54:27Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,9 +21,9 @@ OpenClaw に vLLM モデルプロバイダーのサポートを追加します�
 ## 配布
 
 - パッケージ: `@openclaw/vllm-provider`
-- インストール方法: OpenClaw に同梱
+- インストール経路: OpenClaw に同梱
 
-## 提供機能
+## サーフェス
 
 プロバイダー: `vllm`
 

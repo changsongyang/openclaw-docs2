@@ -1,10 +1,10 @@
 ---
 read_when:
-    - memory-lancedb Pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
-summary: Otomatik hatırlama, otomatik yakalama ve vektör arama özelliklerine sahip, LanceDB destekli OpenClaw uzun süreli bellek Plugin'i.
-title: Lancedb bellek Plugin'i
+    - memory-lancedb pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+summary: Otomatik hatırlama, otomatik yakalama ve vektör araması özelliklerine sahip, LanceDB destekli OpenClaw uzun süreli bellek Plugin'i.
+title: Bellek Lancedb Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:45:02Z"
+    generated_at: "2026-07-26T23:28:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Memory Lancedb Plugin
+# Memory Lancedb plugin'i
 
-Otomatik hatırlama, otomatik yakalama ve vektör arama özelliklerine sahip, LanceDB destekli OpenClaw uzun süreli bellek Plugin'i.
+Otomatik hatırlama, otomatik yakalama ve vektör arama özelliklerine sahip, LanceDB destekli OpenClaw uzun süreli bellek plugin'i.
 
 ## Dağıtım
 

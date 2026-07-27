@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप logbook Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: 'स्वचालित कार्य जर्नल: युग्मित Node से समय-समय पर स्क्रीन स्नैपशॉट कैप्चर करता है और उन्हें आपके दिन की समीक्षा योग्य समयरेखा में बदलता है।'
+summary: 'स्वचालित कार्य जर्नल: युग्मित Node से समय-समय पर स्क्रीन स्नैपशॉट लेता है और उन्हें आपके दिन की समीक्षा योग्य समयरेखा में बदलता है।'
 title: लॉगबुक Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:41:01Z"
+    generated_at: "2026-07-27T20:13:20Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -29,4 +29,4 @@ Plugin
 
 ## संबंधित दस्तावेज़
 
-- [logbook](/plugins/logbook)
+- [logbook](/hi/plugins/logbook)

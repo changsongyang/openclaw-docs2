@@ -4,7 +4,7 @@ read_when:
 summary: پشتیبانی از ارائه‌دهندهٔ درک رسانه را اضافه می‌کند. پشتیبانی از ارائه‌دهندهٔ رونویسی بلادرنگ را اضافه می‌کند.
 title: Plugin دیپ‌گرام
 x-i18n:
-    generated_at: "2026-07-16T16:54:51Z"
+    generated_at: "2026-07-27T14:27:38Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin Deepgram
+# Plugin ‏Deepgram
 
 پشتیبانی از ارائه‌دهندهٔ درک رسانه را اضافه می‌کند. پشتیبانی از ارائه‌دهندهٔ رونویسی بلادرنگ را اضافه می‌کند.
 

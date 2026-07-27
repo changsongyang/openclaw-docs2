@@ -4,7 +4,7 @@ read_when:
 summary: 添加 Web 搜索提供商支持。
 title: Exa 插件
 x-i18n:
-    generated_at: "2026-07-16T11:44:58Z"
+    generated_at: "2026-07-26T06:53:21Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## 分发
 
 - 软件包：`@openclaw/exa-plugin`
-- 安装途径：npm；ClawHub：`clawhub:@openclaw/exa-plugin`
+- 安装方式：npm；ClawHub：`clawhub:@openclaw/exa-plugin`
 
 ## 接口
 

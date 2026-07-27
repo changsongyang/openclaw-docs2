@@ -2,9 +2,9 @@
 read_when:
     - ollama pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a Ollama ve Ollama Cloud model sağlayıcısı desteği ekler.
-title: Ollama plugin'i
+title: Ollama Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:26:27Z"
+    generated_at: "2026-07-27T00:12:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Ollama plugin'i
+# Ollama Plugin
 
 OpenClaw'a Ollama ve Ollama Cloud model sağlayıcısı desteği ekler.
 

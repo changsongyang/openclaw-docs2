@@ -1,10 +1,10 @@
 ---
 read_when:
-    - telegram Pluginをインストール、設定、または監査している場合
-summary: OpenClawメッセージを送受信するためのTelegramチャンネルサーフェスを追加します。
+    - telegram Plugin のインストール、設定、または監査を行う場合
+summary: OpenClaw メッセージを送受信するための Telegram チャネルサーフェスを追加します。
 title: Telegram Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:57:01Z"
+    generated_at: "2026-07-26T09:12:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Telegram Plugin
+# Telegram plugin
 
 OpenClaw メッセージを送受信するための Telegram チャネルサーフェスを追加します。
 
 ## 配布
 
 - パッケージ: `@openclaw/telegram`
-- インストール方法: OpenClaw に同梱
+- インストール経路: OpenClaw に同梱
 
 ## サーフェス
 

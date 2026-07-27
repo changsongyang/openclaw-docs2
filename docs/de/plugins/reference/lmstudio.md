@@ -1,10 +1,10 @@
 ---
 read_when:
     - Sie installieren, konfigurieren oder überprüfen das lmstudio-Plugin.
-summary: Fügt Unterstützung für den LM Studio-Modell-Provider zu OpenClaw hinzu.
+summary: Fügt OpenClaw Unterstützung für den Modell-Provider LM Studio hinzu.
 title: LM-Studio-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:33:26Z"
+    generated_at: "2026-07-26T18:30:38Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

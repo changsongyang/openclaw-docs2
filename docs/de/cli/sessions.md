@@ -4,7 +4,7 @@ read_when:
 summary: CLI-Referenz für `openclaw sessions` (gespeicherte Sitzungen und Nutzung auflisten)
 title: Sitzungen
 x-i18n:
-    generated_at: "2026-07-24T03:43:56Z"
+    generated_at: "2026-07-26T17:43:48Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,9 +18,9 @@ x-i18n:
 
 Gespeicherte Konversationssitzungen auflisten.
 
-Sitzungslisten sind keine Erreichbarkeitsprüfungen für Kanäle oder Provider. Sie zeigen persistierte
+Sitzungslisten sind keine Verfügbarkeitsprüfungen für Kanäle oder Provider. Sie zeigen persistierte
 Konversationszeilen aus Sitzungsspeichern. Ein inaktiver Discord-, Slack-, Telegram- oder
-anderer Kanal kann erfolgreich eine neue Verbindung herstellen, ohne eine neue Sitzungszeile
+anderer Kanal kann die Verbindung erfolgreich wiederherstellen, ohne eine neue Sitzungszeile
 zu erstellen, bis eine Nachricht verarbeitet wird. Verwenden Sie `openclaw channels status --probe`,
 `openclaw status --deep` oder `openclaw health --verbose`, wenn Sie die aktuelle
 Kanalkonnektivität benötigen.
@@ -47,21 +47,21 @@ Flags:
 | `--json`             | Maschinenlesbare Ausgabe.                                               |
 | `--verbose`          | Ausführliche Protokollierung.                                                       |
 
-`openclaw sessions` und der Gateway-RPC `sessions.list` sind standardmäßig begrenzt,
-damit große, langlebige Speicher weder den CLI-Prozess noch die Gateway-Ereignisschleife
-monopolisieren können. Die CLI gibt standardmäßig die neuesten 100 Sitzungen zurück; übergeben Sie `--limit <n>`
-für ein kleineres oder größeres Fenster oder `--limit all`, wenn Sie bewusst den
+`openclaw sessions` und der Gateway-RPC `sessions.list` sind standardmäßig
+begrenzt, damit große, langlebige Speicher nicht den CLI-Prozess oder die
+Gateway-Ereignisschleife monopolisieren können. Die CLI gibt standardmäßig die neuesten 100 Sitzungen zurück; übergeben Sie `--limit <n>`
+für ein kleineres oder größeres Fenster oder `--limit all`, wenn Sie absichtlich den
 vollständigen Speicher benötigen. JSON-Antworten enthalten `totalCount`, `limitApplied` und `hasMore`,
 wenn Aufrufer anzeigen müssen, dass weitere Zeilen vorhanden sind.
 
-RPC-Clients können `configuredAgentsOnly: true` übergeben, um die umfassende kombinierte
-Ermittlungsquelle beizubehalten, aber nur Zeilen für Agents zurückzugeben, die derzeit in der Konfiguration vorhanden sind.
-Die Control UI verwendet diesen Modus standardmäßig, sodass gelöschte oder ausschließlich auf dem Datenträger vorhandene Agent-Speicher
+RPC-Clients können `configuredAgentsOnly: true` übergeben, um die breite kombinierte
+Ermittlungsquelle beizubehalten, aber nur Zeilen für Agents zurückzugeben, die aktuell in der Konfiguration vorhanden sind.
+Die Control UI verwendet diesen Modus standardmäßig, sodass gelöschte oder ausschließlich auf der Festplatte vorhandene Agent-Speicher
 nicht erneut in der Sitzungsansicht erscheinen.
 
-`--all-agents` liest konfigurierte Agent-Speicher. Die Sitzungsermittlung von Gateway und ACP
-ist umfassender: Sie schließt auch SQLite-Speicher ein, die aus
-konfigurierten Agent-Stammverzeichnissen oder einem vorlagenbasierten Stammverzeichnis `session.store` aufgelöst werden. Pfade älterer Selektoren
+`--all-agents` liest konfigurierte Agent-Speicher. Die Sitzungsermittlung
+von Gateway und ACP ist umfassender: Sie schließt auch SQLite-Speicher ein, die aus
+konfigurierten Agent-Stammverzeichnissen oder einem vorlagenbasierten `session.store`-Stammverzeichnis aufgelöst werden. Pfade älterer Selektoren
 müssen innerhalb des Agent-Stammverzeichnisses aufgelöst werden; symbolische Links und Pfade außerhalb des Stammverzeichnisses werden
 übersprungen.
 
@@ -87,7 +87,7 @@ müssen innerhalb des Agent-Stammverzeichnisses aufgelöst werden; symbolische L
 }
 ```
 
-## Fortschritt am Ende der Trajektorie
+## Fortschritt des Trajektorienendes
 
 ```bash
 openclaw sessions tail
@@ -98,15 +98,15 @@ openclaw sessions --all-agents tail --follow
 ```
 
 `openclaw sessions tail` stellt aktuelle Laufzeit-Trajektorienereignisse als kompakte
-Fortschrittszeilen dar. Ohne `--session-key` verfolgt es zuerst laufende Sitzungen und anschließend
-die neueste gespeicherte Sitzung. `--tail <count>` steuert, wie viele vorhandene Ereignisse
+Fortschrittszeilen dar. Ohne `--session-key` folgt es zuerst laufenden Sitzungen und anschließend
+der neuesten gespeicherten Sitzung. `--tail <count>` steuert, wie viele vorhandene Ereignisse
 vor dem Folgemodus ausgegeben werden; Standard ist `80`, und `0` beginnt am aktuellen Ende.
 `--follow` überwacht weiterhin die ausgewählte SQLite-gestützte Sitzung oder eine explizite
 ältere Trajektoriendatei.
 
-Die Fortschrittsansicht ist bewusst zurückhaltend: Prompttext, Toolargumente
-und Inhalte von Toolergebnissen werden nicht ausgegeben. Toolaufrufe zeigen den Toolnamen mit
-`{...redacted...}`; Toolergebnisse zeigen einen Status wie `ok`, `error` oder `done`;
+Die Fortschrittsansicht ist bewusst zurückhaltend: Prompt-Text, Tool-Argumente
+und Inhalte von Tool-Ergebnissen werden nicht ausgegeben. Tool-Aufrufe zeigen den Tool-Namen mit
+`{...redacted...}`; Tool-Ergebnisse zeigen einen Status wie `ok`, `error` oder `done`;
 Modellabschlusszeilen zeigen Provider/Modell und den Endstatus.
 
 ## Ein Trajektorienpaket exportieren
@@ -117,8 +117,8 @@ openclaw sessions export-trajectory --session-key "agent:main:telegram:direct:12
 ```
 
 Dies ist der Befehlspfad, den der Slash-Befehl `/export-trajectory` verwendet, nachdem
-der Eigentümer die Ausführungsanfrage genehmigt hat. Das Ausgabeverzeichnis wird immer
-innerhalb von `.openclaw/trajectory-exports/` im ausgewählten Arbeitsbereich aufgelöst.
+der Eigentümer die Ausführungsanforderung genehmigt hat. Das Ausgabeverzeichnis wird immer
+innerhalb von `.openclaw/trajectory-exports/` unter dem ausgewählten Arbeitsbereich aufgelöst.
 
 ## Bereinigungswartung
 
@@ -134,22 +134,22 @@ openclaw sessions cleanup --dry-run --fix-dm-scope
 openclaw sessions cleanup --json
 ```
 
-`openclaw sessions cleanup` verwendet die Einstellungen `session.maintenance` aus der Konfiguration
+`openclaw sessions cleanup` verwendet die `session.maintenance`-Einstellungen aus der Konfiguration
 ([Konfigurationsreferenz](/de/gateway/config-agents#session)):
 
 - Hinweis zum Umfang: `openclaw sessions cleanup` verwaltet Sitzungsspeicher,
-  Transkripte, Trajektorienzeilen und ältere Trajektorien-Sidecars. Es bereinigt
-  nicht den Cron-Ausführungsverlauf, der automatisch die neuesten 2000 Zeilen pro Auftrag beibehält
-  ([Cron-Konfiguration](/de/automation/cron-jobs#configuration)).
+  Transkripte, Trajektorienzeilen und ältere Trajektorien-Sidecars. Es
+  bereinigt nicht den Cron-Ausführungsverlauf, der automatisch die neuesten 2000 Zeilen pro Auftrag
+  beibehält ([Cron-Konfiguration](/de/automation/cron-jobs#configuration)).
 - Die Bereinigung entfernt außerdem nicht referenzierte ältere/archivierte Transkriptartefakte,
   Compaction-Prüfpunkte und Trajektorien-Sidecars, die älter als
-  `session.maintenance.pruneAfter` sind; weiterhin von SQLite-
-  Sitzungszeilen referenzierte Artefakte bleiben erhalten.
-- Die Bereinigung meldet die Bereinigung kurzlebiger Gateway-Probeläufe von Modellen separat als
-  `modelRunPruned`. Dies entspricht nur streng expliziten Schlüsseln in der Form
+  `session.maintenance.pruneAfter` sind; Artefakte, auf die noch von SQLite-
+  Sitzungszeilen verwiesen wird, bleiben erhalten.
+- Die Bereinigung weist die Entfernung kurzlebiger Gateway-Modelllauf-Sonden separat als
+  `modelRunPruned` aus. Dies entspricht nur streng expliziten Schlüsseln der Form
   `agent:*:explicit:model-run-<uuid>`. Die Aufbewahrungsdauer beträgt fest `24h` und ist
-  druckabhängig: Veraltete Probezeilen werden nur entfernt, wenn der Wartungs-
-  oder Kapazitätsdruck für Sitzungseinträge erreicht ist. Bei der Ausführung erfolgt die Bereinigung von Modellläufen
+  druckabhängig: Veraltete Sondenzeilen werden nur entfernt, wenn bei der Wartung von Sitzungseinträgen
+  oder der Kapazitätsbegrenzung Druck entsteht. Wenn sie ausgeführt wird, erfolgt die Bereinigung der Modellläufe
   vor der globalen Bereinigung veralteter Einträge und der Begrenzung.
 
 Flags:
@@ -157,18 +157,18 @@ Flags:
 | Flag                 | Beschreibung                                                                                                                                                                                                                                                                                                |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--dry-run`          | Vorschau, wie viele Einträge ohne Schreibvorgang bereinigt oder begrenzt würden. Im Textmodus wird eine Aktionstabelle pro Sitzung (`Action`, `Key`, `Age`, `Model`, `Flags`) sowie eine nach Sitzungsbezeichnung gruppierte Zusammenfassung ausgegeben.                                                                                                       |
-| `--enforce`          | Wartung auch anwenden, wenn `session.maintenance.mode` den Wert `warn` hat.                                                                                                                                                                                                                                          |
-| `--fix-missing`      | Ältere Einträge entfernen, deren archivierte Transkriptartefakte fehlen oder nur aus einem Header bestehen/leer sind, selbst wenn sie aufgrund von Alter oder Anzahl normalerweise noch nicht entfernt würden.                                                                                                                                                             |
-| `--fix-dm-scope`     | Wenn `session.dmScope` den Wert `main` hat, veraltete, nach Gegenstelle verschlüsselte Direktnachrichtenzeilen entfernen, die durch früheres Routing über `per-peer`, `per-channel-peer` oder `per-account-channel-peer` zurückgelassen wurden. Verwenden Sie zuerst `--dry-run`; die Anwendung entfernt diese Zeilen aus SQLite und bewahrt ihre älteren Transkriptartefakte als gelöschte Archive auf. |
-| `--active-key <key>` | Einen bestimmten aktiven Schlüssel vor der Verdrängung aufgrund des Datenträgerbudgets schützen. Dauerhafte externe Konversationszeiger, etwa Gruppensitzungen und auf Threads beschränkte Chatsitzungen, bleiben bei der Wartung nach Alter, Anzahl und Datenträgerbudget ebenfalls erhalten.                                                                                               |
+| `--enforce`          | Wartung auch dann anwenden, wenn `session.maintenance.mode` den Wert `warn` hat.                                                                                                                                                                                                                                          |
+| `--fix-missing`      | Ältere Einträge entfernen, deren archivierte Transkriptartefakte fehlen oder nur aus einer Kopfzeile bestehen beziehungsweise leer sind, auch wenn sie normalerweise noch nicht aufgrund von Alter oder Anzahl entfernt würden.                                                                                                                                                             |
+| `--fix-dm-scope`     | Wenn `session.dmScope` den Wert `main` hat, veraltete, nach Gegenstellen verschlüsselte Direktnachrichtenzeilen stilllegen, die durch früheres Routing über `per-peer`, `per-channel-peer` oder `per-account-channel-peer` zurückgeblieben sind. Verwenden Sie zuerst `--dry-run`; die Anwendung entfernt diese Zeilen aus SQLite und bewahrt ihre älteren Transkriptartefakte als gelöschte Archive auf. |
+| `--active-key <key>` | Einen bestimmten aktiven Schlüssel vor der Verdrängung aufgrund des Festplattenbudgets schützen. Dauerhafte externe Konversationszeiger, etwa Gruppensitzungen und auf Threads beschränkte Chatsitzungen, werden bei der Wartung nach Alter, Anzahl und Festplattenbudget ebenfalls beibehalten.                                                                                               |
 | `--agent <id>`       | Bereinigung für einen konfigurierten Agent-Speicher ausführen.                                                                                                                                                                                                                                                                |
 | `--all-agents`       | Bereinigung für alle konfigurierten Agent-Speicher ausführen.                                                                                                                                                                                                                                                               |
-| `--store <path>`     | Für einen bestimmten Pfad eines älteren Speicherselektors ausführen.                                                                                                                                                                                                                                                         |
+| `--store <path>`     | Gegen einen bestimmten Pfad eines älteren Speicherselektors ausführen.                                                                                                                                                                                                                                                         |
 | `--json`             | Eine JSON-Zusammenfassung ausgeben. Mit `--all-agents` enthält die Ausgabe eine Zusammenfassung pro Speicher.                                                                                                                                                                                                                          |
 
 Wenn ein Gateway erreichbar ist, wird eine Bereinigung konfigurierter Agent-Speicher, die kein Probelauf ist,
-über das Gateway gesendet, sodass sie denselben Sitzungsspeicher-Writer wie der Laufzeit-
-Datenverkehr verwendet. Verwenden Sie `--store <path>` für die explizite Offline-Reparatur eines älteren
+über das Gateway gesendet, sodass sie denselben Sitzungsspeicher-Schreiber wie der Laufzeitdatenverkehr
+verwendet. Verwenden Sie `--store <path>` für die explizite Offline-Reparatur eines älteren
 Speicherselektors.
 
 `openclaw sessions cleanup --all-agents --dry-run --json`:
@@ -205,8 +205,8 @@ Speicherselektors.
 
 ## Eine Sitzung komprimieren
 
-Geben Sie Kontextbudget für eine blockierte oder übergroße Sitzung frei. `openclaw sessions
-compact <key>` ist der erstklassige Wrapper für den Gateway-RPC `sessions.compact`
+Kontextbudget für eine blockierte oder übergroße Sitzung zurückgewinnen. `openclaw sessions
+compact <key>` ist der primäre Wrapper um den Gateway-RPC `sessions.compact`
 und erfordert ein laufendes Gateway.
 
 ```bash
@@ -220,22 +220,22 @@ openclaw sessions compact "agent:work:main" --agent work --json
   konfigurierten Compaction-Lebenszyklus.
 - Mit `--max-lines <n>` wird auf die letzten `n` Transkriptzeilen gekürzt und
   das vorherige Transkript als `.bak`-Sidecar archiviert.
-- `--agent <id>`: Agent, dem die Sitzung gehört; erforderlich für `global`-Schlüssel.
+- `--agent <id>`: Agent, dem die Sitzung gehört; für `global`-Schlüssel erforderlich.
 - `--url` / `--token` / `--password`: Überschreibungen der Gateway-Verbindung.
-- `--timeout <ms>`: optionales clientseitiges RPC-Zeitlimit in Millisekunden.
+- `--timeout <ms>`: optionale clientseitige RPC-Zeitüberschreitung in Millisekunden.
 - `--json`: die unverarbeitete RPC-Nutzlast ausgeben.
 
-Der Befehl wird mit einem von null verschiedenen Status beendet, wenn das Gateway eine fehlgeschlagene Compaction meldet oder nicht
-erreichbar ist, damit Crons und Skripte einen stillen No-Op niemals mit einem Erfolg verwechseln.
+Der Befehl wird mit einem von null verschiedenen Status beendet, wenn das Gateway eine fehlgeschlagene Compaction meldet oder
+nicht erreichbar ist, sodass Crons und Skripte einen stillen No-Op niemals fälschlicherweise als Erfolg werten.
 
 <Note>
-`openclaw agent --message '/compact ...'` ist **kein** Compaction-Pfad. Slash-
-Befehle aus der CLI werden durch die Prüfung auf autorisierte Absender abgelehnt; dieser
-Aufruf wird mit einem von null verschiedenen Status und einem Hinweis auf diese Seite beendet, statt stillschweigend
+`openclaw agent --message '/compact ...'` ist **kein** Compaction-Pfad. Slash-Befehle
+von der CLI werden durch die Prüfung auf autorisierte Absender abgelehnt; dieser
+Aufruf wird mit einem von null verschiedenen Status und einem Hinweis beendet, der hierher verweist, statt stillschweigend
 keine Aktion auszuführen.
 </Note>
 
-### RPC sessions.compact
+### sessions.compact-RPC
 
 `openclaw gateway call sessions.compact --params '<json>'` akzeptiert:
 
@@ -243,7 +243,7 @@ keine Aktion auszuführen.
 | ---------- | ----------- | ------------ | ---------------------------------------------------------- |
 | `key`      | string      | ja           | Zu komprimierender Sitzungsschlüssel (zum Beispiel `agent:main:main`). |
 | `agentId`  | string      | nein         | Agent-ID, der die Sitzung gehört (für `global`-Schlüssel). |
-| `maxLines` | integer ≥ 1 | nein         | Auf die letzten N Zeilen kürzen, statt eine LLM-Zusammenfassung zu erstellen. |
+| `maxLines` | integer ≥ 1 | nein         | Statt einer LLM-Zusammenfassung auf die letzten N Zeilen kürzen. |
 
 Beispielantwort für eine LLM-Zusammenfassung:
 

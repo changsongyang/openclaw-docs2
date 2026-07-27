@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw में Kilocode मॉडल प्रदाता का समर्थन जोड़ता है।
 title: Kilocode Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:30:20Z"
+    generated_at: "2026-07-27T18:47:19Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,17 +16,17 @@ x-i18n:
 
 # Kilocode Plugin
 
-OpenClaw में Kilocode मॉडल प्रदाता के लिए समर्थन जोड़ता है।
+OpenClaw में Kilocode मॉडल प्रदाता समर्थन जोड़ता है।
 
 ## वितरण
 
 - पैकेज: `@openclaw/kilocode-provider`
 - इंस्टॉल मार्ग: npm; ClawHub: `clawhub:@openclaw/kilocode-provider`
 
-## उपलब्ध सतह
+## सतह
 
 प्रदाता: `kilocode`
 
 ## संबंधित दस्तावेज़
 
-- [Kilocode](/hi/providers/kilocode)
+- [kilocode](/hi/providers/kilocode)

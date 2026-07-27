@@ -4,7 +4,7 @@ read_when:
 summary: 新增 Cloudflare AI Gateway 模型供應商對 OpenClaw 的支援。
 title: Cloudflare AI 閘道外掛
 x-i18n:
-    generated_at: "2026-07-16T11:51:23Z"
+    generated_at: "2026-07-26T07:27:23Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,11 +14,11 @@ x-i18n:
     workflow: 16
 ---
 
-# Cloudflare AI 閘道外掛
+# Cloudflare AI Gateway 外掛
 
-為 OpenClaw 新增 Cloudflare AI 閘道模型供應商支援。
+為 OpenClaw 新增 Cloudflare AI Gateway 模型供應商支援。
 
-## 發佈
+## 發布
 
 - 套件：`@openclaw/cloudflare-ai-gateway-provider`
 - 安裝途徑：npm；ClawHub：`clawhub:@openclaw/cloudflare-ai-gateway-provider`
@@ -29,4 +29,4 @@ x-i18n:
 
 ## 相關文件
 
-- [Cloudflare AI 閘道](/zh-TW/providers/cloudflare-ai-gateway)
+- [cloudflare-ai-gateway](/zh-TW/providers/cloudflare-ai-gateway)

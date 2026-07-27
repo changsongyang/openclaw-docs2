@@ -1,11 +1,11 @@
 ---
 read_when:
     - Sie möchten Cloudflare AI Gateway mit OpenClaw verwenden
-    - Sie benötigen die Konto-ID, Gateway-ID oder die Umgebungsvariable für den API-Schlüssel
+    - Sie benötigen die Konto-ID, die Gateway-ID oder die Umgebungsvariable für den API-Schlüssel
 summary: Einrichtung des Cloudflare AI Gateway (Authentifizierung + Modellauswahl)
-title: Cloudflare AI-Gateway
+title: Cloudflare-AI-Gateway
 x-i18n:
-    generated_at: "2026-07-24T05:18:40Z"
+    generated_at: "2026-07-26T19:11:56Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,15 +15,15 @@ x-i18n:
     workflow: 16
 ---
 
-[Cloudflare AI Gateway](https://developers.cloudflare.com/ai-gateway/) ist den Provider-APIs vorgeschaltet und ergänzt Analysen, Caching und Steuerungsmöglichkeiten. Für Anthropic verwendet OpenClaw die Anthropic Messages API über Ihren Gateway-Endpunkt.
+[Cloudflare AI Gateway](https://developers.cloudflare.com/ai-gateway/) wird den Provider-APIs vorgeschaltet und ergänzt Analysen, Caching und Steuerungsmöglichkeiten. Für Anthropic verwendet OpenClaw die Anthropic Messages API über Ihren Gateway-Endpunkt.
 
-| Eigenschaft    | Wert                                                                                     |
-| -------------- | ---------------------------------------------------------------------------------------- |
-| Provider       | `cloudflare-ai-gateway`                                                                       |
-| Plugin         | offizielles externes Paket (`@openclaw/cloudflare-ai-gateway-provider`)                                          |
-| Basis-URL      | `https://gateway.ai.cloudflare.com/v1/<account_id>/<gateway_id>/anthropic`                                                                       |
-| Standardmodell | `cloudflare-ai-gateway/claude-sonnet-4-6`                                                                       |
-| API-Schlüssel  | `CLOUDFLARE_AI_GATEWAY_API_KEY` (Ihr Provider-API-Schlüssel für Anfragen über das Gateway)             |
+| Eigenschaft   | Wert                                                                                     |
+| ------------- | ---------------------------------------------------------------------------------------- |
+| Provider      | `cloudflare-ai-gateway`                                                                       |
+| Plugin        | offizielles externes Paket (`@openclaw/cloudflare-ai-gateway-provider`)                                           |
+| Basis-URL     | `https://gateway.ai.cloudflare.com/v1/<account_id>/<gateway_id>/anthropic`                                                                       |
+| Standardmodell | `cloudflare-ai-gateway/claude-sonnet-4-6`                                                                      |
+| API-Schlüssel | `CLOUDFLARE_AI_GATEWAY_API_KEY` (Ihr Provider-API-Schlüssel für Anfragen über das Gateway)             |
 
 <Note>
 Verwenden Sie für Anthropic-Modelle, die über Cloudflare AI Gateway weitergeleitet werden, Ihren **Anthropic-API-Schlüssel** als Provider-Schlüssel.
@@ -56,7 +56,7 @@ openclaw gateway restart
     Sie werden zur Eingabe Ihrer Konto-ID, Gateway-ID und Ihres API-Schlüssels aufgefordert.
 
   </Step>
-  <Step title="Ein Standardmodell festlegen">
+  <Step title="Standardmodell festlegen">
     Fügen Sie das Modell Ihrer OpenClaw-Konfiguration hinzu:
 
     ```json5
@@ -94,7 +94,7 @@ openclaw onboard --non-interactive \
 
 <AccordionGroup>
   <Accordion title="Authentifizierte Gateways">
-    Wenn Sie die Gateway-Authentifizierung in Cloudflare aktiviert haben, fügen Sie den Header `cf-aig-authorization` hinzu. Dies gilt **zusätzlich zu** Ihrem Provider-API-Schlüssel.
+    Wenn Sie die Gateway-Authentifizierung in Cloudflare aktiviert haben, fügen Sie den Header `cf-aig-authorization` hinzu. Dieser ist **zusätzlich zu** Ihrem Provider-API-Schlüssel erforderlich.
 
     ```json5
     {
@@ -111,7 +111,7 @@ openclaw onboard --non-interactive \
     ```
 
     <Tip>
-    Der Header `cf-aig-authorization` authentifiziert gegenüber dem Cloudflare Gateway selbst, während der Provider-API-Schlüssel (beispielsweise Ihr Anthropic-Schlüssel) gegenüber dem vorgeschalteten Provider authentifiziert.
+    Der Header `cf-aig-authorization` authentifiziert beim Cloudflare Gateway selbst, während der Provider-API-Schlüssel (beispielsweise Ihr Anthropic-Schlüssel) beim vorgelagerten Provider authentifiziert.
     </Tip>
 
   </Accordion>
@@ -120,7 +120,7 @@ openclaw onboard --non-interactive \
     Wenn das Gateway als Daemon (launchd/systemd) ausgeführt wird, stellen Sie sicher, dass `CLOUDFLARE_AI_GATEWAY_API_KEY` für diesen Prozess verfügbar ist.
 
     <Warning>
-    Ein Schlüssel, der nur in einer interaktiven Shell exportiert wurde, ist für einen launchd/systemd-Daemon nicht verfügbar, sofern diese Umgebung dort nicht ebenfalls importiert wird. Legen Sie den Schlüssel in `~/.openclaw/.env` oder über `env.shellEnv` fest, damit der Gateway-Prozess darauf zugreifen kann.
+    Ein ausschließlich in einer interaktiven Shell exportierter Schlüssel steht einem launchd-/systemd-Daemon nur zur Verfügung, wenn die betreffende Umgebung auch dort importiert wird. Legen Sie den Schlüssel in `~/.openclaw/.env` oder über `env.shellEnv` fest, damit der Gateway-Prozess darauf zugreifen kann.
     </Warning>
 
   </Accordion>
@@ -130,7 +130,7 @@ openclaw onboard --non-interactive \
 
 <CardGroup cols={2}>
   <Card title="Modellauswahl" href="/de/concepts/model-providers" icon="layers">
-    Auswahl von Providern, Modellreferenzen und Failover-Verhalten.
+    Auswahl von Providern und Modellreferenzen sowie Konfiguration des Failover-Verhaltens.
   </Card>
   <Card title="Fehlerbehebung" href="/de/help/troubleshooting" icon="wrench">
     Allgemeine Fehlerbehebung und häufig gestellte Fragen.

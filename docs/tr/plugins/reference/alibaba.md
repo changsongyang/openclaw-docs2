@@ -4,7 +4,7 @@ read_when:
 summary: Video oluşturma sağlayıcısı desteği ekler.
 title: Alibaba Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:28:50Z"
+    generated_at: "2026-07-26T23:51:10Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Alibaba plugin'i
+# Alibaba plugin
 
 Video oluşturma sağlayıcısı desteği ekler.
 

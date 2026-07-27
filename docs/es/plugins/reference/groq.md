@@ -4,7 +4,7 @@ read_when:
 summary: Añade compatibilidad con el proveedor de modelos Groq a OpenClaw.
 title: Plugin de Groq
 x-i18n:
-    generated_at: "2026-07-16T11:51:59Z"
+    generated_at: "2026-07-26T05:21:26Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Añade compatibilidad con el proveedor de modelos Groq a OpenClaw.
 ## Distribución
 
 - Paquete: `@openclaw/groq-provider`
-- Ruta de instalación: npm; ClawHub: `clawhub:@openclaw/groq-provider`
+- Método de instalación: npm; ClawHub: `clawhub:@openclaw/groq-provider`
 
 ## Superficie
 
@@ -29,4 +29,4 @@ proveedores: `groq`; contratos: `mediaUnderstandingProviders`
 
 ## Documentación relacionada
 
-- [groq](/es/providers/groq)
+- [Groq](/es/providers/groq)

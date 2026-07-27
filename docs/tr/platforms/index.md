@@ -1,11 +1,11 @@
 ---
 read_when:
-    - İşletim sistemi desteği veya kurulum yolları aranıyor
+    - İşletim sistemi desteği veya kurulum yollarını arama
     - Gateway'in nerede çalıştırılacağına karar verme
 summary: Platform desteğine genel bakış (Gateway + yardımcı uygulamalar)
 title: Platformlar
 x-i18n:
-    generated_at: "2026-07-16T17:21:48Z"
+    generated_at: "2026-07-27T00:05:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,8 +16,8 @@ x-i18n:
 ---
 
 OpenClaw çekirdeği TypeScript ile yazılmıştır. **Node gerekli çalışma zamanıdır**, çünkü
-standart durum deposu `node:sqlite` kullanır. Bun, bağımlılıkların kurulumu
-ve paket betikleri için kullanılabilir olmaya devam eder; bkz. [Bun](/tr/install/bun).
+standart durum deposu `node:sqlite` kullanır. Bun, bağımlılık kurulumu ve
+paket betikleri için kullanılabilir olmaya devam eder; bkz. [Bun](/tr/install/bun).
 
 Windows Hub, macOS (menü çubuğu uygulaması) ve mobil Node'lar
 (iOS/Android) için yardımcı uygulamalar mevcuttur. Linux yardımcı uygulamaları planlanmaktadır, ancak Gateway
@@ -53,18 +53,18 @@ Gateway çalışma zamanı için WSL2'yi seçin.
 
 ## Gateway hizmeti kurulumu (CLI)
 
-Bunlardan birini kullanın (tümü desteklenir):
+Şunlardan birini kullanın (tümü desteklenir):
 
 - Sihirbaz (önerilen): `openclaw onboard --install-daemon`
 - Doğrudan: `openclaw gateway install`
 - Yapılandırma akışı: `openclaw configure` → **Gateway service** seçeneğini belirleyin
-- Onarma/geçiş: `openclaw doctor` (hizmeti kurmayı veya düzeltmeyi önerir)
+- Onar/geçir: `openclaw doctor` (hizmeti kurmayı veya düzeltmeyi önerir)
 
 Hizmet hedefi işletim sistemine bağlıdır:
 
 - macOS: LaunchAgent (`ai.openclaw.gateway` veya adlandırılmış bir profil için `ai.openclaw.<profile>`)
 - Linux/WSL2: systemd kullanıcı hizmeti (`openclaw-gateway[-<profile>].service`)
-- Yerel Windows: Scheduled Task (`OpenClaw Gateway` veya `OpenClaw Gateway (<profile>)`); görev oluşturma reddedilirse kullanıcı başına Startup klasörü oturum açma öğesi yedeği kullanılır
+- Yerel Windows: Scheduled Task (`OpenClaw Gateway` veya `OpenClaw Gateway (<profile>)`); görev oluşturma reddedilirse kullanıcıya özel Startup klasörü oturum açma öğesi yedeği kullanılır
 
 ## İlgili
 

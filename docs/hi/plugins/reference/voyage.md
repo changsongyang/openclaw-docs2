@@ -4,7 +4,7 @@ read_when:
 summary: मेमोरी एम्बेडिंग प्रदाता के लिए समर्थन जोड़ता है।
 title: Voyage Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:08:24Z"
+    generated_at: "2026-07-27T18:20:58Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Voyage Plugin
 
-मेमोरी एम्बेडिंग प्रदाता के लिए समर्थन जोड़ता है।
+मेमोरी एम्बेडिंग प्रदाता समर्थन जोड़ता है।
 
 ## वितरण
 

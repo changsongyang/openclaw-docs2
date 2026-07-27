@@ -4,7 +4,7 @@ read_when:
 summary: 新增記憶嵌入提供者支援。
 title: Voyage 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:54:26Z"
+    generated_at: "2026-07-26T07:29:28Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 
 新增記憶嵌入提供者支援。
 
-## 發佈
+## 發布
 
 - 套件：`@openclaw/voyage-provider`
 - 安裝途徑：隨附於 OpenClaw

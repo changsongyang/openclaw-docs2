@@ -4,7 +4,7 @@ read_when:
 summary: Plugin de canal de Nextcloud Talk para conversaciones en OpenClaw.
 title: Plugin de Nextcloud Talk
 x-i18n:
-    generated_at: "2026-07-16T11:53:19Z"
+    generated_at: "2026-07-26T04:46:35Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Plugin del canal Nextcloud Talk de OpenClaw para conversaciones.
 ## Distribución
 
 - Paquete: `@openclaw/nextcloud-talk`
-- Método de instalación: npm; ClawHub
+- Ruta de instalación: npm; ClawHub
 
 ## Superficie
 

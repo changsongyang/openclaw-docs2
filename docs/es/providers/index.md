@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Quiere elegir un proveedor de modelos
+    - Quieres elegir un proveedor de modelos
     - Necesita una descripción general rápida de los backends de LLM compatibles
 summary: Proveedores de modelos (LLM) compatibles con OpenClaw
 title: Directorio de proveedores
 x-i18n:
-    generated_at: "2026-07-19T02:04:08Z"
+    generated_at: "2026-07-26T04:55:41Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,15 +15,15 @@ x-i18n:
     workflow: 16
 ---
 
-OpenClaw puede usar muchos proveedores de LLM. Elija un proveedor, autentíquese y, a continuación, establezca el
+OpenClaw puede usar muchos proveedores de LLM. Elige un proveedor, autentícate y, a continuación, establece el
 modelo predeterminado como `provider/model`.
 
-¿Busca documentación sobre canales de chat (WhatsApp/Telegram/Discord/Slack/Mattermost (plugin)/etc.)? Consulte [Canales](/es/channels).
+¿Buscas la documentación de canales de chat (WhatsApp/Telegram/Discord/Slack/Mattermost (Plugin)/etc.)? Consulta [Canales](/es/channels).
 
 ## Inicio rápido
 
-1. Autentíquese con el proveedor (normalmente mediante `openclaw onboard`).
-2. Establezca el modelo predeterminado:
+1. Autentícate con el proveedor (normalmente mediante `openclaw onboard`).
+2. Establece el modelo predeterminado:
 
 ```json5
 {
@@ -39,11 +39,11 @@ modelo predeterminado como `provider/model`.
 - [Anthropic (API + CLI de Claude)](/es/providers/anthropic)
 - [Arcee AI (modelos Trinity)](/es/providers/arcee)
 - [Azure Speech](/es/providers/azure-speech)
-- [Baseten (API de Inkling + modelos)](/es/providers/baseten)
+- [Baseten (API de Inkling + Model)](/es/providers/baseten)
 - [BytePlus (internacional)](/es/concepts/model-providers#byteplus-international)
 - [Cerebras](/es/providers/cerebras)
 - [Chutes](/es/providers/chutes)
-- [ClawRouter (enrutamiento gestionado entre varios proveedores)](/es/providers/clawrouter)
+- [ClawRouter (enrutamiento administrado entre varios proveedores)](/es/providers/clawrouter)
 - [Cloudflare AI Gateway](/es/providers/cloudflare-ai-gateway)
 - [Cohere](/es/providers/cohere)
 - [ComfyUI](/es/providers/comfy)
@@ -94,12 +94,12 @@ modelo predeterminado como `provider/model`.
 - [Xiaomi](/es/providers/xiaomi)
 - [Z.AI (GLM)](/es/providers/zai)
 
-## Páginas de descripción general compartidas
+## Páginas de información general compartida
 
 - [Variantes adicionales de proveedores](/es/providers/models#additional-provider-variants) - Anthropic Vertex, Copilot Proxy y OAuth de la CLI de Gemini
-- [Generación de imágenes](/es/tools/image-generation) - Herramienta compartida `image_generate`, selección de proveedor y conmutación por error
-- [Generación de música](/es/tools/music-generation) - Herramienta compartida `music_generate`, selección de proveedor y conmutación por error
-- [Generación de vídeo](/es/tools/video-generation) - Herramienta compartida `video_generate`, selección de proveedor y conmutación por error
+- [Generación de imágenes](/es/tools/image-generation) - Herramienta compartida `image_generate`, selección de proveedores y conmutación por error
+- [Generación de música](/es/tools/music-generation) - Herramienta compartida `music_generate`, selección de proveedores y conmutación por error
+- [Generación de vídeo](/es/tools/video-generation) - Herramienta compartida `video_generate`, selección de proveedores y conmutación por error
 
 ## Proveedores de transcripción
 
@@ -112,7 +112,7 @@ modelo predeterminado como `provider/model`.
 
 ## Herramientas de la comunidad
 
-- [Claude Max API Proxy](/es/providers/claude-max-api-proxy) - Proxy de la comunidad para las credenciales de suscripción de Claude (verifique la política y los términos de Anthropic antes de usarlo)
+- [Claude Max API Proxy](/es/providers/claude-max-api-proxy) - Proxy de la comunidad para credenciales de suscripción de Claude (verifica las políticas y condiciones de Anthropic antes de usarlo)
 
 Para consultar el catálogo completo de proveedores (xAI, Groq, Mistral, etc.) y la configuración avanzada,
-consulte [Proveedores de modelos](/es/concepts/model-providers).
+consulta [Proveedores de modelos](/es/concepts/model-providers).

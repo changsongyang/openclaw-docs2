@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप प्रमुख दस्तावेज़ पृष्ठों तक तुरंत पहुँचना चाहते हैं
-summary: सबसे अधिक उपयोग किए जाने वाले OpenClaw दस्तावेज़ों की चुनिंदा लिंक।
+summary: सबसे अधिक उपयोग किए जाने वाले OpenClaw दस्तावेज़ों के चुनिंदा लिंक।
 title: दस्तावेज़ निर्देशिका
 x-i18n:
-    generated_at: "2026-07-19T09:52:17Z"
+    generated_at: "2026-07-27T21:43:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,7 +15,7 @@ x-i18n:
 ---
 
 <Note>
-यह पृष्ठ एक चयनित अनुक्रमणिका है। यदि आप नए हैं, तो [आरंभ करना](/hi/start/getting-started) से शुरुआत करें।
+यह पृष्ठ एक सुव्यवस्थित अनुक्रमणिका है। यदि आप नए हैं, तो [आरंभ करना](/hi/start/getting-started) से शुरुआत करें।
 दस्तावेज़ों के संपूर्ण मानचित्र के लिए, [दस्तावेज़ केंद्र](/hi/start/hubs) देखें।
 </Note>
 
@@ -30,44 +30,44 @@ x-i18n:
 - [अपडेट और रोलबैक](/hi/install/updating)
 - [पेयरिंग (DM और नोड)](/hi/channels/pairing)
 - [Nix मोड](/hi/install/nix)
-- [OpenClaw सहायक सेटअप](/hi/start/openclaw)
+- [OpenClaw सहायक का सेटअप](/hi/start/openclaw)
 - [Skills](/hi/tools/skills)
 - [Skills कॉन्फ़िगरेशन](/hi/tools/skills-config)
 - [वर्कस्पेस टेम्पलेट](/hi/reference/templates/AGENTS)
 - [RPC अडैप्टर](/hi/reference/rpc)
-- [Gateway रनबुक](/hi/gateway)
+- [Gateway संचालन पुस्तिका](/hi/gateway)
 - [नोड (iOS और Android)](/hi/nodes)
-- [वेब इंटरफ़ेस (कंट्रोल UI)](/hi/web)
+- [वेब इंटरफ़ेस (नियंत्रण UI)](/hi/web)
 - [खोज और ट्रांसपोर्ट](/hi/gateway/discovery)
-- [रिमोट एक्सेस](/hi/gateway/remote)
+- [दूरस्थ पहुँच](/hi/gateway/remote)
 
 ## चैनल और उपयोगकर्ता अनुभव
 
-- [कंट्रोल UI (ब्राउज़र)](/hi/web/control-ui)
+- [नियंत्रण UI (ब्राउज़र)](/hi/web/control-ui)
 - [Discord](/hi/channels/discord)
 - [समूह](/hi/channels/groups)
 - [iMessage](/hi/channels/imessage)
 - [Mattermost](/hi/channels/mattermost)
 - [मीडिया ऑडियो](/hi/nodes/audio)
-- [मीडिया चित्र](/hi/nodes/images)
+- [मीडिया छवियाँ](/hi/nodes/images)
 - [QQ Bot](/hi/channels/qqbot)
 - [Telegram](/hi/channels/telegram)
 - [WebChat](/hi/web/webchat)
 - [WhatsApp समूह संदेश](/hi/channels/group-messages)
 
-## सहायक ऐप
+## सहयोगी ऐप
 
 - [Android ऐप](/hi/platforms/android)
 - [iOS ऐप](/hi/platforms/ios)
 - [Linux ऐप](/hi/platforms/linux)
 - [macOS ऐप](/hi/platforms/macos)
-- [Windows Hub](/hi/platforms/windows)
+- [Windows केंद्र](/hi/platforms/windows)
 
 ## संचालन और सुरक्षा
 
 - [सत्र](/hi/concepts/session)
-- [Cron जॉब](/hi/automation/cron-jobs)
-- [Webhook](/hi/automation/cron-jobs#webhooks)
+- [Cron कार्य](/hi/automation/cron-jobs)
+- [Webhooks](/hi/automation/cron-jobs#webhooks)
 - [Gmail हुक (Pub/Sub)](/hi/automation/cron-jobs#gmail-pubsub-integration)
 - [सुरक्षा](/hi/gateway/security)
 - [समस्या निवारण](/hi/gateway/troubleshooting)

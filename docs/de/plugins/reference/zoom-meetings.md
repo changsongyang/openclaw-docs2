@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder überprüfen das zoom-meetings-Plugin
-summary: Als Gast über den Chrome-Browser an Zoom-Meetings teilnehmen.
-title: Plugin für Zoom-Meetings
+    - Sie installieren, konfigurieren oder überprüfen das Plugin zoom-meetings.
+summary: Nehmen Sie als Gast über den Chrome-Browser an Zoom-Meetings teil.
+title: Zoom-Meetings-Plugin
 x-i18n:
-    generated_at: "2026-07-24T22:24:50Z"
+    generated_at: "2026-07-26T18:39:56Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Zoom-Meetings-Plugin
 
-Zoom-Meetings als Gast in einem Chrome-Browser beitreten.
+Nehmen Sie als Gast über einen Chrome-Browser an Zoom-Meetings teil.
 
 ## Distribution
 

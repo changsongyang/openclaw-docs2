@@ -5,9 +5,9 @@ read_when:
     - Depuración de la configuración de identidad durante la incorporación
 sidebarTitle: Bootstrapping
 summary: Ritual de inicialización del agente que prepara el espacio de trabajo y los archivos de identidad
-title: Inicialización del agente
+title: Inicialización de agentes
 x-i18n:
-    generated_at: "2026-07-21T09:01:44Z"
+    generated_at: "2026-07-26T05:30:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,10 +18,10 @@ x-i18n:
 ---
 
 El arranque inicial es el ritual de la primera ejecución que prepara un nuevo espacio de trabajo del agente y
-guía al agente para elegir una identidad. Se ejecuta una sola vez, justo después
-de la incorporación, en el primer turno real del agente.
+guía al agente para elegir una identidad. Se ejecuta una sola vez, justo después de
+la incorporación, en el primer turno real del agente.
 
-## Qué ocurre
+## Qué sucede
 
 En la primera ejecución con un espacio de trabajo completamente nuevo (valor predeterminado `~/.openclaw/workspace`),
 OpenClaw:
@@ -34,26 +34,26 @@ OpenClaw:
   agente lee sobre sí mismo) y mediante `openclaw agents set-identity` (lo que muestran los canales
   y la interfaz de usuario).
 - Lee las recomendaciones de aplicaciones ya almacenadas durante la incorporación sin volver a examinarlas.
-  Los plugins oficiales usan `openclaw plugins install <id>`; las Skills de terceros de ClawHub
-  siguen requiriendo una aceptación explícita. Después de gestionar la elección, el agente
+  Los plugins oficiales usan `openclaw plugins install <id>`; las Skills de ClawHub de terceros
+  siguen requiriendo una aceptación explícita. Una vez procesada la elección, el agente
   confirma la oferta almacenada para no volver a preguntar.
-- Elimina `BOOTSTRAP.md` cuando el espacio de trabajo parece estar configurado, de modo que el ritual solo se ejecuta una vez.
+- Elimina `BOOTSTRAP.md` cuando el espacio de trabajo parece estar configurado, de modo que el ritual solo se ejecute una vez.
 
 Un espacio de trabajo se considera configurado cuando `SOUL.md`, `IDENTITY.md` o `USER.md` se ha
-desviado de su plantilla inicial, o si existe una carpeta `memory/`.
+desviado de su plantilla inicial, o existe una carpeta `memory/`.
 
 <Note>
 `BOOTSTRAP.md` abarca toda la conversación sobre la identidad. Consulte su contenido en
-[Plantilla de BOOTSTRAP.md](/es/reference/templates/BOOTSTRAP).
+[plantilla BOOTSTRAP.md](/es/reference/templates/BOOTSTRAP).
 </Note>
 
 ## Ejecuciones con modelos integrados y locales
 
 Para las ejecuciones con modelos integrados o locales, OpenClaw mantiene `BOOTSTRAP.md` fuera del
-contexto privilegiado del sistema. En la primera ejecución interactiva principal, sigue
-pasando el contenido del archivo mediante el mensaje del usuario, por lo que los modelos que no
-llaman de forma fiable a la herramienta `read` pueden completar el ritual. Si la ejecución actual
-no puede acceder de forma segura al espacio de trabajo, el agente recibe una breve nota de arranque
+contexto privilegiado del sistema. En la primera ejecución interactiva principal, todavía
+pasa el contenido del archivo mediante el prompt de usuario, para que los modelos que no
+invoquen de forma fiable la herramienta `read` puedan completar el ritual. Si la ejecución actual
+no puede acceder de forma segura al espacio de trabajo, el agente recibe una breve nota de arranque inicial
 limitado en lugar de un saludo genérico.
 
 ## Omitir el arranque inicial
@@ -67,11 +67,11 @@ openclaw onboard --skip-bootstrap
 ## Dónde se ejecuta
 
 El arranque inicial siempre se ejecuta en el host del Gateway. Si la aplicación para macOS se conecta a un
-Gateway remoto, el espacio de trabajo y sus archivos de arranque residen en esa máquina
+Gateway remoto, el espacio de trabajo y sus archivos de arranque inicial se encuentran en esa máquina
 remota, no en el Mac.
 
 <Note>
-Cuando el Gateway se ejecuta en otra máquina, edite los archivos del espacio de trabajo en el host del gateway
+Cuando el Gateway se ejecute en otra máquina, edite los archivos del espacio de trabajo en el host del Gateway
 (por ejemplo, `user@gateway-host:~/.openclaw/workspace`).
 </Note>
 
@@ -79,4 +79,4 @@ Cuando el Gateway se ejecuta en otra máquina, edite los archivos del espacio de
 
 - Incorporación en la aplicación para macOS: [Incorporación](/es/start/onboarding)
 - Estructura del espacio de trabajo: [Espacio de trabajo del agente](/es/concepts/agent-workspace)
-- Contenido de la plantilla: [Plantilla de BOOTSTRAP.md](/es/reference/templates/BOOTSTRAP)
+- Contenido de la plantilla: [plantilla BOOTSTRAP.md](/es/reference/templates/BOOTSTRAP)

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das Open-Prose-Plugin.
+    - Sie installieren, konfigurieren oder prüfen das open-prose-Plugin.
 summary: OpenProse-VM-Skill-Paket mit einem `/prose`-Slash-Befehl.
 title: Open-Prose-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:19:14Z"
+    generated_at: "2026-07-26T17:58:29Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

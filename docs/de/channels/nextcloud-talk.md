@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Arbeit an Funktionen des Nextcloud-Talk-Kanals
+    - Arbeiten an Funktionen des Nextcloud-Talk-Kanals
 summary: Supportstatus, Funktionen und Konfiguration von Nextcloud Talk
 title: Nextcloud Talk
 x-i18n:
-    generated_at: "2026-07-24T03:39:20Z"
+    generated_at: "2026-07-26T17:39:19Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -22,7 +22,7 @@ Nextcloud Talk ist ein herunterladbares Kanal-Plugin (`@openclaw/nextcloud-talk`
 openclaw plugins install @openclaw/nextcloud-talk
 ```
 
-Verwenden Sie die reine Paketangabe, um dem aktuellen offiziellen Release-Tag zu folgen. Legen Sie nur dann eine exakte Version fest, wenn Sie eine reproduzierbare Installation benötigen.
+Verwenden Sie die reine Paketspezifikation, um dem aktuellen offiziellen Release-Tag zu folgen. Fixieren Sie eine exakte Version nur, wenn Sie eine reproduzierbare Installation benötigen.
 
 Aus einem lokalen Checkout (Entwicklungsabläufe):
 
@@ -32,7 +32,7 @@ openclaw plugins install ./path/to/local/nextcloud-talk-plugin
 
 Starten Sie das Gateway nach der Installation neu. Details: [Plugins](/de/tools/plugin)
 
-## Schnelleinrichtung (Einsteiger)
+## Schnelleinrichtung (für Einsteiger)
 
 1. Installieren Sie das Plugin (siehe oben).
 2. Erstellen Sie auf Ihrem Nextcloud-Server einen Bot:
@@ -41,7 +41,7 @@ Starten Sie das Gateway nach der Installation neu. Details: [Plugins](/de/tools/
    ./occ talk:bot:install "OpenClaw" "<shared-secret>" "<webhook-url>" --feature webhook --feature response --feature reaction
    ```
 
-   Behalten Sie `--feature response` bei: Ohne diese Option schlagen ausgehende Antworten mit 401 fehl. Reparieren Sie einen vorhandenen Bot mit `./occ talk:bot:state --feature webhook --feature response --feature reaction <botId> 1`.
+   Behalten Sie `--feature response` bei: Ohne diese Funktion schlagen ausgehende Antworten mit 401 fehl. Reparieren Sie einen vorhandenen Bot mit `./occ talk:bot:state --feature webhook --feature response --feature reaction <botId> 1`.
 
 3. Aktivieren Sie den Bot in den Einstellungen des Zielraums.
 4. Konfigurieren Sie OpenClaw:
@@ -64,7 +64,7 @@ Starten Sie das Gateway nach der Installation neu. Details: [Plugins](/de/tools/
      --secret "<shared-secret>"
    ```
 
-   Dateibasierte geheime Information:
+   Dateibasierter geheimer Schlüssel:
 
    ```bash
    openclaw channels add --channel nextcloud-talk \
@@ -91,17 +91,17 @@ Minimale Konfiguration:
 
 ## Hinweise
 
-- Bots können keine Direktnachrichten beginnen. Der Benutzer muss dem Bot zuerst eine Nachricht senden.
-- Die Webhook-URL muss vom Nextcloud-Server aus erreichbar sein; legen Sie `webhookPublicUrl` fest, wenn sich das Gateway hinter einem Proxy befindet. Webhook-Anfragen werden mit dem Bot-Geheimnis per HMAC-SHA256 signiert; ungültige Signaturen werden abgelehnt und einer Ratenbegrenzung unterzogen.
+- Bots können keine Direktnachrichten initiieren. Der Benutzer muss dem Bot zuerst eine Nachricht senden.
+- Die Webhook-URL muss vom Nextcloud-Server aus erreichbar sein; legen Sie `webhookPublicUrl` fest, wenn sich das Gateway hinter einem Proxy befindet. Webhook-Anfragen werden mit dem geheimen Schlüssel des Bots per HMAC-SHA256 signiert; ungültige Signaturen werden abgelehnt und unterliegen einer Ratenbegrenzung.
 - Medien-Uploads werden von der Bot-API nicht unterstützt; ausgehende Medien werden als `Attachment: <url>`-Zeile angehängt.
-- Die Webhook-Nutzlast unterscheidet Direktnachrichten nicht von Räumen; legen Sie `apiUser` + `apiPassword` fest, um Raumtyp-Abfragen zu aktivieren (etwa 5 Minuten zwischengespeichert). Ohne diese Angaben wird jede Unterhaltung als Raum behandelt.
-- Ausgehende Anfragen werden durch den SSRF-Schutz geleitet. Erlauben Sie dies für einen Nextcloud-Host in einem vertrauenswürdigen privaten/internen Netzwerk ausdrücklich mit `channels.nextcloud-talk.network.dangerouslyAllowPrivateNetwork: true`.
+- Die Webhook-Nutzlast unterscheidet nicht zwischen Direktnachrichten und Räumen; legen Sie `apiUser` + `apiPassword` fest, um Abfragen des Raumtyps zu aktivieren (etwa 5 Minuten zwischengespeichert). Ohne diese Angaben wird jede Unterhaltung als Raum behandelt.
+- Ausgehende Anfragen durchlaufen den SSRF-Schutz. Für einen Nextcloud-Host in einem vertrauenswürdigen privaten/internen Netzwerk können Sie dies mit `channels.nextcloud-talk.network.dangerouslyAllowPrivateNetwork: true` ausdrücklich zulassen.
 - Wenn `apiUser`/`apiPassword` und `webhookPublicUrl` festgelegt sind, prüft `openclaw channels status` den Bot und warnt, wenn die Funktion `response` fehlt.
 
 ## Zugriffskontrolle (Direktnachrichten)
 
 - Standard: `channels.nextcloud-talk.dmPolicy = "pairing"`. Unbekannte Absender erhalten einen Kopplungscode.
-- Genehmigung über:
+- Genehmigen über:
   - `openclaw pairing list nextcloud-talk`
   - `openclaw pairing approve nextcloud-talk <CODE>`
 - Öffentliche Direktnachrichten: `channels.nextcloud-talk.dmPolicy="open"` plus `channels.nextcloud-talk.allowFrom=["*"]`.
@@ -110,7 +110,7 @@ Minimale Konfiguration:
 ## Räume (Gruppen)
 
 - Standard: `channels.nextcloud-talk.groupPolicy = "allowlist"` (Erwähnung erforderlich).
-- Setzen Sie Räume mit `channels.nextcloud-talk.rooms` auf die Zulassungsliste, wobei der Raumschlüssel als Schlüssel dient; `"*"` legt einen Platzhalterstandard fest:
+- Setzen Sie Räume mit `channels.nextcloud-talk.rooms` auf die Zulassungsliste, wobei der Raum-Token als Schlüssel dient; `"*"` legt einen Platzhalterstandard fest:
 
 ```json5
 {
@@ -124,19 +124,19 @@ Minimale Konfiguration:
 }
 ```
 
-- Raumspezifische Schlüssel: `requireMention` (standardmäßig true), `enabled` (false deaktiviert den Raum), `allowFrom` (raumspezifische Absender-Zulassungsliste), `tools` (Werkzeugüberschreibungen erlauben/verweigern), `skills` (geladene Skills begrenzen), `systemPrompt`.
+- Raumspezifische Schlüssel: `requireMention` (standardmäßig true), `enabled` (false deaktiviert den Raum), `allowFrom` (raumspezifische Absender-Zulassungsliste), `tools` (Zulassen/Ablehnen-Überschreibungen für Tools), `skills` (geladene Skills begrenzen), `systemPrompt`.
 - Um keine Räume zuzulassen, lassen Sie die Zulassungsliste leer oder legen Sie `channels.nextcloud-talk.groupPolicy="disabled"` fest.
 
 ## Funktionen
 
-| Funktion         | Status              |
-| ---------------- | ------------------- |
-| Direktnachrichten | Unterstützt         |
-| Räume            | Unterstützt         |
-| Threads          | Nicht unterstützt   |
-| Medien           | Nur URL             |
-| Reaktionen       | Unterstützt         |
-| Native Befehle   | Nicht unterstützt   |
+| Funktion        | Status              |
+| --------------- | ------------------- |
+| Direktnachrichten | Unterstützt       |
+| Räume           | Unterstützt         |
+| Threads         | Nicht unterstützt   |
+| Medien          | Nur URLs            |
+| Reaktionen      | Unterstützt         |
+| Native Befehle  | Nicht unterstützt   |
 
 ## Konfigurationsreferenz (Nextcloud Talk)
 
@@ -144,10 +144,10 @@ Vollständige Konfiguration: [Konfiguration](/de/gateway/configuration)
 
 Provider-Optionen:
 
-- `channels.nextcloud-talk.enabled`: Kanalstart aktivieren/deaktivieren.
+- `channels.nextcloud-talk.enabled`: Start des Kanals aktivieren/deaktivieren.
 - `channels.nextcloud-talk.baseUrl`: URL der Nextcloud-Instanz.
-- `channels.nextcloud-talk.botSecret`: gemeinsames Bot-Geheimnis (Zeichenfolge oder Geheimnisreferenz).
-- `channels.nextcloud-talk.botSecretFile`: Pfad zu einer regulären Datei mit dem Geheimnis. Symbolische Links werden abgelehnt.
+- `channels.nextcloud-talk.botSecret`: gemeinsamer geheimer Schlüssel des Bots (Zeichenfolge oder Geheimnisreferenz).
+- `channels.nextcloud-talk.botSecretFile`: Pfad zum geheimen Schlüssel in einer regulären Datei. Symbolische Verknüpfungen werden abgelehnt.
 - `channels.nextcloud-talk.apiUser`: API-Benutzer für Raumabfragen (Erkennung von Direktnachrichten) und die Statusprüfung.
 - `channels.nextcloud-talk.apiPassword`: API-/App-Passwort für Raumabfragen.
 - `channels.nextcloud-talk.apiPasswordFile`: Pfad zur API-Passwortdatei.
@@ -158,26 +158,26 @@ Provider-Optionen:
 - `channels.nextcloud-talk.dmPolicy`: `pairing | allowlist | open | disabled` (Standard: pairing). `open` erfordert `allowFrom=["*"]`.
 - `channels.nextcloud-talk.allowFrom`: Zulassungsliste für Direktnachrichten (Benutzer-IDs).
 - `channels.nextcloud-talk.groupPolicy`: `allowlist | open | disabled` (Standard: allowlist).
-- `channels.nextcloud-talk.groupAllowFrom`: Zulassungsliste der Raumabsender (Benutzer-IDs); greift auf `allowFrom` zurück, wenn nicht festgelegt.
+- `channels.nextcloud-talk.groupAllowFrom`: Absender-Zulassungsliste für Räume (Benutzer-IDs); verwendet `allowFrom` als Rückfall, wenn nicht festgelegt.
 - `channels.nextcloud-talk.rooms`: raumspezifische Einstellungen und Zulassungsliste (siehe oben).
-- Statische Absenderzugriffsgruppen können aus `allowFrom` und `groupAllowFrom` mit `accessGroup:<name>` referenziert werden.
+- Statische Absender-Zugriffsgruppen können aus `allowFrom` und `groupAllowFrom` mit `accessGroup:<name>` referenziert werden.
 - `channels.nextcloud-talk.historyLimit`: Verlaufslimit für Gruppen (0 deaktiviert).
 - `channels.nextcloud-talk.dmHistoryLimit`: Verlaufslimit für Direktnachrichten (0 deaktiviert).
 - `channels.nextcloud-talk.dms`: nach Benutzer-ID indizierte Überschreibungen pro Direktnachricht (`historyLimit`).
-- `channels.nextcloud-talk.textChunkLimit`: Größe ausgehender Textabschnitte in Zeichen (Standard: 4000).
-- `channels.nextcloud-talk.streaming.chunkMode`: `length` (Standard) oder `newline`, um vor der längenbasierten Aufteilung an Leerzeilen (Absatzgrenzen) zu trennen.
+- `channels.nextcloud-talk.textChunkLimit`: Segmentgröße für ausgehenden Text in Zeichen (Standard: 4000).
+- `channels.nextcloud-talk.streaming.chunkMode`: `length` (Standard) oder `newline`, um vor der längenbasierten Segmentierung an Leerzeilen (Absatzgrenzen) zu trennen.
 - `channels.nextcloud-talk.streaming.block.enabled`: Block-Streaming für diesen Kanal aktivieren oder deaktivieren.
-- `channels.nextcloud-talk.streaming.block.coalesce`: Feinabstimmung der Zusammenführung beim Block-Streaming.
+- `channels.nextcloud-talk.streaming.block.coalesce`: Abstimmung der Zusammenführung beim Block-Streaming.
 - `channels.nextcloud-talk.responsePrefix`: Präfix für ausgehende Antworten.
 - `channels.nextcloud-talk.markdown.tables`: Darstellungsmodus für Markdown-Tabellen (`off | bullets | code | block`).
-- `channels.nextcloud-talk.mediaMaxMb`: Obergrenze für eingehende Medien (MB).
-- `channels.nextcloud-talk.network.dangerouslyAllowPrivateNetwork`: privaten/internen Nextcloud-Hosts das Passieren des SSRF-Schutzes erlauben.
-- `channels.nextcloud-talk.accounts.<id>`: kontospezifische Überschreibungen (dieselben Schlüssel); `defaultAccount` wählt den Standard aus. Die Umgebungsvariablen `NEXTCLOUD_TALK_BOT_SECRET` / `NEXTCLOUD_TALK_API_PASSWORD` gelten nur für das Standardkonto.
+- `channels.nextcloud-talk.mediaMaxMb`: Größenbegrenzung für eingehende Medien (MB).
+- `channels.nextcloud-talk.network.dangerouslyAllowPrivateNetwork`: private/interne Nextcloud-Hosts am SSRF-Schutz vorbei zulassen.
+- `channels.nextcloud-talk.accounts.<id>`: kontospezifische Überschreibungen (dieselben Schlüssel); `defaultAccount` wählt das Standardkonto aus. Die Umgebungsvariablen `NEXTCLOUD_TALK_BOT_SECRET` / `NEXTCLOUD_TALK_API_PASSWORD` gelten nur für das Standardkonto.
 
 ## Verwandte Themen
 
 - [Kanalübersicht](/de/channels) — alle unterstützten Kanäle
 - [Kopplung](/de/channels/pairing) — Authentifizierung von Direktnachrichten und Kopplungsablauf
-- [Gruppen](/de/channels/groups) — Verhalten von Gruppenchats und Erwähnungsanforderung
+- [Gruppen](/de/channels/groups) — Verhalten von Gruppenchats und Erwähnungspflicht
 - [Kanal-Routing](/de/channels/channel-routing) — Sitzungs-Routing für Nachrichten
-- [Sicherheit](/de/gateway/security) — Zugriffsmodell und Absicherung
+- [Sicherheit](/de/gateway/security) — Zugriffsmodell und Härtung

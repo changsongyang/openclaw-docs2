@@ -4,7 +4,7 @@ read_when:
 summary: Codex app-server 測試框架與原生工作階段目錄。
 title: Codex 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:52:47Z"
+    generated_at: "2026-07-26T07:50:04Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Codex app-server 測試框架與原生工作階段目錄。
 ## 發布
 
 - 套件：`@openclaw/codex`
-- 安裝途徑：npm；ClawHub
+- 安裝管道：npm；ClawHub
 
 ## 介面
 
@@ -29,4 +29,4 @@ Codex app-server 測試框架與原生工作階段目錄。
 
 ## 相關文件
 
-- [codex](/zh-TW/plugins/codex-harness)
+- [Codex](/zh-TW/plugins/codex-harness)

@@ -1,11 +1,11 @@
 ---
 read_when:
     - Op zoek naar OS-ondersteuning of installatiepaden
-    - Bepalen waar de Gateway moet worden uitgevoerd
-summary: Overzicht van platformondersteuning (Gateway + bijbehorende apps)
+    - Bepalen waar je de Gateway uitvoert
+summary: Overzicht van platformondersteuning (Gateway + begeleidende apps)
 title: Platformen
 x-i18n:
-    generated_at: "2026-07-16T15:52:36Z"
+    generated_at: "2026-07-27T06:21:29Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -19,11 +19,11 @@ OpenClaw core is geschreven in TypeScript. **Node is de vereiste runtime** omdat
 de canonieke statusopslag `node:sqlite` gebruikt. Bun blijft beschikbaar voor
 de installatie van afhankelijkheden en pakketscripts; zie [Bun](/nl/install/bun).
 
-Er zijn begeleidende apps voor Windows Hub, macOS (menubalk-app) en mobiele nodes
-(iOS/Android). Begeleidende Linux-apps zijn gepland, maar de Gateway wordt
-momenteel volledig ondersteund. Kies op Windows voor Windows Hub als desktop-app, een
-native PowerShell-installatie voor primair gebruik via de terminal, of WSL2 voor de meest
-Linux-compatibele Gateway-runtime.
+Er bestaan companion-apps voor Windows Hub, macOS (menubalk-app) en mobiele Nodes
+(iOS/Android). Companion-apps voor Linux zijn gepland, maar de Gateway wordt
+momenteel volledig ondersteund. Kies op Windows Windows Hub voor de desktop-app, een
+native PowerShell-installatie voor primair gebruik via de terminal of WSL2 voor de
+meest Linux-compatibele Gateway-runtime.
 
 ## Kies je besturingssysteem
 
@@ -56,15 +56,15 @@ Linux-compatibele Gateway-runtime.
 Gebruik een van deze opties (ze worden allemaal ondersteund):
 
 - Wizard (aanbevolen): `openclaw onboard --install-daemon`
-- Rechtstreeks: `openclaw gateway install`
-- Configuratieproces: `openclaw configure` → selecteer **Gateway-service**
+- Direct: `openclaw gateway install`
+- Configuratieflow: `openclaw configure` → selecteer **Gateway-service**
 - Herstellen/migreren: `openclaw doctor` (biedt aan de service te installeren of te herstellen)
 
 Het servicedoel is afhankelijk van het besturingssysteem:
 
 - macOS: LaunchAgent (`ai.openclaw.gateway`, of `ai.openclaw.<profile>` voor een benoemd profiel)
 - Linux/WSL2: systemd-gebruikersservice (`openclaw-gateway[-<profile>].service`)
-- Native Windows: Scheduled Task (`OpenClaw Gateway` of `OpenClaw Gateway (<profile>)`), met als terugvaloptie een aanmeldingsitem per gebruiker in de map Startup als het maken van de taak wordt geweigerd
+- Native Windows: geplande taak (`OpenClaw Gateway` of `OpenClaw Gateway (<profile>)`), met als terugvaloptie een aanmeldingsitem per gebruiker in de map Opstarten als het maken van de taak wordt geweigerd
 
 ## Gerelateerd
 

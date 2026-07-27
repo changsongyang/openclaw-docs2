@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Sie sind neu und möchten eine Anleitung nach dem Muster „Was muss ich anklicken/ausführen?“
+    - Sie sind neu und möchten eine Anleitung nach dem Prinzip „Was muss ich anklicken/ausführen?“
     - Etwas ist schiefgegangen, und Sie möchten so schnell wie möglich eine Lösung finden
 summary: 'Hilfezentrum: häufige Lösungen, Installationsprüfung und Anlaufstellen bei Problemen'
 title: Hilfe
 x-i18n:
-    generated_at: "2026-07-24T03:53:46Z"
+    generated_at: "2026-07-26T17:52:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,34 +15,34 @@ x-i18n:
     workflow: 16
 ---
 
-Schnellster Weg zur Lösung, nach Symptom:
+Schnellster Weg zur Problemlösung, nach Symptom:
 
 - [Fehlerbehebung](/de/help/troubleshooting) - symptomorientierter Entscheidungsbaum
 - [Debugging](/de/help/debugging) - Überwachungsmodus, Rohdatenströme, Entwicklungsprofil
-- [Installationsprüfung](/de/install/node#troubleshooting) - Prüfungen für Node / npm / PATH
+- [Installationsprüfung](/de/install/node#troubleshooting) - Prüfungen von Node / npm / PATH
 - [Gateway-Fehlerbehebung](/de/gateway/troubleshooting) - Gateway-spezifische Probleme
 - [Doctor](/de/gateway/doctor) - `openclaw doctor`: Zustandsprüfungen, Konfigurationsmigrationen, Reparaturschritte
 
 ## Häufig gestellte Fragen
 
-- [Häufig gestellte Fragen](/de/help/faq) - alltägliche Konzepte und betriebliche Fragen
-- [Häufig gestellte Fragen zum ersten Start](/de/help/faq-first-run) - Installation, Onboarding, Authentifizierung, Abonnements, anfängliche Fehler
-- [Häufig gestellte Fragen zu Modellen](/de/help/faq-models) - Modellauswahl, Failover, Authentifizierungsprofile
+- [FAQ](/de/help/faq) - alltägliche Konzepte und Fragen zum Betrieb
+- [FAQ zum ersten Start](/de/help/faq-first-run) - Installation, Onboarding, Authentifizierung, Abonnements, anfängliche Fehler
+- [FAQ zu Modellen](/de/help/faq-models) - Modellauswahl, Failover, Authentifizierungsprofile
 
 ## Diagnose
 
-- [Umgebungsvariablen](/de/help/environment) - woher OpenClaw Umgebungsvariablen lädt und welche Priorität gilt
+- [Umgebungsvariablen](/de/help/environment) - wo OpenClaw Umgebungsvariablen lädt und welche Vorrang haben
 - [Diagnose-Flags](/de/diagnostics/flags) - Laufzeitdiagnose und ausführliche Modi
 - [Absturz von Node + tsx](/de/debug/node-issue) - spezifische Absturzszenarien der Node- / tsx-Laufzeit
 
 ## Tests
 
-- [Tests](/de/help/testing) - Testsuiten und Docker-Runner
+- [Tests](/de/help/testing) - Testsammlungen und Docker-Runner
 - [Update- und Plugin-Tests](/de/help/testing-updates-plugins) - Validierung von Paketaktualisierungen, Migrationen und Plugin-Installationen
-- [Live-Tests](/de/help/testing-live) - netzwerkbasierte Smoke-Tests für Provider und CLI
+- [Live-Tests](/de/help/testing-live) - netzwerkgestützte Smoke-Tests für Provider und CLI
 
 ## Community und Meta
 
 - [OpenClaw-Hintergrundgeschichte](/de/start/lore) - die Geschichte
-- [Dokumentationszentralen](/de/start/hubs) - Aufbau dieser Dokumentation
+- [Dokumentationszentren](/de/start/hubs) - Aufbau dieser Dokumentation
 - [Dokumentationsverzeichnis](/de/start/docs-directory) - vollständige Dateiübersicht

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - clawrouter Pluginのインストール、設定、または監査を行っている場合
+    - clawrouter Plugin のインストール、設定、または監査を行っている場合
 summary: OpenClaw に ClawRouter モデルプロバイダーのサポートを追加します。
 title: ClawRouter Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:57:15Z"
+    generated_at: "2026-07-26T10:11:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ OpenClaw に ClawRouter モデルプロバイダーのサポートを追加し�
 - パッケージ: `@openclaw/clawrouter`
 - インストール方法: OpenClaw に同梱
 
-## 提供範囲
+## 提供機能
 
 プロバイダー: `clawrouter`; コントラクト: `usageProviders`
 

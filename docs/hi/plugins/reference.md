@@ -5,7 +5,7 @@ read_when:
 summary: OpenClaw Plugin संदर्भ पृष्ठों की जनरेट की गई अनुक्रमणिका
 title: Plugin संदर्भ
 x-i18n:
-    generated_at: "2026-07-22T04:47:17Z"
+    generated_at: "2026-07-27T20:11:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

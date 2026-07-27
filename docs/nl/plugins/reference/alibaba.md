@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de alibaba-plugin
-summary: Voegt ondersteuning voor aanbieders van videogeneratie toe.
-title: Alibaba-plugin
+summary: Voegt ondersteuning voor providers voor videogeneratie toe.
+title: Alibaba-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:03:42Z"
+    generated_at: "2026-07-27T05:58:12Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Alibaba-plugin
+# Alibaba-Plugin
 
-Voegt ondersteuning voor een aanbieder van videogeneratie toe.
+Voegt ondersteuning toe voor een provider voor het genereren van video's.
 
 ## Distributie
 
@@ -29,4 +29,4 @@ contracten: `videoGenerationProviders`
 
 ## Gerelateerde documentatie
 
-- [Alibaba](/nl/providers/alibaba)
+- [alibaba](/nl/providers/alibaba)

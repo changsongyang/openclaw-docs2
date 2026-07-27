@@ -2,11 +2,11 @@
 read_when:
     - Sentetik QA aktarımını yerel veya CI test çalıştırmasına bağlıyorsunuz
     - Paketle birlikte gelen qa-channel yapılandırma yüzeyine ihtiyacınız var
-    - Uçtan uca kalite güvence otomasyonunu yinelemeli olarak geliştiriyorsunuz
-summary: Deterministik OpenClaw kalite güvence senaryoları için sentetik Slack sınıfı kanal plugini
+    - Uçtan uca kalite güvencesi otomasyonunu yinelemeli olarak geliştiriyorsunuz
+summary: Deterministik OpenClaw QA senaryoları için sentetik Slack sınıfı kanal plugin'i
 title: QA kanalı
 x-i18n:
-    generated_at: "2026-07-16T17:04:16Z"
+    generated_at: "2026-07-26T23:12:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,16 +16,16 @@ x-i18n:
     workflow: 16
 ---
 
-`qa-channel`, otomatik OpenClaw QA için depo içi sentetik bir mesaj aktarımıdır (`extensions/qa-channel`, özel paket, paketlenmiş kurulumlara dahil değildir). Bir üretim kanalı değildir; durumu belirlenimci ve tamamen incelenebilir tutarken gerçek aktarımların kullandığı aynı kanal plugin sınırını çalıştırmak için vardır.
+`qa-channel`, otomatik OpenClaw QA için repo yerelinde kullanılan sentetik bir mesaj aktarımıdır (`extensions/qa-channel`, özel paket, paketlenmiş kurulumlara dahil değildir). Üretim kanalı değildir; durumu belirlenimci ve tamamen incelenebilir tutarken gerçek aktarımların kullandığı aynı kanal plugin sınırını sınamak için vardır.
 
-## Ne yapar?
+## Ne yapar
 
 - Slack sınıfı hedef dil bilgisi:
   - `dm:<user>`
   - `channel:<room>`
   - `group:<room>`
   - `thread:<room>/<thread>`
-- Paylaşılan `channel:` ve `group:` konuşmaları, aracılara grup/kanal odası etkileşimleri olarak sunulur; böylece Discord, Slack, Telegram ve benzeri aktarımların kullandığı aynı görünür yanıt ve mesaj aracı yönlendirme politikasını çalıştırırlar.
+- Paylaşılan `channel:` ve `group:` konuşmaları, aracılara grup/kanal odası turları olarak sunulur; böylece Discord, Slack, Telegram ve benzeri aktarımların kullandığı aynı görünür yanıt ve mesaj aracı yönlendirme politikasını sınarlar.
 - Gelen mesaj ekleme, giden transkript yakalama, ileti dizisi oluşturma, tepkiler, düzenlemeler, silmeler ve arama/okuma eylemleri için HTTP destekli sentetik veri yolu.
 - `.artifacts/qa-e2e/` konumuna Markdown raporu yazan ana makine tarafı öz denetim çalıştırıcısı.
 
@@ -47,24 +47,24 @@ x-i18n:
 
 Hesap anahtarları:
 
-- `enabled` - bu hesap için ana etkinleştirme anahtarı.
-- `name` - isteğe bağlı görünen etiket.
+- `enabled` - bu hesabın ana açma/kapatma anahtarı.
+- `name` - isteğe bağlı görüntüleme etiketi.
 - `baseUrl` - sentetik veri yolu URL'si. Bu ayar yapıldığında hesap yapılandırılmış sayılır.
 - `botUserId` - hedef dil bilgisinde kullanılan sentetik bot kullanıcı kimliği (varsayılan: `openclaw`).
-- `botDisplayName` - giden mesajların görünen adı (varsayılan: `OpenClaw QA`).
-- `pollTimeoutMs` - uzun yoklama bekleme penceresi. 100 ile 30000 arasında bir tam sayı (varsayılan: 1000).
-- `allowFrom` - gönderen izin listesi (kullanıcı kimlikleri veya `"*"`; varsayılan: `["*"]`). DM'ler
+- `botDisplayName` - giden mesajların görüntüleme adı (varsayılan: `OpenClaw QA`).
+- `pollTimeoutMs` - uzun yoklama bekleme aralığı. 100 ile 30000 arasında bir tam sayı (varsayılan: 1000).
+- `allowFrom` - gönderici izin listesi (kullanıcı kimlikleri veya `"*"`; varsayılan: `["*"]`). Doğrudan mesajlar
   her zaman `open` politikasını kullanır; izin listeli grup politikası da bu sentetik
-  gönderen kimliklerini kullanır.
+  gönderici kimliklerini kullanır.
 - `groupPolicy` - paylaşılan oda politikası: `"open"` (varsayılan), `"allowlist"` veya
   `"disabled"`.
-- `groupAllowFrom` - isteğe bağlı paylaşılan oda gönderen izin listesi.
-  `"allowlist"` altında belirtilmediğinde QA Channel, `allowFrom` ayarına geri döner.
-- `groups.<room>.requireMention` - belirli bir grup/kanal odasında yanıt vermeden önce
-  bottan bahsedilmesini zorunlu tutar (varsayılan: false). `groups."*"` varsayılanı belirler;
-  oda başına `tools` / `toolsBySender`, araç politikası geçersiz kılmalarını belirler.
-- `defaultTo` - hedef sağlanmadığında kullanılacak yedek hedef.
-- `actions.messages` / `actions.reactions` / `actions.search` / `actions.threads` - eylem başına araç geçitleri.
+- `groupAllowFrom` - isteğe bağlı paylaşılan oda gönderici izin listesi.
+  `"allowlist"` altında belirtilmediğinde QA Channel, `allowFrom` değerine geri döner.
+- `groups.<room>.requireMention` - belirli bir grup/kanal odasında yanıt vermeden önce botun
+  etiketlenmesini zorunlu kılar (varsayılan: false). `groups."*"` varsayılanı belirler;
+  oda başına `tools` / `toolsBySender` araç politikası geçersiz kılmalarını belirler.
+- `defaultTo` - hedef sağlanmadığında kullanılacak geri dönüş hedefi.
+- `actions.messages` / `actions.reactions` / `actions.search` / `actions.threads` - eylem başına araç erişim denetimi.
 
 Üst düzeydeki çoklu hesap anahtarları:
 
@@ -79,15 +79,15 @@ Ana makine tarafı öz denetim (`.artifacts/qa-e2e/` altında bir Markdown rapor
 pnpm qa:e2e
 ```
 
-Bu işlem `qa-lab` üzerinden yönlendirilir, depo içi QA veri yolunu başlatır, `qa-channel` çalışma zamanı dilimini önyükler ve belirlenimci bir öz denetim çalıştırır.
+Bu komut `qa-lab` üzerinden yönlendirilir, repo içi QA veri yolunu başlatır, `qa-channel` çalışma zamanı dilimini açar ve belirlenimci bir öz denetim çalıştırır.
 
-Depo destekli tam senaryo paketi:
+Repo destekli tam senaryo paketi:
 
 ```bash
 pnpm openclaw qa suite
 ```
 
-Senaryoları QA gateway hattında paralel olarak çalıştırır. Senaryolar, profiller ve sağlayıcı modları için [QA genel bakışı](/tr/concepts/qa-e2e-automation) bölümüne bakın.
+Senaryoları QA gateway hattına karşı paralel olarak çalıştırır. Senaryolar, profiller ve sağlayıcı modları için [QA genel bakışı](/tr/concepts/qa-e2e-automation) sayfasına bakın.
 
 Docker destekli QA sitesi (tek bir yığında gateway + QA Lab hata ayıklayıcı kullanıcı arayüzü):
 
@@ -95,7 +95,7 @@ Docker destekli QA sitesi (tek bir yığında gateway + QA Lab hata ayıklayıc�
 pnpm qa:lab:up
 ```
 
-QA sitesini derler, Docker destekli gateway + QA Lab yığınını başlatır ve QA Lab URL'sini yazdırır. Buradan senaryoları seçebilir, model hattını belirleyebilir, ayrı çalıştırmaları başlatabilir ve sonuçları canlı olarak izleyebilirsiniz. QA Lab hata ayıklayıcısı, dağıtılan Control UI paketinden ayrıdır.
+QA sitesini derler, Docker destekli gateway + QA Lab yığınını başlatır ve QA Lab URL'sini yazdırır. Buradan senaryoları seçebilir, model hattını belirleyebilir, bağımsız çalıştırmaları başlatabilir ve sonuçları canlı izleyebilirsiniz. QA Lab hata ayıklayıcısı, yayımlanan Control UI paketinden ayrıdır.
 
 ## İlgili
 

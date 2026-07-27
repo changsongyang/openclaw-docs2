@@ -1,10 +1,10 @@
 ---
 read_when:
-    - memory-lancedb Pluginをインストール、設定、または監査している場合
-summary: 自動想起、自動取得、ベクトル検索を備えた、LanceDB を基盤とする OpenClaw の長期記憶 Plugin。
-title: Memory Lancedb Plugin
+    - memory-lancedb Plugin のインストール、設定、または監査を行っている場合
+summary: 自動想起、自動取得、ベクトル検索を備えた、LanceDB をバックエンドとする OpenClaw 長期記憶 Plugin。
+title: メモリ Lancedb Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:55:30Z"
+    generated_at: "2026-07-26T09:44:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,16 +14,16 @@ x-i18n:
     workflow: 16
 ---
 
-# Memory LanceDB Plugin
+# Memory Lancedb Plugin
 
-自動リコール、自動キャプチャ、ベクトル検索を備えた、LanceDB ベースの OpenClaw 長期メモリ Plugin。
+自動リコール、自動キャプチャ、ベクトル検索を備えた、LanceDB をバックエンドに使用する OpenClaw 長期メモリ Plugin。
 
 ## 配布
 
 - パッケージ: `@openclaw/memory-lancedb`
 - インストール経路: npm、ClawHub
 
-## サーフェス
+## 公開インターフェース
 
 コントラクト: `tools`
 

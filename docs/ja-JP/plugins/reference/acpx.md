@@ -4,7 +4,7 @@ read_when:
 summary: Plugin が所有するセッションおよびトランスポート管理を備えた OpenClaw ACP ランタイムバックエンド。
 title: ACPx Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:56:22Z"
+    generated_at: "2026-07-26T09:34:28Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,9 +21,9 @@ Plugin が所有するセッションおよびトランスポート管理を備�
 ## 配布
 
 - パッケージ: `@openclaw/acpx`
-- インストール経路: npm; ClawHub
+- インストール経路: npm、ClawHub
 
-## サーフェス
+## 提供機能
 
 Skills
 
@@ -31,15 +31,9 @@ Skills
 
 ## Pi ネイティブセッション
 
-バンドルされたランタイムは、Gateway およびペアリング済み
-Node 上の Pi セッションストアを自動検出します。保存されたセッションは **Pi** セッションサイドバーグループに表示され、
-Pi のドキュメント化された JSONL セッション形式から読み取り専用でトランスクリプトを閲覧できます。
-カタログは、プロジェクトおよびグローバルの `settings.json` セッションディレクトリに加え、
-`PI_CODING_AGENT_DIR` と `PI_CODING_AGENT_SESSION_DIR` に対応します。相対パスは、
-各 `settings.json` ファイルを含むディレクトリを基準に解決されます。
+バンドルされたランタイムは、Gateway およびペアリング済みの Node 上にある Pi のセッションストアを自動検出します。保存されたセッションは、セッションサイドバーの **Pi** グループに表示され、Pi で文書化されている JSONL セッション形式のトランスクリプトを読み取り専用で閲覧できます。カタログは、プロジェクトおよびグローバルの `settings.json` セッションディレクトリに加え、`PI_CODING_AGENT_DIR` と `PI_CODING_AGENT_SESSION_DIR` に対応します。相対パスは、その `settings.json` ファイルが格納されているディレクトリを基準に解決されます。
 
-検出を無効にするには、**Config > Plugins > ACPX Runtime** にある
-**Pi Session Catalog** をオフにします。デフォルトでは有効です。
+検出を無効にするには、**Config > Plugins > ACPX Runtime** にある **Pi Session Catalog** をオフにします。デフォルトでは有効です。
 
 <!-- openclaw-plugin-reference:manual-end -->
 

@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de llm-task-plugin
-summary: Generieke LLM-tool met uitsluitend JSON voor gestructureerde taken, aanroepbaar vanuit workflows.
+summary: Generieke LLM-tool met uitsluitend JSON voor gestructureerde taken die vanuit workflows kan worden aangeroepen.
 title: LLM-taakplugin
 x-i18n:
-    generated_at: "2026-07-16T16:06:19Z"
+    generated_at: "2026-07-27T05:26:48Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# LLM Task-Plugin
+# LLM Task-plugin
 
 Generieke LLM-tool die uitsluitend JSON gebruikt voor gestructureerde taken die vanuit workflows kunnen worden aangeroepen.
 

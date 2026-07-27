@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin واتس‌اپ هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin واتساپ هستید
 summary: Plugin کانال WhatsApp در OpenClaw برای گفت‌وگوهای WhatsApp Web.
-title: Plugin WhatsApp
+title: Plugin واتساپ
 x-i18n:
-    generated_at: "2026-07-16T17:31:05Z"
+    generated_at: "2026-07-27T15:57:56Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin WhatsApp
+# Plugin ‏WhatsApp
 
 Plugin کانال WhatsApp در OpenClaw برای گفت‌وگوهای WhatsApp Web.
 
@@ -23,7 +23,7 @@ Plugin کانال WhatsApp در OpenClaw برای گفت‌وگوهای WhatsApp
 - بسته: `@openclaw/whatsapp`
 - مسیر نصب: ClawHub: `clawhub:@openclaw/whatsapp`؛ npm
 
-## سطوح
+## سطح
 
 کانال‌ها: `whatsapp`؛ قراردادها: `tools`؛ Skills
 

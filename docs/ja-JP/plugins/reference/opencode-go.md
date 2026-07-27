@@ -1,10 +1,10 @@
 ---
 read_when:
-    - opencode-go Plugin のインストール、設定、または監査を行っています
+    - opencode-go Plugin をインストール、設定、または監査しています
 summary: OpenClaw に OpenCode Go モデルプロバイダーのサポートを追加します。
 title: OpenCode Go Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:59:21Z"
+    generated_at: "2026-07-26T09:44:22Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,9 +21,9 @@ OpenClaw に OpenCode Go モデルプロバイダーのサポートを追加し�
 ## 配布
 
 - パッケージ: `@openclaw/opencode-go-provider`
-- インストール経路: OpenClaw に同梱
+- インストール方法: OpenClaw に含まれています
 
-## サーフェス
+## 提供範囲
 
 プロバイダー: `opencode-go`; コントラクト: `mediaUnderstandingProviders`
 

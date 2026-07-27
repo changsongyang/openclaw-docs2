@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Configurar o solucionar problemas de los widgets de actividad de Discord
-summary: Inicia widgets HTML autónomos de OpenClaw dentro de las Actividades de Discord
+    - Configuración o solución de problemas de los widgets de actividad de Discord
+summary: Inicia widgets HTML autónomos de OpenClaw dentro de Discord Activities
 title: Actividades de Discord
 x-i18n:
-    generated_at: "2026-07-19T01:45:59Z"
+    generated_at: "2026-07-26T05:00:11Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,17 +14,17 @@ x-i18n:
     workflow: 16
 ---
 
-Las Actividades de Discord permiten que un agente publique un widget HTML interactivo y autónomo en el canal de Discord actual. El mensaje incluye un botón **Open widget**; al hacer clic, el widget se abre dentro de Discord.
+Las Activities de Discord permiten que un agente publique un widget HTML interactivo y autónomo en el canal actual de Discord. El mensaje incluye un botón **Open widget**; al hacer clic, el widget se abre dentro de Discord.
 
-La función está desactivada de forma predeterminada. OpenClaw registra las rutas HTTP de la Actividad, la herramienta del agente `show_widget` y el controlador del botón de apertura solo cuando `channels.discord.activities` está presente y se puede resolver un secreto de cliente. El alias obsoleto `discord_widget` seguirá disponible durante una versión.
+La función está desactivada de forma predeterminada. OpenClaw registra las rutas HTTP de Activity, la herramienta de agente `show_widget` y el controlador del botón de apertura solo cuando `channels.discord.activities` está presente y se puede resolver un secreto de cliente. El alias obsoleto `discord_widget` seguirá disponible durante una versión.
 
 ## Requisitos previos
 
-- un [bot de Discord de OpenClaw](/es/channels/discord) existente
-- un nombre de host HTTPS público que llegue al Gateway de OpenClaw
-- permiso para configurar Actividades y OAuth2 para la aplicación de Discord del bot
+- un [bot de OpenClaw para Discord](/es/channels/discord) existente
+- un nombre de host HTTPS público que permita acceder al Gateway de OpenClaw
+- permiso para configurar Activities y OAuth2 para la aplicación de Discord del bot
 
-Cualquier proxy inverso o túnel HTTPS sirve. Un túnel de Cloudflare con nombre proporciona un nombre de host estable sin exponer directamente el puerto del Gateway.
+Se puede usar cualquier proxy inverso o túnel HTTPS. Un Cloudflare Tunnel con nombre proporciona un nombre de host estable sin exponer directamente el puerto del Gateway.
 
 ```yaml
 # ~/.cloudflared/config.yml
@@ -43,27 +43,27 @@ cloudflared tunnel route dns openclaw-discord openclaw.example.com
 cloudflared tunnel run openclaw-discord
 ```
 
-Mantenga habilitada la autenticación normal del Gateway. Solo el prefijo de la Actividad es público, y el propio plugin valida OAuth, la pertenencia a la instancia de la Actividad, la vinculación del canal, las sesiones y las capacidades de documento de un solo uso.
+Mantenga habilitada la autenticación normal del Gateway. Solo el prefijo de Activity es público, y el propio plugin valida OAuth, la pertenencia a la instancia de Activity, la vinculación del canal, las sesiones y las capacidades de documento de un solo uso.
 
 ## Configuración
 
 <Steps>
   <Step title="Exponer el Gateway mediante HTTPS">
-    Inicie el túnel o proxy inverso y compruebe que `https://openclaw.example.com/discord/activity/` llega al Gateway después de añadir la configuración de Actividades. Sustituya el nombre de host de ejemplo por el suyo.
+    Inicie el túnel o proxy inverso y verifique que `https://openclaw.example.com/discord/activity/` permita acceder al Gateway después de añadir la configuración de Activities. Sustituya el nombre de host de ejemplo por el suyo.
   </Step>
 
-  <Step title="Habilitar Actividades en Discord">
-    Abra la aplicación del bot existente en el [Portal para desarrolladores de Discord](https://discord.com/developers/applications). Abra **Activities**, habilite las Actividades y cree una asignación de URL:
+  <Step title="Habilitar Activities en Discord">
+    Abra la aplicación existente del bot en el [Portal para desarrolladores de Discord](https://discord.com/developers/applications). Abra **Activities**, habilite Activities y cree una asignación de URL:
 
     - prefijo: `ROOT` (`/`)
     - destino: `openclaw.example.com/discord/activity`
 
-    El destino es el nombre de host público seguido de `/discord/activity`, sin una barra final.
+    El destino es el nombre de host público seguido de `/discord/activity`, sin una barra diagonal al final.
 
   </Step>
 
   <Step title="Copiar el secreto de cliente de OAuth2">
-    Abra **OAuth2** en el Portal para desarrolladores. Discord requiere al menos un URI de redirección, por lo que debe añadir un marcador de posición local, como la dirección de bucle invertido, si la aplicación aún no tiene ninguno; el SDK de aplicaciones integradas gestiona el flujo de retorno de la Actividad. Copie o restablezca el secreto de cliente de la aplicación. Trátelo como una credencial: no lo pegue en chats, registros ni archivos de configuración confirmados en el repositorio.
+    Abra **OAuth2** en el Portal para desarrolladores. Discord requiere al menos un URI de redirección, así que añada un marcador de posición local, como la dirección de bucle invertido, si la aplicación todavía no tiene ninguno; el SDK de aplicaciones integradas gestiona el flujo de retorno de Activity. Copie o restablezca el secreto de cliente de la aplicación. Trátelo como una credencial: no lo pegue en chats, registros ni archivos de configuración incluidos en el repositorio.
   </Step>
 
   <Step title="Configurar OpenClaw">
@@ -76,7 +76,7 @@ Mantenga habilitada la autenticación normal del Gateway. Solo el prefijo de la 
           token: "${DISCORD_BOT_TOKEN}",
           activities: {
             clientSecret: "${DISCORD_CLIENT_SECRET}",
-            // Opcional. El valor predeterminado es el ID de la aplicación del bot obtenido al iniciar.
+            // Opcional. El valor predeterminado es el ID de la aplicación del bot obtenido durante el inicio.
             applicationId: "YOUR_DISCORD_APPLICATION_ID",
           },
         },
@@ -84,51 +84,51 @@ Mantenga habilitada la autenticación normal del Gateway. Solo el prefijo de la 
     }
     ```
 
-    Puede omitir `clientSecret` del bloque cuando `DISCORD_CLIENT_SECRET` esté configurado. El bloque debe seguir presente para habilitar la función.
+    Puede omitir `clientSecret` del bloque cuando se haya definido `DISCORD_CLIENT_SECRET`. El bloque debe seguir presente para habilitar la función.
 
-    La configuración normal de acceso de Discord permanece separada. Por ejemplo, `allowFrom` sigue controlando quién puede enviar mensajes directos al agente; no controla quién puede abrir un widget ya publicado en un canal.
+    La configuración normal de acceso a Discord permanece separada. Por ejemplo, `allowFrom` sigue controlando quién puede enviar mensajes directos al agente; no controla quién puede abrir un widget que ya se haya publicado en un canal.
 
   </Step>
 
   <Step title="Reiniciar y probar">
-    Reinicie el Gateway. En una conversación de Discord, pida al agente que muestre un widget interactivo. El agente llama a `show_widget`; haga clic en **Open widget** en el mensaje publicado.
+    Reinicie el Gateway. En una conversación de Discord, solicite al agente que muestre un widget interactivo. El agente llama a `show_widget`; haga clic en **Open widget** en el mensaje publicado.
   </Step>
 </Steps>
 
 ## Modelo de seguridad
 
 - OAuth identifica al usuario de Discord antes de devolver los metadatos del widget.
-- La API Get Activity Instance de Discord debe confirmar que el usuario de OAuth está presente en la instancia actual de la Actividad. El canal de la instancia debe coincidir con el canal donde se publicó el widget.
-- Todas las personas a las que Discord permita acceder a ese canal pueden abrir sus widgets. Para limitar la audiencia, utilice los permisos de canal de Discord. Las listas de permitidos de comandos y mensajes directos de OpenClaw no conceden ni revocan el acceso al contenido ya publicado en el canal.
+- La API Get Activity Instance de Discord debe confirmar que el usuario de OAuth está presente en la instancia actual de Activity. El canal de la instancia debe coincidir con el canal donde se publicó el widget.
+- Todas las personas a las que Discord permita acceder a ese canal pueden abrir sus widgets. Para restringir el público, utilice los permisos del canal de Discord. Las listas de permitidos de comandos y mensajes directos de OpenClaw no conceden ni eliminan el acceso al contenido ya publicado en el canal.
 - Las sesiones de OAuth caducan después de 15 minutos. Las capacidades de documento del widget caducan después de 60 segundos y funcionan una sola vez.
 - Los widgets caducan después de siete días y se conservan como máximo 64 por instancia del plugin de Discord.
-- El HTML del widget lo crea el agente y debe tratarse como contenido de confianza. No incluya secretos que no querría que un widget defectuoso expusiera.
-- El widget puede navegar dentro de su propio marco anidado. El iframe `sandbox="allow-scripts"` bloquea la navegación de nivel superior, las ventanas emergentes y el acceso al mismo origen, mientras que su Política de seguridad de contenido bloquea las conexiones de red y los recursos externos. Estos controles constituyen una defensa en profundidad, no un límite de seguridad frente al agente que creó el widget.
-- Cuando las Actividades están deshabilitadas, `/discord/activity` no se registra en absoluto.
+- El HTML del widget lo crea el agente y debe tratarse como contenido de confianza. No incluya secretos que no querría que un widget con errores expusiera.
+- El widget puede navegar dentro de su propio marco anidado. El iframe `sandbox="allow-scripts"` bloquea la navegación de nivel superior, las ventanas emergentes y el acceso al mismo origen, mientras que su Política de seguridad de contenido bloquea las conexiones de red y los recursos externos. Estos controles constituyen una defensa en profundidad, no una barrera de seguridad frente al agente que creó el widget.
+- Cuando Activities está deshabilitado, `/discord/activity` no se registra en absoluto.
 
-El contenedor público de la Actividad y la ruta de intercambio de tokens pasan a ser accesibles a través del túnel cuando se habilitan. No exponen el HTML del widget sin una sesión de OAuth válida y una capacidad de documento de un solo uso.
+El contenedor público de Activity y la ruta de intercambio de tokens pasan a ser accesibles a través del túnel cuando se habilitan. No exponen el HTML del widget sin una sesión de OAuth válida y una capacidad de documento de un solo uso.
 
 ## Solución de problemas
 
-### La Actividad indica “Gateway offline”
+### Activity indica “Gateway offline”
 
-- confirme que el túnel está en ejecución y dirige el tráfico al puerto de enlace real del Gateway
-- confirme que el destino del Portal para desarrolladores incluye `/discord/activity`
+- confirme que el túnel esté en ejecución y se dirija al puerto de enlace real del Gateway
+- confirme que el destino del Portal para desarrolladores incluya `/discord/activity`
 - reinicie el Gateway después de cambiar la configuración de Discord u OpenClaw
-- revise los registros del Gateway para detectar la advertencia de una línea sobre la ausencia del secreto de cliente de Actividades
+- revise los registros del Gateway para buscar la advertencia de una línea sobre la ausencia del secreto de cliente de Activities
 
-### Discord abre una página en blanco o informa de `blocked:csp`
+### Discord abre una página en blanco o muestra `blocked:csp`
 
-- compruebe que la asignación de URL utiliza `ROOT` y no añade un segundo segmento `/discord/activity`
-- confirme que el contenedor, `shell.js` y el módulo del SDK se devuelven correctamente a través del proxy de Discord
-- inspeccione los registros del Gateway para buscar solicitudes bajo `/discord/activity/`
+- verifique que la asignación de URL use `ROOT` y no añada un segundo segmento `/discord/activity`
+- confirme que el contenedor, `shell.js` y el módulo del SDK se devuelvan correctamente a través del proxy de Discord
+- examine los registros del Gateway para buscar solicitudes bajo `/discord/activity/`
 
-Las solicitudes de red de los widgets se bloquean intencionadamente. Incluya en línea todo el CSS, JavaScript, las imágenes y los datos que necesite el widget.
+Las solicitudes de red de los widgets se bloquean de forma intencionada. Incluya en línea todo el CSS, JavaScript, las imágenes y los datos que necesite el widget.
 
 ### “Widget unavailable”
 
-Abra el botón desde el canal donde el agente lo publicó. OpenClaw registra las aperturas en el servidor cuando se hace clic, por lo que un registro de apertura reciente puede resolver el widget exacto incluso cuando Discord omite o altera el ID personalizado del botón. Cuando ni el ID personalizado ni un registro de apertura permiten resolverlo, OpenClaw abre el widget activo publicado más recientemente en ese canal. Los widgets anteriores siguen siendo accesibles mediante los botones que conservan su ID personalizado.
+Abra el botón desde el canal donde el agente lo publicó. OpenClaw realiza un seguimiento de las aperturas en el servidor cuando se hace clic, por lo que un registro de apertura reciente puede resolver el widget exacto incluso cuando Discord omite o altera el ID personalizado del botón. Cuando ni el ID personalizado ni un registro de apertura permiten resolverlo, OpenClaw abre el widget activo publicado más recientemente en ese canal. Los widgets anteriores siguen siendo accesibles mediante botones que conserven su ID personalizado.
 
 ### “You cannot launch Activities in this channel”
 
-Discord no abre Actividades desde hilos de publicaciones de foros. OpenClaw puede publicar allí el mensaje y el botón del widget, pero la Actividad debe abrirse desde un canal de texto normal. Esta restricción procede de Discord, no de OpenClaw.
+Discord no permite iniciar Activities desde hilos de publicaciones de foros. OpenClaw puede publicar allí el mensaje y el botón del widget, pero Activity debe iniciarse desde un canal de texto normal. Esta restricción procede de Discord, no de OpenClaw.

@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin de iMessage
-summary: Añade la interfaz del canal de iMessage para enviar y recibir mensajes de OpenClaw.
+summary: Añade la interfaz del canal iMessage para enviar y recibir mensajes de OpenClaw.
 title: Plugin de iMessage
 x-i18n:
-    generated_at: "2026-07-16T11:48:08Z"
+    generated_at: "2026-07-26T05:50:46Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin de iMessage
 
-Añade la superficie del canal iMessage para enviar y recibir mensajes de OpenClaw.
+Añade la superficie del canal de iMessage para enviar y recibir mensajes de OpenClaw.
 
 ## Distribución
 

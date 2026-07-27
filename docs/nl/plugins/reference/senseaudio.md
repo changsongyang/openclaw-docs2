@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Je installeert, configureert of controleert de senseaudio-Plugin
+    - Je installeert, configureert of controleert de senseaudio-plugin
 summary: Voegt ondersteuning toe voor providers voor mediabegrip.
-title: Senseaudio-Plugin
+title: Senseaudio-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:17:17Z"
+    generated_at: "2026-07-27T06:04:02Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Senseaudio-plugin
 
-Voegt ondersteuning toe voor een provider voor mediabegrip.
+Voegt ondersteuning toe voor providers voor mediabegrip.
 
 ## Distributie
 

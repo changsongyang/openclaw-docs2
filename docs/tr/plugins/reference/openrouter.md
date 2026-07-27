@@ -1,10 +1,10 @@
 ---
 read_when:
-    - openrouter pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - openrouter Pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a OpenRouter model sağlayıcısı desteği ekler.
-title: OpenRouter eklentisi
+title: OpenRouter plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:46:03Z"
+    generated_at: "2026-07-27T00:08:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

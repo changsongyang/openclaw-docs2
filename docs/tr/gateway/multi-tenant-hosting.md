@@ -6,7 +6,7 @@ read_when:
 summary: Birden çok kiracı güven etki alanını, kiracı başına bir yalıtılmış OpenClaw Gateway hücresi olarak barındırın
 title: Çok kiracılı barındırma
 x-i18n:
-    generated_at: "2026-07-16T17:07:35Z"
+    generated_at: "2026-07-26T23:19:57Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,47 +18,47 @@ x-i18n:
 
 # Çok kiracılı barındırma
 
-OpenClaw'ın varsayılan güvenlik modeli, tek bir paylaşılan Gateway içinde düşmanca çok kiracılı yalıtım değil, Gateway başına tek bir güvenilir operatör sınırıdır. Bu nedenle, aynı güven sınırını paylaşmayan kullanıcıları veya kuruluşları barındırmak, her kiracı için ayrı ve eksiksiz bir OpenClaw örneği çalıştırmak anlamına gelir.
+OpenClaw'ın varsayılan güvenlik modeli, paylaşılan tek bir Gateway içinde kötü niyetli çok kiracılı yalıtım değil, Gateway başına tek bir güvenilir operatör sınırıdır. Bu nedenle, aynı güven sınırını paylaşmayan kullanıcıları veya kuruluşları barındırmak, her kiracı için ayrı ve eksiksiz bir OpenClaw örneği çalıştırmak anlamına gelir.
 
-`openclaw fleet` her yalıtılmış örneği bir **hücre** olarak adlandırır. Hücre; kendi durumu, kimlik bilgileri, çalışma alanı, kanal hesapları, token'ı ve yalnızca geri döngüye açık ana makine portu bulunan, güçlendirilmiş bir kapsayıcı içindeki eksiksiz bir Gateway'dir.
+`openclaw fleet` her yalıtılmış örneği bir **hücre** olarak adlandırır. Hücre; kendi durumu, kimlik bilgileri, çalışma alanı, kanal hesapları, token'ı ve yalnızca geri döngüye açık ana makine bağlantı noktası bulunan, güçlendirilmiş bir konteyner içindeki eksiksiz bir Gateway'dir.
 
-Fleet **deneyseldir**: komutları, bayrakları ve kapsayıcı profili, kullanımdan kaldırma süresi olmadan sürümler arasında değişebilir.
+Fleet **deneyseldir**: Komutları, bayrakları ve konteyner profili, kullanımdan kaldırma süresi olmadan sürümler arasında değişebilir.
 
 Fleet, Linux ve macOS ana makinelerinde test edilmiştir. Windows ana makineleri şu anda test edilmemiştir.
 
-## Her kiracının neden bir hücreye ihtiyacı vardır
+## Her kiracı neden bir hücreye ihtiyaç duyar?
 
-Bir Gateway içindeki kimliği doğrulanmış operatör, güvenilir bir kontrol düzlemi rolüne sahiptir. Oturum kimlikleri yönlendirmeyi seçer; bir kiracıyı diğerine karşı yetkilendirmez. Agent korumalı alanı, güvenilmeyen içeriğin ve araç yürütmenin etkisini azaltabilir, ancak tek bir paylaşılan Gateway'i kiracı yetkilendirme sınırına dönüştürmez.
+Tek bir Gateway içindeki kimliği doğrulanmış operatör, güvenilir bir kontrol düzlemi rolüne sahiptir. Oturum kimlikleri yönlendirmeyi seçer; bir kiracıyı diğerine karşı yetkilendirmez. Ajan korumalı alanı, güvenilmeyen içeriğin ve araç yürütmenin etkisini azaltabilir ancak paylaşılan tek bir Gateway'i kiracı yetkilendirme sınırına dönüştürmez.
 
-Her güven alanının ayrı bir Gateway süreci, kapsayıcısı, kalıcı durum ağacı ve Gateway kimlik bilgisi olması için kiracı başına bir hücre kullanın. Bu, [Gateway güvenlik modelini](/tr/gateway/security) izler: karşılıklı olarak birbirine güvenmeyen kullanıcıları tek bir OpenClaw sürecinde veya tek bir işletim sistemi kullanıcısı altında birlikte barındırmayın.
+Her güven etki alanının ayrı bir Gateway sürecine, konteynere, kalıcı durum ağacına ve Gateway kimlik bilgisine sahip olması için kiracı başına bir hücre kullanın. Bu, [Gateway güvenlik modelini](/tr/gateway/security) izler: birbirine güvenmeyen kullanıcıları tek bir OpenClaw sürecinde veya tek bir işletim sistemi kullanıcısı altında birlikte barındırmayın.
 
 ## Mimari
 
-Fleet CLI, ana makine tarafında çalışan bir yaşam döngüsü denetleyicisidir. Hücreleri OpenClaw durum veritabanına kaydeder ve yerel bir Docker veya Podman çalışma zamanından kapsayıcılarını oluşturmasını, incelemesini, başlatmasını, durdurmasını, değiştirmesini ve kaldırmasını ister. Fleet'in bağlama yolları ve geri döngü URL'leri yerel ana makineye ait olduğundan uzak çalışma zamanı uç noktaları desteklenmez. Fleet, kiracı mesajlarına proxy uygulamaz ve hücreler arasına paylaşılan bir uygulama düzeyi veri yolu eklemez.
+Fleet CLI, ana makine tarafında çalışan bir yaşam döngüsü gözetmenidir. Hücreleri OpenClaw durum veritabanına kaydeder ve yerel Docker veya Podman çalışma zamanından bunların konteynerlerini oluşturmasını, incelemesini, başlatmasını, durdurmasını, değiştirmesini ve kaldırmasını ister. Fleet'in bağlama yolları ve geri döngü URL'leri yerel ana makineye ait olduğundan uzak çalışma zamanı uç noktaları desteklenmez. Fleet, kiracı mesajlarına proxy görevi yapmaz ve hücreler arasında paylaşılan uygulama düzeyinde bir veri yolu eklemez.
 
-Her hücre, kendi kullanıcı tanımlı köprü ağında resmi `ghcr.io/openclaw/openclaw` imajını çalıştırır. Ayrı köprüler, sağlayıcılar ve kanallar için dışa giden NAT erişimini korurken hücreler arasında doğrudan kapsayıcı IP trafiğini önler. Dışa giden trafik varsayılan olarak kısıtlanmaz. Podman hücreleri, yayımlanan geri döngü Gateway portunu korurken dışa giden trafiği engellemek için `--network internal` kullanabilir. Docker'ın dahili ağları bu yayımlanan portu bozduğundan Fleet bu birleşimi reddeder; bunun yerine Docker dışa giden trafik politikasını `DOCKER-USER` zinciri gibi ana makine güvenlik duvarı kurallarıyla uygulayın. Hücre Gateway'i kapsayıcı içinde `18789` portunu dinlerken çalışma zamanı bunu ana makinede yalnızca `127.0.0.1:<allocated-port>` adresine yayımlar. Uzak erişim gerektiğinde bir operatör, bu geri döngü uç noktasının önüne onaylanmış bir ters proxy, SSH tüneli veya tailnet yerleştirebilir.
+Her hücre, kendi kullanıcı tanımlı köprü ağında resmi `ghcr.io/openclaw/openclaw` imajını çalıştırır. Ayrı köprüler, sağlayıcılar ve kanallar için giden NAT erişimini korurken hücreler arasındaki doğrudan konteyner IP trafiğini engeller. Giden trafik varsayılan olarak kısıtlanmaz. Podman hücreleri, yayımlanan geri döngü Gateway bağlantı noktasını korurken giden trafiği engellemek için `--network internal` kullanabilir. Docker'ın dahili ağları bu yayımlanan bağlantı noktasını bozduğundan Fleet bu birleşimi reddeder; bunun yerine Docker giden trafik politikasını `DOCKER-USER` zinciri gibi ana makine güvenlik duvarı kurallarıyla uygulayın. Hücre Gateway'i konteyner içinde `18789` bağlantı noktasını dinlerken çalışma zamanı bunu ana makinede yalnızca `127.0.0.1:<allocated-port>` adresinde yayımlar. Uzaktan erişim gerektiğinde operatör, bu geri döngü uç noktasının önüne onaylı bir ters proxy, SSH tüneli veya tailnet yerleştirebilir.
 
-Kalıcı Gateway durumu `<state-dir>/fleet/cells/<tenant>/` konumundan gelir ve `/home/node/.openclaw` konumuna bağlanır. Kimlik doğrulama profili şifreleme anahtarları ayrı `<state-dir>/fleet/auth-profile-secrets/<tenant>/` ana makine yolundan gelir ve resmi [Docker kalıcılık düzeniyle](/tr/install/docker#storage-and-persistence) eşleşecek şekilde `/home/node/.config/openclaw` konumuna bağlanır. Anahtar, sıradan durum bağlamasının altında iç içe değildir. Kiracı başına kanal hesapları, bunlara sahip olan hücrenin içinde sonlandırılır; Fleet, paylaşılan bir kanal hesabı veya gelen mesaj yönlendiricisi sağlamaz.
+Kalıcı Gateway durumu `<state-dir>/fleet/cells/<tenant>/` kaynağından gelir ve `/home/node/.openclaw` konumuna bağlanır. Kimlik doğrulama profili şifreleme anahtarları ayrı `<state-dir>/fleet/auth-profile-secrets/<tenant>/` ana makine yolundan gelir ve resmi [Docker kalıcılık düzeniyle](/tr/install/docker#storage-and-persistence) eşleşecek şekilde `/home/node/.config/openclaw` konumuna bağlanır. Anahtar, sıradan durum bağlama noktasının altında iç içe değildir. Kiracı başına kanal hesapları, bunlara sahip olan hücre içinde sonlandırılır; Fleet, paylaşılan kanal hesabı veya gelen mesaj yönlendiricisi sağlamaz.
 
-Resmi imaj, varsayılan olarak UID 1000 değerine sahip root olmayan `node` kullanıcısını kullanır. Fleet, özel bağlama noktalarının yazılabilir kalması için ana makineyle uyumlu kullanıcı eşlemeleri kullanır: Podman `keep-id` kullanır, root olarak çalışan Docker komutu çağıran root olmayan kimliği kullanır ve rootless Docker kapsayıcı root kullanıcısını ayrıcalıksız daemon kullanıcısına eşler. Ana makinede SELinux etkinken Docker ve Podman özel bir `:Z` yeniden etiketlemesi uygular. Kapsayıcı profili ayrıcalıklı ana makine özelliklerinden kaçınır ve rootless kullanıma uygundur; ancak rootless çalışma, Fleet'in otomatik olarak etkinleştirdiği bir özellik değil, ana makine çalışma zamanı seçimi ve ön koşuludur.
+Resmi imaj, varsayılan olarak UID 1000'e sahip root olmayan `node` kullanıcısını kullanır. Fleet, özel bağlama noktalarının yazılabilir kalması için ana makineyle uyumlu kullanıcı eşlemeleri kullanır: Podman `keep-id` kullanır, root yetkili Docker komutu çağıran root olmayan kimliği kullanır ve root olmayan Docker konteyner root kullanıcısını ayrıcalıksız daemon kullanıcısına eşler. Ana makine SELinux etkin olduğunda Docker ve Podman özel bir `:Z` yeniden etiketlemesi uygular. Konteyner profili ayrıcalıklı ana makine özelliklerinden kaçınır ve root olmayan kullanıma uygundur; ancak root olmayan çalışma, ana makine çalışma zamanına ilişkin bir seçim ve ön koşuldur, Fleet'in otomatik olarak etkinleştirdiği bir özellik değildir.
 
 ## Güven sınırı
 
-Çok kiracılık, kiracıları birbirlerinden korur. Fleet operatörüne ve ana makineye her kiracı güvenir. Ele geçirilmiş bir ana makineye karşı dayanıklılık hedeflenmez.
+Çok kiracılık, kiracıları birbirinden korur. Fleet operatörüne ve ana makineye her kiracı güvenir. Güvenliği ihlal edilmiş bir ana makineye karşı dayanıklılık hedeflenmez.
 
-Bu, bir ana makine yöneticisinin kapsayıcı yapılandırmasını ve ortamını inceleyebileceği, bağlanmış hücre verilerini okuyabileceği, imajları değiştirebileceği veya kapsayıcılara girebileceği anlamına gelir. Gateway token'ları ve `--env` ile geçirilen değerler, Docker veya Podman incelemesi aracılığıyla bir yönetici tarafından görülebilir. Ana makine denetimlerini, yönetimsel erişim politikasını, izlemeyi, yedeklemeleri ve onaylanmış bir sır yöneticisini buna göre kullanın.
+Bu, ana makine yöneticisinin konteyner yapılandırmasını ve ortamını inceleyebileceği, bağlanan hücre verilerini okuyabileceği, imajları değiştirebileceği veya konteynerlere girebileceği anlamına gelir. Gateway token'ları ve `--env` ile geçirilen değerler, Docker veya Podman incelemesi aracılığıyla bir yönetici tarafından görülebilir. Ana makine denetimlerini, yönetim erişimi politikasını, izlemeyi, yedeklemeleri ve onaylı bir gizli bilgi yöneticisini buna göre kullanın.
 
-Temel profil, yanlışlıkla joker karakterli ağ erişimine açılmayı önler ve yaygın kapsayıcı ayrıcalık yükseltme mekanizmalarını kaldırır, ancak güvenilmeyen bir ana makineyi güvenli hâle getirmez.
+Temel profil, yanlışlıkla joker karakterli ağ erişimine açılmayı önler ve yaygın konteyner ayrıcalık yükseltme araçlarını kaldırır; ancak güvenilmeyen bir ana makineyi güvenli hâle getirmez.
 
 ## Yalıtım basamakları
 
 Barındırdığınız kiracılara uygun sınırı seçin:
 
-1. **Güçlendirilmiş kapsayıcı temel profili.** Fleet tüm Linux yeteneklerini kaldırır, `no-new-privileges` özelliğini etkinleştirir, PID, bellek, CPU ve isteğe bağlı yazılabilir katman disk sınırları uygular, ayrı kalıcı bağlama noktaları ve hücre başına ağlar kullanır ve yalnızca ana makine geri döngüsüne yayımlar. Köprü ağı, dışa giden trafiği kısıtlamaz; bir hücrenin dışa bağlantı başlatmaması gerektiğinde Podman `--network internal` veya Docker ana makine güvenlik duvarı politikasını kullanın. Aynı operatöre ve ana makineye güvenen kiracılar için varsayılan profil budur.
-2. **Daha güçlü kapsayıcı veya VM yalıtımı.** Daha yüksek riskli iş yükleri için Docker veya Podman'ı gVisor ya da Kata Containers gibi daha güçlü bir OCI yalıtım çalışma zamanı kullanacak şekilde yapılandırın veya hücreleri mikro VM'lere yerleştirin. Bu, çalışma zamanı veya altyapı yapılandırmasıdır; Fleet'in `--runtime docker|podman` seçeneği OCI yalıtım arka ucunu değil, kapsayıcı CLI'sını seçer. Docker'ın [alternatif kapsayıcı çalışma zamanlarına](https://docs.docker.com/engine/daemon/alternative-runtimes/) ve [Docker VM çalışma zamanı kılavuzuna](/tr/install/docker-vm-runtime) bakın.
-3. **Düşmanca kiracılar için ayrı makineler.** Düşmanca kiracıları tek bir OpenClaw sürecinde veya işletim sistemi kullanıcısı altında birlikte barındırmayın. Kiracılar aynı ana makine operatörüne güvenmiyorsa veya daha güçlü bir yönetimsel sınıra ihtiyaç duyuyorsa ayrı çalışma zamanı yönetimine sahip ayrı VM'ler veya fiziksel ana makineler kullanın.
+1. **Güçlendirilmiş konteyner temel profili.** Fleet tüm Linux yeteneklerini kaldırır, `no-new-privileges` özelliğini etkinleştirir, PID, bellek, CPU ve isteğe bağlı yazılabilir katman disk sınırlarını uygular, ayrı kalıcı bağlama noktaları ve hücre başına ağlar kullanır ve yalnızca ana makine geri döngüsünde yayın yapar. Köprü ağı, giden trafiği kısıtlamaz; bir hücrenin giden bağlantılar başlatmaması gerektiğinde Podman `--network internal` veya Docker ana makine güvenlik duvarı politikasını kullanın. Bu, operatöre ve ana makineye güvenen kiracılar için varsayılan profildir.
+2. **Daha güçlü konteyner veya sanal makine yalıtımı.** Daha yüksek riskli iş yükleri için Docker veya Podman'ı gVisor ya da Kata Containers gibi daha güçlü bir OCI yalıtım çalışma zamanı kullanacak şekilde yapılandırın veya hücreleri microVM'lere yerleştirin. Bu, çalışma zamanı veya altyapı yapılandırmasıdır; Fleet'in `--runtime docker|podman` seçeneği OCI yalıtım arka ucunu değil, konteyner CLI'sini seçer. Docker'ın [alternatif konteyner çalışma zamanlarına](https://docs.docker.com/engine/daemon/alternative-runtimes/) ve [Docker VM çalışma zamanı kılavuzuna](/tr/install/docker-vm-runtime) bakın.
+3. **Kötü niyetli kiracılar için ayrı makineler.** Kötü niyetli kiracıları tek bir OpenClaw sürecinde veya işletim sistemi kullanıcısı altında birlikte barındırmayın. Kiracılar aynı ana makine operatörüne güvenmiyorsa veya daha güçlü bir yönetim sınırına ihtiyaç duyuyorsa ayrı çalışma zamanı yönetimine sahip ayrı sanal makineler veya fiziksel ana makineler kullanın.
 
-Bu basamakların hiçbiri OpenClaw uygulama güven modelini değiştirmez: tek bir Gateway, tek bir güvenilir operatör alanı olmaya devam eder.
+Bu basamakların hiçbiri OpenClaw uygulamasının güven modelini değiştirmez: Bir Gateway, tek bir güvenilir operatör etki alanı olmaya devam eder.
 
 ## Hızlı başlangıç
 
@@ -68,48 +68,48 @@ Bir hücre oluşturun. Komut, oluşturulan Gateway token'ını bir kez yazdırı
 openclaw fleet create acme
 ```
 
-Bildirilen `http://127.0.0.1:<port>` URL'sini Fleet ana makinesinde açın, ilgili kiracının token'ıyla kimlik doğrulaması yapın ve hücre içinde sağlayıcı kimlik bilgilerini ve kanal hesaplarını yapılandırın.
+Bildirilen `http://127.0.0.1:<port>` URL'sini Fleet ana makinesinde açın, ilgili kiracının token'ıyla kimlik doğrulaması yapın ve sağlayıcı kimlik bilgileriyle kanal hesaplarını hücre içinde yapılandırın.
 
-Kapsayıcı durumunu ve Gateway'in çalışır durumda olup olmadığını kontrol edin:
+Konteyner durumunu ve Gateway'in çalışır durumda olup olmadığını denetleyin:
 
 ```bash
 openclaw fleet status acme
 ```
 
-Ana makine portunu, bağlanmış verileri, kaynak profilini, kullanıcı tarafından sağlanan ortamı ve Gateway token'ını koruyarak yükseltin:
+Ana makine bağlantı noktasını, bağlanan verileri, kaynak profilini, kullanıcı tarafından sağlanan ortamı ve Gateway token'ını koruyarak yükseltin:
 
 ```bash
 openclaw fleet upgrade acme
 ```
 
-Kiracı verilerini koruyarak kapsayıcıyı ve kayıt defteri satırını kaldırın:
+Kiracı verilerini koruyarak konteyneri ve kayıt defteri satırını kaldırın:
 
 ```bash
 openclaw fleet rm acme --force
 ```
 
-Kalıcı kiracı verilerini de silmek için `--purge-data` ekleyin. Temizleme işlemi `--force` gerektirir, geri alınamaz ve herhangi bir şeyi silmeden önce çözümlenmiş yolun sınırlar içinde kalıp kalmadığını denetler:
+Kalıcı kiracı verilerini de silmek için `--purge-data` ekleyin. Temizleme işlemi `--force` gerektirir, geri alınamaz ve herhangi bir şeyi silmeden önce çözümlenmiş yol kapsama denetimi gerçekleştirir:
 
 ```bash
 openclaw fleet rm acme --purge-data --force
 ```
 
-Tüm komutlar ve seçenekler için [`openclaw fleet` CLI referansına](/cli/fleet) bakın.
+Tüm komutlar ve seçenekler için [`openclaw fleet` CLI başvurusuna](/tr/cli/fleet) bakın.
 
-## Mevcut kapsam
+## Geçerli kapsam
 
 Fleet şu yüzeyleri sağlamaz:
 
 - Paylaşılan kanal hesapları veya paylaşılan bir giriş yönlendiricisi
-- Eksiksiz OpenClaw örnekleri yerine küçültülmüş kiracı başına ana makine süreçleri
-- Tek bir denetleyici tarafından yönetilen uzak hücre ana makineleri
-- Kiracı self servis portalı, faturalandırma düzlemi veya yetki devredilmiş yönetim kullanıcı arayüzü
+- Eksiksiz OpenClaw örnekleri yerine sadeleştirilmiş kiracı başına ana makine süreçleri
+- Tek bir gözetmen tarafından yönetilen uzak hücre ana makineleri
+- Kiracı self servis portalı, faturalandırma düzlemi veya devredilmiş yönetim kullanıcı arayüzü
 
-Bu yetenekler açık kimlik, yönlendirme, yetkilendirme ve hata alanı sözleşmeleri gerektirir. Tek bir Gateway'i veya kimlik bilgilerini kiracılar arasında paylaşarak bunları yaklaşık olarak gerçekleştirmeye çalışmayın. Fleet, tek ana makineli bir yaşam döngüsü denetleyicisidir; birden fazla makineye yayılan ve kimlikle yönetilen filolar ayrı bir kontrol düzlemi katmanı gerektirir.
+Bu yetenekler açık kimlik, yönlendirme, yetkilendirme ve hata etki alanı sözleşmeleri gerektirir. Tek bir Gateway'i veya kimlik bilgilerini kiracılar arasında paylaşarak bunları yaklaşık olarak uygulamaya çalışmayın. Fleet, tek ana makineli bir yaşam döngüsü gözetmenidir; çok makineli, kimlikle yönetilen filolar ayrı bir kontrol düzlemi katmanı gerektirir.
 
 ## İlgili
 
-- [`openclaw fleet`](/cli/fleet)
+- [`openclaw fleet`](/tr/cli/fleet)
 - [Gateway güvenliği](/tr/gateway/security)
 - [Birden fazla Gateway](/tr/gateway/multiple-gateways)
 - [Docker](/tr/install/docker)

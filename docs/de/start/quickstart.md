@@ -1,11 +1,11 @@
 ---
 read_when:
     - Sie suchen nach den schnellsten Einrichtungsschritten
-    - Sie wurden über einen älteren Link hierher weitergeleitet
-summary: Der Schnellstart wurde nach „Erste Schritte“ verschoben.
+    - Sie wurden über einen älteren Link hierher weitergeleitet.
+summary: Der Schnellstart wurde in „Erste Schritte“ verschoben.
 title: Schnellstart
 x-i18n:
-    generated_at: "2026-07-24T04:08:02Z"
+    generated_at: "2026-07-26T18:06:56Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Der Schnellstart ist jetzt Teil von [Erste Schritte](/de/start/getting-started).
 
 <Columns>
   <Card title="Erste Schritte" href="/de/start/getting-started">
-    Installieren Sie OpenClaw und starten Sie innerhalb weniger Minuten Ihren ersten Chat.
+    Installieren Sie OpenClaw und starten Sie in wenigen Minuten Ihren ersten Chat.
   </Card>
   <Card title="Onboarding (CLI)" href="/de/start/wizard">
     Vollständige Referenz zum CLI-Onboarding und erweiterte Optionen.

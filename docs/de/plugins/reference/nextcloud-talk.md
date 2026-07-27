@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das Plugin nextcloud-talk.
-summary: OpenClaw Nextcloud Talk-Kanal-Plugin für Unterhaltungen.
+    - Sie installieren, konfigurieren oder überprüfen das nextcloud-talk-Plugin
+summary: OpenClaw-Plugin für den Nextcloud-Talk-Kanal für Unterhaltungen.
 title: Nextcloud-Talk-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:00:02Z"
+    generated_at: "2026-07-26T17:58:28Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Nextcloud-Talk-Plugin
 
-OpenClaw-Nextcloud-Talk-Kanal-Plugin für Unterhaltungen.
+OpenClaw Nextcloud-Talk-Kanal-Plugin für Unterhaltungen.
 
 ## Distribution
 

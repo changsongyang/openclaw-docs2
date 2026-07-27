@@ -1,11 +1,11 @@
 ---
 read_when:
     - Sie möchten Abhängigkeiten installieren oder Paketskripte mit Bun ausführen
-    - Es treten Probleme mit Bun-Installations-, Patch- oder Lifecycle-Skripten auf
+    - Es treten Probleme mit Bun-Installations-, Patch- oder Lebenszyklusskripten auf
 summary: Bun-Workflow für Installationen und Paketskripte; Node ist zur Laufzeit erforderlich
 title: Bun
 x-i18n:
-    generated_at: "2026-07-24T03:55:17Z"
+    generated_at: "2026-07-26T17:53:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -19,7 +19,7 @@ x-i18n:
 Bun kann die OpenClaw-CLI oder das Gateway nicht ausführen, da es die erforderliche `node:sqlite`-API nicht bereitstellt. Installieren Sie für alle OpenClaw-Laufzeitbefehle eine unterstützte Node-Version.
 </Warning>
 
-Bun kann weiterhin optional zum Installieren von Abhängigkeiten und Ausführen von Paketskripten verwendet werden. Der standardmäßige Paketmanager bleibt `pnpm`, der vollständig unterstützt und von den Dokumentationswerkzeugen verwendet wird. Bun kann `pnpm-lock.yaml` nicht verwenden und ignoriert es.
+Bun kann weiterhin optional zum Installieren von Abhängigkeiten und zum Ausführen von Paketskripten verwendet werden. Der standardmäßige Paketmanager bleibt `pnpm`, der vollständig unterstützt und von den Dokumentationswerkzeugen verwendet wird. Bun kann `pnpm-lock.yaml` nicht verwenden und ignoriert es.
 
 ## Installation
 
@@ -51,10 +51,10 @@ Bun kann weiterhin optional zum Installieren von Abhängigkeiten und Ausführen 
 
 Bun blockiert Lebenszyklusskripte von Abhängigkeiten, sofern ihnen nicht ausdrücklich vertraut wird. Für dieses Repository sind die häufig blockierten Skripte nicht erforderlich:
 
-- `baileys` `preinstall`: prüft, ob die Node-Hauptversion >= 20 ist (OpenClaw erfordert Node 22.22.3+, 24.15+ oder 25.9+, wobei Node 24 empfohlen wird)
+- `baileys` `preinstall`: prüft, ob die Node-Hauptversion >= 20 ist (OpenClaw erfordert Node 22.22.3+, 24.15+ oder 25.9+; Node 24 wird empfohlen)
 - `protobufjs` `postinstall`: gibt Warnungen zu inkompatiblen Versionsschemata aus (keine Build-Artefakte)
 
-Wenn ein Laufzeitproblem auftritt, das diese Skripte erfordert, vertrauen Sie ihnen ausdrücklich:
+Wenn ein Laufzeitproblem auftritt, für dessen Behebung diese Skripte erforderlich sind, vertrauen Sie ihnen ausdrücklich:
 
 ```sh
 bun pm trust baileys protobufjs
@@ -62,10 +62,10 @@ bun pm trust baileys protobufjs
 
 ## Einschränkungen
 
-Einige Paketskripte verwenden intern fest codiert `pnpm` (zum Beispiel `check:docs`, `ui:*`, `protocol:check`). Wenn sie über `bun run` ausgeführt werden, rufen sie dennoch `pnpm` über die Shell auf. Führen Sie diese daher einfach direkt über `pnpm` aus.
+Einige Paketskripte verwenden intern fest `pnpm` (zum Beispiel `check:docs`, `ui:*`, `protocol:check`). Wenn sie über `bun run` ausgeführt werden, rufen sie dennoch `pnpm` über die Shell auf. Führen Sie diese daher einfach direkt über `pnpm` aus.
 
 ## Verwandte Themen
 
 - [Installationsübersicht](/de/install)
 - [Node.js](/de/install/node)
-- [Aktualisieren](/de/install/updating)
+- [Aktualisierung](/de/install/updating)

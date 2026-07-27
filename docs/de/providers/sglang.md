@@ -2,10 +2,10 @@
 read_when:
     - Sie möchten OpenClaw mit einem lokalen SGLang-Server verwenden
     - Sie möchten OpenAI-kompatible /v1-Endpunkte mit Ihren eigenen Modellen.
-summary: OpenClaw mit SGLang ausführen (OpenAI-kompatibler selbst gehosteter Server)
+summary: OpenClaw mit SGLang ausführen (selbst gehosteter, OpenAI-kompatibler Server)
 title: SGLang
 x-i18n:
-    generated_at: "2026-07-24T04:05:35Z"
+    generated_at: "2026-07-26T18:04:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,21 +15,21 @@ x-i18n:
     workflow: 16
 ---
 
-SGLang stellt Open-Weight-Modelle über eine OpenAI-kompatible HTTP-API bereit. OpenClaw verbindet sich mithilfe der Provider-Familie `openai-completions` mit SGLang und erkennt verfügbare Modelle automatisch.
+SGLang stellt Open-Weight-Modelle über eine OpenAI-kompatible HTTP-API bereit. OpenClaw stellt über die Provider-Familie `openai-completions` eine Verbindung zu SGLang her und erkennt verfügbare Modelle automatisch.
 
 | Eigenschaft               | Wert                                                         |
 | ------------------------- | ------------------------------------------------------------ |
 | Provider-ID               | `sglang`                                                     |
 | Plugin                    | gebündelt, `enabledByDefault: true`                            |
-| Umgebungsvariable für Authentifizierung | `SGLANG_API_KEY` (beliebiger nicht leerer Wert, wenn der Server keine Authentifizierung verwendet) |
+| Authentifizierungs-Umgebungsvariable | `SGLANG_API_KEY` (beliebiger nicht leerer Wert, wenn der Server keine Authentifizierung verwendet) |
 | Onboarding-Flag           | `--auth-choice sglang`                                       |
 | API                       | OpenAI-kompatibel (`openai-completions`)                     |
 | Standard-Basis-URL        | `http://127.0.0.1:30000/v1`                                  |
-| Platzhalter für das Standardmodell | `sglang/Qwen/Qwen3-8B`                                       |
-| Streaming-Nutzung        | Ja (`supportsStreamingUsage: true`)                         |
-| Preisgestaltung           | Als extern-kostenlos gekennzeichnet (`modelPricing.external: false`)        |
+| Platzhalter für Standardmodell | `sglang/Qwen/Qwen3-8B`                                       |
+| Streaming-Nutzung         | Ja (`supportsStreamingUsage: true`)                         |
+| Preisgestaltung           | Als extern kostenlos gekennzeichnet (`modelPricing.external: false`)        |
 
-OpenClaw **erkennt** verfügbare Modelle von SGLang außerdem **automatisch**, wenn Sie dies mit `SGLANG_API_KEY` aktivieren. Verwenden Sie `sglang/*` in `agents.defaults.models`, damit die Erkennung dynamisch bleibt, wenn Sie zusätzlich eine benutzerdefinierte SGLang-Basis-URL konfigurieren. Weitere Informationen finden Sie unten unter [Modellerkennung (impliziter Provider)](#model-discovery-implicit-provider).
+OpenClaw **erkennt** verfügbare Modelle von SGLang außerdem **automatisch**, wenn Sie sich mit `SGLANG_API_KEY` dafür entscheiden. Verwenden Sie `sglang/*` in `agents.defaults.models`, damit die Erkennung dynamisch bleibt, wenn Sie zugleich eine benutzerdefinierte SGLang-Basis-URL konfigurieren. Siehe unten [Modellerkennung (impliziter Provider)](#model-discovery-implicit-provider).
 
 ## Erste Schritte
 
@@ -43,7 +43,7 @@ OpenClaw **erkennt** verfügbare Modelle von SGLang außerdem **automatisch**, w
 
   </Step>
   <Step title="API-Schlüssel festlegen">
-    Wenn auf Ihrem Server keine Authentifizierung konfiguriert ist, funktioniert jeder beliebige Wert:
+    Wenn auf Ihrem Server keine Authentifizierung konfiguriert ist, funktioniert ein beliebiger Wert:
 
     ```bash
     export SGLANG_API_KEY="sglang-local"
@@ -55,7 +55,7 @@ OpenClaw **erkennt** verfügbare Modelle von SGLang außerdem **automatisch**, w
     openclaw onboard
     ```
 
-    Alternativ können Sie das Modell manuell konfigurieren:
+    Oder konfigurieren Sie das Modell manuell:
 
     ```json5
     {
@@ -80,7 +80,7 @@ Wenn `SGLANG_API_KEY` festgelegt ist (oder ein Authentifizierungsprofil vorhande
 und wandelt die zurückgegebenen IDs in Modelleinträge um.
 
 <Note>
-Wenn Sie `models.providers.sglang` ausdrücklich festlegen, verwendet OpenClaw standardmäßig die von Ihnen deklarierten
+Wenn Sie `models.providers.sglang` explizit festlegen, verwendet OpenClaw standardmäßig die von Ihnen deklarierten
 Modelle. Fügen Sie `"sglang/*": {}` zu `agents.defaults.models` hinzu, wenn
 OpenClaw den `/models`-Endpunkt dieses konfigurierten Providers abfragen und
 alle angekündigten SGLang-Modelle einbeziehen soll.
@@ -90,8 +90,8 @@ alle angekündigten SGLang-Modelle einbeziehen soll.
 
 Verwenden Sie eine explizite Konfiguration, wenn:
 
-- SGLang auf einem anderen Host oder Port ausgeführt wird.
-- Sie Werte für `contextWindow`/`maxTokens` fest vorgeben möchten.
+- SGLang auf einem anderen Host/Port ausgeführt wird.
+- Sie die Werte für `contextWindow`/`maxTokens` fest vorgeben möchten.
 - Ihr Server einen echten API-Schlüssel erfordert (oder Sie die Header steuern möchten).
 
 ```json5
@@ -128,9 +128,9 @@ Verwenden Sie eine explizite Konfiguration, wenn:
 
     | Verhalten | SGLang |
     |----------|--------|
-    | Ausschließlich für OpenAI vorgesehene Anfrageformung | Nicht angewendet |
+    | Nur für OpenAI vorgesehene Anfrageaufbereitung | Nicht angewendet |
     | `service_tier`, Responses `store`, Hinweise zum Prompt-Cache | Nicht gesendet |
-    | Reasoning-Kompatibilitätsformung der Nutzlast | Nicht angewendet |
+    | Aufbereitung der Nutzlast für Reasoning-Kompatibilität | Nicht angewendet |
     | Verborgene Zuordnungs-Header (`originator`, `version`, `User-Agent`) | Werden bei benutzerdefinierten SGLang-Basis-URLs nicht eingefügt |
 
   </Accordion>
@@ -138,7 +138,7 @@ Verwenden Sie eine explizite Konfiguration, wenn:
   <Accordion title="Fehlerbehebung">
     **Server nicht erreichbar**
 
-    Überprüfen Sie, ob der Server ausgeführt wird und antwortet:
+    Vergewissern Sie sich, dass der Server ausgeführt wird und antwortet:
 
     ```bash
     curl http://127.0.0.1:30000/v1/models
@@ -147,7 +147,7 @@ Verwenden Sie eine explizite Konfiguration, wenn:
     **Authentifizierungsfehler**
 
     Wenn Anfragen aufgrund von Authentifizierungsfehlern fehlschlagen, legen Sie einen echten `SGLANG_API_KEY` fest, der Ihrer
-    Serverkonfiguration entspricht, oder konfigurieren Sie den Provider ausdrücklich unter
+    Serverkonfiguration entspricht, oder konfigurieren Sie den Provider explizit unter
     `models.providers.sglang`.
 
     <Tip>

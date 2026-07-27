@@ -3,7 +3,7 @@ read_when: Connecting the macOS app to a remote gateway over SSH
 summary: दूरस्थ Gateway से कनेक्ट होने वाले OpenClaw.app के लिए SSH टनल सेटअप
 title: रिमोट Gateway सेटअप
 x-i18n:
-    generated_at: "2026-07-19T09:27:47Z"
+    generated_at: "2026-07-27T20:57:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -19,7 +19,7 @@ x-i18n:
 
 # रिमोट Gateway के साथ OpenClaw.app चलाना
 
-OpenClaw.app एक SSH टनल के माध्यम से रिमोट Gateway तक पहुँचता है: एक SSH `LocalForward` स्थानीय पोर्ट को रिमोट होस्ट के Gateway WebSocket पोर्ट से मैप करता है।
+OpenClaw.app एक SSH टनल के माध्यम से रिमोट Gateway तक पहुँचता है: एक SSH `LocalForward` स्थानीय पोर्ट को रिमोट होस्ट पर Gateway WebSocket पोर्ट से मैप करता है।
 
 ```mermaid
 flowchart TB
@@ -44,13 +44,13 @@ flowchart TB
 
 ## सेटअप
 
-1. `LocalForward 18789 127.0.0.1:18789` के साथ एक SSH कॉन्फ़िग प्रविष्टि जोड़ें (पूरे कॉन्फ़िग ब्लॉक के लिए [रिमोट एक्सेस](/hi/gateway/remote#macos-persistent-ssh-tunnel-via-launchagent) देखें)।
-2. `ssh-copy-id` के साथ अपनी SSH कुंजी को रिमोट होस्ट पर कॉपी करें।
+1. `LocalForward 18789 127.0.0.1:18789` के साथ एक SSH कॉन्फ़िग प्रविष्टि जोड़ें (पूर्ण कॉन्फ़िग ब्लॉक के लिए [रिमोट एक्सेस](/hi/gateway/remote#macos-persistent-ssh-tunnel-via-launchagent) देखें)।
+2. `ssh-copy-id` का उपयोग करके अपनी SSH कुंजी रिमोट होस्ट पर कॉपी करें।
 3. `openclaw config set gateway.remote.token "<your-token>"` के माध्यम से `gateway.remote.token` (या `gateway.remote.password`) सेट करें।
 4. टनल शुरू करें: `ssh -N remote-gateway &`।
-5. OpenClaw.app बंद करके फिर से खोलें।
+5. OpenClaw.app को बंद करके दोबारा खोलें।
 
-रीबूट के बाद भी बने रहने और अपने-आप दोबारा कनेक्ट होने वाले टनल के लिए, मैन्युअल `ssh -N` के बजाय [रिमोट एक्सेस](/hi/gateway/remote#macos-persistent-ssh-tunnel-via-launchagent) पृष्ठ पर दिए गए LaunchAgent सेटअप का उपयोग करें।
+रीबूट के बाद भी चलने वाली और स्वचालित रूप से पुनः कनेक्ट होने वाली टनल के लिए, मैन्युअल `ssh -N` के बजाय [रिमोट एक्सेस](/hi/gateway/remote#macos-persistent-ssh-tunnel-via-launchagent) पृष्ठ पर दिए गए LaunchAgent सेटअप का उपयोग करें।
 
 ## यह कैसे काम करता है
 
@@ -58,10 +58,10 @@ flowchart TB
 | ------------------------------------ | ------------------------------------------------------------- |
 | `LocalForward 18789 127.0.0.1:18789` | स्थानीय पोर्ट 18789 को रिमोट पोर्ट 18789 पर फ़ॉरवर्ड करता है                |
 | `ssh -N`                             | रिमोट कमांड निष्पादित किए बिना SSH (केवल पोर्ट फ़ॉरवर्डिंग)  |
-| `KeepAlive`                          | टनल क्रैश होने पर उसे अपने-आप पुनः शुरू करता है (LaunchAgent) |
+| `KeepAlive`                          | टनल क्रैश होने पर उसे स्वचालित रूप से पुनः शुरू करता है (LaunchAgent) |
 | `RunAtLoad`                          | LaunchAgent लोड होने पर टनल शुरू करता है (LaunchAgent)    |
 
-OpenClaw.app क्लाइंट पर `ws://127.0.0.1:18789` से कनेक्ट होता है। टनल उस कनेक्शन को Gateway चलाने वाले रिमोट होस्ट के पोर्ट 18789 पर फ़ॉरवर्ड करता है।
+OpenClaw.app क्लाइंट पर `ws://127.0.0.1:18789` से कनेक्ट होता है। टनल उस कनेक्शन को Gateway चला रहे रिमोट होस्ट के पोर्ट 18789 पर फ़ॉरवर्ड करती है।
 
 ## संबंधित
 

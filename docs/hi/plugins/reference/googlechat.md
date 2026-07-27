@@ -4,7 +4,7 @@ read_when:
 summary: स्पेस और डायरेक्ट मैसेज के लिए OpenClaw Google Chat चैनल Plugin।
 title: Google Chat Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:15:21Z"
+    generated_at: "2026-07-27T18:47:06Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - amazon-bedrock-mantle Plugin のインストール、設定、または監査を行っています
+    - amazon-bedrock-mantle Plugin をインストール、設定、または監査しています
 summary: OpenAI 互換モデルルーティング用の OpenClaw Amazon Bedrock Mantle プロバイダー Plugin。
 title: Amazon Bedrock Mantle Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:56:41Z"
+    generated_at: "2026-07-26T10:11:29Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

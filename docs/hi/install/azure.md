@@ -1,12 +1,12 @@
 ---
 read_when:
-    - आप Azure पर Network Security Group की सुरक्षा मज़बूती के साथ OpenClaw को 24/7 चलाना चाहते हैं
-    - आप अपनी Azure Linux VM पर उत्पादन-स्तरीय, हमेशा चालू रहने वाला OpenClaw Gateway चाहते हैं
+    - आप Azure पर Network Security Group की सुरक्षा सुदृढ़ता के साथ OpenClaw को 24/7 चलाना चाहते हैं
+    - आप अपनी Azure Linux VM पर प्रोडक्शन-ग्रेड, हमेशा चालू रहने वाला OpenClaw Gateway चाहते हैं
     - आप Azure Bastion SSH के साथ सुरक्षित प्रशासन चाहते हैं
-summary: स्थायी स्थिति के साथ Azure Linux VM पर OpenClaw Gateway को 24/7 चलाएँ
+summary: टिकाऊ स्टेट के साथ Azure Linux VM पर OpenClaw Gateway 24/7 चलाएँ
 title: Azure
 x-i18n:
-    generated_at: "2026-07-16T15:30:28Z"
+    generated_at: "2026-07-27T17:56:31Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,21 +16,21 @@ x-i18n:
     workflow: 16
 ---
 
-Azure CLI के साथ Azure Linux VM सेट अप करें, Network Security Group (NSG) की सुरक्षा सुदृढ़ करें, SSH पहुँच के लिए Azure Bastion कॉन्फ़िगर करें और OpenClaw इंस्टॉल करें।
+Azure CLI से Azure Linux VM सेट अप करें, Network Security Group (NSG) की सुरक्षा सुदृढ़ करें, SSH पहुँच के लिए Azure Bastion कॉन्फ़िगर करें और OpenClaw इंस्टॉल करें।
 
 ## आप क्या करेंगे
 
-- Azure CLI के साथ Azure नेटवर्किंग (VNet, सबनेट, NSG) और कंप्यूट संसाधन बनाएँगे
-- NSG नियम लागू करेंगे, ताकि VM पर SSH की अनुमति केवल Azure Bastion से हो
-- SSH पहुँच के लिए Azure Bastion का उपयोग करेंगे (VM पर कोई सार्वजनिक IP नहीं)
-- इंस्टॉलर स्क्रिप्ट से OpenClaw इंस्टॉल करेंगे
-- Gateway सत्यापित करेंगे
+- Azure CLI से Azure नेटवर्किंग (VNet, सबनेट, NSG) और कंप्यूट संसाधन बनाएँ
+- NSG नियम लागू करें, ताकि VM पर SSH की अनुमति केवल Azure Bastion से हो
+- SSH पहुँच के लिए Azure Bastion का उपयोग करें (VM पर कोई सार्वजनिक IP नहीं)
+- इंस्टॉलर स्क्रिप्ट से OpenClaw इंस्टॉल करें
+- Gateway सत्यापित करें
 
 ## आपको क्या चाहिए
 
 - कंप्यूट और नेटवर्क संसाधन बनाने की अनुमति वाली Azure सदस्यता
-- Azure CLI इंस्टॉल किया हुआ हो ([Azure CLI इंस्टॉल करने के चरण](https://learn.microsoft.com/cli/azure/install-azure-cli) देखें)
-- एक SSH कुंजी युग्म (आवश्यकता होने पर इसे जनरेट करना इस मार्गदर्शिका में बताया गया है)
+- Azure CLI इंस्टॉल हो ([Azure CLI इंस्टॉल करने के चरण](https://learn.microsoft.com/cli/azure/install-azure-cli) देखें)
+- एक SSH कुंजी युग्म (यदि आवश्यक हो, तो इस गाइड में इसे जनरेट करने की प्रक्रिया दी गई है)
 - लगभग 20-30 मिनट
 
 ## डिप्लॉयमेंट कॉन्फ़िगर करें
@@ -46,7 +46,7 @@ Azure CLI के साथ Azure Linux VM सेट अप करें, Network
 
   </Step>
 
-  <Step title="आवश्यक संसाधन प्रदाताओं को पंजीकृत करें (एक बार)">
+  <Step title="आवश्यक संसाधन प्रदाता पंजीकृत करें (एक बार)">
     ```bash
     az provider register --namespace Microsoft.Compute
     az provider register --namespace Microsoft.Network
@@ -97,15 +97,15 @@ Azure CLI के साथ Azure Linux VM सेट अप करें, Network
 
   </Step>
 
-  <Step title="VM का आकार और OS डिस्क का आकार चुनें">
+  <Step title="VM आकार और OS डिस्क आकार चुनें">
     ```bash
     VM_SIZE="Standard_B2as_v2"
     OS_DISK_SIZE_GB=64
     ```
 
-    - हल्के उपयोग के लिए छोटे आकार से शुरू करें और बाद में क्षमता बढ़ाएँ।
-    - अधिक भार वाले ऑटोमेशन, अधिक चैनलों या बड़े मॉडल/टूल वर्कलोड के लिए अधिक vCPU/RAM/डिस्क का उपयोग करें।
-    - यदि आपके क्षेत्र या सदस्यता कोटा में कोई आकार उपलब्ध नहीं है, तो निकटतम उपलब्ध SKU चुनें।
+    - हल्के उपयोग के लिए छोटे आकार से शुरू करें और बाद में इसे बढ़ाएँ।
+    - अधिक जटिल स्वचालन, अधिक चैनलों या बड़े मॉडल/टूल वर्कलोड के लिए अधिक vCPU/RAM/डिस्क का उपयोग करें।
+    - यदि कोई आकार आपके क्षेत्र या सदस्यता कोटा में उपलब्ध नहीं है, तो उपलब्ध निकटतम SKU चुनें।
 
     अपने लक्षित क्षेत्र में उपलब्ध VM आकारों की सूची देखें:
 
@@ -113,7 +113,7 @@ Azure CLI के साथ Azure Linux VM सेट अप करें, Network
     az vm list-skus --location "${LOCATION}" --resource-type virtualMachines -o table
     ```
 
-    अपने वर्तमान vCPU और डिस्क उपयोग/कोटा की जाँच करें:
+    अपना वर्तमान vCPU और डिस्क उपयोग/कोटा जाँचें:
 
     ```bash
     az vm list-usage --location "${LOCATION}" -o table
@@ -132,7 +132,7 @@ Azure CLI के साथ Azure Linux VM सेट अप करें, Network
   </Step>
 
   <Step title="नेटवर्क सुरक्षा समूह बनाएँ">
-    NSG बनाएँ और नियम जोड़ें, ताकि केवल Bastion सबनेट ही VM में SSH कर सके।
+    NSG बनाएँ और ऐसे नियम जोड़ें कि केवल Bastion सबनेट ही VM में SSH कर सके।
 
     ```bash
     az network nsg create \
@@ -163,7 +163,7 @@ Azure CLI के साथ Azure Linux VM सेट अप करें, Network
       --destination-port-ranges 22
     ```
 
-    नियमों का मूल्यांकन प्राथमिकता के अनुसार किया जाता है, जिसमें सबसे छोटी संख्या पहले आती है: Bastion ट्रैफ़िक को 100 पर अनुमति दी जाती है, फिर अन्य सभी SSH को 110 और 120 पर अवरुद्ध किया जाता है।
+    नियमों का मूल्यांकन प्राथमिकता के अनुसार किया जाता है, जिसमें सबसे छोटी संख्या पहले आती है: Bastion ट्रैफ़िक को 100 पर अनुमति मिलती है, फिर अन्य सभी SSH को 110 और 120 पर अवरुद्ध कर दिया जाता है।
 
   </Step>
 
@@ -182,7 +182,7 @@ Azure CLI के साथ Azure Linux VM सेट अप करें, Network
       -g "${RG}" --vnet-name "${VNET_NAME}" \
       -n "${VM_SUBNET_NAME}" --nsg "${NSG_NAME}"
 
-    # AzureBastionSubnet: Azure को यही सटीक नाम आवश्यक है
+    # AzureBastionSubnet: Azure के लिए यही सटीक नाम आवश्यक है
     az network vnet subnet create \
       -g "${RG}" --vnet-name "${VNET_NAME}" \
       -n AzureBastionSubnet \
@@ -211,7 +211,7 @@ Azure CLI के साथ Azure Linux VM सेट अप करें, Network
 
     `--public-ip-address ""` सार्वजनिक IP असाइन होने से रोकता है। चूँकि सबनेट-स्तरीय NSG पहले से सुरक्षा संभालता है, इसलिए `--nsg ""` प्रति-NIC NSG को छोड़ देता है।
 
-    `latest` के बजाय Ubuntu के किसी विशिष्ट इमेज संस्करण को पिन करने के लिए, पहले उपलब्ध संस्करणों की सूची देखें:
+    `latest` के बजाय किसी विशिष्ट Ubuntu इमेज संस्करण को पिन करने के लिए, पहले उपलब्ध संस्करणों की सूची देखें:
 
     ```bash
     az vm image list \
@@ -236,7 +236,7 @@ Azure CLI के साथ Azure Linux VM सेट अप करें, Network
       --sku Standard --enable-tunneling true
     ```
 
-    Bastion प्रोविज़निंग में आम तौर पर 5-10 मिनट लगते हैं, लेकिन कुछ क्षेत्रों में 15-30 मिनट तक लग सकते हैं।
+    Bastion का प्रावधान करने में सामान्यतः 5-10 मिनट लगते हैं, लेकिन कुछ क्षेत्रों में 15-30 मिनट तक लग सकते हैं।
 
   </Step>
 </Steps>
@@ -284,39 +284,39 @@ Azure CLI के साथ Azure Linux VM सेट अप करें, Network
 
 ## लागत संबंधी विचार
 
-अनुमानित मासिक लागतें (Azure Pricing Calculator में वर्तमान मूल्य सत्यापित करें, क्योंकि दरें क्षेत्र के अनुसार अलग-अलग होती हैं और समय के साथ बदलती हैं):
+अनुमानित मासिक लागतें (Azure Pricing Calculator में वर्तमान मूल्य सत्यापित करें, क्योंकि दरें क्षेत्र के अनुसार अलग होती हैं और समय के साथ बदलती हैं):
 
 - Azure Bastion Standard SKU: लगभग $140/माह
 - VM (`Standard_B2as_v2`): लगभग $55/माह
 
 लागत कम करने के लिए:
 
-- उपयोग में न होने पर VM को डिअलोकेट करें। इससे कंप्यूट बिलिंग रुक जाती है (डिस्क शुल्क जारी रहता है)। डिअलोकेट रहने के दौरान Gateway तक पहुँचा नहीं जा सकता।
+- उपयोग में न होने पर VM को डीएलोकेट करें। इससे कंप्यूट बिलिंग रुक जाती है (डिस्क शुल्क जारी रहता है)। डीएलोकेट रहने के दौरान Gateway तक पहुँचा नहीं जा सकता।
 
   ```bash
   az vm deallocate -g "${RG}" -n "${VM_NAME}"
-  az vm start -g "${RG}" -n "${VM_NAME}"   # बाद में पुनः आरंभ करें
+  az vm start -g "${RG}" -n "${VM_NAME}"   # बाद में पुनः चालू करें
   ```
 
-- आवश्यकता न होने पर Bastion हटाएँ और दोबारा SSH पहुँच की आवश्यकता होने पर उसे फिर से बनाएँ; यह लागत का सबसे बड़ा घटक है और कुछ ही मिनटों में प्रोविज़न हो जाता है।
+- जब Bastion की आवश्यकता न हो, तो उसे हटा दें और दोबारा SSH पहुँच की आवश्यकता होने पर उसे फिर से बनाएँ; यह लागत का सबसे बड़ा घटक है और कुछ मिनटों में प्रावधान हो जाता है।
 - यदि आपको केवल Portal-आधारित SSH चाहिए और CLI टनलिंग (`az network bastion ssh`) की आवश्यकता नहीं है, तो Basic Bastion SKU (लगभग $38/माह) का उपयोग करें।
 
 ## क्लीनअप
 
-इस मार्गदर्शिका द्वारा बनाए गए सभी संसाधन हटाएँ:
+इस गाइड द्वारा बनाए गए सभी संसाधन हटाएँ:
 
 ```bash
 az group delete -n "${RG}" --yes --no-wait
 ```
 
-यह संसाधन समूह और उसके भीतर मौजूद सब कुछ (VM, VNet, NSG, Bastion, सार्वजनिक IP) हटा देता है।
+इससे संसाधन समूह और उसके अंदर मौजूद सभी चीज़ें (VM, VNet, NSG, Bastion, सार्वजनिक IP) हट जाती हैं।
 
 ## अगले चरण
 
 - मैसेजिंग चैनल सेट अप करें: [चैनल](/hi/channels)
-- स्थानीय डिवाइस को Node के रूप में पेयर करें: [Nodes](/hi/nodes)
+- स्थानीय डिवाइसों को Node के रूप में पेयर करें: [Node](/hi/nodes)
 - Gateway कॉन्फ़िगर करें: [Gateway कॉन्फ़िगरेशन](/hi/gateway/configuration)
-- GitHub Copilot मॉडल प्रदाता के साथ Azure डिप्लॉयमेंट का अधिक विवरण: [GitHub Copilot के साथ Azure पर OpenClaw](https://github.com/johnsonshi/openclaw-azure-github-copilot)
+- GitHub Copilot मॉडल प्रदाता के साथ Azure डिप्लॉयमेंट की अधिक जानकारी: [GitHub Copilot के साथ Azure पर OpenClaw](https://github.com/johnsonshi/openclaw-azure-github-copilot)
 
 ## संबंधित
 

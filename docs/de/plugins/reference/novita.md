@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das novita-Plugin.
-summary: Fügt Unterstützung für die Modell-Provider Novita, Novita AI und Novitaai zu OpenClaw hinzu.
+    - Sie installieren, konfigurieren oder überprüfen das novita-Plugin
+summary: Fügt OpenClaw Unterstützung für den Modell-Provider Novita, Novita AI und Novitaai hinzu.
 title: Novita-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:33:40Z"
+    generated_at: "2026-07-26T18:31:02Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -29,4 +29,4 @@ Provider: `novita`, `novita-ai`, `novitaai`
 
 ## Zugehörige Dokumentation
 
-- [novita](/de/providers/novita)
+- [Novita](/de/providers/novita)

@@ -1,11 +1,11 @@
 ---
 read_when:
-    - आप Tailscale के माध्यम से Gateway तक पहुँच चाहते हैं
-    - आप ब्राउज़र Control UI और कॉन्फ़िगरेशन संपादन चाहते हैं
+    - आप Tailscale के माध्यम से Gateway को एक्सेस करना चाहते हैं
+    - आप ब्राउज़र Control UI और कॉन्फ़िग संपादन चाहते हैं
 summary: 'Gateway वेब सतहें: नियंत्रण UI, बाइंड मोड और सुरक्षा'
 title: वेब
 x-i18n:
-    generated_at: "2026-07-16T17:41:36Z"
+    generated_at: "2026-07-27T18:55:45Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,17 +15,17 @@ x-i18n:
     workflow: 16
 ---
 
-Gateway, Gateway WebSocket वाले उसी पोर्ट से एक छोटा **ब्राउज़र नियंत्रण UI** (Vite + Lit) उपलब्ध कराता है:
+Gateway, Gateway WebSocket वाले उसी पोर्ट से एक छोटा **ब्राउज़र Control UI** (Vite + Lit) उपलब्ध कराता है:
 
 - डिफ़ॉल्ट: `http://<host>:18789/`
 - `gateway.tls.enabled: true` के साथ: `https://<host>:18789/`
-- वैकल्पिक उपसर्ग: `gateway.controlUi.basePath` सेट करें (उदा. `/openclaw`)
+- वैकल्पिक प्रीफ़िक्स: `gateway.controlUi.basePath` सेट करें (उदा. `/openclaw`)
 
-क्षमताएँ [नियंत्रण UI](/hi/web/control-ui) में दी गई हैं। यह पृष्ठ बाइंड मोड, सुरक्षा और अन्य वेब-संबंधी सतहों को कवर करता है।
+क्षमताएँ [Control UI](/hi/web/control-ui) में उपलब्ध हैं। इस पृष्ठ में बाइंड मोड, सुरक्षा और अन्य वेब-सामना करने वाली सतहें शामिल हैं।
 
 ## कॉन्फ़िगरेशन (डिफ़ॉल्ट रूप से चालू)
 
-एसेट मौजूद होने पर नियंत्रण UI **डिफ़ॉल्ट रूप से सक्षम** होता है (`dist/control-ui`):
+एसेट मौजूद होने पर (`dist/control-ui`) Control UI **डिफ़ॉल्ट रूप से सक्षम** होता है:
 
 ```json5
 {
@@ -37,17 +37,17 @@ Gateway, Gateway WebSocket वाले उसी पोर्ट से एक 
 
 ## Webhook
 
-जब `hooks.enabled=true`, तो Gateway उसी HTTP सर्वर पर एक Webhook एंडपॉइंट भी उपलब्ध कराता है। प्रमाणीकरण और पेलोड के लिए [Gateway कॉन्फ़िगरेशन संदर्भ](/hi/gateway/configuration-reference#hooks) में `hooks` देखें।
+जब `hooks.enabled=true`, तब Gateway उसी HTTP सर्वर पर एक Webhook एंडपॉइंट भी उपलब्ध कराता है। प्रमाणीकरण और पेलोड के लिए [Gateway कॉन्फ़िगरेशन संदर्भ](/hi/gateway/configuration-reference#hooks) में `hooks` देखें।
 
-## व्यवस्थापक HTTP RPC
+## एडमिन HTTP RPC
 
-`POST /api/v1/admin/rpc` चुनिंदा Gateway नियंत्रण-प्लेन विधियों को HTTP पर उपलब्ध कराता है। यह डिफ़ॉल्ट रूप से बंद है; केवल `admin-http-rpc` Plugin सक्षम होने पर पंजीकृत होता है। प्रमाणीकरण मॉडल, अनुमत विधियों और WebSocket API के साथ तुलना के लिए [व्यवस्थापक HTTP RPC](/hi/plugins/admin-http-rpc) देखें।
+`POST /api/v1/admin/rpc` चयनित Gateway कंट्रोल-प्लेन विधियों को HTTP पर उपलब्ध कराता है। यह डिफ़ॉल्ट रूप से बंद है; केवल `admin-http-rpc` Plugin सक्षम होने पर पंजीकृत होता है। प्रमाणीकरण मॉडल, अनुमत विधियों और WebSocket API से तुलना के लिए [एडमिन HTTP RPC](/hi/plugins/admin-http-rpc) देखें।
 
 ## Tailscale एक्सेस
 
 <Tabs>
   <Tab title="एकीकृत Serve (अनुशंसित)">
-    Gateway को लूपबैक पर रखें और Tailscale Serve को उसका प्रॉक्सी बनने दें:
+    Gateway को लूपबैक पर रखें और Tailscale Serve को इसका प्रॉक्सी बनाने दें:
 
     ```json5
     {
@@ -78,7 +78,7 @@ Gateway, Gateway WebSocket वाले उसी पोर्ट से एक 
     }
     ```
 
-    Gateway शुरू करें (यह गैर-लूपबैक उदाहरण साझा-गुप्त टोकन प्रमाणीकरण का उपयोग करता है):
+    Gateway शुरू करें (यह गैर-लूपबैक उदाहरण साझा-सीक्रेट टोकन प्रमाणीकरण का उपयोग करता है):
 
     ```bash
     openclaw gateway
@@ -98,22 +98,22 @@ Gateway, Gateway WebSocket वाले उसी पोर्ट से एक 
     }
     ```
 
-    `tailscale.mode: "funnel"` के लिए `gateway.auth.mode: "password"` आवश्यक है; Serve और Funnel दोनों के लिए `gateway.bind: "loopback"` आवश्यक है।
+    `tailscale.mode: "funnel"` के लिए `gateway.auth.mode: "password"` आवश्यक है; Serve और Funnel, दोनों के लिए `gateway.bind: "loopback"` आवश्यक है।
 
   </Tab>
 </Tabs>
 
 ## सुरक्षा संबंधी टिप्पणियाँ
 
-- Gateway प्रमाणीकरण डिफ़ॉल्ट रूप से आवश्यक है: टोकन, पासवर्ड, विश्वसनीय-प्रॉक्सी या सक्षम होने पर Tailscale Serve पहचान हेडर।
+- Gateway प्रमाणीकरण डिफ़ॉल्ट रूप से आवश्यक है: सक्षम होने पर टोकन, पासवर्ड, विश्वसनीय प्रॉक्सी या Tailscale Serve पहचान हेडर।
 - गैर-लूपबैक बाइंड के लिए भी Gateway प्रमाणीकरण **आवश्यक** है: टोकन/पासवर्ड प्रमाणीकरण या `gateway.auth.mode: "trusted-proxy"` वाला पहचान-जागरूक रिवर्स प्रॉक्सी।
-- ऑनबोर्डिंग विज़ार्ड डिफ़ॉल्ट रूप से साझा-गुप्त प्रमाणीकरण बनाता है और आम तौर पर लूपबैक पर भी Gateway टोकन जनरेट करता है।
-- साझा-गुप्त मोड में, UI WebSocket हैंडशेक के दौरान `connect.params.auth.token` या `connect.params.auth.password` भेजता है।
+- ऑनबोर्डिंग विज़ार्ड डिफ़ॉल्ट रूप से साझा-सीक्रेट प्रमाणीकरण बनाता है और आम तौर पर लूपबैक पर भी Gateway टोकन जनरेट करता है।
+- साझा-सीक्रेट मोड में, UI WebSocket हैंडशेक के दौरान `connect.params.auth.token` या `connect.params.auth.password` भेजता है।
 - `gateway.tls.enabled: true` के साथ, स्थानीय डैशबोर्ड/स्थिति सहायक `https://` URL और `wss://` WebSocket URL रेंडर करते हैं।
-- पहचान-युक्त मोड (Tailscale Serve, `trusted-proxy`) में, WebSocket प्रमाणीकरण जाँच साझा गुप्त के बजाय अनुरोध हेडर से पूरी होती है।
-- सार्वजनिक गैर-लूपबैक नियंत्रण UI परिनियोजनों के लिए, `gateway.controlUi.allowedOrigins` को स्पष्ट रूप से सेट करें (पूर्ण ओरिजिन)। लूपबैक, RFC1918/लिंक-लोकल, `.local`, `.ts.net` और Tailscale CGNAT होस्ट के लिए निजी समान-ओरिजिन लोड इसके बिना स्वीकार किए जाते हैं।
+- पहचान-संवाहक मोड (Tailscale Serve, `trusted-proxy`) में, WebSocket प्रमाणीकरण जाँच साझा सीक्रेट के बजाय अनुरोध हेडर से पूरी होती है।
+- सार्वजनिक गैर-लूपबैक Control UI परिनियोजनों के लिए, `gateway.controlUi.allowedOrigins` को स्पष्ट रूप से सेट करें (पूर्ण ओरिजिन)। लूपबैक, RFC1918/लिंक-लोकल, `.local`, `.ts.net` और Tailscale CGNAT होस्ट के लिए निजी समान-ओरिजिन लोड इसके बिना स्वीकार किए जाते हैं।
 - `gateway.controlUi.dangerouslyAllowHostHeaderOriginFallback: true` Host हेडर ओरिजिन फ़ॉलबैक सक्षम करता है; यह सुरक्षा का एक खतरनाक अवनयन है।
-- Serve के साथ, `gateway.auth.allowTailscale: true` होने पर Tailscale पहचान हेडर नियंत्रण UI/WebSocket प्रमाणीकरण को पूरा करते हैं (किसी टोकन/पासवर्ड की आवश्यकता नहीं)। HTTP API एंडपॉइंट Tailscale पहचान हेडर का उपयोग नहीं करते; वे हमेशा Gateway के सामान्य HTTP प्रमाणीकरण मोड का पालन करते हैं। Serve पर भी स्पष्ट क्रेडेंशियल आवश्यक करने के लिए `gateway.auth.allowTailscale: false` सेट करें। यह टोकन-रहित प्रवाह मानता है कि स्वयं Gateway होस्ट विश्वसनीय है। [Tailscale](/hi/gateway/tailscale) और [सुरक्षा](/hi/gateway/security) देखें।
+- Serve के साथ, `gateway.auth.allowTailscale: true` होने पर Tailscale पहचान हेडर Control UI/WebSocket प्रमाणीकरण पूरा करते हैं (टोकन/पासवर्ड आवश्यक नहीं)। HTTP API एंडपॉइंट Tailscale पहचान हेडर का उपयोग नहीं करते; वे हमेशा Gateway के सामान्य HTTP प्रमाणीकरण मोड का पालन करते हैं। Serve पर भी स्पष्ट क्रेडेंशियल आवश्यक करने के लिए `gateway.auth.allowTailscale: false` सेट करें। यह टोकन-रहित प्रवाह मानता है कि Gateway होस्ट स्वयं विश्वसनीय है। [Tailscale](/hi/gateway/tailscale) और [सुरक्षा](/hi/gateway/security) देखें।
 
 ## UI बनाना
 

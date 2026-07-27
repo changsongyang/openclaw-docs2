@@ -1,10 +1,10 @@
 ---
 read_when:
-    - sms pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: OpenClaw metin mesajları için Twilio SMS kanal Plugin'i.
-title: Sms eklentisi
+    - sms pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+summary: OpenClaw metin mesajları için Twilio SMS kanal plugini.
+title: SMS Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:26:59Z"
+    generated_at: "2026-07-26T23:33:46Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Sms plugin
+# SMS Plugin
 
-OpenClaw metin mesajları için Twilio SMS kanal plugin'i.
+OpenClaw metin mesajları için Twilio SMS kanal Plugin'i.
 
 ## Dağıtım
 
@@ -29,4 +29,4 @@ kanallar: `sms`
 
 ## İlgili belgeler
 
-- [sms](/tr/channels/sms)
+- [SMS](/tr/channels/sms)

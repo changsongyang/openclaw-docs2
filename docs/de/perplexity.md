@@ -3,7 +3,7 @@ redirect: /tools/perplexity-search
 summary: Weiterleitung zu /tools/perplexity-search
 title: Perplexity-Suche
 x-i18n:
-    generated_at: "2026-07-24T05:03:12Z"
+    generated_at: "2026-07-26T18:34:03Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

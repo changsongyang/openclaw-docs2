@@ -2,7 +2,7 @@
 summary: Weiterleitung zu /automation/cron-jobs
 title: Gmail PubSub
 x-i18n:
-    generated_at: "2026-07-24T03:38:17Z"
+    generated_at: "2026-07-26T17:38:16Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -12,7 +12,7 @@ x-i18n:
     workflow: 16
 ---
 
-Diese Seite wurde auf der Seite „Geplante Aufgaben“ nach [Gmail-PubSub-Integration](/de/automation/cron-jobs#gmail-pubsub-integration) verschoben.
+Diese Seite wurde auf der Seite „Geplante Aufgaben“ zu [Gmail-PubSub-Integration](/de/automation/cron-jobs#gmail-pubsub-integration) verschoben.
 
 ## Verwandte Themen
 

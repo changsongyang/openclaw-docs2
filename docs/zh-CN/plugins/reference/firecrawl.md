@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安装、配置或审计 firecrawl 插件
-summary: 添加智能体可调用的工具。添加 Web 获取提供商支持。添加 Web 搜索提供商支持。
+summary: 添加可由智能体调用的工具。添加 Web 获取提供商支持。添加 Web 搜索提供商支持。
 title: Firecrawl 插件
 x-i18n:
-    generated_at: "2026-07-16T11:50:07Z"
+    generated_at: "2026-07-26T06:21:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Firecrawl 插件
 
-添加 Agent 可调用的工具。添加网页抓取提供商支持。添加 Web 搜索提供商支持。
+添加可由智能体调用的工具。添加网页获取提供商支持。添加网页搜索提供商支持。
 
 ## 分发
 
 - 软件包：`@openclaw/firecrawl-plugin`
-- 安装途径：npm；ClawHub：`clawhub:@openclaw/firecrawl-plugin`
+- 安装方式：npm；ClawHub：`clawhub:@openclaw/firecrawl-plugin`
 
 ## 接口
 

@@ -1,11 +1,11 @@
 ---
 read_when:
-    - OS のサポート状況またはインストール先を探す
+    - OS のサポートまたはインストール先を探す
     - Gateway の実行場所を決める
-summary: プラットフォームサポートの概要（Gateway + コンパニオンアプリ）
+summary: プラットフォーム対応の概要（Gateway + コンパニオンアプリ）
 title: プラットフォーム
 x-i18n:
-    generated_at: "2026-07-16T11:47:46Z"
+    generated_at: "2026-07-26T10:20:07Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,9 +15,9 @@ x-i18n:
     workflow: 16
 ---
 
-OpenClaw コアは TypeScript で記述されています。正規の状態ストアが `node:sqlite` を使用するため、**Node は必須のランタイムです**。Bun は引き続き依存関係のインストールとパッケージスクリプトに使用できます。詳しくは [Bun](/ja-JP/install/bun) を参照してください。
+OpenClaw コアは TypeScript で記述されています。標準の状態ストアが `node:sqlite` を使用するため、**Node が必須のランタイムです**。Bun は依存関係のインストールとパッケージスクリプトに引き続き利用できます。詳しくは [Bun](/ja-JP/install/bun) を参照してください。
 
-Windows Hub、macOS（メニューバーアプリ）、モバイル Node（iOS/Android）向けのコンパニオンアプリがあります。Linux コンパニオンアプリは計画中ですが、Gateway は現在完全にサポートされています。Windows では、デスクトップアプリには Windows Hub、ターミナル中心の使用にはネイティブ PowerShell インストール、Linux との互換性が最も高い Gateway ランタイムには WSL2 を選択してください。
+Windows Hub、macOS（メニューバーアプリ）、モバイル Node（iOS/Android）向けのコンパニオンアプリがあります。Linux コンパニオンアプリは計画中ですが、Gateway は現在すでに完全にサポートされています。Windows では、デスクトップアプリには Windows Hub、ターミナル中心の利用にはネイティブ PowerShell インストール、Linux との互換性が最も高い Gateway ランタイムには WSL2 を選択してください。
 
 ## OS を選択
 
@@ -50,15 +50,15 @@ Windows Hub、macOS（メニューバーアプリ）、モバイル Node（iOS/A
 次のいずれかを使用してください（すべてサポートされています）。
 
 - ウィザード（推奨）: `openclaw onboard --install-daemon`
-- 直接インストール: `openclaw gateway install`
+- 直接実行: `openclaw gateway install`
 - 設定フロー: `openclaw configure` → **Gateway サービス**を選択
-- 修復／移行: `openclaw doctor`（サービスのインストールまたは修復を提案します）
+- 修復／移行: `openclaw doctor`（サービスのインストールまたは修正を提案します）
 
 サービスの対象は OS によって異なります。
 
-- macOS: LaunchAgent（`ai.openclaw.gateway`、または名前付きプロファイルの場合は `ai.openclaw.<profile>`）
+- macOS: LaunchAgent（`ai.openclaw.gateway`、名前付きプロファイルの場合は `ai.openclaw.<profile>`）
 - Linux/WSL2: systemd ユーザーサービス（`openclaw-gateway[-<profile>].service`）
-- ネイティブ Windows: Scheduled Task（`OpenClaw Gateway` または `OpenClaw Gateway (<profile>)`）。タスク作成が拒否された場合は、ユーザーごとの Startup フォルダーにあるログイン項目へフォールバックします
+- ネイティブ Windows: Scheduled Task（`OpenClaw Gateway` または `OpenClaw Gateway (<profile>)`）。タスクの作成が拒否された場合は、ユーザーごとの Startup フォルダーにあるログイン項目へフォールバックします
 
 ## 関連項目
 

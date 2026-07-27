@@ -1,10 +1,10 @@
 ---
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin مربوط به Discord هستید
-summary: Plugin کانال Discord در OpenClaw برای کانال‌ها، پیام‌های مستقیم، فرمان‌ها و رویدادهای برنامه.
-title: Plugin Discord
+summary: Plugin کانال Discord برای OpenClaw جهت کانال‌ها، پیام‌های خصوصی، فرمان‌ها و رویدادهای برنامه.
+title: Plugin دیسکورد
 x-i18n:
-    generated_at: "2026-07-16T17:26:58Z"
+    generated_at: "2026-07-27T14:27:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

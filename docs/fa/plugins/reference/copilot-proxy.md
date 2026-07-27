@@ -2,9 +2,9 @@
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin ‏copilot-proxy هستید
 summary: پشتیبانی از ارائه‌دهنده مدل Copilot Proxy را به OpenClaw اضافه می‌کند.
-title: Plugin پروکسی Copilot
+title: Plugin پراکسی Copilot
 x-i18n:
-    generated_at: "2026-07-16T17:26:44Z"
+    generated_at: "2026-07-27T15:54:26Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## توزیع
 
 - بسته: `@openclaw/copilot-proxy`
-- روش نصب: در OpenClaw گنجانده شده است
+- مسیر نصب: در OpenClaw گنجانده شده است
 
 ## سطح
 

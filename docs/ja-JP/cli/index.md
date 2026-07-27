@@ -2,35 +2,35 @@
 read_when:
     - 適切な `openclaw` サブコマンドを見つける
     - グローバルフラグまたは出力スタイル規則を調べる
-summary: OpenClaw CLI 索引：コマンド一覧、グローバルフラグ、コマンド別ページへのリンク
+summary: OpenClaw CLI インデックス：コマンド一覧、グローバルフラグ、コマンド別ページへのリンク
 title: CLI リファレンス
 x-i18n:
-    generated_at: "2026-07-16T11:30:08Z"
+    generated_at: "2026-07-26T10:08:38Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 22a2e85d4ba33aff3ad369eb3c73b07b4cbe4401c9c5c294180e2629dd2cbaa2
+    source_hash: 0f9694ac6a50a646862edda79d218786808a2e6008eaf9abdac0e634d373c1f7
     source_path: cli/index.md
     workflow: 16
 ---
 
-`openclaw` は CLI のメインエントリーポイントです。各コアコマンドには専用の
-リファレンスページがあるか、エイリアス先のコマンドとともに記載されています。この索引では、
-CLI 全体に適用されるコマンド、グローバルフラグ、出力スタイルのルールを一覧にしています。
+`openclaw` はメインの CLI エントリーポイントです。各コアコマンドには専用の
+リファレンスページがあるか、エイリアス先のコマンドとともに文書化されています。このインデックスには、
+CLI 全体に適用されるコマンド、グローバルフラグ、出力スタイルの規則を掲載しています。
 
 目的別のセットアップコマンド:
 
-- `openclaw setup` と `openclaw onboard` は、まず推論を検証してから、Gateway、ワークスペース、チャンネル、Skills、ヘルスチェックのセットアップ用に OpenClaw を起動します。
+- `openclaw setup` と `openclaw onboard` は最初に推論を検証し、その後、Gateway、ワークスペース、チャンネル、Skills、ヘルスチェックのセットアップのために OpenClaw を起動します。
 - `openclaw setup --baseline` は、ガイド付きオンボーディングフローを実行せずに、基本設定とワークスペースを作成します。
 - `openclaw configure` は、既存のセットアップの対象部分（モデル認証、Gateway、チャンネル、Plugin、Skills）を変更します。
-- `openclaw channels add` は、基本設定の作成後にチャンネルアカウントを設定します。ガイド付きセットアップにはフラグなしで、スクリプトにはチャンネル固有のフラグを指定して実行します。
+- `openclaw channels add` は、基本設定の作成後にチャンネルアカウントを構成します。チャンネルのみを選択した場合はガイド付きセットアップを使用し、アカウント、認証情報、またはチャンネル設定のフラグを指定した場合はスクリプト向けの直接パスを使用します。
 
 ## コマンドページ
 
-| 分野                         | コマンド                                                                                                                                                                                                                              |
+| 領域                         | コマンド                                                                                                                                                                                                                              |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| セットアップとオンボーディング         | [`openclaw`](/cli/openclaw) · [`setup`](/ja-JP/cli/setup) · [`onboard`](/ja-JP/cli/onboard) · [`configure`](/ja-JP/cli/configure) · [`config`](/ja-JP/cli/config) · [`completion`](/ja-JP/cli/completion) · [`doctor`](/ja-JP/cli/doctor) · [`dashboard`](/ja-JP/cli/dashboard) |
+| セットアップとオンボーディング         | [`openclaw`](/ja-JP/cli/openclaw) · [`setup`](/ja-JP/cli/setup) · [`onboard`](/ja-JP/cli/onboard) · [`configure`](/ja-JP/cli/configure) · [`config`](/ja-JP/cli/config) · [`completion`](/ja-JP/cli/completion) · [`doctor`](/ja-JP/cli/doctor) · [`dashboard`](/ja-JP/cli/dashboard) |
 | リセット、バックアップ、移行 | [`backup`](/ja-JP/cli/backup) · [`migrate`](/ja-JP/cli/migrate) · [`reset`](/ja-JP/cli/reset) · [`uninstall`](/ja-JP/cli/uninstall) · [`update`](/ja-JP/cli/update)                                                                                                 |
 | メッセージングとエージェント         | [`message`](/ja-JP/cli/message) · [`agent`](/ja-JP/cli/agent) · [`agents`](/ja-JP/cli/agents) · [`attach`](/ja-JP/cli/attach) · [`acp`](/ja-JP/cli/acp) · [`mcp`](/ja-JP/cli/mcp)                                                                                         |
 | ヘルスチェックとセッション          | [`status`](/ja-JP/cli/status) · [`health`](/ja-JP/cli/health) · [`sessions`](/ja-JP/cli/sessions) · [`audit`](/ja-JP/cli/audit)                                                                                                                               |
@@ -41,20 +41,20 @@ CLI 全体に適用されるコマンド、グローバルフラグ、出力ス�
 | 自動化                   | [`cron`](/ja-JP/cli/cron) · [`tasks`](/ja-JP/cli/tasks) · [`hooks`](/ja-JP/cli/hooks) · [`webhooks`](/ja-JP/cli/webhooks) · [`transcripts`](/ja-JP/cli/transcripts)                                                                                                 |
 | 検出とドキュメント           | [`dns`](/ja-JP/cli/dns) · [`docs`](/ja-JP/cli/docs)                                                                                                                                                                                               |
 | ペアリングとチャンネル         | [`pairing`](/ja-JP/cli/pairing) · [`qr`](/ja-JP/cli/qr) · [`channels`](/ja-JP/cli/channels)                                                                                                                                                             |
-| セキュリティとPlugin         | [`security`](/ja-JP/cli/security) · [`secrets`](/ja-JP/cli/secrets) · [`skills`](/ja-JP/cli/skills) · [`plugins`](/ja-JP/cli/plugins) · [`proxy`](/ja-JP/cli/proxy)                                                                                                 |
+| セキュリティと Plugin         | [`security`](/ja-JP/cli/security) · [`secrets`](/ja-JP/cli/secrets) · [`skills`](/ja-JP/cli/skills) · [`plugins`](/ja-JP/cli/plugins) · [`proxy`](/ja-JP/cli/proxy)                                                                                                 |
 | レガシーエイリアス               | [`daemon`](/ja-JP/cli/daemon)（Gateway サービス）· [`clawbot`](/ja-JP/cli/clawbot)（名前空間）                                                                                                                                                     |
-| Plugin（オプション）           | [`path`](/ja-JP/cli/path) · [`policy`](/ja-JP/cli/policy) · [`voicecall`](/ja-JP/cli/voicecall) · [`workboard`](/ja-JP/cli/workboard)（インストールされている場合）                                                                                                          |
+| Plugin（任意）           | [`path`](/ja-JP/cli/path) · [`policy`](/ja-JP/cli/policy) · [`voicecall`](/ja-JP/cli/voicecall) · [`workboard`](/ja-JP/cli/workboard)（インストールされている場合）                                                                                                          |
 
 ## グローバルフラグ
 
 | フラグ                    | 目的                                                                                                 |
 | ----------------------- | ------------------------------------------------------------------------------------------------------- |
-| `--dev`                 | 状態を `~/.openclaw-dev` 配下に分離し、デフォルトの Gateway ポートを 19001 に設定して、派生ポートをシフトする              |
-| `--profile <name>`      | 状態を `~/.openclaw-<name>`（`OPENCLAW_STATE_DIR`/`OPENCLAW_CONFIG_PATH`）配下に分離する                  |
+| `--dev`                 | 状態を `~/.openclaw-dev` 以下に分離し、デフォルトの Gateway ポートを 19001 に設定して、派生ポートをシフトする              |
+| `--profile <name>`      | 状態を `~/.openclaw-<name>`（`OPENCLAW_STATE_DIR`/`OPENCLAW_CONFIG_PATH`）以下に分離する                  |
 | `--container <name>`    | `<name>` という名前の実行中の Podman/Docker コンテナ内で CLI を実行する（デフォルト: 環境変数 `OPENCLAW_CONTAINER`） |
 | `--log-level <level>`   | ファイルとコンソール出力のグローバルログレベルを上書きする                                                 |
 | `--no-color`            | ANSI カラーを無効にする（`NO_COLOR=1` も考慮されます）                                                    |
-| `--update`              | [`openclaw update`](/ja-JP/cli/update) の短縮形。ソースチェックアウトとパッケージインストールの両方で機能する    |
+| `--update`              | [`openclaw update`](/ja-JP/cli/update) の短縮形。ソースチェックアウトとパッケージインストールの両方で動作する    |
 | `-V`, `--version`, `-v` | バージョンを表示して終了する                                                                                  |
 
 ## 出力モード
@@ -63,7 +63,7 @@ CLI 全体に適用されるコマンド、グローバルフラグ、出力ス�
 - OSC-8 ハイパーリンクは、サポートされている環境ではクリック可能なリンクとして表示されます。それ以外の場合、
   CLI はプレーン URL にフォールバックします。
 - `--json`（サポートされている場合は `--plain` も）は、簡潔な出力のためにスタイルを無効にします。
-- 長時間実行されるコマンドは進行状況インジケーターを表示します（サポートされている場合は OSC 9;4）。
+- 長時間実行されるコマンドは、進行状況インジケーターを表示します（サポートされている場合は OSC 9;4）。
 
 ## カラーパレット
 
@@ -78,7 +78,7 @@ OpenClaw は CLI 出力にロブスターパレットを使用します。
 | `success`      | `#2FBF71` | 成功状態                       |
 | `warn`         | `#FFB020` | 警告、オプションフラグ、フォールバック    |
 | `error`        | `#E23D2D` | エラー、失敗                     |
-| `muted`        | `#8B7F77` | 強調抑制、メタデータ                |
+| `muted`        | `#8B7F77` | 弱い強調、メタデータ                |
 
 パレットの信頼できる唯一の情報源: `packages/terminal-core/src/palette.ts`。
 
@@ -87,8 +87,8 @@ OpenClaw は CLI 出力にロブスターパレットを使用します。
 <Accordion title="完全なコマンドツリー">
 
 このマップは、コアコマンドとその主要なサブコマンドを網羅しています。Plugin によって追加される
-サブコマンド（たとえば `skills`、`plugins`、`wiki` 配下）は
-独立して進化します。正式な最新リストを確認するには `<command> --help` を実行してください。
+サブコマンド（たとえば `skills`、`plugins`、`wiki` 以下）は
+独立して進化します。正式な最新の一覧を確認するには、`<command> --help` を実行してください。
 
 ```
 openclaw [--dev] [--profile <name>] <command>
@@ -423,25 +423,24 @@ openclaw [--dev] [--profile <name>] <command>
   terminal (alias: tui --local)
 ```
 
-Pluginは、
-[`openclaw workboard`](/ja-JP/cli/workboard)や`openclaw voicecall`などのトップレベルコマンドを追加できます。
+Plugin は、[`openclaw workboard`](/ja-JP/cli/workboard) や `openclaw voicecall` などの追加のトップレベルコマンドを追加できます。
 
 </Accordion>
 
 ## チャットのスラッシュコマンド
 
-チャットメッセージは`/...`コマンドに対応しています。[スラッシュコマンド](/ja-JP/tools/slash-commands)を参照してください。
+チャットメッセージでは `/...` コマンドを使用できます。[スラッシュコマンド](/ja-JP/tools/slash-commands)を参照してください。
 
-主な機能：
+主な機能:
 
 - `/status` - クイック診断。
-- `/trace` - セッション単位のPluginトレース／デバッグ行。
+- `/trace` - セッションスコープの Plugin トレース／デバッグ行。
 - `/config` - 永続化される設定変更。
-- `/debug` - ランタイムのみの設定オーバーライド（メモリ内で、ディスクには保存されません。`commands.debug: true`が必要です）。
+- `/debug` - ランタイム限定の設定オーバーライド（メモリ上のみで、ディスクには保存されません。`commands.debug: true` が必要です）。
 
 ## 使用量の追跡
 
-OAuth／API認証情報が利用可能な場合、`openclaw status --usage`とControl UIにはプロバイダーの使用量／クォータが表示されます。データはプロバイダーの使用量エンドポイントから直接取得され、`X% left`に正規化されます。現在の使用期間に対応しているプロバイダー：Anthropic、Gemini CLI、GitHub Copilot、MiniMax、OpenAI Codex、Xiaomi、z.ai。
+OAuth／API 認証情報が利用可能な場合、`openclaw status --usage` と Control UI にプロバイダーの使用量／クォータが表示されます。データはプロバイダーの使用量エンドポイントから直接取得され、`X% left` に正規化されます。現在の使用量ウィンドウに対応するプロバイダーは、Anthropic、Gemini CLI、GitHub Copilot、MiniMax、OpenAI Codex、Xiaomi、z.ai です。
 
 詳細については、[使用量の追跡](/ja-JP/concepts/usage-tracking)を参照してください。
 

@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de acpx-plugin
-summary: OpenClaw ACP-runtimebackend met sessie- en transportbeheer door de plugin.
+summary: OpenClaw ACP-runtimebackend met sessie- en transportbeheer in eigendom van de Plugin.
 title: ACPx-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:12:29Z"
+    generated_at: "2026-07-27T05:25:28Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -33,10 +33,10 @@ Skills
 
 De gebundelde runtime detecteert automatisch de sessieopslag van Pi op de Gateway en gekoppelde
 nodes. Opgeslagen sessies verschijnen in de sessiezijbalkgroep **Pi**, met
-alleen-lezen bladeren door transcripties vanuit Pi's gedocumenteerde JSONL-sessie-indeling. De
+alleen-lezen bladeren door transcripties vanuit de gedocumenteerde JSONL-sessie-indeling van Pi. De
 catalogus houdt rekening met project- en globale `settings.json`-sessiemappen plus
-`PI_CODING_AGENT_DIR` en `PI_CODING_AGENT_SESSION_DIR`. Relatieve paden worden herleid
-vanaf de map die hun `settings.json`-bestand bevat.
+`PI_CODING_AGENT_DIR` en `PI_CODING_AGENT_SESSION_DIR`. Relatieve paden worden opgelost
+vanaf de map met het bijbehorende `settings.json`-bestand.
 
 Schakel **Pi Session Catalog** uit onder **Config > Plugins > ACPX Runtime** om
 detectie uit te schakelen. Deze is standaard ingeschakeld.

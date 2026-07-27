@@ -1,10 +1,10 @@
 ---
 read_when:
-    - perplexity Pluginをインストール、設定、または監査している場合
+    - perplexity Plugin をインストール、設定、または監査している場合
 summary: Web 検索プロバイダーのサポートを追加します。
 title: Perplexity Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:59:22Z"
+    generated_at: "2026-07-26T09:13:35Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,12 +21,12 @@ x-i18n:
 ## 配布
 
 - パッケージ: `@openclaw/perplexity-plugin`
-- インストール方法: npm、ClawHub: `clawhub:@openclaw/perplexity-plugin`
+- インストール経路: npm、ClawHub: `clawhub:@openclaw/perplexity-plugin`
 
-## 公開インターフェース
+## 提供機能
 
 コントラクト: `webSearchProviders`
 
 ## 関連ドキュメント
 
-- [Perplexity](/ja-JP/tools/perplexity-search)
+- [perplexity](/ja-JP/tools/perplexity-search)

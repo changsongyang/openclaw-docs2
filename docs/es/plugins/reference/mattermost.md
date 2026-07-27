@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin de Mattermost
-summary: Añade la interfaz del canal de Mattermost para enviar y recibir mensajes de OpenClaw.
+summary: Añade la interfaz del canal Mattermost para enviar y recibir mensajes de OpenClaw.
 title: Plugin de Mattermost
 x-i18n:
-    generated_at: "2026-07-16T11:53:35Z"
+    generated_at: "2026-07-26T04:46:26Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Añade la superficie del canal de Mattermost para enviar y recibir mensajes de O
 ## Distribución
 
 - Paquete: `@openclaw/mattermost`
-- Vía de instalación: npm; ClawHub: `clawhub:@openclaw/mattermost`
+- Ruta de instalación: npm; ClawHub: `clawhub:@openclaw/mattermost`
 
 ## Superficie
 

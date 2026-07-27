@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw-plugin voor een persoonlijk Zalo-account via native zca-js-integratie.
 title: Zalo Personal-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:21:20Z"
+    generated_at: "2026-07-27T05:43:06Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Zalo Personal-plugin
 
-OpenClaw-plugin voor een persoonlijk Zalo-account via systeemeigen zca-js-integratie.
+OpenClaw-plugin voor een persoonlijk Zalo-account via native zca-js-integratie.
 
 ## Distributie
 

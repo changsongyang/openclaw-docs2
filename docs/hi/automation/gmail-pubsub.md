@@ -2,7 +2,7 @@
 summary: /automation/cron-jobs पर रीडायरेक्ट करें
 title: Gmail PubSub
 x-i18n:
-    generated_at: "2026-07-19T08:49:05Z"
+    generated_at: "2026-07-27T17:23:35Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -12,7 +12,7 @@ x-i18n:
     workflow: 16
 ---
 
-यह पृष्ठ शेड्यूल किए गए कार्य पृष्ठ पर [Gmail PubSub इंटीग्रेशन](/hi/automation/cron-jobs#gmail-pubsub-integration) में स्थानांतरित हो गया है।
+यह पृष्ठ शेड्यूल किए गए कार्य पृष्ठ पर [Gmail PubSub एकीकरण](/hi/automation/cron-jobs#gmail-pubsub-integration) में स्थानांतरित हो गया है।
 
 ## संबंधित
 

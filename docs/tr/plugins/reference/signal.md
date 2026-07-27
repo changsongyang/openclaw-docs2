@@ -2,9 +2,9 @@
 read_when:
     - Signal pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw mesajlarını göndermek ve almak için Signal kanal yüzeyini ekler.
-title: Signal Plugin'i
+title: Signal plugin’i
 x-i18n:
-    generated_at: "2026-07-16T17:31:48Z"
+    generated_at: "2026-07-26T22:56:16Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

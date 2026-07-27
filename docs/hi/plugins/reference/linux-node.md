@@ -4,7 +4,7 @@ read_when:
 summary: Linux Node होस्ट के लिए डेस्कटॉप सूचनाएँ, कैमरा कैप्चर और स्थान।
 title: Linux Node Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:07:47Z"
+    generated_at: "2026-07-27T21:30:15Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Linux Node Plugin
 
-Linux Node होस्ट के लिए डेस्कटॉप सूचनाएँ, कैमरा कैप्चर और स्थान।
+Linux node होस्ट के लिए डेस्कटॉप सूचनाएँ, कैमरा कैप्चर और स्थान।
 
 ## वितरण
 
 - पैकेज: `@openclaw/linux-node`
-- इंस्टॉल मार्ग: OpenClaw में शामिल
+- इंस्टॉलेशन मार्ग: OpenClaw में शामिल
 
 ## सतह
 

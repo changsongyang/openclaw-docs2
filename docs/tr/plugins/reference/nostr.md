@@ -1,10 +1,10 @@
 ---
 read_when:
     - nostr pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: NIP-04 ile şifrelenmiş doğrudan mesajlar için OpenClaw Nostr kanal Plugin'i.
+summary: NIP-04 ile şifrelenmiş doğrudan mesajlar için OpenClaw Nostr kanal plugini.
 title: Nostr Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:26:21Z"
+    generated_at: "2026-07-26T23:33:21Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Nostr plugini
+# Nostr plugin'i
 
-NIP-04 ile şifrelenmiş doğrudan mesajlar için OpenClaw Nostr kanal plugini.
+NIP-04 ile şifrelenmiş doğrudan mesajlar için OpenClaw Nostr kanal plugin'i.
 
 ## Dağıtım
 

@@ -1,9 +1,9 @@
 ---
 read_when: Browser control fails on Linux, especially with snap Chromium
-summary: Corregir problemas de inicio de CDP en Chrome/Brave/Edge/Chromium para el control del navegador de OpenClaw en Linux
+summary: Solucionar los problemas de inicio de CDP de Chrome/Brave/Edge/Chromium para el control del navegador de OpenClaw en Linux
 title: Solución de problemas del navegador
 x-i18n:
-    generated_at: "2026-07-20T01:00:50Z"
+    generated_at: "2026-07-26T05:57:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,28 +21,28 @@ x-i18n:
 
 ### Causa raíz
 
-En Ubuntu y en la mayoría de las distribuciones de Linux, `apt install chromium` instala un
-envoltorio de snap, no un navegador real:
+En Ubuntu y la mayoría de las distribuciones de Linux, `apt install chromium` instala un envoltorio de snap,
+no un navegador real:
 
 ```text
 Nota: se selecciona 'chromium-browser' en lugar de 'chromium'
-chromium-browser ya tiene la versión más reciente (2:1snap1-0ubuntu2).
+chromium-browser ya es la versión más reciente (2:1snap1-0ubuntu2).
 ```
 
-El confinamiento de AppArmor de Snap interfiere con la forma en que OpenClaw inicia y supervisa
+El confinamiento de AppArmor de snap interfiere en la forma en que OpenClaw inicia y supervisa
 el proceso del navegador.
 
-Otros fallos comunes de inicio en Linux:
+Otros fallos habituales de inicio en Linux:
 
 - `The profile appears to be in use by another Chromium process`: archivos de bloqueo
   `Singleton*` obsoletos en el directorio del perfil administrado. OpenClaw elimina
-  estos bloqueos y reintenta una vez cuando el bloqueo apunta a un proceso inactivo o
+  estos bloqueos y vuelve a intentarlo una vez cuando el bloqueo apunta a un proceso inactivo o
   de otro host.
 - `Missing X server or $DISPLAY`: se solicitó explícitamente un navegador visible
-  en un host sin una sesión de escritorio. Los perfiles administrados locales cambian al
-  modo sin interfaz gráfica en Linux cuando tanto `DISPLAY` como `WAYLAND_DISPLAY` no están definidos.
-  Si se define `OPENCLAW_BROWSER_HEADLESS=0`, `browser.headless: false` o
-  `browser.profiles.<name>.headless: false`, elimine esa anulación con interfaz gráfica, defina
+  en un host sin sesión de escritorio. Los perfiles locales administrados usan de forma alternativa
+  el modo sin interfaz gráfica en Linux cuando `DISPLAY` y `WAYLAND_DISPLAY` no están definidos.
+  Si se ha definido `OPENCLAW_BROWSER_HEADLESS=0`, `browser.headless: false` o
+  `browser.profiles.<name>.headless: false`, elimine esa configuración que fuerza el modo con interfaz gráfica, defina
   `OPENCLAW_BROWSER_HEADLESS=1`, inicie `Xvfb`, ejecute
   `openclaw browser start --headless` para realizar un inicio administrado único, o ejecute
   OpenClaw en una sesión de escritorio real.
@@ -93,7 +93,7 @@ chromium-browser --headless --no-sandbox --disable-gpu \
   about:blank &
 ```
 
-Opcionalmente, inícielo automáticamente con un servicio de usuario de systemd:
+Opcionalmente, configúrelo para que se inicie automáticamente con un servicio de usuario de systemd:
 
 ```ini
 # ~/.config/systemd/user/openclaw-browser.service
@@ -127,15 +127,15 @@ curl -s http://127.0.0.1:18791/tabs
 | Opción                      | Descripción                                                          | Valor predeterminado                                                            |
 | --------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------ |
 | `browser.enabled`           | Habilitar el control del navegador                                               | `true`                                                             |
-| `browser.executablePath`    | Ruta al binario de un navegador basado en Chromium (Chrome/Brave/Edge/Chromium) | detectado automáticamente (se prefiere el navegador predeterminado del SO si está basado en Chromium) |
+| `browser.executablePath`    | Ruta al ejecutable de un navegador basado en Chromium (Chrome/Brave/Edge/Chromium) | detección automática (se prefiere el navegador predeterminado del SO si está basado en Chromium) |
 | `browser.headless`          | Ejecutar sin interfaz gráfica                                                      | `false`                                                            |
-| `OPENCLAW_BROWSER_HEADLESS` | Anulación por proceso del modo sin interfaz gráfica del navegador administrado local         | sin definir                                                              |
-| `browser.noSandbox`         | Añadir la opción `--no-sandbox` (necesaria para algunas configuraciones de Linux)               | `false`                                                            |
+| `OPENCLAW_BROWSER_HEADLESS` | Configuración por proceso que prevalece sobre el modo sin interfaz gráfica del navegador local administrado         | sin definir                                                              |
+| `browser.noSandbox`         | Añadir el indicador `--no-sandbox` (necesario para algunas configuraciones de Linux)               | `false`                                                            |
 | `browser.attachOnly`        | No iniciar un navegador; conectarse únicamente a uno existente              | `false`                                                            |
 
 En Raspberry Pi, hosts VPS antiguos o almacenamiento lento, use un navegador iniciado
-manualmente con `attachOnly` cuando Chrome necesite más tiempo para exponer su endpoint HTTP
-de CDP o estar listo del que permite el plazo del navegador administrado.
+manualmente con `attachOnly` cuando Chrome necesite más tiempo para exponer su endpoint HTTP de CDP
+o estar listo del que permite el plazo límite del navegador administrado.
 
 ### Problema: no se encontraron pestañas de Chrome para profile="user"
 
@@ -155,17 +155,17 @@ Notas:
 - `user` solo funciona en el host. En servidores Linux, contenedores o hosts remotos, se recomienda usar
   perfiles CDP.
 - `user` y otros perfiles `existing-session` comparten las limitaciones actuales de Chrome MCP:
-  únicamente acciones basadas en referencias, un archivo por carga, sin anulaciones de `timeoutMs`
-  de cuadros de diálogo, sin `wait --load networkidle` y sin `responsebody`, exportación a PDF,
+  solo acciones basadas en referencias, un archivo por carga, sin sustituciones de `timeoutMs`
+  en cuadros de diálogo, sin `wait --load networkidle` y sin `responsebody`, exportación a PDF,
   interceptación de descargas ni acciones por lotes.
-- Los perfiles locales del controlador `openclaw` asignan automáticamente `cdpPort`/`cdpUrl`; solo deben definirse
-  manualmente para CDP remoto.
+- Los perfiles locales del controlador `openclaw` asignan automáticamente `cdpPort`/`cdpUrl`; establézcalos
+  manualmente solo para CDP remoto.
 - Los perfiles CDP remotos aceptan `http://`, `https://`, `ws://` y `wss://`.
-  Use HTTP(S) para la detección de `/json/version` o WS(S) cuando el servicio del navegador
+  Use HTTP(S) para la detección de `/json/version`, o WS(S) cuando el servicio del navegador
   proporcione una URL directa del socket de DevTools.
 
 ## Contenido relacionado
 
 - [Navegador](/es/tools/browser)
 - [Inicio de sesión en el navegador](/es/tools/browser-login)
-- [Solución de problemas de WSL2 del navegador](/es/tools/browser-wsl2-windows-remote-cdp-troubleshooting)
+- [Solución de problemas del navegador con CDP remoto de WSL2 para Windows](/es/tools/browser-wsl2-windows-remote-cdp-troubleshooting)

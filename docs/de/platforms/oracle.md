@@ -3,7 +3,7 @@ redirect: /install/oracle
 summary: Weiterleitung zu /install/oracle
 title: Oracle Cloud (Plattform)
 x-i18n:
-    generated_at: "2026-07-24T03:57:24Z"
+    generated_at: "2026-07-26T17:55:48Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

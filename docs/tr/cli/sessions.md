@@ -1,10 +1,10 @@
 ---
 read_when:
     - Depolanan oturumları listelemek ve son etkinlikleri görmek istiyorsunuz
-summary: '`openclaw sessions` için CLI referansı (depolanan oturumları ve kullanımı listeleme)'
+summary: '`openclaw sessions` için CLI başvurusu (saklanan oturumları + kullanımı listeleme)'
 title: Oturumlar
 x-i18n:
-    generated_at: "2026-07-16T17:02:00Z"
+    generated_at: "2026-07-26T22:42:45Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 
 Saklanan konuşma oturumlarını listeleyin.
 
-Oturum listeleri kanal/sağlayıcı canlılık denetimleri değildir. Oturum depolarındaki kalıcı
+Oturum listeleri kanal/sağlayıcı çalışırlık denetimleri değildir. Oturum depolarında kalıcı olarak saklanan
 konuşma satırlarını gösterirler. Sessiz bir Discord, Slack, Telegram veya
 başka bir kanal, bir ileti işlenene kadar yeni bir oturum satırı oluşturmadan
 başarıyla yeniden bağlanabilir. Canlı kanal bağlantısına ihtiyaç duyduğunuzda
@@ -38,32 +38,32 @@ Bayraklar:
 
 | Bayrak                 | Açıklama                                                            |
 | -------------------- | ---------------------------------------------------------------------- |
-| `--agent <id>`       | Yapılandırılmış tek bir ajan deposu (varsayılan: yapılandırılmış varsayılan ajan).        |
-| `--all-agents`       | Yapılandırılmış tüm ajan depolarını birleştirir.                                 |
-| `--store <path>`     | Açık depo yolu (`--agent` veya `--all-agents` ile birleştirilemez). |
+| `--agent <id>`       | Yapılandırılmış tek bir aracı deposu (varsayılan: yapılandırılmış varsayılan aracı).        |
+| `--all-agents`       | Yapılandırılmış tüm aracı depolarını birleştirir.                                 |
+| `--store <path>`     | Açık depo yolu (`--agent` veya `--all-agents` ile birlikte kullanılamaz). |
 | `--active <minutes>` | Yalnızca son N dakika içinde güncellenen oturumları gösterir.                  |
-| `--limit <n\|all>`   | Çıktılanacak en fazla satır (varsayılan `100`; `all` tam çıktıyı geri yükler).        |
+| `--limit <n\|all>`   | Çıktılanacak en fazla satır sayısı (varsayılan `100`; `all` tam çıktıyı geri getirir).        |
 | `--json`             | Makine tarafından okunabilir çıktı.                                               |
 | `--verbose`          | Ayrıntılı günlük kaydı.                                                       |
 
-`openclaw sessions` ve Gateway `sessions.list` RPC'si varsayılan olarak
-sınırlıdır; böylece büyük ve uzun ömürlü depolar CLI sürecini veya Gateway olay
-döngüsünü tekeline alamaz. CLI varsayılan olarak en yeni 100 oturumu döndürür;
-daha küçük/büyük bir aralık için `--limit <n>`, tüm depoya bilinçli olarak
-ihtiyaç duyduğunuzda ise `--limit all` iletin. Çağıranların daha fazla satır
-bulunduğunu göstermesi gerektiğinde JSON yanıtları `totalCount`,
-`limitApplied` ve `hasMore` içerir.
+`openclaw sessions` ve Gateway `sessions.list` RPC'si varsayılan olarak sınırlıdır;
+böylece büyük ve uzun ömürlü depolar CLI işlemini veya Gateway olay
+döngüsünü tekeline alamaz. CLI varsayılan olarak en yeni 100 oturumu döndürür; daha küçük/büyük
+bir aralık için `--limit <n>`, tam depoya bilinçli olarak ihtiyaç duyduğunuzda ise
+`--limit all` iletin. JSON yanıtları, çağıranların daha fazla satır bulunduğunu
+göstermesi gerektiğinde `totalCount`, `limitApplied` ve `hasMore`
+içerir.
 
-RPC istemcileri, geniş birleşik keşif kaynağını koruyup yalnızca o anda
-yapılandırmada bulunan ajanların satırlarını döndürmek için `configuredAgentsOnly: true`
-iletebilir. Silinen veya yalnızca diskte bulunan ajan depolarının Oturumlar
-görünümünde yeniden belirmemesi için Control UI varsayılan olarak bu modu kullanır.
+RPC istemcileri, geniş birleşik keşif kaynağını koruyup yalnızca
+yapılandırmada mevcut aracılara ait satırları döndürmek için `configuredAgentsOnly: true` iletebilir.
+Control UI bu modu varsayılan olarak kullanır; böylece silinmiş veya yalnızca diskte bulunan aracı
+depoları Oturumlar görünümünde yeniden belirmez.
 
-`--all-agents`, yapılandırılmış ajan depolarını okur. Gateway ve ACP oturum
-keşfi daha geniştir: yapılandırılmış ajan köklerinden veya şablonlu bir
+`--all-agents`, yapılandırılmış aracı depolarını okur. Gateway ve ACP oturum
+keşfi daha geniştir: yapılandırılmış aracı köklerinden veya şablonlu bir
 `session.store` kökünden çözümlenen SQLite depolarını da içerir. Eski seçici
-yolları ajan kökü içinde çözümlenmelidir; sembolik bağlantılar ve kök dışındaki
-yollar atlanır.
+yolları aracı kökü içinde çözümlenmelidir; sembolik bağlantılar ve kök dışındaki yollar
+atlanır.
 
 `openclaw sessions --all-agents --json`:
 
@@ -87,7 +87,7 @@ yollar atlanır.
 }
 ```
 
-## Yörünge ilerlemesini takip etme
+## Yörünge ilerlemesini izleme
 
 ```bash
 openclaw sessions tail
@@ -97,21 +97,19 @@ openclaw sessions --agent work tail --follow
 openclaw sessions --all-agents tail --follow
 ```
 
-`openclaw sessions tail`, son çalışma zamanı yörünge olaylarını kompakt ilerleme
-satırları olarak işler. `--session-key` olmadan önce çalışan oturumları,
-ardından saklanan en son oturumu takip eder. `--tail <count>`, takip modu
-öncesinde kaç mevcut olayın yazdırılacağını denetler; varsayılan değer
-`80`'dur ve `0` geçerli sondan başlar.
-`--follow`, seçilen SQLite destekli oturumu veya açıkça belirtilen eski
-yörünge dosyasını izlemeyi sürdürür.
+`openclaw sessions tail`, son çalışma zamanı yörünge olaylarını kısa
+ilerleme satırları olarak işler. `--session-key` olmadan önce çalışan oturumları, ardından
+saklanan en son oturumu izler. `--tail <count>`, takip modundan önce kaç mevcut olayın
+yazdırılacağını belirler; varsayılan `80` değeridir ve `0` geçerli sondan başlar.
+`--follow`, seçilen SQLite destekli oturumu veya açıkça belirtilmiş
+eski bir yörünge dosyasını izlemeyi sürdürür.
 
-İlerleme görünümü bilinçli olarak ölçülüdür: istem metni, araç bağımsız değişkenleri
+İlerleme görünümü bilinçli olarak tutucudur: istem metni, araç bağımsız değişkenleri
 ve araç sonucu gövdeleri yazdırılmaz. Araç çağrıları, araç adını
-`{...redacted...}` ile gösterir; araç sonuçları `ok`,
-`error` veya `done` gibi durumları gösterir; model
-tamamlama satırları sağlayıcıyı/modeli ve sonlandırma durumunu gösterir.
+`{...redacted...}` ile gösterir; araç sonuçları `ok`, `error` veya `done` gibi durumları gösterir;
+model tamamlama satırları sağlayıcıyı/modeli ve terminal durumunu gösterir.
 
-## Yörünge paketi dışa aktarma
+## Bir yörünge paketini dışa aktarma
 
 ```bash
 openclaw sessions export-trajectory --session-key "agent:main:telegram:direct:123" --workspace .
@@ -119,8 +117,8 @@ openclaw sessions export-trajectory --session-key "agent:main:telegram:direct:12
 ```
 
 Bu, sahibin yürütme isteğini onaylamasının ardından `/export-trajectory` eğik çizgi
-komutu tarafından kullanılan komut yoludur. Çıktı dizini her zaman seçilen çalışma
-alanındaki `.openclaw/trajectory-exports/` içinde çözümlenir.
+komutu tarafından kullanılan komut yoludur. Çıktı dizini her zaman seçilen çalışma alanındaki
+`.openclaw/trajectory-exports/` içinde çözümlenir.
 
 ## Temizleme bakımı
 
@@ -139,40 +137,39 @@ openclaw sessions cleanup --json
 `openclaw sessions cleanup`, yapılandırmadaki `session.maintenance` ayarlarını kullanır
 ([Yapılandırma başvurusu](/tr/gateway/config-agents#session)):
 
-- Kapsam notu: `openclaw sessions cleanup`; oturum depolarının,
-  dökümlerin, yörünge satırlarının ve eski yörünge yan dosyalarının bakımını yapar.
-  İş başına en yeni 2000 satırı otomatik olarak tutan cron çalıştırma geçmişini
+- Kapsam notu: `openclaw sessions cleanup`; oturum depolarını,
+  dökümleri, yörünge satırlarını ve eski yörünge yan dosyalarını korur. İş başına
+  en yeni 2000 satırı otomatik olarak tutan Cron çalıştırma geçmişini
   budamaz ([Cron yapılandırması](/tr/automation/cron-jobs#configuration)).
-- Temizleme ayrıca `session.maintenance.pruneAfter` değerinden daha eski olan
-  başvurulmayan eski/arşiv döküm yapıtlarını, Compaction denetim noktalarını ve
-  yörünge yan dosyalarını budar; SQLite oturum satırları tarafından hâlâ
-  başvurulan yapıtlar korunur.
-- Temizleme, kısa ömürlü Gateway model çalıştırma yoklaması
-  temizliğini `modelRunPruned` olarak ayrı bildirir. Bu yalnızca
-  `agent:*:explicit:model-run-<uuid>` biçimindeki kesin ve açık anahtarlarla eşleşir. Saklama
-  süresi sabit `24h` değeridir ve baskıya bağlıdır: eski yoklama
-  satırlarını yalnızca oturum girdisi bakım/kapasite baskısına ulaşıldığında
-  kaldırır. Çalıştığında model çalıştırma temizliği, genel eski veri temizliği
-  ve sınırlamadan önce gerçekleşir.
+- Temizleme ayrıca başvurulmayan eski/arşiv döküm yapıtlarını,
+  Compaction denetim noktalarını ve `session.maintenance.pruneAfter` değerinden daha eski
+  yörünge yan dosyalarını budar; SQLite oturum satırları tarafından hâlâ başvurulan
+  yapıtlar korunur.
+- Temizleme, kısa ömürlü Gateway model çalıştırma yoklaması temizliğini ayrıca
+  `modelRunPruned` olarak bildirir. Bu yalnızca `agent:*:explicit:model-run-<uuid>` biçimindeki
+  kesin ve açık anahtarlarla eşleşir. Saklama süresi sabit bir `24h` değeridir ve
+  baskıya bağlıdır: eski yoklama satırlarını yalnızca oturum girdisi
+  bakımı/kapasite baskısına ulaşıldığında kaldırır. Çalıştığında model çalıştırma temizliği,
+  genel eski veri temizliği ve sınırlandırmadan önce gerçekleşir.
 
 Bayraklar:
 
 | Bayrak                 | Açıklama                                                                                                                                                                                                                                                                                                |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--dry-run`          | Yazmadan kaç girdinin budanacağını/sınırlanacağını önizler. Metin modunda, oturum etiketiyle gruplandırılmış bir özetin yanı sıra oturum başına bir eylem tablosu (`Action`, `Key`, `Age`, `Model`, `Flags`) yazdırır.                                                                                                       |
+| `--dry-run`          | Yazma yapmadan kaç girdinin budanacağını/sınırlandırılacağını önizler. Metin modunda oturum başına bir eylem tablosu (`Action`, `Key`, `Age`, `Model`, `Flags`) ve oturum etiketine göre gruplandırılmış bir özet yazdırır.                                                                                                       |
 | `--enforce`          | `session.maintenance.mode`, `warn` olsa bile bakımı uygular.                                                                                                                                                                                                                                          |
-| `--fix-missing`      | Arşivlenmiş döküm yapıtları eksik veya yalnızca başlıktan oluşan/boş eski girdileri, normalde henüz yaş/sayı sınırını aşmayacak olsalar bile kaldırır.                                                                                                                                                             |
-| `--fix-dm-scope`     | `session.dmScope`, `main` olduğunda, önceki `per-peer`, `per-channel-peer` veya `per-account-channel-peer` yönlendirmesinin geride bıraktığı eski, eş anahtarlı doğrudan DM satırlarını kullanımdan kaldırır. Önce `--dry-run` kullanın; uygulandığında bu satırları SQLite'tan kaldırır ve eski döküm yapıtlarını silinmiş arşivler olarak korur. |
-| `--active-key <key>` | Belirli bir etkin anahtarı disk bütçesi nedeniyle tahliyeden korur. Grup oturumları ve ileti dizisi kapsamlı sohbet oturumları gibi kalıcı harici konuşma işaretçileri de yaş/sayı/disk bütçesi bakımı sırasında tutulur.                                                                                               |
-| `--agent <id>`       | Yapılandırılmış tek bir ajan deposu için temizleme çalıştırır.                                                                                                                                                                                                                                                                |
-| `--all-agents`       | Yapılandırılmış tüm ajan depoları için temizleme çalıştırır.                                                                                                                                                                                                                                                               |
+| `--fix-missing`      | Normalde henüz yaş/sayı sınırına ulaşmamış olsalar bile, arşivlenmiş döküm yapıtları eksik veya yalnızca üst bilgi içeren/boş olan eski girdileri kaldırır.                                                                                                                                                             |
+| `--fix-dm-scope`     | `session.dmScope`, `main` olduğunda önceki `per-peer`, `per-channel-peer` veya `per-account-channel-peer` yönlendirmesinden kalan eski, eş anahtarlı doğrudan DM satırlarını kullanımdan kaldırır. Önce `--dry-run` kullanın; uygulama bu satırları SQLite'tan kaldırır ve eski döküm yapıtlarını silinmiş arşivler olarak korur. |
+| `--active-key <key>` | Belirli bir etkin anahtarı disk bütçesi nedeniyle çıkarılmaya karşı korur. Grup oturumları ve ileti dizisi kapsamlı sohbet oturumları gibi kalıcı harici konuşma işaretçileri de yaş/sayı/disk bütçesi bakımı sırasında tutulur.                                                                                               |
+| `--agent <id>`       | Temizlemeyi yapılandırılmış tek bir aracı deposu için çalıştırır.                                                                                                                                                                                                                                                                |
+| `--all-agents`       | Temizlemeyi yapılandırılmış tüm aracı depoları için çalıştırır.                                                                                                                                                                                                                                                               |
 | `--store <path>`     | Belirli bir eski depo seçici yolunda çalıştırır.                                                                                                                                                                                                                                                         |
-| `--json`             | Bir JSON özeti yazdırır. `--all-agents` ile çıktı, depo başına bir özet içerir.                                                                                                                                                                                                                          |
+| `--json`             | JSON özeti yazdırır. `--all-agents` ile çıktı, depo başına bir özet içerir.                                                                                                                                                                                                                          |
 
-Bir Gateway'e erişilebildiğinde, yapılandırılmış ajan depoları için deneme dışı
-temizleme Gateway üzerinden gönderilir; böylece çalışma zamanı trafiğiyle aynı
-oturum deposu yazıcısını paylaşır. Eski bir depo seçicisinin açık çevrimdışı
-onarımı için `--store <path>` kullanın.
+Bir Gateway erişilebilir olduğunda yapılandırılmış aracı depolarına yönelik deneme çalıştırması olmayan
+temizleme, çalışma zamanı trafiğiyle aynı oturum deposu yazıcısını paylaşması için
+Gateway üzerinden gönderilir. Eski bir depo seçicisinin açık çevrimdışı onarımı için
+`--store <path>` kullanın.
 
 `openclaw sessions cleanup --all-agents --dry-run --json`:
 
@@ -206,12 +203,11 @@ onarımı için `--store <path>` kullanın.
 }
 ```
 
-## Oturumu sıkıştırma
+## Bir oturumu sıkıştırma
 
-Takılmış veya aşırı büyük bir oturumun bağlam bütçesini geri kazanın.
-`openclaw sessions
-compact <key>`, `sessions.compact` Gateway RPC'sinin birinci sınıf
-sarmalayıcısıdır ve çalışan bir Gateway gerektirir.
+Takılmış veya aşırı büyük bir oturum için bağlam bütçesini geri kazanın. `openclaw sessions
+compact <key>`,
+`sessions.compact` Gateway RPC'sinin birinci sınıf sarmalayıcısıdır ve çalışan bir Gateway gerektirir.
 
 ```bash
 openclaw sessions compact "agent:main:main"
@@ -220,25 +216,19 @@ openclaw sessions compact "agent:work:main" --agent work --json
 ```
 
 - `--max-lines` olmadan Gateway, dökümü LLM ile özetler. CLI
-  varsayılan olarak bir istemci son tarihi uygulamaz; yapılandırılmış Compaction
-  yaşam döngüsünü Gateway yönetir.
-- `--max-lines <n>` ile son `n` döküm satırına
-  kısaltır ve önceki dökümü bir `.bak` yan dosyası olarak arşivler.
-- `--agent <id>`: oturumun sahibi olan ajan;
-  `global` anahtarları için gereklidir.
-- `--url` / `--token` / `--password`:
-  Gateway bağlantısı geçersiz kılmaları.
-- `--timeout <ms>`: milisaniye cinsinden isteğe bağlı istemci
-  tarafı RPC zaman aşımı.
+  varsayılan olarak bir istemci son tarihi dayatmaz; yapılandırılmış
+  Compaction yaşam döngüsünün sahibi Gateway'dir.
+- `--max-lines <n>` ile son `n` döküm satırına kadar kısaltır ve
+  önceki dökümü bir `.bak` yan dosyası olarak arşivler.
+- `--agent <id>`: oturumun sahibi olan aracı; `global` anahtarları için gereklidir.
+- `--url` / `--token` / `--password`: Gateway bağlantısı geçersiz kılmaları.
+- `--timeout <ms>`: milisaniye cinsinden isteğe bağlı istemci tarafı RPC zaman aşımı.
 - `--json`: ham RPC yükünü yazdırır.
 
-Gateway başarısız bir Compaction bildirdiğinde veya erişilemez olduğunda komut sıfırdan farklı bir kodla çıkar; böylece Cron'lar ve betikler sessizce hiçbir işlem yapılmamasını asla başarı olarak değerlendirmez.
+Gateway başarısız bir Compaction bildirdiğinde veya erişilemez olduğunda komut sıfırdan farklı bir kodla sonlanır; böylece Cron'lar ve betikler sessizce hiçbir işlem yapılmamasını asla başarı olarak değerlendirmez.
 
 <Note>
-`openclaw agent --message '/compact ...'` bir Compaction yolu **değildir**. CLI'dan gelen eğik çizgi
-komutları, yetkili gönderen denetimi tarafından reddedilir; bu çağrı, sessizce
-hiçbir işlem yapmadan çıkmak yerine burayı gösteren yönlendirmeyle sıfırdan farklı
-bir kodla çıkar.
+`openclaw agent --message '/compact ...'` bir Compaction yolu **değildir**. CLI'dan gelen eğik çizgi komutları yetkili gönderen denetimi tarafından reddedilir; bu çağrı, sessizce hiçbir işlem yapmadan sonlanmak yerine burayı gösteren bir yönlendirmeyle sıfırdan farklı bir kodla sonlanır.
 </Note>
 
 ### sessions.compact RPC

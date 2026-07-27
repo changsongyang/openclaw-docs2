@@ -1,10 +1,10 @@
 ---
 read_when:
-    - moonshot Plugin'ini yüklüyor, yapılandırıyor veya denetliyorsunuz
+    - moonshot Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a Moonshot model sağlayıcısı desteği ekler.
-title: Moonshot plugini
+title: Moonshot Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:45:38Z"
+    generated_at: "2026-07-27T00:08:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Moonshot Plugin
+# Moonshot plugin'i
 
 OpenClaw'a Moonshot model sağlayıcısı desteği ekler.
 

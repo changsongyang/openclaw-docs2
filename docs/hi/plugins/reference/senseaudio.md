@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप senseaudio Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: मीडिया को समझने वाले प्रदाता के लिए समर्थन जोड़ता है।
+summary: मीडिया समझ प्रदाता के लिए समर्थन जोड़ता है।
 title: Senseaudio Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:33:44Z"
+    generated_at: "2026-07-27T20:14:09Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,9 +21,9 @@ x-i18n:
 ## वितरण
 
 - पैकेज: `@openclaw/senseaudio-provider`
-- इंस्टॉल मार्ग: OpenClaw में शामिल
+- इंस्टॉल करने का मार्ग: OpenClaw में शामिल
 
-## सतह
+## उपलब्ध सतह
 
 अनुबंध: `mediaUnderstandingProviders`
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - voyage Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - voyage pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: Bellek gömme sağlayıcısı desteği ekler.
-title: Voyage plugin'i
+title: Voyage plugini
 x-i18n:
-    generated_at: "2026-07-16T17:47:16Z"
+    generated_at: "2026-07-26T22:56:32Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

@@ -1,10 +1,10 @@
 ---
 read_when:
     - شما در حال نصب، پیکربندی یا ممیزی Plugin ‏opencode-go هستید
-summary: پشتیبانی از ارائه‌دهندهٔ مدل OpenCode Go را به OpenClaw اضافه می‌کند.
-title: Plugin اوپن‌کد گو
+summary: پشتیبانی از ارائه‌دهنده مدل OpenCode Go را به OpenClaw اضافه می‌کند.
+title: Plugin زبان Go برای OpenCode
 x-i18n:
-    generated_at: "2026-07-16T17:03:20Z"
+    generated_at: "2026-07-27T15:32:51Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin ‏OpenCode Go
+# Plugin‏ OpenCode Go
 
 پشتیبانی از ارائه‌دهنده مدل OpenCode Go را به OpenClaw اضافه می‌کند.
 
 ## توزیع
 
 - بسته: `@openclaw/opencode-go-provider`
-- روش نصب: همراه OpenClaw ارائه می‌شود
+- مسیر نصب: در OpenClaw گنجانده شده است
 
 ## سطح
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Je installeert, configureert of controleert de brave-plugin
+    - Je installeert, configureert of controleert de brave-plugin.
 summary: OpenClaw-providerplugin voor Brave Search voor zoeken op het web.
-title: Brave-Plugin
+title: Brave-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:13:15Z"
+    generated_at: "2026-07-27T06:27:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Brave-plugin
+# Brave-Plugin
 
 OpenClaw-providerplugin voor Brave Search voor zoeken op het web.
 

@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw में LiteLLM मॉडल प्रदाता का समर्थन जोड़ता है।
 title: LiteLLM Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:16:08Z"
+    generated_at: "2026-07-27T18:19:35Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # LiteLLM Plugin
 
-OpenClaw में LiteLLM मॉडल प्रदाता के लिए समर्थन जोड़ता है।
+OpenClaw में LiteLLM मॉडल प्रदाता समर्थन जोड़ता है।
 
 ## वितरण
 
 - पैकेज: `@openclaw/litellm-provider`
-- इंस्टॉल करने का मार्ग: OpenClaw में शामिल
+- इंस्टॉल मार्ग: OpenClaw में शामिल
 
 ## उपलब्ध सतह
 

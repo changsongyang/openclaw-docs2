@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Implementieren oder Überprüfen der Sitzungs-Dashboard-Funktion (Boards)
-    - Ändern des Widget-Hostings, der Widget-Bridge oder des Board-Speichers
-summary: 'Sitzungs-Dashboards: Architektur und Implementierungsplan (technischer Entwurf, vor GA)'
+    - Implementierung oder Überprüfung der Sitzungs-Dashboard-Funktion (Boards)
+    - Widget-Hosting, Widget-Bridge oder Board-Speicher ändern
+summary: 'Sitzungs-Dashboards: Architektur- und Implementierungsplan (technisches Design, vor GA)'
 title: Dashboard-Architektur
 x-i18n:
-    generated_at: "2026-07-24T05:22:06Z"
+    generated_at: "2026-07-26T18:51:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,7 +17,7 @@ x-i18n:
 
 <Note>
 Technisches Designdokument für die Sitzungs-Dashboard-Funktion, verfasst vor und
-während der Implementierung. Es ist die maßgebliche Quelle für den Ausbau. Sobald die
+während der Implementierung. Es ist die maßgebliche Referenz für den Ausbau. Wenn die
 Funktion ausgeliefert wird, wird `/web/dashboard` zur benutzerorientierten Seite, während diese Seite
 als Architekturreferenz bestehen bleibt.
 </Note>
@@ -25,29 +25,29 @@ als Architekturreferenz bestehen bleibt.
 ## Vision
 
 Die Arbeit mit einem Agenten ist heute ein Textstrom. Das Dashboard macht daraus eine
-Werkbank: Der Agent rendert interaktive Live-Widgets; der Benutzer heftet sie an
+Werkbank: Der Agent rendert interaktive Live-Widgets; Benutzer heften sie an
 eine persistente Oberfläche; der Chat wird seitlich angedockt (oder ausgeblendet), und der Hauptinhalt ist
-das Board. Sie wechseln vom „Sprechen mit dem Agenten“ zum „Bedienen eines Bedienfelds, das der
-Agent für Sie erstellt hat“, ohne die Sitzung jemals zu verlassen.
+das Board. So wird aus dem „Gespräch mit dem Agenten“ die „Bedienung eines Kontrollpanels, das
+der Agent für Sie erstellt hat“, ohne dass Sie die Sitzung jemals verlassen.
 
 Grundsätze:
 
 - **Ein Board ist eine Ansicht einer Sitzung, kein neues Objekt.** Jede Sitzung (Thread)
   hat zwei Ansichten: das Transkript und das Board. Eine Sitzung ohne angeheftete Widgets
-  ist ein einfacher Chat. Heften Sie ein Widget an, und das Board existiert. Boards übernehmen die
-  Identität, Agentenzugehörigkeit, Benennung, Anheftung und den Lebenszyklus der Sitzung. Es gibt
-  kein `dashboard_create`, keine Board-Registry und kein separates ACL-Modell.
-- **Gleichwertigkeit des Agenten.** Alles, was der Benutzer auf einem Board tun kann, kann der Agent
+  ist ein einfacher Chat. Sobald ein Widget angeheftet wird, existiert das Board. Boards übernehmen
+  Identität, Agentenzuordnung, Benennung, Anheftung und Lebenszyklus der
+  Sitzung. Es gibt kein `dashboard_create`, keine Board-Registry und kein separates ACL-Modell.
+- **Gleichwertigkeit des Agenten.** Alles, was Benutzer auf einem Board tun können, kann auch der Agent
   mit Tools tun: Widgets hinzufügen/aktualisieren/entfernen, sie anordnen, Tabs verwalten, den
-  sichtbaren Tab wechseln sowie den Chat andocken oder ausblenden.
+  sichtbaren Tab wechseln und den Chat andocken oder ausblenden.
 - **Nativ, nicht eingebettet.** Das Board besteht aus Lit-Komponenten in der Control-UI-Shell
   (demselben Designsystem wie der Rest der App). Nur der _Inhalt_ eines Widgets wird
-  in iframes isoliert. Keine URL-Leiste, keine Browser-Bedienelemente.
-- **Kleine Agentenoberfläche.** Widgets werden über einen stabilen Namen adressiert und
-  direkt aktualisiert. Das Layout ist ein fließendes, automatisch verdichtendes Raster; der Agent gibt Größen und
-  Verankerungen an, niemals Pixel oder Koordinaten.
+  in iframes sandboxiert. Keine URL-Leiste, keine Browser-Bedienelemente.
+- **Kleine Agentenoberfläche.** Widgets werden über stabile Namen adressiert und direkt
+  aktualisiert. Das Layout ist ein flexibles, automatisch komprimierendes Raster; der Agent gibt Größen und
+  Anker an, niemals Pixel oder Koordinaten.
 - **Berechtigungen statt Vertrauen.** Widget-Code ist beliebiges, vom Agenten verfasstes HTML/JS
-  in einer strikt isolierten Sandbox. Zugriff (Gateway-Daten, Aktionen, Netzwerk) besteht nur über
+  in einer streng abgeschotteten Sandbox. Zugriff (Gateway-Daten, Aktionen, Netzwerk) besteht nur über
   ein deklariertes, vom Betreiber gewährtes Berechtigungsmanifest.
 
 ## Konzepte
@@ -55,213 +55,213 @@ Grundsätze:
 | Konzept             | Definition                                                                                                                                                        |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Sitzung (Thread)    | Bestehende Gateway-Sitzung, identifiziert durch den stabilen `sessionKey`. Gehört einem Agenten.                                                                                        |
-| Board               | Die Widget-Ansicht einer Sitzung. Existiert genau dann, wenn die Sitzung Widgets/Tabs hat. Übersteht `/new`/`/reset` (an `sessionKey` gebunden, nicht an das Transkript).                 |
-| Tab                 | Eine Präsentationsseite eines Boards: welche Widgets, deren Anordnung und der Andockstatus des Chats (`left`/`right`/`bottom`/`hidden`). Boards beginnen mit einem impliziten Tab. |
-| Widget              | Benanntes, isoliertes HTML/JS-Programm, das der Sitzung gehört. Adressiert als `sessionKey` + `name`. Wird anhand des Namens direkt aktualisiert.                                              |
+| Board               | Die Widget-Ansicht einer Sitzung. Existiert genau dann, wenn die Sitzung Widgets/Tabs hat. Überdauert `/new`/`/reset` (an `sessionKey` gebunden, nicht an das Transkript).                 |
+| Tab                 | Eine Darstellungsseite eines Boards: welche Widgets, ihre Anordnung und der Zustand des Chat-Docks (`left`/`right`/`bottom`/`hidden`). Boards beginnen mit einem impliziten Tab. |
+| Widget              | Benanntes, sandboxiertes HTML/JS-Programm, das der Sitzung gehört. Adressiert als `sessionKey` + `name`. Wird anhand des Namens direkt aktualisiert.                                              |
 | Berechtigungsmanifest | Widget-spezifische Deklaration des Zugriffs: `data` (Lesebindungen), `actions` (Verben auf der Positivliste), `prompt` (an Sitzung senden), `net` (zulässige Ursprünge).                      |
-| Anheften (Widget)        | Verschieben eines Transkript-Widgets auf das Board der Sitzung (Benutzerfunktion oder Agenten-Tool-Argument). Durch Lösen wird es vom Board entfernt.                                         |
+| Anheften (Widget)        | Verschieben eines Transkript-Widgets auf das Board der Sitzung (Benutzerfunktion oder Argument eines Agenten-Tools). Durch Lösen wird es vom Board entfernt.                                         |
 | Anheften (Sitzung)       | Bestehendes Anheften von Sitzungen in der Seitenleiste. Eine angeheftete Sitzung mit einem Board wird in ihrer Board-Ansicht geöffnet.                                                                      |
 
 ## UX-Abläufe
 
-- **Übernahme:** Der Agent ruft `show_widget` in einem beliebigen Chat auf → das Widget wird wie
-  heute direkt im Transkript gerendert → beim Darüberfahren erscheint **An Dashboard anheften** → das Widget
+- **Übernahme:** Der Agent ruft `show_widget` in einem beliebigen Chat auf → das Widget wird wie bisher inline
+  im Transkript gerendert → beim Darüberfahren erscheint **An Dashboard anheften** → das Widget
   erscheint auf dem Board der Sitzung. Der Agent kann `pin: true` übergeben, um dasselbe zu bewirken.
 - **Board-Ansicht:** Eine Sitzung mit einem Board erhält einen Ansichtsumschalter (Chat / Dashboard).
-  Board-Ansicht = Tableiste (nur bei >1 Tab) + fließendes Raster + angedockter Chatbereich.
-  Die Chat-Andockposition ist größenveränderbar, verschiebbar (links/rechts/unten) und genau
-  wie die Seitenleiste einklappbar. Der Andockstatus wird pro Tab gespeichert.
-- **Ziehen:** Der Benutzer zieht Widgets; das Raster verdichtet sich automatisch (Widgets rücken nach oben,
-  benachbarte fließen neu um). Die Größenänderung über den Griff rastet in Größenstufen ein. Keine pixelgenaue Platzierung —
+  Board-Ansicht = Tableiste (nur bei >1 Tab) + flexibles Raster + angedockter Chatbereich.
+  Das Chat-Dock ist in der Größe veränderbar, verschiebbar (links/rechts/unten) und genau wie
+  die Seitenleiste einklappbar. Der Dock-Zustand wird pro Tab gespeichert.
+- **Ziehen:** Benutzer ziehen Widgets; das Raster wird automatisch komprimiert (Widgets rücken nach oben,
+  benachbarte Elemente ordnen sich neu an). Die Größenänderung über einen Griff rastet in Größenstufen ein. Keine pixelgenaue Platzierung –
   für niemanden.
 - **Warnung beim Zurücksetzen:** `/new` / `/reset` fordert bei einer Sitzung mit Board
   in der Web-UI eine Bestätigung an („Der Kontext wird zurückgesetzt, das Dashboard bleibt erhalten“) und behält
   das Board bei.
-- **Seitenleiste:** Angeheftete Sitzungen zeigen ihre Board-Ansicht, sofern vorhanden.
+- **Seitenleiste:** Angeheftete Sitzungen zeigen ihre Board-Ansicht, sofern eine vorhanden ist.
   Das Board der Home-Sitzung ist das standardmäßige „Agenten-Dashboard“.
-- **Interaktionen** (drei Stufen, siehe unten): stille Zustandsereignisse, sichtbares
-  Senden von Prompts und Automatisierungsauslöser.
+- **Interaktionen** (drei Stufen, siehe unten): stille Zustandsereignisse, sichtbare
+  Prompt-Sendungen und Automatisierungsauslöser.
 
 ## Interaktionsstufen
 
-1. **Zustandsereignisse (Standard).** Interaktionen mit der Widget-UI, über die das Modell
-   informiert sein soll, auf die es jedoch nicht antworten soll. `bridge.emitState({...})` fügt einen strukturierten
+1. **Zustandsereignisse (Standard).** Interaktionen mit der Widget-Benutzeroberfläche, über die das Modell informiert sein sollte,
+   auf die es jedoch nicht reagieren soll. `bridge.emitState({...})` fügt einen strukturierten
    Sitzungshinweis hinzu (derselbe Mechanismus wie bei Gruppenaktivitätshinweisen). Es wird kein Agentendurchlauf
    gestartet; das Modell sieht die gesammelten Hinweise bei seinem nächsten Durchlauf.
-2. **Prompts (explizite Kommunikation).** `bridge.sendPrompt(text)` — erfordert eine
-   Benutzeraktion; sendet eine sichtbare Benutzernachricht an die Sitzung (der angedockte Chat
-   zeigt sie an). Ratenbegrenzt; jedes Senden wird vom Benutzer bestätigt, sofern das Widget nicht über
+2. **Prompts (explizite Kommunikation).** `bridge.sendPrompt(text)` – erfordert eine
+   Benutzeraktivierung; sendet eine sichtbare Benutzernachricht an die Sitzung (der angedockte Chat
+   zeigt sie an). Ratenbegrenzt; jede Sendung muss vom Benutzer bestätigt werden, sofern das Widget nicht über
    die gewährte Berechtigung `prompt` verfügt.
-3. **Automatisierung.** `bridge.runAction(name, args)` — löst eine im Manifest deklarierte
-   Aktion aus. Anfänglicher Satz von Verben: `cron.trigger` (einen vorhandenen Cron-Auftrag jetzt ausführen) und
-   `binding.refresh`. Cron-Aufträge werden bereits in sichtbaren, isolierten Ausführungssitzungen
-   ausgeführt und können ein günstigeres Modell verwenden: Dies ist der Pfad „Ein kleines Modell versorgt das Widget“.
-   Nirgendwo gibt es verborgene Sitzungen.
+3. **Automatisierung.** `bridge.runAction(name, args)` – löst eine im Manifest deklarierte
+   Aktion aus. Anfänglicher Satz von Verben: `cron.trigger` (einen vorhandenen Cron-Job jetzt ausführen) und
+   `binding.refresh`. Cron-Jobs werden bereits in sichtbaren, isolierten Ausführungssitzungen ausgeführt
+   und können ein günstigeres Modell verwenden: Das ist der Weg „ein kleines Modell treibt das Widget an“.
+   Es gibt nirgends versteckte Sitzungen.
 
 ## Widget-Modell und Hosting
 
-Widget-HTML/JS wird vom Agenten verfasst (üblicherweise über `show_widget`), in
-die standardmäßige Dokument-Shell eingebettet (CSP-Meta, Größenmelder, Bridge-Bootstrap) und
+Widget-HTML/JS wird vom Agenten verfasst (typischerweise über `show_widget`), in
+die Standard-Dokument-Shell eingebettet (CSP-Meta, Größenmelder, Bridge-Bootstrap) und
 in `<iframe sandbox="allow-scripts">` gerendert (niemals `allow-same-origin`).
 
 - **Inline-Widgets (Transkript)** behalten die aktuelle Canvas-Dokument-Pipeline bei:
-  unter dem Zustandsverzeichnis geschrieben, vom Gateway bereitgestellt, pro Geltungsbereich bereinigt, keine
-  Genehmigung (sie haben konstruktionsbedingt keine Berechtigungen — das Senden von Prompts wird vom Benutzer bestätigt).
-- **Board-Widgets** sind Sitzungszustand: Die Bytes befinden sich in der SQLite-
-  DB des zuständigen Agenten (`board_widgets`) und werden über eine zentrale Gateway-Route
-  (`/__openclaw__/board/<agentId>/<sessionKey>/<name>/`) bereitgestellt, die aus der DB liest.
-  Beim Anheften eines Transkript-Widgets werden die Bytes kopiert. Obergrenzen: 256 KB pro Widget,
+  im Zustandsverzeichnis gespeichert, vom Gateway bereitgestellt, nach Geltungsbereich bereinigt, keine
+  Genehmigung (sie haben konstruktionsbedingt keine Berechtigungen – Prompt-Sendungen werden vom Benutzer bestätigt).
+- **Board-Widgets** sind Sitzungszustand: Die Bytes liegen in der SQLite-Datenbank
+  des zuständigen Agenten (`board_widgets`) und werden über eine zentrale Gateway-Route
+  (`/__openclaw__/board/<agentId>/<sessionKey>/<name>/`) bereitgestellt, die die Datenbank liest.
+  Beim Anheften eines Transkript-Widgets werden die Bytes kopiert. Begrenzungen: 256 KB pro Widget,
   48 Widgets pro Board.
 - **Direkte Aktualisierung:** Das erneute Ausgeben eines Widgets mit demselben `name` ersetzt die
-  Bytes, erhöht `revision`, sendet `board.changed`, und aktive Ansichten laden
-  nur dieses iframe neu.
-- **Byte-Bindung:** Gewährte Berechtigungen werden an den sha256-Wert der Widget-
-  Bytes gebunden. Bei geänderten Bytes bleiben die Berechtigungen `data`/`net`/`actions` nur erhalten, wenn die neue
+  Bytes, erhöht `revision`, sendet `board.changed` und veranlasst Live-Ansichten, nur
+  dieses iframe neu zu laden.
+- **Byte-Bindung:** Gewährte Berechtigungen werden an den sha256-Hash der Widget-
+  Bytes gebunden. Beim Ändern der Bytes bleiben Gewährungen für `data`/`net`/`actions` nur erhalten, wenn die neue
   Revision eine Teilmenge des gewährten Manifests deklariert; ein erweitertes Manifest
   fordert den Betreiber erneut zur Bestätigung auf.
 
 ### Widgets hosten Inhalte; MCP-Apps sind eine Inhaltsart
 
 Das **Widget ist das OpenClaw-Grundelement**: die benannte, angeheftete, dimensionierte,
-sitzungseigene Board-Zelle mit einem Berechtigungsdatensatz. Was darin gerendert wird, ist eine
+sitzungseigene Board-Zelle mit einem Gewährungsdatensatz. Was darin gerendert wird, ist eine
 Inhaltsart:
 
-- `html` — vom Agenten über `show_widget` verfasst, Bytes im Board-Speicher.
-- `mcp-app` — eine MCP-App-Ansicht eines Drittanbieters (`ui://`-Ressource eines konfigurierten
+- `html` – vom Agenten über `show_widget` verfasst, Bytes im Board-Speicher.
+- `mcp-app` – eine MCP-App-Ansicht eines Drittanbieters (`ui://`-Ressource eines konfigurierten
   Servers), die innerhalb der Widget-Zelle gehostet wird.
 
-MCP-Apps definieren nicht das Widget-Modell; Widgets haben die Fähigkeit erhalten, sie zu
-hosten. Identität, Platzierung, Anheftung, Berechtigungen und die Autoren-API bleiben
-Eigentum von OpenClaw — dadurch bleibt `show_widget`-Code so kurz wie heute und muss
-nie wissen, dass die MCP-Apps-Spezifikation existiert.
+MCP-Apps definieren das Widget-Modell nicht; Widgets haben die Fähigkeit erhalten, sie zu
+hosten. Identität, Platzierung, Anheftung, Gewährungen und die API für Autoren bleiben
+OpenClaw-eigen – dadurch bleibt `show_widget`-Code so kurz wie heute und muss niemals
+wissen, dass die MCP-Apps-Spezifikation existiert.
 
-Gemeinsam genutzte Infrastruktur darunter (hier greift die Vereinfachung):
+Gemeinsame zugrunde liegende Infrastruktur (hier findet die Vereinfachung statt):
 
 - **Ein Sandbox-Host.** `html`-Widgets werden über dieselbe gehärtete
   Pipeline gerendert, mit der MCP-Apps ausgeliefert wurden (doppeltes iframe auf dem dedizierten Sandbox-
-  Ursprung, pro Widget deklarierte und fehlschließend dekodierte CSP), statt über einen zweiten
+  Ursprung, pro Widget deklarierte CSP, die ausfallsicher dekodiert wird), statt über einen zweiten
   maßgeschneiderten iframe-Host. Der Proxy empfängt HTML als Wert, daher sind lokale Inhalte
-  der natürliche Fall.
+  der natürliche Anwendungsfall.
 - **Ein Autorisierungsmodell.** Der Zugriff eines Widgets ist eine gewährte Positivliste,
   unabhängig von seiner Art: für `html`-Widgets Host-Tools; für `mcp-app`-Widgets
-  die für Apps sichtbaren Tools des Servers (über den bestehenden `allowedAppToolNames`-
-  Mechanismus, der pro Widget statt pro Erzeugungsdurchlauf dauerhaft gemacht wird).
+  die für die App sichtbaren Tools des Servers (über den bestehenden `allowedAppToolNames`-
+  Mechanismus, dauerhaft pro Widget statt pro Erzeugungsdurchlauf).
 - **Host-Tools für `html`-Widgets** (über die Widget-Bridge verfügbar gemacht und
-  anhand der Berechtigung geprüft):
-  - `openclaw.prompt.send` — Stufe 2; über den sichtbaren Editor geleitet,
+  anhand der Gewährung geprüft):
+  - `openclaw.prompt.send` – Stufe 2; über den sichtbaren Composer geleitet,
     vom Benutzer bestätigt, sofern nicht gewährt
-  - `openclaw.state.emit` — Sitzungshinweise der Stufe 1 (zusammengefasst, größenbegrenzt)
-  - `openclaw.data.read` — parametrisierte schreibgeschützte Bindungen (bestehender
-    Satz zulässiger Lese-RPCs), Gateway-seitig aufgelöst
-  - `openclaw.cron.trigger` — Automatisierung der Stufe 3
-- **`net` = CSP.** Der Netzwerkzugriff verwendet die bereits ausgelieferte CSP-
-  Deklaration pro Widget (`connect-src`-Ursprünge) — das selbstaktualisierende Wetter-Widget
+  - `openclaw.state.emit` – Sitzungshinweise der Stufe 1 (zusammengeführt, größenbegrenzt)
+  - `openclaw.data.read` – parametrisierte schreibgeschützte Bindungen (bestehender
+    Satz von Lese-RPCs auf der Positivliste), Gateway-seitig aufgelöst
+  - `openclaw.cron.trigger` – Automatisierung der Stufe 3
+- **`net` = CSP.** Der Netzwerkzugriff verwendet die bereits ausgelieferte, Widget-spezifische CSP-
+  Deklaration (`connect-src`-Ursprünge) – das selbstaktualisierende Wetter-Widget
   ruft seine API direkt aus der Sandbox ab, ohne Beteiligung des Gateways.
-- **Berechtigungen.** Ein Widget, das nichts deklariert, wird sofort gerendert (isoliert,
-  `default-src 'none'`, Prompt-Sendevorgänge werden einzeln bestätigt) — dasselbe Vertrauen wie bei den
-  heutigen Inline-Chat-Widgets. Deklarierte Tools/Ursprünge versetzen das Widget auf dem Board in
-  `pending`: Eine Platzhalterkarte listet sie verständlich auf und bietet **Zulassen**/**Ablehnen**
-  mit einem Tippen. Berechtigungen gelten pro Widget-Name; bei `html`-Widgets
-  sind sie an die Bytes gebunden (sha256), und geänderte Bytes behalten die Berechtigung nur, wenn die
-  Deklaration eingeschränkt wurde.
-- **Autoren-Adapter.** Der Dokument-Wrapper injiziert `window.openclaw.prompt`,
+- **Gewährungen.** Ein Widget, das nichts deklariert, wird sofort gerendert (sandboxiert,
+  `default-src 'none'`, Prompt-Sendungen werden einzeln bestätigt) – dasselbe Vertrauensniveau wie
+  bei heutigen Inline-Chat-Widgets. Deklarierte Tools/Ursprünge versetzen das Widget auf dem Board in
+  `pending`: Eine Platzhalterkarte listet sie in verständlicher Form auf, mit
+  **Zulassen**/**Ablehnen** per einfachem Tippen. Gewährungen gelten pro Widget-Namen; bei `html`-Widgets
+  sind sie an die Bytes gebunden (sha256), und bei geänderten Bytes bleibt die Gewährung nur erhalten, wenn die
+  Deklaration verkleinert wurde.
+- **Autoren-Shim.** Der Dokument-Wrapper injiziert `window.openclaw.prompt`,
   `window.openclaw.state`, `window.openclaw.data` und `window.openclaw.cron`
-  als stabile Autoren-API. Dashboard-Aufrufe nutzen gemeinsam einen einzigen, an das Ansichtsticket gebundenen
-  Anfragekanal; Größenmeldungen und Theme-Token bleiben separate Host-
+  als stabile Autoren-API. Dashboard-Aufrufe teilen sich einen einzigen, an das Ansichtsticket gebundenen
+  Anfragekanal; Größenmeldungen und Theme-Tokens bleiben separate Host-
   Benachrichtigungen.
 
 ### Plugin-Berechtigungsdeklarationen
 
 Aktivierte Plugins können den Widget-Host über `dashboard.dataBindings`
-und `dashboard.actionVerbs` in `openclaw.plugin.json` erweitern. Plugin-lokale IDs werden zu
-Berechtigungsnamen mit vorangestellter Plugin-ID, etwa `workboard.cards.list` und
+und `dashboard.actionVerbs` in `openclaw.plugin.json` erweitern. Plugin-lokale IDs werden
+zu Gewährungsnamen mit dem Präfix der Plugin-ID, beispielsweise `workboard.cards.list` und
 `workboard.dispatch`; `%` und `.` werden im Plugin-ID-Segment maskiert, damit eine
-andere Aufteilung aus Plugin-/lokaler ID nicht dieselbe persistierte Berechtigung übernehmen kann. Während
+andere Aufteilung von Plugin und lokaler ID nicht dieselbe persistierte Gewährung übernehmen kann. Während
 der Plugin-Registrierung überprüft OpenClaw, dass jede Bindung auf einen RPC verweist,
-der vom selben Plugin mit `operator.read` registriert wurde, und jede Aktion auf einen
-mit `operator.write`; ungültige Deklarationen führen dazu, dass das Plugin nicht geladen wird. Die validierte
-Registry wird nur bei Änderungen des Plugin-Lebenszyklus neu erstellt, während Widget-Berechtigungen
-weiterhin pro Widget sowie an Bytes und Revision gebunden bleiben.
+der vom selben Plugin mit `operator.read` registriert wurde, und jede Aktion auf einen,
+der mit `operator.write` registriert wurde; ungültige Deklarationen führen zum Fehlschlagen des Plugin-Ladevorgangs. Die validierte
+Registry wird nur bei Änderungen am Plugin-Lebenszyklus neu aufgebaut, während Widget-Gewährungen
+Widget-spezifisch sowie an Bytes und Revision gebunden bleiben.
 
 ### Modelliertes Restrisiko: WebRTC-Datenkanäle
 
 Die Sandbox-CSP gibt die vorgeschlagene `webrtc 'block'`-Direktive aus, aber
 [Chromiums aktueller Satz von CSP-Direktiven](https://chromium.googlesource.com/chromium/src/+/main/services/network/public/mojom/content_security_policy.mojom#95)
-implementiert sie nicht. Skriptfähige Widgets können daher in der aktuellen Chromium-Version WebRTC-
-Datenkanäle zur Datenübertragung nach außen verwenden. Dasselbe Restrisiko besteht bereits bei
+implementiert sie nicht. Skriptfähige Widgets können daher im aktuellen Chromium WebRTC-Datenkanäle
+für ausgehende Verbindungen verwenden. Dasselbe Restrisiko besteht bereits bei
 Inline-Chat-Widgets und dem MCP-Apps-Host auf `main`.
 
 **Akzeptierter Kompromiss:** OpenClaw sperrt skriptfähige Widgets nicht aufgrund dieses
-Restrisikos. Widget-Inhalte erhalten nur über eine vom Operator gewährte,
-byte-fixierte `data:read`-Capability Zugriff auf sensible OpenClaw-Daten, und die
+Restrisikos. Widget-Inhalte erhalten Zugriff auf sensible OpenClaw-Daten nur über
+eine vom Betreiber gewährte, bytegenau fixierte `data:read`-Berechtigung, und die
 Permissions Policy der Sandbox blockiert den Zugriff auf Kamera und Mikrofon. Eine
-DOM-API-Schutzmaßnahme ist eine Best-Effort-Defense-in-Depth, keine Sicherheitsgrenze,
-und gehört in eine nachgelagerte Härtungsmaßnahme.
+DOM-API-Schutzvorkehrung ist eine Best-Effort-Tiefenverteidigung, keine Sicherheitsgrenze,
+und gehört in eine nachgelagerte Härtung.
 
 ### Transkriptanzeige: eine Widget-Karte
 
-Die Inline-Anzeige wird auf das Widget-Primitiv vereinheitlicht. Wenn ein Tool-Ergebnis UI enthält —
-`show_widget`-Ausgabe oder ein MCP-Tool-Ergebnis mit einer App-Ressource — materialisiert das
-System ein **flüchtiges, automatisch benanntes Widget** (sitzungsgebunden, bereinigt), und
-das Transkript rendert eine einzelne Widget-Karte, die nach Inhaltsart verzweigt.
-Die automatische Anzeige von MCP-Apps bleibt exakt so, wie es die Spezifikation erwartet (keine zusätzliche Modellarbeit);
-sie _ist_ darunter einfach ein Widget. Dadurch werden die parallelen `mcpApp`-
-Sonderfälle beim Chat-Rendering (Oberflächen-Gating, separate Deduplizierung) entfernt, jede
+Die Inline-Anzeige wird auf dem Widget-Primitiv vereinheitlicht. Wenn ein Tool-Ergebnis eine UI enthält —
+`show_widget`-Ausgabe oder ein MCP-Tool-Ergebnis mit einer App-Ressource — materialisiert das System
+ein **flüchtiges, automatisch benanntes Widget** (sitzungsbezogen, bereinigt), und
+das Transkript rendert eine einzelne Widget-Karte, die nach Inhaltsart weiterleitet.
+Die automatische MCP-App-Anzeige bleibt exakt so, wie es die Spezifikation erwartet (keine zusätzliche Modellarbeit);
+darunter _ist_ sie lediglich ein Widget. Dadurch entfallen die parallelen `mcpApp`-
+Sonderfälle beim Chat-Rendering (Oberflächenfreigabe, separate Deduplizierung), jede
 Inline-UI erhält dieselbe Anheftoption, und die Widget-Registry wird zum primären
-Pfad für das erneute Öffnen (die Rekonstruktion durch Scannen des Transkripts bleibt als Fallback für nie angeheftete
+Pfad für das erneute Öffnen (die Rekonstruktion durch Durchsuchen des Transkripts bleibt als Rückfalloption für nie angeheftete
 Verläufe bestehen). Der schreibgeschützte, ticketgebundene eigenständige Host überschneidet sich mit Boards als
-persistente Oberfläche zum erneuten Öffnen — ein Konsolidierungskandidat, der in T6 zu bewerten ist, nicht
-als gegeben angenommen.
+dauerhafte Oberfläche zum erneuten Öffnen — ein in T6 zu prüfender Konsolidierungskandidat, keine
+Annahme.
 
-Komposition: v1 verwendet Raster-Nachbarschaft (Agent-Chrome-Widget neben einem App-Widget in
+Komposition: v1 verwendet Raster-Nachbarschaft (Agent-Chrome-Widget neben einem App-Widget auf
 einem Tab). v2 ergänzt **hostverwaltete App-Slots** — das HTML des Agent-Widgets deklariert eine
-Slot-Region, und der Host setzt die echte App-Ansicht als benachbarte Sandbox zusammen.
-Die App wird niemals innerhalb des Agent-iframe gerendert: Verschachtelung würde die Bridge-
-Identität aufbrechen und Overlay-/Clickjacking-Angriffe auf die gewährte App-UI ermöglichen; der Slot ist daher ein
+Slot-Region, und der Host setzt die tatsächliche App-Ansicht als gleichrangige Sandbox zusammen.
+Die App wird niemals innerhalb des iFrames des Agenten gerendert: Eine Verschachtelung würde die Bridge-
+Identität aufbrechen und Overlays beziehungsweise Clickjacking der freigegebenen App-UI ermöglichen, daher ist der Slot ein
 Layout-Vertrag und keine Einbettung.
 
-### Serverbezogene Widgets (angeheftete MCP-Apps)
+### Serverseitig bereitgestellte Widgets (angeheftete MCP-Apps)
 
-Mit dem vereinheitlichten Host ist das Anheften einer Drittanbieter-MCP-App einfach ein Widget, dessen
-Inhalt vom Server abgerufen statt gespeichert wird: `board_widgets` behält den
+Mit dem vereinheitlichten Host ist das Anheften einer MCP-App eines Drittanbieters lediglich ein Widget, dessen
+Inhalt vom Server abgerufen statt gespeichert wird: `board_widgets` enthält den
 Deskriptor (`serverName`, `toolName`, `uiResourceUri`, ursprüngliche
-`toolCallId` + `sessionKey`) statt der HTML-Bytes, und das Board stellt die
-Ansichts-Lease über die 10-minütige TTL des Chat-Turns hinaus neu aus (bei Veraltung wird die `ui://`-Ressource
+`toolCallId` + `sessionKey`) anstelle von HTML-Bytes, und das Board stellt die
+Ansichts-Lease über die 10-minütige TTL des Chat-Durchlaufs hinaus neu aus (bei Veraltung wird die `ui://`-Ressource
 erneut abgerufen). Inline-MCP-App-Ansichten im Chat erhalten dieselbe **An Dashboard anheften**-
-Option wie Agent-Widgets. Erneut geöffnete Ansichten sind heute absichtlich schreibgeschützt;
-angeheftete Apps, die interaktiv bleiben sollen, erhalten eine dauerhafte Gewährung für die
-app-sichtbaren Tools des Servers (explizite Allowlist, die dem Operator beim Anheften angezeigt wird), entkoppelt
-vom ausstellenden Lauf. Nicht gewährte Anheftungen bleiben schreibgeschützt — und sind weiterhin für Anzeige-
+Option wie Agent-Widgets. Erneut geöffnete Ansichten sind derzeit bewusst schreibgeschützt;
+angeheftete Apps, die interaktiv bleiben sollen, erhalten eine dauerhafte Freigabe für die
+app-sichtbaren Tools des Servers (explizite Positivliste, die dem Betreiber beim Anheften angezeigt wird), entkoppelt
+vom ausstellenden Lauf. Nicht freigegebene angeheftete Ansichten bleiben schreibgeschützt — und sind weiterhin für Anzeige-
 Dashboards nützlich. v1 heftet an das Board der ursprünglichen Sitzung an; sitzungsübergreifendes Anheften
-benötigt einen Lease-Broker und muss warten. Abstimmung mit offenem PR #109807 (`ui/message`-
-Composer-Routing, Weitergabe von Theme/Größe).
+benötigt einen Lease-Broker und muss warten. Abstimmung mit dem offenen PR #109807 (`ui/message`-
+Composer-Routing, Weitergabe von Theme und Größe).
 
 ### WorkBoard-Integration
 
-Das WorkBoard-Integrationsprogramm belässt Karten und Boards im Besitz des Plugins, verknüpft jedoch versandte Karten über die vorhandenen `sessionKey` und `runId` wieder mit ihren Sitzungs-Boards, stellt WorkBoard-Feeds und Versand über vom Plugin deklarierte Bindings und Aktionen bereit und setzt diese Ergebnisse mit den vorhandenen Widget-Arten `html` und `mcp-app` zusammen, statt einen WorkBoard-spezifischen Widget-Typ einzuführen.
+Das WorkBoard-Integrationsprogramm belässt Karten und Boards im Besitz des Plugins und verknüpft versandte Karten über die bestehenden `sessionKey` und `runId` wieder mit ihren Sitzungs-Boards, stellt WorkBoard-Feeds und Versand über vom Plugin deklarierte Bindings und Aktionen bereit und kombiniert diese Ergebnisse mit den bestehenden Widget-Arten `html` und `mcp-app`, statt einen WorkBoard-spezifischen Widget-Typ einzuführen.
 
-## Layout: fließendes Raster
+## Layout: flexibles Raster
 
-12 Spalten, feste Zeilenhöhe, **automatisch kompaktierend** (Schwerkraft nach oben, beim
-Ziehen zur Seite schieben — Gridstack-Semantik, nativ implementiert; die Rastermathematik bleibt rein und
+12 Spalten, feste Zeilenhöhe, **automatische Verdichtung** (Schwerkraft nach oben, beim
+Ziehen zur Seite schieben — Gridstack-Semantik, nativ implementiert; die Rasterberechnung bleibt rein und
 DOM-frei). Widget-Layoutstatus pro Tab: `{ name, w (1-12), h (rows) }` plus
 Reihenfolge. Agent-Vokabular:
 
 - `size`: `sm` (3×3) · `md` (6×4) · `lg` (8×6) · `xl` (12×8) · `full`
   (Tab mit einem einzelnen Widget)
-- `after: <widgetName>` optionaler Reihenfolgeanker; weggelassen = anhängen
-- Benutzer ziehen und skalieren frei; dasselbe Reihenfolge-und-Größe-Modell durchläuft den Roundtrip.
+- `after: <widgetName>` optionaler Sortieranker; weggelassen = anhängen
+- Benutzer können frei ziehen und die Größe ändern; dasselbe Reihenfolge-und-Größe-Modell lässt sich verlustfrei hin- und zurückübertragen.
 
-## Datenmodell (Agent-DB)
+## Datenmodell (agentenspezifische DB)
 
 Neue Tabellen in `agents/<agentId>/agent/openclaw-agent.sqlite`
-(**erfordert eine Schema-Versionsanhebung der Agent-DB — Freigabe durch den Operator erforderlich,
+(**erfordert eine Erhöhung der Schemaversion der Agent-DB — Zustimmung des Betreibers erforderlich,
 bevor dies integriert wird**):
 
 ```sql
 CREATE TABLE board_tabs (
   session_key TEXT NOT NULL,
-  tab_id      TEXT NOT NULL,           -- slug
+  tab_id      TEXT NOT NULL,           -- Slug
   title       TEXT NOT NULL,
   position    INTEGER NOT NULL,
   chat_dock   TEXT NOT NULL DEFAULT 'right',  -- left|right|bottom|hidden
@@ -271,18 +271,18 @@ CREATE TABLE board_tabs (
 
 CREATE TABLE board_widgets (
   session_key  TEXT NOT NULL,
-  name         TEXT NOT NULL,          -- stable widget name
+  name         TEXT NOT NULL,          -- stabiler Widget-Name
   tab_id       TEXT NOT NULL,
   title        TEXT,
-  html         BLOB NOT NULL,          -- wrapped document source
+  html         BLOB NOT NULL,          -- Quelle des umschlossenen Dokuments
   sha256       TEXT NOT NULL,
   revision     INTEGER NOT NULL,
   size_w       INTEGER NOT NULL,
   size_h       INTEGER NOT NULL,
-  position     INTEGER NOT NULL,       -- order within tab (auto-compact input)
-  manifest     TEXT NOT NULL DEFAULT '{}',  -- capability manifest JSON
+  position     INTEGER NOT NULL,       -- Reihenfolge innerhalb des Tabs (Eingabe für automatische Verdichtung)
+  manifest     TEXT NOT NULL DEFAULT '{}',  -- Berechtigungsmanifest als JSON
   grant_state  TEXT NOT NULL DEFAULT 'none', -- none|pending|granted|rejected
-  granted_sha  TEXT,                   -- byte-frozen grant
+  granted_sha  TEXT,                   -- bytegenau fixierte Freigabe
   created_by   TEXT NOT NULL,
   created_at   INTEGER NOT NULL,
   updated_at   INTEGER NOT NULL,
@@ -290,34 +290,34 @@ CREATE TABLE board_widgets (
 ) STRICT;
 ```
 
-Board-Existenz = beliebige Zeilen für den `sessionKey`. Das Löschen einer Sitzung löscht ihre
-Board-Zeilen. `/new`/`/reset` verändert sie nicht.
+Ein Board existiert, sobald Zeilen für den `sessionKey` vorhanden sind. Beim Löschen einer Sitzung werden ihre
+Board-Zeilen gelöscht. `/new`/`/reset` berührt sie nicht.
 
 ## Protokolloberfläche
 
-RPCs (Kern-Methodentabelle, TypeBox-Schemas in `gateway-protocol`):
+RPCs (zentrale Methodentabelle, TypeBox-Schemas in `gateway-protocol`):
 
 - `board.get { sessionKey }` → Tabs + Widget-Metadaten (keine Bytes) — `operator.read`
-- `board.update { sessionKey, ops[] }` — Tab-CRUD/-Neuanordnung, Widget verschieben/skalieren/
-  entfernen/loslösen, Dock-Status, Tab fokussieren — `operator.write`
+- `board.update { sessionKey, ops[] }` — CRUD/Neusortierung von Tabs, Verschieben/Größenänderung/
+  Entfernen/Lösen von Widgets, Dock-Status, Tab fokussieren — `operator.write`
 - `board.widget.put { sessionKey, name, html, manifest, placement }` —
   `operator.write` (Agent-Tool-Pfad und Anheftpfad)
 - `board.widget.grant { sessionKey, name, decision }` — `operator.approvals`
-- `board.event { ticket, payload }` — ticketgebundene Tier-1-Statusereignisaufnahme;
-  die ältere Trusted-Host-Form `{ sessionKey, widget, payload }` bleibt bestehen —
+- `board.event { ticket, payload }` — ticketgebundene Aufnahme von Statusereignissen der Stufe 1;
+  die bisherige Form `{ sessionKey, widget, payload }` für vertrauenswürdige Hosts bleibt bestehen —
   `operator.write`
 - `board.prompt.authorize { ticket }` — gibt zurück, ob das Senden einer sichtbaren Eingabeaufforderung
-  weiterhin eine Bestätigung pro Klick benötigt — `operator.read`
-- `board.data.read { ticket, bindingId, params? }` — Gateway-seitige, per Allowlist beschränkte
-  Auflösung von Lese-Bindings des Kerns oder aktiver Plugins — `operator.read`
-- `board.action { ticket, action, ... }` — Automatisierungsversand mit exakter Gewährung
-  über den vorhandenen Cron-Sofortausführungspfad oder das validierte Aktionsverb
+  weiterhin eine Bestätigung bei jedem Klick benötigt — `operator.read`
+- `board.data.read { ticket, bindingId, params? }` — Gateway-seitige Auflösung von
+  Core-Lesebindings oder Lesebindings aktiver Plugins anhand einer Positivliste — `operator.read`
+- `board.action { ticket, action, ... }` — Automatisierungsversand mit exakter Freigabe
+  über den bestehenden Cron-Sofortausführungspfad oder ein validiertes Aktionsverb
   eines aktiven Plugins — `operator.write`
 
 Ereignisse (in `EVENT_SCOPE_GUARDS`, Lesebereich):
 
-- `board.changed { sessionKey, revision, widget? }` — persistierter Status geändert;
-  die UI ruft erneut ab (und lädt einen iframe neu, wenn `widget` vorhanden ist).
+- `board.changed { sessionKey, revision, widget? }` — persistierter Status wurde geändert;
+  die UI ruft erneut ab (und lädt einen iFrame neu, wenn `widget` vorhanden ist).
 - `board.command { sessionKey, command }` — vorübergehende UI-Steuerung (Agent wechselt
   den sichtbaren Tab, schaltet das Chat-Dock um) — das `ui.command`-Muster.
 
@@ -325,56 +325,56 @@ Widget-Bytes werden über die authentifizierte HTTP-Oberfläche bereitgestellt, 
 
 ## Agent-Tools
 
-Insgesamt drei Tools (Kern, immer registriert; Rendering wie heute durch die
-`inline-widgets`-Client-Capability gegated):
+Insgesamt drei Tools (Core, immer registriert; Rendering wie bisher durch die
+Client-Berechtigung `inline-widgets` beschränkt):
 
 - `show_widget { title, widget_code, name?, pin?, size?, tab?, after?,
-capabilities? }` — nach Name erstellen/aktualisieren; `pin` platziert es auf dem Board.
-  Ohne `name`/`pin` verhält es sich exakt wie heute (inline, flüchtig).
-- `dashboard { action, ... }` — Verben zur Board-Verwaltung: `read`, `tab_create`,
+capabilities? }` — nach Namen erstellen/aktualisieren; `pin` platziert es auf dem Board.
+  Ohne `name`/`pin` verhält es sich exakt wie bisher (inline, flüchtig).
+- `dashboard { action, ... }` — Board-Verwaltungsverben: `read`, `tab_create`,
   `tab_update`, `tab_delete`, `tabs_reorder`, `widget_move`, `widget_remove`,
   `unpin`, `focus_tab`, `set_chat_dock`.
-- Vorhandene `cron`-Tools decken die Automatisierungsebene ab; kein neues Tool erforderlich.
+- Bestehende `cron`-Tools decken die Automatisierungsstufe ab; kein neues Tool erforderlich.
 
-Tool-Beschreibungen vermitteln das Größen-/Anker-Vokabular und das Tier-Modell. Der
-Agent wird über Tier-1-Benutzerereignisse durch Sitzungshinweise informiert, z. B.
+Tool-Beschreibungen vermitteln das Größen-/Anker-Vokabular und das Stufenmodell. Der
+Agent wird über Sitzungsbenachrichtigungen über Benutzerereignisse der Stufe 1 informiert, z. B.
 `[dashboard] user clicked "Refresh" on widget weather (tab main)`.
 
 ## Was dadurch ersetzt wird
 
 - **`extensions/workspaces` wird gelöscht.** Experimentell, `enabledByDefault:
-false`, nie in einer stabilen Version enthalten (erstmals in 2026.7.2-Betas erschienen). Keine
-  Migration; eine Doctor-Regel entfernt veraltete `<stateDir>/workspaces/`, sofern vorhanden.
-  Übernommene Ideen: reine Rastermathematik, Bridge-Sicherheitsmodell (Port-Bootstrap,
-  Binding-Gating, Ratenbegrenzungen), byte-fixierte Genehmigung.
-- **Das Widget-Hosting wird von `extensions/canvas` in den Kern verschoben.** Der Canvas-Dokument-
-  Store, der Dokument-Wrapper, die HTTP-Bereitstellung und das `show_widget`-Tool werden Teil des Kerns
+false`, nie in einer stabilen Version enthalten (erstmals in den Betas von 2026.7.2 erschienen). Keine
+  Migration; eine Doctor-Regel entfernt veraltete `<stateDir>/workspaces/`, falls vorhanden.
+  Übernommene Ideen: reine Rasterberechnung, Bridge-Sicherheitsmodell (Port-Bootstrap,
+  Binding-Beschränkung, Ratenbegrenzungen), bytegenau fixierte Genehmigung.
+- **Das Widget-Hosting wird von `extensions/canvas` in den Core verschoben.** Der Canvas-Dokument-
+  speicher, der Dokument-Wrapper, die HTTP-Bereitstellung und das Tool `show_widget` werden Teil des Cores
   (`src/canvas/`); das Plugin behält das Node-Canvas-Steuerungstool (`canvas`) und
   A2UI. Die `pluginSurfaceUrls["canvas"]`-Ankündigung und die
-  `/__openclaw__/canvas`-Pfade sind ausgelieferte Native-Client-Verträge und bleiben
-  stabil. Discord-Sitzungen behalten die Discord-eigene `show_widget`-Variante.
+  `/__openclaw__/canvas`-Pfade sind ausgelieferte Verträge für native Clients und bleiben
+  stabil. Discord-Sitzungen behalten die Discord-eigene Variante `show_widget`.
 
 ## Nichtziele (dieses Programm)
 
-- Mehrbenutzerfreigabe von Boards/ACLs (zukünftig; wird über Sitzungsfreigabe eingeführt).
-- Natives Board-Rendering unter macOS/iOS (sie erhalten es überall dort, wo sie die
-  Control UI einbetten; der Inline-Widget-Pfad bleibt unverändert).
-- Integrierte Daten-Widgets (Sitzungs-/Nutzungs-/Cron-Karten) — die Capability-Bridge und
-  vom Agent erstellte Widgets decken v1 ab; eine Registry integrierter Arten kann später folgen.
+- Gemeinsame Nutzung von Boards durch mehrere Benutzer/ACLs (zukünftig; wird über die Sitzungsfreigabe eingeführt).
+- Natives Board-Rendering unter macOS/iOS (dort ist es überall verfügbar, wo die
+  Control UI eingebettet wird; der Inline-Widget-Pfad bleibt unverändert).
+- Integrierte Daten-Widgets (Sitzungs-/Nutzungs-/Cron-Karten) — die Berechtigungs-Bridge und
+  von Agenten erstellte Widgets decken v1 ab; eine Registry integrierter Arten kann später hinzukommen.
 
 ## Implementierungsplan
 
-Unabhängige Worktrees, mit Codex erstellt, sequenziell prüfen und integrieren. Erst integrieren, dann korrigieren.
+Unabhängige Worktrees, mit Codex erstellt, nacheinander prüfen und integrieren. Erst integrieren, dann korrigieren.
 
 | #   | Branch                               | Umfang                                                                                                                                                                              | Abhängig von                       |
 | --- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
 | T1  | `claude/dashboard-remove-workspaces` | Workspaces-Plugin + UI + Dokumentation + i18n-Schlüssel löschen; Doctor-Bereinigungsregel                                                                                                              | —                                |
-| T2  | `claude/dashboard-canvas-core`       | Widget-Hosting + `show_widget` in den Kern verschieben; Canvas-Plugin behält Node-Tool; keine Verhaltensänderung                                                                                | —                                |
-| T3  | `claude/dashboard-domain`            | Agent-DB-Tabellen (Schema-Anhebung), `board.*`-RPCs + Ereignisse, `dashboard`-Tool, `show_widget`-Argumente für Anheftung/Name/Manifest, Tier-1-Hinweise, Zurücksetzen behält Board                                  | T2                               |
-| T4  | `claude/dashboard-ui`                | Board-Ansicht + Tab-Leiste + fließendes, automatisch kompaktierendes Raster + Chat-Dock (links/rechts/unten/ausgeblendet) + Anheftoption im Transkript + Board-Ansicht in der Seitenleiste + Bestätigung beim Zurücksetzen                           | T3 (zuerst Mock über Entwicklungs-Fixtures) |
-| T5  | `claude/dashboard-capabilities`      | Gewährungsspeicher/-UI + Byte-Fixierung; `html`-Widgets auf den gemeinsamen Sandbox-Host verschieben; Host-Tools (`openclaw.prompt.send/state.emit/data.read/cron.trigger`); `net`-CSP; Authoring-Shim | T3, T4                           |
-| T7  | `claude/dashboard-mcp-apps`          | `mcp-app`-Inhaltsart: Anheftoption für Inline-App-Ansichten, Deskriptorspeicherung, Lease-Neuausstellung/-Aktualisierung, dauerhafte Server-Tool-Gewährungen (verwendet den ausgelieferten MCP-Apps-Host wieder)                   | T3, T4                           |
-| T6  | Feinschliff                               | Live-E2E auf einem temporären Gateway (echte Schlüssel), Screenshots, Korrekturen, benutzerorientierte Neufassung von `/web/dashboard`, Prüfung der standardmäßigen Aktivierung                                                     | alle                              |
+| T2  | `claude/dashboard-canvas-core`       | Widget-Hosting + `show_widget` in den Core überführen; Canvas-Plugin behält Node-Tool; keine Verhaltensänderung                                                                                | —                                |
+| T3  | `claude/dashboard-domain`            | Agent-DB-Tabellen (Schemaerhöhung), `board.*`-RPCs + Ereignisse, Tool `dashboard`, `show_widget`-Argumente für Anheften/Name/Manifest, Stufe-1-Benachrichtigungen, Zurücksetzen behält Board bei                                  | T2                               |
+| T4  | `claude/dashboard-ui`                | Board-Ansicht + Tableiste + flexibles, automatisch verdichtendes Raster + Chat-Dock (links/rechts/unten/ausgeblendet) + Anheftoption im Transkript + Board-Ansicht in der Seitenleiste + Bestätigung beim Zurücksetzen                           | T3 (zuerst Mocks über Entwicklungs-Fixtures) |
+| T5  | `claude/dashboard-capabilities`      | Freigabespeicher/UI + bytegenaue Fixierung; `html`-Widgets auf den gemeinsamen Sandbox-Host verschieben; Host-Tools (`openclaw.prompt.send/state.emit/data.read/cron.trigger`); `net`-CSP; Erstellungskompatibilitätsschicht | T3, T4                           |
+| T7  | `claude/dashboard-mcp-apps`          | Inhaltsart `mcp-app`: Anheftoption in Inline-App-Ansichten, Deskriptorspeicherung, erneute Lease-Ausstellung/Aktualisierung, dauerhafte Server-Tool-Freigaben (verwendet den ausgelieferten MCP-Apps-Host erneut)                   | T3, T4                           |
+| T6  | Feinschliff                               | Live-E2E auf einem Test-Gateway (echte Schlüssel), Screenshots, Korrekturen, benutzerorientierte Überarbeitung von `/web/dashboard`, Prüfung der standardmäßigen Aktivierung                                                     | alle                              |
 
-Validierung gemäß Repo-Regeln: fokussiertes Vitest lokal, vollständige Gates auf
+Validierung gemäß Repository-Regeln: fokussiertes Vitest lokal, vollständige Prüfungen auf
 Crabbox/Testbox, `$autoreview` vor jeder Integration, Live-Nachweis für T6.

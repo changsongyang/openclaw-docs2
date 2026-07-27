@@ -4,7 +4,7 @@ read_when:
 summary: Plugin کانال ربات QQ در OpenClaw برای گردش‌کارهای گروهی و پیام مستقیم.
 title: Plugin ربات QQ
 x-i18n:
-    generated_at: "2026-07-16T17:29:51Z"
+    generated_at: "2026-07-27T16:59:14Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # Plugin ربات QQ
 
-Plugin کانال ربات QQ برای گردش‌های کاری گروهی و پیام مستقیم در OpenClaw.
+Plugin کانال ربات QQ در OpenClaw برای گردش‌کارهای گروهی و پیام مستقیم.
 
 ## توزیع
 
 - بسته: `@openclaw/qqbot`
 - روش نصب: npm؛ ClawHub
 
-## سطوح
+## سطح
 
 کانال‌ها: `qqbot`؛ قراردادها: `tools`؛ Skills
 

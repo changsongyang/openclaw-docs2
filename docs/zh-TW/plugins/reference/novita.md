@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 novita 外掛
-summary: 新增 OpenClaw 對 Novita、Novita AI、Novitaai 模型供應商的支援。
+summary: 為 OpenClaw 新增對 Novita、Novita AI、Novitaai 模型供應商的支援。
 title: Novita 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:49:52Z"
+    generated_at: "2026-07-26T07:59:24Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 
 為 OpenClaw 新增 Novita、Novita AI、Novitaai 模型提供者支援。
 
-## 發佈方式
+## 發行方式
 
 - 套件：`@openclaw/novita-provider`
 - 安裝方式：隨附於 OpenClaw

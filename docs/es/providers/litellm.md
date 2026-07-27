@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Quieres enrutar OpenClaw a través de un proxy LiteLLM
+    - Se desea enrutar OpenClaw mediante un proxy LiteLLM
     - Necesita seguimiento de costes, registro o enrutamiento de modelos mediante LiteLLM
-summary: Ejecuta OpenClaw mediante LiteLLM Proxy para unificar el acceso a los modelos y el seguimiento de costes
+summary: Ejecuta OpenClaw mediante LiteLLM Proxy para unificar el acceso a modelos y el seguimiento de costes
 title: LiteLLM
 x-i18n:
-    generated_at: "2026-07-22T10:44:59Z"
+    generated_at: "2026-07-26T05:53:39Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -22,12 +22,12 @@ límites de gasto y la conmutación por error del backend sin cambiar la configu
 ## Inicio rápido
 
 <Tabs>
-  <Tab title="Incorporación (recomendada)">
+  <Tab title="Incorporación (recomendado)">
     ```bash
     openclaw onboard --auth-choice litellm-api-key
     ```
 
-    Para una configuración no interactiva con un proxy remoto, proporcione explícitamente la URL del proxy:
+    Para una configuración no interactiva con un proxy remoto, indique explícitamente la URL del proxy:
 
     ```bash
     openclaw onboard --non-interactive --accept-risk --auth-choice litellm-api-key \
@@ -44,7 +44,7 @@ límites de gasto y la conmutación por error del backend sin cambiar la configu
         litellm --model claude-opus-4-6
         ```
       </Step>
-      <Step title="Conectar OpenClaw a LiteLLM">
+      <Step title="Conectar OpenClaw con LiteLLM">
         ```bash
         export LITELLM_API_KEY="your-litellm-key"
         openclaw
@@ -97,8 +97,8 @@ El modelo predeterminado que escribe la incorporación es `litellm/claude-opus-4
 
 ## Generación de imágenes
 
-LiteLLM puede respaldar la herramienta `image_generate` mediante las rutas `/images/generations` y
-`/images/edits` compatibles con OpenAI. El modelo de imágenes predeterminado es `gpt-image-2`; configure otro en
+LiteLLM puede servir de backend para la herramienta `image_generate` mediante las rutas compatibles con OpenAI `/images/generations` y
+`/images/edits`. El modelo de imagen predeterminado es `gpt-image-2`; configure uno diferente en
 `agents.defaults.mediaModels.image`:
 
 ```json5
@@ -122,9 +122,9 @@ LiteLLM puede respaldar la herramienta `image_generate` mediante las rutas `/ima
 }
 ```
 
-Las URL de bucle local de LiteLLM (`http://localhost:4000`, `127.0.0.1`, `::1`, `host.docker.internal`) funcionan
+Las URL de bucle invertido de LiteLLM (`http://localhost:4000`, `127.0.0.1`, `::1`, `host.docker.internal`) funcionan
 sin una anulación global de la red privada. Para un proxy alojado en la LAN, establezca
-`models.providers.litellm.request.allowPrivateNetwork: true` porque la clave de API se envía a ese host.
+`models.providers.litellm.request.allowPrivateNetwork: true`, ya que la clave de API se envía a ese host.
 
 ## Opciones avanzadas
 
@@ -143,7 +143,7 @@ sin una anulación global de la red privada. Para un proxy alojado en la LAN, es
       }'
     ```
 
-    Use la clave generada como `LITELLM_API_KEY`.
+    Utilice la clave generada como `LITELLM_API_KEY`.
 
   </Accordion>
 
@@ -163,7 +163,7 @@ sin una anulación global de la red privada. Para un proxy alojado en la LAN, es
           api_key: os.environ/OPENAI_API_KEY
     ```
 
-    OpenClaw sigue solicitando `claude-opus-4-6`; LiteLLM se encarga del enrutamiento.
+    OpenClaw continúa solicitando `claude-opus-4-6`; LiteLLM gestiona el enrutamiento.
 
   </Accordion>
 
@@ -182,17 +182,17 @@ sin una anulación global de la red privada. Para un proxy alojado en la LAN, es
 
   <Accordion title="Notas sobre el comportamiento del proxy">
     - LiteLLM se ejecuta en `http://localhost:4000` de forma predeterminada.
-    - OpenClaw se conecta a través del endpoint `/v1` compatible con OpenAI y de tipo proxy de LiteLLM.
+    - OpenClaw se conecta a través del endpoint `/v1`, compatible con OpenAI y con estilo de proxy, de LiteLLM.
     - La adaptación de solicitudes exclusiva de OpenAI nativo no se aplica mediante una URL base de LiteLLM configurada:
-      no se usa `service_tier`, ni `store` de Responses, ni indicaciones para la caché de prompts, ni adaptación de la carga útil
-      del nivel de razonamiento de OpenAI.
-    - Los encabezados ocultos de atribución de OpenClaw (`originator`, `version`, `User-Agent`) solo se envían a
+      no se usa `service_tier`, ni `store` de Responses, ni indicaciones de caché de prompts, ni la adaptación de la carga útil
+      del esfuerzo de razonamiento de OpenAI.
+    - Las cabeceras ocultas de atribución de OpenClaw (`originator`, `version`, `User-Agent`) solo se envían a
       endpoints nativos de OpenAI verificados, por lo que no se insertan en una URL base personalizada de LiteLLM.
   </Accordion>
 </AccordionGroup>
 
 <Note>
-Para obtener información general sobre la configuración de proveedores y el comportamiento de conmutación por error, consulte [Proveedores de modelos](/es/concepts/model-providers).
+Para obtener información sobre la configuración general de proveedores y el comportamiento de la conmutación por error, consulte [Proveedores de modelos](/es/concepts/model-providers).
 </Note>
 
 ## Contenido relacionado
@@ -202,10 +202,10 @@ Para obtener información general sobre la configuración de proveedores y el co
     Documentación oficial y referencia de la API de LiteLLM.
   </Card>
   <Card title="Selección de modelos" href="/es/concepts/model-providers" icon="layers">
-    Descripción general de todos los proveedores, las referencias de modelos y el comportamiento de conmutación por error.
+    Descripción general de todos los proveedores, las referencias de modelos y el comportamiento de la conmutación por error.
   </Card>
   <Card title="Configuración" href="/es/gateway/configuration" icon="gear">
-    Referencia completa de configuración.
+    Referencia completa de la configuración.
   </Card>
   <Card title="Modelos" href="/es/concepts/models" icon="brain">
     Cómo elegir y configurar modelos.

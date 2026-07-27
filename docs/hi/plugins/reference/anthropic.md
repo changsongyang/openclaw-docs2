@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप anthropic Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: Anthropic मॉडल, Claude CLI और नेटिव Claude सत्र कैटलॉग।
+summary: Anthropic मॉडल, Claude CLI, और नेटिव Claude सत्र कैटलॉग।
 title: Anthropic Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:12:51Z"
+    generated_at: "2026-07-27T18:17:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Anthropic Plugin
 
-Anthropic मॉडल, Claude CLI और मूल Claude सत्र कैटलॉग।
+Anthropic मॉडल, Claude CLI, और नेटिव Claude सत्र कैटलॉग।
 
 ## वितरण
 

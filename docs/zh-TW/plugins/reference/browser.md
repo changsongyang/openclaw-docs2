@@ -4,7 +4,7 @@ read_when:
 summary: 新增代理程式可呼叫的工具。
 title: 瀏覽器外掛
 x-i18n:
-    generated_at: "2026-07-16T11:47:27Z"
+    generated_at: "2026-07-26T07:27:13Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 
 新增代理程式可呼叫的工具。
 
-## 發布方式
+## 發佈
 
 - 套件：`@openclaw/browser-plugin`
 - 安裝途徑：隨附於 OpenClaw

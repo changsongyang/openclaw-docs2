@@ -1,12 +1,12 @@
 ---
 read_when:
-    - आपको Getting Started क्विकस्टार्ट के अलावा किसी अन्य इंस्टॉल विधि की आवश्यकता है
+    - आपको शुरुआत करने की त्वरित मार्गदर्शिका के अलावा किसी अन्य इंस्टॉलेशन विधि की आवश्यकता है
     - आप किसी क्लाउड प्लेटफ़ॉर्म पर परिनियोजित करना चाहते हैं
     - आपको अपडेट, माइग्रेट या अनइंस्टॉल करना होगा
-summary: OpenClaw इंस्टॉल करें - इंस्टॉलर स्क्रिप्ट, npm/pnpm/bun, स्रोत से, Docker, और बहुत कुछ
+summary: OpenClaw इंस्टॉल करें - इंस्टॉलर स्क्रिप्ट, npm/pnpm/bun, स्रोत से, Docker, और अन्य तरीके
 title: इंस्टॉल करें
 x-i18n:
-    generated_at: "2026-07-16T15:37:37Z"
+    generated_at: "2026-07-27T21:06:17Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,16 +18,16 @@ x-i18n:
 
 ## सिस्टम आवश्यकताएँ
 
-- **Node 22.22.3+, 24.15+, या 25.9+** - Node 24 डिफ़ॉल्ट लक्ष्य है; इंस्टॉलर स्क्रिप्ट इसे अपने-आप संभालती है।
+- **Node 22.22.3+, 24.15+, या 25.9+** - Node 24 डिफ़ॉल्ट लक्ष्य है; इंस्टॉलर स्क्रिप्ट इसे स्वचालित रूप से संभालती है।
 - **macOS, Linux, या Windows** - Windows उपयोगकर्ता मूल Windows Hub ऐप, PowerShell CLI इंस्टॉलर, या WSL2 Gateway से शुरुआत कर सकते हैं। [Windows](/hi/platforms/windows) देखें।
 - `pnpm` की आवश्यकता केवल स्रोत से बिल्ड करने पर होती है।
 
 ## अनुशंसित: इंस्टॉलर स्क्रिप्ट
 
-इंस्टॉल करने का सबसे तेज़ तरीका। यह आपके OS का पता लगाता है, आवश्यकता होने पर Node इंस्टॉल करता है, OpenClaw इंस्टॉल करता है, और ऑनबोर्डिंग शुरू करता है।
+इंस्टॉल करने का सबसे तेज़ तरीका। यह आपके OS का पता लगाती है, आवश्यकता होने पर Node इंस्टॉल करती है, OpenClaw इंस्टॉल करती है और ऑनबोर्डिंग शुरू करती है।
 
 <Note>
-Windows डेस्कटॉप उपयोगकर्ता मूल [Windows Hub](/hi/platforms/windows#recommended-windows-hub) सहायक ऐप भी इंस्टॉल कर सकते हैं, जिसमें सेटअप, ट्रे स्थिति, चैट, नोड मोड, और स्थानीय MCP मोड शामिल हैं।
+Windows डेस्कटॉप उपयोगकर्ता मूल [Windows Hub](/hi/platforms/windows#recommended-windows-hub) सहयोगी ऐप भी इंस्टॉल कर सकते हैं, जिसमें सेटअप, ट्रे स्थिति, चैट, नोड मोड और स्थानीय MCP मोड शामिल हैं।
 </Note>
 
 <Tabs>
@@ -58,28 +58,28 @@ Windows डेस्कटॉप उपयोगकर्ता मूल [Windo
   </Tab>
 </Tabs>
 
-सभी फ़्लैग और CI/ऑटोमेशन विकल्पों के लिए, [इंस्टॉलर की आंतरिक कार्यप्रणाली](/hi/install/installer) देखें।
+सभी फ़्लैग और CI/स्वचालन विकल्पों के लिए, [इंस्टॉलर की आंतरिक कार्यप्रणाली](/hi/install/installer) देखें।
 
 ## वैकल्पिक इंस्टॉल विधियाँ
 
 ### स्थानीय प्रीफ़िक्स इंस्टॉलर (`install-cli.sh`)
 
-इसका उपयोग तब करें, जब आप चाहते हैं कि OpenClaw और Node को
-`~/.openclaw` जैसे स्थानीय प्रीफ़िक्स के अंतर्गत रखा जाए और वे पूरे सिस्टम में किए गए Node इंस्टॉल पर निर्भर न हों:
+जब आप OpenClaw और Node को सिस्टम-व्यापी Node इंस्टॉल पर निर्भर हुए बिना
+`~/.openclaw` जैसे स्थानीय प्रीफ़िक्स के अंतर्गत रखना चाहते हैं, तब इसका उपयोग करें:
 
 ```bash
 curl -fsSL https://openclaw.ai/install-cli.sh | bash
 ```
 
 यह डिफ़ॉल्ट रूप से npm इंस्टॉल के साथ-साथ उसी प्रीफ़िक्स प्रवाह के अंतर्गत
-git-checkout इंस्टॉल का भी समर्थन करता है। पूर्ण संदर्भ: [इंस्टॉलर की आंतरिक कार्यप्रणाली](/hi/install/installer#install-clish)।
+git-checkout इंस्टॉल का भी समर्थन करता है। पूरा संदर्भ: [इंस्टॉलर की आंतरिक कार्यप्रणाली](/hi/install/installer#install-clish)।
 
-पहले से इंस्टॉल है? `openclaw update --channel dev` और `openclaw update --channel stable` से पैकेज और git इंस्टॉल के बीच स्विच करें। 
+पहले से इंस्टॉल है? `openclaw update --channel dev` और `openclaw update --channel stable` के साथ पैकेज और git इंस्टॉल के बीच स्विच करें। 
 [अपडेट करना](/hi/install/updating#switch-between-npm-and-git-installs) देखें।
 
 ### npm, pnpm, या bun
 
-यदि आप पहले से Node को स्वयं प्रबंधित करते हैं:
+यदि आप पहले से स्वयं Node प्रबंधित करते हैं:
 
 <Tabs>
   <Tab title="npm">
@@ -90,7 +90,7 @@ git-checkout इंस्टॉल का भी समर्थन करता
 
     <Note>
     होस्ट किया गया इंस्टॉलर OpenClaw पैकेज इंस्टॉल के लिए `min-release-age`
-    जैसे npm ताज़गी फ़िल्टर हटा देता है। यदि आप npm से मैन्युअल रूप से इंस्टॉल करते हैं, तो आपकी अपनी
+    जैसे npm नवीनता फ़िल्टर हटा देता है। यदि आप npm से मैन्युअल रूप से इंस्टॉल करते हैं, तो आपकी अपनी
     npm नीति फिर भी लागू होती है।
     </Note>
 
@@ -103,7 +103,7 @@ git-checkout इंस्टॉल का भी समर्थन करता
     ```
 
     <Note>
-    pnpm में बिल्ड स्क्रिप्ट वाले पैकेजों के लिए स्पष्ट स्वीकृति आवश्यक है। पहले इंस्टॉल के बाद `pnpm approve-builds -g` चलाएँ।
+    pnpm में बिल्ड स्क्रिप्ट वाले पैकेज के लिए स्पष्ट अनुमोदन आवश्यक है। पहले इंस्टॉल के बाद `pnpm approve-builds -g` चलाएँ।
     </Note>
 
   </Tab>
@@ -114,7 +114,7 @@ git-checkout इंस्टॉल का भी समर्थन करता
     ```
 
     <Note>
-    Bun ग्लोबल पैकेज इंस्टॉल कर सकता है, लेकिन इससे बने `openclaw` निष्पादन योग्य को समर्थित Node रनटाइम की आवश्यकता होती है, क्योंकि OpenClaw स्थिति `node:sqlite` का उपयोग करती है।
+    Bun वैश्विक पैकेज इंस्टॉल कर सकता है, लेकिन परिणामस्वरूप मिलने वाले `openclaw` निष्पादनयोग्य को समर्थित Node रनटाइम की आवश्यकता होती है, क्योंकि OpenClaw की स्थिति `node:sqlite` का उपयोग करती है।
     </Note>
 
   </Tab>
@@ -132,7 +132,7 @@ pnpm link --global
 openclaw onboard --install-daemon
 ```
 
-या लिंक को छोड़ दें और रेपो के भीतर से `pnpm openclaw ...` का उपयोग करें। पूर्ण विकास कार्यप्रवाहों के लिए [सेटअप](/hi/start/setup) देखें।
+या लिंक छोड़ दें और रेपो के भीतर से `pnpm openclaw ...` का उपयोग करें। संपूर्ण विकास कार्यप्रवाहों के लिए [सेटअप](/hi/start/setup) देखें।
 
 ### GitHub के main चेकआउट से इंस्टॉल करें
 
@@ -172,13 +172,13 @@ openclaw gateway status # सत्यापित करें कि Gateway �
 
 - macOS: `openclaw onboard --install-daemon` या `openclaw gateway install` के माध्यम से LaunchAgent
 - Linux/WSL2: उन्हीं कमांड के माध्यम से systemd उपयोगकर्ता सेवा
-- मूल Windows: पहले Scheduled Task, और कार्य निर्माण अस्वीकृत होने पर प्रति-उपयोगकर्ता Startup-folder लॉगिन आइटम फ़ॉलबैक
+- मूल Windows: पहले Scheduled Task, और यदि कार्य बनाना अस्वीकृत हो जाए तो प्रति-उपयोगकर्ता Startup-folder लॉगिन आइटम फ़ॉलबैक
 
 ## होस्टिंग और परिनियोजन
 
-OpenClaw को क्लाउड सर्वर या VPS पर परिनियोजित करें। पूर्ण
+OpenClaw को क्लाउड सर्वर या VPS पर परिनियोजित करें। संपूर्ण
 प्रदाता चयनकर्ता (DigitalOcean, Hetzner, Hostinger, Fly.io, GCP, Azure, Railway,
-Northflank, Oracle Cloud, Raspberry Pi, और अन्य) के लिए [Linux सर्वर](/hi/vps) देखें, या
+Northflank, Oracle Cloud, Raspberry Pi और अन्य) के लिए [Linux सर्वर](/hi/vps) देखें, या
 [Render](/hi/install/render) पर घोषणात्मक रूप से परिनियोजित करें।
 
 <CardGroup cols={3}>
@@ -193,11 +193,11 @@ Northflank, Oracle Cloud, Raspberry Pi, और अन्य) के लिए [L
   </Card>
 </CardGroup>
 
-## अपडेट करें, माइग्रेट करें, या अनइंस्टॉल करें
+## अपडेट, माइग्रेट या अनइंस्टॉल करें
 
 <CardGroup cols={3}>
   <Card title="अपडेट करना" href="/hi/install/updating" icon="refresh-cw">
-    OpenClaw को अद्यतित रखें।
+    OpenClaw को अद्यतन रखें।
   </Card>
   <Card title="माइग्रेट करना" href="/hi/install/migrating" icon="arrow-right">
     नई मशीन पर जाएँ।
@@ -209,10 +209,10 @@ Northflank, Oracle Cloud, Raspberry Pi, और अन्य) के लिए [L
 
 ## समस्या निवारण: `openclaw` नहीं मिला
 
-यह लगभग हमेशा PATH की समस्या होती है: npm की ग्लोबल bin डायरेक्टरी आपके शेल के `PATH` में नहीं है। Windows पथ सहित पूर्ण समाधान के लिए [Node.js समस्या निवारण](/hi/install/node#troubleshooting) देखें।
+यह लगभग हमेशा PATH की समस्या होती है: npm की वैश्विक bin डायरेक्टरी आपके शेल के `PATH` में नहीं है। Windows पथ सहित संपूर्ण समाधान के लिए [Node.js समस्या निवारण](/hi/install/node#troubleshooting) देखें।
 
 ```bash
 node -v           # क्या Node इंस्टॉल है?
-npm prefix -g     # ग्लोबल पैकेज कहाँ हैं?
-echo "$PATH"      # क्या ग्लोबल bin डायरेक्टरी PATH में है?
+npm prefix -g     # वैश्विक पैकेज कहाँ हैं?
+echo "$PATH"      # क्या वैश्विक bin डायरेक्टरी PATH में है?
 ```

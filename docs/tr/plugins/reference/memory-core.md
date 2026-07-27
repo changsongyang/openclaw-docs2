@@ -4,7 +4,7 @@ read_when:
 summary: Aracı tarafından çağrılabilen araçlar ekler.
 title: Memory Core Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:30:55Z"
+    generated_at: "2026-07-26T23:33:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Memory Core Plugin
+# Memory Core Plugin'i
 
 Aracı tarafından çağrılabilen araçlar ekler.
 

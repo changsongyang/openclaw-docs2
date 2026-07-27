@@ -3,10 +3,10 @@ read_when:
     - Sie möchten OpenClaw mit einem lokalen Inferrs-Server verwenden
     - Sie stellen Gemma oder ein anderes Modell über Inferrs bereit
     - Sie benötigen die genauen OpenClaw-Kompatibilitäts-Flags für Inferrs
-summary: OpenClaw über inferrs ausführen (OpenAI-kompatibler lokaler Server)
+summary: OpenClaw über Inferrs ausführen (OpenAI-kompatibler lokaler Server)
 title: Inferrs
 x-i18n:
-    generated_at: "2026-07-24T04:37:55Z"
+    generated_at: "2026-07-26T18:34:42Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,16 +18,16 @@ x-i18n:
 
 [inferrs](https://github.com/ericcurtin/inferrs) stellt lokale Modelle hinter einer OpenAI-kompatiblen `/v1`-API bereit. OpenClaw kommuniziert damit über den generischen `openai-completions`-Adapter.
 
-| Eigenschaft            | Wert                                                                         |
-| ---------------------- | ---------------------------------------------------------------------------- |
-| Provider-ID            | `inferrs` (benutzerdefiniert; unter `models.providers.inferrs` konfigurieren) |
-| Plugin                 | keines — kein gebündeltes OpenClaw-Provider-Plugin                            |
+| Eigenschaft          | Wert                                                                |
+| -------------------- | ------------------------------------------------------------------- |
+| Provider-ID          | `inferrs` (benutzerdefiniert; unter `models.providers.inferrs` konfigurieren) |
+| Plugin               | keines — kein mitgeliefertes OpenClaw-Provider-Plugin               |
 | Authentifizierungs-Umgebungsvariable | nicht erforderlich; jeder Wert funktioniert, wenn Ihr inferrs-Server keine Authentifizierung verwendet |
-| API                    | OpenAI-kompatibel (`openai-completions`)                                        |
-| Empfohlene Basis-URL   | `http://127.0.0.1:8080/v1` (oder die Adresse, an der Ihr inferrs-Server lauscht)       |
+| API                  | OpenAI-kompatibel (`openai-completions`)                              |
+| Empfohlene Basis-URL | `http://127.0.0.1:8080/v1` (oder die Adresse, unter der Ihr inferrs-Server lauscht) |
 
 <Note>
-  `inferrs` ist ein benutzerdefiniertes, selbst gehostetes OpenAI-kompatibles Backend und kein dediziertes OpenClaw-Provider-Plugin: Sie konfigurieren es unter `models.providers.inferrs`, statt bei der Ersteinrichtung eine Authentifizierungsoption auszuwählen. Informationen zu einem gebündelten Plugin mit automatischer Erkennung finden Sie unter [SGLang](/de/providers/sglang) oder [vLLM](/de/providers/vllm).
+  `inferrs` ist ein benutzerdefiniertes, selbst gehostetes OpenAI-kompatibles Backend und kein dediziertes OpenClaw-Provider-Plugin: Sie konfigurieren es unter `models.providers.inferrs`, statt bei der Ersteinrichtung eine Authentifizierungsoption auszuwählen. Informationen zu einem mitgelieferten Plugin mit automatischer Erkennung finden Sie unter [SGLang](/de/providers/sglang) oder [vLLM](/de/providers/vllm).
 </Note>
 
 ## Erste Schritte
@@ -95,9 +95,9 @@ Gemma 4 auf einem lokalen `inferrs`-Server:
 }
 ```
 
-## Start bei Bedarf
+## Bedarfsgesteuerter Start
 
-OpenClaw kann `inferrs` nur dann selbst starten, wenn ein `inferrs/...`-Modell ausgewählt ist. Fügen Sie `localService` demselben Provider-Eintrag hinzu:
+OpenClaw kann `inferrs` selbst starten, jedoch nur, wenn ein `inferrs/...`-Modell ausgewählt ist. Fügen Sie `localService` demselben Provider-Eintrag hinzu:
 
 ```json5
 {
@@ -150,22 +150,22 @@ OpenClaw kann `inferrs` nur dann selbst starten, wenn ein `inferrs/...`-Modell a
 
 <AccordionGroup>
   <Accordion title="Warum requiresStringContent wichtig ist">
-    Einige `inferrs`-Chat-Completions-Routen akzeptieren für `messages[].content` nur Zeichenfolgen und keine strukturierten Arrays aus Inhaltsbestandteilen.
+    Einige `inferrs`-Chat-Completions-Routen akzeptieren für `messages[].content` nur Zeichenfolgen und keine strukturierten Arrays aus Inhaltsteilen.
 
     <Warning>
-    Wenn OpenClaw-Ausführungen mit folgender Meldung fehlschlagen:
+    Wenn OpenClaw-Ausführungen mit folgendem Fehler fehlschlagen:
 
     ```text
     messages[1].content: invalid type: sequence, expected a string
     ```
 
-    legen Sie im Modelleintrag `compat.requiresStringContent: true` fest. OpenClaw reduziert dann vor dem Senden der Anfrage reine Textinhaltsbestandteile auf einfache Zeichenfolgen.
+    legen Sie `compat.requiresStringContent: true` im Modelleintrag fest. OpenClaw wandelt dann reine Textinhaltsteile in einfache Zeichenfolgen um, bevor die Anfrage gesendet wird.
     </Warning>
 
   </Accordion>
 
   <Accordion title="Hinweis zu Gemma und Werkzeugschemas">
-    Einige Kombinationen aus `inferrs` und Gemma akzeptieren kleine direkte `/v1/chat/completions`-Anfragen, schlagen jedoch bei vollständigen OpenClaw-Agent-Runtime-Durchläufen fehl. Versuchen Sie zunächst, die Werkzeugschema-Oberfläche zu deaktivieren:
+    Einige Kombinationen aus `inferrs` und Gemma akzeptieren kleine direkte `/v1/chat/completions`-Anfragen, schlagen jedoch bei vollständigen Ausführungen der OpenClaw-Agentenlaufzeit fehl. Versuchen Sie zunächst, die Werkzeugschema-Oberfläche zu deaktivieren:
 
     ```json5
     compat: {
@@ -174,7 +174,7 @@ OpenClaw kann `inferrs` nur dann selbst starten, wenn ein `inferrs/...`-Modell a
     }
     ```
 
-    Dies reduziert die Prompt-Belastung für restriktivere lokale Backends. Wenn kleine direkte Anfragen weiterhin funktionieren, normale OpenClaw-Agent-Durchläufe innerhalb von `inferrs` jedoch weiterhin abstürzen, behandeln Sie dies als Einschränkung des zugrunde liegenden Modells oder Servers und nicht als OpenClaw-Transportproblem.
+    Dadurch wird die Prompt-Belastung für strengere lokale Backends reduziert. Wenn kleine direkte Anfragen weiterhin funktionieren, normale OpenClaw-Agentenausführungen innerhalb von `inferrs` jedoch weiterhin abstürzen, behandeln Sie dies als Einschränkung des vorgelagerten Modells oder Servers und nicht als OpenClaw-Transportproblem.
 
   </Accordion>
 
@@ -194,12 +194,12 @@ OpenClaw kann `inferrs` nur dann selbst starten, wenn ein `inferrs/...`-Modell a
       --json
     ```
 
-    Wenn der erste Befehl funktioniert, der zweite jedoch fehlschlägt, lesen Sie den nachfolgenden Abschnitt zur Fehlerbehebung.
+    Wenn der erste Befehl funktioniert, der zweite jedoch fehlschlägt, lesen Sie den Abschnitt zur Fehlerbehebung weiter unten.
 
   </Accordion>
 
-  <Accordion title="Proxy-artiges Verhalten">
-    Da `inferrs` den generischen `openai-completions`-Adapter (und nicht `openai-responses`) verwendet, wird keine ausschließlich für natives OpenAI vorgesehene Anfrageformatierung angewendet: Es werden weder `service_tier` noch Responses-`store`, Prompt-Cache-Hinweise oder OpenAI-Kompatibilitätsnutzdaten für logisches Schlussfolgern gesendet.
+  <Accordion title="Proxy-ähnliches Verhalten">
+    Da `inferrs` den generischen `openai-completions`-Adapter verwendet (nicht `openai-responses`), wird die ausschließlich für natives OpenAI vorgesehene Anfrageformatierung nie angewendet: Es werden weder `service_tier`, Responses-`store` oder Prompt-Cache-Hinweise noch OpenAI-Payload-Formatierungen zur Reasoning-Kompatibilität gesendet.
   </Accordion>
 </AccordionGroup>
 
@@ -211,15 +211,15 @@ OpenClaw kann `inferrs` nur dann selbst starten, wenn ein `inferrs/...`-Modell a
   </Accordion>
 
   <Accordion title="messages[].content erwartet eine Zeichenfolge">
-    Legen Sie im Modelleintrag `compat.requiresStringContent: true` fest (siehe oben).
+    Legen Sie `compat.requiresStringContent: true` im Modelleintrag fest (siehe oben).
   </Accordion>
 
   <Accordion title="Direkte /v1/chat/completions-Aufrufe funktionieren, aber openclaw infer model run schlägt fehl">
-    Legen Sie `compat.supportsTools: false` fest, um die Werkzeugschema-Oberfläche zu deaktivieren (siehe den obigen Hinweis zu Gemma).
+    Legen Sie `compat.supportsTools: false` fest, um die Werkzeugschema-Oberfläche zu deaktivieren (siehe den Hinweis zu Gemma oben).
   </Accordion>
 
-  <Accordion title="inferrs stürzt bei größeren Agent-Durchläufen weiterhin ab">
-    Wenn keine Schemafehler mehr auftreten, `inferrs` bei größeren Agent-Durchläufen jedoch weiterhin abstürzt, behandeln Sie dies als Einschränkung von `inferrs` oder des Modells. Reduzieren Sie die Prompt-Belastung oder wechseln Sie das Backend beziehungsweise Modell.
+  <Accordion title="inferrs stürzt bei größeren Agentenausführungen weiterhin ab">
+    Wenn die Schemafehler behoben sind, `inferrs` bei größeren Agentenausführungen jedoch weiterhin abstürzt, behandeln Sie dies als Einschränkung des vorgelagerten `inferrs` oder des Modells. Reduzieren Sie die Prompt-Belastung oder wechseln Sie das Backend beziehungsweise Modell.
   </Accordion>
 </AccordionGroup>
 
@@ -234,12 +234,12 @@ Allgemeine Hilfe finden Sie unter [Fehlerbehebung](/de/help/troubleshooting) und
     OpenClaw mit lokalen Modellservern ausführen.
   </Card>
   <Card title="Lokale Modelldienste" href="/de/gateway/local-model-services" icon="play">
-    Lokale Modellserver bei Bedarf für konfigurierte Provider starten.
+    Lokale Modellserver für konfigurierte Provider bei Bedarf starten.
   </Card>
   <Card title="Gateway-Fehlerbehebung" href="/de/gateway/troubleshooting#local-openai-compatible-backend-passes-direct-probes-but-agent-runs-fail" icon="wrench">
-    Lokale OpenAI-kompatible Backends diagnostizieren, die direkte Tests bestehen, bei Agent-Durchläufen jedoch fehlschlagen.
+    Fehler in lokalen OpenAI-kompatiblen Backends beheben, die Prüfaufrufe bestehen, bei Agentenausführungen jedoch fehlschlagen.
   </Card>
   <Card title="Modellauswahl" href="/de/concepts/model-providers" icon="layers">
-    Übersicht über alle Provider, Modellreferenzen und das Failover-Verhalten.
+    Überblick über alle Provider, Modellreferenzen und das Failover-Verhalten.
   </Card>
 </CardGroup>

@@ -4,7 +4,7 @@ read_when:
 summary: NIP-04 एन्क्रिप्टेड प्रत्यक्ष संदेशों के लिए OpenClaw Nostr चैनल Plugin।
 title: Nostr Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:35:54Z"
+    generated_at: "2026-07-27T18:48:02Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Nostr plugin
+# Nostr Plugin
 
-NIP-04 एन्क्रिप्टेड प्रत्यक्ष संदेशों के लिए OpenClaw Nostr चैनल plugin।
+NIP-04 एन्क्रिप्टेड डायरेक्ट मैसेज के लिए OpenClaw Nostr चैनल Plugin।
 
 ## वितरण
 

@@ -4,7 +4,7 @@ read_when:
 summary: 用於對話的 OpenClaw Nextcloud Talk 頻道外掛。
 title: Nextcloud Talk 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:53:10Z"
+    generated_at: "2026-07-26T07:51:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 
 用於對話的 OpenClaw Nextcloud Talk 頻道外掛。
 
-## 發佈
+## 發布
 
 - 套件：`@openclaw/nextcloud-talk`
 - 安裝途徑：npm；ClawHub
@@ -29,4 +29,4 @@ x-i18n:
 
 ## 相關文件
 
-- [Nextcloud Talk](/zh-TW/channels/nextcloud-talk)
+- [nextcloud-talk](/zh-TW/channels/nextcloud-talk)

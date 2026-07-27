@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Je installeert, configureert of controleert de LINE-Plugin
+    - Je installeert, configureert of controleert de LINE-plugin
 summary: OpenClaw LINE-kanaalplugin voor chats via de LINE Bot API.
 title: LINE-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:15:11Z"
+    generated_at: "2026-07-27T05:59:53Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# LINE Plugin
+# LINE-Plugin
 
 OpenClaw LINE-kanaalplugin voor chats via de LINE Bot API.
 

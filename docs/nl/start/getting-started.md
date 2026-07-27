@@ -5,7 +5,7 @@ read_when:
 summary: Installeer OpenClaw en start binnen enkele minuten je eerste chat.
 title: Aan de slag
 x-i18n:
-    generated_at: "2026-07-16T16:26:28Z"
+    generated_at: "2026-07-27T05:16:50Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 ---
 
 Installeer OpenClaw, doorloop de onboarding en chat binnen ongeveer 5
-minuten met je AI-assistent. Aan het einde heb je een werkende Gateway, geconfigureerde authenticatie en een
+minuten met je AI-assistent. Aan het einde heb je een actieve Gateway, geconfigureerde authenticatie en een
 werkende chatsessie.
 
 ## Wat je nodig hebt
@@ -27,11 +27,11 @@ werkende chatsessie.
 <Tip>
 Controleer je Node-versie met `node --version`.
 **Windows-gebruikers:** de native Windows Hub-app is de eenvoudigste desktopoptie. Het
-PowerShell-installatieprogramma en de WSL2 Gateway-opties worden ook ondersteund. Zie [Windows](/nl/platforms/windows).
-Moet je Node installeren? Zie [Node installeren](/nl/install/node).
+PowerShell-installatieprogramma en de WSL2 Gateway-routes worden ook ondersteund. Zie [Windows](/nl/platforms/windows).
+Moet je Node installeren? Zie [Node-installatie](/nl/install/node).
 </Tip>
 
-## Snel instellen
+## Snelle installatie
 
 <Steps>
   <Step title="OpenClaw installeren">
@@ -42,7 +42,7 @@ Moet je Node installeren? Zie [Node installeren](/nl/install/node).
         ```
         <img
   src="/assets/install-script.svg"
-  alt="Installatieproces"
+  alt="Proces van het installatiescript"
   className="rounded-lg"
 />
       </Tab>
@@ -54,22 +54,22 @@ Moet je Node installeren? Zie [Node installeren](/nl/install/node).
     </Tabs>
 
     <Note>
-    Andere installatiemethoden (Docker, Nix, npm): [Installeren](/nl/install).
+    Andere installatiemethoden (Docker, Nix, npm): [Installatie](/nl/install).
     </Note>
 
   </Step>
-  <Step title="De onboarding uitvoeren">
+  <Step title="Onboarding uitvoeren">
     ```bash
     openclaw onboard --install-daemon
     ```
 
     De wizard begeleidt je bij het kiezen van een modelprovider, het instellen van een API-sleutel
     en het configureren van de Gateway. QuickStart duurt meestal maar enkele minuten, maar
-    aanmelden bij de provider, een kanaal koppelen, de daemon installeren, netwerkdownloads, Skills
+    aanmelden bij de provider, een kanaal koppelen, de daemon installeren, netwerkdownloads, skills
     of optionele plugins kunnen ervoor zorgen dat de volledige onboarding langer duurt. Sla optionele
-    stappen over en keer later terug met `openclaw configure`.
+    stappen over en ga later verder met `openclaw configure`.
 
-    Zie [Onboarding (CLI)](/nl/start/wizard) voor de volledige documentatie.
+    Zie [Onboarding (CLI)](/nl/start/wizard) voor de volledige naslaginformatie.
 
   </Step>
   <Step title="Controleren of de Gateway actief is">
@@ -77,7 +77,7 @@ Moet je Node installeren? Zie [Node installeren](/nl/install/node).
     openclaw gateway status
     ```
 
-    Je hoort te zien dat de Gateway op poort 18789 luistert.
+    Je hoort te zien dat de Gateway luistert op poort 18789.
 
   </Step>
   <Step title="Het dashboard openen">
@@ -89,7 +89,7 @@ Moet je Node installeren? Zie [Node installeren](/nl/install/node).
 
   </Step>
   <Step title="Je eerste bericht verzenden">
-    Typ een bericht in de chat van de Control UI. Je hoort vervolgens een AI-antwoord te krijgen.
+    Typ een bericht in de chat van de Control UI. Je hoort vervolgens een antwoord van de AI te krijgen.
 
     Wil je liever vanaf je telefoon chatten? Het snelst in te stellen kanaal is
     [Telegram](/nl/channels/telegram) (alleen een bottoken). Zie [Kanalen](/nl/channels)
@@ -99,9 +99,9 @@ Moet je Node installeren? Zie [Node installeren](/nl/install/node).
 </Steps>
 
 <Accordion title="Geavanceerd: een aangepaste Control UI-build koppelen">
-  Als je een gelokaliseerde of aangepaste dashboardbuild onderhoudt, laat
-  `gateway.controlUi.root` verwijzen naar een map met je gebouwde statische
-  assets en `index.html`.
+  Als je een gelokaliseerde of aangepaste dashboardbuild onderhoudt, laat je
+  `gateway.controlUi.root` verwijzen naar een map die je gebouwde statische
+  assets en `index.html` bevat.
 
 ```bash
 mkdir -p "$HOME/.openclaw/control-ui-custom"
@@ -121,7 +121,7 @@ Stel vervolgens het volgende in:
 }
 ```
 
-Herstart de Gateway en open het dashboard opnieuw:
+Start de Gateway opnieuw en open het dashboard opnieuw:
 
 ```bash
 openclaw gateway restart
@@ -143,22 +143,22 @@ openclaw dashboard
     Modellen, tools, sandbox en geavanceerde instellingen.
   </Card>
   <Card title="Tools bekijken" href="/nl/tools" icon="wrench">
-    Browser, exec, zoeken op het web, Skills en plugins.
+    Browser, exec, zoeken op het web, skills en plugins.
   </Card>
 </Columns>
 
 <Accordion title="Geavanceerd: omgevingsvariabelen">
-  Als je OpenClaw als serviceaccount uitvoert of aangepaste paden wilt gebruiken:
+  Als je OpenClaw uitvoert als serviceaccount of aangepaste paden wilt gebruiken:
 
-- `OPENCLAW_HOME` — basismap voor interne padomzetting
+- `OPENCLAW_HOME` — thuismap voor interne padresolutie
 - `OPENCLAW_STATE_DIR` — de statusmap overschrijven
 - `OPENCLAW_CONFIG_PATH` — het pad naar het configuratiebestand overschrijven
 
-Volledige documentatie: [Omgevingsvariabelen](/nl/help/environment).
+Volledige naslaginformatie: [Omgevingsvariabelen](/nl/help/environment).
 </Accordion>
 
 ## Gerelateerd
 
 - [Installatieoverzicht](/nl/install)
 - [Overzicht van kanalen](/nl/channels)
-- [Instellen](/nl/start/setup)
+- [Configuratie](/nl/start/setup)

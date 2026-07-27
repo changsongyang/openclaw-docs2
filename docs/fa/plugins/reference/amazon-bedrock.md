@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin amazon-bedrock هستید
-summary: Plugin ارائه‌دهنده Amazon Bedrock برای OpenClaw با پشتیبانی از کشف مدل، تعبیه‌ها و گاردریل‌ها.
+    - در حال نصب، پیکربندی یا ممیزی Plugin ‏amazon-bedrock هستید
+summary: Plugin ارائه‌دهنده Amazon Bedrock برای OpenClaw، با پشتیبانی از کشف مدل، تعبیه‌ها و حفاظ‌های امنیتی.
 title: Plugin آمازون Bedrock
 x-i18n:
-    generated_at: "2026-07-16T16:58:12Z"
+    generated_at: "2026-07-27T16:57:08Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin ‏Amazon Bedrock
 
-Plugin ارائه‌دهنده Amazon Bedrock برای OpenClaw با پشتیبانی از کشف مدل، تعبیه‌سازی‌ها و گاردریل‌ها.
+Plugin ارائه‌دهنده Amazon Bedrock برای OpenClaw با پشتیبانی از کشف مدل، تعبیه‌ها و گاردریل‌ها.
 
 ## توزیع
 

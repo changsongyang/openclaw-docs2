@@ -1,12 +1,12 @@
 ---
 read_when:
     - OpenClaw.app verpakken
-    - Problemen met de macOS Gateway-launchd-service oplossen
+    - Foutopsporing voor de macOS Gateway-launchd-service
     - De Gateway-CLI voor macOS installeren
 summary: Gateway-runtime op macOS (externe launchd-service)
 title: Gateway op macOS
 x-i18n:
-    generated_at: "2026-07-16T16:02:28Z"
+    generated_at: "2026-07-27T05:38:32Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,20 +16,20 @@ x-i18n:
     workflow: 16
 ---
 
-OpenClaw.app bevat geen Node of de Gateway-runtime. De macOS-app
-verwacht een **externe** installatie van de `openclaw`-CLI, start de Gateway niet als
+OpenClaw.app bevat geen ingebouwde Node- of Gateway-runtime. De macOS-app
+verwacht een **externe** `openclaw` CLI-installatie, start de Gateway niet als
 een onderliggend proces en beheert een launchd-service per gebruiker om de Gateway
-actief te houden (of maakt verbinding met een lokale Gateway die al actief is).
+actief te houden (of maakt verbinding met een al actieve lokale Gateway).
 
 ## Automatische configuratie
 
-Kies op een nieuwe Mac tijdens de onboarding **This Mac**. De app voert vóór
-de Gateway-wizard het ondertekende, meegeleverde installatiescript uit: het installeert een
-Node-runtime in de gebruikersruimte en de bijbehorende `openclaw`-CLI onder `~/.openclaw`,
+Kies tijdens de onboarding op een nieuwe Mac **Deze Mac**. De app voert vóór de
+Gateway-wizard het ondertekende, meegeleverde installatiescript uit: het installeert een
+Node-runtime in de gebruikersomgeving en de bijbehorende `openclaw` CLI onder `~/.openclaw`,
 en installeert en start vervolgens de launchd-service per gebruiker. Voor dit traject zijn geen
 Terminal, Homebrew of beheerderstoegang nodig.
 
-De app bevat alleen het installatiescript, niet de payload van Node of de Gateway;
+De app bevat alleen het installatiescript, niet de Node- of Gateway-payload;
 voor de configuratie is een internetverbinding nodig om de runtime en het bijbehorende
 OpenClaw-pakket te downloaden.
 
@@ -42,8 +42,8 @@ Node 24.15+ wordt aanbevolen voor een handmatige installatie; Node 22.22.3+ werk
 npm install -g openclaw@<version>
 ```
 
-Gebruik **Retry setup** nadat de automatische configuratie is mislukt. Als dat nog steeds mislukt,
-installeer je de CLI handmatig met de bovenstaande opdracht en kies je vervolgens **Check again**
+Gebruik **Configuratie opnieuw proberen** nadat de automatische configuratie is mislukt. Als dat nog steeds mislukt,
+installeer je de CLI handmatig met de bovenstaande opdracht en kies je vervolgens **Opnieuw controleren**
 tijdens de onboarding.
 
 ## Launchd (Gateway als LaunchAgent)
@@ -60,8 +60,8 @@ de lokale modus. De CLI kan deze ook rechtstreeks installeren: `openclaw gateway
 
 Gedrag:
 
-- "OpenClaw Active" schakelt de LaunchAgent in of uit.
-- Als je de app afsluit, stopt de Gateway **niet** (launchd houdt deze actief).
+- "OpenClaw actief" schakelt de LaunchAgent in of uit.
+- Het afsluiten van de app stopt de Gateway **niet** (launchd houdt deze actief).
 - Als er al een Gateway actief is op de geconfigureerde poort, maakt de app daar
   verbinding mee in plaats van een nieuwe te starten.
 
@@ -73,31 +73,31 @@ Logboekregistratie:
 - Als de host in een lus terechtkomt met herhaalde `EADDRINUSE` of snelle herstarts, controleer dan op
   dubbele `ai.openclaw.gateway`- / `ai.openclaw.node`-LaunchAgents en de
   tijdelijke oplossing met de launchd-markering in
-  [Gateway-probleemoplossing](/nl/gateway/troubleshooting#macos-launchd-supervisor-loop-with-duplicate-gatewaynode-launchagents).
+  [Problemen met de Gateway oplossen](/nl/gateway/troubleshooting#macos-launchd-supervisor-loop-with-duplicate-gatewaynode-launchagents).
 
 ## Versiecompatibiliteit
 
-De macOS-app vergelijkt de versie van de Gateway met de eigen versie. Tijdens de onboarding
-wordt de beheerde configuratie automatisch uitgevoerd wanneer een bestaande CLI ontbreekt of
-incompatibel is. Gebruik **Retry setup** om de installatie te herhalen, of **Check again**
+De macOS-app controleert de Gateway-versie aan de hand van de eigen versie. Tijdens de onboarding
+wordt automatisch de beheerde configuratie uitgevoerd wanneer een bestaande CLI ontbreekt of
+incompatibel is. Gebruik **Configuratie opnieuw proberen** om de installatie te herhalen, of **Opnieuw controleren**
 nadat je een externe CLI hebt hersteld.
 
 ## Statusmap op macOS
 
 Bewaar de OpenClaw-status op een lokale, niet-gesynchroniseerde schijf. Vermijd iCloud Drive en andere
-met de cloud gesynchroniseerde mappen; synchronisatievertraging en bestandsvergrendelingen kunnen invloed hebben op sessies,
+met de cloud gesynchroniseerde mappen; synchronisatievertragingen en bestandsvergrendelingen kunnen gevolgen hebben voor sessies,
 inloggegevens en de Gateway-status.
 
-Stel `OPENCLAW_STATE_DIR` alleen in op een lokaal pad wanneer je een overschrijving nodig hebt.
+Stel `OPENCLAW_STATE_DIR` alleen in op een lokaal pad wanneer je een aangepaste waarde nodig hebt.
 `openclaw doctor` waarschuwt voor veelvoorkomende met de cloud gesynchroniseerde statuspaden en raadt aan
-terug te keren naar lokale opslag. Zie
+terug te gaan naar lokale opslag. Zie
 [omgevingsvariabelen](/nl/help/environment#path-related-env-vars) en
 [Doctor](/nl/gateway/doctor).
 
-## Verbinding met de debug-app
+## Problemen met app-connectiviteit opsporen
 
-Gebruik vanuit een broncode-checkout de macOS-debug-CLI om dezelfde Gateway-
-WebSocket-handshake en detectielogica te testen die de app gebruikt:
+Gebruik de macOS-foutopsporings-CLI vanuit een broncode-checkout om dezelfde Gateway-
+WebSocket-handshake en detectielogica uit te voeren die de app gebruikt:
 
 ```bash
 cd apps/macos
@@ -106,7 +106,7 @@ swift run openclaw-mac discover --timeout 3000 --json
 ```
 
 `connect` accepteert `--url`, `--token`, `--timeout`, `--probe` en `--json`
-(plus overschrijvingen van de clientidentiteit; voer uit met `--help` voor de volledige lijst).
+(plus overschrijvingen voor de clientidentiteit; voer uit met `--help` voor de volledige lijst).
 `discover` accepteert `--timeout`, `--json` en `--include-local`. Vergelijk
 de detectie-uitvoer met `openclaw gateway discover --json` wanneer je
 CLI-detectie wilt onderscheiden van verbindingsproblemen aan de appzijde.

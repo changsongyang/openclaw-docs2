@@ -7,28 +7,28 @@ sidebarTitle: Provider plugins
 summary: OpenClaw के लिए मॉडल प्रदाता Plugin बनाने की चरण-दर-चरण मार्गदर्शिका
 title: प्रोवाइडर Plugin बनाना
 x-i18n:
-    generated_at: "2026-07-19T09:24:06Z"
+    generated_at: "2026-07-27T18:49:41Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: f68a8581872f89ae8ac3b8660ee71ef9cfab7a5670b1dc68f64027601425a3dc
+    source_hash: f9d175fafc034bd52e996d47e047df104f079f2aba66662b22e8dbdf6c21e7e0
     source_path: plugins/sdk-provider-plugins.md
     workflow: 16
 ---
 
-OpenClaw में एक मॉडल प्रदाता (LLM) जोड़ने के लिए प्रदाता Plugin बनाएँ: एक मॉडल
+OpenClaw में मॉडल प्रदाता (LLM) जोड़ने के लिए एक प्रदाता Plugin बनाएँ: एक मॉडल
 कैटलॉग, API-कुंजी प्रमाणीकरण और डायनेमिक मॉडल रिज़ॉल्यूशन।
 
 <Info>
   OpenClaw plugins में नए हैं? पैकेज संरचना और मैनिफ़ेस्ट सेटअप के लिए पहले
-  [आरंभ करना](/hi/plugins/building-plugins) पढ़ें।
+  [शुरुआत करना](/hi/plugins/building-plugins) पढ़ें।
 </Info>
 
 <Tip>
-  प्रदाता plugins, OpenClaw के सामान्य इन्फ़रेंस लूप में मॉडल जोड़ते हैं। यदि
-  मॉडल को ऐसे नेटिव एजेंट डेमन के माध्यम से चलना आवश्यक है जो थ्रेड, Compaction
-  या टूल इवेंट का स्वामी है, तो डेमन प्रोटोकॉल का विवरण कोर में रखने के बजाय प्रदाता को
+  प्रदाता plugins OpenClaw के सामान्य इन्फ़रेंस लूप में मॉडल जोड़ते हैं। यदि
+  मॉडल को किसी ऐसे नेटिव एजेंट डेमन के माध्यम से चलना आवश्यक है जो थ्रेड्स, Compaction
+  या टूल इवेंट्स का स्वामी है, तो डेमन प्रोटोकॉल का विवरण कोर में रखने के बजाय प्रदाता को
   [एजेंट हार्नेस](/hi/plugins/sdk-agent-harness) के साथ जोड़ें।
 </Tip>
 
@@ -100,21 +100,21 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
     ```
     </CodeGroup>
 
-    `setup.providers[].envVars`, आपके Plugin रनटाइम को लोड किए बिना OpenClaw को
-    क्रेडेंशियल का पता लगाने देता है। जब किसी प्रदाता वैरिएंट को किसी अन्य प्रदाता आईडी के
-    प्रमाणीकरण का पुनः उपयोग करना हो, तो `providerAuthAliases` जोड़ें। `modelSupport`
-    वैकल्पिक है और रनटाइम हुक उपलब्ध होने से पहले `acme-large` जैसे संक्षिप्त
-    मॉडल आईडी से OpenClaw को आपका प्रदाता Plugin स्वतः लोड करने देता है। ClawHub
-    पर प्रकाशित करने के लिए `package.json` में `openclaw.compat`
-    और `openclaw.build` आवश्यक हैं (`openclaw.compat.pluginApi` और `openclaw.build.openclawVersion`
-    दो आवश्यक फ़ील्ड हैं; छोड़े जाने पर `minGatewayVersion`,
-    `openclaw.install.minHostVersion` पर फ़ॉलबैक करता है)।
+    `setup.providers[].envVars` आपके Plugin रनटाइम को लोड किए बिना OpenClaw को
+    क्रेडेंशियल्स का पता लगाने देता है। जब किसी प्रदाता वेरिएंट को किसी अन्य प्रदाता आईडी
+    के प्रमाणीकरण का पुनः उपयोग करना हो, तो `providerAuthAliases` जोड़ें। `modelSupport`
+    वैकल्पिक है और रनटाइम हुक उपलब्ध होने से पहले OpenClaw को
+    `acme-large` जैसे संक्षिप्त मॉडल आईडी से आपके प्रदाता Plugin को स्वतः लोड करने देता है।
+    `package.json` में `openclaw.compat` और `openclaw.build` ClawHub
+    पर प्रकाशित करने के लिए आवश्यक हैं (`openclaw.compat.pluginApi` और `openclaw.build.openclawVersion`
+    दो आवश्यक फ़ील्ड हैं; छोड़े जाने पर `minGatewayVersion` के लिए
+    `openclaw.install.minHostVersion` का उपयोग किया जाता है)।
 
   </Step>
 
   <Step title="प्रदाता पंजीकृत करें">
-    एक न्यूनतम टेक्स्ट प्रदाता को `id`, `label`, `auth` और `catalog` की आवश्यकता होती है।
-    `catalog`, प्रदाता-स्वामित्व वाला रनटाइम/कॉन्फ़िगरेशन हुक है; यह लाइव
+    न्यूनतम टेक्स्ट प्रदाता को `id`, `label`, `auth` और `catalog` की आवश्यकता होती है।
+    `catalog` प्रदाता के स्वामित्व वाला रनटाइम/कॉन्फ़िगरेशन हुक है; यह लाइव
     विक्रेता API को कॉल कर सकता है और `models.providers` प्रविष्टियाँ लौटाता है।
 
     ```typescript index.ts
@@ -204,26 +204,78 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
     });
     ```
 
-    `registerModelCatalogProvider`, सूची/सहायता/चयनकर्ता UI के लिए नया कंट्रोल-प्लेन
-    कैटलॉग सरफ़ेस है, जो `text`, `voice`, `image_generation`,
+    `registerModelCatalogProvider` सूची/सहायता/चयनकर्ता UI के लिए नया कंट्रोल-प्लेन कैटलॉग
+    सरफ़ेस है, जो `text`, `voice`, `image_generation`,
     `video_generation` और `music_generation` पंक्तियों को कवर करता है। विक्रेता एंडपॉइंट
     कॉल और प्रतिक्रिया मैपिंग को Plugin में रखें; साझा पंक्ति
-    संरचना, स्रोत लेबल और सहायता रेंडरिंग का स्वामित्व OpenClaw के पास है।
+    आकार, स्रोत लेबल और सहायता रेंडरिंग का स्वामित्व OpenClaw के पास है।
 
     यह एक कार्यशील प्रदाता है। उपयोगकर्ता अब
-    `openclaw onboard --acme-ai-api-key <key>` चला सकते हैं और
-    अपने मॉडल के रूप में `acme-ai/acme-large` चुन सकते हैं।
+    `openclaw onboard --acme-ai-api-key <key>` चला सकते हैं और अपने मॉडल के रूप में
+    `acme-ai/acme-large` चुन सकते हैं।
 
     ### लाइव मॉडल खोज
 
-    यदि आपका प्रदाता `/models`-शैली का API उपलब्ध कराता है, तो प्रदाता-विशिष्ट
-    एंडपॉइंट और पंक्ति प्रोजेक्शन को अपने Plugin में रखें और साझा फ़ेच
-    जीवनचक्र के लिए `openclaw/plugin-sdk/provider-catalog-live-runtime` का उपयोग करें।
-    यह सहायक, OpenClaw कोर में प्रदाता नीति रखे बिना आपको सुरक्षित HTTP फ़ेच,
-    प्रदाता-प्रमाणीकरण हेडर, संरचित HTTP त्रुटियाँ, TTL कैशिंग और स्थिर फ़ॉलबैक व्यवहार देता है।
+    यदि आपका प्रदाता OpenAI-संगत `/models` API उपलब्ध कराता है, तो
+    एकल-प्रदाता सहायक को साझा खोज के लिए सक्षम करें:
 
-    जब लाइव API केवल यह बताता है कि प्रदाता-स्वामित्व वाली स्थिर कैटलॉग पंक्तियों में से
-    कौन-सी वर्तमान में उपलब्ध हैं, तब `buildLiveModelProviderConfig` का उपयोग करें:
+    ```typescript
+    catalog: {
+      buildProvider: () => ({
+        api: "openai-completions",
+        baseUrl: "https://api.acme-ai.com/v1",
+        models: [...STATIC_MODELS],
+      }),
+      buildStaticProvider: () => ({
+        api: "openai-completions",
+        baseUrl: "https://api.acme-ai.com/v1",
+        models: [...STATIC_MODELS],
+      }),
+      liveModelDiscovery: true,
+    },
+    ```
+
+    `liveModelDiscovery: true` निम्न व्यवहारों वाला एक सार्वजनिक Plugin SDK अनुबंध है:
+
+    | क्षेत्र | अनुबंध |
+    | --- | --- |
+    | क्रेडेंशियल्स | खोज कैटलॉग के रिज़ॉल्व किए गए प्रदाता क्रेडेंशियल का उपयोग करती है और प्रमाणीकरण द्वारा उपलब्ध कराए जाने पर `discoveryApiKey` को प्राथमिकता देती है। गुप्त-संदर्भ मार्कर कभी टोकन के रूप में नहीं भेजे जाते। डिफ़ॉल्ट अनुरोध `Authorization: Bearer <token>` का उपयोग करता है; किसी अन्य विक्रेता प्रमाणीकरण योजना के लिए `buildRequestHeaders` का उपयोग करें। |
+    | एंडपॉइंट | डिफ़ॉल्ट URL प्रभावी प्रदाता `baseUrl` के सापेक्ष `models` है, जिसमें `allowExplicitBaseUrl` सक्षम होने पर ऑपरेटर ओवरराइड भी शामिल है। किसी अन्य सापेक्ष पथ के लिए `endpointPath` का उपयोग करें। केवल निश्चित विक्रेता URL के लिए `endpointUrl: { url, requireBaseUrl }` का उपयोग करें; जब तक प्रभावी बेस URL अभी भी `requireBaseUrl` के बराबर न हो, खोज छोड़ दी जाती है, ताकि कस्टम प्रॉक्सी क्रेडेंशियल विक्रेता को न भेजा जाए। |
+    | नेटवर्क सीमाएँ | फ़ेच OpenClaw के SSRF गार्ड, पेजिनेशन में कुल 5-सेकंड टाइमआउट बजट, प्रति पृष्ठ 4 MiB प्रतिक्रिया सीमा और 50-पृष्ठ सीमा का उपयोग करते हैं। क्रॉस-ओरिजिन पेजिनेशन लिंक अस्वीकार किए जाते हैं; क्रॉस-ओरिजिन रीडायरेक्ट के बाद क्रेडेंशियल्स हटा दिए जाते हैं। |
+    | कैश | सफल, गैर-रिक्त कैटलॉग प्रदाता, एंडपॉइंट और रिज़ॉल्व किए गए क्रेडेंशियल के आधार पर 60 सेकंड के लिए कैश किए जाते हैं। रिक्त या अनुपयोगी परिणाम कैश नहीं किए जाते। |
+    | फ़िल्टरिंग | सटीक लाइव आईडी अपना विश्वसनीय स्थिर मेटाडेटा बनाए रखते हैं। नई पंक्तियाँ सावधानीपूर्वक टेक्स्ट/चैट मॉडल के रूप में प्रोजेक्ट की जाती हैं। अक्षम, आर्काइव किए गए, अप्रचलित, स्पष्ट रूप से गैर-चैट, एम्बेडिंग, री-रैंकिंग, मॉडरेशन, स्पीच, केवल-इमेज और केवल-वीडियो पंक्तियाँ बाहर रखी जाती हैं। गैर-मानक प्रतिक्रिया एनवेलप से पंक्तियाँ चुनने के लिए ही `readRows` का उपयोग करें; प्रदाता-विशिष्ट मॉडल अर्थ-विज्ञान फिर भी कस्टम कैटलॉग में ही होना चाहिए। |
+    | विफलता | लाइव खोज परामर्शात्मक है। प्रमाणीकरण, नेटवर्क, टाइमआउट, पेजिनेशन, पार्सिंग, रिक्त-कैटलॉग और फ़िल्टरिंग विफलताएँ प्रदाता को हटाने के बजाय प्रदाता के स्वामित्व वाला स्थिर सीड लौटाती हैं। |
+
+    गैर-Bearer या गैर-मानक सूची एंडपॉइंट के लिए
+    `true` के बजाय विकल्प पास करें:
+
+    ```typescript
+    liveModelDiscovery: {
+      endpointPath: "model-catalog",
+      buildRequestHeaders: ({ apiKey, discoveryApiKey }) => ({
+        "vendor-version": "2026-01-01",
+        "x-api-key": discoveryApiKey ?? apiKey ?? "",
+      }),
+      readRows: (body) =>
+        body && typeof body === "object" &&
+        Array.isArray((body as { models?: unknown }).models)
+          ? (body as { models: unknown[] }).models
+          : [],
+    },
+    ```
+
+    `endpointUrl` का बिना शर्त वैकल्पिक होस्ट के रूप में उपयोग न करें। इसकी
+    `requireBaseUrl` जाँच उन प्रदाताओं के लिए क्रेडेंशियल-पृथक्करण सीमा है
+    जिनका मॉडल-सूची होस्ट उनके इन्फ़रेंस होस्ट से अलग होता है।
+
+    यदि प्रदाता को सावधानीपूर्ण OpenAI-संगत प्रोजेक्शन के बजाय कस्टम मॉडल
+    अर्थ-विज्ञान की आवश्यकता है, तो उस प्रोजेक्शन को Plugin में रखें और साझा फ़ेच
+    जीवनचक्र के लिए `openclaw/plugin-sdk/provider-catalog-live-runtime` का उपयोग करें। सहायक आपको प्रदाता नीति को
+    OpenClaw कोर में रखे बिना सुरक्षित HTTP फ़ेच, प्रदाता-प्रमाणीकरण हेडर,
+    संरचित HTTP त्रुटियाँ, TTL कैशिंग और स्थिर फ़ॉलबैक व्यवहार देता है।
+
+    जब लाइव API केवल यह बताता हो कि प्रदाता के स्वामित्व वाली स्थिर कैटलॉग
+    पंक्तियों में से कौन-सी वर्तमान में उपलब्ध हैं, तब `buildLiveModelProviderConfig` का उपयोग करें:
 
     ```typescript index.ts
     import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
@@ -311,9 +363,8 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
     });
     ```
 
-    जब प्रदाता API अधिक समृद्ध मेटाडेटा लौटाता है और Plugin को स्वयं पंक्तियों को
-    OpenClaw मॉडल परिभाषाओं में प्रोजेक्ट करने की आवश्यकता होती है, तब
-    `getCachedLiveProviderModelRows` का उपयोग करें:
+    जब प्रदाता API अधिक समृद्ध मेटाडेटा लौटाता है और Plugin को पंक्तियों को स्वयं OpenClaw मॉडल
+    परिभाषाओं में प्रक्षेपित करना होता है, तब `getCachedLiveProviderModelRows` का उपयोग करें:
 
     ```typescript index.ts
     import {
@@ -342,16 +393,16 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
     }
     ```
 
-    `run` को प्रमाणीकरण द्वारा नियंत्रित रहना चाहिए और कोई उपयोग योग्य
-    क्रेडेंशियल उपलब्ध न होने पर `null` लौटाना चाहिए। एक ऑफ़लाइन
-    `staticRun` या स्थिर फ़ॉलबैक रखें, ताकि सेटअप, दस्तावेज़, परीक्षण और
-    चयनकर्ता सरफ़ेस लाइव नेटवर्क पहुँच पर निर्भर न हों। मॉडल-सूची की ताज़गी के लिए
-    उपयुक्त TTL का उपयोग करें, अनुरोध के समय फ़ाइल सिस्टम पोलिंग से बचें, और प्रदाता-विशिष्ट
-    `readRows` / `readModelId` केवल तभी पास करें जब अपस्ट्रीम प्रतिक्रिया
-    OpenAI-संगत `{ data: [{ id, object }] }` संरचना न हो।
+    `run` को प्रमाणीकरण द्वारा नियंत्रित रहना चाहिए और कोई उपयोग योग्य क्रेडेंशियल
+    उपलब्ध न होने पर `null` लौटाना चाहिए। एक ऑफ़लाइन `staticRun` या स्थिर फ़ॉलबैक रखें, ताकि सेटअप, दस्तावेज़,
+    परीक्षण और चयनकर्ता सतहें लाइव नेटवर्क पहुँच पर निर्भर न हों। मॉडल-सूची की ताज़गी के लिए
+    उपयुक्त TTL का उपयोग करें, अनुरोध के समय फ़ाइल-सिस्टम पोलिंग से बचें,
+    और प्रदाता-विशिष्ट `readRows` / `readModelId` केवल तभी पास करें, जब
+    अपस्ट्रीम प्रतिक्रिया OpenAI-संगत `{ data: [{ id, object }] }`
+    आकार में न हो।
 
-    यदि अपस्ट्रीम प्रदाता OpenClaw से अलग नियंत्रण टोकन का उपयोग करता है, तो स्ट्रीम पथ को
-    बदलने के बजाय एक छोटा द्विदिश टेक्स्ट रूपांतरण जोड़ें:
+    यदि अपस्ट्रीम प्रदाता OpenClaw से भिन्न नियंत्रण टोकन का उपयोग करता है, तो स्ट्रीम पथ को
+    बदलने के बजाय एक छोटा द्विदिश पाठ रूपांतरण जोड़ें:
 
     ```typescript
     api.registerTextTransforms({
@@ -368,13 +419,13 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
     });
     ```
 
-    `input`, ट्रांसपोर्ट से पहले अंतिम सिस्टम प्रॉम्प्ट और टेक्स्ट संदेश सामग्री को
-    पुनर्लिखता है। `output`, OpenClaw द्वारा अपने नियंत्रण मार्करों को पार्स करने
-    या चैनल डिलीवरी से पहले सहायक टेक्स्ट डेल्टा और अंतिम टेक्स्ट को पुनर्लिखता है।
+    `input` परिवहन से पहले अंतिम सिस्टम प्रॉम्प्ट और पाठ संदेश की सामग्री को
+    पुनर्लिखता है। `output` OpenClaw द्वारा अपने नियंत्रण मार्कर पार्स करने या
+    चैनल पर भेजने से पहले सहायक के पाठ डेल्टा और अंतिम पाठ को पुनर्लिखता है।
 
-    उन बंडल किए गए प्रदाताओं के लिए, जो API-कुंजी प्रमाणीकरण और एकल कैटलॉग-समर्थित
-    रनटाइम के साथ केवल एक टेक्स्ट प्रदाता पंजीकृत करते हैं, अधिक सीमित
-    `defineSingleProviderPluginEntry(...)` सहायक को प्राथमिकता दें:
+    ऐसे बंडल किए गए प्रदाताओं के लिए, जो API-कुंजी प्रमाणीकरण के साथ केवल एक पाठ प्रदाता
+    और एकल कैटलॉग-समर्थित रनटाइम पंजीकृत करते हैं, अधिक सीमित
+    `defineSingleProviderPluginEntry(...)` हेल्पर को प्राथमिकता दें:
 
     ```typescript
     import { defineSingleProviderPluginEntry } from "openclaw/plugin-sdk/provider-entry";
@@ -382,19 +433,19 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
     export default defineSingleProviderPluginEntry({
       id: "acme-ai",
       name: "Acme AI",
-      description: "Acme AI model provider",
+      description: "Acme AI मॉडल प्रदाता",
       provider: {
         label: "Acme AI",
         docsPath: "/providers/acme-ai",
         auth: [
           {
             methodId: "api-key",
-            label: "Acme AI API key",
-            hint: "API key from your Acme AI dashboard",
+            label: "Acme AI API कुंजी",
+            hint: "आपके Acme AI डैशबोर्ड की API कुंजी",
             optionKey: "acmeAiApiKey",
             flagName: "--acme-ai-api-key",
             envVar: "ACME_AI_API_KEY",
-            promptMessage: "Enter your Acme AI API key",
+            promptMessage: "अपनी Acme AI API कुंजी दर्ज करें",
             defaultModel: "acme-ai/acme-large",
           },
         ],
@@ -414,43 +465,42 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
     });
     ```
 
-    `buildProvider` वह लाइव कैटलॉग पथ है जिसका उपयोग तब किया जाता है जब OpenClaw वास्तविक
-    प्रोवाइडर प्रमाणीकरण को हल कर सकता है। यह प्रोवाइडर-विशिष्ट खोज कर सकता है। केवल
-    उन ऑफ़लाइन पंक्तियों के लिए `buildStaticProvider` का उपयोग करें जिन्हें प्रमाणीकरण
-    कॉन्फ़िगर होने से पहले सुरक्षित रूप से दिखाया जा सकता है; इसे क्रेडेंशियल की आवश्यकता नहीं होनी चाहिए या नेटवर्क अनुरोध नहीं करने चाहिए।
-    OpenClaw का `models list --all` प्रदर्शन वर्तमान में स्थिर कैटलॉग
-    केवल बंडल किए गए प्रोवाइडर plugins के लिए, खाली कॉन्फ़िगरेशन, खाली env और बिना
-    एजेंट/वर्कस्पेस पथों के निष्पादित करता है।
+    `buildProvider` वह लाइव कैटलॉग पथ है जिसका उपयोग तब किया जाता है, जब OpenClaw वास्तविक
+    प्रदाता प्रमाणीकरण को हल कर सकता है। यह प्रदाता-विशिष्ट खोज कर सकता है। प्रमाणीकरण
+    कॉन्फ़िगर होने से पहले सुरक्षित रूप से दिखाई जा सकने वाली ऑफ़लाइन पंक्तियों के लिए ही
+    `buildStaticProvider` का उपयोग करें; इसे क्रेडेंशियल की आवश्यकता नहीं होनी चाहिए और न ही
+    नेटवर्क अनुरोध करने चाहिए। OpenClaw का `models list --all` प्रदर्शन वर्तमान में स्थिर कैटलॉग
+    केवल बंडल किए गए प्रदाता Plugin के लिए निष्पादित करता है, जिसमें कॉन्फ़िग और एन्वायरनमेंट
+    रिक्त होते हैं तथा कोई एजेंट/वर्कस्पेस पथ नहीं होता।
 
-    यदि आपके प्रमाणीकरण प्रवाह को ऑनबोर्डिंग के दौरान `models.providers.*`, उपनामों और
-    एजेंट के डिफ़ॉल्ट मॉडल को भी पैच करना है, तो
-    `openclaw/plugin-sdk/provider-onboard` के प्रीसेट सहायकों का उपयोग करें। सबसे सीमित सहायक हैं
+    यदि आपके प्रमाणीकरण प्रवाह को ऑनबोर्डिंग के दौरान `models.providers.*`, उपनाम और
+    एजेंट का डिफ़ॉल्ट मॉडल भी पैच करना है, तो
+    `openclaw/plugin-sdk/provider-onboard` के प्रीसेट हेल्पर का उपयोग करें। सबसे सीमित हेल्पर
     `createDefaultModelPresetAppliers(...)`,
     `createDefaultModelsPresetAppliers(...)`, और
-    `createModelCatalogPresetAppliers(...)`।
+    `createModelCatalogPresetAppliers(...)` हैं।
 
-    जब किसी प्रोवाइडर का नेटिव एंडपॉइंट सामान्य
-    `openai-completions` ट्रांसपोर्ट पर स्ट्रीम किए गए उपयोग ब्लॉक का समर्थन करता है, तो
-    प्रोवाइडर-id जाँचों को हार्डकोड करने के बजाय
-    `openclaw/plugin-sdk/provider-catalog-shared` में साझा कैटलॉग सहायकों को प्राथमिकता दें।
+    जब किसी प्रदाता का नेटिव एंडपॉइंट सामान्य `openai-completions` परिवहन पर स्ट्रीम किए गए
+    उपयोग ब्लॉक का समर्थन करता है, तो प्रदाता-id जाँच को हार्डकोड करने के बजाय
+    `openclaw/plugin-sdk/provider-catalog-shared` में साझा कैटलॉग हेल्पर को प्राथमिकता दें।
     `supportsNativeStreamingUsageCompat(...)` और
-    `applyProviderNativeStreamingUsageCompat(...)` एंडपॉइंट क्षमता मैप से
-    समर्थन का पता लगाते हैं, इसलिए नेटिव Moonshot/DashScope-शैली के एंडपॉइंट तब भी
-    ऑप्ट इन करते हैं जब कोई plugin कस्टम प्रोवाइडर id का उपयोग कर रहा हो।
+    `applyProviderNativeStreamingUsageCompat(...)` एंडपॉइंट क्षमता मानचित्र से समर्थन का पता लगाते हैं, इसलिए नेटिव
+    Moonshot/DashScope-शैली के एंडपॉइंट तब भी विकल्प चुनते हैं, जब कोई Plugin कस्टम प्रदाता id
+    का उपयोग कर रहा हो।
 
-    ऊपर दिए गए लाइव खोज उदाहरण `/models`-शैली के प्रोवाइडर API को कवर करते हैं। उस
-    खोज को `catalog.run` के भीतर रखें, उपयोग योग्य प्रमाणीकरण के आधार पर गेट करें, और
-    ऑफ़लाइन कैटलॉग जनरेशन के लिए `staticRun` को नेटवर्क-मुक्त रखें।
+    ऊपर दिए गए लाइव खोज उदाहरण `/models`-शैली के प्रदाता API को समेटते हैं। उस खोज को
+    `catalog.run` के भीतर रखें, उपयोग योग्य प्रमाणीकरण द्वारा नियंत्रित करें, और ऑफ़लाइन
+    कैटलॉग निर्माण के लिए `staticRun` को नेटवर्क-मुक्त रखें।
 
   </Step>
 
   <Step title="डायनेमिक मॉडल समाधान जोड़ें">
-    यदि आपका प्रोवाइडर मनमाने मॉडल ID स्वीकार करता है (जैसे कोई प्रॉक्सी या राउटर),
+    यदि आपका प्रदाता मनमाने मॉडल ID स्वीकार करता है (जैसे प्रॉक्सी या राउटर),
     तो `resolveDynamicModel` जोड़ें:
 
     ```typescript
     api.registerProvider({
-      // ... id, label, auth, catalog from above
+      // ... ऊपर से id, लेबल, प्रमाणीकरण, कैटलॉग
 
       resolveDynamicModel: (ctx) => ({
         id: ctx.modelId,
@@ -467,18 +517,19 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
     });
     ```
 
-    यदि समाधान के लिए नेटवर्क कॉल आवश्यक है, तो एसिंक्रोनस
-    वार्म-अप के लिए `prepareDynamicModel` का उपयोग करें—इसके पूरा होने के बाद
-    `resolveDynamicModel` फिर से चलता है।
+    यदि समाधान के लिए नेटवर्क कॉल आवश्यक है, तो असिंक्रोनस वार्म-अप हेतु
+    `prepareDynamicModel` का उपयोग करें—इसके पूर्ण होने के बाद `resolveDynamicModel`
+    फिर से चलता है।
 
   </Step>
 
   <Step title="रनटाइम हुक जोड़ें (आवश्यकतानुसार)">
-    अधिकांश प्रोवाइडर को केवल `catalog` + `resolveDynamicModel` की आवश्यकता होती है। अपने
-    प्रोवाइडर की आवश्यकताओं के अनुसार क्रमिक रूप से हुक जोड़ें।
+    अधिकांश प्रदाताओं को केवल `catalog` + `resolveDynamicModel` की आवश्यकता होती है।
+    आपके प्रदाता को आवश्यकता होने पर क्रमिक रूप से हुक जोड़ें।
 
-    साझा सहायक बिल्डर अब सबसे सामान्य रीप्ले/टूल-संगतता
-    फ़ैमिली को कवर करते हैं, इसलिए plugins को आम तौर पर प्रत्येक हुक को एक-एक करके मैन्युअल रूप से वायर करने की आवश्यकता नहीं होती:
+    साझा हेल्पर बिल्डर अब सबसे सामान्य रीप्ले/टूल-संगतता
+    परिवारों को समेटते हैं, इसलिए Plugin को सामान्यतः प्रत्येक हुक को एक-एक करके स्वयं जोड़ने
+    की आवश्यकता नहीं होती:
 
     ```typescript
     import { buildProviderReplayFamilyHooks } from "openclaw/plugin-sdk/provider-model-shared";
@@ -498,52 +549,52 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
     });
     ```
 
-    आज उपलब्ध रीप्ले फ़ैमिली:
+    वर्तमान में उपलब्ध रीप्ले परिवार:
 
-    | फ़ैमिली | यह क्या वायर करती है | बंडल किए गए उदाहरण |
+    | परिवार | यह क्या जोड़ता है | बंडल किए गए उदाहरण |
     | --- | --- | --- |
-    | `openai-compatible` | OpenAI-संगत ट्रांसपोर्ट के लिए साझा OpenAI-शैली की रीप्ले नीति, जिसमें टूल-कॉल-id सैनिटाइज़ेशन, assistant-first क्रम सुधार और जहाँ ट्रांसपोर्ट को इसकी आवश्यकता हो वहाँ सामान्य Gemini-टर्न सत्यापन शामिल हैं | `moonshot`, `ollama`, `xai`, `zai` |
-    | `anthropic-by-model` | `modelId` द्वारा चुनी गई Claude-जागरूक रीप्ले नीति, ताकि Anthropic-संदेश ट्रांसपोर्ट को Claude-विशिष्ट थिंकिंग-ब्लॉक क्लीनअप केवल तभी मिले जब हल किया गया मॉडल वास्तव में Claude id हो | `amazon-bedrock` |
-    | `native-anthropic-by-model` | `anthropic-by-model` जैसी ही मॉडल-आधारित Claude नीति, साथ ही उन ट्रांसपोर्ट के लिए टूल-कॉल-id सैनिटाइज़ेशन और नेटिव Anthropic टूल-उपयोग id संरक्षण जिन्हें विक्रेता-नेटिव id बनाए रखने होते हैं | `anthropic-vertex`, `clawrouter` |
-    | `google-gemini` | नेटिव Gemini रीप्ले नीति और बूटस्ट्रैप रीप्ले सैनिटाइज़ेशन। साझा फ़ैमिली टेक्स्ट-आउटपुट Gemini CLI को टैग किए गए रीजनिंग पर रखती है; प्रत्यक्ष `google` प्रोवाइडर `resolveReasoningOutputMode` को `native` से ओवरराइड करता है क्योंकि Gemini API थिंकिंग नेटिव थॉट पार्ट्स के रूप में आती है। | `google`, `google-gemini-cli` |
-    | `passthrough-gemini` | OpenAI-संगत प्रॉक्सी ट्रांसपोर्ट के माध्यम से चलने वाले Gemini मॉडल के लिए Gemini थॉट-सिग्नेचर सैनिटाइज़ेशन; नेटिव Gemini रीप्ले सत्यापन या बूटस्ट्रैप पुनर्लेखन सक्षम नहीं करता | `openrouter`, `kilocode`, `opencode`, `opencode-go` |
-    | `hybrid-anthropic-openai` | उन प्रोवाइडर के लिए हाइब्रिड नीति जो एक ही plugin में Anthropic-संदेश और OpenAI-संगत मॉडल सतहों को मिलाते हैं; वैकल्पिक, केवल-Claude थिंकिंग-ब्लॉक हटाना Anthropic पक्ष तक सीमित रहता है | `minimax` |
+    | `openai-compatible` | OpenAI-संगत परिवहन के लिए साझा OpenAI-शैली की रीप्ले नीति, जिसमें टूल-कॉल-id स्वच्छीकरण, सहायक-प्रथम क्रम सुधार और जहाँ परिवहन को आवश्यकता हो वहाँ सामान्य Gemini-टर्न सत्यापन शामिल हैं | `moonshot`, `ollama`, `xai`, `zai` |
+    | `anthropic-by-model` | `modelId` द्वारा चुनी गई Claude-जागरूक रीप्ले नीति, ताकि Anthropic-संदेश परिवहन को Claude-विशिष्ट थिंकिंग-ब्लॉक सफ़ाई केवल तभी मिले, जब समाधान किया गया मॉडल वास्तव में Claude id हो | `amazon-bedrock` |
+    | `native-anthropic-by-model` | `anthropic-by-model` जैसी ही मॉडल-आधारित Claude नीति, साथ में उन परिवहनों के लिए टूल-कॉल-id स्वच्छीकरण और नेटिव Anthropic टूल-उपयोग id का संरक्षण, जिन्हें विक्रेता-नेटिव id बनाए रखना आवश्यक है | `anthropic-vertex`, `clawrouter` |
+    | `google-gemini` | नेटिव Gemini रीप्ले नीति और बूटस्ट्रैप रीप्ले स्वच्छीकरण। साझा परिवार पाठ-आउटपुट Gemini CLI को टैग किए गए रीजनिंग पर रखता है; प्रत्यक्ष `google` प्रदाता `resolveReasoningOutputMode` को `native` से ओवरराइड करता है, क्योंकि Gemini API थिंकिंग नेटिव विचार भागों के रूप में आती है। | `google`, `google-gemini-cli` |
+    | `passthrough-gemini` | OpenAI-संगत प्रॉक्सी परिवहन के माध्यम से चलने वाले Gemini मॉडल के लिए Gemini विचार-हस्ताक्षर स्वच्छीकरण; यह नेटिव Gemini रीप्ले सत्यापन या बूटस्ट्रैप पुनर्लेखन सक्षम नहीं करता | `openrouter`, `kilocode`, `opencode`, `opencode-go` |
+    | `hybrid-anthropic-openai` | ऐसे प्रदाताओं के लिए हाइब्रिड नीति, जो एक Plugin में Anthropic-संदेश और OpenAI-संगत मॉडल सतहों को मिलाते हैं; वैकल्पिक केवल-Claude थिंकिंग-ब्लॉक हटाना Anthropic पक्ष तक सीमित रहता है | `minimax` |
 
-    आज उपलब्ध स्ट्रीम फ़ैमिली:
+    वर्तमान में उपलब्ध स्ट्रीम परिवार:
 
-    | फ़ैमिली | यह क्या वायर करती है | बंडल किए गए उदाहरण |
+    | परिवार | यह किसे जोड़ता है | बंडल किए गए उदाहरण |
     | --- | --- | --- |
     | `google-thinking` | साझा स्ट्रीम पथ पर Gemini थिंकिंग पेलोड सामान्यीकरण | `google`, `google-gemini-cli` |
-    | `kilocode-thinking` | साझा प्रॉक्सी स्ट्रीम पथ पर Kilo रीजनिंग रैपर, जिसमें `kilo-auto/balanced` और असमर्थित प्रॉक्सी रीजनिंग id इंजेक्ट की गई थिंकिंग को छोड़ देते हैं | `kilocode` |
+    | `kilocode-thinking` | साझा प्रॉक्सी स्ट्रीम पथ पर Kilo रीजनिंग रैपर, जिसमें `kilo-auto/balanced` और असमर्थित प्रॉक्सी रीजनिंग आईडी इंजेक्ट की गई थिंकिंग को छोड़ देते हैं | `kilocode` |
     | `moonshot-thinking` | कॉन्फ़िगरेशन + `/think` स्तर से Moonshot बाइनरी नेटिव-थिंकिंग पेलोड मैपिंग | `moonshot` |
     | `minimax-fast-mode` | साझा स्ट्रीम पथ पर MiniMax फ़ास्ट-मोड मॉडल पुनर्लेखन | `minimax`, `minimax-portal` |
-    | `openai-responses-defaults` | साझा नेटिव OpenAI/Codex Responses रैपर: एट्रिब्यूशन हेडर, `/fast`/`serviceTier`, टेक्स्ट वर्बोसिटी, नेटिव Codex वेब खोज, रीजनिंग-संगत पेलोड आकार-निर्धारण और Responses संदर्भ प्रबंधन | `openai` |
+    | `openai-responses-defaults` | साझा नेटिव OpenAI/Codex Responses रैपर: एट्रिब्यूशन हेडर, `/fast`/`serviceTier`, टेक्स्ट वर्बोसिटी, नेटिव Codex वेब खोज, रीजनिंग-संगत पेलोड संरचना, और Responses संदर्भ प्रबंधन | `openai` |
     | `openrouter-thinking` | प्रॉक्सी रूट के लिए OpenRouter रीजनिंग रैपर, जिसमें असमर्थित-मॉडल/`auto` स्किप केंद्रीय रूप से संभाले जाते हैं | `openrouter` |
-    | `tool-stream-default-on` | Z.AI जैसे प्रोवाइडर के लिए डिफ़ॉल्ट-रूप-से-सक्षम `tool_stream` रैपर, जो स्पष्ट रूप से अक्षम न किए जाने पर टूल स्ट्रीमिंग चाहते हैं | `zai` |
+    | `tool-stream-default-on` | Z.AI जैसे प्रदाताओं के लिए डिफ़ॉल्ट रूप से चालू `tool_stream` रैपर, जिन्हें स्पष्ट रूप से अक्षम किए जाने तक टूल स्ट्रीमिंग चाहिए | `zai` |
 
-    <Accordion title="फ़ैमिली बिल्डर को संचालित करने वाले SDK सीम">
-      प्रत्येक फ़ैमिली बिल्डर उसी पैकेज से निर्यात किए गए निम्न-स्तरीय सार्वजनिक सहायकों से बना है, जिनका उपयोग तब किया जा सकता है जब किसी प्रोवाइडर को सामान्य पैटर्न से अलग जाना हो:
+    <Accordion title="फ़ैमिली बिल्डर को शक्ति देने वाले SDK सीम">
+      प्रत्येक फ़ैमिली बिल्डर उसी पैकेज से निर्यात किए गए निम्न-स्तरीय सार्वजनिक हेल्पर से बना है, जिनका उपयोग तब किया जा सकता है जब किसी प्रदाता को सामान्य पैटर्न से अलग जाना हो:
 
-      - `openclaw/plugin-sdk/provider-model-shared` - `ProviderReplayFamily`, `buildProviderReplayFamilyHooks(...)`, और कच्चे रीप्ले बिल्डर (`buildOpenAICompatibleReplayPolicy`, `buildAnthropicReplayPolicyForModel`, `buildGoogleGeminiReplayPolicy`, `buildHybridAnthropicOrOpenAIReplayPolicy`)। Gemini रीप्ले सहायक (`sanitizeGoogleGeminiReplayHistory`, `resolveTaggedReasoningOutputMode`) और एंडपॉइंट/मॉडल सहायक (`resolveProviderEndpoint`, `normalizeProviderId`, `normalizeGooglePreviewModelId`) भी निर्यात करता है।
-      - `openclaw/plugin-sdk/provider-stream` - `ProviderStreamFamily`, `buildProviderStreamFamilyHooks(...)`, `composeProviderStreamWrappers(...)`, साथ ही साझा OpenAI/Codex रैपर (`createOpenAIAttributionHeadersWrapper`, `createOpenAIFastModeWrapper`, `createOpenAIServiceTierWrapper`, `createOpenAIResponsesContextManagementWrapper`, `createCodexNativeWebSearchWrapper`), DeepSeek V4 OpenAI-संगत रैपर (`createDeepSeekV4OpenAICompatibleThinkingWrapper`), Anthropic Messages थिंकिंग प्रीफ़िल क्लीनअप (`createAnthropicThinkingPrefillPayloadWrapper`), सादे-टेक्स्ट टूल-कॉल संगतता (`createPlainTextToolCallCompatWrapper`), और साझा प्रॉक्सी/प्रोवाइडर रैपर (`createOpenRouterWrapper`, `createToolStreamWrapper`, `createMinimaxFastModeWrapper`)।
-      - `openclaw/plugin-sdk/provider-stream-shared` - हॉट प्रोवाइडर पथों के लिए हल्के पेलोड और इवेंट रैपर, जिनमें `createOpenAICompatibleCompletionsThinkingOffWrapper`, `createPayloadPatchStreamWrapper`, `createPlainTextToolCallCompatWrapper`, `normalizeOpenAICompatibleReasoningPayload(...)`, और `setQwenChatTemplateThinking(...)` शामिल हैं।
-      - `openclaw/plugin-sdk/provider-tools` - `ProviderToolCompatFamily`, `buildProviderToolCompatFamilyHooks("deepseek" | "gemini" | "openai")`, और अंतर्निहित प्रोवाइडर स्कीमा सहायक।
+      - `openclaw/plugin-sdk/provider-model-shared` - `ProviderReplayFamily`, `buildProviderReplayFamilyHooks(...)`, और रॉ रीप्ले बिल्डर (`buildOpenAICompatibleReplayPolicy`, `buildAnthropicReplayPolicyForModel`, `buildGoogleGeminiReplayPolicy`, `buildHybridAnthropicOrOpenAIReplayPolicy`)। Gemini रीप्ले हेल्पर (`sanitizeGoogleGeminiReplayHistory`, `resolveTaggedReasoningOutputMode`) और एंडपॉइंट/मॉडल हेल्पर (`resolveProviderEndpoint`, `normalizeProviderId`, `normalizeGooglePreviewModelId`) भी निर्यात करता है।
+      - `openclaw/plugin-sdk/provider-stream` - `ProviderStreamFamily`, `buildProviderStreamFamilyHooks(...)`, `composeProviderStreamWrappers(...)`, साथ ही साझा OpenAI/Codex रैपर (`createOpenAIAttributionHeadersWrapper`, `createOpenAIFastModeWrapper`, `createOpenAIServiceTierWrapper`, `createOpenAIResponsesContextManagementWrapper`, `createCodexNativeWebSearchWrapper`), DeepSeek V4 OpenAI-संगत रैपर (`createDeepSeekV4OpenAICompatibleThinkingWrapper`), Anthropic Messages थिंकिंग प्रीफ़िल क्लीनअप (`createAnthropicThinkingPrefillPayloadWrapper`), प्लेन-टेक्स्ट टूल-कॉल संगतता (`createPlainTextToolCallCompatWrapper`), और साझा प्रॉक्सी/प्रदाता रैपर (`createOpenRouterWrapper`, `createToolStreamWrapper`, `createMinimaxFastModeWrapper`)।
+      - `openclaw/plugin-sdk/provider-stream-shared` - हॉट प्रदाता पथों के लिए हल्के पेलोड और इवेंट रैपर, जिनमें `createOpenAICompatibleCompletionsThinkingOffWrapper`, `createPayloadPatchStreamWrapper`, `createPlainTextToolCallCompatWrapper`, `normalizeOpenAICompatibleReasoningPayload(...)`, और `setQwenChatTemplateThinking(...)` शामिल हैं।
+      - `openclaw/plugin-sdk/provider-tools` - `ProviderToolCompatFamily`, `buildProviderToolCompatFamilyHooks("deepseek" | "gemini" | "openai")`, और अंतर्निहित प्रदाता स्कीमा हेल्पर।
 
-      Gemini-फ़ैमिली प्रोवाइडर के लिए, रीजनिंग-आउटपुट मोड को
-      ट्रांसपोर्ट के अनुरूप रखें। प्रत्यक्ष Google Gemini API प्रोवाइडर को `native`
+      Gemini-फ़ैमिली प्रदाताओं के लिए, रीजनिंग-आउटपुट मोड को
+      ट्रांसपोर्ट के अनुरूप रखें। प्रत्यक्ष Google Gemini API प्रदाताओं को `native`
       रीजनिंग आउटपुट का उपयोग करना चाहिए, ताकि OpenClaw
-      `<think>` / `<final>` प्रॉम्प्ट निर्देश जोड़े बिना नेटिव थॉट पार्ट्स का उपयोग करे। अंतिम JSON/टेक्स्ट प्रतिक्रिया पार्स करने वाले केवल-टेक्स्ट Gemini CLI-शैली
-      बैकएंड साझा
+      `<think>` / `<final>` प्रॉम्प्ट निर्देश जोड़े बिना नेटिव थॉट पार्ट का उपयोग कर सके। केवल-टेक्स्ट वाले Gemini CLI-शैली
+      बैकएंड, जो अंतिम JSON/टेक्स्ट प्रतिक्रिया को पार्स करते हैं, साझा
       `google-gemini` टैग किए गए अनुबंध को बनाए रख सकते हैं।
 
-      कुछ स्ट्रीम सहायक जानबूझकर प्रोवाइडर-स्थानीय रहते हैं। `@openclaw/anthropic-provider`, `wrapAnthropicProviderStream`, `resolveAnthropicBetas`, `resolveAnthropicFastMode`, `resolveAnthropicServiceTier`, और निम्न-स्तरीय Anthropic रैपर बिल्डर को अपने सार्वजनिक `api.ts` / `contract-api.ts` सीम में रखता है क्योंकि वे Claude OAuth बीटा प्रबंधन और `context1m` गेटिंग को एनकोड करते हैं। इसी तरह xAI plugin नेटिव xAI Responses आकार-निर्धारण को अपने `wrapStreamFn` में रखता है (`/fast` उपनाम, डिफ़ॉल्ट `tool_stream`, असमर्थित स्ट्रिक्ट-टूल क्लीनअप, xAI-विशिष्ट रीजनिंग-पेलोड हटाना)।
+      कुछ स्ट्रीम हेल्पर जानबूझकर प्रदाता-स्थानीय रहते हैं। `@openclaw/anthropic-provider` अपने सार्वजनिक `api.ts` / `contract-api.ts` सीम में `wrapAnthropicProviderStream`, `resolveAnthropicBetas`, `resolveAnthropicFastMode`, `resolveAnthropicServiceTier`, और निम्न-स्तरीय Anthropic रैपर बिल्डर रखता है, क्योंकि वे Claude OAuth बीटा हैंडलिंग और `context1m` गेटिंग को एन्कोड करते हैं। इसी तरह xAI Plugin नेटिव xAI Responses संरचना को अपने `wrapStreamFn` (`/fast` उपनाम, डिफ़ॉल्ट `tool_stream`, असमर्थित स्ट्रिक्ट-टूल क्लीनअप, xAI-विशिष्ट रीजनिंग-पेलोड निष्कासन) में रखता है।
 
-      यही पैकेज-रूट पैटर्न `@openclaw/openai-provider` (प्रोवाइडर बिल्डर, डिफ़ॉल्ट-मॉडल सहायक, रीयलटाइम प्रोवाइडर बिल्डर) और `@openclaw/openrouter-provider` (प्रोवाइडर बिल्डर तथा ऑनबोर्डिंग/कॉन्फ़िगरेशन सहायक) को भी आधार देता है।
+      यही पैकेज-रूट पैटर्न `@openclaw/openai-provider` (प्रदाता बिल्डर, डिफ़ॉल्ट-मॉडल हेल्पर, रीयलटाइम प्रदाता बिल्डर) और `@openclaw/openrouter-provider` (प्रदाता बिल्डर तथा ऑनबोर्डिंग/कॉन्फ़िगरेशन हेल्पर) को भी आधार देता है।
     </Accordion>
 
     <Tabs>
       <Tab title="टोकन एक्सचेंज">
-        उन प्रोवाइडर के लिए जिन्हें प्रत्येक इनफ़रेंस कॉल से पहले टोकन एक्सचेंज की आवश्यकता होती है:
+        उन प्रदाताओं के लिए जिन्हें प्रत्येक इन्फ़रेंस कॉल से पहले टोकन एक्सचेंज की आवश्यकता होती है:
 
         ```typescript
         prepareRuntimeAuth: async (ctx) => {
@@ -557,10 +608,10 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
         ```
       </Tab>
       <Tab title="कस्टम हेडर">
-        उन प्रोवाइडर के लिए जिन्हें कस्टम अनुरोध हेडर या बॉडी संशोधन की आवश्यकता होती है:
+        उन प्रदाताओं के लिए जिन्हें कस्टम अनुरोध हेडर या बॉडी संशोधन चाहिए:
 
         ```typescript
-        // wrapStreamFn returns a StreamFn derived from ctx.streamFn
+        // wrapStreamFn, ctx.streamFn से व्युत्पन्न StreamFn लौटाता है
         wrapStreamFn: (ctx) => {
           if (!ctx.streamFn) return undefined;
           const inner = ctx.streamFn;
@@ -575,8 +626,8 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
         ```
       </Tab>
       <Tab title="नेटिव ट्रांसपोर्ट पहचान">
-        उन प्रोवाइडर के लिए जिन्हें सामान्य HTTP या WebSocket ट्रांसपोर्ट पर
-        नेटिव अनुरोध/सेशन हेडर या मेटाडेटा की आवश्यकता होती है:
+        उन प्रदाताओं के लिए जिन्हें जेनेरिक HTTP या WebSocket ट्रांसपोर्ट पर
+        नेटिव अनुरोध/सत्र हेडर या मेटाडेटा चाहिए:
 
         ```typescript
         resolveTransportTurnState: (ctx) => ({
@@ -597,7 +648,7 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
         ```
       </Tab>
       <Tab title="उपयोग और बिलिंग">
-        उपयोग/बिलिंग डेटा उपलब्ध कराने वाले प्रोवाइडर के लिए:
+        उपयोग/बिलिंग डेटा उपलब्ध कराने वाले प्रदाताओं के लिए:
 
         ```typescript
         resolveUsageAuth: async (ctx) => {
@@ -613,95 +664,91 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
         प्रदाता के पास उपयोग/बिलिंग क्रेडेंशियल हो, तब
         `{ token, accountId?, subscriptionType?, rateLimitTier? }` लौटाएँ (वैकल्पिक फ़ील्ड समाधान की गई प्रोफ़ाइल से
         गैर-गोपनीय प्लान मेटाडेटा को
-        `fetchUsageSnapshot` में ले जाते हैं)। `{ handled: true }`
-        केवल तभी लौटाएँ, जब प्रदाता ने उपयोग प्रमाणीकरण को निश्चित रूप से संभाला हो,
-        लेकिन उसके पास उपयोग योग्य उपयोग टोकन न हो और OpenClaw को सामान्य
-        API-कुंजी/OAuth फ़ॉलबैक छोड़ना आवश्यक हो। जब प्रदाता ने अनुरोध को
-        नहीं संभाला हो और OpenClaw को सामान्य फ़ॉलबैक जारी रखना चाहिए, तब
-        `null` या `undefined` लौटाएँ।
+        `fetchUsageSnapshot` में ले जाते हैं)। `{ handled: true }` केवल तभी लौटाएँ जब प्रदाता ने उपयोग
+        प्रमाणीकरण को निश्चित रूप से संभाला हो, लेकिन उसके पास उपयोग योग्य उपयोग टोकन न हो, और OpenClaw को जेनेरिक
+        API-कुंजी/OAuth फ़ॉलबैक छोड़ना आवश्यक हो। जब प्रदाता ने
+        अनुरोध नहीं संभाला हो और OpenClaw को जेनेरिक फ़ॉलबैक जारी रखना चाहिए, तब `null` या `undefined` लौटाएँ।
 
         प्रदाता आईडी को `contracts.usageProviders` में घोषित करें। जब वह मैनिफ़ेस्ट
         अनुबंध और **दोनों** हुक मौजूद हों, तो OpenClaw असंबंधित प्रदाता
-        plugins लोड किए बिना प्रदाता को उपयोग संग्रह में स्वचालित रूप से शामिल
-        करता है। कोर अनुमति-सूची में किसी अपडेट की आवश्यकता नहीं है।
-        `fetchUsageSnapshot` साझा प्रदाता-निरपेक्ष स्वरूप लौटाता है:
+        Plugins लोड किए बिना प्रदाता को उपयोग संग्रह में स्वतः शामिल कर देता है।
+        किसी कोर अलावलिस्ट अपडेट की आवश्यकता नहीं होती।
+        `fetchUsageSnapshot` साझा प्रदाता-निरपेक्ष संरचना लौटाता है:
 
-        - `plan`: प्रदाता द्वारा रिपोर्ट किया गया सदस्यता या कुंजी लेबल
-        - `windows`: उपयोग किए गए प्रतिशत के रूप में रीसेट किए जा सकने वाले कोटा अंतराल
-        - `billing`: टाइप की गई `balance`, `spend`, या `budget` प्रविष्टियाँ; `unit`
-          कोई ISO मुद्रा या `credits` जैसी प्रदाता इकाई हो सकती है
-        - `summary`: संक्षिप्त प्रदाता-विशिष्ट संदर्भ, जो उन
+        - `plan`: प्रदाता द्वारा रिपोर्ट किया गया सब्सक्रिप्शन या कुंजी लेबल
+        - `windows`: उपयोग किए गए प्रतिशत के रूप में रीसेट किए जा सकने वाले कोटा विंडो
+        - `billing`: टाइप किए गए `balance`, `spend`, या `budget` प्रविष्टियाँ; `unit`
+          एक ISO मुद्रा या `credits` जैसी प्रदाता इकाई हो सकती है
+        - `summary`: संक्षिप्त प्रदाता-विशिष्ट संदर्भ जो उन
           संरचित फ़ील्ड में समाहित नहीं होता
 
-        मुद्रा का अर्थ बिल्कुल सटीक रखें। प्रदाता क्रेडिट तब तक USD नहीं है, जब तक
-        अपस्ट्रीम अनुबंध ऐसा न कहे। केवल
-        `fetchUsageSnapshot` लागू करने वाला plugin स्पष्ट/सिंथेटिक कॉलर के लिए
-        उपलब्ध रहता है, लेकिन उसका स्वतः पता नहीं लगाया जाता, क्योंकि OpenClaw
-        उसके उपयोग क्रेडेंशियल का समाधान नहीं कर सकता।
+        मुद्रा का अर्थ सटीक रखें। जब तक अपस्ट्रीम
+        अनुबंध ऐसा न कहे, प्रदाता क्रेडिट USD नहीं होता। केवल
+        `fetchUsageSnapshot` लागू करने वाला Plugin स्पष्ट/सिंथेटिक कॉलर के लिए उपलब्ध रहता है, लेकिन
+        स्वतः खोजा नहीं जाता, क्योंकि OpenClaw उसके उपयोग क्रेडेंशियल को हल नहीं कर सकता।
       </Tab>
     </Tabs>
 
     <Accordion title="सामान्य प्रदाता हुक">
-      OpenClaw मॉडल/प्रदाता plugins के लिए हुक को लगभग इस क्रम में कॉल करता है।
-      अधिकांश प्रदाता केवल 2-3 का उपयोग करते हैं। यह पूरा `ProviderPlugin`
-      अनुबंध नहीं है—संपूर्ण और वर्तमान में सटीक हुक सूची तथा फ़ॉलबैक टिप्पणियों के लिए
-      [आंतरिक संरचना: प्रदाता रनटाइम
+      OpenClaw मॉडल/प्रदाता Plugins के लिए हुक को लगभग इसी क्रम में कॉल करता है।
+      अधिकांश प्रदाता केवल 2-3 का उपयोग करते हैं। यह संपूर्ण `ProviderPlugin`
+      अनुबंध नहीं है—पूर्ण और वर्तमान में सटीक हुक सूची तथा फ़ॉलबैक टिप्पणियों के लिए [आंतरिक संरचना: प्रदाता रनटाइम
       हुक](/hi/plugins/architecture-internals#provider-runtime-hooks) देखें।
-      केवल संगतता के लिए मौजूद वे प्रदाता फ़ील्ड, जिन्हें OpenClaw अब कॉल नहीं करता,
-      जैसे `ProviderPlugin.capabilities` और `suppressBuiltInModel`, यहाँ
+      केवल-संगतता वाले प्रदाता फ़ील्ड, जिन्हें OpenClaw अब कॉल नहीं करता, जैसे
+      `ProviderPlugin.capabilities` और `suppressBuiltInModel`, यहाँ
       सूचीबद्ध नहीं हैं।
 
       | हुक | कब उपयोग करें |
       | --- | --- |
-      | `catalog` | मॉडल कैटलॉग या आधार URL के डिफ़ॉल्ट |
-      | `applyConfigDefaults` | कॉन्फ़िगरेशन मूर्त रूप देते समय प्रदाता के स्वामित्व वाले वैश्विक डिफ़ॉल्ट |
-      | `normalizeModelId` | लुकअप से पहले पुराने/पूर्वावलोकन मॉडल-आईडी उपनामों की सफ़ाई |
-      | `normalizeTransport` | सामान्य मॉडल संयोजन से पहले प्रदाता-परिवार की `api` / `baseUrl` सफ़ाई |
-      | `normalizeConfig` | `models.providers.<id>` कॉन्फ़िगरेशन को सामान्यीकृत करना |
-      | `applyNativeStreamingUsageCompat` | कॉन्फ़िगरेशन प्रदाताओं के लिए मूल स्ट्रीमिंग-उपयोग संगतता पुनर्लेखन |
-      | `resolveConfigApiKey` | प्रदाता के स्वामित्व वाले परिवेश-मार्कर प्रमाणीकरण का समाधान |
+      | `catalog` | मॉडल कैटलॉग या बेस URL डिफ़ॉल्ट |
+      | `applyConfigDefaults` | कॉन्फ़िगरेशन मटेरियलाइज़ेशन के दौरान प्रदाता-स्वामित्व वाले वैश्विक डिफ़ॉल्ट |
+      | `normalizeModelId` | लुकअप से पहले लेगेसी/प्रीव्यू मॉडल-आईडी उपनाम क्लीनअप |
+      | `normalizeTransport` | जेनेरिक मॉडल असेंबली से पहले प्रदाता-फ़ैमिली `api` / `baseUrl` क्लीनअप |
+      | `normalizeConfig` | `models.providers.<id>` कॉन्फ़िगरेशन को सामान्यीकृत करें |
+      | `applyNativeStreamingUsageCompat` | कॉन्फ़िगरेशन प्रदाताओं के लिए नेटिव स्ट्रीमिंग-उपयोग संगतता पुनर्लेखन |
+      | `resolveConfigApiKey` | प्रदाता-स्वामित्व वाला एनवायरनमेंट-मार्कर प्रमाणीकरण समाधान |
       | `resolveSyntheticAuth` | स्थानीय/स्वयं-होस्टेड या कॉन्फ़िगरेशन-समर्थित सिंथेटिक प्रमाणीकरण |
-      | `resolveExternalAuthProfiles` | CLI/ऐप-प्रबंधित क्रेडेंशियल के लिए प्रदाता के स्वामित्व वाली बाहरी प्रमाणीकरण प्रोफ़ाइल को ओवरले करना |
-      | `shouldDeferSyntheticProfileAuth` | परिवेश/कॉन्फ़िगरेशन प्रमाणीकरण के पीछे सिंथेटिक संग्रहीत-प्रोफ़ाइल प्लेसहोल्डर को कम प्राथमिकता देना |
-      | `resolveDynamicModel` | मनमाने अपस्ट्रीम मॉडल आईडी स्वीकार करना |
-      | `prepareDynamicModel` | समाधान से पहले एसिंक्रोनस मेटाडेटा प्राप्त करना |
+      | `resolveExternalAuthProfiles` | CLI/ऐप-प्रबंधित क्रेडेंशियल के लिए प्रदाता-स्वामित्व वाली बाहरी प्रमाणीकरण प्रोफ़ाइल को ओवरले करें |
+      | `shouldDeferSyntheticProfileAuth` | एनवायरनमेंट/कॉन्फ़िगरेशन प्रमाणीकरण के पीछे सिंथेटिक संग्रहीत-प्रोफ़ाइल प्लेसहोल्डर को कम प्राथमिकता दें |
+      | `resolveDynamicModel` | मनमाने अपस्ट्रीम मॉडल आईडी स्वीकार करें |
+      | `prepareDynamicModel` | समाधान से पहले एसिंक्रोनस मेटाडेटा फ़ेच |
       | `normalizeResolvedModel` | रनर से पहले ट्रांसपोर्ट पुनर्लेखन |
-      | `normalizeToolSchemas` | पंजीकरण से पहले प्रदाता के स्वामित्व वाले टूल-स्कीमा की सफ़ाई |
-      | `inspectToolSchemas` | प्रदाता के स्वामित्व वाले टूल-स्कीमा निदान |
-      | `resolveReasoningOutputMode` | टैग किए गए बनाम मूल तर्क-आउटपुट का अनुबंध |
+      | `normalizeToolSchemas` | पंजीकरण से पहले प्रदाता-स्वामित्व वाला टूल-स्कीमा क्लीनअप |
+      | `inspectToolSchemas` | प्रदाता-स्वामित्व वाला टूल-स्कीमा निदान |
+      | `resolveReasoningOutputMode` | टैग किया गया बनाम नेटिव रीजनिंग-आउटपुट अनुबंध |
       | `prepareExtraParams` | डिफ़ॉल्ट अनुरोध पैरामीटर |
-      | `createStreamFn` | पूरी तरह कस्टम StreamFn ट्रांसपोर्ट |
+      | `createStreamFn` | पूर्णतः कस्टम StreamFn ट्रांसपोर्ट |
       | `wrapStreamFn` | सामान्य स्ट्रीम पथ पर कस्टम हेडर/बॉडी रैपर |
-      | `resolveTransportTurnState` | प्रत्येक टर्न के मूल हेडर/मेटाडेटा |
-      | `resolveWebSocketSessionPolicy` | मूल WS सत्र हेडर/कूल-डाउन |
-      | `formatApiKey` | कस्टम रनटाइम टोकन स्वरूप |
-      | `refreshOAuth` | कस्टम OAuth रीफ़्रेश |
+      | `resolveTransportTurnState` | नेटिव प्रति-टर्न हेडर/मेटाडेटा |
+      | `resolveWebSocketSessionPolicy` | नेटिव WS सत्र हेडर/कूल-डाउन |
+      | `formatApiKey` | कस्टम रनटाइम टोकन संरचना |
+      | `refreshOAuth` | कस्टम OAuth रिफ़्रेश |
       | `buildAuthDoctorHint` | प्रमाणीकरण सुधार मार्गदर्शन |
-      | `matchesContextOverflowError` | प्रदाता के स्वामित्व वाली ओवरफ़्लो पहचान |
-      | `classifyFailoverReason` | प्रदाता के स्वामित्व वाला दर-सीमा/अधिभार वर्गीकरण |
+      | `matchesContextOverflowError` | प्रदाता-स्वामित्व वाली ओवरफ़्लो पहचान |
+      | `classifyFailoverReason` | प्रदाता-स्वामित्व वाला रेट-लिमिट/ओवरलोड वर्गीकरण |
       | `isCacheTtlEligible` | प्रॉम्प्ट कैश TTL गेटिंग |
-      | `buildMissingAuthMessage` | अनुपलब्ध प्रमाणीकरण का कस्टम संकेत |
-      | `augmentModelCatalog` | सिंथेटिक फ़ॉरवर्ड-संगतता पंक्तियाँ (बहिष्कृत—`registerModelCatalogProvider` को प्राथमिकता दें) |
-      | `resolveThinkingProfile` | मॉडल-विशिष्ट `/think` विकल्प समूह |
-      | `isBinaryThinking` | बाइनरी चिंतन चालू/बंद संगतता (बहिष्कृत—`resolveThinkingProfile` को प्राथमिकता दें) |
-      | `supportsXHighThinking` | `xhigh` तर्क समर्थन संगतता (बहिष्कृत—`resolveThinkingProfile` को प्राथमिकता दें) |
-      | `resolveDefaultThinkingLevel` | डिफ़ॉल्ट `/think` नीति संगतता (बहिष्कृत—`resolveThinkingProfile` को प्राथमिकता दें) |
+      | `buildMissingAuthMessage` | कस्टम अनुपस्थित-प्रमाणीकरण संकेत |
+      | `augmentModelCatalog` | सिंथेटिक फ़ॉरवर्ड-संगतता पंक्तियाँ (अप्रचलित—`registerModelCatalogProvider` को प्राथमिकता दें) |
+      | `resolveThinkingProfile` | मॉडल-विशिष्ट `/think` विकल्प सेट |
+      | `isBinaryThinking` | बाइनरी थिंकिंग चालू/बंद संगतता (अप्रचलित—`resolveThinkingProfile` को प्राथमिकता दें) |
+      | `supportsXHighThinking` | `xhigh` रीजनिंग समर्थन संगतता (अप्रचलित—`resolveThinkingProfile` को प्राथमिकता दें) |
+      | `resolveDefaultThinkingLevel` | डिफ़ॉल्ट `/think` नीति संगतता (अप्रचलित—`resolveThinkingProfile` को प्राथमिकता दें) |
       | `isModernModelRef` | लाइव/स्मोक मॉडल मिलान |
-      | `prepareRuntimeAuth` | अनुमान से पहले टोकन विनिमय |
+      | `prepareRuntimeAuth` | इन्फ़रेंस से पहले टोकन एक्सचेंज |
       | `resolveUsageAuth` | कस्टम उपयोग क्रेडेंशियल पार्सिंग |
       | `fetchUsageSnapshot` | कस्टम उपयोग एंडपॉइंट |
-      | `createEmbeddingProvider` | मेमोरी/खोज के लिए प्रदाता के स्वामित्व वाला एम्बेडिंग अडैप्टर |
+      | `createEmbeddingProvider` | मेमोरी/खोज के लिए प्रदाता-स्वामित्व वाला एम्बेडिंग एडाप्टर |
       | `buildReplayPolicy` | कस्टम ट्रांसक्रिप्ट रीप्ले/Compaction नीति |
-      | `sanitizeReplayHistory` | सामान्य सफ़ाई के बाद प्रदाता-विशिष्ट रीप्ले पुनर्लेखन |
-      | `validateReplayTurns` | एम्बेडेड रनर से पहले सख़्त रीप्ले-टर्न सत्यापन |
+      | `sanitizeReplayHistory` | जेनेरिक क्लीनअप के बाद प्रदाता-विशिष्ट रीप्ले पुनर्लेखन |
+      | `validateReplayTurns` | एम्बेडेड रनर से पहले सख्त रीप्ले-टर्न सत्यापन |
       | `onModelSelected` | चयन-पश्चात कॉलबैक (जैसे टेलीमेट्री) |
 
       रनटाइम फ़ॉलबैक टिप्पणियाँ:
 
-      - `normalizeConfig` प्रत्येक प्रदाता आईडी के लिए एक स्वामी plugin का समाधान करता है (पहले बंडल किए गए प्रदाता, फिर मेल खाने वाला रनटाइम plugin) और केवल उसी हुक को कॉल करता है—अन्य प्रदाताओं में कोई स्कैन नहीं होता। Google का अपना `normalizeConfig` हुक ही `google` / `google-vertex` / `google-antigravity` कॉन्फ़िगरेशन प्रविष्टियों को सामान्यीकृत करता है; यह अलग कोर फ़ॉलबैक नहीं है।
-      - `resolveConfigApiKey` उपलब्ध कराए जाने पर प्रदाता हुक का उपयोग करता है। Amazon Bedrock अपने प्रदाता plugin में AWS परिवेश-मार्कर समाधान रखता है; `auth: "aws-sdk"` के साथ कॉन्फ़िगर किए जाने पर रनटाइम प्रमाणीकरण स्वयं अब भी AWS SDK की डिफ़ॉल्ट शृंखला का उपयोग करता है।
-      - `resolveThinkingProfile(ctx)` चयनित `provider`, `modelId`, वैकल्पिक मर्ज किया गया `reasoning` कैटलॉग संकेत और वैकल्पिक मर्ज किए गए मॉडल के `compat` तथ्य प्राप्त करता है। केवल प्रदाता के चिंतन UI/प्रोफ़ाइल का चयन करने के लिए `compat` का उपयोग करें।
-      - `resolveSystemPromptContribution` किसी प्रदाता को मॉडल परिवार के लिए कैश-जागरूक सिस्टम-प्रॉम्प्ट मार्गदर्शन इंजेक्ट करने देता है। जब व्यवहार किसी एक प्रदाता/मॉडल परिवार से संबंधित हो और उसे स्थिर/गतिशील कैश विभाजन बनाए रखना चाहिए, तब पुराने plugin-व्यापी `before_prompt_build` हुक के बजाय इसे प्राथमिकता दें।
+      - `normalizeConfig` प्रत्येक provider id के लिए एक स्वामी plugin को निर्धारित करता है (पहले बंडल किए गए providers, फिर मेल खाने वाला runtime plugin) और केवल उसी hook को कॉल करता है—अन्य providers में कोई स्कैन नहीं होता। Google का अपना `normalizeConfig` hook ही `google` / `google-vertex` / `google-antigravity` config प्रविष्टियों को सामान्यीकृत करता है; यह कोई अलग core fallback नहीं है।
+      - `resolveConfigApiKey` उपलब्ध होने पर provider hook का उपयोग करता है। Amazon Bedrock अपने provider plugin में AWS env-marker समाधान रखता है; `auth: "aws-sdk"` के साथ कॉन्फ़िगर किए जाने पर runtime auth अब भी AWS SDK की डिफ़ॉल्ट श्रृंखला का उपयोग करता है।
+      - `resolveThinkingProfile(ctx)` चयनित `provider`, `modelId`, वैकल्पिक रूप से मर्ज किया गया `reasoning` कैटलॉग संकेत और वैकल्पिक रूप से मर्ज किए गए मॉडल के `compat` तथ्य प्राप्त करता है। `compat` का उपयोग केवल provider की thinking UI/profile चुनने के लिए करें।
+      - `resolveSystemPromptContribution` किसी provider को एक मॉडल परिवार के लिए कैश-जागरूक system-prompt मार्गदर्शन इंजेक्ट करने देता है। जब व्यवहार किसी एक provider/model परिवार से संबंधित हो और स्थिर/गतिशील कैश विभाजन को बनाए रखना चाहिए, तब पुराने plugin-व्यापी `before_prompt_build` hook के बजाय इसे प्राथमिकता दें।
 
     </Accordion>
 
@@ -710,18 +757,18 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
   <Step title="अतिरिक्त क्षमताएँ जोड़ें (वैकल्पिक)">
     ### चरण 5: अतिरिक्त क्षमताएँ जोड़ें
 
-    कोई प्रदाता plugin टेक्स्ट अनुमान के साथ एम्बेडिंग, वाक्, रियलटाइम ट्रांसक्रिप्शन,
-    रियलटाइम वॉइस, मीडिया समझ, छवि निर्माण, वीडियो निर्माण,
-    वेब फ़ेच और वेब खोज पंजीकृत कर सकता है। OpenClaw इसे
-    **हाइब्रिड-क्षमता** plugin के रूप में वर्गीकृत करता है—कंपनी plugins के लिए
-    अनुशंसित पैटर्न (प्रति विक्रेता एक plugin)। देखें
+    एक provider plugin टेक्स्ट inference के साथ embeddings, speech, realtime transcription,
+    realtime voice, media understanding, image generation, video generation,
+    web fetch और web search पंजीकृत कर सकता है। OpenClaw इसे
+    **hybrid-capability** plugin के रूप में वर्गीकृत करता है—कंपनी plugins के लिए अनुशंसित पैटर्न
+    (प्रति vendor एक plugin)। देखें
     [आंतरिक संरचना: क्षमता स्वामित्व](/hi/plugins/architecture#capability-ownership-model)।
 
-    अपनी मौजूदा `api.registerProvider(...)` कॉल के साथ प्रत्येक क्षमता को
-    `register(api)` के भीतर पंजीकृत करें। केवल आवश्यक टैब चुनें:
+    अपनी मौजूदा `api.registerProvider(...)` कॉल के साथ `register(api)` के भीतर
+    प्रत्येक क्षमता पंजीकृत करें। केवल आवश्यक टैब चुनें:
 
     <Tabs>
-      <Tab title="वाक् (TTS)">
+      <Tab title="स्पीच (TTS)">
         ```typescript
         import {
           assertOkOrThrowProviderError,
@@ -757,15 +804,15 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
         });
         ```
 
-        प्रदाता HTTP विफलताओं के लिए `assertOkOrThrowProviderError(...)` का उपयोग करें, ताकि
-        plugins सीमित त्रुटि-बॉडी पठन, JSON त्रुटि पार्सिंग और
-        अनुरोध-आईडी प्रत्यय साझा करें।
+        provider HTTP विफलताओं के लिए `assertOkOrThrowProviderError(...)` का उपयोग करें, ताकि
+        plugins सीमित error-body रीड, JSON त्रुटि पार्सिंग और
+        request-id प्रत्यय साझा करें।
       </Tab>
-      <Tab title="रियलटाइम ट्रांसक्रिप्शन">
+      <Tab title="रीयलटाइम ट्रांसक्रिप्शन">
         `createRealtimeTranscriptionWebSocketSession(...)` को प्राथमिकता दें—साझा
-        सहायक प्रॉक्सी कैप्चर, पुनः कनेक्शन बैकऑफ़, बंद करते समय फ़्लशिंग, तैयार
-        हैंडशेक, ऑडियो कतारबद्ध करना और बंद-ईवेंट निदान संभालता है। आपका plugin
-        केवल अपस्ट्रीम ईवेंट को मैप करता है।
+        सहायक proxy कैप्चर, reconnect backoff, close flushing, ready
+        handshakes, ऑडियो कतारबद्ध करना और close-event निदान संभालता है। आपका plugin
+        केवल upstream events को मैप करता है।
 
         ```typescript
         api.registerRealtimeTranscriptionProvider({
@@ -803,11 +850,11 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
         });
         ```
 
-        बैच STT प्रदाताओं को, जो multipart ऑडियो POST करते हैं,
+        multipart ऑडियो POST करने वाले बैच STT providers को
         `openclaw/plugin-sdk/provider-http` से
-        `buildAudioTranscriptionFormData(...)` का उपयोग करना चाहिए। यह सहायक अपलोड
+        `buildAudioTranscriptionFormData(...)` का उपयोग करना चाहिए। सहायक अपलोड
         फ़ाइल नामों को सामान्यीकृत करता है, जिसमें वे AAC अपलोड भी शामिल हैं जिन्हें
-        संगत ट्रांसक्रिप्शन API के लिए M4A-शैली के फ़ाइल नाम की आवश्यकता होती है।
+        संगत transcription APIs के लिए M4A-शैली के फ़ाइल नाम की आवश्यकता होती है।
       </Tab>
       <Tab title="रीयलटाइम वॉइस">
         ```typescript
@@ -824,8 +871,8 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
           },
           isConfigured: ({ providerConfig }) => Boolean(providerConfig.apiKey),
           createBridge: (req) => ({
-            // इसे केवल तभी सेट करें जब प्रदाता एक कॉल के लिए कई टूल प्रतिक्रियाएँ
-            // स्वीकार करता हो, उदाहरण के लिए तत्काल "काम जारी है" प्रतिक्रिया के बाद
+            // इसे केवल तभी सेट करें जब provider एक कॉल के लिए कई tool responses
+            // स्वीकार करता हो, उदाहरण के लिए तत्काल "काम जारी है" response के बाद
             // अंतिम परिणाम।
             supportsToolResultContinuation: false,
             connect: async () => {},
@@ -841,42 +888,42 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
         ```
 
         `capabilities` घोषित करें, ताकि `talk.catalog` ब्राउज़र और नेटिव Talk
-        क्लाइंट के लिए मान्य मोड, ट्रांसपोर्ट, ऑडियो फ़ॉर्मेट और फ़ीचर फ़्लैग उपलब्ध करा सके।
-        जब कोई ट्रांसपोर्ट यह पता लगा सकता हो कि कोई
-        व्यक्ति सहायक का प्लेबैक बाधित कर रहा है और प्रदाता सक्रिय ऑडियो प्रतिक्रिया को
-        छोटा करने या साफ़ करने का समर्थन करता हो, तब `handleBargeIn` लागू करें।
-        `submitToolResult` समकालिक सबमिशन के लिए `void`, या ऐसी अतुल्यकालिक
-        पूर्णता सीमा के लिए `Promise<void>` लौटा सकता है जिसे प्रदाता
-        ब्रिज उपलब्ध करा सकता है। Gateway रिले सत्र अंतिम परिणाम की पुष्टि करने या
-        लिंक किए गए रन को साफ़ करने से पहले उस प्रॉमिस की प्रतीक्षा करते हैं; सबमिशन
-        विफल होने पर उसे अस्वीकार करें।
-        जब प्रदाता `options.suppressResponse` का पालन नहीं कर सकता हो, तब
-        `supportsToolResultSuppression: false` सेट करें। इसके बाद OpenClaw आंतरिक
-        फ़ोर्स्ड-कंसल्ट और रद्दीकरण परिणामों के लिए दमन से बचता है, और चुपचाप प्रतिक्रिया
-        शुरू करने के बजाय प्रत्यक्ष दबाए गए परिणाम अनुरोधों को अस्वीकार करता है।
-        `createRealtimeVoiceBridgeSession` के उपभोक्ता इसी प्रकार
-        `onToolCall` से प्रॉमिस लौटा सकते हैं; समकालिक थ्रो और अस्वीकृतियाँ
-        सत्र के `onError` कॉलबैक पर भेजी जाती हैं।
-        `handlesInputAudioBargeIn` केवल तभी सेट करें जब प्रदाता VAD
-        `onClearAudio("barge-in")` को कॉल करके व्यवधान की पुष्टि करे। जो प्रदाता
-        फ़्लैग छोड़ देते हैं, वे OpenClaw की स्थानीय इनपुट-ऑडियो फ़ॉलबैक पहचान का उपयोग करते हैं।
+        clients के लिए मान्य modes, transports, ऑडियो formats और feature flags उपलब्ध करा सके।
+        जब कोई transport यह पता लगा सकता हो कि कोई व्यक्ति assistant playback में
+        बाधा डाल रहा है और provider सक्रिय ऑडियो response को छोटा करने या साफ़ करने का
+        समर्थन करता हो, तब `handleBargeIn` लागू करें।
+        `submitToolResult` समकालिक सबमिशन के लिए `void`, या provider
+        bridge द्वारा उपलब्ध कराई जा सकने वाली अतुल्यकालिक पूर्णता सीमा के लिए
+        `Promise<void>` लौटा सकता है। Gateway relay sessions अंतिम परिणाम की
+        पुष्टि करने या लिंक किए गए run को साफ़ करने से पहले उस promise की प्रतीक्षा करते हैं;
+        सबमिशन विफल होने पर उसे अस्वीकार करें।
+        जब provider `options.suppressResponse` का पालन नहीं कर सकता हो, तब
+        `supportsToolResultSuppression: false` सेट करें। इसके बाद OpenClaw आंतरिक forced-consult और
+        cancellation परिणामों के लिए suppression से बचता है तथा चुपचाप response शुरू करने के
+        बजाय सीधे suppressed-result अनुरोधों को अस्वीकार करता है।
+        `createRealtimeVoiceBridgeSession` के उपभोक्ता इसी प्रकार `onToolCall` से
+        promise लौटा सकते हैं; समकालिक throws और rejections को session के
+        `onError` callback पर भेजा जाता है।
+        `handlesInputAudioBargeIn` केवल तभी सेट करें जब provider VAD
+        `onClearAudio("barge-in")` को कॉल करके किसी बाधा की पुष्टि करता हो। जो providers
+        यह flag छोड़ देते हैं, वे OpenClaw की स्थानीय input-audio fallback पहचान का उपयोग करते हैं।
       </Tab>
-      <Tab title="मीडिया की समझ">
+      <Tab title="मीडिया समझ">
         ```typescript
         api.registerMediaUnderstandingProvider({
           id: "acme-ai",
           capabilities: ["image", "audio"],
-          describeImage: async (req) => ({ text: "एक फ़ोटो..." }),
-          transcribeAudio: async (req) => ({ text: "ट्रांसक्रिप्ट..." }),
+          describeImage: async (req) => ({ text: "इसका एक फ़ोटो..." }),
+          transcribeAudio: async (req) => ({ text: "प्रतिलेख..." }),
         });
         ```
 
-        ऐसे स्थानीय या स्वयं-होस्ट किए गए मीडिया प्रदाता, जिन्हें जानबूझकर
-        क्रेडेंशियल की आवश्यकता नहीं होती, `resolveAuth` उपलब्ध करा सकते हैं और `kind: "none"`
-        लौटा सकते हैं। जो प्रदाता स्पष्ट रूप से ऑप्ट इन नहीं करते,
-        उनके लिए OpenClaw अब भी सामान्य प्रमाणीकरण गेट बनाए रखता है।
-        मौजूदा प्रदाता `req.apiKey` पढ़ना जारी रख सकते हैं;
-        नए प्रदाताओं को `req.auth` को प्राथमिकता देनी चाहिए।
+        स्थानीय या स्वयं-होस्ट किए गए media providers, जिन्हें जानबूझकर
+        credentials की आवश्यकता नहीं होती, `resolveAuth` उपलब्ध करा सकते हैं और
+        `kind: "none"` लौटा सकते हैं। जो providers स्पष्ट रूप से opt in नहीं करते,
+        उनके लिए OpenClaw सामान्य auth gate बनाए रखता है। मौजूदा providers
+        `req.apiKey` पढ़ना जारी रख सकते हैं; नए providers को
+        `req.auth` प्राथमिकता देनी चाहिए।
 
         ```typescript
         api.registerMediaUnderstandingProvider({
@@ -884,13 +931,13 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
           capabilities: ["audio"],
           resolveAuth: () => ({
             kind: "none",
-            source: "local-audio प्लगइन बिना-प्रमाणीकरण",
+            source: "local-audio plugin no-auth",
           }),
-          transcribeAudio: async (req) => ({ text: "ट्रांसक्रिप्ट..." }),
+          transcribeAudio: async (req) => ({ text: "प्रतिलेख..." }),
         });
         ```
       </Tab>
-      <Tab title="एम्बेडिंग">
+      <Tab title="एम्बेडिंग्स">
         ```typescript
         api.registerEmbeddingProvider({
           id: "acme-ai",
@@ -917,25 +964,24 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
         });
         ```
 
-        `contracts.embeddingProviders` में वही आईडी घोषित करें। यह पुनः उपयोग योग्य वेक्टर
-        जनरेशन के लिए सामान्य एम्बेडिंग अनुबंध है, जिसमें मेमोरी खोज शामिल है।
-        `registerMemoryEmbeddingProvider(...)` मौजूदा मेमोरी-विशिष्ट अडैप्टर के लिए
-        अप्रचलित संगतता है।
+        `contracts.embeddingProviders` में वही id घोषित करें। यह
+        पुनः उपयोग योग्य vector generation के लिए सामान्य embedding contract है, जिसमें
+        memory search भी शामिल है। `registerMemoryEmbeddingProvider(...)` मौजूदा
+        memory-विशिष्ट adapters के लिए पदावनत compatibility है।
       </Tab>
       <Tab title="इमेज और वीडियो जनरेशन">
-        इमेज और वीडियो क्षमताएँ **मोड-सचेत** संरचना का उपयोग करती हैं। इमेज
-        प्रदाता आवश्यक `generate` और `edit` क्षमता ब्लॉक घोषित करते हैं;
-        वीडियो प्रदाता `generate`, `imageToVideo`, और
+        इमेज और वीडियो क्षमताएँ **mode-aware** संरचना का उपयोग करती हैं। इमेज
+        providers आवश्यक `generate` और `edit` capability blocks घोषित करते हैं;
+        वीडियो providers `generate`, `imageToVideo` और
         `videoToVideo` घोषित करते हैं। `maxInputImages` /
-        `maxInputVideos` / `maxDurationSeconds` जैसे समतल समेकित फ़ील्ड
-        ट्रांसफ़ॉर्म-मोड समर्थन या अक्षम मोड को स्पष्ट रूप से दर्शाने के लिए पर्याप्त नहीं हैं।
-        संगीत जनरेशन भी इसी `generate` / `edit` पैटर्न का
-        पालन करता है।
+        `maxInputVideos` / `maxDurationSeconds` जैसे flat aggregate fields,
+        transform-mode समर्थन या अक्षम modes को स्पष्ट रूप से प्रदर्शित करने के लिए पर्याप्त नहीं हैं।
+        म्यूज़िक जनरेशन भी इसी `generate` / `edit` पैटर्न का पालन करता है।
 
         ```typescript
         api.registerImageGenerationProvider({
           id: "acme-ai",
-          label: "Acme Images",
+          label: "Acme छवियाँ",
           capabilities: {
             generate: { maxCount: 4, supportsSize: true },
             edit: { enabled: false },
@@ -945,7 +991,7 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
 
         api.registerVideoGenerationProvider({
           id: "acme-ai",
-          label: "Acme Video",
+          label: "Acme वीडियो",
           defaultTimeoutMs: 600_000,
           models: ["acme-video", "acme-image-video"],
           capabilities: {
@@ -978,23 +1024,23 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
         });
         ```
 
-        दोनों प्रदाता प्रकारों पर `capabilities` आवश्यक है; `edit` और
-        वीडियो ट्रांसफ़ॉर्म ब्लॉक (`imageToVideo`, `videoToVideo`) को हमेशा
-        एक स्पष्ट `enabled` फ़्लैग की आवश्यकता होती है।
+        `capabilities` दोनों प्रदाता प्रकारों पर आवश्यक है; `edit` और
+        वीडियो रूपांतरण ब्लॉक (`imageToVideo`, `videoToVideo`) के लिए हमेशा एक
+        स्पष्ट `enabled` फ़्लैग आवश्यक होता है।
 
-        जब सूचीबद्ध मॉडल के स्थिर मोड या क्षमताएँ प्रदाता के डिफ़ॉल्ट से
-        अलग हों, तब `catalogByModel` का उपयोग करें। यह मेटाडेटा प्रदाता कोड
-        लागू किए बिना `video_generate action=list` और मॉडल कैटलॉग को सटीक रखता है।
-        अनुरोध-समय क्षमता लुकअप और प्रवर्तन अब भी `resolveModelCapabilities` और
-        `generateVideo` में होने चाहिए; जहाँ संभव हो दोनों पथों के लिए
-        उसी क्षमता कॉन्स्टेंट का पुनः उपयोग करें।
+        जब किसी सूचीबद्ध मॉडल के स्थिर मोड या क्षमताएँ प्रदाता के डिफ़ॉल्ट से
+        भिन्न हों, तब `catalogByModel` का उपयोग करें। यह मेटाडेटा प्रदाता कोड
+        लागू किए बिना `video_generate action=list` और मॉडल कैटलॉग को सटीक
+        रखता है। अनुरोध के समय क्षमता खोजना और उसे लागू करना
+        अभी भी `resolveModelCapabilities` और `generateVideo` में होना चाहिए; संभव होने पर
+        दोनों पथों के लिए समान क्षमता स्थिरांक का पुनः उपयोग करें।
       </Tab>
       <Tab title="वेब फ़ेच और खोज">
         ```typescript
         api.registerWebFetchProvider({
           id: "acme-ai-fetch",
-          label: "Acme Fetch",
-          hint: "Acme के रेंडरिंग बैकएंड के माध्यम से पेज फ़ेच करें।",
+          label: "Acme फ़ेच",
+          hint: "Acme के रेंडरिंग बैकएंड के माध्यम से पृष्ठ फ़ेच करें।",
           envVars: ["ACME_FETCH_API_KEY"],
           placeholder: "acme-...",
           signupUrl: "https://acme.example.com/fetch",
@@ -1005,7 +1051,7 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
             acme.apiKey = value;
           },
           createTool: () => ({
-            description: "Acme Fetch के माध्यम से पेज फ़ेच करें।",
+            description: "Acme फ़ेच के माध्यम से एक पृष्ठ फ़ेच करें।",
             parameters: {},
             execute: async (args) => ({ content: [] }),
           }),
@@ -1013,7 +1059,7 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
 
         api.registerWebSearchProvider({
           id: "acme-ai-search",
-          label: "Acme Search",
+          label: "Acme खोज",
           hint: "Acme के खोज बैकएंड के माध्यम से वेब पर खोजें।",
           envVars: ["ACME_SEARCH_API_KEY"],
           placeholder: "acme-...",
@@ -1025,14 +1071,14 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
             acme.apiKey = value;
           },
           createTool: () => ({
-            description: "Acme Search के माध्यम से वेब पर खोजें।",
+            description: "Acme खोज के माध्यम से वेब पर खोजें।",
             parameters: {},
             execute: async (args) => ({ content: [] }),
           }),
         });
         ```
 
-        दोनों प्रदाता प्रकार एक ही क्रेडेंशियल-वायरिंग संरचना साझा करते हैं:
+        दोनों प्रदाता प्रकार समान क्रेडेंशियल-वायरिंग संरचना साझा करते हैं:
         `hint`, `envVars`, `placeholder`, `signupUrl`, `credentialPath`,
         `getCredentialValue`, `setCredentialValue`, और `createTool` सभी
         आवश्यक हैं।
@@ -1046,11 +1092,11 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
 
     ```typescript src/provider.test.ts
     import { describe, it, expect } from "vitest";
-    // अपने प्रदाता कॉन्फ़िग ऑब्जेक्ट को index.ts या किसी समर्पित फ़ाइल से निर्यात करें
+    // अपने प्रदाता कॉन्फ़िगरेशन ऑब्जेक्ट को index.ts या किसी समर्पित फ़ाइल से निर्यात करें
     import { acmeProvider } from "./provider.js";
 
     describe("acme-ai प्रदाता", () => {
-      it("डायनेमिक मॉडल का समाधान करता है", () => {
+      it("डायनेमिक मॉडल रिज़ॉल्व करता है", () => {
         const model = acmeProvider.resolveDynamicModel!({
           modelId: "acme-beta-v3",
         } as any);
@@ -1065,7 +1111,7 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
         expect(result?.provider?.models).toHaveLength(2);
       });
 
-      it("कुंजी न होने पर शून्य कैटलॉग लौटाता है", async () => {
+      it("कुंजी न होने पर null कैटलॉग लौटाता है", async () => {
         const result = await acmeProvider.catalog!.run({
           resolveProviderApiKey: () => ({ apiKey: undefined }),
         } as any);
@@ -1079,22 +1125,22 @@ OpenClaw में एक मॉडल प्रदाता (LLM) जोड़�
 
 ## ClawHub पर प्रकाशित करें
 
-प्रदाता प्लगइन किसी भी अन्य बाहरी कोड प्लगइन की तरह ही प्रकाशित होते हैं:
+प्रदाता Plugins भी किसी अन्य बाहरी कोड Plugin की तरह ही प्रकाशित होते हैं:
 
 ```bash
 clawhub package publish your-org/your-plugin --dry-run
 clawhub package publish your-org/your-plugin
 ```
 
-`clawhub skill publish <path>` किसी स्किल फ़ोल्डर को प्रकाशित करने के लिए एक अलग कमांड है,
-प्लगइन पैकेज के लिए नहीं—यहाँ इसका उपयोग न करें।
+`clawhub skill publish <path>` किसी skill फ़ोल्डर को प्रकाशित करने के लिए एक अलग कमांड है,
+Plugin पैकेज के लिए नहीं—यहाँ इसका उपयोग न करें।
 
 ## फ़ाइल संरचना
 
 ```
 <bundled-plugin-root>/acme-ai/
 ├── package.json              # openclaw.providers मेटाडेटा
-├── openclaw.plugin.json      # प्रदाता प्रमाणीकरण मेटाडेटा वाला मैनिफ़ेस्ट
+├── openclaw.plugin.json      # प्रदाता प्रमाणीकरण मेटाडेटा सहित मैनिफ़ेस्ट
 ├── index.ts                  # definePluginEntry + registerProvider
 └── src/
     ├── provider.test.ts      # परीक्षण
@@ -1106,22 +1152,22 @@ clawhub package publish your-org/your-plugin
 `catalog.order` यह नियंत्रित करता है कि आपका कैटलॉग अंतर्निहित
 प्रदाताओं के सापेक्ष कब मर्ज होता है:
 
-| क्रम      | कब            | उपयोग का मामला                                      |
-| --------- | ------------- | --------------------------------------------------- |
-| `simple`  | पहला चरण     | साधारण API-कुंजी प्रदाता                            |
-| `profile` | सरल के बाद   | प्रमाणीकरण प्रोफ़ाइल से नियंत्रित प्रदाता            |
-| `paired`  | प्रोफ़ाइल के बाद | एकाधिक संबंधित प्रविष्टियाँ तैयार करना           |
-| `late`    | अंतिम चरण    | मौजूदा प्रदाताओं को ओवरराइड करना (टकराव पर प्रभावी) |
+| क्रम      | कब            | उपयोग का मामला                                  |
+| --------- | ------------- | ----------------------------------------------- |
+| `simple`  | पहला चरण     | सामान्य API-कुंजी प्रदाता                       |
+| `profile` | सरल के बाद   | प्रमाणीकरण प्रोफ़ाइल पर निर्भर प्रदाता            |
+| `paired`  | प्रोफ़ाइल के बाद | एकाधिक संबंधित प्रविष्टियाँ संश्लेषित करना   |
+| `late`    | अंतिम चरण    | मौजूदा प्रदाताओं को ओवरराइड करना (टकराव में जीतता है) |
 
 ## अगले चरण
 
-- [चैनल Plugin](/hi/plugins/sdk-channel-plugins) - यदि आपका Plugin कोई चैनल भी प्रदान करता है
+- [चैनल Plugins](/hi/plugins/sdk-channel-plugins) - यदि आपका Plugin एक चैनल भी प्रदान करता है
 - [SDK रनटाइम](/hi/plugins/sdk-runtime) - `api.runtime` सहायक (TTS, खोज, सबएजेंट)
 - [SDK अवलोकन](/hi/plugins/sdk-overview) - संपूर्ण सबपाथ इम्पोर्ट संदर्भ
-- [Plugin की आंतरिक संरचना](/hi/plugins/architecture-internals#provider-runtime-hooks) - हुक विवरण और बंडल किए गए उदाहरण
+- [Plugin आंतरिक संरचना](/hi/plugins/architecture-internals#provider-runtime-hooks) - हुक विवरण और बंडल किए गए उदाहरण
 
 ## संबंधित
 
 - [Plugin SDK सेटअप](/hi/plugins/sdk-setup)
-- [Plugin बनाना](/hi/plugins/building-plugins)
-- [चैनल Plugin बनाना](/hi/plugins/sdk-channel-plugins)
+- [Plugins बनाना](/hi/plugins/building-plugins)
+- [चैनल Plugins बनाना](/hi/plugins/sdk-channel-plugins)

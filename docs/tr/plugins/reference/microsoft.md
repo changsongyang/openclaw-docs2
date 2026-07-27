@@ -1,10 +1,10 @@
 ---
 read_when:
-    - microsoft Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: Metinden konuşmaya sağlayıcı desteği ekler.
-title: Microsoft plugin'i
+    - microsoft Plugin'ini kuruyor, yapılandırıyor veya denetliyorsunuz
+summary: Metin-konuşma sağlayıcısı desteği ekler.
+title: Microsoft Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:26:07Z"
+    generated_at: "2026-07-26T22:55:38Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Microsoft plugin'i
+# Microsoft plugin’i
 
-Metinden sese sağlayıcı desteği ekler.
+Metinden konuşmaya sağlayıcı desteği ekler.
 
 ## Dağıtım
 
 - Paket: `@openclaw/microsoft-speech`
-- Kurulum yolu: OpenClaw'a dahildir
+- Kurulum yolu: OpenClaw’a dahildir
 
 ## Yüzey
 

@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 onepassword 外掛
-summary: 精選的 1Password 機密資訊代理服務，具備核准政策與 SQLite 稽核歷程。
+summary: 精選的 1Password 機密資訊代理服務，具備核准政策與 SQLite 稽核歷程記錄。
 title: Onepassword 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:50:01Z"
+    generated_at: "2026-07-26T07:28:55Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Onepassword 外掛
 
-經過精選的 1Password 機密代理，具備核准政策與 SQLite 稽核歷程記錄。
+經過精選的 1Password 密鑰代理服務，具備核准原則與 SQLite 稽核記錄。
 
 ## 發佈
 
 - 套件：`@openclaw/onepassword`
-- 安裝方式：隨附於 OpenClaw
+- 安裝途徑：隨附於 OpenClaw
 
 ## 介面
 

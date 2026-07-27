@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw में Qianfan मॉडल प्रदाता का समर्थन जोड़ता है।
 title: Qianfan Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:17:23Z"
+    generated_at: "2026-07-27T20:13:59Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # Qianfan Plugin
 
-OpenClaw में Qianfan मॉडल प्रदाता के लिए समर्थन जोड़ता है।
+OpenClaw में Qianfan मॉडल प्रदाता का समर्थन जोड़ता है।
 
 ## वितरण
 
 - पैकेज: `@openclaw/qianfan-provider`
-- इंस्टॉल मार्ग: npm; ClawHub: `clawhub:@openclaw/qianfan-provider`
+- इंस्टॉल करने का माध्यम: npm; ClawHub: `clawhub:@openclaw/qianfan-provider`
 
-## उपलब्ध इंटरफ़ेस
+## उपलब्धता
 
 प्रदाता: `qianfan`
 

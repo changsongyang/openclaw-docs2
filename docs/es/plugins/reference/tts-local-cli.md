@@ -4,7 +4,7 @@ read_when:
 summary: Añade compatibilidad con proveedores de texto a voz.
 title: Plugin de CLI local de TTS
 x-i18n:
-    generated_at: "2026-07-16T11:50:35Z"
+    generated_at: "2026-07-26T05:51:34Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin de CLI local de TTS
 
-Añade compatibilidad con proveedores de conversión de texto a voz.
+Añade compatibilidad con proveedores de texto a voz.
 
 ## Distribución
 

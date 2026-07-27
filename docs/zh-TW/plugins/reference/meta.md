@@ -4,7 +4,7 @@ read_when:
 summary: 新增 OpenClaw 對 Meta 模型供應商的支援。
 title: Meta 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:49:18Z"
+    generated_at: "2026-07-26T08:35:27Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Meta 外掛
 
-為 OpenClaw 新增 Meta 模型供應商支援。
+為 OpenClaw 新增 Meta 模型提供者支援。
 
 ## 發行方式
 
@@ -25,7 +25,7 @@ x-i18n:
 
 ## 介面
 
-供應商：`meta`
+提供者：`meta`
 
 ## 相關文件
 

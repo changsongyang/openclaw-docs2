@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin de Discord
-summary: Plugin de canal de Discord de OpenClaw para canales, mensajes directos, comandos y eventos de aplicaciones.
+    - Está instalando, configurando o auditando el plugin de Discord.
+summary: Plugin del canal de Discord de OpenClaw para canales, mensajes directos, comandos y eventos de la aplicación.
 title: Plugin de Discord
 x-i18n:
-    generated_at: "2026-07-16T11:52:14Z"
+    generated_at: "2026-07-26T04:45:39Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Plugin del canal de Discord de OpenClaw para canales, mensajes directos, comando
 ## Distribución
 
 - Paquete: `@openclaw/discord`
-- Ruta de instalación: npm; ClawHub
+- Método de instalación: npm; ClawHub
 
 ## Superficie
 

@@ -1,12 +1,12 @@
 ---
 read_when:
-    - '`openclaw.ai/install.sh` を理解したい場合'
-    - インストールを自動化したい（CI / ヘッドレス環境）
+    - '`openclaw.ai/install.sh`について理解する必要があります'
+    - インストールを自動化したい（CI / ヘッドレス）
     - GitHub のチェックアウトからインストールする場合
 summary: インストーラースクリプト（install.sh、install-cli.sh、install.ps1）の仕組み、フラグ、自動化
 title: インストーラーの内部構造
 x-i18n:
-    generated_at: "2026-07-16T11:57:56Z"
+    generated_at: "2026-07-26T09:06:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,11 +18,11 @@ x-i18n:
 
 OpenClaw には、`openclaw.ai` から配信される 3 つのインストーラースクリプトが付属しています。
 
-| スクリプト                             | プラットフォーム             | 実行内容                                                                                   |
+| スクリプト                             | プラットフォーム             | 機能                                                                                   |
 | ---------------------------------- | -------------------- | ---------------------------------------------------------------------------------------------- |
-| [`install.sh`](#installsh)         | macOS / Linux / WSL  | 必要に応じて Node をインストールし、npm（デフォルト）または git で OpenClaw をインストールします。オンボーディングも実行できます。       |
-| [`install-cli.sh`](#install-clish) | macOS / Linux / WSL  | npm または git を使用して、Node と OpenClaw をローカルプレフィックス（`~/.openclaw`）にインストールします。root 権限は不要です。 |
-| [`install.ps1`](#installps1)       | Windows（PowerShell） | 必要に応じて Node をインストールし、npm（デフォルト）または git で OpenClaw をインストールします。オンボーディングも実行できます。       |
+| [`install.sh`](#installsh)         | macOS / Linux / WSL  | 必要に応じて Node をインストールし、npm（デフォルト）または git 経由で OpenClaw をインストールします。オンボーディングも実行できます。       |
+| [`install-cli.sh`](#install-clish) | macOS / Linux / WSL  | Node と OpenClaw を npm または git 経由でローカルプレフィックス（`~/.openclaw`）にインストールします。root 権限は不要です。 |
+| [`install.ps1`](#installps1)       | Windows (PowerShell) | 必要に応じて Node をインストールし、npm（デフォルト）または git 経由で OpenClaw をインストールします。オンボーディングも実行できます。       |
 
 3 つすべてが Node **22.22.3+、24.15+、または 25.9+** をサポートしています。新規インストールでは Node 24 がデフォルトの対象です。
 
@@ -62,7 +62,7 @@ OpenClaw には、`openclaw.ai` から配信される 3 つのインストーラ
 </Tabs>
 
 <Note>
-インストールに成功しても新しいターミナルで `openclaw` が見つからない場合は、[Node.js のトラブルシューティング](/ja-JP/install/node#troubleshooting)を参照してください。
+インストールに成功しても、新しいターミナルで `openclaw` が見つからない場合は、[Node.js のトラブルシューティング](/ja-JP/install/node#troubleshooting)を参照してください。
 </Note>
 
 ---
@@ -72,7 +72,7 @@ OpenClaw には、`openclaw.ai` から配信される 3 つのインストーラ
 ## install.sh
 
 <Tip>
-macOS/Linux/WSL でのほとんどの対話型インストールに推奨します。
+macOS/Linux/WSL でのほとんどの対話型インストールに推奨されます。
 </Tip>
 
 ### フロー（install.sh）
@@ -82,22 +82,22 @@ macOS/Linux/WSL でのほとんどの対話型インストールに推奨しま�
     macOS と Linux（WSL を含む）をサポートします。
   </Step>
   <Step title="デフォルトで Node.js 24 を確保">
-    Node のバージョンを確認し、必要に応じて Node 24 をインストールします（macOS では Homebrew、Linux では NodeSource の apt/dnf/yum セットアップスクリプト）。macOS では、インストーラーが Node または Git のために必要とする場合にのみ Homebrew がインストールされます。Node 22.22.3+、Node 24.15+、Node 25.9+ がサポートされ、Node 23 はサポートされません。
-    Alpine/musl Linux では、インストーラーは NodeSource の代わりに apk パッケージを使用し、実際にリンクされている SQLite のバージョンを検証します。現在の安定版 Alpine パッケージストリームでは、十分に新しい Node であっても脆弱なシステム SQLite が提供される場合があります。その場合は、代わりに公式の `node:24-alpine` コンテナまたは glibc ベースのホストを使用してください。
+    Node のバージョンを確認し、必要に応じて Node 24 をインストールします（macOS では Homebrew、Linux では NodeSource の apt/dnf/yum セットアップスクリプト）。macOS では、インストーラーが Node または Git のために必要とする場合に限り Homebrew をインストールします。Node 22.22.3+、Node 24.15+、Node 25.9+ がサポートされ、Node 23 はサポートされません。
+    Alpine/musl Linux では、インストーラーは NodeSource の代わりに apk パッケージを使用し、実際にリンクされている SQLite のバージョンを検証します。現在の安定版 Alpine パッケージストリームでは、十分に新しい Node が提供されていても、脆弱なシステム SQLite が使用される場合があります。その場合は、代わりに公式の `node:24-alpine` コンテナまたは glibc ベースのホストを使用してください。
   </Step>
   <Step title="Git を確保">
-    Git がない場合は、検出されたパッケージマネージャーを使用してインストールします。これには macOS の Homebrew と Alpine の apk が含まれます。
+    Git がない場合、検出されたパッケージマネージャーを使用してインストールします。これには macOS の Homebrew と Alpine の apk が含まれます。
   </Step>
   <Step title="OpenClaw をインストール">
-    - `npm` 方式（デフォルト）：npm でグローバルインストール
+    - `npm` 方式（デフォルト）：グローバル npm インストール
     - `git` 方式：リポジトリをクローンまたは更新し、pnpm で依存関係をインストールしてビルドした後、`~/.local/bin/openclaw` にラッパーをインストール
 
   </Step>
   <Step title="インストール後のタスク">
     - 後続コマンド用に、インストールされたばかりの `openclaw` バイナリを解決します
-    - 未設定のインストールでは、doctor または Gateway のプローブより先にオンボーディングを開始します。`--no-onboard` が指定されている場合、または TTY がない場合は、後でセットアップを完了するためのコマンドを表示します。
-    - 設定済みのインストールでは、読み込まれている Gateway サービスをベストエフォートで更新および再起動し、doctor を実行します。アップグレード時には、可能であれば Plugin を更新し、プロンプトが有効なヘッドレス実行では手動コマンドを表示します。
-    - `--verify` の実行時には、インストール済みバージョンを確認し、設定が存在する場合にのみ Gateway の正常性を確認します。
+    - 未構成のインストールでは、doctor または gateway のプローブより先にオンボーディングを開始します。`--no-onboard` が指定されている場合、または TTY がない場合は、後でセットアップを完了するためのコマンドを出力します。
+    - 構成済みのインストールでは、読み込まれている gateway サービスをベストエフォートで更新して再起動し、doctor を実行します。アップグレードでは可能な場合に plugins を更新し、プロンプトが有効なヘッドレス実行では手動コマンドを出力します。
+    - `--verify` の実行時は、インストール済みバージョンを確認し、構成が存在する場合にのみ gateway の正常性を確認します。
 
   </Step>
 </Steps>
@@ -111,7 +111,7 @@ OpenClaw のチェックアウト内（`package.json` + `pnpm-workspace.yaml`）
 
 TTY が利用できず、インストール方式も設定されていない場合は、デフォルトで `npm` を使用し、警告を表示します。
 
-無効な方式の選択または無効な `--install-method` 値の場合、スクリプトはコード `2` で終了します。
+無効な方式を選択した場合、または `--install-method` の値が無効な場合、スクリプトはコード `2` で終了します。
 
 ### 例（install.sh）
 
@@ -157,15 +157,15 @@ TTY が利用できず、インストール方式も設定されていない場�
 | `--npm`                                 | npm 方式のショートカット                                                 |
 | `--git \| --github`                     | git 方式のショートカット                                                 |
 | `--version <version\|dist-tag\|spec>`   | npm のバージョン、dist-tag、またはパッケージ仕様（デフォルト：`latest`）              |
-| `--beta`                                | 利用可能な場合は beta dist-tag を使用し、それ以外は `latest` にフォールバック              |
+| `--beta`                                | 利用可能な場合は beta dist-tag を使用し、それ以外の場合は `latest` にフォールバック              |
 | `--git-dir \| --dir <path>`             | チェックアウトディレクトリ（デフォルト：`~/openclaw`）                              |
 | `--no-git-update`                       | 既存のチェックアウトに対する `git pull` をスキップ                                   |
 | `--no-prompt`                           | プロンプトを無効化                                                         |
 | `--no-onboard`                          | オンボーディングをスキップ                                                         |
 | `--onboard`                             | オンボーディングを有効化                                                       |
-| `--verify`                              | インストール後のスモーク検証を実行（`--version`、読み込み済みの場合は Gateway の正常性） |
-| `--dry-run`                             | 変更を適用せずにアクションを表示                                  |
-| `--verbose`                             | デバッグ出力を有効化（`set -x`、npm の notice レベルログ）                   |
+| `--verify`                              | インストール後のスモーク検証を実行（`--version`、読み込まれている場合は gateway の正常性） |
+| `--dry-run`                             | 変更を適用せずに操作内容を出力                                  |
+| `--verbose`                             | デバッグ出力を有効化（`set -x`、npm の notice レベルのログ）                   |
 | `--help \| -h`                          | 使用方法を表示                                                              |
 
   </Accordion>
@@ -179,13 +179,13 @@ TTY が利用できず、インストール方式も設定されていない場�
 | `OPENCLAW_BETA=0\|1`                              | 利用可能な場合は beta を使用                                              |
 | `OPENCLAW_HOME=<path>`                            | OpenClaw の状態およびデフォルトの git/オンボーディングパスのベースディレクトリ |
 | `OPENCLAW_GIT_DIR=<path>`                         | チェックアウトディレクトリ                                                 |
-| `OPENCLAW_GIT_UPDATE=0\|1`                        | git 更新の切り替え                                                 |
+| `OPENCLAW_GIT_UPDATE=0\|1`                        | git 更新を切り替え                                                 |
 | `OPENCLAW_NO_PROMPT=1`                            | プロンプトを無効化                                                    |
 | `OPENCLAW_VERIFY_INSTALL=1`                       | インストール後のスモーク検証を実行                                  |
 | `OPENCLAW_NO_ONBOARD=1`                           | オンボーディングをスキップ                                                    |
 | `OPENCLAW_DRY_RUN=1`                              | ドライランモード                                                       |
 | `OPENCLAW_VERBOSE=1`                              | デバッグモード                                                         |
-| `OPENCLAW_NPM_LOGLEVEL=error\|warn\|notice`       | npm ログレベル（デフォルト：`error`、npm の非推奨警告を非表示）      |
+| `OPENCLAW_NPM_LOGLEVEL=error\|warn\|notice`       | npm のログレベル（デフォルト：`error`、npm の非推奨警告ノイズを非表示）      |
 
   </Accordion>
 </AccordionGroup>
@@ -197,9 +197,8 @@ TTY が利用できず、インストール方式も設定されていない場�
 ## install-cli.sh
 
 <Info>
-すべてをローカルプレフィックス（デフォルトは `~/.openclaw`）配下に配置し、
-システムの Node に依存させたくない環境向けに設計されています。デフォルトでは npm インストールをサポートし、
-同じプレフィックスフローで git チェックアウトからのインストールにも対応します。
+すべてをローカルプレフィックス
+（デフォルトは `~/.openclaw`）配下に配置し、システムの Node に依存させたくない環境向けに設計されています。デフォルトでは npm インストールをサポートし、同じプレフィックスフローで git チェックアウトからのインストールにも対応します。
 </Info>
 
 ### フロー（install-cli.sh）
@@ -208,20 +207,20 @@ TTY が利用できず、インストール方式も設定されていない場�
   <Step title="ローカル Node ランタイムをインストール">
     固定されたサポート対象の Node LTS tarball（バージョンはスクリプトに埋め込まれ、個別に更新されます。デフォルトは `24.15.0`）を `<prefix>/tools/node-v<version>` にダウンロードし、SHA-256 を検証します。
     公式の Node 24+ ARMv7 バイナリが利用できないため、Linux ARMv7 では Node `22.22.3` を使用します。
-    固定されたランタイム用の互換 tarball が Node から公開されていない Alpine/musl Linux では、`apk` を使用して `nodejs` と `npm` をインストールし、Node と実際にリンクされた SQLite ライブラリの両方を検証します。現在の安定版 Alpine パッケージストリームでは、十分に新しい Node であっても脆弱な SQLite にリンクされる可能性があります。安全性チェックでパッケージが拒否された場合は、公式の `node:24-alpine` コンテナまたは glibc ベースのホストを使用してください。
+    固定ランタイム用の互換性のある tarball が Node から公開されていない Alpine/musl Linux では、`apk` を使用して `nodejs` と `npm` をインストールし、Node と実際にリンクされている SQLite ライブラリの両方を検証します。現在の安定版 Alpine パッケージストリームでは、十分に新しい Node でも脆弱な SQLite がリンクされる場合があります。安全性チェックによってパッケージが拒否された場合は、公式の `node:24-alpine` コンテナまたは glibc ベースのホストを使用してください。
   </Step>
   <Step title="Git を確保">
-    Git がない場合は、Linux では apt/dnf/yum/apk、macOS では Homebrew を使用してインストールを試みます。
+    Git がない場合、Linux では apt/dnf/yum/apk、macOS では Homebrew を使用してインストールを試みます。
   </Step>
   <Step title="プレフィックス配下に OpenClaw をインストール">
     - `npm` 方式（デフォルト）：npm を使用してプレフィックス配下にインストールし、`<prefix>/bin/openclaw` にラッパーを書き込みます
-    - `git` 方式：チェックアウト（デフォルトは `~/openclaw`）をクローンまたは更新し、同様に `<prefix>/bin/openclaw` にラッパーを書き込みます
+    - `git` 方式：チェックアウト（デフォルトは `~/openclaw`）をクローンまたは更新し、引き続き `<prefix>/bin/openclaw` にラッパーを書き込みます
 
   </Step>
-  <Step title="読み込み済みの Gateway サービスを更新">
-    同じプレフィックスから Gateway サービスがすでに読み込まれている場合、スクリプトは
-    `openclaw gateway install --force` を実行して置き換え後のサービスを有効化し、
-    その後、Gateway の正常性をベストエフォートでプローブします。
+  <Step title="読み込まれている gateway サービスを更新">
+    同じプレフィックスから gateway サービスがすでに読み込まれている場合、スクリプトは
+    `openclaw gateway install --force` を実行して置換後のサービスを有効化し、
+    その後、gateway の正常性をベストエフォートでプローブします。
   </Step>
 </Steps>
 
@@ -270,7 +269,7 @@ TTY が利用できず、インストール方式も設定されていない場�
 | `--json`                                | NDJSON イベントを出力                                                              |
 | `--onboard`                             | インストール後に `openclaw onboard` を実行                                            |
 | `--no-onboard`                          | オンボーディングをスキップ（デフォルト）                                                       |
-| `--set-npm-prefix`                      | Linux で現在のプレフィックスが書き込み不可の場合、npm プレフィックスを `~/.npm-global` に強制設定 |
+| `--set-npm-prefix`                      | Linux で、現在のプレフィックスが書き込み不可の場合、npm プレフィックスを `~/.npm-global` に強制設定 |
 | `--help \| -h`                          | 使用方法を表示                                                                      |
 
   </Accordion>
@@ -283,9 +282,9 @@ TTY が利用できず、インストール方式も設定されていない場�
 | `OPENCLAW_INSTALL_METHOD=git\|npm`          | インストール方法                                                     |
 | `OPENCLAW_VERSION=<ver>`                    | OpenClaw のバージョンまたは dist-tag                                       |
 | `OPENCLAW_NODE_VERSION=<ver>`               | Node のバージョン                                                       |
-| `OPENCLAW_HOME=<path>`                      | OpenClaw の状態およびデフォルトの git/オンボーディングパスのベースディレクトリ |
+| `OPENCLAW_HOME=<path>`                      | OpenClaw の状態とデフォルトの git／オンボーディングパスのベースディレクトリ |
 | `OPENCLAW_GIT_DIR=<path>`                   | git インストール用の Git チェックアウトディレクトリ                            |
-| `OPENCLAW_GIT_UPDATE=0\|1`                  | 既存チェックアウトの git 更新を切り替え                          |
+| `OPENCLAW_GIT_UPDATE=0\|1`                  | 既存のチェックアウトに対する git 更新を切り替え                          |
 | `OPENCLAW_NO_ONBOARD=1`                     | オンボーディングをスキップ                                                    |
 | `OPENCLAW_NPM_LOGLEVEL=error\|warn\|notice` | npm ログレベル（デフォルト: `error`）                                   |
 
@@ -305,25 +304,25 @@ TTY が利用できず、インストール方式も設定されていない場�
 ### フロー（install.ps1）
 
 <Steps>
-  <Step title="PowerShell と Windows 環境を確認">
+  <Step title="PowerShell と Windows 環境を確保">
     PowerShell 5 以降が必要です。
   </Step>
   <Step title="デフォルトで Node.js 24 を確保">
-    存在しない場合、winget、Chocolatey、Scoop の順にインストールを試みます。利用可能なパッケージマネージャーがない場合、スクリプトは公式の Node.js 24 Windows zip を `%LOCALAPPDATA%\OpenClaw\deps\portable-node` にダウンロードし、現在のプロセスとユーザーの PATH に追加します。Node 22.22.3 以降、Node 24.15 以降、Node 25.9 以降がサポートされます。Node 23 はサポートされません。
+    見つからない場合、winget、Chocolatey、Scoop の順にインストールを試みます。利用可能なパッケージマネージャーがない場合、スクリプトは公式の Node.js 24 Windows zip を `%LOCALAPPDATA%\OpenClaw\deps\portable-node` にダウンロードし、現在のプロセスとユーザーの PATH に追加します。Node 22.22.3 以降、Node 24.15 以降、Node 25.9 以降がサポートされます。Node 23 はサポートされません。
   </Step>
   <Step title="OpenClaw をインストール">
     - `npm` 方式（デフォルト）: 選択した `-Tag` を使用したグローバル npm インストール。書き込み可能なインストーラーの一時ディレクトリから起動するため、`C:\` などの保護されたフォルダーで開いたシェルでも動作します
-    - `git` 方式: リポジトリをクローンまたは更新し、pnpm でインストールおよびビルドして、`%USERPROFILE%\.local\bin\openclaw.cmd` にラッパーをインストールします。Git が存在しない場合、スクリプトは `%LOCALAPPDATA%\OpenClaw\deps\portable-git` 配下にユーザーローカルの MinGit をブートストラップし、現在のプロセスとユーザーの PATH に追加します。
+    - `git` 方式: リポジトリをクローンまたは更新し、pnpm でインストールおよびビルドして、`%USERPROFILE%\.local\bin\openclaw.cmd` にラッパーをインストールします。Git が見つからない場合、スクリプトはユーザーローカルの MinGit を `%LOCALAPPDATA%\OpenClaw\deps\portable-git` にブートストラップし、現在のプロセスとユーザーの PATH に追加します。
 
   </Step>
   <Step title="インストール後のタスク">
-    - 可能な場合、必要な bin ディレクトリをユーザーの PATH に追加
-    - 読み込み済みの Gateway サービスをベストエフォートで更新（`openclaw gateway install --force`、続いて再起動）
-    - アップグレードおよび git インストール時に `openclaw doctor --non-interactive` を実行（ベストエフォート）
+    - 可能な場合、必要な bin ディレクトリをユーザーの PATH に追加します
+    - 読み込まれている Gateway サービスをベストエフォートで更新します（`openclaw gateway install --force`、続いて再起動）
+    - アップグレード時と git インストール時に `openclaw doctor --non-interactive` を実行します（ベストエフォート）
 
   </Step>
   <Step title="失敗を処理">
-    `iwr ... | iex` およびスクリプトブロックによるインストールでは、現在の PowerShell セッションを閉じずに終了エラーを報告します。`powershell -File` / `pwsh -File` を直接使用したインストールでは、自動化のため引き続きゼロ以外のコードで終了します。
+    `iwr ... | iex` およびスクリプトブロックによるインストールでは、現在の PowerShell セッションを閉じずに終了エラーを報告します。直接の `powershell -File`／`pwsh -File` インストールは、自動化のために引き続きゼロ以外の終了コードで終了します。
   </Step>
 </Steps>
 
@@ -363,7 +362,7 @@ TTY が利用できず、インストール方式も設定されていない場�
 | フラグ                        | 説明                                                |
 | --------------------------- | ---------------------------------------------------------- |
 | `-InstallMethod npm\|git`   | インストール方法（デフォルト: `npm`）                            |
-| `-Tag <tag\|version\|spec>` | npm dist-tag、バージョン、またはパッケージ指定（デフォルト: `latest`） |
+| `-Tag <tag\|version\|spec>` | npm の dist-tag、バージョン、またはパッケージ指定（デフォルト: `latest`） |
 | `-GitDir <path>`            | チェックアウトディレクトリ（デフォルト: `%USERPROFILE%\openclaw`）     |
 | `-NoOnboard`                | オンボーディングをスキップ                                            |
 | `-NoGitUpdate`              | `git pull` をスキップ                                            |
@@ -385,14 +384,14 @@ TTY が利用できず、インストール方式も設定されていない場�
 </AccordionGroup>
 
 <Note>
-`-InstallMethod git` を使用し、Git が存在しない場合、スクリプトは Git for Windows のリンクを表示する前に、ユーザーローカルの MinGit のブートストラップを試みます。
+`-InstallMethod git` を使用していて Git が見つからない場合、スクリプトは Git for Windows のリンクを表示する前に、ユーザーローカルの MinGit のブートストラップを試みます。
 </Note>
 
 ---
 
 ## CI と自動化
 
-予測可能な実行には、非対話型のフラグまたは環境変数を使用してください。
+予測可能な実行のため、非対話型のフラグ／環境変数を使用してください。
 
 <Tabs>
   <Tab title="install.sh（非対話型 npm）">
@@ -423,24 +422,24 @@ TTY が利用できず、インストール方式も設定されていない場�
 ## トラブルシューティング
 
 <AccordionGroup>
-  <Accordion title="Git が必要なのはなぜですか？">
-    Git は `git` インストール方式に必要です。`npm` インストールでも、依存関係が git URL を使用している場合の `spawn git ENOENT` エラーを避けるため、Git の確認とインストールが行われます。
+  <Accordion title="なぜ Git が必要なのですか？">
+    Git は `git` インストール方式に必要です。`npm` インストールでも、依存関係が git URL を使用する場合の `spawn git ENOENT` エラーを回避するため、Git の確認とインストールが行われます。
   </Accordion>
 
-  <Accordion title="Linux で npm が EACCES になるのはなぜですか？">
+  <Accordion title="Linux で npm に EACCES が発生するのはなぜですか？">
     一部の Linux 環境では、npm のグローバルプレフィックスが root 所有のパスを指しています。`install.sh` はプレフィックスを `~/.npm-global` に切り替え、シェルの rc ファイルが存在する場合は PATH の export を追記できます。
   </Accordion>
 
-  <Accordion title='Windows: "npm error spawn git / ENOENT"'>
-    インストーラーがユーザーローカルの MinGit をブートストラップできるように再実行するか、Git for Windows をインストールして PowerShell を開き直してください。
+  <Accordion title='Windows: 「npm error spawn git / ENOENT」'>
+    インストーラーを再実行してユーザーローカルの MinGit をブートストラップするか、Git for Windows をインストールして PowerShell を開き直してください。
   </Accordion>
 
-  <Accordion title='Windows: "openclaw is not recognized"'>
-    `npm config get prefix` を実行し、そのディレクトリをユーザーの PATH に追加して（Windows では `\bin` サフィックスは不要です）、PowerShell を開き直してください。
+  <Accordion title='Windows: 「openclaw is not recognized」'>
+    `npm config get prefix` を実行し、そのディレクトリをユーザーの PATH に追加して（Windows では `\bin` サフィックスは不要）、PowerShell を開き直してください。
   </Accordion>
 
   <Accordion title="Windows: インストーラーの詳細出力を取得する方法">
-    `install.ps1` には `-Verbose` スイッチがありません。
+    `install.ps1` は `-Verbose` スイッチを提供していません。
     スクリプトレベルの診断には PowerShell トレースを使用してください。
 
     ```powershell
@@ -458,6 +457,6 @@ TTY が利用できず、インストール方式も設定されていない場�
 
 ## 関連項目
 
-- [インストール概要](/ja-JP/install)
+- [インストールの概要](/ja-JP/install)
 - [更新](/ja-JP/install/updating)
 - [アンインストール](/ja-JP/install/uninstall)

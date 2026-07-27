@@ -4,7 +4,7 @@ read_when:
 summary: टाइप्ड पाइपलाइनों और पुनः शुरू किए जा सकने वाले अनुमोदनों के लिए Lobster वर्कफ़्लो टूल Plugin।
 title: Lobster Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:30:44Z"
+    generated_at: "2026-07-27T20:14:40Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

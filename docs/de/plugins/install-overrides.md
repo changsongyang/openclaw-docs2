@@ -4,10 +4,10 @@ read_when:
     - Überprüfen eines Plugin-Pakets vor der Veröffentlichung
     - Ersetzen einer automatischen Plugin-Installation durch ein Testartefakt
 sidebarTitle: Install overrides
-summary: Paketierte Plugin-Überschreibungen mit Installationsabläufen während der Einrichtung testen
+summary: Überschreibungen paketierter Plugins mit Installationsabläufen während der Einrichtung testen
 title: Überschreibungen für die Plugin-Installation
 x-i18n:
-    generated_at: "2026-07-24T04:32:01Z"
+    generated_at: "2026-07-26T18:29:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,15 +17,15 @@ x-i18n:
     workflow: 16
 ---
 
-Überschreibungen für Plugin-Installationen ermöglichen es Maintainern, bei der Einrichtung erfolgende Plugin-Installationen auf
-ein bestimmtes npm-Paket oder lokales npm-pack-Tarball statt auf die Katalog-,
-gebündelte oder standardmäßige npm-Quelle zu verweisen. Sie sind ausschließlich für E2E und die Paketvalidierung
-vorgesehen; normale Benutzer installieren Plugins mit
+Plugin-Installationsüberschreibungen ermöglichen es Maintainern, Plugin-Installationen während der Einrichtung auf
+ein bestimmtes npm-Paket oder lokales npm-Pack-Tarball statt auf die Katalog-,
+gebündelte oder standardmäßige npm-Quelle zu verweisen. Sie sind ausschließlich für E2E und
+Paketvalidierung vorgesehen; normale Benutzer installieren Plugins mit
 [`openclaw plugins install`](/de/cli/plugins).
 
 <Warning>
 Überschreibungen führen Plugin-Code aus der von Ihnen angegebenen Quelle aus. Verwenden Sie sie nur in einem
-isolierten Zustandsverzeichnis oder auf einem temporären Testrechner.
+isolierten Zustandsverzeichnis oder auf einer temporären Testmaschine.
 </Warning>
 
 ## Umgebung
@@ -40,28 +40,28 @@ export OPENCLAW_PLUGIN_INSTALL_OVERRIDES='{
 }'
 ```
 
-Die Überschreibungszuordnung ist JSON, dessen Schlüssel die Plugin-ID ist. Die Werte unterstützen:
+Die Überschreibungszuordnung ist JSON, das nach Plugin-ID verschlüsselt ist. Die Werte unterstützen:
 
 | Präfix                | Quelle                                                                                           |
 | --------------------- | ------------------------------------------------------------------------------------------------ |
 | `npm:<registry-spec>` | Registry-Pakete, exakte Versionen oder Tags                                                       |
-| `npm-pack:<path.tgz>` | Lokale Tarballs, die von `npm pack` erzeugt wurden; relative Pfade werden vom aktuellen Arbeitsverzeichnis aus aufgelöst |
+| `npm-pack:<path.tgz>` | Von `npm pack` erzeugte lokale Tarballs; relative Pfade werden vom aktuellen Arbeitsverzeichnis aus aufgelöst |
 
 ## Verhalten
 
 Wenn ein Einrichtungsablauf ein Plugin installiert, dessen ID in der Zuordnung enthalten ist, verwendet OpenClaw
-die Überschreibungsquelle statt der Katalog-, gebündelten oder standardmäßigen npm-
-Quelle. Dies gilt für das Onboarding und jeden anderen Ablauf, der das gemeinsame
-Installationsprogramm für Plugins während der Einrichtung verwendet.
+die Überschreibungsquelle anstelle der Katalog-, gebündelten oder standardmäßigen npm-
+Quelle. Dies gilt für das Onboarding und alle anderen Abläufe, die das gemeinsam genutzte
+Plugin-Installationsprogramm für die Einrichtung verwenden.
 
 - Überschreibungen erzwingen weiterhin die erwartete Plugin-ID: Ein `codex` zugeordnetes Tarball
   muss ein Plugin installieren, dessen Manifest-ID `codex` lautet.
 - Überschreibungen übernehmen nicht den offiziellen Status als vertrauenswürdige Quelle. Selbst wenn der
-  Katalogeintrag normalerweise ein OpenClaw-eigenes Paket darstellt, wird eine Überschreibung
-  als vom Betreiber bereitgestellte Testeingabe behandelt.
-- Workspace-`.env`-Dateien können Installationsüberschreibungen nicht aktivieren; beide Umgebungsvariablen stehen auf
-  der Sperrliste für Workspace-dotenv. Setzen Sie sie in der vertrauenswürdigen Shell, im CI-Job oder
-  im Remote-Testbefehl, der OpenClaw startet.
+  Katalogeintrag normalerweise ein OpenClaw-eigenes Paket darstellt, wird eine Überschreibung als
+  vom Betreiber bereitgestellte Testeingabe behandelt.
+- Workspace-`.env`-Dateien können Installationsüberschreibungen nicht aktivieren; beide Umgebungsvariablen befinden sich auf
+  der Sperrliste für Workspace-dotenv-Dateien. Legen Sie sie in der vertrauenswürdigen Shell, im CI-Job oder
+  im Remote-Testbefehl fest, der OpenClaw startet.
 
 ## Paket-E2E
 
@@ -84,6 +84,6 @@ find "$OPENCLAW_STATE_DIR/npm/projects" -path '*/node_modules/@openclaw/codex/pa
 grep -R '"@openclaw/codex"' "$OPENCLAW_STATE_DIR/npm/projects"/*/package-lock.json
 ```
 
-Für Live-Provider-E2E laden Sie den echten API-Schlüssel aus einer vertrauenswürdigen Shell oder einem CI-
+Beziehen Sie für Live-Provider-E2E den echten API-Schlüssel aus einer vertrauenswürdigen Shell oder einem CI-
 Secret, bevor Sie den Testbefehl starten. Geben Sie keine Schlüssel aus; melden Sie nur die
 Quelle und ob der Schlüssel vorhanden war.

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - ollama Plugin をインストール、設定、または監査しています
+    - ollama Plugin のインストール、設定、または監査を行っています
 summary: OpenClaw に Ollama および Ollama Cloud モデルプロバイダーのサポートを追加します。
 title: Ollama Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:59:18Z"
+    generated_at: "2026-07-26T10:25:20Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

@@ -4,7 +4,7 @@ read_when:
 summary: स्थानीय HTML वेब फ़ेच प्रतिक्रियाओं से पठनीय लेख सामग्री निकालें।
 title: वेब पठनीयता Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:34:54Z"
+    generated_at: "2026-07-27T18:49:17Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Web पठनीयता Plugin
+# Web Readability Plugin
 
 स्थानीय HTML वेब फ़ेच प्रतिक्रियाओं से पठनीय लेख सामग्री निकालें।
 

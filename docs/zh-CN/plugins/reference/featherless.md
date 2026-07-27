@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw Featherless AI 提供商插件。
 title: Featherless 插件
 x-i18n:
-    generated_at: "2026-07-16T11:50:07Z"
+    generated_at: "2026-07-26T05:55:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

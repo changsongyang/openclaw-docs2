@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw'a Meta model sağlayıcısı desteği ekler.
 title: Meta plugin
 x-i18n:
-    generated_at: "2026-07-16T17:31:02Z"
+    generated_at: "2026-07-27T00:08:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Meta plugin’i
+# Meta plugin
 
-OpenClaw’a Meta model sağlayıcısı desteği ekler.
+OpenClaw'a Meta model sağlayıcısı desteği ekler.
 
 ## Dağıtım
 
 - Paket: `@openclaw/meta-provider`
-- Kurulum yolu: OpenClaw’a dahildir; npm; ClawHub: `clawhub:@openclaw/meta-provider`
+- Kurulum yolu: OpenClaw'a dahildir; npm; ClawHub: `clawhub:@openclaw/meta-provider`
 
 ## Yüzey
 

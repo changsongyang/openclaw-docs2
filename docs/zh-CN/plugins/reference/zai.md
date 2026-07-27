@@ -4,7 +4,7 @@ read_when:
 summary: 为 OpenClaw 添加 Z.AI 模型提供商支持。
 title: Z.AI 插件
 x-i18n:
-    generated_at: "2026-07-16T11:48:30Z"
+    generated_at: "2026-07-26T06:18:56Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -20,8 +20,8 @@ x-i18n:
 
 ## 分发
 
-- 包：`@openclaw/zai-provider`
-- 安装方式：npm；ClawHub：`clawhub:@openclaw/zai-provider`
+- 软件包：`@openclaw/zai-provider`
+- 安装途径：npm；ClawHub：`clawhub:@openclaw/zai-provider`
 
 ## 接口
 

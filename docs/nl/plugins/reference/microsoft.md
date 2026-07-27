@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Je installeert, configureert of controleert de microsoft-Plugin
+    - Je installeert, configureert of controleert de microsoft-plugin
 summary: Voegt ondersteuning voor tekst-naar-spraakproviders toe.
-title: Microsoft-Plugin
+title: Microsoft-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:19:31Z"
+    generated_at: "2026-07-27T05:09:41Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Voegt ondersteuning voor een tekst-naar-spraakprovider toe.
 ## Distributie
 
 - Pakket: `@openclaw/microsoft-speech`
-- Installatieroute: inbegrepen bij OpenClaw
+- Installatieroute: opgenomen in OpenClaw
 
 ## Oppervlak
 

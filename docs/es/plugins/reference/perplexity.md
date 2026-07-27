@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin de Perplexity
+    - Está instalando, configurando o auditando el plugin perplexity
 summary: Añade compatibilidad con proveedores de búsqueda web.
 title: Plugin de Perplexity
 x-i18n:
-    generated_at: "2026-07-16T11:54:22Z"
+    generated_at: "2026-07-26T04:48:51Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin de Perplexity
+# Plugin Perplexity
 
 Añade compatibilidad con el proveedor de búsqueda web.
 
 ## Distribución
 
 - Paquete: `@openclaw/perplexity-plugin`
-- Ruta de instalación: npm; ClawHub: `clawhub:@openclaw/perplexity-plugin`
+- Vía de instalación: npm; ClawHub: `clawhub:@openclaw/perplexity-plugin`
 
 ## Superficie
 

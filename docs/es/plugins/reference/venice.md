@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin venice
-summary: Añade compatibilidad con el proveedor de modelos Venice en OpenClaw.
+summary: Añade compatibilidad con el proveedor de modelos Venice a OpenClaw.
 title: Plugin de Venice
 x-i18n:
-    generated_at: "2026-07-16T11:54:56Z"
+    generated_at: "2026-07-26T04:52:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Añade compatibilidad con el proveedor de modelos Venice a OpenClaw.
 ## Distribución
 
 - Paquete: `@openclaw/venice-provider`
-- Vía de instalación: npm; ClawHub: `clawhub:@openclaw/venice-provider`
+- Ruta de instalación: npm; ClawHub: `clawhub:@openclaw/venice-provider`
 
 ## Superficie
 

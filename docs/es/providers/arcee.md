@@ -5,7 +5,7 @@ read_when:
 summary: Configuración de Arcee AI (autenticación + selección de modelo)
 title: Arcee AI
 x-i18n:
-    generated_at: "2026-07-19T02:09:22Z"
+    generated_at: "2026-07-26T05:24:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,9 +15,9 @@ x-i18n:
     workflow: 16
 ---
 
-[Arcee AI](https://arcee.ai) proporciona la familia Trinity de modelos de mezcla de expertos mediante una API compatible con OpenAI. Todos los modelos Trinity cuentan con licencia Apache 2.0. Arcee es un plugin oficial de OpenClaw, no incluido con el núcleo, por lo que requiere un paso de instalación antes de la incorporación.
+[Arcee AI](https://arcee.ai) ofrece la familia Trinity de modelos de mezcla de expertos mediante una API compatible con OpenAI. Todos los modelos Trinity tienen licencia Apache 2.0. Arcee es un plugin oficial de OpenClaw que no viene incluido con el núcleo, por lo que debe instalarse antes de la incorporación.
 
-Acceda a los modelos de Arcee directamente mediante la plataforma de Arcee o a través de [OpenRouter](/es/providers/openrouter).
+Acceda a los modelos de Arcee directamente mediante la plataforma Arcee o a través de [OpenRouter](/es/providers/openrouter).
 
 | Propiedad | Valor                                                                                 |
 | -------- | ------------------------------------------------------------------------------------- |
@@ -36,7 +36,7 @@ openclaw gateway restart
 ## Primeros pasos
 
 <Tabs>
-  <Tab title="Directo (plataforma de Arcee)">
+  <Tab title="Directamente (plataforma Arcee)">
     <Steps>
       <Step title="Obtener una clave de API">
         Cree una clave de API en [Arcee AI](https://chat.arcee.ai/).
@@ -81,7 +81,7 @@ openclaw gateway restart
         }
         ```
 
-        Las mismas referencias de modelos funcionan tanto para las configuraciones directas como para las de OpenRouter.
+        Las mismas referencias de modelo funcionan tanto para la configuración directa como para la de OpenRouter.
       </Step>
     </Steps>
 
@@ -91,7 +91,7 @@ openclaw gateway restart
 ## Configuración no interactiva
 
 <Tabs>
-  <Tab title="Directo (plataforma de Arcee)">
+  <Tab title="Directamente (plataforma Arcee)">
     ```bash
     openclaw onboard --non-interactive \
       --mode local \
@@ -112,10 +112,10 @@ openclaw gateway restart
 
 ## Catálogo directo de Arcee
 
-| Referencia del modelo                      | Nombre                   | Entrada | Contexto | Salida máxima | Coste (entrada/salida por 1 millón) | Herramientas | Notas                                     |
+| Referencia del modelo                      | Nombre                   | Entrada | Contexto | Salida máxima | Coste (entrada/salida por 1 M) | Herramientas | Notas                                     |
 | ------------------------------ | ---------------------- | ----- | ------- | ---------- | -------------------- | ----- | ----------------------------------------- |
-| `arcee/trinity-large-thinking` | Trinity Large Thinking | texto  | 256K    | 80K        | $0.25 / $0.90        | No    | Modelo predeterminado; razonamiento extendido          |
-| `arcee/trinity-large-preview`  | Trinity Large Preview  | texto  | 128K    | 16K        | $0.25 / $1.00        | Sí   | De uso general; 400B parámetros, 13B activos  |
+| `arcee/trinity-large-thinking` | Trinity Large Thinking | texto  | 256K    | 80K        | $0.25 / $0.90        | No    | Modelo predeterminado; razonamiento ampliado          |
+| `arcee/trinity-large-preview`  | Trinity Large Preview  | texto  | 128K    | 16K        | $0.25 / $1.00        | Sí   | Uso general; 400B parámetros, 13B activos  |
 | `arcee/trinity-mini`           | Trinity Mini 26B       | texto  | 128K    | 80K        | $0.045 / $0.15       | Sí   | Rápido y rentable; llamada a funciones |
 
 <Tip>
@@ -124,7 +124,7 @@ El ajuste preestablecido de incorporación establece `arcee/trinity-large-thinki
 
 ## Catálogo de OpenRouter
 
-La incorporación de OpenRouter expone `arcee/trinity-large-preview` y `arcee/trinity-large-thinking`. OpenClaw conserva en la configuración esas referencias de modelos con el proveedor especificado y envía los identificadores canónicos de ejecución `arcee-ai/*` de OpenRouter. OpenRouter ya no ofrece Trinity Mini; utilice la API directa de Arcee para ese modelo.
+La incorporación de OpenRouter expone `arcee/trinity-large-preview` y `arcee/trinity-large-thinking`. OpenClaw conserva esas referencias de modelo calificadas por el proveedor en la configuración y envía los identificadores de ejecución canónicos `arcee-ai/*` de OpenRouter. Trinity Mini ya no está disponible mediante OpenRouter; utilice la API directa de Arcee para ese modelo.
 
 ## Funciones compatibles
 
@@ -133,12 +133,12 @@ La incorporación de OpenRouter expone `arcee/trinity-large-preview` y `arcee/tr
 | Transmisión                                     | Sí                                          |
 | Uso de herramientas / llamada a funciones                   | Sí (Trinity Mini, Trinity Large Preview)    |
 | Salida estructurada (modo JSON y esquema JSON) | Sí                                          |
-| Razonamiento extendido                             | Sí (Trinity Large Thinking; herramientas desactivadas) |
+| Razonamiento ampliado                             | Sí (Trinity Large Thinking; herramientas desactivadas) |
 
 <AccordionGroup>
   <Accordion title="Nota sobre el entorno">
     Si el Gateway se ejecuta como demonio (launchd/systemd), asegúrese de que `ARCEEAI_API_KEY`
-    (o `OPENROUTER_API_KEY`) esté disponible para ese proceso, por ejemplo en
+    (o `OPENROUTER_API_KEY`) esté disponible para ese proceso, por ejemplo, en
     `~/.openclaw/.env` o mediante `env.shellEnv`.
   </Accordion>
 
@@ -146,16 +146,16 @@ La incorporación de OpenRouter expone `arcee/trinity-large-preview` y `arcee/tr
     OpenRouter utiliza la misma referencia de modelo `arcee/trinity-large-thinking` de OpenClaw.
     OpenClaw la enruta con el identificador de ejecución canónico `arcee-ai/trinity-large-thinking`
     de OpenRouter. Consulte la
-    [documentación del proveedor OpenRouter](/es/providers/openrouter) para obtener información específica
-    sobre la configuración de OpenRouter.
+    [documentación del proveedor OpenRouter](/es/providers/openrouter) para obtener detalles
+    de configuración específicos de OpenRouter.
   </Accordion>
 </AccordionGroup>
 
-## Temas relacionados
+## Relacionado
 
 <CardGroup cols={2}>
   <Card title="OpenRouter" href="/es/providers/openrouter" icon="shuffle">
-    Acceda a los modelos de Arcee y a muchos otros mediante una única clave de API.
+    Acceda a los modelos de Arcee y a muchos otros con una única clave de API.
   </Card>
   <Card title="Selección de modelos" href="/es/concepts/model-providers" icon="layers">
     Elección de proveedores, referencias de modelos y comportamiento de conmutación por error.

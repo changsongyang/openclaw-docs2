@@ -1,10 +1,10 @@
 ---
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin ‏novita هستید
-summary: پشتیبانی از ارائه‌دهنده مدل Novita،‏ Novita AI و Novitaai را به OpenClaw اضافه می‌کند.
+summary: پشتیبانی از ارائه‌دهنده مدل Novita، Novita AI و Novitaai را به OpenClaw اضافه می‌کند.
 title: Plugin نوویتا
 x-i18n:
-    generated_at: "2026-07-16T16:56:31Z"
+    generated_at: "2026-07-27T15:32:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin ‏Novita
+# Plugin Novita
 
-پشتیبانی از ارائه‌دهندهٔ مدل Novita، Novita AI و Novitaai را به OpenClaw اضافه می‌کند.
+پشتیبانی از ارائه‌دهنده مدل Novita، Novita AI و Novitaai را به OpenClaw اضافه می‌کند.
 
 ## توزیع
 

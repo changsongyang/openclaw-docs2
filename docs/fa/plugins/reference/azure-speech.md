@@ -1,10 +1,10 @@
 ---
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin ‏azure-speech هستید
-summary: تبدیل متن به گفتار Azure AI Speech (MP3، پیام‌های صوتی بومی Ogg/Opus، تلفن PCM).
-title: افزونهٔ Azure Speech
+summary: تبدیل متن به گفتار Azure AI Speech (MP3، یادداشت‌های صوتی بومی Ogg/Opus، تلفن PCM).
+title: Plugin گفتار Azure
 x-i18n:
-    generated_at: "2026-07-16T16:54:14Z"
+    generated_at: "2026-07-27T15:29:42Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## توزیع
 
 - بسته: `@openclaw/azure-speech`
-- مسیر نصب: همراه OpenClaw ارائه می‌شود
+- مسیر نصب: گنجانده‌شده در OpenClaw
 
 ## سطح
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## مستندات مرتبط
 
-- [گفتار Azure](/fa/providers/azure-speech)
+- [azure-speech](/fa/providers/azure-speech)

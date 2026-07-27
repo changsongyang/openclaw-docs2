@@ -3,9 +3,10 @@ redirect: /install/digitalocean
 summary: تغییر مسیر به /install/digitalocean
 title: DigitalOcean (پلتفرم)
 x-i18n:
-    generated_at: "2026-07-12T10:20:58Z"
+    generated_at: "2026-07-27T15:48:04Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
+    prompt_version: 32
     provider: openai
     source_hash: d2b63c0f6d16f081a6610bf45b1e3a58e2e037d3562423287a53be9549d7cdd6
     source_path: platforms/digitalocean.md

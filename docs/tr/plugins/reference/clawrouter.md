@@ -1,10 +1,10 @@
 ---
 read_when:
-    - clawrouter Plugin'ini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - clawrouter pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a ClawRouter model sağlayıcısı desteği ekler.
 title: ClawRouter plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:43:03Z"
+    generated_at: "2026-07-27T00:07:40Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# ClawRouter Plugin
+# ClawRouter plugin'i
 
 OpenClaw'a ClawRouter model sağlayıcısı desteği ekler.
 

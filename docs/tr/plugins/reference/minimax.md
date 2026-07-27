@@ -1,10 +1,10 @@
 ---
 read_when:
-    - minimax pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - minimax Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a MiniMax ve MiniMax Portal model sağlayıcısı desteği ekler.
-title: MiniMax plugin'i
+title: MiniMax Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:26:11Z"
+    generated_at: "2026-07-26T23:28:44Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

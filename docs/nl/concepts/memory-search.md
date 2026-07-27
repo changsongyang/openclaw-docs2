@@ -3,15 +3,15 @@ read_when:
     - Je wilt begrijpen hoe memory_search werkt
     - Je wilt een embeddingprovider kiezen
     - Je wilt de zoekkwaliteit optimaliseren
-summary: Hoe zoeken in het geheugen relevante notities vindt met embeddings en hybride retrieval
+summary: Hoe zoeken in het geheugen relevante notities vindt met behulp van embeddings en hybride retrieval
 title: Geheugen doorzoeken
 x-i18n:
-    generated_at: "2026-07-16T15:42:24Z"
+    generated_at: "2026-07-27T05:43:28Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 2ae0830843fba28c24159d85425240051fb8caf086cd0563d3091890045dcfad
+    source_hash: b2bd28b63ac55a2a890ed70a3015f76f1c7fbaa792b17a6ead51f4c8712fbd2d
     source_path: concepts/memory-search.md
     workflow: 16
 ---
@@ -23,15 +23,13 @@ doorzoekt deze met embeddings, trefwoorden of beide.
 ## Snel aan de slag
 
 OpenClaw gebruikt standaard OpenAI-embeddings. Stel een andere provider
-expliciet in om deze te gebruiken:
+expliciet in om die te gebruiken:
 
 ```json5
 {
-  agents: {
-    defaults: {
-      memorySearch: {
-        provider: "openai", // of "gemini", "voyage", "mistral", "bedrock", "local", "ollama", "lmstudio", "github-copilot", "openai-compatible"
-      },
+  memory: {
+    search: {
+      provider: "openai", // of "gemini", "voyage", "mistral", "bedrock", "local", "ollama", "lmstudio", "github-copilot", "openai-compatible"
     },
   },
 }
@@ -41,18 +39,18 @@ expliciet in om deze te gebruiken:
 `ollama-5080`), zolang die vermelding `api` instelt op `"ollama"` of
 een andere provider-id met een adapter voor geheugenembeddings.
 
-Installeer voor lokale embeddings zonder API-sleutel de officiële llama.cpp-provider-
-plugin en stel `provider: "local"` in:
+Installeer voor lokale embeddings zonder API-sleutel de officiële
+llama.cpp-providerplugin en stel `provider: "local"` in:
 
 ```bash
 openclaw plugins install @openclaw/llama-cpp-provider
 ```
 
-Voor broncode-checkouts is nog steeds goedkeuring voor de native build nodig: `pnpm approve-builds`, daarna
+Voor broncodecheck-outs is nog steeds goedkeuring voor een native build vereist: `pnpm approve-builds`, daarna
 `pnpm rebuild node-llama-cpp`.
 
-Sommige OpenAI-compatibele embedding-eindpunten vereisen asymmetrische `input_type`-
-labels, zoals `"query"` voor zoekopdrachten en `"document"`/`"passage"` voor geïndexeerde
+Sommige OpenAI-compatibele embedding-eindpunten vereisen asymmetrische `input_type`-labels,
+zoals `"query"` voor zoekopdrachten en `"document"`/`"passage"` voor geïndexeerde
 stukken. Stel deze in met `queryInputType` en `documentInputType`; zie
 [Referentie voor geheugenconfiguratie](/nl/reference/memory-config#provider-specific-config).
 
@@ -74,7 +72,7 @@ stukken. Stel deze in met `queryInputType` en `documentInputType`; zie
 
 ## Hoe zoeken werkt
 
-OpenClaw voert twee ophaalmethoden parallel uit en voegt de resultaten samen:
+OpenClaw voert twee ophaalpaden parallel uit en voegt de resultaten samen:
 
 ```mermaid
 flowchart LR
@@ -87,26 +85,25 @@ flowchart LR
     M --> R["Beste resultaten"]
 ```
 
-- **Vectorzoekopdracht** vindt vergelijkbare betekenissen ("gateway-host" komt overeen met "de
+- **Vectorzoekopdracht** zoekt naar vergelijkbare betekenissen ("gateway-host" komt overeen met "de
   machine waarop OpenClaw wordt uitgevoerd").
-- **BM25-trefwoordzoekopdracht** vindt exacte termen (ID's, foutteksten, configuratie-
-  sleutels).
-- **Zoeken op bestandsnaam** indexeert paden afzonderlijk van de inhoud van notities. Exacte volledige
-  paden, basisbestandsnamen en bestandsnaamstammen krijgen een hogere positie dan gedeeltelijke padovereenkomsten,
-  terwijl fragmenten en trefwoordscores voor de inhoud nog steeds uit de inhoud van notities komen.
+- **BM25-trefwoordzoekopdracht** zoekt naar exacte termen (ID's, foutteksten, configuratiesleutels).
+- **Bestandsnaamzoekopdracht** indexeert paden afzonderlijk van de inhoud van notities. Exacte volledige
+  paden, basisnamen en bestandsnaamstammen krijgen een hogere rang dan gedeeltelijke padovereenkomsten,
+  terwijl fragmenten en trefwoordscores voor de inhoud nog steeds uit de notitie-inhoud komen.
 
-Als slechts één methode beschikbaar is, wordt alleen die uitgevoerd.
+Als slechts één pad beschikbaar is, wordt dat zelfstandig uitgevoerd.
 
 **Alleen-FTS-modus.** Stel `provider: "none"` in om embeddings bewust uit te schakelen
 en alleen met trefwoorden te zoeken. Als `provider` niet is ingesteld of is ingesteld op `"auto"`,
-wordt ook teruggevallen op rangschikking met alleen trefwoorden wanneer geen embedding-authenticatie is geconfigureerd,
+wordt ook teruggevallen op rangschikking met alleen trefwoorden als geen embedding-authenticatie is geconfigureerd,
 zonder een fout te geven. Hetzelfde geldt voor `provider: "local"` (de GGUF/llama.cpp-
 provider) wanneer deze mislukt.
 
-**Expliciete provider niet beschikbaar.** Als je expliciet een andere provider opgeeft
+**Expliciete provider niet beschikbaar.** Als je een andere provider expliciet opgeeft
 (bijvoorbeeld `openai`, `ollama`, `gemini`) en deze tijdens de aanvraag niet beschikbaar
-wordt (ongeldige authenticatie, netwerkstoring), meldt `memory_search` dat het geheugen
-niet beschikbaar is in plaats van stilzwijgend terug te vallen op alleen-FTS-resultaten. Hierdoor blijft een
+wordt (onjuiste authenticatie, netwerkstoring), meldt `memory_search` dat het geheugen
+niet beschikbaar is in plaats van ongemerkt over te schakelen op resultaten met alleen FTS. Zo blijft een
 defecte geconfigureerde provider zichtbaar. Stel `provider: "none"` in voor bewust
 ophalen met alleen FTS, of herstel de provider-/authenticatieconfiguratie om semantische
 rangschikking te herstellen.
@@ -117,10 +114,10 @@ Twee optionele functies helpen bij een uitgebreide notitiegeschiedenis.
 
 ### Temporeel verval
 
-Oude notities verliezen geleidelijk rangschikkingsgewicht, zodat recente informatie als eerste verschijnt.
-Met de standaardhalfwaardetijd van 30 dagen krijgt een notitie van vorige maand 50% van het
+Oude notities verliezen geleidelijk gewicht in de rangschikking, zodat recente informatie als eerste verschijnt.
+Met de standaard halveringstijd van 30 dagen scoort een notitie van vorige maand 50% van het
 oorspronkelijke gewicht. `MEMORY.md` en andere bestanden zonder datum onder `memory/` zijn
-tijdloos en vervallen nooit; alleen gedateerde `memory/YYYY-MM-DD.md`-bestanden vervallen.
+blijvend relevant en vervallen nooit; alleen gedateerde `memory/YYYY-MM-DD.md`-bestanden vervallen.
 
 <Tip>
 Schakel dit in als je agent maanden aan dagelijkse notities heeft en verouderde informatie
@@ -141,14 +138,12 @@ verschillende dagelijkse notities retourneert.
 
 ```json5
 {
-  agents: {
-    defaults: {
-      memorySearch: {
-        query: {
-          hybrid: {
-            mmr: { enabled: true },
-            temporalDecay: { enabled: true },
-          },
+  memory: {
+    search: {
+      query: {
+        hybrid: {
+          mmr: { enabled: true },
+          temporalDecay: { enabled: true },
         },
       },
     },
@@ -158,44 +153,46 @@ verschillende dagelijkse notities retourneert.
 
 ## Multimodaal geheugen
 
-Met `gemini-embedding-2-preview` kun je afbeeldingen en audio naast
-Markdown indexeren. Dit geldt alleen voor bestanden onder `memorySearch.extraPaths`; standaard-
+Met `gemini-embedding-2-preview` kun je naast Markdown ook afbeeldingen en audio
+indexeren. Dit geldt alleen voor bestanden onder `memory.search.extraPaths`; standaard
 geheugenhoofdmappen (`MEMORY.md`, `memory/*.md`) blijven uitsluitend voor Markdown. Zoekopdrachten
 blijven tekst, maar worden vergeleken met visuele en audio-inhoud. Zie
 [Referentie voor geheugenconfiguratie](/nl/reference/memory-config#multimodal-memory-gemini)
-voor de installatie.
+voor de configuratie.
 
 ## Zoeken in sessiegeheugen
 
-Gebruik voor het exact doorzoeken van volledige tekst uit sessietranscripten [`sessions_search`](/concepts/session-search)
-en open vervolgens een resultaat met `sessions_history`. Zoeken in sessiegeheugen blijft de semantische,
+Gebruik voor het exact opzoeken van volledige tekst uit sessietranscripten [`sessions_search`](/nl/concepts/session-search)
+en open daarna een resultaat met `sessions_history`. Zoeken in sessiegeheugen blijft de semantische,
 experimentele aanvulling.
 
-Indexeer optioneel sessietranscripten zodat `memory_search` eerdere
-gesprekken kan terughalen. Hiervoor moet je je aanmelden: stel `experimental.sessionMemory: true` in en voeg
-`"sessions"` toe aan `sources` (standaard is `sources` gelijk aan `["memory"]`).
+Indexeer desgewenst sessietranscripten zodat `memory_search` eerdere
+gesprekken kan terugvinden. Dit is opt-in: stel `experimental.sessionMemory: true` in en voeg
+`"sessions"` toe aan `sources` (standaard is `sources` `["memory"]`).
 
-Sessieresultaten volgen `tools.sessions.visibility`: de standaardwaarde `"tree"`
-maakt alleen de huidige sessie en de daaruit gestarte sessies zichtbaar. Om vanuit een andere sessie
-een niet-gerelateerde sessie van dezelfde agent terug te halen (bijvoorbeeld een door de Gateway gestarte
-sessie vanuit een privébericht), verruim je de zichtbaarheid tot `"agent"`.
+Sessieresultaten volgen `tools.sessions.visibility`: de standaardwaarde `"tree"` maakt de
+huidige sessie zichtbaar, de sessies die deze heeft gestart en groepssessies van dezelfde agent die
+via omgevingsbewustzijn voor groepen worden gevolgd. Met `session.dmScope: "main"` deelt een DM-configuratie
+voor meerdere gebruikers die hoofdsessie, zodat gebruikers die daarheen worden doorgestuurd inhoud
+uit de gevolgde groepen kunnen terugvinden. Gebruik een `dmScope` per gesprekspartner voor DM-isolatie, of stel
+de zichtbaarheid in op `"self"` om het lezen van gevolgde omgevingssessies uit te schakelen. Andere
+niet-gerelateerde sessies van dezelfde agent vereisen nog steeds zichtbaarheid met `"agent"`.
 
 Stel bij gebruik van de QMD-backend ook `memory.qmd.sessions.enabled: true` in, zodat
 transcripten naar de QMD-verzameling worden geëxporteerd; alleen `experimental.sessionMemory`
-en `sources` exporteren geen transcripten naar QMD. Zie
+en `sources` exporteren geen transcripten naar QMD. Zie de
 [configuratiereferentie](/nl/reference/memory-config#session-memory-search-experimental).
 
-## Probleemoplossing
+## Problemen oplossen
 
-**Geen resultaten?** Voer `openclaw memory status` uit om de index te controleren. Voer
-`openclaw memory index --force` uit als deze leeg is.
+**Geen resultaten?** Voer `openclaw memory status` uit om de index te controleren. Voer bij een lege index
+`openclaw memory index --force` uit.
 
-**Alleen trefwoordovereenkomsten?** Je embeddingprovider is mogelijk niet geconfigureerd. Controleer
+**Alleen trefwoordovereenkomsten?** Je embedding-provider is mogelijk niet geconfigureerd. Controleer
 `openclaw memory status --deep`.
 
-**Time-out bij lokale embeddings?** `ollama`, `lmstudio` en `local` gebruiken standaard een langere
-time-out voor inline batches. Als de host alleen traag is, stel je
-`agents.defaults.memorySearch.sync.embeddingBatchTimeoutSeconds` in en voer je
+**Time-out bij lokale embeddings?** `ollama`, `lmstudio` en `local` gebruiken langere
+door de provider beheerde batchdeadlines. Controleer de status van de provider en voer
 `openclaw memory index --force` opnieuw uit.
 
 **CJK-tekst niet gevonden?** Bouw de FTS-index opnieuw op met

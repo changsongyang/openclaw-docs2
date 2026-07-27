@@ -4,7 +4,7 @@ read_when:
 summary: 将 Claude Code 和 Claude Desktop 的指令、MCP 服务器、Skills 及安全配置导入 OpenClaw。
 title: 迁移 Claude 插件
 x-i18n:
-    generated_at: "2026-07-16T11:46:19Z"
+    generated_at: "2026-07-26T06:18:15Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # 迁移 Claude 插件
 
-将 Claude Code 和 Claude Desktop 的指令、MCP 服务器、技能和安全配置导入 OpenClaw。
+将 Claude Code 和 Claude Desktop 的指令、MCP 服务器、技能以及安全配置导入 OpenClaw。
 
 ## 分发
 
-- 软件包：`@openclaw/migrate-claude`
-- 安装方式：OpenClaw 内置
+- 包：`@openclaw/migrate-claude`
+- 安装方式：已包含在 OpenClaw 中
 
 ## 接口
 

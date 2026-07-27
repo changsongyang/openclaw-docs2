@@ -1,10 +1,10 @@
 ---
 read_when:
-    - line Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - line Pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
 summary: LINE Bot API sohbetleri için OpenClaw LINE kanal Plugin'i.
 title: LINE Plugin
 x-i18n:
-    generated_at: "2026-07-16T17:44:39Z"
+    generated_at: "2026-07-26T23:52:45Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

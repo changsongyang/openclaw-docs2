@@ -1,10 +1,10 @@
 ---
 read_when:
     - Sie installieren, konfigurieren oder prüfen das tavily-Plugin.
-summary: Fügt Tools hinzu, die von Agenten aufgerufen werden können. Fügt Unterstützung für Websuche-Provider hinzu.
+summary: Fügt von Agenten aufrufbare Tools hinzu. Fügt Unterstützung für Websuch-Provider hinzu.
 title: Tavily-Plugin
 x-i18n:
-    generated_at: "2026-07-24T05:16:20Z"
+    generated_at: "2026-07-26T19:09:57Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

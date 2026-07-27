@@ -2,10 +2,10 @@
 read_when:
     - Quieres usar Together AI con OpenClaw
     - Se necesita la variable de entorno de la clave de API o la opción de autenticación de la CLI
-summary: Configuración de Together AI (autenticación + selección de modelo)
+summary: Configuración de Together AI (autenticación + selección del modelo)
 title: Together AI
 x-i18n:
-    generated_at: "2026-07-19T02:04:34Z"
+    generated_at: "2026-07-26T05:27:12Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -33,7 +33,7 @@ OpenClaw lo incluye como proveedor `together`.
     Cree una clave de API en
     [api.together.ai/settings/api-keys](https://api.together.ai/settings/api-keys).
   </Step>
-  <Step title="Ejecutar la configuración inicial">
+  <Step title="Ejecutar la incorporación">
     ```bash
     openclaw onboard --auth-choice together-api-key
     ```
@@ -63,7 +63,7 @@ openclaw onboard --non-interactive \
 ```
 
 <Note>
-La configuración inicial establece `together/meta-llama/Llama-3.3-70B-Instruct-Turbo` como
+La incorporación establece `together/meta-llama/Llama-3.3-70B-Instruct-Turbo` como
 modelo predeterminado.
 </Note>
 
@@ -71,13 +71,13 @@ modelo predeterminado.
 
 El coste se expresa en USD por millón de tokens.
 
-| Ref. del modelo                                     | Nombre                       | Entrada       | Contexto | Salida máxima | Coste (entrada/salida) | Notas                  |
+| Referencia del modelo                              | Nombre                       | Entrada     | Contexto | Salida máxima | Coste (entrada/salida) | Notas                  |
 | -------------------------------------------------- | ---------------------------- | ----------- | ------- | ---------- | ------------- | ------------------- |
-| `together/meta-llama/Llama-3.3-70B-Instruct-Turbo` | Llama 3.3 70B Instruct Turbo | texto        | 131,072 | 8,192      | 0.88 / 0.88   | Modelo predeterminado  |
+| `together/meta-llama/Llama-3.3-70B-Instruct-Turbo` | Llama 3.3 70B Instruct Turbo | texto       | 131,072 | 8,192      | 0.88 / 0.88   | Modelo predeterminado  |
 | `together/moonshotai/Kimi-K2.6`                    | Kimi K2.6 FP4                | texto, imagen | 262,144 | 32,768     | 1.20 / 4.50   | Modelo de razonamiento |
-| `together/deepseek-ai/DeepSeek-V4-Pro`             | DeepSeek V4 Pro              | texto        | 512,000 | 8,192      | 2.10 / 4.40   | Modelo de razonamiento |
-| `together/Qwen/Qwen2.5-7B-Instruct-Turbo`          | Qwen2.5 7B Instruct Turbo    | texto        | 32,768  | 8,192      | 0.30 / 0.30   | Rápido, sin razonamiento |
-| `together/zai-org/GLM-5.1`                         | GLM 5.1 FP4                  | texto        | 202,752 | 8,192      | 1.40 / 4.40   | Modelo de razonamiento |
+| `together/deepseek-ai/DeepSeek-V4-Pro`             | DeepSeek V4 Pro              | texto       | 512,000 | 8,192      | 2.10 / 4.40   | Modelo de razonamiento |
+| `together/Qwen/Qwen2.5-7B-Instruct-Turbo`          | Qwen2.5 7B Instruct Turbo    | texto       | 32,768  | 8,192      | 0.30 / 0.30   | Rápido, sin razonamiento |
+| `together/zai-org/GLM-5.1`                         | GLM 5.1 FP4                  | texto       | 202,752 | 8,192      | 1.40 / 4.40   | Modelo de razonamiento |
 
 ## Generación de vídeo
 
@@ -86,13 +86,13 @@ herramienta compartida `video_generate`.
 
 | Propiedad             | Valor                                                                                     |
 | -------------------- | ----------------------------------------------------------------------------------------- |
-| Modelo de vídeo predeterminado  | `Wan-AI/Wan2.2-T2V-A14B`                                                                  |
-| Otros modelos         | `Wan-AI/Wan2.2-I2V-A14B`, `minimax/hailuo-02`, `kwaivgI/kling-2.1-master`                 |
+| Modelo de vídeo predeterminado | `Wan-AI/Wan2.2-T2V-A14B`                                                                  |
+| Otros modelos        | `Wan-AI/Wan2.2-I2V-A14B`, `minimax/hailuo-02`, `kwaivgI/kling-2.1-master`                 |
 | Modos                | texto a vídeo; imagen a vídeo solo con `Wan-AI/Wan2.2-I2V-A14B` (una única imagen de referencia) |
 | Duración             | 1-10 segundos                                                                              |
-| Parámetros compatibles | `size` (se analiza como `<width>x<height>`); `aspectRatio`/`resolution` no se leen            |
+| Parámetros compatibles | `size` (se analiza como `<width>x<height>`); no se leen `aspectRatio`/`resolution`            |
 
-Para usar Together como proveedor de vídeo predeterminado:
+Para utilizar Together como proveedor de vídeo predeterminado:
 
 ```json5
 {
@@ -118,8 +118,8 @@ la selección de proveedores y el comportamiento de conmutación por error.
     `~/.openclaw/.env` o mediante `env.shellEnv`).
 
     <Warning>
-    Las claves establecidas únicamente en el shell interactivo no están visibles para los procesos
-    del Gateway administrados por un demonio. Use la configuración `~/.openclaw/.env` o `env.shellEnv` para
+    Las claves establecidas únicamente en el shell interactivo no son visibles para los
+    procesos del Gateway administrados como demonios. Utilice la configuración `~/.openclaw/.env` o `env.shellEnv` para
     garantizar una disponibilidad persistente.
     </Warning>
 
@@ -129,7 +129,7 @@ la selección de proveedores y el comportamiento de conmutación por error.
     - Compruebe que la clave funciona: `openclaw models list --provider together`
     - Si los modelos no aparecen, confirme que la clave de API esté configurada en el
       entorno correcto para el proceso del Gateway.
-    - Las referencias de modelos usan el formato `together/<model-id>`.
+    - Las referencias de modelo utilizan el formato `together/<model-id>`.
 
   </Accordion>
 </AccordionGroup>
@@ -138,13 +138,13 @@ la selección de proveedores y el comportamiento de conmutación por error.
 
 <CardGroup cols={2}>
   <Card title="Proveedores de modelos" href="/es/concepts/model-providers" icon="layers">
-    Reglas de proveedores, referencias de modelos y comportamiento de conmutación por error.
+    Reglas de los proveedores, referencias de modelos y comportamiento de conmutación por error.
   </Card>
   <Card title="Generación de vídeo" href="/es/tools/video-generation" icon="video">
     Parámetros de la herramienta compartida de generación de vídeo y selección de proveedores.
   </Card>
   <Card title="Referencia de configuración" href="/es/gateway/configuration-reference" icon="gear">
-    Esquema de configuración completo, incluidos los ajustes de proveedores.
+    Esquema de configuración completo, incluidos los ajustes de los proveedores.
   </Card>
   <Card title="Together AI" href="https://together.ai" icon="arrow-up-right-from-square">
     Panel de Together AI, documentación de la API y precios.

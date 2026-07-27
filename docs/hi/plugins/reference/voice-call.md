@@ -1,10 +1,10 @@
 ---
 read_when:
-    - आप वॉइस-कॉल Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
+    - आप वॉइस-कॉल Plugin इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
 summary: Twilio, Telnyx और Plivo फ़ोन कॉल के लिए OpenClaw वॉइस-कॉल Plugin।
 title: वॉइस कॉल Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:18:27Z"
+    generated_at: "2026-07-27T20:14:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

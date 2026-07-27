@@ -1,12 +1,12 @@
 ---
 read_when:
-    - Está actualizando una configuración que utilizaba compromisos inferidos
-    - Desea inspeccionar o descartar los registros de seguimiento almacenados previamente
+    - Se está actualizando una configuración que utilizaba compromisos inferidos
+    - Se desea consultar o descartar registros de seguimiento almacenados anteriormente
 sidebarTitle: Commitments
-summary: Guía sobre el estado y la limpieza de compromisos de seguimiento inferidos y retirados
+summary: Orientación sobre el estado y la limpieza de compromisos de seguimiento inferidos retirados
 title: Compromisos inferidos
 x-i18n:
-    generated_at: "2026-07-22T10:30:41Z"
+    generated_at: "2026-07-26T04:35:40Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,11 +17,11 @@ x-i18n:
 ---
 
 El experimento de compromisos inferidos se ha retirado. OpenClaw ya no extrae nuevos
-seguimientos de conversaciones ni los entrega mediante Heartbeat, y el anterior
+seguimientos de conversaciones ni los entrega mediante Heartbeat, y el antiguo
 bloque de configuración `commitments` se elimina mediante `openclaw doctor --fix`.
 
-Los recordatorios exactos y el trabajo programado siguen utilizando las
-[tareas programadas](/es/automation/cron-jobs). Los hechos conversacionales duraderos deben almacenarse en la
+Los recordatorios exactos y el trabajo programado continúan utilizando las
+[tareas programadas](/es/automation/cron-jobs). Los hechos conversacionales persistentes deben almacenarse en la
 [memoria](/es/concepts/memory).
 
 ## Registros existentes
@@ -38,7 +38,7 @@ openclaw commitments dismiss cm_abc123
 Consulte [`openclaw commitments`](/es/cli/commitments) para obtener la referencia del comando
 de mantenimiento.
 
-## Relacionado
+## Contenido relacionado
 
 - [Tareas programadas](/es/automation/cron-jobs)
 - [Descripción general de la memoria](/es/concepts/memory)

@@ -4,7 +4,7 @@ read_when:
 summary: Añade a OpenClaw compatibilidad con los proveedores de modelos Volcengine y Volcengine Plan.
 title: Plugin de Volcengine
 x-i18n:
-    generated_at: "2026-07-16T11:50:47Z"
+    generated_at: "2026-07-26T05:51:40Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Plugin de Volcengine
 
-Añade compatibilidad con Volcengine y con el proveedor de modelos Volcengine Plan en OpenClaw.
+Añade compatibilidad con Volcengine y con el proveedor de modelos Volcengine Plan a OpenClaw.
 
 ## Distribución
 
 - Paquete: `@openclaw/volcengine-provider`
-- Ruta de instalación: incluida en OpenClaw
+- Método de instalación: incluido en OpenClaw
 
 ## Superficie
 

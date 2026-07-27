@@ -4,7 +4,7 @@ read_when:
 summary: Voegt ondersteuning toe voor providers van geheugenembeddings.
 title: Voyage-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:17:44Z"
+    generated_at: "2026-07-27T05:10:27Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Voyage-plugin
+# Voyage-Plugin
 
-Voegt ondersteuning voor een provider van geheugenembeddings toe.
+Voegt ondersteuning toe voor een provider voor geheugen-embeddings.
 
 ## Distributie
 
 - Pakket: `@openclaw/voyage-provider`
-- Installatieroute: opgenomen in OpenClaw
+- Installatieroute: inbegrepen bij OpenClaw
 
 ## Oppervlak
 

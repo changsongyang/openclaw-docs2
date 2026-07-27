@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw-WhatsApp-Kanal-Plugin für WhatsApp-Web-Chats.
 title: WhatsApp-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:48:46Z"
+    generated_at: "2026-07-26T18:39:45Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # WhatsApp-Plugin
 
-OpenClaw-WhatsApp-Kanal-Plugin für WhatsApp-Web-Chats.
+OpenClaw-Plugin für den WhatsApp-Kanal für WhatsApp-Web-Chats.
 
 ## Distribution
 
@@ -27,6 +27,6 @@ OpenClaw-WhatsApp-Kanal-Plugin für WhatsApp-Web-Chats.
 
 Kanäle: `whatsapp`; Verträge: `tools`; Skills
 
-## Verwandte Dokumentation
+## Zugehörige Dokumentation
 
 - [WhatsApp](/de/channels/whatsapp)

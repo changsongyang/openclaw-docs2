@@ -3,7 +3,7 @@ redirect: /install/digitalocean
 summary: Weiterleitung zu /install/digitalocean
 title: DigitalOcean (Plattform)
 x-i18n:
-    generated_at: "2026-07-24T04:42:43Z"
+    generated_at: "2026-07-26T18:34:10Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -13,7 +13,7 @@ x-i18n:
     workflow: 16
 ---
 
-Diese Seite wurde zu [DigitalOcean](/de/install/digitalocean) verschoben.
+Diese Seite wurde nach [DigitalOcean](/de/install/digitalocean) verschoben.
 
 ## Verwandte Themen
 

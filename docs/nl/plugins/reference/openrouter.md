@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de openrouter-plugin
 summary: Voegt ondersteuning voor de OpenRouter-modelprovider toe aan OpenClaw.
-title: OpenRouter-Plugin
+title: OpenRouter-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:16:46Z"
+    generated_at: "2026-07-27T06:03:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

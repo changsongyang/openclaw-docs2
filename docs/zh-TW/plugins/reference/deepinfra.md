@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 deepinfra 外掛
-summary: 為 OpenClaw 新增 DeepInfra 模型供應商支援。
+summary: 新增 OpenClaw 對 DeepInfra 模型供應商的支援。
 title: DeepInfra 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:53:10Z"
+    generated_at: "2026-07-26T08:05:29Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,17 +16,17 @@ x-i18n:
 
 # DeepInfra 外掛
 
-為 OpenClaw 新增 DeepInfra 模型提供者支援。
+為 OpenClaw 新增 DeepInfra 模型供應商支援。
 
-## 發佈
+## 發布
 
 - 套件：`@openclaw/deepinfra-provider`
 - 安裝途徑：npm；ClawHub：`clawhub:@openclaw/deepinfra-provider`
 
 ## 介面
 
-提供者：`deepinfra`；合約：`imageGenerationProviders`、`mediaUnderstandingProviders`、`memoryEmbeddingProviders`、`speechProviders`、`videoGenerationProviders`
+供應商：`deepinfra`；合約：`imageGenerationProviders`、`mediaUnderstandingProviders`、`memoryEmbeddingProviders`、`speechProviders`、`videoGenerationProviders`
 
 ## 相關文件
 
-- [deepinfra](/zh-TW/providers/deepinfra)
+- [DeepInfra](/zh-TW/providers/deepinfra)

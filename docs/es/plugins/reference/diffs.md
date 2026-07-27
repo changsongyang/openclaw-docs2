@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin de diferencias
+    - Está instalando, configurando o auditando el plugin de diferencias.
 summary: Plugin de visualización de diferencias de solo lectura y renderizador de archivos de OpenClaw para agentes.
 title: Plugin de diferencias
 x-i18n:
-    generated_at: "2026-07-16T11:51:04Z"
+    generated_at: "2026-07-26T04:47:51Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

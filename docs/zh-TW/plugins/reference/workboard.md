@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核工作看板外掛
-summary: 代理程式所負責議題與工作階段的儀表板工作看板。
+summary: 代理程式負責之議題與工作階段的儀表板工作看板。
 title: 工作看板外掛
 x-i18n:
-    generated_at: "2026-07-21T09:00:49Z"
+    generated_at: "2026-07-26T08:36:23Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # 工作看板外掛
 
-供代理程式負責的議題與工作階段使用的儀表板工作看板。
+用於代理程式所擁有議題與工作階段的儀表板工作看板。
 
-## 發布方式
+## 發行方式
 
 - 套件：`@openclaw/workboard`
-- 安裝途徑：隨 OpenClaw 提供
+- 安裝途徑：隨附於 OpenClaw
 
 ## 介面
 

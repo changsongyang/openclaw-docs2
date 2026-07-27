@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin مربوط به Meta هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin متعلق به Meta هستید
 summary: پشتیبانی از ارائه‌دهنده مدل Meta را به OpenClaw اضافه می‌کند.
 title: Plugin Meta
 x-i18n:
-    generated_at: "2026-07-16T16:56:11Z"
+    generated_at: "2026-07-27T16:51:10Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## توزیع
 
 - بسته: `@openclaw/meta-provider`
-- مسیر نصب: گنجانده‌شده در OpenClaw؛ npm؛ ClawHub: `clawhub:@openclaw/meta-provider`
+- مسیر نصب: همراه OpenClaw؛ npm؛ ClawHub: `clawhub:@openclaw/meta-provider`
 
 ## سطح
 

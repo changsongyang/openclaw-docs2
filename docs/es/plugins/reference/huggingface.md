@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin de Hugging Face
-summary: Añade compatibilidad con el proveedor de modelos Hugging Face a OpenClaw.
+summary: Añade compatibilidad con el proveedor de modelos Hugging Face en OpenClaw.
 title: Plugin de Hugging Face
 x-i18n:
-    generated_at: "2026-07-16T11:53:07Z"
+    generated_at: "2026-07-26T05:22:13Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

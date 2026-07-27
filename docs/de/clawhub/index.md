@@ -5,10 +5,10 @@ read_when:
     - Skills oder Plugins in der Registry veröffentlichen
     - Auswahl zwischen den CLI-Abläufen von OpenClaw und ClawHub
 sidebarTitle: ClawHub
-summary: Öffentlicher ClawHub-Überblick für Suche, Installation, Veröffentlichung, Sicherheit und die clawhub-CLI.
+summary: Öffentlicher ClawHub-Überblick für Suche, Installation, Veröffentlichung, Sicherheit und die clawhub CLI.
 title: ClawHub
 x-i18n:
-    generated_at: "2026-07-24T03:40:31Z"
+    generated_at: "2026-07-26T17:40:26Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -20,10 +20,10 @@ x-i18n:
 
 # ClawHub
 
-ClawHub ist die öffentliche Registry für OpenClaw-Skills und -Plugins.
+ClawHub ist das öffentliche Register für OpenClaw-Skills und -Plugins.
 
-- Verwenden Sie native `openclaw`-Befehle, um Skills zu suchen, zu installieren und zu aktualisieren sowie Plugins aus ClawHub zu installieren.
-- Verwenden Sie die separate `clawhub`-CLI für die Registry-Authentifizierung, die Veröffentlichung und Abläufe zum Löschen/Wiederherstellen.
+- Verwenden Sie native `openclaw`-Befehle, um Skills zu suchen, zu installieren und zu aktualisieren sowie Plugins von ClawHub zu installieren.
+- Verwenden Sie die separate `clawhub`-CLI für die Registerauthentifizierung, die Veröffentlichung und Abläufe zum Löschen/Wiederherstellen.
 
 Website: [clawhub.ai](https://clawhub.ai)
 
@@ -45,8 +45,7 @@ openclaw plugins install clawhub:<package>
 openclaw plugins update --all
 ```
 
-Installieren Sie die ClawHub-CLI, wenn Sie Registry-authentifizierte Abläufe wie das
-Veröffentlichen oder Löschen/Wiederherstellen verwenden möchten:
+Installieren Sie die ClawHub-CLI, wenn Sie registerauthentifizierte Abläufe wie das Veröffentlichen oder Löschen/Wiederherstellen verwenden möchten:
 
 ```bash
 npm i -g clawhub
@@ -54,17 +53,17 @@ npm i -g clawhub
 pnpm add -g clawhub
 ```
 
-## Was ClawHub hostet
+## Was ClawHub bereitstellt
 
-| Oberfläche     | Gespeicherte Inhalte                                          | Typischer Befehl                             |
-| -------------- | ------------------------------------------------------------ | -------------------------------------------- |
-| Skills         | Versionierte Textpakete mit `SKILL.md` sowie unterstützenden Dateien | `openclaw skills install @openclaw/demo`     |
-| Code-Plugins   | OpenClaw-Plugin-Pakete mit Kompatibilitätsmetadaten          | `openclaw plugins install clawhub:<package>` |
-| Bundle-Plugins | Paketierte Plugin-Bundles für die OpenClaw-Distribution      | `clawhub package publish <source>`           |
+| Oberfläche      | Gespeicherte Inhalte                                          | Typischer Befehl                             |
+| --------------- | ------------------------------------------------------------- | -------------------------------------------- |
+| Skills          | Versionierte Textpakete mit `SKILL.md` und unterstützenden Dateien | `openclaw skills install @openclaw/demo`     |
+| Code-Plugins    | OpenClaw-Plugin-Pakete mit Kompatibilitätsmetadaten           | `openclaw plugins install clawhub:<package>` |
+| Bundle-Plugins  | Paketierte Plugin-Bundles für die OpenClaw-Distribution       | `clawhub package publish <source>`           |
 
-ClawHub verfolgt SemVer-Versionen, Tags wie `latest`, Änderungsprotokolle, Dateien,
-Downloads, Sterne und Zusammenfassungen von Sicherheitsscans. Öffentliche Seiten zeigen den aktuellen Registry-
-Status, damit Benutzer einen Skill oder ein Plugin vor der Installation prüfen können.
+ClawHub erfasst Semver-Versionen, Tags wie `latest`, Änderungsprotokolle, Dateien,
+Downloads, Sterne und Zusammenfassungen von Sicherheitsscans. Öffentliche Seiten zeigen den aktuellen Registerstatus,
+damit Benutzer einen Skill oder ein Plugin vor der Installation prüfen können.
 
 ## Native OpenClaw-Abläufe
 
@@ -72,18 +71,18 @@ Native OpenClaw-Befehle installieren im aktiven OpenClaw-Arbeitsbereich und spei
 Quellmetadaten dauerhaft, damit spätere Aktualisierungsbefehle ClawHub weiterhin verwenden können.
 
 Verwenden Sie `clawhub:<package>`, wenn die Installation eines Plugins über ClawHub aufgelöst werden soll.
-Reine npm-kompatible Plugin-Spezifikationen können während Umstellungsphasen beim Start über npm aufgelöst werden, und
-`npm:<package>` bleibt ausschließlich für npm vorgesehen, wenn eine Quelle explizit angegeben werden muss.
+Einfache npm-kompatible Plugin-Spezifikationen können während Umstellungsphasen beim Start über npm aufgelöst werden, und
+`npm:<package>` bleibt ausschließlich für npm vorgesehen, wenn eine Quelle ausdrücklich angegeben werden muss.
 
-Plugin-Installationen validieren die angegebene Kompatibilität mit `pluginApi` und `minGatewayVersion`,
-bevor die Archivinstallation ausgeführt wird. Wenn für eine Paketversion ein
-ClawPack-Artefakt veröffentlicht wird, bevorzugt OpenClaw das exakt hochgeladene npm-pack-`.tgz`, überprüft
+Bei Plugin-Installationen wird die angegebene Kompatibilität mit `pluginApi` und `minGatewayVersion`
+validiert, bevor die Archivinstallation ausgeführt wird. Wenn eine Paketversion ein
+ClawPack-Artefakt veröffentlicht, bevorzugt OpenClaw das exakt hochgeladene npm-pack-`.tgz`, überprüft
 den ClawHub-Digest-Header und die heruntergeladenen Bytes und zeichnet Artefaktmetadaten für
 spätere Aktualisierungen auf.
 
 ## ClawHub-CLI
 
-Die ClawHub-CLI ist für Registry-authentifizierte Vorgänge vorgesehen:
+Die ClawHub-CLI ist für registerauthentifizierte Vorgänge vorgesehen:
 
 ```bash
 clawhub login
@@ -96,7 +95,7 @@ clawhub package publish your-org/your-plugin --dry-run
 clawhub package publish your-org/your-plugin
 ```
 
-Die CLI verfügt außerdem über Befehle zum Installieren und Aktualisieren von Skills für direkte Registry-Abläufe:
+Die CLI bietet außerdem Befehle zum Installieren und Aktualisieren von Skills für direkte Registerabläufe:
 
 ```bash
 clawhub install @openclaw/demo
@@ -106,9 +105,9 @@ clawhub list
 ```
 
 Diese Befehle installieren Skills unter `./skills` im aktuellen Arbeitsverzeichnis
-und zeichnen die installierten Versionen in `.clawhub/lock.json` auf.
+und zeichnen installierte Versionen in `.clawhub/lock.json` auf.
 
-## Veröffentlichung
+## Veröffentlichen
 
 Veröffentlichen Sie Skills aus einem lokalen Ordner, der `SKILL.md` enthält:
 
@@ -116,50 +115,50 @@ Veröffentlichen Sie Skills aus einem lokalen Ordner, der `SKILL.md` enthält:
 clawhub skill publish <path>
 ```
 
-Häufig verwendete Veröffentlichungsoptionen:
+Gängige Veröffentlichungsoptionen:
 
 - `--slug <slug>`: URL-Name des veröffentlichten Skills.
 - `--name <name>`: Anzeigename.
-- `--version <version>`: SemVer-Version.
+- `--version <version>`: Semver-Version.
 - `--changelog <text>`: Text des Änderungsprotokolls.
-- `--tags <tags>`: durch Kommas getrennte Tags; Standardwert ist `latest`.
+- `--tags <tags>`: durch Kommas getrennte Tags, standardmäßig `latest`.
 
-Veröffentlichen Sie Plugins aus einem lokalen Ordner, `owner/repo`, `owner/repo@ref` oder einer GitHub-
+Veröffentlichen Sie Plugins aus einem lokalen Ordner, aus `owner/repo`, `owner/repo@ref` oder über eine GitHub-
 URL:
 
 ```bash
 clawhub package publish <source>
 ```
 
-Verwenden Sie `--dry-run`, um den exakten Veröffentlichungsplan ohne Hochladen zu erstellen, und `--json`
+Verwenden Sie `--dry-run`, um den exakten Veröffentlichungsplan zu erstellen, ohne etwas hochzuladen, und `--json`
 für eine CI-freundliche Ausgabe.
 
 Code-Plugins müssen die erforderlichen OpenClaw-Kompatibilitätsmetadaten in
 `package.json` enthalten, einschließlich `openclaw.compat.pluginApi` und
-`openclaw.build.openclawVersion`. Eine vollständige Befehlsreferenz finden Sie unter [CLI](/de/clawhub/cli)
-und Informationen zu Skill-Metadaten unter [Skill-Format](/clawhub/skill-format).
+`openclaw.build.openclawVersion`. Die vollständige Befehlsreferenz finden Sie unter [CLI](/de/clawhub/cli),
+Informationen zu Skill-Metadaten unter [Skill-Format](/de/clawhub/skill-format).
 
 ## Sicherheit und Moderation
 
-ClawHub ist standardmäßig offen: Jeder kann Inhalte hochladen, die Veröffentlichung erfordert jedoch ein GitHub-
-Konto, das alt genug ist, um die Upload-Sperre zu passieren. Öffentliche Detailseiten fassen vor der Installation oder dem Download den
-aktuellen Scanstatus zusammen.
+ClawHub ist standardmäßig offen: Jeder kann Inhalte hochladen, aber für die Veröffentlichung ist ein GitHub-
+Konto erforderlich, das alt genug ist, um die Upload-Sperre zu passieren. Öffentliche Detailseiten fassen vor der Installation
+oder dem Download den aktuellen Scanstatus zusammen.
 
-ClawHub führt automatisierte Prüfungen für veröffentlichte Skills und Plugin-Releases durch. Wegen eines Scans zurückgehaltene
-oder gesperrte Releases können aus dem öffentlichen Katalog und den Installationsoberflächen verschwinden, bleiben jedoch
-für ihren Eigentümer in `/dashboard` sichtbar.
+ClawHub führt automatisierte Prüfungen veröffentlichter Skills und Plugin-Releases durch. Aufgrund eines Scans zurückgehaltene
+oder gesperrte Releases können aus dem öffentlichen Katalog und den Installationsoberflächen verschwinden, während
+sie für ihren Eigentümer in `/dashboard` sichtbar bleiben.
 
 Angemeldete Benutzer können Skills und Pakete melden. Moderatoren können Meldungen prüfen,
-Inhalte ausblenden oder wiederherstellen und missbräuchliche Konten sperren. Einzelheiten zu Richtlinien und Durchsetzung finden Sie unter
+Inhalte ausblenden oder wiederherstellen und missbräuchliche Konten sperren. Einzelheiten zu Richtlinien und deren Durchsetzung finden Sie unter
 [Sicherheit](/de/clawhub/security),
-[Sicherheitsaudits](/clawhub/security-audits),
-[Moderation und Kontosicherheit](/clawhub/moderation) und
+[Sicherheitsaudits](/de/clawhub/security-audits),
+[Moderation und Kontosicherheit](/de/clawhub/moderation) und
 [Zulässige Nutzung](/de/clawhub/acceptable-usage).
 
 ## Telemetrie und Umgebung
 
-Wenn Sie angemeldet `clawhub install` ausführen, kann die CLI nach bestem Bemühen ein
-Installationsereignis senden, damit ClawHub aggregierte Installationszahlen berechnen kann. Deaktivieren Sie dies mit:
+Wenn Sie angemeldet `clawhub install` ausführen, kann die CLI nach Möglichkeit
+ein Installationsereignis senden, damit ClawHub aggregierte Installationszahlen berechnen kann. Deaktivieren Sie dies mit:
 
 ```bash
 export CLAWHUB_DISABLE_TELEMETRY=1
@@ -170,10 +169,10 @@ Nützliche Umgebungsüberschreibungen:
 | Variable                      | Wirkung                                           |
 | ----------------------------- | ------------------------------------------------- |
 | `CLAWHUB_SITE`                | Überschreibt die für die Browseranmeldung verwendete Website-URL. |
-| `CLAWHUB_REGISTRY`            | Überschreibt die URL der Registry-API.            |
-| `CLAWHUB_CONFIG_PATH`         | Überschreibt den Speicherort des Token-/Konfigurationsstatus der CLI. |
+| `CLAWHUB_REGISTRY`            | Überschreibt die URL der Register-API.            |
+| `CLAWHUB_CONFIG_PATH`         | Überschreibt den Speicherort für den Token-/Konfigurationsstatus der CLI. |
 | `CLAWHUB_WORKDIR`             | Überschreibt das standardmäßige Arbeitsverzeichnis. |
 | `CLAWHUB_DISABLE_TELEMETRY=1` | Deaktiviert die Installationstelemetrie.          |
 
-Ausführlichere Referenzinformationen finden Sie unter [Telemetrie](/clawhub/telemetry), [HTTP-API](/clawhub/http-api) und
-[Fehlerbehebung](/clawhub/troubleshooting).
+Ausführlichere Referenzinformationen finden Sie unter [Telemetrie](/de/clawhub/telemetry), [HTTP-API](/de/clawhub/http-api) und
+[Fehlerbehebung](/de/clawhub/troubleshooting).

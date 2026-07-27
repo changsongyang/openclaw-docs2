@@ -1,10 +1,10 @@
 ---
 read_when:
-    - web-readability Pluginのインストール、設定、または監査を行っています
+    - web-readability Plugin のインストール、設定、または監査を行っています
 summary: ローカルの HTML Web フェッチレスポンスから、読みやすい記事コンテンツを抽出します。
 title: Web 可読性 Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:07:25Z"
+    generated_at: "2026-07-26T09:38:28Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,13 +16,13 @@ x-i18n:
 
 # Web Readability Plugin
 
-ローカルの HTML Web 取得レスポンスから、読みやすい記事コンテンツを抽出します。
+ローカルの HTML Web フェッチレスポンスから、読みやすい記事コンテンツを抽出します。
 
 ## 配布
 
 - パッケージ: `@openclaw/web-readability-plugin`
-- インストール方法: OpenClaw に同梱
+- インストール経路: OpenClaw に同梱
 
-## 提供機能
+## 公開範囲
 
 コントラクト: `webContentExtractors`

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - searxng Pluginをインストール、設定、または監査している場合
-summary: ウェブ検索プロバイダーのサポートを追加します。
+    - searxng Plugin のインストール、設定、または監査を行う場合。
+summary: Web 検索プロバイダーのサポートを追加します。
 title: SearXNG Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:06:28Z"
+    generated_at: "2026-07-26T09:54:13Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # SearXNG Plugin
 
-ウェブ検索プロバイダーのサポートを追加します。
+Web 検索プロバイダーのサポートを追加します。
 
 ## 配布
 
 - パッケージ: `@openclaw/searxng-plugin`
-- インストール経路: npm、ClawHub: `clawhub:@openclaw/searxng-plugin`
+- インストール経路: npm; ClawHub: `clawhub:@openclaw/searxng-plugin`
 
 ## サーフェス
 

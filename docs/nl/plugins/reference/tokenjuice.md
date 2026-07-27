@@ -4,7 +4,7 @@ read_when:
 summary: Comprimeert resultaten van de exec- en bash-tools met tokenjuice-reducers.
 title: Tokenjuice-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:20:49Z"
+    generated_at: "2026-07-27T06:04:14Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Tokenjuice-Plugin
+# Tokenjuice-plugin
 
 Comprimeert resultaten van exec- en bash-tools met Tokenjuice-reducers.
 

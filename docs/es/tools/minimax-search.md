@@ -1,12 +1,12 @@
 ---
 read_when:
     - Quieres usar MiniMax para web_search
-    - Necesitas una clave del plan de tokens de MiniMax o un token de OAuth
-    - Se necesita orientación sobre el host de búsqueda de MiniMax para China/global
-summary: Búsqueda de MiniMax mediante la API de búsqueda del Token Plan
+    - Necesita una clave de MiniMax Token Plan o un token de OAuth
+    - Quieres orientación sobre el host de búsqueda de MiniMax para China/global.
+summary: Búsqueda de MiniMax mediante la API de búsqueda del plan de tokens
 title: Búsqueda de MiniMax
 x-i18n:
-    generated_at: "2026-07-20T00:54:58Z"
+    generated_at: "2026-07-26T04:56:48Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -25,7 +25,7 @@ fragmentos y consultas relacionadas.
 <Steps>
   <Step title="Crear una clave">
     Cree o copie una clave de Token Plan de MiniMax desde
-    [la plataforma de MiniMax](https://platform.minimax.io/user-center/basic-information/interface-key).
+    [la plataforma MiniMax](https://platform.minimax.io/user-center/basic-information/interface-key).
     Las configuraciones de OAuth pueden reutilizar `MINIMAX_OAUTH_TOKEN` en su lugar.
   </Step>
   <Step title="Almacenar la clave">
@@ -39,9 +39,9 @@ fragmentos y consultas relacionadas.
 </Steps>
 
 OpenClaw también acepta `MINIMAX_CODING_API_KEY`, `MINIMAX_OAUTH_TOKEN` y
-`MINIMAX_API_KEY` como alias de variables de entorno, que se comprueban en ese orden después de
+`MINIMAX_API_KEY` como alias de variables de entorno, comprobados en ese orden después de
 `MINIMAX_CODE_PLAN_KEY`. `MINIMAX_API_KEY` debe apuntar a una credencial de
-Token Plan con la búsqueda habilitada; es posible que las claves de API de modelos MiniMax convencionales no sean aceptadas por
+Token Plan con la búsqueda habilitada; es posible que las claves de API normales de los modelos de MiniMax no sean aceptadas por
 el endpoint de búsqueda de Token Plan.
 
 ## Configuración
@@ -53,8 +53,8 @@ el endpoint de búsqueda de Token Plan.
       minimax: {
         config: {
           webSearch: {
-            apiKey: "sk-cp-...", // optional if a MiniMax Token Plan env var is set
-            region: "global", // or "cn"
+            apiKey: "sk-cp-...", // opcional si se establece una variable de entorno de Token Plan de MiniMax
+            region: "global", // o "cn"
           },
         },
       },
@@ -70,7 +70,7 @@ el endpoint de búsqueda de Token Plan.
 }
 ```
 
-**Alternativa mediante variables de entorno:** establezca `MINIMAX_CODE_PLAN_KEY`, `MINIMAX_CODING_API_KEY`,
+**Alternativa mediante el entorno:** establezca `MINIMAX_CODE_PLAN_KEY`, `MINIMAX_CODING_API_KEY`,
 `MINIMAX_OAUTH_TOKEN` o `MINIMAX_API_KEY` en el entorno del Gateway.
 Para una instalación del Gateway, inclúyala en `~/.openclaw/.env`.
 
@@ -92,8 +92,8 @@ la región en este orden:
 Esto significa que la incorporación para China o `MINIMAX_API_HOST=https://api.minimaxi.com/...`
 también mantiene automáticamente la búsqueda de MiniMax en el host de China.
 
-Incluso cuando MiniMax se autentica mediante la ruta OAuth `minimax-portal`,
-la búsqueda web se registra con el identificador de proveedor `minimax`; la URL base del proveedor OAuth
+Incluso si se autenticó en MiniMax mediante la ruta de OAuth `minimax-portal`,
+la búsqueda web sigue registrándose con el id. de proveedor `minimax`; la URL base del proveedor OAuth
 se utiliza como indicación de región para seleccionar el host de China o global, y `MINIMAX_OAUTH_TOKEN`
 puede proporcionar la credencial de portador para la búsqueda de MiniMax.
 

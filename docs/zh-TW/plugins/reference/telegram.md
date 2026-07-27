@@ -4,7 +4,7 @@ read_when:
 summary: 新增 Telegram 頻道介面，用於傳送及接收 OpenClaw 訊息。
 title: Telegram 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:53:56Z"
+    generated_at: "2026-07-26T07:51:48Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

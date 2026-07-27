@@ -1,12 +1,12 @@
 ---
 read_when:
     - Sie möchten ein Claude-Max-Abonnement mit OpenAI-kompatiblen Tools verwenden
-    - Sie möchten einen lokalen API-Server, der die Claude Code CLI umschließt.
-    - Sie möchten abonnementbasierten und API-Schlüssel-basierten Zugriff auf Anthropic vergleichen
-summary: Community-Proxy, um Claude-Abonnementanmeldedaten als OpenAI-kompatiblen Endpunkt bereitzustellen
+    - Sie möchten einen lokalen API-Server, der die Claude Code CLI umschließt
+    - Sie möchten abonnementbasierten mit API-Schlüssel-basiertem Anthropic-Zugriff vergleichen
+summary: Community-Proxy, um Anmeldedaten für ein Claude-Abonnement als OpenAI-kompatiblen Endpunkt bereitzustellen
 title: Claude-Max-API-Proxy
 x-i18n:
-    generated_at: "2026-07-24T04:52:20Z"
+    generated_at: "2026-07-26T18:43:06Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,41 +23,41 @@ Anthropic-API-Schlüssel verwenden können.
 
 <Warning>
 Nur technisch kompatibel, kein offiziell genehmigter Weg. Anthropic hat in der
-Vergangenheit bestimmte Abonnementnutzungen außerhalb von Claude Code blockiert;
-prüfen Sie die aktuellen Abrechnungsregeln von Anthropic, bevor Sie sich darauf
-verlassen.
+Vergangenheit bestimmte Nutzungen von Abonnements außerhalb von Claude Code
+blockiert; prüfen Sie die aktuellen Abrechnungsregeln von Anthropic, bevor Sie
+sich darauf verlassen.
 
-Die Claude-Code-Dokumentation von Anthropic beschreibt `claude -p` als
-Agent-SDK-/programmatische Nutzung. Laut dem Support-Update von Anthropic vom
-15\. Juni 2026 werden die Nutzung von Claude Agent SDK, `claude -p` und
-Drittanbieter-Apps auf die Nutzungslimits des angemeldeten Abonnements
-angerechnet (das zuvor angekündigte separate Guthabenmodell für das Agent SDK
-ist pausiert). Weitere Informationen finden Sie im Anthropic-Artikel zum
-[Agent-SDK-Tarif](https://support.claude.com/en/articles/15036540-use-the-claude-agent-sdk-with-your-claude-plan),
-in den Tarifartikeln zu [Pro/Max](https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan)
+Die Dokumentation zu Claude Code von Anthropic beschreibt `claude -p` als
+Agent-SDK-/programmgesteuerte Nutzung. Gemäß der Support-Aktualisierung von
+Anthropic vom 15. Juni 2026 werden Claude Agent SDK, `claude -p` und die
+Nutzung von Drittanbieter-Apps auf die Nutzungslimits des angemeldeten
+Abonnements angerechnet (der zuvor angekündigte separate Guthabenplan für das
+Agent SDK ist pausiert). Weitere Informationen finden Sie im Anthropic-Artikel
+zum [Agent-SDK-Plan](https://support.claude.com/en/articles/15036540-use-the-claude-agent-sdk-with-your-claude-plan),
+in den Planartikeln zu [Pro/Max](https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan)
 und [Team/Enterprise](https://support.claude.com/en/articles/11845131-use-claude-code-with-your-team-or-enterprise-plan)
-sowie unter [Anthropic-Provider](/de/providers/anthropic) für OpenClaws eigene
-Hinweise zur Abrechnung der Claude CLI.
+sowie unter [Anthropic-Provider](/de/providers/anthropic) mit den OpenClaw-eigenen
+Hinweisen zur Abrechnung der Claude CLI.
 </Warning>
 
 ## Gründe für die Verwendung
 
-| Ansatz                    | Abrechnungsweg                                  | Am besten geeignet für                          |
-| ------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| Anthropic-API-Schlüssel   | Tokenbasierte Abrechnung über Claude Console    | Produktiv-Apps, gemeinsam genutzte Automatisierung, hohes Volumen |
-| Claude-Abonnement-Proxy   | Tarif- und Guthabenregeln von Claude Code / `claude -p` | Persönliche Experimente mit kompatiblen Tools |
+| Ansatz                    | Abrechnungsweg                                  | Am besten geeignet für                            |
+| ------------------------- | ----------------------------------------------- | ------------------------------------------------- |
+| Anthropic-API-Schlüssel   | Tokenbasierte Abrechnung über die Claude Console | Produktionsanwendungen, gemeinsame Automatisierung, hohes Volumen |
+| Claude-Abonnement-Proxy   | Plan- und Guthabenregeln von Claude Code / `claude -p` | Persönliche Experimente mit kompatiblen Tools |
 
-Mit diesem Proxy kann ein Claude-Max- oder Pro-Abonnement mit
+Mit diesem Proxy kann ein Claude-Max- oder -Pro-Abonnement mit
 OpenAI-kompatiblen Tools verwendet werden. Es handelt sich nicht um einen
 unbegrenzten Pauschaltarif – es gelten die Nutzungslimits von Claude Code.
-API-Schlüssel bleiben für den Produktionseinsatz der eindeutigere
+API-Schlüssel bleiben für den Produktionseinsatz der transparentere
 Abrechnungsweg.
 
 ## Funktionsweise
 
 ```text
 Ihre App -> claude-max-api-proxy -> Claude Code CLI / claude -p -> Anthropic
-     (OpenAI-Format)               (konvertiert das Format)         (verwendet Ihre Anmeldung)
+     (OpenAI-Format)                  (konvertiert das Format)       (verwendet Ihre Anmeldung)
 ```
 
 Der Proxy startet die Claude Code CLI für jede Anfrage als Unterprozess,
@@ -100,8 +100,8 @@ im OpenAI-Format zurück (oder gibt sie direkt zurück).
 
   </Step>
   <Step title="OpenClaw konfigurieren">
-    Richten Sie OpenClaw auf den Proxy als benutzerdefinierten
-    OpenAI-kompatiblen Endpunkt aus:
+    Richten Sie OpenClaw so ein, dass der Proxy als benutzerdefinierter
+    OpenAI-kompatibler Endpunkt verwendet wird:
 
     ```json5
     {
@@ -121,12 +121,12 @@ im OpenAI-Format zurück (oder gibt sie direkt zurück).
 </Steps>
 
 <Note>
-Die folgenden Modell-IDs stammen aus dem eigenen Katalog des Proxys und sind
-nicht die Anthropic-Modellreferenzen von OpenClaw. Jede ID ist einem
-Modellalias der Claude Code CLI (`opus`, `sonnet`,
-`haiku`) zugeordnet. Das zugrunde liegende Modell ändert sich daher,
-wenn Anthropic diesen Alias in der CLI aktualisiert. Prüfen Sie die aktuelle
-README-Datei des Proxys, bevor Sie sich auf eine bestimmte Zuordnung verlassen.
+Die nachstehenden Modell-IDs gehören zum eigenen Katalog des Proxys und sind
+keine Anthropic-Modellreferenzen von OpenClaw. Jede ID ist einem Modellalias der
+Claude Code CLI (`opus`, `sonnet`, `haiku`)
+zugeordnet. Daher ändert sich das zugrunde liegende Modell, sobald Anthropic
+diesen Alias in der CLI aktualisiert. Prüfen Sie die aktuelle README-Datei des
+Proxys, bevor Sie sich auf eine bestimmte Zuordnung verlassen.
 </Note>
 
 | Modell-ID         | CLI-Alias | Aktuelle Zuordnung |
@@ -138,18 +138,18 @@ README-Datei des Proxys, bevor Sie sich auf eine bestimmte Zuordnung verlassen.
 ## Erweiterte Konfiguration
 
 <AccordionGroup>
-  <Accordion title="Hinweise zur OpenAI-kompatiblen Proxy-Nutzung">
-    Dabei wird die generische benutzerdefinierte OpenAI-kompatible Route
-    `/v1` von OpenClaw verwendet, derselbe Pfad wie bei jedem
+  <Accordion title="Hinweise zum OpenAI-kompatiblen Proxy">
+    Hierbei wird die generische benutzerdefinierte OpenAI-kompatible
+    `/v1`-Route von OpenClaw verwendet – derselbe Weg wie bei jedem
     anderen selbst gehosteten OpenAI-kompatiblen Backend:
 
-    - Die ausschließlich für natives OpenAI vorgesehene Anfrageformatierung wird nicht angewendet.
+    - Die ausschließlich für natives OpenAI vorgesehene Anfrageaufbereitung wird nicht angewendet.
     - `/fast` und `service_tier` gelten nur für direkten `api.anthropic.com`-Datenverkehr;
       Proxy-Routen lassen `service_tier` unverändert (siehe
       [Schnellmodus des Anthropic-Providers](/de/providers/anthropic#advanced-configuration)).
     - Keine Responses-`store`, Prompt-Cache-Hinweise oder
-      OpenAI-Reasoning-Kompatibilitätsformatierung der Nutzdaten.
-    - Die OpenAI-/Codex-Attributionsheader von OpenClaw (`originator`,
+      OpenAI-Reasoning-Kompatibilitätsaufbereitung der Nutzdaten.
+    - Die OpenAI-/Codex-Zuordnungs-Header von OpenClaw (`originator`,
       `version`, `User-Agent`) werden nur bei nativem
       `api.openai.com`-OAuth-Datenverkehr gesendet, nicht an benutzerdefinierte
       `OPENAI_BASE_URL`-Ziele wie diesen Proxy.
@@ -191,10 +191,10 @@ README-Datei des Proxys, bevor Sie sich auf eine bestimmte Zuordnung verlassen.
 
 ## Hinweise
 
-- Übernimmt das Verhalten von Claude Code für `claude -p`-Abrechnung, Nutzungsguthaben und Ratenbegrenzung.
-- Bindet ausschließlich an `127.0.0.1`; es werden keine Daten an Drittanbieterserver gesendet, abgesehen vom eigenen Aufruf der CLI an Anthropic.
+- Übernimmt das Abrechnungs-, Nutzungsguthaben- und Ratenbegrenzungsverhalten von Claude Code für `claude -p`.
+- Bindet ausschließlich an `127.0.0.1`; sendet außer dem eigenen CLI-Aufruf an Anthropic keine Daten an Drittanbieterserver.
 - Streaming-Antworten werden unterstützt.
-- Authentifizierungsfehler werden beim Start nicht geprüft und treten erst auf, wenn tatsächlich eine Chatanfrage ausgeführt wird. Wenn die CLI nicht authentifiziert ist, schlägt daher die erste Anfrage fehl, anstatt dass der Server den Start verweigert.
+- Authentifizierungsfehler werden beim Start nicht geprüft und treten erst auf, wenn tatsächlich eine Chatanfrage ausgeführt wird. Wenn die CLI nicht authentifiziert ist, schlägt daher voraussichtlich die erste Anfrage fehl, anstatt dass der Server den Start verweigert.
 
 <Note>
 Informationen zur nativen Anthropic-Integration mit der Claude CLI oder

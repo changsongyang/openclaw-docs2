@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw-QQ-Bot-Kanal-Plugin für Gruppen- und Direktnachrichten-Workflows.
 title: QQ-Bot-Plugin
 x-i18n:
-    generated_at: "2026-07-24T05:16:05Z"
+    generated_at: "2026-07-26T19:09:53Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -27,6 +27,6 @@ OpenClaw QQ-Bot-Kanal-Plugin für Gruppen- und Direktnachrichten-Workflows.
 
 Kanäle: `qqbot`; Verträge: `tools`; Skills
 
-## Verwandte Dokumentation
+## Zugehörige Dokumentation
 
 - [qqbot](/de/channels/qqbot)

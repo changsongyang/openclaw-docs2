@@ -1,10 +1,10 @@
 ---
 read_when:
-    - tlon pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
-summary: Sohbet iş akışları için OpenClaw Tlon/Urbit kanal plugini.
+    - tlon pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+summary: Sohbet iş akışları için OpenClaw Tlon/Urbit kanal Plugin'i.
 title: Tlon Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:32:19Z"
+    generated_at: "2026-07-26T23:29:09Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Tlon plugin
+# Tlon plugin’i
 
-Sohbet iş akışları için OpenClaw Tlon/Urbit kanal plugin'i.
+Sohbet iş akışları için OpenClaw Tlon/Urbit kanal plugin’i.
 
 ## Dağıtım
 
@@ -25,7 +25,7 @@ Sohbet iş akışları için OpenClaw Tlon/Urbit kanal plugin'i.
 
 ## Yüzey
 
-kanallar: `tlon`; skills
+kanallar: `tlon`; beceriler
 
 ## İlgili belgeler
 

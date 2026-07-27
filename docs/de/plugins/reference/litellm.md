@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das litellm-Plugin.
+    - Sie installieren, konfigurieren oder überprüfen das litellm-Plugin.
 summary: Fügt OpenClaw Unterstützung für den LiteLLM-Modell-Provider hinzu.
 title: LiteLLM-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:00:55Z"
+    generated_at: "2026-07-26T17:59:16Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -27,6 +27,6 @@ Fügt OpenClaw Unterstützung für den LiteLLM-Modell-Provider hinzu.
 
 Provider: `litellm`; Verträge: `imageGenerationProviders`
 
-## Zugehörige Dokumentation
+## Verwandte Dokumentation
 
 - [litellm](/de/providers/litellm)

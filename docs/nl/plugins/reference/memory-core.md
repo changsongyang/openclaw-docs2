@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de memory-core-plugin
-summary: Voegt tools toe die door agents kunnen worden aangeroepen.
+summary: Voegt hulpmiddelen toe die door agents kunnen worden aangeroepen.
 title: Memory Core-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:06:39Z"
+    generated_at: "2026-07-27T05:26:49Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Memory Core-Plugin
+# Memory Core-plugin
 
-Voegt tools toe die door agenten kunnen worden aangeroepen.
+Voegt door agents aanroepbare tools toe.
 
 ## Distributie
 
 - Pakket: `@openclaw/memory-core`
-- Installatieroute: inbegrepen bij OpenClaw
+- Installatieroute: opgenomen in OpenClaw
 
 ## Oppervlak
 

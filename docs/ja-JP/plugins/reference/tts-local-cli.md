@@ -4,7 +4,7 @@ read_when:
 summary: テキスト読み上げプロバイダーのサポートを追加します。
 title: TTS ローカル CLI Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:07:11Z"
+    generated_at: "2026-07-26T10:25:46Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,8 +21,8 @@ x-i18n:
 ## 配布
 
 - パッケージ: `@openclaw/tts-local-cli`
-- インストール方法: OpenClaw に同梱
+- インストール経路: OpenClaw に同梱
 
-## 提供範囲
+## サーフェス
 
 コントラクト: `speechProviders`

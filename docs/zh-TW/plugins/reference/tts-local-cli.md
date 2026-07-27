@@ -4,7 +4,7 @@ read_when:
 summary: 新增文字轉語音供應商支援。
 title: TTS 本機命令列介面外掛
 x-i18n:
-    generated_at: "2026-07-16T11:51:05Z"
+    generated_at: "2026-07-26T08:43:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,10 +18,10 @@ x-i18n:
 
 新增文字轉語音供應商支援。
 
-## 發行方式
+## 發行
 
 - 套件：`@openclaw/tts-local-cli`
-- 安裝方式：隨 OpenClaw 內附
+- 安裝方式：隨附於 OpenClaw
 
 ## 介面
 

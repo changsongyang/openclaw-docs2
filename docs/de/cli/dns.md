@@ -5,7 +5,7 @@ read_when:
 summary: CLI-Referenz für `openclaw dns` (Hilfsfunktionen für die Weitbereichserkennung)
 title: DNS
 x-i18n:
-    generated_at: "2026-07-24T04:50:37Z"
+    generated_at: "2026-07-26T18:22:20Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,12 +17,12 @@ x-i18n:
 
 # `openclaw dns`
 
-DNS-Hilfsfunktionen für die Weitbereichserkennung (Tailscale + CoreDNS). Derzeit nur macOS + Homebrew CoreDNS.
+DNS-Hilfsfunktionen für die Wide-Area-Erkennung (Tailscale + CoreDNS). Derzeit nur macOS + Homebrew CoreDNS.
 
 Verwandte Themen:
 
 - Gateway-Erkennung: [Erkennung](/de/gateway/discovery)
-- Konfiguration der Weitbereichserkennung: [Konfiguration](/de/gateway/configuration)
+- Konfiguration der Wide-Area-Erkennung: [Konfiguration](/de/gateway/configuration)
 
 ## `dns setup`
 
@@ -36,7 +36,7 @@ openclaw dns setup --apply
 
 | Option              | Wirkung                                                                              |
 | ------------------- | ----------------------------------------------------------------------------------- |
-| `--domain <domain>` | Domäne für die Weitbereichserkennung (zum Beispiel `openclaw.internal`).                       |
+| `--domain <domain>` | Domäne für die Wide-Area-Erkennung (zum Beispiel `openclaw.internal`).                       |
 | `--apply`           | CoreDNS-Konfiguration installieren/aktualisieren und den Dienst (neu) starten. Erfordert sudo, nur macOS. |
 
 Ohne `--domain` verwendet OpenClaw `discovery.wideArea.domain` aus der Konfiguration.
@@ -46,7 +46,7 @@ Ohne `--apply` gibt der Befehl nur Folgendes aus:
 - Aufgelöste Erkennungsdomäne und Pfad der Zonendatei
 - Aktuelle Tailnet-IPs
 - Empfohlene `openclaw.json`-Erkennungskonfiguration
-- Im Tailscale-Administrationsportal festzulegende Werte für Nameserver und Domäne von Tailscale Split DNS
+- In der Tailscale-Administrationskonsole festzulegende Werte für Nameserver und Domäne von Tailscale Split DNS
 
 Mit `--apply` (nur macOS, erfordert Homebrew CoreDNS):
 

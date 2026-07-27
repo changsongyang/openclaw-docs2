@@ -4,7 +4,7 @@ read_when:
 summary: 为 OpenClaw 添加 Kilocode 模型提供商支持。
 title: Kilocode 插件
 x-i18n:
-    generated_at: "2026-07-16T11:45:47Z"
+    generated_at: "2026-07-26T06:26:34Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## 分发
 
 - 软件包：`@openclaw/kilocode-provider`
-- 安装途径：npm；ClawHub：`clawhub:@openclaw/kilocode-provider`
+- 安装方式：npm；ClawHub：`clawhub:@openclaw/kilocode-provider`
 
 ## 接口
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## 相关文档
 
-- [kilocode](/zh-CN/providers/kilocode)
+- [Kilocode](/zh-CN/providers/kilocode)

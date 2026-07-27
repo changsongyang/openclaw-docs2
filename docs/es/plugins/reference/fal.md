@@ -4,7 +4,7 @@ read_when:
 summary: Añade compatibilidad con el proveedor de modelos fal a OpenClaw.
 title: Plugin fal
 x-i18n:
-    generated_at: "2026-07-16T11:51:28Z"
+    generated_at: "2026-07-26T05:50:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

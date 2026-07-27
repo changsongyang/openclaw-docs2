@@ -1,9 +1,9 @@
 ---
 read_when:
-    - Descripción de listados, versiones, instalaciones, publicación y moderación
+    - Comprender los listados, las versiones, las instalaciones, la publicación y la moderación
 summary: Cómo funcionan los listados, las versiones, las instalaciones, la publicación, los análisis y las actualizaciones de ClawHub.
 x-i18n:
-    generated_at: "2026-07-19T01:51:41Z"
+    generated_at: "2026-07-26T05:33:35Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,13 +15,13 @@ x-i18n:
 
 # Cómo funciona ClawHub
 
-ClawHub es la capa de registro para las Skills y los plugins de OpenClaw. Ofrece a los usuarios un
-lugar donde descubrir paquetes, a los editores un lugar donde publicar versiones y
-a OpenClaw los metadatos necesarios para instalar y actualizar esos paquetes de forma segura.
+ClawHub es la capa de registro para las Skills y los plugins de OpenClaw. Proporciona a los usuarios un
+lugar donde descubrir paquetes, a los publicadores un lugar donde publicar versiones y
+a OpenClaw los metadatos suficientes para instalar y actualizar esos paquetes de forma segura.
 
 ## Registros del registro
 
-Cada elemento público es un registro del registro que contiene:
+Cada ficha pública es un registro del registro que contiene:
 
 - un propietario y un slug o nombre de paquete
 - una o más versiones publicadas
@@ -30,33 +30,33 @@ Cada elemento público es un registro del registro que contiene:
 - señales de descargas, instalaciones y estrellas
 - estado del análisis de seguridad y la moderación
 
-La página del elemento es el lugar canónico donde los usuarios pueden examinar lo que una Skill o
-un plugin afirma hacer antes de instalarlo.
+La página de la ficha es el lugar canónico donde los usuarios pueden examinar lo que una Skill o un
+plugin afirma hacer antes de instalarlo.
 
 ## Skills
 
-Una Skill es un paquete de texto versionado centrado en `SKILL.md`. Puede incluir
+Una Skill es un paquete de texto con versiones centrado en `SKILL.md`. Puede incluir
 archivos auxiliares, ejemplos, plantillas y scripts.
 
 ClawHub lee el frontmatter de `SKILL.md` para conocer el nombre de la Skill,
-su descripción, requisitos, variables de entorno y metadatos. Es importante que los
-metadatos sean precisos, ya que ayudan a los usuarios a decidir si deben instalar la Skill y
-permiten que los análisis automatizados detecten discrepancias entre el comportamiento declarado y el observado.
+su descripción, requisitos, variables de entorno y metadatos. La precisión de los
+metadatos es importante porque ayuda a los usuarios a decidir si deben instalar la Skill y
+ayuda a los análisis automatizados a detectar discrepancias entre el comportamiento declarado y el observado.
 
-Consulte [Formato de las Skills](/clawhub/skill-format).
+Consulte [Formato de las Skills](/es/clawhub/skill-format).
 
 ## Plugins
 
-Los plugins son extensiones empaquetadas de OpenClaw. ClawHub almacena metadatos de los paquetes,
-información de compatibilidad, enlaces a las fuentes, artefactos y registros de versiones.
+Los plugins son extensiones empaquetadas de OpenClaw. ClawHub almacena los metadatos de los paquetes,
+la información de compatibilidad, los enlaces a las fuentes, los artefactos y los registros de versiones.
 
 Cuando OpenClaw instala un plugin desde ClawHub, comprueba los metadatos de compatibilidad
-anunciados antes de instalarlo. Los registros de los paquetes pueden incluir compatibilidad con la API,
+anunciados antes de instalarlo. Los registros de paquetes pueden incluir compatibilidad con la API,
 versión mínima del Gateway, hosts de destino, requisitos del entorno y resúmenes
 criptográficos de los artefactos.
 
-Utilice una fuente de instalación explícita de ClawHub cuando se quiera que el registro sea la
-fuente de verdad:
+Utilice una fuente de instalación explícita de ClawHub cuando quiera que el registro sea la
+fuente de referencia:
 
 ```bash
 openclaw plugins install clawhub:<package>
@@ -64,7 +64,7 @@ openclaw plugins install clawhub:<package>
 
 ## Publicación
 
-La publicación crea un nuevo registro de versión inmutable. Los editores utilizan la CLI
+La publicación crea un nuevo registro de versión inmutable. Los publicadores utilizan la CLI
 `clawhub` para los flujos de trabajo autenticados del registro:
 
 ```bash
@@ -85,9 +85,9 @@ openclaw skills install @openclaw/demo
 openclaw plugins install clawhub:<package>
 ```
 
-OpenClaw registra los metadatos de la fuente de instalación para que las actualizaciones puedan localizar posteriormente el mismo
-paquete del registro. La CLI de ClawHub también admite flujos de trabajo directos de instalación y
-actualización de Skills para los usuarios que quieran carpetas de Skills gestionadas por el registro fuera de un
+OpenClaw registra los metadatos de la fuente de instalación para que las actualizaciones puedan resolver posteriormente el mismo
+paquete del registro. La CLI de ClawHub también admite flujos de trabajo de instalación y
+actualización directa de Skills para los usuarios que quieran carpetas de Skills gestionadas por el registro fuera de un
 espacio de trabajo completo de OpenClaw.
 
 ## Estado de seguridad
@@ -96,17 +96,17 @@ ClawHub permite la publicación abierta, pero las versiones siguen estando sujet
 comprobaciones automatizadas, informes de los usuarios y medidas de los moderadores.
 
 Las páginas públicas muestran resúmenes de los análisis cuando están disponibles. El contenido retenido, oculto
-o bloqueado puede desaparecer de las búsquedas públicas y los flujos de instalación, aunque siga siendo
+o bloqueado puede desaparecer de la búsqueda pública y de los flujos de instalación, aunque siga siendo
 visible para el propietario con fines de diagnóstico.
 
-Consulte [Seguridad](/clawhub/security), [Auditorías de seguridad](/es/clawhub/security-audits),
-[Moderación y seguridad de la cuenta](/clawhub/moderation) y
-[Uso aceptable](/clawhub/acceptable-usage).
+Consulte [Seguridad](/es/clawhub/security), [Auditorías de seguridad](/es/clawhub/security-audits),
+[Moderación y seguridad de las cuentas](/es/clawhub/moderation) y
+[Uso aceptable](/es/clawhub/acceptable-usage).
 
-## Acceso mediante API
+## Acceso a la API
 
-ClawHub expone API públicas de lectura para el descubrimiento, la búsqueda, los detalles de los paquetes y
-las descargas. Los catálogos de terceros pueden utilizar estas API cuando incluyan un enlace al
-elemento canónico de ClawHub, respeten los límites de solicitudes y no den a entender que cuentan con respaldo.
+ClawHub ofrece API públicas de lectura para el descubrimiento, la búsqueda, los detalles de los paquetes y las
+descargas. Los catálogos de terceros pueden utilizar estas API si incluyen un enlace a la
+ficha canónica de ClawHub, respetan los límites de frecuencia y evitan dar a entender que cuentan con su respaldo.
 
-Consulte [API pública](/es/clawhub/api) y [API HTTP](/clawhub/http-api).
+Consulte [API pública](/es/clawhub/api) y [API HTTP](/es/clawhub/http-api).

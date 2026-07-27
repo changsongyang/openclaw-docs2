@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安装、配置或审计 tavily 插件
-summary: 添加智能体可调用的工具。添加 Web 搜索提供商支持。
+summary: 添加可由智能体调用的工具。添加 Web 搜索提供商支持。
 title: Tavily 插件
 x-i18n:
-    generated_at: "2026-07-16T11:47:45Z"
+    generated_at: "2026-07-26T06:58:01Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Tavily 插件
 
-添加智能体可调用的工具。添加 Web 搜索提供商支持。
+添加可由智能体调用的工具。添加 Web 搜索提供商支持。
 
 ## 分发
 
-- 软件包：`@openclaw/tavily-plugin`
-- 安装方式：npm；ClawHub：`clawhub:@openclaw/tavily-plugin`
+- 包：`@openclaw/tavily-plugin`
+- 安装途径：npm；ClawHub：`clawhub:@openclaw/tavily-plugin`
 
 ## 接口
 

@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप admin-http-rpc Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: OpenClaw एडमिन HTTP RPC एंडपॉइंट।
-title: एडमिन HTTP RPC Plugin
+summary: OpenClaw व्यवस्थापक HTTP RPC एंडपॉइंट।
+title: एडमिन Http Rpc Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:26:45Z"
+    generated_at: "2026-07-27T19:37:19Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

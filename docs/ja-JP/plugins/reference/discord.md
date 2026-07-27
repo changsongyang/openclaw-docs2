@@ -4,7 +4,7 @@ read_when:
 summary: チャンネル、DM、コマンド、アプリイベントに対応する OpenClaw Discord チャンネル Plugin。
 title: Discord Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:57:45Z"
+    generated_at: "2026-07-26T09:11:15Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # Discord Plugin
 
-チャンネル、DM、コマンド、アプリイベントに対応するOpenClaw DiscordチャンネルPlugin。
+チャンネル、DM、コマンド、アプリイベントに対応する OpenClaw Discord チャンネル Plugin。
 
 ## 配布
 
 - パッケージ: `@openclaw/discord`
-- インストール経路: npm、ClawHub
+- インストール方法: npm、ClawHub
 
-## サーフェス
+## 対応範囲
 
 チャンネル: `discord`、コントラクト: `tools`、`transcriptSourceProviders`、Skills
 

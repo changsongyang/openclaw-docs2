@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安装、配置或审计 Signal 插件
-summary: 添加 Signal 渠道功能，用于发送和接收 OpenClaw 消息。
+summary: 新增 Signal 渠道界面，用于发送和接收 OpenClaw 消息。
 title: Signal 插件
 x-i18n:
-    generated_at: "2026-07-16T11:47:29Z"
+    generated_at: "2026-07-26T05:56:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Signal 插件
 
-添加用于发送和接收 OpenClaw 消息的 Signal 渠道界面。
+添加 Signal 渠道界面，用于发送和接收 OpenClaw 消息。
 
 ## 分发
 
 - 软件包：`@openclaw/signal`
-- 安装途径：npm；ClawHub：`clawhub:@openclaw/signal`
+- 安装方式：npm；ClawHub：`clawhub:@openclaw/signal`
 
 ## 界面
 

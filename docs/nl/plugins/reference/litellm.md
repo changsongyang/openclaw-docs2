@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de litellm-plugin
 summary: Voegt ondersteuning voor de LiteLLM-modelprovider toe aan OpenClaw.
-title: LiteLLM-plugin
+title: LiteLLM-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:15:22Z"
+    generated_at: "2026-07-27T05:09:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

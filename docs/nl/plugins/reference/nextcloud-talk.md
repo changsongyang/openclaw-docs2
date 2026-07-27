@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de nextcloud-talk-plugin
 summary: OpenClaw Nextcloud Talk-kanaalplugin voor gesprekken.
-title: Nextcloud Talk-Plugin
+title: Nextcloud Talk-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:16:23Z"
+    generated_at: "2026-07-27T05:16:16Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

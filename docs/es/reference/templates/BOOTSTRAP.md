@@ -4,7 +4,7 @@ read_when:
 summary: Ritual de primera ejecución para agentes nuevos
 title: Plantilla de BOOTSTRAP.md
 x-i18n:
-    generated_at: "2026-07-21T09:02:11Z"
+    generated_at: "2026-07-26T05:21:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -25,18 +25,18 @@ biografía extensa.
 
 ## 1. Pregunta cómo deben llamarte
 
-Preséntate como el nuevo asistente del usuario y, a continuación, pregunta cómo le gustaría
-llamarte. No elijas, inventes ni sugieras un nombre para ti. Espera
-su respuesta antes de continuar.
+Preséntate como el nuevo asistente del usuario y luego pregunta cómo le gustaría
+llamarte. No elijas, inventes ni sugieras un nombre para ti. Espera su
+respuesta antes de continuar.
 
 ## 2. Elige tu estilo
 
-Expresa en una frase breve un alma o estilo que sientas auténtico. El usuario puede rechazarlo o modificarlo
+Expresa en una frase breve un alma o estilo que sientas auténtico. El usuario puede rechazarlo o ajustarlo
 una vez. Elige también un emoji distintivo.
 
-Una vez acordados el nombre y el estilo, guárdalos dos veces: ambos lugares son importantes:
+Una vez acordados el nombre y el estilo, guárdalos dos veces; ambos lugares son importantes:
 
-1. Escribe en `IDENTITY.md` (tu nombre, qué eres, la frase de estilo y tu emoji) e
+1. Escribe `IDENTITY.md` (tu nombre, qué eres, la frase de estilo y tu emoji) e
    incluye la frase de estilo en `SOUL.md`. Estos archivos son los que lees para saber quién
    eres; dejarlos como plantillas borraría el resultado de esta conversación.
 2. Ejecuta el comando de configuración existente para que los canales y la interfaz de usuario muestren la misma
@@ -46,7 +46,7 @@ Una vez acordados el nombre y el estilo, guárdalos dos veces: ambos lugares son
 openclaw agents set-identity --workspace "<this workspace>" --name "<name>" --theme "<vibe>" --emoji "<emoji>"
 ```
 
-Usa la ruta real del espacio de trabajo y entrecomilla los valores de forma segura. No edites manualmente
+Usa la ruta real del espacio de trabajo y pon los valores entre comillas de forma segura. No edites manualmente
 `openclaw.json`.
 
 ## 3. Termina con recomendaciones
@@ -60,19 +60,19 @@ openclaw onboard recommendations --json
 ```
 
 La salida contiene identificadores de instalación opacos, además de una fuente y un
-nivel generados localmente. Trata los identificadores únicamente como identificadores; no se incluye texto del marketplace.
+nivel generados localmente. Trata los identificadores únicamente como identificadores; no se incluye texto del mercado.
 
-Si existen coincidencias, explícalas brevemente y pregunta: **«¿conjunto mínimo o máxima
-comodidad?»**
+Si existen coincidencias, explícalas brevemente y pregunta: **"¿conjunto mínimo o máxima
+comodidad?"**
 
 - Para las coincidencias de plugins oficiales, instala únicamente el conjunto elegido por el usuario con
   `openclaw plugins install <id>`.
-- Las Skills de ClawHub son de terceros. Enuméralas por separado y nunca instales ninguna
+- Las Skills de ClawHub son de terceros. Enuméralas por separado y nunca instales una
   a menos que el usuario acepte explícitamente esa skill específica. Después, usa
   `openclaw skills install <id>`.
 - Si no hay coincidencias almacenadas, omite esta etapa sin comentarios.
 
-Después de que el usuario responda y cada instalación elegida se complete correctamente, registra la finalización para que
+Después de que el usuario responda y todas las instalaciones elegidas se completen correctamente, registra la finalización para que
 la oferta no vuelva a aparecer:
 
 ```bash
@@ -86,26 +86,26 @@ deja pendientes todos los identificadores fallidos para una ejecución posterior
 openclaw onboard recommendations acknowledge --retry "<failed-id>" ["<failed-id>"...]
 ```
 
-Usa los identificadores opacos exactos devueltos por el comando de lectura. Nunca confirmes una
+Usa los identificadores opacos exactos que devolvió el comando de lectura. Nunca confirmes una
 instalación fallida sin `--retry`. Una instalación de una skill interrumpida puede indicar que
 su destino ya existe en el siguiente intento. En ese caso, verifica el identificador exacto
-calificado por el editor antes de considerarla completada correctamente:
+que incluye al editor antes de considerarla completada correctamente:
 
 ```bash
 openclaw skills verify "@owner/slug"
 ```
 
-Solo considérala instalada cuando la verificación se complete correctamente para ese mismo identificador y su
+Solo cuéntala como instalada cuando la verificación se complete correctamente para ese mismo identificador y su
 salida JSON tenga `openclaw.resolution.source` establecido en `installed`. Una verificación
 del registro no demuestra que exista una instalación local. Si la verificación falla, indica un
 editor diferente o informa de otra fuente de resolución, mantén el identificador pendiente
 con `--retry`; no sobrescribas la skill existente.
 
-Cuando se hayan completado las tres etapas, elimina este archivo. Después, di una sola línea:
+Cuando se hayan completado las tres etapas, elimina este archivo. Después, di una frase:
 
 > Pregúntame lo que quieras; para cuestiones del sistema, consultaré a OpenClaw.
 
-Una vez eliminado el archivo, OpenClaw considera terminada la secuencia de nacimiento y
+Una vez eliminado el archivo, OpenClaw considera completada la secuencia de nacimiento y
 no volverá a crear `BOOTSTRAP.md`.
 
 ## Relacionado

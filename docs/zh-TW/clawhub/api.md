@@ -2,9 +2,9 @@
 read_when:
     - 建置 API 用戶端
     - 新增端點或結構描述
-summary: 公開 REST API（v1）概覽與慣例。
+summary: 公開 REST API（v1）概觀與慣例。
 x-i18n:
-    generated_at: "2026-07-19T13:40:03Z"
+    generated_at: "2026-07-26T07:44:35Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,35 +16,35 @@ x-i18n:
 
 # API v1
 
-基底：`https://clawhub.ai`
+基礎位址：`https://clawhub.ai`
 
 OpenAPI：`/api/v1/openapi.json`
 
 ## 公開目錄重用
 
-你可以在 ClawHub 的公開唯讀 API 之上建置第三方目錄、索引或搜尋介面。公開的 Skill 中繼資料與 Skill 檔案依 ClawHub 的 Skill 授權規則發布，而 API 本身設有速率限制，應負責任地使用。
+你可以在 ClawHub 的公開唯讀 API 上建置第三方目錄、索引或搜尋介面。公開的 Skill 中繼資料與 Skill 檔案依 ClawHub 的 Skill 授權規則發布，而 API 本身有速率限制，應以負責任的方式使用。
 
-指南：
+準則：
 
 - 使用公開唯讀端點（例如 `GET /api/v1/skills`、`GET /api/v1/search` 和 `GET /api/v1/skills/{slug}`）取得目錄清單。
-- 快取回應，並遵循 `429`、`Retry-After` 和速率限制標頭，而非密集輪詢。
-- 顯示清單時，連結回 ClawHub 的標準 Skill URL，讓使用者可以查看來源登錄記錄。
+- 快取回應，並遵循 `429`、`Retry-After` 和速率限制標頭，而非頻繁輪詢。
+- 顯示清單時連結回 ClawHub Skill 的標準 URL，讓使用者可以查看來源登錄記錄。
 - 使用格式為 `https://clawhub.ai/<owner>/skills/<slug>` 的標準頁面 URL。
 - 不得暗示 ClawHub 認可、驗證或營運該第三方網站。
-- 不得繞過公開 API 篩選條件或驗證邊界，以鏡像隱藏、私人或遭內容審核封鎖的內容。
+- 不得透過繞過公開 API 篩選條件或驗證邊界，鏡像隱藏、私人或遭內容管理封鎖的內容。
 
 ## 驗證
 
-- 公開讀取：不需要權杖。
-- 寫入 + 帳號：`Authorization: Bearer clh_...`。
+- 公開唯讀：不需要權杖。
+- 寫入與帳戶：`Authorization: Bearer clh_...`。
 
 ## 速率限制
 
 依驗證狀態執行限制：
 
-- 匿名請求：依 IP。
-- 已驗證的請求（有效的 Bearer 權杖）：依使用者配額。
-- 缺少或無效的權杖會退回依 IP 執行限制。
+- 匿名要求：依 IP。
+- 已驗證要求（有效的 Bearer 權杖）：依使用者配額。
+- 缺少或無效的權杖會改用 IP 限制。
 
 - 讀取：每個 IP 每分鐘 3000 次，每個金鑰每分鐘 12000 次
 - 寫入：每個 IP 每分鐘 300 次，每個金鑰每分鐘 3000 次
@@ -57,8 +57,8 @@ OpenAPI：`/api/v1/openapi.json`
 
 - `X-RateLimit-Reset`：Unix 紀元秒數（絕對重設時間）
 - `RateLimit-Reset`：距離重設的延遲秒數
-- `X-RateLimit-Remaining` / `RateLimit-Remaining`：存在時代表確切的剩餘配額；分片處理的成功請求會省略此值，而非傳回近似的全域值
-- `Retry-After`：收到 `429` 時應等待的延遲秒數
+- `X-RateLimit-Remaining` / `RateLimit-Remaining`：若存在，表示確切的剩餘配額；分片處理的成功要求會省略此值，而不會傳回近似的全域值
+- `Retry-After`：遇到 `429` 時應等待的延遲秒數
 
 `429` 範例：
 
@@ -75,31 +75,31 @@ retry-after: 34
 
 用戶端處理方式：
 
-- 若存在，優先使用 `Retry-After`。
-- 否則使用 `RateLimit-Reset`，或根據 `X-RateLimit-Reset` 計算延遲。
-- 為重試加入隨機抖動。
+- 若有 `Retry-After`，優先使用。
+- 否則使用 `RateLimit-Reset`，或根據 `X-RateLimit-Reset` 計算延遲時間。
+- 重試時加入隨機抖動。
 
 ## 錯誤
 
-- v1 錯誤為純文字（`text/plain; charset=utf-8`），包括 `400`、`401`、`403`、`404`、`429`，以及下載遭封鎖的回應。
-- 為了相容性，未知的查詢參數會被忽略。
+- v1 錯誤為純文字（`text/plain; charset=utf-8`），包括 `400`、`401`、`403`、`404`、`429` 和遭封鎖的下載回應。
+- 為維持相容性，未知的查詢參數會被忽略。
 - 已知的查詢參數若包含無效值，會傳回 `400`。
 
 ## 端點
 
-公開讀取：
+公開唯讀：
 
 - `GET /api/v1/search?q=...`
   - 選用篩選條件：`highlightedOnly=true`、`nonSuspiciousOnly=true`
   - 舊版別名：`nonSuspicious=true`
 - `GET /api/v1/skills?limit=&cursor=&sort=`
-  - `sort`：`updated`（預設）、`recommended`（`default`）、`createdAt`（`newest`）、`downloads`、`stars`（`rating`）；舊版安裝別名 `installsCurrent`/`installs`/`installsAllTime` 對應至 `downloads`、`trending`
+  - `sort`：`updated`（預設）、`recommended`（`default`）、`createdAt`（`newest`）、`downloads`、`stars`（`rating`），舊版安裝別名 `installsCurrent`/`installs`/`installsAllTime` 會對應至 `downloads`、`trending`
   - 無效的 `sort` 值會傳回 `400`
   - `cursor` 適用於非 `trending` 排序
   - 選用篩選條件：`nonSuspiciousOnly=true`
   - 舊版別名：`nonSuspicious=true`
-  - 使用 `nonSuspiciousOnly=true` 時，以游標為基礎的頁面所含項目可能少於 `limit` 個；請使用 `nextCursor` 繼續。
-  - `recommended` 使用互動度和時效性訊號。
+  - 使用 `nonSuspiciousOnly=true` 時，游標分頁所含項目可能少於 `limit` 個；請使用 `nextCursor` 繼續。
+  - `recommended` 使用互動度和近期性訊號。
 - `GET /api/v1/skills/{slug}`
 - `GET /api/v1/skills/{slug}/moderation`
 - `GET /api/v1/skills/{slug}/versions?limit=&cursor=`
@@ -108,16 +108,16 @@ retry-after: 34
 - `GET /api/v1/skills/{slug}/file?path=&version=&tag=`
 - `GET /api/v1/resolve?slug=&hash=`
 - `GET /api/v1/download?slug=&version=&tag=`
-  - 託管的 Skill 會傳回確定性的 ZIP 位元組。
-  - 目前由 GitHub 支援且掃描結果為 `clean` 或 `suspicious` 的 Skill，會傳回 JSON `public-github` 移交描述元，而非 ClawHub 位元組。
+  - 託管的 Skill 會傳回可重現的 ZIP 位元組。
+  - 目前由 GitHub 支援且掃描結果為 `clean` 或 `suspicious` 的 Skill，會傳回 JSON `public-github` 轉交描述元，而非 ClawHub 位元組。
 - `GET /api/v1/skills/export?startDate=&endDate=&limit=&cursor=`
-  - 託管的 Skill 會以已儲存檔案的形式匯出。
-  - 目前由 GitHub 支援且掃描結果為 `clean` 或 `suspicious` 的 Skill，會以 `public-github` 移交描述元的形式匯出。
+  - 託管的 Skill 會以儲存時的檔案形式匯出。
+  - 目前由 GitHub 支援且掃描結果為 `clean` 或 `suspicious` 的 Skill，會匯出為 `public-github` 轉交描述元。
 - `GET /api/v1/packages?limit=&cursor=&sort=`
-  - `sort`：`updated`（預設）、`recommended`、`downloads`、舊版別名 `installs`
+  - `sort`：`updated`（預設）、`recommended`、`downloads`，舊版別名 `installs`
   - 無效的 `sort` 值會傳回 `400`
 - `GET /api/v1/plugins?limit=&cursor=&sort=`
-  - `sort`：`recommended`（預設）、`downloads`、`updated`、舊版別名 `installs`
+  - `sort`：`recommended`（預設）、`downloads`、`updated`，舊版別名 `installs`
 - `GET /api/v1/plugins/search?q=...`
 - `GET /api/v1/packages/{name}/versions/{version}/artifact`
 - `GET /api/v1/packages/{name}/versions/{version}/security`
@@ -147,7 +147,7 @@ retry-after: 34
 
 僅限管理員：
 
-- `POST /api/v1/users/reserve` 會為擁有者代號保留根層級 slug 和私人、無發行版本的套件預留位置。
+- `POST /api/v1/users/reserve` 會為擁有者控制代碼保留根層級 slug 和沒有發行版本的私人套件預留位置。
 
 ## 舊版
 

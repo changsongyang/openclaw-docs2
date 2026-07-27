@@ -4,7 +4,7 @@ read_when:
 summary: Voegt het iMessage-kanaal toe voor het verzenden en ontvangen van OpenClaw-berichten.
 title: iMessage-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:18:59Z"
+    generated_at: "2026-07-27T06:27:58Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Voegt het iMessage-kanaaloppervlak toe voor het verzenden en ontvangen van OpenC
 ## Distributie
 
 - Pakket: `@openclaw/imessage`
-- Installatieroute: opgenomen in OpenClaw
+- Installatieroute: inbegrepen bij OpenClaw
 
 ## Oppervlak
 

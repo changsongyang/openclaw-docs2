@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw में SGLang मॉडल प्रदाता का समर्थन जोड़ता है।
 title: SGLang Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:08:15Z"
+    generated_at: "2026-07-27T21:31:11Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

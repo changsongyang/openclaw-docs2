@@ -4,7 +4,7 @@ read_when:
 summary: Voegt ondersteuning voor de DeepSeek-modelprovider toe aan OpenClaw.
 title: DeepSeek-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:18:09Z"
+    generated_at: "2026-07-27T05:41:31Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

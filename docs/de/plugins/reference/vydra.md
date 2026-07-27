@@ -1,10 +1,10 @@
 ---
 read_when:
     - Sie installieren, konfigurieren oder prüfen das vydra-Plugin.
-summary: Fügt OpenClaw Unterstützung für den Vydra-Modell-Provider hinzu.
+summary: Fügt Unterstützung für den Vydra-Modell-Provider zu OpenClaw hinzu.
 title: Vydra-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:00:45Z"
+    generated_at: "2026-07-26T17:59:04Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -29,4 +29,4 @@ Provider: `vydra`; Verträge: `imageGenerationProviders`, `speechProviders`, `vi
 
 ## Zugehörige Dokumentation
 
-- [Vydra](/de/providers/vydra)
+- [vydra](/de/providers/vydra)

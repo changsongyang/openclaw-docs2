@@ -1,10 +1,10 @@
 ---
 read_when:
     - memory-wiki Pluginをインストール、設定、または監査している場合
-summary: OpenClaw向けの永続的なWikiコンパイラ兼Obsidian対応ナレッジ保管庫。
+summary: OpenClaw向けの永続的なWikiコンパイラー兼Obsidian対応ナレッジ保管庫。
 title: Memory Wiki Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:58:51Z"
+    generated_at: "2026-07-26T09:53:38Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # Memory Wiki Plugin
 
-OpenClaw向けの永続的なWikiコンパイラー兼Obsidian対応ナレッジ保管庫。
+OpenClaw 向けの永続 Wiki コンパイラー兼 Obsidian 対応ナレッジ保管庫。
 
 ## 配布
 
 - パッケージ: `@openclaw/memory-wiki`
-- インストール方法: OpenClawに同梱
+- インストール方法: OpenClaw に同梱
 
-## 提供機能
+## サーフェス
 
 コントラクト: `tools`; Skills
 

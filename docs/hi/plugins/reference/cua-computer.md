@@ -4,7 +4,7 @@ read_when:
 summary: Windows और Linux Node होस्ट के लिए प्रायोगिक cua-driver कंप्यूटर नियंत्रण।
 title: Cua Computer Plugin
 x-i18n:
-    generated_at: "2026-07-22T04:36:14Z"
+    generated_at: "2026-07-27T18:18:19Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

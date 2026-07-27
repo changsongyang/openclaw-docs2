@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Je installeert, configureert of controleert de Plugin vercel-ai-gateway
+    - Je installeert, configureert of controleert de vercel-ai-gateway-plugin
 summary: Voegt ondersteuning voor de Vercel AI Gateway-modelprovider toe aan OpenClaw.
 title: Vercel AI Gateway-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:08:02Z"
+    generated_at: "2026-07-27T05:42:58Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Vercel AI Gateway-plugin
 
-Voegt ondersteuning voor de Vercel AI Gateway-modelprovider toe aan OpenClaw.
+Voegt ondersteuning voor Vercel AI Gateway als modelprovider toe aan OpenClaw.
 
 ## Distributie
 

@@ -2,10 +2,10 @@
 read_when:
     - Sie möchten einen einzigen API-Schlüssel für viele LLMs
     - Sie benötigen eine Anleitung zur Einrichtung von Baidu Qianfan
-summary: Verwenden Sie die einheitliche API von Qianfan, um auf viele Modelle in OpenClaw zuzugreifen
+summary: Verwenden Sie die einheitliche API von Qianfan, um in OpenClaw auf zahlreiche Modelle zuzugreifen
 title: Qianfan
 x-i18n:
-    generated_at: "2026-07-24T04:38:37Z"
+    generated_at: "2026-07-26T18:35:22Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -20,14 +20,14 @@ Qianfan ist Baidus MaaS-Plattform: eine einheitliche, OpenAI-kompatible API, die
 | Eigenschaft   | Wert                                     |
 | ------------- | ---------------------------------------- |
 | Provider      | `qianfan`                       |
-| Authentifizierung | `QIANFAN_API_KEY`                  |
+| Authentifizierung | `QIANFAN_API_KEY`                   |
 | API           | OpenAI-kompatibel (`openai-completions`)   |
 | Basis-URL     | `https://qianfan.baidubce.com/v2`                       |
 | Standardmodell | `qianfan/deepseek-v3.2`                      |
 
 ## Plugin installieren
 
-Installieren Sie das offizielle Plugin und starten Sie anschließend das Gateway neu:
+Installieren Sie das offizielle Plugin und starten Sie anschließend den Gateway neu:
 
 ```bash
 openclaw plugins install @openclaw/qianfan-provider
@@ -37,10 +37,10 @@ openclaw gateway restart
 ## Erste Schritte
 
 <Steps>
-  <Step title="Baidu-Cloud-Konto erstellen">
-    Registrieren Sie sich bei der [Qianfan-Konsole](https://console.bce.baidu.com/qianfan/ais/console/apiKey) oder melden Sie sich dort an und stellen Sie sicher, dass der Qianfan-API-Zugriff für Sie aktiviert ist.
+  <Step title="Ein Baidu-Cloud-Konto erstellen">
+    Registrieren Sie sich in der [Qianfan-Konsole](https://console.bce.baidu.com/qianfan/ais/console/apiKey) oder melden Sie sich dort an und stellen Sie sicher, dass der Qianfan-API-Zugriff für Sie aktiviert ist.
   </Step>
-  <Step title="API-Schlüssel generieren">
+  <Step title="Einen API-Schlüssel generieren">
     Erstellen Sie eine neue Anwendung oder wählen Sie eine vorhandene aus und generieren Sie anschließend einen API-Schlüssel. Baidu-Cloud-Schlüssel verwenden das Format `bce-v3/ALTAK-...`.
   </Step>
   <Step title="Onboarding ausführen">
@@ -49,8 +49,8 @@ openclaw gateway restart
     ```
 
     Nicht interaktive Ausführungen lesen den Schlüssel aus `--qianfan-api-key <key>` oder
-    `QIANFAN_API_KEY`. Das Onboarding schreibt die Provider-Konfiguration, fügt den Alias
-    `QIANFAN` für das Standardmodell hinzu und legt `qianfan/deepseek-v3.2`
+    `QIANFAN_API_KEY`. Das Onboarding schreibt die Provider-Konfiguration, fügt den
+    Alias `QIANFAN` für das Standardmodell hinzu und legt `qianfan/deepseek-v3.2`
     als Standardmodell fest, wenn keines konfiguriert ist.
 
   </Step>
@@ -63,10 +63,10 @@ openclaw gateway restart
 
 ## Integrierter Katalog
 
-| Modellreferenz                       | Eingabe     | Kontext | Maximale Ausgabe | Reasoning | Hinweise       |
-| ------------------------------------ | ----------- | ------- | ---------------- | --------- | -------------- |
+| Modellreferenz                       | Eingabe     | Kontext | Maximale Ausgabe | Reasoning | Hinweise      |
+| ------------------------------------ | ----------- | ------- | ---------------- | --------- | ------------- |
 | `qianfan/deepseek-v3.2`                   | Text        | 98,304  | 32,768           | Ja        | Standardmodell |
-| `qianfan/ernie-5.0-thinking-preview`                   | Text, Bild  | 119,000 | 64,000           | Ja        | Multimodal     |
+| `qianfan/ernie-5.0-thinking-preview`                   | Text, Bild  | 119,000 | 64,000           | Ja        | Multimodal    |
 
 Der Katalog ist statisch; es gibt keine Live-Modellerkennung.
 
@@ -124,12 +124,12 @@ Modellreferenzen verwenden das Präfix `qianfan/` (zum Beispiel `qianfan/deepsee
 
 <AccordionGroup>
   <Accordion title="Transport und Kompatibilität">
-    Qianfan verwendet den OpenAI-kompatiblen Transportpfad und nicht die native Formung von OpenAI-Anfragen. Standardfunktionen des OpenAI SDK funktionieren, providerspezifische Parameter werden jedoch möglicherweise nicht weitergeleitet.
+    Qianfan verwendet den OpenAI-kompatiblen Transportpfad und nicht die native Formgebung von OpenAI-Anfragen. Standardfunktionen des OpenAI SDK funktionieren, providerspezifische Parameter werden jedoch möglicherweise nicht weitergeleitet.
   </Accordion>
 
   <Accordion title="Fehlerbehebung">
     - Stellen Sie sicher, dass Ihr API-Schlüssel mit `bce-v3/ALTAK-` beginnt und der Qianfan-API-Zugriff in der Baidu-Cloud-Konsole aktiviert ist.
-    - Wenn keine Modelle aufgeführt werden, prüfen Sie, ob der Qianfan-Dienst für Ihr Konto aktiviert ist.
+    - Wenn keine Modelle aufgeführt werden, vergewissern Sie sich, dass der Qianfan-Dienst für Ihr Konto aktiviert ist.
     - Ändern Sie die Basis-URL nur, wenn Sie einen benutzerdefinierten Endpunkt oder Proxy verwenden.
 
   </Accordion>

@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安装、配置或审计 amazon-bedrock 插件
-summary: OpenClaw Amazon Bedrock 提供商插件，支持模型发现、嵌入和防护机制。
+summary: 支持模型发现、嵌入和护栏功能的 OpenClaw Amazon Bedrock 提供商插件。
 title: Amazon Bedrock 插件
 x-i18n:
-    generated_at: "2026-07-16T11:44:01Z"
+    generated_at: "2026-07-26T06:56:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

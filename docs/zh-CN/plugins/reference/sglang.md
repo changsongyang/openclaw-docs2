@@ -1,10 +1,10 @@
 ---
 read_when:
-    - 你正在安装、配置或审计 sglang 插件
+    - 你正在安装、配置或审核 sglang 插件
 summary: 为 OpenClaw 添加 SGLang 模型提供商支持。
 title: SGLang 插件
 x-i18n:
-    generated_at: "2026-07-16T11:51:52Z"
+    generated_at: "2026-07-26T06:57:55Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## 分发
 
 - 软件包：`@openclaw/sglang-provider`
-- 安装方式：已包含在 OpenClaw 中
+- 安装方式：内置于 OpenClaw
 
 ## 接口
 

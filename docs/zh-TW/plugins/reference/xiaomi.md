@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 xiaomi 外掛
-summary: 新增 OpenClaw 對小米及 Xiaomi Token Plan 模型供應商的支援。
+summary: 新增 Xiaomi 與 Xiaomi Token Plan 模型供應商支援至 OpenClaw。
 title: 小米外掛
 x-i18n:
-    generated_at: "2026-07-16T11:56:21Z"
+    generated_at: "2026-07-26T07:29:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 
 為 OpenClaw 新增 Xiaomi、Xiaomi Token Plan 模型供應商支援。
 
-## 發佈
+## 發行方式
 
 - 套件：`@openclaw/xiaomi-provider`
 - 安裝方式：隨附於 OpenClaw
@@ -29,4 +29,4 @@ x-i18n:
 
 ## 相關文件
 
-- [xiaomi](/zh-TW/providers/xiaomi)
+- [Xiaomi](/zh-TW/providers/xiaomi)

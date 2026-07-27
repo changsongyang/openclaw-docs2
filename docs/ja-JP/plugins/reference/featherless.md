@@ -1,10 +1,10 @@
 ---
 read_when:
-    - featherless Pluginをインストール、設定、または監査している場合
+    - featherless Plugin のインストール、設定、または監査を行っています
 summary: OpenClaw Featherless AI プロバイダー Plugin。
 title: Featherless Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:57:57Z"
+    generated_at: "2026-07-26T09:12:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Featherless Plugin
 
-OpenClawのFeatherless AIプロバイダーPlugin。
+OpenClaw Featherless AI プロバイダー Plugin。
 
 ## 配布
 
 - パッケージ: `@openclaw/featherless-provider`
-- インストール経路: npm、ClawHub: `clawhub:@openclaw/featherless-provider`
+- インストール方法: npm、ClawHub: `clawhub:@openclaw/featherless-provider`
 
 ## 提供機能
 

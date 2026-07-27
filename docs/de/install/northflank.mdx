@@ -1,11 +1,11 @@
 ---
 read_when:
     - OpenClaw auf Northflank bereitstellen
-    - Sie möchten eine Cloud-Bereitstellung mit nur einem Klick und browserbasierter Steuerungsoberfläche.
+    - Sie möchten eine Cloud-Bereitstellung mit einem Klick und browserbasierter Control UI
 summary: OpenClaw auf Northflank mit einer Ein-Klick-Vorlage bereitstellen
 title: Northflank
 x-i18n:
-    generated_at: "2026-07-24T03:52:41Z"
+    generated_at: "2026-07-26T17:51:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,7 +15,7 @@ x-i18n:
     workflow: 16
 ---
 
-Stellen Sie OpenClaw mit einer Ein-Klick-Vorlage auf Northflank bereit und greifen Sie über die webbasierte Control UI darauf zu. Dies ist der einfachste Weg „ohne Terminal auf dem Server“: Northflank führt das Gateway für Sie aus.
+Stellen Sie OpenClaw mit einer Ein-Klick-Vorlage auf Northflank bereit und greifen Sie über die webbasierte Control UI darauf zu. Dies ist der einfachste Weg „ohne Terminal auf dem Server“: Northflank führt den Gateway für Sie aus.
 
 ## Erste Schritte
 
@@ -26,12 +26,12 @@ Stellen Sie OpenClaw mit einer Ein-Klick-Vorlage auf Northflank bereit und greif
 5. Klicken Sie auf **Deploy stack**, um die OpenClaw-Vorlage zu erstellen und auszuführen.
 6. Warten Sie, bis die Bereitstellung abgeschlossen ist, und klicken Sie dann auf **View resources**.
 7. Öffnen Sie den OpenClaw-Dienst.
-8. Öffnen Sie die öffentliche OpenClaw-URL unter `/openclaw` und stellen Sie die Verbindung mit dem konfigurierten gemeinsamen Geheimnis her. Diese Vorlage verwendet standardmäßig `OPENCLAW_GATEWAY_TOKEN`; wenn Sie es durch eine Passwortauthentifizierung ersetzen, verwenden Sie stattdessen dieses Passwort.
+8. Öffnen Sie die öffentliche OpenClaw-URL unter `/openclaw` und stellen Sie die Verbindung mit dem konfigurierten gemeinsamen Geheimnis her. Diese Vorlage verwendet standardmäßig `OPENCLAW_GATEWAY_TOKEN`; wenn Sie dies durch eine Passwortauthentifizierung ersetzen, verwenden Sie stattdessen dieses Passwort.
 
-## Leistungsumfang
+## Enthaltener Funktionsumfang
 
-- Gehostetes OpenClaw-Gateway + Control UI
-- Persistenter Speicher über ein Northflank-Volume (`/data`), damit `openclaw.json`, agentenspezifische `auth-profiles.json`, Kanal-/Provider-Status, Sitzungen und Arbeitsbereich erneute Bereitstellungen überstehen
+- Gehosteter OpenClaw-Gateway + Control UI
+- Persistenter Speicher über ein Northflank-Volume (`/data`), damit `openclaw.json`, agentspezifische `auth-profiles.json`, Kanal-/Provider-Status, Sitzungen und Arbeitsbereich erneute Bereitstellungen überdauern
 
 ## Einen Kanal verbinden
 
@@ -45,4 +45,4 @@ Verwenden Sie die Control UI unter `/openclaw` oder führen Sie `openclaw onboar
 
 - Messaging-Kanäle einrichten: [Kanäle](/de/channels)
 - Gateway konfigurieren: [Gateway-Konfiguration](/de/gateway/configuration)
-- OpenClaw aktuell halten: [Aktualisierung](/de/install/updating)
+- OpenClaw auf dem neuesten Stand halten: [Aktualisierung](/de/install/updating)

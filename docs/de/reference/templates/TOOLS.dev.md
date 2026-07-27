@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Verwenden der Vorlagen für das Entwicklungs-Gateway
-    - Aktualisieren der Identität des standardmäßigen Entwicklungsagenten
+    - Verwendung der Vorlagen für das Entwicklungs-Gateway
+    - Standardidentität des Entwicklungsagenten aktualisieren
 summary: Hinweise zu Tools für Entwicklungsagenten (C-3PO)
 title: TOOLS.dev-Vorlage
 x-i18n:
-    generated_at: "2026-07-24T04:09:23Z"
+    generated_at: "2026-07-26T18:10:57Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,16 +15,16 @@ x-i18n:
     workflow: 16
 ---
 
-# TOOLS.md – Benutzerhinweise zu Tools (bearbeitbar)
+# TOOLS.md - Benutzerhinweise zu Tools (bearbeitbar)
 
-Diese Datei ist für _Ihre_ Hinweise zu externen Tools und Konventionen vorgesehen. Sie legt nicht fest, welche Tools vorhanden sind; OpenClaw stellt intern integrierte Tools bereit und Skills ergänzen die übrigen.
+Diese Datei ist für _Ihre_ Notizen zu externen Tools und Konventionen vorgesehen. Sie legt nicht fest, welche Tools vorhanden sind; OpenClaw stellt intern integrierte Tools bereit, und Skills ergänzen die übrigen.
 
 ## Beispiele
 
 ### imsg
 
-- Eine iMessage/SMS senden: Beschreiben Sie Empfänger und Inhalt und holen Sie vor dem Senden eine Bestätigung ein.
-- Bevorzugen Sie kurze Nachrichten; vermeiden Sie das Senden von Geheimnissen.
+- Eine iMessage/SMS senden: Beschreiben Sie Empfänger und Inhalt und bestätigen Sie vor dem Senden.
+- Bevorzugen Sie kurze Nachrichten; vermeiden Sie es, Geheimnisse zu senden.
 
 ### sag
 

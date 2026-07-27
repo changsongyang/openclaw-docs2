@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin بوم هستید
+    - در حال نصب، پیکربندی یا ممیزی افزونهٔ بوم هستید
 summary: سطوح آزمایشی کنترل Canvas و رندر A2UI برای Nodeهای جفت‌شده.
 title: Plugin بوم نقاشی
 x-i18n:
-    generated_at: "2026-07-16T17:26:13Z"
+    generated_at: "2026-07-27T15:42:38Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de codex-plugin
-summary: Codex-app-serverharnas en native sessiecatalogus.
-title: Codex-Plugin
+summary: Codex app-server-harnas en systeemeigen sessiecatalogus.
+title: Codex-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:13:49Z"
+    generated_at: "2026-07-27T05:14:45Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Codex-plugin
+# Codex-Plugin
 
-Codex app-server-harnas en systeemeigen sessiecatalogus.
+Codex-app-server-harnas en systeemeigen sessiecatalogus.
 
 ## Distributie
 

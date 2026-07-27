@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder überprüfen das Dateiübertragungs-Plugin
-summary: Dateien auf gekoppelten Nodes über dedizierte Node-Befehle abrufen, auflisten und schreiben. Umgeht die Kürzung der bash-Standardausgabe, indem für Binärdateien bis zu 16 MB Base64 über node.invoke verwendet wird.
+    - Sie installieren, konfigurieren oder prüfen das Dateiübertragungs-Plugin.
+summary: Dateien auf gekoppelten Nodes über dedizierte Node-Befehle abrufen, auflisten und schreiben. Umgeht die Kürzung der bash-Standardausgabe durch die Verwendung von base64 über node.invoke für Binärdateien bis zu 16 MB.
 title: Dateiübertragungs-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:03:48Z"
+    generated_at: "2026-07-26T18:02:14Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Dateiübertragungs-Plugin
 
-Dateien auf gekoppelten Nodes über dedizierte Node-Befehle abrufen, auflisten und schreiben. Umgeht die Kürzung der Bash-Standardausgabe, indem für Binärdateien bis zu 16 MB Base64 über node.invoke verwendet wird.
+Dateien auf gekoppelten Nodes über dedizierte Node-Befehle abrufen, auflisten und schreiben. Umgeht die Kürzung der Bash-Standardausgabe, indem für Binärdateien bis zu 16 MB base64 über node.invoke verwendet wird.
 
 ## Distribution
 

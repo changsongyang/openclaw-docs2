@@ -1,11 +1,11 @@
 ---
 read_when:
     - Se desea activar o controlar TaskFlows desde un sistema externo
-    - Está configurando el plugin de webhooks incluido.
-summary: 'Plugin de Webhooks: entrada autenticada de TaskFlow para automatización externa de confianza'
+    - Está configurando el plugin de webhooks incluido
+summary: 'Plugin de webhooks: entrada autenticada de TaskFlow para automatización externa de confianza'
 title: Plugin de Webhooks
 x-i18n:
-    generated_at: "2026-07-19T02:03:09Z"
+    generated_at: "2026-07-26T05:24:24Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 ---
 
 El plugin Webhooks añade rutas HTTP autenticadas para que un sistema externo de
-confianza (Zapier, n8n, una tarea de CI, un servicio interno) pueda crear y controlar
+confianza (Zapier, n8n, un trabajo de CI, un servicio interno) pueda crear y controlar
 TaskFlows administrados de OpenClaw mediante HTTP, sin escribir un plugin personalizado.
 
 El plugin se ejecuta dentro del proceso del Gateway. Para un Gateway remoto, instálelo y
@@ -54,49 +54,47 @@ Establezca la configuración en `plugins.entries.webhooks.config`:
 }
 ```
 
-Campos de la ruta:
+Campos de ruta:
 
 | Campo          | Obligatorio | Valor predeterminado           | Notas                                         |
-| -------------- | ----------- | ----------------------------- | --------------------------------------------- |
-| `enabled`      | no       | `true`                        |                                               |
-| `path`         | no       | `/plugins/webhooks/<routeId>` | Debe ser único entre las rutas.                 |
-| `sessionKey`   | sí      | -                             | Sesión propietaria de los TaskFlows vinculados.        |
-| `secret`       | sí      | -                             | Cadena de texto sin formato o una SecretRef (véase más adelante).          |
-| `controllerId` | no       | `webhooks/<routeId>`          | Se usa como controlador `create_flow` predeterminado. |
-| `description`  | no       | -                             | Solo una nota para el operador.                           |
+| -------------- | ----------- | ------------------------------ | --------------------------------------------- |
+| `enabled`      | no          | `true`                        |                                               |
+| `path`         | no          | `/plugins/webhooks/<routeId>` | Debe ser único entre las rutas.               |
+| `sessionKey`   | sí          | -                              | Sesión propietaria de los TaskFlows vinculados. |
+| `secret`       | sí          | -                              | Cadena de texto sin formato o SecretRef (más abajo). |
+| `controllerId` | no          | `webhooks/<routeId>`          | Se utiliza como controlador `create_flow` predeterminado. |
+| `description`  | no          | -                              | Solo una nota para el operador.               |
 
 `secret` acepta una cadena de texto sin formato o una SecretRef: `{ source: "env" | "file" | "exec", provider: "default", id: "..." }`.
 
 Las SecretRefs se resuelven en la instantánea de configuración de inicio del Gateway. Cuando
-no se puede resolver el secreto de una ruta, el Gateway continúa ejecutándose y esa ruta
-concreta permanece registrada, pero inactiva: las solicitudes reciben un fallo de
-autenticación genérico (`401`). Las demás rutas siguen disponibles. Corrija
-el origen de la SecretRef y, después, vuelva a cargar o reinicie el Gateway para activar
-la nueva instantánea. Los valores de SecretRef nunca se resuelven en la ruta pública de
-las solicitudes.
+el secreto de una ruta no se puede resolver, el Gateway continúa ejecutándose y esa ruta
+específica permanece registrada pero inactiva: las solicitudes reciben un error genérico
+de autenticación (`401`). Las demás rutas permanecen disponibles. Corrija el
+origen de la SecretRef y, después, recargue o reinicie el Gateway para activar la nueva
+instantánea. Los valores de SecretRef nunca se resuelven en la ruta pública de solicitudes.
 
 ## Modelo de seguridad
 
 Cada ruta actúa con la autoridad de TaskFlow de su `sessionKey` configurada: puede
 inspeccionar y modificar cualquier TaskFlow que pertenezca a esa sesión. El acceso a TaskFlow
-siempre se realiza mediante `api.runtime.tasks.managedFlows.bindSession(...)`, por lo que una
+siempre pasa por `api.runtime.tasks.managedFlows.bindSession(...)`, por lo que una
 ruta nunca puede actuar fuera de su sesión vinculada. Para limitar el alcance de los daños:
 
-- Use un secreto seguro y único para cada ruta.
+- Utilice un secreto seguro y único para cada ruta.
 - Prefiera una SecretRef a un secreto de texto sin formato insertado directamente.
-- Vincule las rutas a la sesión más restringida que se adapte al flujo de trabajo.
+- Vincule las rutas a la sesión más restringida que sea adecuada para el flujo de trabajo.
 - Exponga únicamente la ruta de Webhook específica que necesite.
 
-Orden de procesamiento de las solicitudes para cada ruta: comprobaciones del método HTTP
-(solo `POST`) y de `Content-Type: application/json`; después, limitación de velocidad
-mediante ventana fija (120 solicitudes por cada ventana de 60 segundos por clave de
-ruta+IP del cliente, con hasta 4,096 claves registradas); después, limitación de solicitudes
-en curso (8 solicitudes simultáneas por clave, con hasta 4,096 claves registradas);
-después, autenticación mediante secreto compartido; y, por último, lectura del cuerpo JSON
-con un límite de 256 KB / 15 segundos. Las solicitudes que no superan una comprobación
-anterior nunca llegan a las posteriores.
+Orden de procesamiento de solicitudes para cada ruta: comprobaciones del método HTTP (solo
+`POST`) y de `Content-Type: application/json`; después, limitación de frecuencia con ventana
+fija (120 solicitudes por cada ventana de 60 segundos por clave de ruta+IP del cliente, con
+hasta 4,096 claves registradas); después, limitación de solicitudes en curso (8 solicitudes
+simultáneas por clave, con hasta 4,096 claves registradas); después, autenticación mediante
+secreto compartido; y, por último, lectura de un cuerpo JSON de 256 KB / 15 segundos. Las
+solicitudes que no superan una comprobación anterior nunca llegan a las posteriores.
 
-## Formato de la solicitud
+## Formato de solicitud
 
 Envíe solicitudes `POST` con `Content-Type: application/json` y
 `Authorization: Bearer <secret>` o `x-openclaw-webhook-secret: <secret>`:
@@ -108,27 +106,27 @@ curl -X POST https://gateway.example.com/plugins/webhooks/zapier \
   -d '{"action":"create_flow","goal":"Revisar la cola de entrada"}'
 ```
 
-## Acciones admitidas
+## Acciones compatibles
 
-| Acción             | Finalidad                                                            |
-| ------------------ | ------------------------------------------------------------------ |
-| `create_flow`      | Crear un TaskFlow administrado para la sesión de la ruta.                 |
-| `get_flow`         | Obtener un TaskFlow por identificador.                                          |
-| `list_flows`       | Enumerar los TaskFlows de la sesión de la ruta.                            |
-| `find_latest_flow` | Obtener el TaskFlow actualizado más recientemente.                          |
-| `resolve_flow`     | Resolver un TaskFlow mediante un token opaco.                                |
-| `get_task_summary` | Obtener el resumen de tareas de un TaskFlow.                             |
-| `set_waiting`      | Marcar un TaskFlow como en espera, con datos opcionales de estado/espera.            |
-| `resume_flow`      | Reanudar un TaskFlow en espera/bloqueado.                                 |
-| `finish_flow`      | Marcar un TaskFlow como finalizado.                                          |
-| `fail_flow`        | Marcar un TaskFlow como fallido.                                            |
-| `request_cancel`   | Solicitar la cancelación cooperativa.                                  |
+| Acción             | Finalidad                                                           |
+| ------------------ | ------------------------------------------------------------------- |
+| `create_flow`      | Crear un TaskFlow administrado para la sesión de la ruta.           |
+| `get_flow`         | Obtener un TaskFlow por su id.                                      |
+| `list_flows`       | Enumerar los TaskFlows de la sesión de la ruta.                     |
+| `find_latest_flow` | Obtener el TaskFlow actualizado más recientemente.                  |
+| `resolve_flow`     | Resolver un TaskFlow mediante un token opaco.                       |
+| `get_task_summary` | Obtener el resumen de tareas de un TaskFlow.                        |
+| `set_waiting`      | Marcar un TaskFlow como en espera, con datos opcionales de estado/espera. |
+| `resume_flow`      | Reanudar un TaskFlow en espera/bloqueado.                           |
+| `finish_flow`      | Marcar un TaskFlow como finalizado.                                 |
+| `fail_flow`        | Marcar un TaskFlow como fallido.                                    |
+| `request_cancel`   | Solicitar la cancelación cooperativa.                               |
 | `cancel_flow`      | Cancelar un TaskFlow (puede devolver `202` si las tareas secundarias siguen activas). |
-| `run_task`         | Crear una tarea secundaria administrada dentro de un TaskFlow existente.           |
+| `run_task`         | Crear una tarea secundaria administrada dentro de un TaskFlow existente. |
 
-Las acciones que realizan modificaciones (`set_waiting`, `resume_flow`, `finish_flow`, `fail_flow`,
-`request_cancel`) requieren `flowId` y `expectedRevision` para el control de
-concurrencia optimista; una revisión obsoleta devuelve `409 revision_conflict`.
+Las acciones de modificación (`set_waiting`, `resume_flow`, `finish_flow`, `fail_flow`,
+`request_cancel`) requieren `flowId` y `expectedRevision` para la concurrencia
+optimista; una revisión obsoleta devuelve `409 revision_conflict`.
 
 ### `create_flow`
 
@@ -143,7 +141,7 @@ concurrencia optimista; una revisión obsoleta devuelve `409 revision_conflict`.
 
 ### `run_task`
 
-Valores `runtime` permitidos: `subagent`, `acp`. `startedAt`, `lastEventAt` y
+Valores permitidos de `runtime`: `subagent`, `acp`. `startedAt`, `lastEventAt` y
 `progressSummary` solo son válidos cuando `status` es `"running"`; enviarlos
 con cualquier otro estado devuelve `400 invalid_request`.
 
@@ -178,16 +176,16 @@ con cualquier otro estado devuelve `400 invalid_request`.
 ```
 
 Las vistas de flujos y tareas nunca incluyen metadatos del propietario o de la sesión, por
-lo que las respuestas no pueden filtrar el `sessionKey` vinculado de la ruta. Los valores de `code` incluyen `not_found`,
-`not_managed`, `revision_conflict`, `persist_failed`, `cancel_requested`,
-`cancel_pending`, `terminal`, `invalid_request`, `request_rejected` y
-códigos de reserva específicos de cada acción (`mutation_rejected`, `create_rejected`,
-`task_not_created`, `cancel_rejected`) cuando se rechaza una modificación por un
-motivo que no cubren los códigos mencionados anteriormente.
+lo que las respuestas no pueden filtrar la `sessionKey` vinculada a la ruta. Los valores
+de `code` incluyen `not_found`, `not_managed`, `revision_conflict`,
+`persist_failed`, `cancel_requested`, `cancel_pending`, `terminal`,
+`invalid_request`, `request_rejected` y códigos de reserva específicos de cada acción
+(`mutation_rejected`, `create_rejected`, `task_not_created`, `cancel_rejected`) cuando
+una modificación se rechaza por un motivo que no cubren los códigos con nombre anteriores.
 
-## Temas relacionados
+## Contenido relacionado
 
-- [Hooks](/es/automation/hooks) - hooks internos controlados por eventos frente a este puente de TaskFlow basado en HTTP
-- [Webhooks del Gateway (configuración `hooks.*`)](/es/automation/cron-jobs#webhooks) - funcionalidad independiente de endpoint HTTP genérico del Gateway; no es lo mismo que las rutas de este plugin
-- [SDK de ejecución de plugins](/es/plugins/sdk-runtime)
+- [Hooks](/es/automation/hooks): hooks internos basados en eventos frente a este puente de TaskFlow basado en HTTP
+- [Webhooks del Gateway (configuración de `hooks.*`)](/es/automation/cron-jobs#webhooks): funcionalidad independiente de puntos de conexión HTTP genéricos del Gateway; no es lo mismo que las rutas de este plugin
+- [SDK de tiempo de ejecución de plugins](/es/plugins/sdk-runtime)
 - [Webhooks de la CLI](/es/cli/webhooks)

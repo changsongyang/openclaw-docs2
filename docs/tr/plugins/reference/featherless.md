@@ -1,10 +1,10 @@
 ---
 read_when:
-    - featherless pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - featherless Plugin'ini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw Featherless AI sağlayıcı plugin'i.
 title: Featherless Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:43:50Z"
+    generated_at: "2026-07-26T22:54:55Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

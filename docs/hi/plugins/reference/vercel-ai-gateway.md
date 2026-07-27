@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw में Vercel AI Gateway मॉडल प्रदाता का समर्थन जोड़ता है।
 title: Vercel AI Gateway Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:34:37Z"
+    generated_at: "2026-07-27T19:41:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Vercel AI Gateway Plugin
 
-OpenClaw में Vercel AI Gateway मॉडल प्रदाता के लिए समर्थन जोड़ता है।
+OpenClaw में Vercel AI Gateway मॉडल प्रदाता का समर्थन जोड़ता है।
 
 ## वितरण
 

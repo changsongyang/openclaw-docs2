@@ -4,7 +4,7 @@ read_when:
 summary: Arbeitsbereichsvorlage für BOOT.md
 title: BOOT.md-Vorlage
 x-i18n:
-    generated_at: "2026-07-24T04:09:08Z"
+    generated_at: "2026-07-26T18:10:38Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # BOOT.md
 
-Fügen Sie hier kurze, eindeutige Startanweisungen hinzu. Der mitgelieferte `boot-md`-Hook führt diese Datei bei jedem Start des Gateways einmal pro Agent-Arbeitsbereich aus, sofern die Datei vorhanden ist und Inhalt enthält, der nicht ausschließlich aus Leerraum besteht. Mehrere Agents, die sich einen Arbeitsbereich teilen, lösen nur eine Ausführung aus.
+Fügen Sie hier kurze, eindeutige Startanweisungen hinzu. Der gebündelte `boot-md`-Hook führt diese Datei bei jedem Start des Gateways einmal pro Agenten-Arbeitsbereich aus, sofern die Datei vorhanden ist und Inhalt enthält, der nicht nur aus Leerraum besteht. Mehrere Agenten, die sich einen Arbeitsbereich teilen, lösen nur einen Durchlauf aus.
 
 Der Hook wird deaktiviert ausgeliefert. Aktivieren Sie ihn zuerst:
 
@@ -28,5 +28,5 @@ Wenn ein Checklistenpunkt eine Nachricht sendet, verwenden Sie das Nachrichten-T
 
 ## Verwandte Themen
 
-- [Agent-Arbeitsbereich](/de/concepts/agent-workspace)
+- [Agenten-Arbeitsbereich](/de/concepts/agent-workspace)
 - [Hooks](/de/automation/hooks#boot-md)

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin de Anthropic
-summary: Modelos de Anthropic, CLI de Claude y catálogo nativo de sesiones de Claude.
+    - Se está instalando, configurando o auditando el plugin de Anthropic
+summary: Modelos de Anthropic, CLI de Claude y catálogo de sesiones nativas de Claude.
 title: Plugin de Anthropic
 x-i18n:
-    generated_at: "2026-07-16T11:50:44Z"
+    generated_at: "2026-07-26T04:44:55Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -37,4 +37,4 @@ usageProviders
 
 ## Documentación relacionada
 
-- [anthropic](/es/providers/anthropic)
+- [Anthropic](/es/providers/anthropic)

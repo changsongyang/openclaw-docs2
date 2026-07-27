@@ -1,10 +1,10 @@
 ---
 read_when:
-    - tencent pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - tencent Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a Tencent TokenHub ve Tencent Tokenplan model sağlayıcısı desteği ekler.
 title: Tencent plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:27:11Z"
+    generated_at: "2026-07-26T23:33:50Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Tencent plugin'i
+# Tencent plugin
 
 OpenClaw'a Tencent TokenHub ve Tencent Tokenplan model sağlayıcısı desteği ekler.
 

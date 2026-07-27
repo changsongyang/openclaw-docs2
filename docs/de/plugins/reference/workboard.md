@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder überprüfen das Workboard-Plugin
+    - Sie installieren, konfigurieren oder prüfen das Workboard-Plugin.
 summary: Dashboard-Arbeitsübersicht für agenteneigene Issues und Sitzungen.
 title: Workboard-Plugin
 x-i18n:
-    generated_at: "2026-07-24T05:08:39Z"
+    generated_at: "2026-07-26T18:39:13Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Workboard-Plugin
 
-Dashboard-Workboard für Issues und Sitzungen im Besitz von Agenten.
+Dashboard-Workboard für agenteneigene Issues und Sitzungen.
 
 ## Distribution
 

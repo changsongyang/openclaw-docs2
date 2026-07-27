@@ -1,12 +1,12 @@
 ---
 read_when:
     - आप सुरक्षा सुदृढ़ीकरण के साथ स्वचालित सर्वर परिनियोजन चाहते हैं
-    - आपको VPN एक्सेस के साथ फ़ायरवॉल-पृथक सेटअप चाहिए
-    - आप रिमोट Debian/Ubuntu सर्वरों पर डिप्लॉय कर रहे हैं
-summary: Ansible, Tailscale VPN और फ़ायरवॉल आइसोलेशन के साथ स्वचालित, सुदृढ़ OpenClaw इंस्टॉलेशन
+    - आपको VPN पहुँच के साथ फ़ायरवॉल-पृथक सेटअप चाहिए
+    - आप दूरस्थ Debian/Ubuntu सर्वरों पर परिनियोजन कर रहे हैं
+summary: Ansible, Tailscale VPN और फ़ायरवॉल पृथक्करण के साथ स्वचालित, सुदृढ़ OpenClaw इंस्टॉलेशन
 title: Ansible
 x-i18n:
-    generated_at: "2026-07-16T15:23:21Z"
+    generated_at: "2026-07-27T18:01:12Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,10 +16,10 @@ x-i18n:
     workflow: 16
 ---
 
-OpenClaw को उत्पादन सर्वरों पर **[openclaw-ansible](https://github.com/openclaw/openclaw-ansible)** के साथ डिप्लॉय करें, जो सुरक्षा-प्रथम आर्किटेक्चर वाला एक स्वचालित इंस्टॉलर है।
+OpenClaw को **[openclaw-ansible](https://github.com/openclaw/openclaw-ansible)** के साथ प्रोडक्शन सर्वरों पर डिप्लॉय करें। यह सुरक्षा-प्रथम आर्किटेक्चर वाला एक स्वचालित इंस्टॉलर है।
 
 <Info>
-Ansible डिप्लॉयमेंट के लिए [openclaw-ansible](https://github.com/openclaw/openclaw-ansible) रिपॉज़िटरी प्रामाणिक स्रोत है। यह पृष्ठ एक संक्षिप्त अवलोकन है।
+[openclaw-ansible](https://github.com/openclaw/openclaw-ansible) रिपॉज़िटरी Ansible डिप्लॉयमेंट के लिए प्रामाणिक स्रोत है। यह पृष्ठ एक संक्षिप्त अवलोकन है।
 </Info>
 
 ## पूर्वापेक्षाएँ
@@ -27,32 +27,32 @@ Ansible डिप्लॉयमेंट के लिए [openclaw-ansible](ht
 | आवश्यकता | विवरण                                                   |
 | ----------- | --------------------------------------------------------- |
 | OS          | Debian 11+ या Ubuntu 20.04+                               |
-| पहुँच      | Root या sudo विशेषाधिकार                                   |
+| एक्सेस      | Root या sudo विशेषाधिकार                                   |
 | नेटवर्क     | पैकेज इंस्टॉलेशन के लिए इंटरनेट कनेक्शन              |
-| Ansible     | 2.14+ (क्विक-स्टार्ट स्क्रिप्ट द्वारा स्वचालित रूप से इंस्टॉल किया जाता है) |
+| Ansible     | 2.14+ (त्वरित-आरंभ स्क्रिप्ट द्वारा स्वचालित रूप से इंस्टॉल किया जाता है) |
 
 ## आपको क्या मिलता है
 
-- फ़ायरवॉल-प्रथम सुरक्षा: UFW + Docker पृथक्करण (केवल SSH + Tailscale पहुँच योग्य)
-- सेवाओं को सार्वजनिक रूप से उजागर किए बिना रिमोट पहुँच के लिए Tailscale VPN
-- केवल लोकलहोस्ट बाइंडिंग वाले पृथक सैंडबॉक्स कंटेनरों के लिए Docker
-- सुरक्षा सुदृढ़ीकरण सहित Systemd एकीकरण, जो बूट पर स्वतः शुरू होता है
+- फ़ायरवॉल-प्रथम सुरक्षा: UFW + Docker आइसोलेशन (केवल SSH + Tailscale पहुँच योग्य)
+- सेवाओं को सार्वजनिक रूप से उजागर किए बिना रिमोट एक्सेस के लिए Tailscale VPN
+- केवल localhost बाइंडिंग वाले पृथक सैंडबॉक्स कंटेनरों के लिए Docker
+- हार्डनिंग और बूट पर स्वतः आरंभ होने के साथ Systemd एकीकरण
 - एक-कमांड सेटअप
 
-## त्वरित शुरुआत
+## त्वरित आरंभ
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/openclaw/openclaw-ansible/main/install.sh | bash
 ```
 
-## क्या इंस्टॉल होता है
+## क्या इंस्टॉल किया जाता है
 
-1. Tailscale (सुरक्षित रिमोट पहुँच के लिए मेश VPN)
+1. Tailscale (सुरक्षित रिमोट एक्सेस के लिए मेश VPN)
 2. UFW फ़ायरवॉल (केवल SSH + Tailscale पोर्ट)
 3. Docker CE + Compose V2 (डिफ़ॉल्ट एजेंट सैंडबॉक्स बैकएंड)
 4. Node.js और pnpm (OpenClaw के लिए Node 22.22.3+, 24.15+, या 25.9+ आवश्यक है; Node 24 अनुशंसित है)
-5. OpenClaw, होस्ट-आधारित रूप से इंस्टॉल किया गया, कंटेनरीकृत नहीं
-6. सुरक्षा सुदृढ़ीकरण वाली एक systemd सेवा
+5. OpenClaw, कंटेनरीकृत नहीं बल्कि होस्ट-आधारित रूप से इंस्टॉल किया गया
+6. सुरक्षा हार्डनिंग वाली एक systemd सेवा
 
 <Note>
 Gateway सीधे होस्ट पर चलता है, Docker में नहीं। एजेंट सैंडबॉक्सिंग
@@ -84,7 +84,7 @@ Gateway सीधे होस्ट पर चलता है, Docker मे�
     ```
   </Step>
   <Step title="Tailscale से कनेक्ट करें">
-    सुरक्षित रिमोट पहुँच के लिए अपने VPN मेश से जुड़ें।
+    सुरक्षित रिमोट एक्सेस के लिए अपने VPN मेश से जुड़ें।
   </Step>
 </Steps>
 
@@ -107,12 +107,12 @@ openclaw channels login --channel <name>
 
 ## सुरक्षा आर्किटेक्चर
 
-चार-स्तरीय रक्षा मॉडल:
+चार-स्तरीय सुरक्षा मॉडल:
 
-1. फ़ायरवॉल (UFW): केवल SSH (22) और Tailscale (41641/udp) सार्वजनिक रूप से उजागर
-2. VPN (Tailscale): Gateway केवल VPN मेश के माध्यम से पहुँच योग्य
-3. Docker पृथक्करण: `DOCKER-USER` iptables चेन बाहरी पोर्ट एक्सपोज़र को रोकती है
-4. Systemd सुदृढ़ीकरण: `NoNewPrivileges`, `PrivateTmp`, विशेषाधिकार-रहित उपयोगकर्ता
+1. फ़ायरवॉल (UFW): केवल SSH (22) और Tailscale (41641/udp) सार्वजनिक रूप से उजागर होते हैं
+2. VPN (Tailscale): Gateway तक केवल VPN मेश के माध्यम से पहुँचा जा सकता है
+3. Docker आइसोलेशन: `DOCKER-USER` iptables चेन बाहरी पोर्ट एक्सपोज़र रोकती है
+4. Systemd हार्डनिंग: `NoNewPrivileges`, `PrivateTmp`, गैर-विशेषाधिकार प्राप्त उपयोगकर्ता
 
 अपनी बाहरी आक्रमण सतह सत्यापित करें:
 
@@ -120,7 +120,7 @@ openclaw channels login --channel <name>
 nmap -p- YOUR_SERVER_IP
 ```
 
-केवल पोर्ट 22 (SSH) खुला होना चाहिए। Gateway और Docker सुरक्षित रूप से बंद रहते हैं।
+केवल पोर्ट 22 (SSH) खुला होना चाहिए। Gateway और Docker प्रतिबंधित रहते हैं।
 
 Docker एजेंट सैंडबॉक्स (पृथक टूल निष्पादन) के लिए इंस्टॉल किया जाता है, Gateway चलाने के लिए नहीं। सैंडबॉक्स कॉन्फ़िगरेशन के लिए [मल्टी-एजेंट सैंडबॉक्स और टूल](/hi/tools/multi-agent-sandbox-tools) देखें।
 
@@ -138,7 +138,7 @@ Docker एजेंट सैंडबॉक्स (पृथक टूल न�
     cd openclaw-ansible
     ```
   </Step>
-  <Step title="Ansible कलेक्शन इंस्टॉल करें">
+  <Step title="Ansible संग्रह इंस्टॉल करें">
     ```bash
     ansible-galaxy collection install -r requirements.yml
     ```
@@ -148,7 +148,7 @@ Docker एजेंट सैंडबॉक्स (पृथक टूल न�
     ./run-playbook.sh
     ```
 
-    या प्लेबुक को सीधे चलाएँ और फिर सेटअप स्क्रिप्ट को मैन्युअल रूप से चलाएँ:
+    या प्लेबुक सीधे चलाएँ और फिर सेटअप स्क्रिप्ट मैन्युअल रूप से चलाएँ:
     ```bash
     ansible-playbook playbook.yml --ask-become-pass
     # फिर चलाएँ: /tmp/openclaw-setup.sh
@@ -159,9 +159,9 @@ Docker एजेंट सैंडबॉक्स (पृथक टूल न�
 
 ## अपडेट करना
 
-Ansible इंस्टॉलर OpenClaw को मैन्युअल अपडेट के लिए सेट अप करता है; मानक प्रक्रिया के लिए [अपडेट करना](/hi/install/updating) देखें।
+Ansible इंस्टॉलर OpenClaw को मैन्युअल अपडेट के लिए सेट अप करता है; मानक प्रवाह के लिए [अपडेट करना](/hi/install/updating) देखें।
 
-प्लेबुक को फिर से चलाने के लिए (उदाहरण के लिए, कॉन्फ़िगरेशन में बदलाव के बाद):
+प्लेबुक को दोबारा चलाने के लिए (उदाहरण के लिए, कॉन्फ़िगरेशन में बदलाव के बाद):
 
 ```bash
 cd openclaw-ansible
@@ -174,11 +174,11 @@ cd openclaw-ansible
 
 <AccordionGroup>
   <Accordion title="फ़ायरवॉल मेरा कनेक्शन अवरुद्ध करता है">
-    - पहले Tailscale VPN के माध्यम से कनेक्ट करें; डिज़ाइन के अनुसार Gateway केवल इसी तरह पहुँच योग्य है।
+    - पहले Tailscale VPN के माध्यम से कनेक्ट करें; डिज़ाइन के अनुसार Gateway तक केवल इसी तरह पहुँचा जा सकता है।
     - SSH (पोर्ट 22) की हमेशा अनुमति होती है।
 
   </Accordion>
-  <Accordion title="सेवा शुरू नहीं होती">
+  <Accordion title="सेवा आरंभ नहीं होती">
     ```bash
     # लॉग जाँचें
     sudo journalctl -u openclaw -n 100
@@ -186,7 +186,7 @@ cd openclaw-ansible
     # अनुमतियाँ सत्यापित करें
     sudo ls -la /opt/openclaw
 
-    # मैन्युअल शुरुआत का परीक्षण करें
+    # मैन्युअल आरंभ का परीक्षण करें
     sudo -i -u openclaw
     cd ~/openclaw
     openclaw gateway run
@@ -201,10 +201,10 @@ cd openclaw-ansible
     # सैंडबॉक्स इमेज जाँचें
     sudo docker images | grep openclaw-sandbox
 
-    # अनुपस्थित होने पर सैंडबॉक्स इमेज बनाएँ (सोर्स चेकआउट आवश्यक है)
+    # अनुपलब्ध होने पर सैंडबॉक्स इमेज बनाएँ (स्रोत चेकआउट आवश्यक है)
     cd /opt/openclaw/openclaw
     sudo -u openclaw ./scripts/sandbox-setup.sh
-    # सोर्स चेकआउट के बिना npm इंस्टॉलेशन के लिए, देखें
+    # स्रोत चेकआउट के बिना npm इंस्टॉलेशन के लिए, देखें
     # https://docs.openclaw.ai/gateway/sandboxing#images-and-setup
     ```
 
@@ -231,4 +231,4 @@ cd openclaw-ansible
 - [openclaw-ansible](https://github.com/openclaw/openclaw-ansible): संपूर्ण डिप्लॉयमेंट मार्गदर्शिका
 - [Docker](/hi/install/docker): कंटेनरीकृत Gateway सेटअप
 - [सैंडबॉक्सिंग](/hi/gateway/sandboxing): एजेंट सैंडबॉक्स कॉन्फ़िगरेशन
-- [मल्टी-एजेंट सैंडबॉक्स और टूल](/hi/tools/multi-agent-sandbox-tools): प्रति-एजेंट पृथक्करण
+- [मल्टी-एजेंट सैंडबॉक्स और टूल](/hi/tools/multi-agent-sandbox-tools): प्रति-एजेंट आइसोलेशन

@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw に xAI モデルプロバイダーのサポートを追加します。
 title: xAI Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:57:29Z"
+    generated_at: "2026-07-26T10:25:57Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# xAI Plugin
+# xAI plugin
 
 OpenClaw に xAI モデルプロバイダーのサポートを追加します。
 
@@ -23,7 +23,7 @@ OpenClaw に xAI モデルプロバイダーのサポートを追加します。
 - パッケージ: `@openclaw/xai-plugin`
 - インストール方法: OpenClaw に同梱
 
-## サーフェス
+## 公開範囲
 
 プロバイダー: `xai`; コントラクト: `imageGenerationProviders`, `mediaUnderstandingProviders`, `realtimeTranscriptionProviders`, `realtimeVoiceProviders`, `speechProviders`, `tools`, `videoGenerationProviders`, `webSearchProviders`
 

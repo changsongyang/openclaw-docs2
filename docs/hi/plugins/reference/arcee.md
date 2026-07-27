@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw में Arcee मॉडल प्रदाता का समर्थन जोड़ता है।
 title: Arcee Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:27:15Z"
+    generated_at: "2026-07-27T18:45:34Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ OpenClaw में Arcee मॉडल प्रदाता का समर्�
 - पैकेज: `@openclaw/arcee-provider`
 - इंस्टॉल मार्ग: npm; ClawHub: `clawhub:@openclaw/arcee-provider`
 
-## उपलब्धता
+## उपलब्ध सतह
 
 प्रदाता: `arcee`
 

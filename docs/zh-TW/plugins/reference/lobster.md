@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 Lobster 外掛
-summary: 適用於型別化管線與可續接核准流程的 Lobster 工作流程工具外掛。
+summary: Lobster 工作流程工具外掛，適用於具型別的流水線與可恢復的核准流程。
 title: Lobster 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:54:38Z"
+    generated_at: "2026-07-26T08:29:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Lobster 外掛
 
-用於具型別管線與可續接核准流程的 Lobster 工作流程工具外掛。
+用於型別化流水線和可恢復核准的 Lobster 工作流程工具外掛。
 
 ## 發佈
 
 - 套件：`@openclaw/lobster`
-- 安裝途徑：npm；ClawHub
+- 安裝管道：npm；ClawHub
 
 ## 介面
 

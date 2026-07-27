@@ -1,26 +1,24 @@
 ---
 read_when:
-    - Çıkarım yoluyla belirlenen takip taahhütlerini incelemek istiyorsunuz
+    - Çıkarımlanan takip taahhütlerini incelemek istiyorsunuz
     - Bekleyen yoklamaları kapatmak istiyorsunuz
     - Heartbeat'in neler iletebileceğini denetliyorsunuz
-summary: '`openclaw commitments` için CLI referansı (çıkarılan takip işlemlerini inceleme ve kapatma)'
+summary: '`openclaw commitments` için CLI başvurusu (çıkarılan takip işlemlerini inceleme ve kapatma)'
 title: '`openclaw commitments`'
 x-i18n:
-    generated_at: "2026-07-16T16:56:26Z"
+    generated_at: "2026-07-26T23:12:49Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: db8a7d8f5756ccb18ed0990fcedf50d1072bb67e775c29eefdbd1a7dd795b7b0
+    source_hash: 4a7c573daad6a9bc6ce4532514c8cc22b3c510b4fc0cf9d1a79048413f08c1a2
     source_path: cli/commitments.md
     workflow: 16
 ---
 
-Çıkarılan takip taahhütlerini listeleyin ve yönetin.
-
-Taahhütler, konuşma bağlamından oluşturulan ve Heartbeat tarafından iletilen, isteğe bağlı (`commitments.enabled`) ve kısa ömürlü takip anılarıdır.
-Kavramsal kılavuz ve yapılandırma için
-[Çıkarılan taahhütler](/tr/concepts/commitments) bölümüne bakın.
+Kullanımdan kaldırılan çıkarımsal taahhütler denemesinden kalan kayıtları inceleyin ve kapatın.
+OpenClaw artık yeni taahhütler oluşturmaz veya teslim etmez, ancak yükseltmelerin mevcut
+SQLite satırlarını denetleyip temizleyebilmesi için bakım komutunu korur.
 
 Alt komut verilmediğinde, `openclaw commitments` bekleyen taahhütleri listeler.
 
@@ -40,7 +38,7 @@ openclaw commitments dismiss <id...> [--json]
   `dismissed`, `snoozed` veya `expired`. Bilinmeyen değerlerde hata verilerek çıkılır.
 - `--json`: makine tarafından okunabilir JSON çıktısı üretir.
 
-`dismiss`, Heartbeat'in iletmemesi için belirtilen taahhüt kimliklerini `dismissed` olarak işaretler.
+`dismiss`, belirtilen taahhüt kimliklerini `dismissed` olarak işaretler.
 
 ## Örnekler
 
@@ -62,13 +60,13 @@ Tek bir aracıya göre filtreleyin:
 openclaw commitments --agent main
 ```
 
-Ertelenmiş taahhütleri bulun:
+Ertelenen taahhütleri bulun:
 
 ```bash
 openclaw commitments --status snoozed
 ```
 
-Bir veya daha fazla taahhüdü iptal edin:
+Bir veya daha fazla taahhüdü kapatın:
 
 ```bash
 openclaw commitments dismiss cm_abc123 cm_def456
@@ -90,13 +88,14 @@ ve her taahhüt için bir satırı yazdırır:
 - tür (`event_check_in`, `deadline_check`, `care_check_in` veya `open_loop`)
 - en erken son tarih
 - kapsam (aracı/kanal/hedef)
-- önerilen durum yoklama metni
+- önerilen durum kontrolü metni
 
-JSON çıktısı; sayıyı, etkin durum ve aracı filtrelerini, paylaşılan SQLite veritabanı yolunu ve saklanan kayıtların tamamını içerir.
+JSON çıktısı; sayıyı, etkin durum ve aracı filtrelerini, paylaşılan
+SQLite veritabanı yolunu ve saklanan kayıtların tamamını içerir.
 
 ## İlgili
 
-- [Çıkarılan taahhütler](/tr/concepts/commitments)
+- [Çıkarımsal taahhütler](/tr/concepts/commitments)
 - [Belleğe genel bakış](/tr/concepts/memory)
 - [Heartbeat](/tr/gateway/heartbeat)
 - [Zamanlanmış görevler](/tr/automation/cron-jobs)

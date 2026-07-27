@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin ‏Synthetic هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin مربوط به Synthetic هستید
 summary: پشتیبانی از ارائه‌دهنده مدل Synthetic را به OpenClaw اضافه می‌کند.
 title: Plugin Synthetic
 x-i18n:
-    generated_at: "2026-07-16T17:04:18Z"
+    generated_at: "2026-07-27T16:51:57Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

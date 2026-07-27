@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie möchten schnell auf wichtige Dokumentationsseiten zugreifen
+    - Sie möchten schnellen Zugriff auf wichtige Dokumentationsseiten
 summary: Kuratierte Links zu den meistgenutzten OpenClaw-Dokumentationsseiten.
 title: Dokumentationsverzeichnis
 x-i18n:
-    generated_at: "2026-07-24T05:22:10Z"
+    generated_at: "2026-07-26T19:15:23Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 <Note>
 Diese Seite ist ein kuratierter Index. Wenn Sie neu sind, beginnen Sie mit [Erste Schritte](/de/start/getting-started).
-Eine vollständige Übersicht der Dokumentation finden Sie unter [Dokumentations-Hubs](/de/start/hubs).
+Eine vollständige Übersicht der Dokumentation finden Sie unter [Dokumentationszentren](/de/start/hubs).
 </Note>
 
 ## Hier beginnen
 
-- [Dokumentations-Hubs (alle Seiten verlinkt)](/de/start/hubs)
+- [Dokumentationszentren (alle Seiten verlinkt)](/de/start/hubs)
 - [Hilfe](/de/help)
 - [Konfiguration](/de/gateway/configuration)
 - [Konfigurationsbeispiele](/de/gateway/configuration-examples)
@@ -37,19 +37,19 @@ Eine vollständige Übersicht der Dokumentation finden Sie unter [Dokumentations
 - [RPC-Adapter](/de/reference/rpc)
 - [Gateway-Betriebshandbuch](/de/gateway)
 - [Nodes (iOS und Android)](/de/nodes)
-- [Weboberflächen (Control UI)](/de/web)
-- [Erkennung und Transporte](/de/gateway/discovery)
+- [Weboberflächen (Steuerungsoberfläche)](/de/web)
+- [Erkennung und Transportwege](/de/gateway/discovery)
 - [Remotezugriff](/de/gateway/remote)
 
-## Kanäle und Benutzererfahrung
+## Kanäle und Benutzererlebnis
 
-- [Control UI (Browser)](/de/web/control-ui)
+- [Steuerungsoberfläche (Browser)](/de/web/control-ui)
 - [Discord](/de/channels/discord)
 - [Gruppen](/de/channels/groups)
 - [iMessage](/de/channels/imessage)
 - [Mattermost](/de/channels/mattermost)
-- [Medienaudio](/de/nodes/audio)
-- [Medienbilder](/de/nodes/images)
+- [Medien: Audio](/de/nodes/audio)
+- [Medien: Bilder](/de/nodes/images)
 - [QQ Bot](/de/channels/qqbot)
 - [Telegram](/de/channels/telegram)
 - [WebChat](/de/web/webchat)
@@ -75,4 +75,4 @@ Eine vollständige Übersicht der Dokumentation finden Sie unter [Dokumentations
 ## Verwandte Themen
 
 - [Erste Schritte](/de/start/getting-started)
-- [Dokumentations-Hubs](/de/start/hubs)
+- [Dokumentationszentren](/de/start/hubs)

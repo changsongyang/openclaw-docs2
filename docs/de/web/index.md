@@ -1,11 +1,11 @@
 ---
 read_when:
     - Sie möchten über Tailscale auf das Gateway zugreifen
-    - Sie möchten die Browser-Control-UI und die Konfigurationsbearbeitung
-summary: 'Gateway-Weboberflächen: Control UI, Bind-Modi und Sicherheit'
+    - Sie möchten die browserbasierte Control UI und die Konfigurationsbearbeitung.
+summary: 'Gateway-Weboberflächen: Control UI, Bindungsmodi und Sicherheit'
 title: Web
 x-i18n:
-    generated_at: "2026-07-24T04:15:18Z"
+    generated_at: "2026-07-26T18:12:31Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,13 +15,13 @@ x-i18n:
     workflow: 16
 ---
 
-Der Gateway stellt eine kleine **Browser-Control-UI** (Vite + Lit) über denselben Port wie der Gateway-WebSocket bereit:
+Der Gateway stellt eine kleine **browserbasierte Control UI** (Vite + Lit) über denselben Port wie der Gateway-WebSocket bereit:
 
 - Standard: `http://<host>:18789/`
 - mit `gateway.tls.enabled: true`: `https://<host>:18789/`
 - optionales Präfix: Legen Sie `gateway.controlUi.basePath` fest (z. B. `/openclaw`)
 
-Die Funktionen sind unter [Control UI](/de/web/control-ui) beschrieben. Diese Seite behandelt Bindungsmodi, Sicherheit und weitere webseitige Oberflächen.
+Die Funktionen sind unter [Control UI](/de/web/control-ui) beschrieben. Diese Seite behandelt Bindungsmodi, Sicherheit und weitere Web-Schnittstellen.
 
 ## Konfiguration (standardmäßig aktiviert)
 
@@ -37,17 +37,17 @@ Die Control UI ist **standardmäßig aktiviert**, wenn Assets vorhanden sind (`d
 
 ## Webhooks
 
-Wenn `hooks.enabled=true`, stellt der Gateway außerdem einen Webhook-Endpunkt auf demselben HTTP-Server bereit. Informationen zur Authentifizierung und zu Payloads finden Sie unter `hooks` in der [Referenz zur Gateway-Konfiguration](/de/gateway/configuration-reference#hooks).
+Bei `hooks.enabled=true` stellt der Gateway außerdem einen Webhook-Endpunkt auf demselben HTTP-Server bereit. Informationen zu Authentifizierung und Payloads finden Sie unter `hooks` in der [Gateway-Konfigurationsreferenz](/de/gateway/configuration-reference#hooks).
 
 ## Admin-HTTP-RPC
 
 `POST /api/v1/admin/rpc` stellt ausgewählte Methoden der Gateway-Steuerungsebene über HTTP bereit. Standardmäßig deaktiviert; wird nur registriert, wenn das Plugin `admin-http-rpc` aktiviert ist. Informationen zum Authentifizierungsmodell, zu den zulässigen Methoden und zum Vergleich mit der WebSocket-API finden Sie unter [Admin-HTTP-RPC](/de/plugins/admin-http-rpc).
 
-## Zugriff über Tailscale
+## Tailscale-Zugriff
 
 <Tabs>
   <Tab title="Integriertes Serve (empfohlen)">
-    Belassen Sie den Gateway auf Loopback und lassen Sie Tailscale Serve als Proxy fungieren:
+    Belassen Sie den Gateway auf Loopback und lassen Sie ihn durch Tailscale Serve als Proxy weiterleiten:
 
     ```json5
     {
@@ -105,15 +105,15 @@ Wenn `hooks.enabled=true`, stellt der Gateway außerdem einen Webhook-Endpunkt a
 
 ## Sicherheitshinweise
 
-- Die Gateway-Authentifizierung ist standardmäßig erforderlich: Token, Passwort, vertrauenswürdiger Proxy oder – sofern aktiviert – Identitätsheader von Tailscale Serve.
+- Die Gateway-Authentifizierung ist standardmäßig erforderlich: Token, Passwort, vertrauenswürdiger Proxy oder – sofern aktiviert – Tailscale-Serve-Identitätsheader.
 - Nicht-Loopback-Bindungen **erfordern** weiterhin eine Gateway-Authentifizierung: Token-/Passwortauthentifizierung oder einen identitätsbewussten Reverse-Proxy mit `gateway.auth.mode: "trusted-proxy"`.
-- Der Einrichtungsassistent erstellt standardmäßig eine Shared-Secret-Authentifizierung und generiert normalerweise ein Gateway-Token, selbst bei Loopback.
+- Der Einrichtungsassistent erstellt standardmäßig eine Shared-Secret-Authentifizierung und generiert üblicherweise ein Gateway-Token, selbst bei Loopback.
 - Im Shared-Secret-Modus sendet die UI während des WebSocket-Handshakes `connect.params.auth.token` oder `connect.params.auth.password`.
-- Mit `gateway.tls.enabled: true` stellen lokale Dashboard-/Status-Hilfsfunktionen `https://`-URLs und `wss://`-WebSocket-URLs dar.
-- In identitätsbasierten Modi (Tailscale Serve, `trusted-proxy`) wird die WebSocket-Authentifizierungsprüfung anhand von Anfrageheadern statt eines Shared Secrets erfüllt.
-- Legen Sie für öffentliche Nicht-Loopback-Bereitstellungen der Control UI `gateway.controlUi.allowedOrigins` explizit fest (vollständige Ursprünge). Private Same-Origin-Aufrufe werden für Loopback-, RFC1918-/Link-Local-, `.local`-, `.ts.net`- und Tailscale-CGNAT-Hosts auch ohne diese Einstellung akzeptiert.
-- `gateway.controlUi.dangerouslyAllowHostHeaderOriginFallback: true` aktiviert den Host-Header-Ursprungs-Fallback; dies ist eine gefährliche Herabstufung der Sicherheit.
-- Bei Serve erfüllen Tailscale-Identitätsheader die Authentifizierung für die Control UI/WebSocket, wenn `gateway.auth.allowTailscale: true` (kein Token/Passwort erforderlich). HTTP-API-Endpunkte verwenden keine Tailscale-Identitätsheader; für sie gilt immer der normale HTTP-Authentifizierungsmodus des Gateways. Legen Sie `gateway.auth.allowTailscale: false` fest, um selbst über Serve explizite Anmeldedaten zu verlangen. Dieser tokenlose Ablauf setzt voraus, dass der Gateway-Host selbst vertrauenswürdig ist. Weitere Informationen finden Sie unter [Tailscale](/de/gateway/tailscale) und [Sicherheit](/de/gateway/security).
+- Mit `gateway.tls.enabled: true` erzeugen lokale Dashboard-/Status-Hilfsfunktionen `https://`-URLs und `wss://`-WebSocket-URLs.
+- In identitätsführenden Modi (Tailscale Serve, `trusted-proxy`) wird die WebSocket-Authentifizierungsprüfung anhand von Anfrageheadern statt eines Shared Secrets erfüllt.
+- Legen Sie für öffentliche Nicht-Loopback-Bereitstellungen der Control UI `gateway.controlUi.allowedOrigins` explizit fest (vollständige Ursprünge). Private Ladevorgänge mit demselben Ursprung werden ohne diese Einstellung für Loopback-, RFC1918-/Link-Local-, `.local`-, `.ts.net`- und Tailscale-CGNAT-Hosts akzeptiert.
+- `gateway.controlUi.dangerouslyAllowHostHeaderOriginFallback: true` aktiviert den Host-Header-Ursprungs-Fallback; dies stellt eine gefährliche Herabstufung der Sicherheit dar.
+- Bei Serve erfüllen Tailscale-Identitätsheader die Authentifizierung für Control UI/WebSocket, wenn `gateway.auth.allowTailscale: true` (kein Token/Passwort erforderlich). HTTP-API-Endpunkte verwenden keine Tailscale-Identitätsheader; sie folgen immer dem normalen HTTP-Authentifizierungsmodus des Gateways. Legen Sie `gateway.auth.allowTailscale: false` fest, um auch über Serve explizite Anmeldedaten zu verlangen. Dieser tokenlose Ablauf setzt voraus, dass der Gateway-Host selbst vertrauenswürdig ist. Weitere Informationen finden Sie unter [Tailscale](/de/gateway/tailscale) und [Sicherheit](/de/gateway/security).
 
 ## Erstellen der UI
 

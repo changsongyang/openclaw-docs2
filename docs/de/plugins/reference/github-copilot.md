@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder überprüfen das github-copilot-Plugin
-summary: Fügt Unterstützung für den GitHub-Copilot-Modell-Provider zu OpenClaw hinzu.
+    - Sie installieren, konfigurieren oder überprüfen das github-copilot-Plugin.
+summary: Fügt OpenClaw Unterstützung für den GitHub-Copilot-Modell-Provider hinzu.
 title: GitHub-Copilot-Plugin
 x-i18n:
-    generated_at: "2026-07-24T05:07:23Z"
+    generated_at: "2026-07-26T18:37:53Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

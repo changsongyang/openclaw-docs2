@@ -1,11 +1,11 @@
 ---
 read_when:
     - Sie möchten OpenClaw mit GMI-Cloud-Modellen ausführen
-    - Sie benötigen die Provider-ID, den Schlüssel oder den Endpunkt von GMI.
-summary: Die OpenAI-kompatible API von GMI Cloud mit OpenClaw verwenden
+    - Sie benötigen die Provider-ID, den Schlüssel oder den Endpunkt von GMI
+summary: Verwenden Sie die OpenAI-kompatible API von GMI Cloud mit OpenClaw
 title: GMI Cloud
 x-i18n:
-    generated_at: "2026-07-24T04:52:47Z"
+    generated_at: "2026-07-26T18:43:44Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,20 +21,20 @@ Plugin: Installieren Sie es einmal, speichern Sie Anmeldedaten über die normale
 Modellreferenzen wie `gmi/google/gemini-3.1-flash-lite`.
 
 Verwenden Sie GMI, wenn Sie einen API-Schlüssel für mehrere gehostete Modellfamilien wünschen, darunter
-Anthropic, DeepSeek, Google, Moonshot, OpenAI und Z.AI, die über den Katalog von GMI
-bereitgestellt werden. Es eignet sich als sekundärer Provider für Modell-Fallbacks, zum Vergleichen
+Anthropic-, DeepSeek-, Google-, Moonshot-, OpenAI- und Z.AI-Routen, die über den
+Katalog von GMI bereitgestellt werden. Es eignet sich als sekundärer Provider für Modell-Fallbacks, zum Vergleichen
 gehosteter Routen verschiedener Anbieter oder wenn ein Modell bei GMI verfügbar ist, bevor Ihr
 primärer Provider es anbietet. OpenClaw verwaltet die Provider-ID, das Authentifizierungsprofil, Aliasse,
-die initialen Einträge des Modellkatalogs und die Basis-URL; GMI verwaltet die aktuelle Modellverfügbarkeit, Abrechnung,
+den initialen Modellkatalog und die Basis-URL; GMI verwaltet die aktuelle Modellverfügbarkeit, Abrechnung,
 Ratenbegrenzungen und sämtliche Provider-seitigen Routing-Richtlinien.
 
-| Eigenschaft      | Wert                                    |
+| Eigenschaft   | Wert                                     |
 | ------------- | ---------------------------------------- |
 | Provider-ID   | `gmi` (Aliasse: `gmi-cloud`, `gmicloud`) |
-| Paket       | `@openclaw/gmi-provider`                 |
-| Authentifizierungs-Umgebungsvariable  | `GMI_API_KEY`                            |
+| Paket         | `@openclaw/gmi-provider`                 |
+| Authentifizierungs-Umgebungsvariable | `GMI_API_KEY`                            |
 | API           | OpenAI-kompatibel (`openai-completions`) |
-| Basis-URL      | `https://api.gmi-serving.com/v1`         |
+| Basis-URL     | `https://api.gmi-serving.com/v1`         |
 | Standardmodell | `gmi/google/gemini-3.1-flash-lite`       |
 
 ## Einrichtung
@@ -61,33 +61,33 @@ export GMI_API_KEY="<your-gmi-api-key>" # pragma: allowlist secret
 
 ## Wann GMI die richtige Wahl ist
 
-- Sie möchten einen gehosteten OpenAI-kompatiblen Endpunkt statt eines lokalen Modellservers.
+- Sie möchten einen gehosteten OpenAI-kompatiblen Endpunkt anstelle eines lokalen Modellservers.
 - Sie möchten mehrere kommerzielle und Open-Weight-Modellfamilien über ein einziges
   Provider-Konto ausprobieren.
 - Sie möchten einen Fallback-Provider mit einem anderen Upstream-Routing als DeepInfra,
   OpenRouter, Together oder die direkten Anbieter-APIs.
 - Sie benötigen GMI-spezifische Modell-IDs, Preise oder Kontoeinstellungen.
 
-Wählen Sie stattdessen den direkten Anbieter-Provider, wenn Sie anbieternative Funktionen benötigen,
+Wählen Sie stattdessen den direkten Anbieter-Provider, wenn Sie anbieterspezifische Funktionen benötigen,
 die GMI nicht über seine OpenAI-kompatible Route bereitstellt. Wählen Sie einen lokalen
 Provider wie LM Studio, Ollama, SGLang oder vLLM, wenn Datenlokalität oder die lokale
-GPU-Steuerung wichtiger ist als der Komfort eines gehosteten Dienstes.
+GPU-Steuerung wichtiger als der Komfort eines gehosteten Dienstes sind.
 
 ## Modelle
 
-Der Plugin-Katalog enthält als Ausgangsbasis häufig verfügbare Routen-IDs von GMI Cloud:
+Der Plugin-Katalog enthält initial häufig verfügbare Routen-IDs von GMI Cloud:
 
-| Modellreferenz                          | Eingabe        | Kontext   | Maximale Ausgabe |
-| ---------------------------------- | ------------ | --------- | ---------- |
-| `gmi/anthropic/claude-sonnet-4.6`  | Text + Bild | 200,000   | 64,000     |
-| `gmi/deepseek-ai/DeepSeek-V3.2`    | Text         | 163,840   | 65,536     |
-| `gmi/google/gemini-3.1-flash-lite` | Text + Bild | 1,048,576 | 65,536     |
-| `gmi/moonshotai/Kimi-K2.5`         | Text + Bild | 262,144   | 65,536     |
-| `gmi/openai/gpt-5.4`               | Text + Bild | 400,000   | 128,000    |
-| `gmi/zai-org/GLM-5.1-FP8`          | Text         | 202,752   | 65,536     |
+| Modellreferenz                     | Eingabe      | Kontext   | Maximale Ausgabe |
+| ---------------------------------- | ------------ | --------- | ---------------- |
+| `gmi/anthropic/claude-sonnet-4.6`  | Text + Bild  | 200,000   | 64,000           |
+| `gmi/deepseek-ai/DeepSeek-V3.2`    | Text         | 163,840   | 65,536           |
+| `gmi/google/gemini-3.1-flash-lite` | Text + Bild  | 1,048,576 | 65,536           |
+| `gmi/moonshotai/Kimi-K2.5`         | Text + Bild  | 262,144   | 65,536           |
+| `gmi/openai/gpt-5.4`               | Text + Bild  | 400,000   | 128,000          |
+| `gmi/zai-org/GLM-5.1-FP8`          | Text         | 202,752   | 65,536           |
 
-Der Katalog dient als Ausgangsbasis und stellt keine Zusicherung dar, dass jedes Konto jedes Modell jederzeit
-aufrufen kann. Listen Sie auf, was der konfigurierte Provider in Ihrer Umgebung meldet:
+Der Katalog ist eine Ausgangsbasis und keine Zusicherung, dass jedes Konto jederzeit
+jedes Modell aufrufen kann. Listen Sie auf, was der konfigurierte Provider in Ihrer Umgebung meldet:
 
 ```bash
 openclaw models list --provider gmi

@@ -1,12 +1,12 @@
 ---
 read_when:
-    - Preparación de un informe de errores o una solicitud de soporte
-    - Depuración de bloqueos y reinicios del Gateway, presión de memoria o cargas útiles sobredimensionadas
+    - Preparación de un informe de error o una solicitud de asistencia
+    - Depuración de cierres inesperados y reinicios del Gateway, presión de memoria o cargas útiles demasiado grandes
     - Revisión de qué datos de diagnóstico se registran o se censuran
-summary: Crea paquetes de diagnóstico compartibles del Gateway para informes de errores
+summary: Crear paquetes de diagnóstico del Gateway que se puedan compartir para informes de errores
 title: Exportación de diagnósticos
 x-i18n:
-    generated_at: "2026-07-20T00:51:36Z"
+    generated_at: "2026-07-26T05:10:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,9 +16,12 @@ x-i18n:
     workflow: 16
 ---
 
-OpenClaw puede crear un `.zip` de diagnóstico local para informes de errores: estado, salud, registros y estructura de configuración del Gateway, además de eventos recientes de estabilidad sin cargas útiles, todo ello saneado.
+OpenClaw puede crear un `.zip` de diagnóstico local para informes de errores: estado
+y salud del Gateway, registros, estructura de configuración y eventos recientes de estabilidad sin cargas útiles, todo ello sanitizado.
 
-Trate los paquetes de diagnóstico como secretos hasta que se revisen. Las cargas útiles y las credenciales se ocultan por diseño, pero el paquete sigue resumiendo los registros locales del Gateway y el estado de ejecución del host.
+Trate los paquetes de diagnóstico como secretos hasta que se revisen. Las cargas útiles y las credenciales
+se ocultan por diseño, pero el paquete sigue resumiendo los registros locales del Gateway y
+el estado del entorno de ejecución a nivel del host.
 
 ## Inicio rápido
 
@@ -26,7 +29,7 @@ Trate los paquetes de diagnóstico como secretos hasta que se revisen. Las carga
 openclaw gateway diagnostics export
 ```
 
-Muestra la ruta del archivo zip creado. Para elegir una ruta de salida:
+Imprime la ruta del archivo zip generado. Para elegir una ruta de salida:
 
 ```bash
 openclaw gateway diagnostics export --output openclaw-diagnostics.zip
@@ -40,45 +43,86 @@ openclaw gateway diagnostics export --json
 
 ## Comando de chat
 
-Los propietarios pueden ejecutar `/diagnostics [note]` en cualquier conversación para solicitar una exportación local del Gateway como un único informe de soporte que pueda copiarse y pegarse:
+Los propietarios pueden ejecutar `/diagnostics [note]` en cualquier conversación para solicitar una exportación
+local del Gateway como un único informe de soporte que se puede copiar y pegar:
 
 1. Envíe `/diagnostics`, opcionalmente con una nota breve (`/diagnostics bad tool choice`).
-2. OpenClaw envía un preámbulo y solicita una única aprobación explícita de ejecución, que ejecuta `openclaw gateway diagnostics export --json`. No apruebe los diagnósticos mediante una regla de autorización general.
-3. Tras la aprobación, OpenClaw responde con la ruta del paquete local, un resumen del manifiesto, notas de privacidad y los identificadores de sesión pertinentes.
+2. OpenClaw envía un preámbulo y solicita una única aprobación explícita de ejecución, que ejecuta
+   `openclaw gateway diagnostics export --json`. No apruebe los diagnósticos mediante
+   una regla de autorización total.
+3. Tras la aprobación, OpenClaw responde con la ruta del paquete local, un resumen
+   del manifiesto, notas de privacidad e identificadores de sesión relevantes.
 
-En los chats grupales, un propietario también puede ejecutar `/diagnostics`, pero OpenClaw envía de forma privada al propietario el resultado de la exportación, las solicitudes de aprobación y el desglose de sesiones e hilos de Codex. El grupo solo ve un aviso breve de que los diagnósticos se enviaron de forma privada. Si no existe ninguna ruta privada hacia el propietario, el comando falla de forma segura y le pide que lo ejecute desde un mensaje directo.
+En los chats grupales, un propietario puede seguir ejecutando `/diagnostics`, pero OpenClaw envía de forma
+privada al propietario el resultado de la exportación, las solicitudes de aprobación y el desglose de sesiones/hilos
+de Codex. El grupo solo ve un aviso breve de que los diagnósticos se enviaron
+de forma privada. Si no existe una ruta privada hacia el propietario, el comando falla de forma segura y solicita
+al propietario que lo ejecute desde un mensaje directo.
 
-Cuando la sesión activa utiliza el entorno nativo de OpenAI Codex, la misma aprobación de ejecución también cubre el envío de comentarios a OpenAI sobre los hilos de Codex que OpenClaw conoce. Este envío es independiente del archivo zip local del Gateway y solo se produce en sesiones del entorno de Codex. La solicitud de aprobación indica que la aprobación también envía comentarios de Codex, sin enumerar los identificadores de sesión o hilo de Codex. Tras la aprobación, la respuesta enumera los canales, los identificadores de sesión de OpenClaw, los identificadores de hilo de Codex y los comandos locales de reanudación de los hilos que se enviaron a OpenAI. Rechazar o ignorar la aprobación omite la exportación, el envío de comentarios de Codex y la lista de identificadores de Codex.
+Cuando la sesión activa utiliza el arnés nativo de OpenAI Codex, la misma aprobación de
+ejecución también cubre el envío de comentarios a OpenAI para los hilos de Codex que OpenClaw
+conoce. Ese envío es independiente del archivo zip local del Gateway y solo
+se produce en sesiones del arnés de Codex. La solicitud de aprobación indica que la aprobación
+también envía comentarios de Codex, sin enumerar los identificadores de sesión ni de hilo de Codex. Tras
+la aprobación, la respuesta enumera los canales, los identificadores de sesión de OpenClaw, los identificadores de hilo de Codex y
+los comandos locales para reanudar los hilos que se enviaron a OpenAI. Rechazar o
+ignorar la aprobación omite la exportación, el envío de comentarios de Codex y la
+lista de identificadores de Codex.
 
-Esto acorta el ciclo de depuración de Codex: detecte un comportamiento incorrecto en un canal, ejecute `/diagnostics`, apruebe una vez, comparta el informe y, a continuación, ejecute localmente el comando `codex resume <thread-id>` mostrado si desea inspeccionar el hilo personalmente. Consulte [Entorno de Codex](/es/plugins/codex-harness#inspect-codex-threads-locally).
+Esto acorta el ciclo de depuración de Codex: detecte un comportamiento incorrecto en un canal,
+ejecute `/diagnostics`, apruebe una vez, comparta el informe y, a continuación, ejecute localmente el comando
+`codex resume <thread-id>` impreso si desea inspeccionar el hilo
+personalmente. Consulte [arnés de Codex](/es/plugins/codex-harness#inspect-codex-threads-locally).
 
 ## Contenido de la exportación
 
-- `summary.md`: descripción general legible para el equipo de soporte.
-- `diagnostics.json`: resumen legible por máquina de la configuración, los registros, el estado, la salud y los datos de estabilidad.
-- `manifest.json`: metadatos de exportación y lista de archivos.
-- Estructura de configuración saneada y detalles de configuración no secretos.
-- Resúmenes de registros saneados y líneas de registro recientes ocultadas.
-- Instantáneas del estado y la salud del Gateway obtenidas con el máximo esfuerzo.
-- `stability/latest.json`: paquete de estabilidad persistente más reciente, cuando está disponible.
+- `summary.md`: resumen legible para el equipo de soporte.
+- `diagnostics.json`: resumen procesable por máquinas de la configuración, los registros, el estado, la salud
+  y los datos de estabilidad.
+- `manifest.json`: metadatos de la exportación y lista de archivos.
+- Estructura de configuración sanitizada y detalles de configuración no secretos.
+- Resúmenes de registros sanitizados y líneas de registro recientes con datos ocultos.
+- Instantáneas del estado y la salud del Gateway obtenidas con el mejor esfuerzo posible.
+- `stability/latest.json`: paquete de estabilidad persistente más reciente, cuando esté disponible.
 
-La exportación sigue siendo útil cuando el Gateway no funciona correctamente: si fallan las solicitudes de estado o salud, se siguen recopilando, cuando están disponibles, los registros locales, la estructura de configuración y el paquete de estabilidad más reciente.
+La exportación sigue siendo útil cuando el Gateway no funciona correctamente: si fallan las solicitudes
+de estado o salud, se siguen recopilando los registros locales, la estructura de configuración y el paquete de estabilidad
+más reciente cuando están disponibles.
 
 ## Modelo de privacidad
 
-Se conservan: nombres de subsistemas, identificadores de plugins, identificadores de proveedores, identificadores de canales, modos configurados, códigos de estado, duraciones, cantidades de bytes, estado de las colas, lecturas de memoria, metadatos de registro saneados, mensajes operativos ocultados, estructura de configuración y ajustes de funciones no secretos.
+Se conservan: nombres de subsistemas, identificadores de plugins, identificadores de proveedores, identificadores de canales, modos
+configurados, códigos de estado, duraciones, recuentos de bytes, estado de las colas, lecturas de memoria,
+metadatos de registros sanitizados, mensajes operativos con datos ocultos, estructura de configuración y
+ajustes de funciones no secretos.
 
-Se omiten u ocultan: texto de chats, prompts, instrucciones, cuerpos de webhooks, resultados de herramientas, credenciales, claves de API, tokens, cookies, valores secretos, cuerpos sin procesar de solicitudes y respuestas, identificadores de cuentas, identificadores de mensajes, identificadores de sesión sin procesar, nombres de host y nombres de usuario locales.
+Se omiten o se ocultan: texto de chats, prompts, instrucciones, cuerpos de webhooks, salidas de
+herramientas, credenciales, claves de API, tokens, cookies, valores secretos, cuerpos sin procesar de
+solicitudes/respuestas, identificadores de cuentas, identificadores de mensajes, identificadores de sesión sin procesar,
+nombres de host y nombres de usuario locales.
 
-Cuando un mensaje de registro parece contener texto de una carga útil de usuario, chat, prompt o herramienta, la exportación solo conserva la indicación de que se omitió un mensaje y su cantidad de bytes.
+Cuando un mensaje de registro parece contener texto de una carga útil de usuario, chat, prompt o herramienta, la
+exportación solo conserva que se omitió un mensaje y su recuento de bytes.
 
 ## Registrador de estabilidad
 
-El Gateway registra de forma predeterminada un flujo de estabilidad acotado y sin cargas útiles cuando los diagnósticos están habilitados. Captura hechos operativos, no contenido.
+De forma predeterminada, el Gateway registra un flujo de estabilidad acotado y sin cargas útiles cuando
+los diagnósticos están habilitados. Captura datos operativos, no contenido.
 
-El mismo Heartbeat también muestrea la actividad cuando el bucle de eventos o la CPU parecen saturados y emite eventos `diagnostic.liveness.warning` con el retraso y la utilización del bucle de eventos, la proporción de núcleos de CPU, los recuentos de sesiones activas, en espera y en cola, la fase actual de inicio o ejecución (cuando se conoce), los intervalos de fases recientes y etiquetas de trabajo acotadas. Estos solo se convierten en líneas de registro del Gateway de nivel `warn` cuando hay trabajo en espera o en cola, o cuando el trabajo activo coincide con un retraso sostenido del bucle de eventos; de lo contrario, se registran con el nivel `debug`. Las muestras de actividad en reposo también se registran como eventos de diagnóstico, pero nunca generan por sí solas una advertencia.
+El mismo Heartbeat también muestrea la capacidad de respuesta cuando el bucle de eventos o la CPU parecen
+saturados y emite eventos `diagnostic.liveness.warning` con el retraso del bucle de eventos,
+la utilización del bucle de eventos, la proporción de núcleos de CPU, los recuentos de sesiones activas/en espera/en cola,
+la fase actual de inicio/ejecución (cuando se conoce), los intervalos de fases recientes y
+etiquetas de trabajo acotadas. Estos se convierten en líneas de registro del Gateway de nivel `warn` solo cuando
+hay trabajo en espera o en cola, o cuando el trabajo activo coincide con un retraso sostenido del bucle de eventos;
+de lo contrario, se registran en `debug`. Las muestras de capacidad de respuesta en reposo se siguen registrando
+como eventos de diagnóstico, pero nunca se elevan por sí mismas al nivel de advertencia.
 
-Las fases de inicio emiten eventos `diagnostic.phase.completed` con tiempos de reloj y CPU. Los diagnósticos de ejecuciones integradas bloqueadas marcan `terminalProgressStale=true` cuando el último progreso del puente parecía terminal (por ejemplo, un elemento de respuesta sin procesar o un evento de finalización de respuesta), pero el Gateway todavía considera activa la ejecución integrada.
+Las fases de inicio emiten eventos `diagnostic.phase.completed` con tiempos de reloj de pared y
+de CPU. Los diagnósticos de ejecuciones integradas bloqueadas marcan `terminalProgressStale=true`
+cuando el último progreso del puente parecía terminal (por ejemplo, un elemento de respuesta
+sin procesar o un evento de finalización de respuesta), pero el Gateway todavía considera activa la
+ejecución integrada.
 
 Para inspeccionar el registrador en directo:
 
@@ -88,7 +132,8 @@ openclaw gateway stability --type payload.large
 openclaw gateway stability --json
 ```
 
-Para inspeccionar el paquete persistente más reciente después de una salida fatal, un tiempo de espera agotado durante el apagado o un fallo de inicio tras un reinicio:
+Para inspeccionar el paquete persistente más reciente después de una salida fatal, un tiempo de espera agotado durante el apagado o
+un fallo de inicio tras un reinicio:
 
 ```bash
 openclaw gateway stability --bundle latest
@@ -111,21 +156,22 @@ openclaw gateway diagnostics export \
   --log-bytes 1000000
 ```
 
-| Indicador                    | Valor predeterminado                                                                       | Descripción                                        |
+| Indicador               | Valor predeterminado                                                            | Descripción                                                   |
 | ----------------------- | ----------------------------------------------------------------------------- | -------------------------------------------------- |
-| `--output <path>`       | `$OPENCLAW_STATE_DIR/logs/support/openclaw-diagnostics-<timestamp>-<pid>.zip` | Escribe en una ruta específica de archivo zip (o directorio).       |
-| `--log-lines <count>`   | `5000`                                                                        | Número máximo de líneas de registro saneadas que se incluirán.            |
-| `--log-bytes <bytes>`   | `1000000`                                                                     | Número máximo de bytes de registro que se inspeccionarán.                      |
-| `--url <url>`           | -                                                                             | URL de WebSocket del Gateway para instantáneas de estado y salud. |
-| `--token <token>`       | -                                                                             | Token del Gateway para instantáneas de estado y salud.         |
-| `--password <password>` | -                                                                             | Contraseña del Gateway para instantáneas de estado y salud.      |
-| `--timeout <ms>`        | `3000`                                                                        | Tiempo de espera de las instantáneas de estado y salud.                    |
-| `--no-stability-bundle` | desactivado                                                                           | Omite la búsqueda de paquetes de estabilidad persistentes.            |
-| `--json`                | desactivado                                                                           | Muestra metadatos de exportación legibles por máquina.            |
+| `--output <path>`       | `$OPENCLAW_STATE_DIR/logs/support/openclaw-diagnostics-<timestamp>-<pid>.zip` | Escribe en una ruta específica de archivo zip (o directorio). |
+| `--log-lines <count>`   | `5000`                                                                        | Número máximo de líneas de registro sanitizadas que se incluirán. |
+| `--log-bytes <bytes>`   | `1000000`                                                                     | Número máximo de bytes de registro que se inspeccionarán.     |
+| `--url <url>`           | -                                                                             | URL de WebSocket del Gateway para instantáneas de estado/salud. |
+| `--token <token>`       | -                                                                             | Token del Gateway para instantáneas de estado/salud.          |
+| `--password <password>` | -                                                                             | Contraseña del Gateway para instantáneas de estado/salud.     |
+| `--timeout <ms>`        | `3000`                                                                        | Tiempo de espera de la instantánea de estado/salud.            |
+| `--no-stability-bundle` | desactivado                                                                  | Omite la búsqueda de paquetes de estabilidad persistentes.    |
+| `--json`                | desactivado                                                                  | Imprime metadatos de exportación procesables por máquinas.     |
 
-## Deshabilitar los diagnósticos
+## Desactivar los diagnósticos
 
-Los diagnósticos están habilitados de forma predeterminada. Para deshabilitar el registrador de estabilidad y la recopilación de eventos de diagnóstico:
+Los diagnósticos están habilitados de forma predeterminada. Para desactivar el registrador de estabilidad y
+la recopilación de eventos de diagnóstico:
 
 ```json5
 {
@@ -135,13 +181,16 @@ Los diagnósticos están habilitados de forma predeterminada. Para deshabilitar 
 }
 ```
 
-Deshabilitar los diagnósticos reduce el nivel de detalle de los informes de errores; no afecta al registro normal del Gateway.
+Desactivar los diagnósticos reduce el nivel de detalle de los informes de errores, pero no afecta al registro
+normal del Gateway.
 
-Los eventos de presión de memoria registran datos sobre RSS, el montón, el umbral y el crecimiento (`rss_threshold`, `heap_threshold`, `rss_growth`) sin realizar un análisis del sistema de archivos ni escribir una instantánea previa a una falta de memoria.
+Los eventos de presión de memoria registran datos de RSS, heap, umbral y crecimiento
+(`rss_threshold`, `heap_threshold`, `rss_growth`) sin realizar un análisis
+del sistema de archivos ni escribir una instantánea previa a una falta de memoria.
 
 ## Contenido relacionado
 
-- [Comprobaciones de salud](/es/gateway/health)
+- [Comprobaciones de estado](/es/gateway/health)
 - [CLI del Gateway](/es/cli/gateway#gateway-diagnostics-export)
 - [Protocolo del Gateway](/es/gateway/protocol#rpc-method-families)
 - [Registro](/es/logging)

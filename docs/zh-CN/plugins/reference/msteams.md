@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安装、配置或审计 msteams 插件
-summary: 用于 Bot 对话的 OpenClaw Microsoft Teams 渠道插件。
+summary: 用于 Bot 对话的 OpenClaw Microsoft Teams 频道插件。
 title: Microsoft Teams 插件
 x-i18n:
-    generated_at: "2026-07-16T11:51:07Z"
+    generated_at: "2026-07-26T06:57:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Microsoft Teams 插件
 
-用于机器人对话的 OpenClaw Microsoft Teams 渠道插件。
+用于机器人对话的 OpenClaw Microsoft Teams 频道插件。
 
 ## 分发
 
@@ -25,7 +25,7 @@ x-i18n:
 
 ## 接口
 
-渠道：`msteams`
+频道：`msteams`
 
 ## 相关文档
 

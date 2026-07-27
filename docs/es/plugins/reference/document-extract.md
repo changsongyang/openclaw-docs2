@@ -4,7 +4,7 @@ read_when:
 summary: Extrae texto e imágenes de página de respaldo de los documentos adjuntos locales.
 title: Plugin de extracción de documentos
 x-i18n:
-    generated_at: "2026-07-16T11:47:14Z"
+    generated_at: "2026-07-26T04:51:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Extrae texto e imágenes de página de respaldo de archivos adjuntos de document
 ## Distribución
 
 - Paquete: `@openclaw/document-extract-plugin`
-- Ruta de instalación: incluida en OpenClaw
+- Ruta de instalación: incluido en OpenClaw
 
 ## Superficie
 

@@ -3,10 +3,10 @@ read_when:
     - Sie möchten OpenClaw mit antirez/ds4 ausführen
     - Sie möchten ein lokales DeepSeek-V4-Flash-Backend mit Tool-Aufrufen
     - Sie benötigen die OpenClaw-Konfiguration für ds4-server
-summary: Führen Sie OpenClaw über ds4 aus, einen lokalen, mit OpenAI kompatiblen DeepSeek-V4-Flash-Server
+summary: Führen Sie OpenClaw über ds4 aus, einen lokalen, mit OpenAI kompatiblen DeepSeek-V4-Flash-Server.
 title: ds4
 x-i18n:
-    generated_at: "2026-07-24T05:12:11Z"
+    generated_at: "2026-07-26T18:42:39Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,7 +18,7 @@ x-i18n:
 
 [ds4](https://github.com/antirez/ds4) stellt DeepSeek V4 Flash über ein lokales
 Metal-Backend mit einer OpenAI-kompatiblen `/v1`-API bereit. OpenClaw verbindet sich mit ds4
-über die generische Provider-Familie `openai-completions`.
+über die generische `openai-completions`-Provider-Familie.
 
 ds4 ist kein mitgeliefertes OpenClaw-Provider-Plugin. Konfigurieren Sie es unter
 `models.providers.ds4` und wählen Sie anschließend `ds4/deepseek-v4-flash` aus.
@@ -36,16 +36,16 @@ ds4 ist kein mitgeliefertes OpenClaw-Provider-Plugin. Konfigurieren Sie es unter
 ## Anforderungen
 
 - macOS mit Metal-Unterstützung.
-- Ein funktionsfähiger ds4-Checkout mit `ds4-server` und der GGUF-Datei von DeepSeek V4 Flash.
-- Ausreichend Arbeitsspeicher für den gewählten Kontext; größere Werte für `--ctx` reservieren beim Serverstart mehr
-  KV-Speicher.
+- Ein funktionsfähiger ds4-Checkout mit `ds4-server` und der GGUF-Datei für DeepSeek V4 Flash.
+- Ausreichend Arbeitsspeicher für den gewählten Kontext; größere `--ctx`-Werte weisen beim
+  Serverstart mehr KV-Speicher zu.
 
 <Warning>
-OpenClaw-Agent-Durchläufe enthalten Tool-Schemas und Workspace-Kontext. Ein kleiner Kontext
-wie `--ctx 4096` kann direkte curl-Tests bestehen, bei vollständigen Agent-Durchläufen jedoch mit
-`500 prompt exceeds context` fehlschlagen. Verwenden Sie für Agent- und Tool-
-Smoke-Tests mindestens `--ctx 32768`. Verwenden Sie `--ctx 393216` nur mit ausreichend Arbeitsspeicher und zum Aktivieren von ds4
-Think Max.
+OpenClaw-Agent-Durchläufe enthalten Tool-Schemas und Arbeitsbereichskontext. Ein kleiner Kontext
+wie `--ctx 4096` kann direkte curl-Tests bestehen, aber vollständige Agent-Durchläufe mit
+`500 prompt exceeds context` können fehlschlagen. Verwenden Sie mindestens `--ctx 32768` für
+Smoke-Tests von Agent und Tools. Verwenden Sie `--ctx 393216` nur bei ausreichendem
+Arbeitsspeicher und um ds4 Think Max zu aktivieren.
 </Warning>
 
 ## Schnellstart
@@ -73,8 +73,8 @@ Think Max.
 
   </Step>
   <Step title="OpenClaw-Provider-Konfiguration hinzufügen">
-    Fügen Sie die Konfiguration aus [Vollständige Konfiguration](#full-config) hinzu und führen Sie anschließend eine einmalige Modellprüfung
-    aus:
+    Fügen Sie die Konfiguration aus [Vollständige Konfiguration](#full-config) hinzu und führen Sie anschließend
+    eine einmalige Modellprüfung aus:
 
     ```bash
     openclaw infer model run \
@@ -144,7 +144,7 @@ als den Serverstandard anfordern soll.
 ## Bedarfsgesteuerter Start
 
 OpenClaw kann ds4 nur starten, wenn ein `ds4/...`-Modell ausgewählt ist. Fügen Sie
-demselben Provider-Eintrag `localService` hinzu:
+`localService` demselben Provider-Eintrag hinzu:
 
 ```json5
 {
@@ -199,19 +199,19 @@ demselben Provider-Eintrag `localService` hinzu:
 }
 ```
 
-`command` muss ein absoluter Pfad zu einer ausführbaren Datei sein. Shell-Suche und `~`-Expansion
-werden nicht verwendet. Unter [Lokale Modelldienste](/de/gateway/local-model-services) finden Sie
-alle `localService`-Felder.
+`command` muss ein absoluter Pfad zu einer ausführbaren Datei sein. Shell-Suche und
+`~`-Erweiterung werden nicht verwendet. Unter [Lokale Modelldienste](/de/gateway/local-model-services)
+finden Sie alle `localService`-Felder.
 
 ## Think Max
 
-ds4 wendet Think Max nur an, wenn beide Bedingungen erfüllt sind:
+ds4 wendet Think Max nur an, wenn beides zutrifft:
 
-- `ds4-server` beginnt mit `--ctx 393216` oder einem höheren Wert.
+- `ds4-server` beginnt mit `--ctx 393216` oder höher.
 - Die Anfrage verwendet `reasoning_effort: "max"` (oder das entsprechende ds4-Aufwandsfeld).
 
-Wenn Sie diesen großen Kontext verwenden, aktualisieren Sie sowohl die Server-Flags als auch die OpenClaw-Modell-
-Metadaten:
+Wenn Sie diesen großen Kontext verwenden, aktualisieren Sie sowohl die Server-Flags als auch die
+OpenClaw-Modellmetadaten:
 
 ```json5
 {
@@ -249,7 +249,7 @@ openclaw infer model run \
   --json
 ```
 
-Vollständiger Smoke-Test für Agent- und Tool-Aufrufe mit einem Kontext von mindestens 32768:
+Vollständiger Smoke-Test für Agent und Tool-Aufrufe mit einem Kontext von mindestens 32768:
 
 ```bash
 openclaw agent \
@@ -257,7 +257,7 @@ openclaw agent \
   --session-id ds4-tool-smoke \
   --model ds4/deepseek-v4-flash \
   --thinking off \
-  --message "Verwenden Sie den Shell-Befehl pwd einmal und antworten Sie dann exakt mit: tool-ok <output>" \
+  --message "Verwenden Sie den Shell-Befehl pwd einmal und antworten Sie anschließend exakt mit: tool-ok <output>" \
   --json \
   --timeout 240
 ```
@@ -266,7 +266,7 @@ Erwartetes Ergebnis:
 
 - `executionTrace.winnerProvider` ist `ds4`
 - `executionTrace.winnerModel` ist `deepseek-v4-flash`
-- `toolSummary.calls` beträgt mindestens `1`
+- `toolSummary.calls` ist mindestens `1`
 - `finalAssistantVisibleText` beginnt mit `tool-ok`
 
 ## Fehlerbehebung
@@ -282,11 +282,11 @@ Erwartetes Ergebnis:
 
   </Accordion>
 
-  <Accordion title="500: Prompt überschreitet den Kontext">
-    Der konfigurierte Wert für `--ctx` ist für den OpenClaw-Durchlauf zu klein. Erhöhen Sie
+  <Accordion title="500 – Prompt überschreitet den Kontext">
+    Der konfigurierte Wert `--ctx` ist für den OpenClaw-Durchlauf zu klein. Erhöhen Sie
     `ds4-server --ctx` und aktualisieren Sie anschließend `models.providers.ds4.models[].contextWindow`
-    entsprechend. Vollständige Agent-Durchläufe mit Tools benötigen erheblich mehr Kontext als eine
-    direkte curl-Anfrage mit einer einzelnen Nachricht.
+    entsprechend. Vollständige Agent-Durchläufe mit Tools benötigen erheblich mehr Kontext als
+    eine direkte curl-Anfrage mit einer einzelnen Nachricht.
   </Accordion>
 
   <Accordion title="Think Max wird nicht aktiviert">
@@ -296,9 +296,9 @@ Erwartetes Ergebnis:
   </Accordion>
 
   <Accordion title="Die erste Anfrage ist langsam">
-    ds4 weist eine kalte Metal-Residenz und eine Modellaufwärmphase auf. Legen Sie
-    `localService.readyTimeoutMs: 300000` fest, wenn OpenClaw den Server bei Bedarf
-    startet.
+    ds4 durchläuft eine kalte Metal-Residenz- und Modellaufwärmphase. Legen Sie
+    `localService.readyTimeoutMs: 300000` fest, wenn OpenClaw den Server bei
+    Bedarf startet.
   </Accordion>
 </AccordionGroup>
 

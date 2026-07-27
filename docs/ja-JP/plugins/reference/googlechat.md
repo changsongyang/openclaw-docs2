@@ -1,10 +1,10 @@
 ---
 read_when:
-    - googlechat Pluginをインストール、設定、または監査している場合です
-summary: スペースとダイレクト メッセージに対応する OpenClaw Google Chat チャネル Plugin。
+    - googlechat Plugin のインストール、設定、または監査を行う場合。
+summary: スペースとダイレクトメッセージに対応する OpenClaw Google Chat チャンネル Plugin。
 title: Google Chat Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:58:16Z"
+    generated_at: "2026-07-26T09:35:57Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,16 +16,16 @@ x-i18n:
 
 # Google Chat Plugin
 
-スペースとダイレクトメッセージに対応する OpenClaw Google Chat チャネル Plugin。
+スペースとダイレクトメッセージ向けの OpenClaw Google Chat チャンネル Plugin。
 
 ## 配布
 
 - パッケージ: `@openclaw/googlechat`
 - インストール経路: npm、ClawHub
 
-## 対応範囲
+## サーフェス
 
-チャネル: `googlechat`
+チャンネル: `googlechat`
 
 ## 関連ドキュメント
 

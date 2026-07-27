@@ -1,12 +1,12 @@
 ---
 read_when:
-    - セキュリティ強化を施したサーバーの自動デプロイが必要な場合
+    - セキュリティ強化を施したサーバーの自動デプロイを行いたい場合
     - VPN アクセスを備えたファイアウォール分離環境が必要です
-    - リモートの Debian/Ubuntu サーバーにデプロイする場合
-summary: Ansible、Tailscale VPN、ファイアウォール分離による、自動化され堅牢化された OpenClaw のインストール
+    - リモートの Debian/Ubuntu サーバーにデプロイする場合です
+summary: Ansible、Tailscale VPN、ファイアウォール分離による、自動化され強化された OpenClaw のインストール
 title: Ansible
 x-i18n:
-    generated_at: "2026-07-16T11:57:04Z"
+    generated_at: "2026-07-26T09:06:02Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,10 +16,10 @@ x-i18n:
     workflow: 16
 ---
 
-本番サーバーに OpenClaw をデプロイするには、セキュリティを最優先したアーキテクチャの自動インストーラー **[openclaw-ansible](https://github.com/openclaw/openclaw-ansible)** を使用します。
+OpenClaw を本番サーバーにデプロイするには、セキュリティ優先のアーキテクチャを採用した自動インストーラー **[openclaw-ansible](https://github.com/openclaw/openclaw-ansible)** を使用します。
 
 <Info>
-Ansible デプロイに関する信頼できる情報源は [openclaw-ansible](https://github.com/openclaw/openclaw-ansible) リポジトリです。このページでは概要を簡潔に説明します。
+Ansible デプロイに関する信頼できる唯一の情報源は、[openclaw-ansible](https://github.com/openclaw/openclaw-ansible) リポジトリです。このページでは概要を簡単に説明します。
 </Info>
 
 ## 前提条件
@@ -27,17 +27,17 @@ Ansible デプロイに関する信頼できる情報源は [openclaw-ansible](h
 | 要件        | 詳細                                                      |
 | ----------- | --------------------------------------------------------- |
 | OS          | Debian 11+ または Ubuntu 20.04+                           |
-| アクセス権  | root または sudo 権限                                     |
+| アクセス    | root または sudo 権限                                     |
 | ネットワーク | パッケージのインストールに必要なインターネット接続        |
 | Ansible     | 2.14+（クイックスタートスクリプトによって自動インストール） |
 
-## 導入される機能
+## 提供されるもの
 
 - ファイアウォール優先のセキュリティ：UFW + Docker 分離（SSH + Tailscale のみに到達可能）
 - サービスを公開せずにリモートアクセスできる Tailscale VPN
-- local loopback のみにバインドされた分離サンドボックスコンテナ用の Docker
-- セキュリティ強化と起動時の自動開始を備えた systemd 連携
-- 単一コマンドでのセットアップ
+- localhost のみにバインドされた分離サンドボックスコンテナ用の Docker
+- セキュリティ強化と起動時の自動開始を備えた systemd 統合
+- 1 コマンドでのセットアップ
 
 ## クイックスタート
 
@@ -52,7 +52,7 @@ curl -fsSL https://raw.githubusercontent.com/openclaw/openclaw-ansible/main/inst
 3. Docker CE + Compose V2（デフォルトのエージェントサンドボックスバックエンド）
 4. Node.js と pnpm（OpenClaw には Node 22.22.3+、24.15+、または 25.9+ が必要です。Node 24 を推奨します）
 5. コンテナ化せず、ホストベースでインストールされる OpenClaw
-6. セキュリティ強化された systemd サービス
+6. セキュリティ強化を施した systemd サービス
 
 <Note>
 Gateway は Docker 内ではなく、ホスト上で直接実行されます。エージェントのサンドボックス化は
@@ -84,7 +84,7 @@ Gateway は Docker 内ではなく、ホスト上で直接実行されます。�
     ```
   </Step>
   <Step title="Tailscale に接続する">
-    安全なリモートアクセスのために VPN メッシュへ参加します。
+    安全なリモートアクセスのため、VPN メッシュに参加します。
   </Step>
 </Steps>
 
@@ -120,7 +120,7 @@ openclaw channels login --channel <name>
 nmap -p- YOUR_SERVER_IP
 ```
 
-開いているのはポート 22（SSH）のみである必要があります。Gateway と Docker は引き続きアクセスが制限されます。
+開いているのはポート 22（SSH）のみである必要があります。Gateway と Docker は引き続きアクセスを制限されます。
 
 Docker は Gateway の実行用ではなく、エージェントサンドボックス（分離されたツール実行）用にインストールされます。サンドボックスの設定については、[マルチエージェントのサンドボックスとツール](/ja-JP/tools/multi-agent-sandbox-tools)を参照してください。
 
@@ -148,7 +148,7 @@ Docker は Gateway の実行用ではなく、エージェントサンドボッ�
     ./run-playbook.sh
     ```
 
-    または、プレイブックを直接実行した後、セットアップスクリプトを手動で実行します。
+    または、プレイブックを直接実行してから、セットアップスクリプトを手動で実行します。
     ```bash
     ansible-playbook playbook.yml --ask-become-pass
     # 次に実行：/tmp/openclaw-setup.sh
@@ -161,20 +161,20 @@ Docker は Gateway の実行用ではなく、エージェントサンドボッ�
 
 Ansible インストーラーは、OpenClaw を手動で更新するようにセットアップします。標準的な手順については、[更新](/ja-JP/install/updating)を参照してください。
 
-プレイブックを再実行するには（設定変更後など）、次のコマンドを実行します。
+プレイブックを再実行する場合（設定変更後など）：
 
 ```bash
 cd openclaw-ansible
 ./run-playbook.sh
 ```
 
-これは冪等であり、複数回実行しても安全です。
+この処理は冪等であり、複数回安全に実行できます。
 
 ## トラブルシューティング
 
 <AccordionGroup>
   <Accordion title="ファイアウォールによって接続がブロックされる">
-    - まず Tailscale VPN 経由で接続してください。Gateway は設計上、その方法でのみ到達できます。
+    - 最初に Tailscale VPN 経由で接続してください。Gateway は設計上、その方法でのみ到達できます。
     - SSH（ポート 22）は常に許可されます。
 
   </Accordion>
@@ -204,7 +204,7 @@ cd openclaw-ansible
     # イメージがない場合はサンドボックスイメージをビルド（ソースチェックアウトが必要）
     cd /opt/openclaw/openclaw
     sudo -u openclaw ./scripts/sandbox-setup.sh
-    # ソースチェックアウトなしで npm インストールを使用する場合は、次を参照
+    # ソースチェックアウトなしで npm インストールを使用する場合は、以下を参照
     # https://docs.openclaw.ai/gateway/sandboxing#images-and-setup
     ```
 

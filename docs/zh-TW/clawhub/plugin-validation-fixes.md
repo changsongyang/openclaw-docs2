@@ -1,12 +1,12 @@
 ---
 read_when:
-    - 你執行了 `clawhub package validate`，需要修正外掛的檢查結果
-    - ClawHub 在外掛套件發佈時拒絕或發出警告
-    - 你正在發布前更新外掛套件中繼資料
-summary: 發布前修正 ClawHub 外掛套件驗證發現的問題
+    - 你執行了 clawhub package validate，現在需要修正外掛檢查發現的問題
+    - ClawHub 拒絕外掛套件發布或發出警告
+    - 你正在發行前更新外掛套件中繼資料
+summary: 發布前修正 ClawHub 外掛套件驗證問題
 title: 外掛驗證修正
 x-i18n:
-    generated_at: "2026-07-19T13:37:53Z"
+    generated_at: "2026-07-26T08:11:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,9 +18,9 @@ x-i18n:
 
 # 外掛驗證修正
 
-ClawHub 會在發布前驗證外掛套件，也能顯示自動套件掃描的發現。此頁涵蓋面向作者的發現，也就是外掛作者可在其套件中修正的套件中繼資料、資訊清單、SDK 匯入或已發布成品相關發現。
+ClawHub 會在發布前驗證外掛套件，也能顯示自動化套件掃描的發現。本頁涵蓋面向作者的發現，也就是外掛作者可在其套件中修正的套件中繼資料、資訊清單、SDK 匯入或已發布成品相關問題。
 
-此頁不涵蓋內部 Plugin Inspector 的涵蓋範圍發現。如果完整報告包含沒有作者補救指引的掃描器維護代碼，這些代碼是提供給 OpenClaw 維護者，而非外掛作者。
+本頁不涵蓋內部 Plugin Inspector 的涵蓋範圍發現。如果完整報告包含沒有作者修正指引的掃描器維護代碼，這些項目是提供給 OpenClaw 維護者，而非外掛作者。
 
 套用任何修正後，請重新執行：
 
@@ -41,7 +41,7 @@ clawhub package validate <path-to-plugin>
 | `package-min-host-version-drift`        | [對齊最低主機版本](/zh-TW/clawhub/plugin-validation-fixes#package-min-host-version-drift)                                   |
 | `package-manifest-version-drift`        | [對齊套件與資訊清單版本](/zh-TW/clawhub/plugin-validation-fixes#package-manifest-version-drift)                          |
 | `package-openclaw-unsupported-metadata` | [移除不支援的 OpenClaw 套件中繼資料](/zh-TW/clawhub/plugin-validation-fixes#package-openclaw-unsupported-metadata)          |
-| `package-npm-pack-unavailable`          | [使 npm 成品可封裝](/zh-TW/clawhub/plugin-validation-fixes#package-npm-pack-unavailable)                                 |
+| `package-npm-pack-unavailable`          | [讓 npm 成品可封裝](/zh-TW/clawhub/plugin-validation-fixes#package-npm-pack-unavailable)                                 |
 | `package-npm-pack-entrypoint-missing`   | [在 npm 封裝輸出中包含進入點](/zh-TW/clawhub/plugin-validation-fixes#package-npm-pack-entrypoint-missing)                  |
 | `package-npm-pack-metadata-missing`     | [在 npm 封裝輸出中包含中繼資料](/zh-TW/clawhub/plugin-validation-fixes#package-npm-pack-metadata-missing)                       |
 | `manifest-name-missing`                 | [新增資訊清單顯示名稱](/zh-TW/clawhub/plugin-validation-fixes#manifest-name-missing)                                           |
@@ -55,9 +55,9 @@ clawhub package validate <path-to-plugin>
 | `sdk-session-transcript-file-target`    | [取代舊版逐字稿檔案目標](/zh-TW/clawhub/plugin-validation-fixes#sdk-session-transcript-file-target)                   |
 | `sdk-session-transcript-low-level`      | [取代低階逐字稿輔助函式](/zh-TW/clawhub/plugin-validation-fixes#sdk-session-transcript-low-level)                       |
 | `legacy-before-agent-start`             | [取代 before_agent_start](/zh-TW/clawhub/plugin-validation-fixes#legacy-before-agent-start)                                        |
-| `provider-auth-env-vars`                | [將提供者環境變數移至設定中繼資料](/zh-TW/clawhub/plugin-validation-fixes#provider-auth-env-vars)                             |
-| `channel-env-vars`                      | [在目前的中繼資料中鏡像通道環境變數](/zh-TW/clawhub/plugin-validation-fixes#channel-env-vars)                                |
-| `security-manifest-schema-unavailable`  | [移除不可用的安全性資訊清單結構描述參照](/zh-TW/clawhub/plugin-validation-fixes#security-manifest-schema-unavailable) |
+| `provider-auth-env-vars`                | [將供應商環境變數移至設定中繼資料](/zh-TW/clawhub/plugin-validation-fixes#provider-auth-env-vars)                             |
+| `channel-env-vars`                      | [在目前的中繼資料中同步頻道環境變數](/zh-TW/clawhub/plugin-validation-fixes#channel-env-vars)                                |
+| `security-manifest-schema-unavailable`  | [移除無法使用的安全性資訊清單結構描述參照](/zh-TW/clawhub/plugin-validation-fixes#security-manifest-schema-unavailable) |
 | `unrecognized-security-manifest`        | [移除不支援的安全性資訊清單檔案](/zh-TW/clawhub/plugin-validation-fixes#unrecognized-security-manifest)                   |
 
 ## 套件中繼資料
@@ -68,18 +68,15 @@ clawhub package validate <path-to-plugin>
 
 - 新增包含 `name`、`version` 和 `type` 的 `package.json`。
 - 當套件提供 OpenClaw 外掛時，新增 `openclaw` 區塊。
-- 請參閱[建置外掛](/zh-TW/plugins/building-plugins)以取得最小套件
-  範例，並參閱[外掛資訊清單](/zh-TW/plugins/manifest#manifest-versus-packagejson)
-  以瞭解套件與資訊清單的區分。
+- 請參閱[建置外掛](/zh-TW/plugins/building-plugins)中的最小套件範例，以及[外掛資訊清單](/zh-TW/plugins/manifest#manifest-versus-packagejson)中套件與資訊清單的區分方式。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ### package-openclaw-metadata-missing
 
-套件有 `package.json`，但未宣告 OpenClaw 套件中繼資料。
+套件具有 `package.json`，但未宣告 OpenClaw 套件中繼資料。
 
 - 新增 `package.json#openclaw`。
-- 包含 `openclaw.extensions` 或
-  `openclaw.runtimeExtensions` 等進入點中繼資料。
+- 包含進入點中繼資料，例如 `openclaw.extensions` 或 `openclaw.runtimeExtensions`。
 - 當套件將透過 ClawHub 發布或安裝時，新增相容性與安裝中繼資料。
 - 請參閱[影響探索的 package.json 欄位](/zh-TW/plugins/manifest#packagejson-fields-that-affect-discovery)。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
@@ -89,20 +86,17 @@ clawhub package validate <path-to-plugin>
 套件中繼資料存在，但未宣告 OpenClaw 執行階段進入點。
 
 - 為原生外掛進入點新增 `openclaw.extensions`。
-- 當已發布的套件應載入建置後的
-  JavaScript 時，新增 `openclaw.runtimeExtensions`。
-- 將所有進入點路徑保留在套件目錄內。
-- 請參閱[外掛進入點](/zh-TW/plugins/sdk-entrypoints)和
-  [影響探索的 package.json 欄位](/zh-TW/plugins/manifest#packagejson-fields-that-affect-discovery)。
+- 當已發布的套件應載入建置後的 JavaScript 時，新增 `openclaw.runtimeExtensions`。
+- 所有進入點路徑皆須位於套件目錄內。
+- 請參閱[外掛進入點](/zh-TW/plugins/sdk-entrypoints)和[影響探索的 package.json 欄位](/zh-TW/plugins/manifest#packagejson-fields-that-affect-discovery)。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ### package-entrypoint-missing
 
-套件宣告了 OpenClaw 進入點，但套件驗證時缺少其參照的檔案。
+套件宣告了 OpenClaw 進入點，但所參照的檔案未包含在正在驗證的套件中。
 
-- 檢查 `openclaw.extensions`、`openclaw.runtimeExtensions`、
-  `openclaw.setupEntry` 和 `openclaw.runtimeSetupEntry` 中的每個路徑。
-- 如果進入點會產生到 `dist`，請建置套件。
+- 檢查 `openclaw.extensions`、`openclaw.runtimeExtensions`、`openclaw.setupEntry` 和 `openclaw.runtimeSetupEntry` 中的每個路徑。
+- 如果進入點會產生於 `dist`，請建置套件。
 - 如果進入點已移動，請更新中繼資料。
 - 請參閱[外掛進入點](/zh-TW/plugins/sdk-entrypoints)。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
@@ -111,8 +105,7 @@ clawhub package validate <path-to-plugin>
 
 ClawHub 無法判斷應如何安裝或更新套件。
 
-- 以支援的安裝來源填寫 `openclaw.install`，例如
-  `clawhubSpec`、`npmSpec` 或 `localPath`。
+- 在 `openclaw.install` 中填入支援的安裝來源，例如 `clawhubSpec`、`npmSpec` 或 `localPath`。
 - 當有多個安裝來源可用時，設定 `openclaw.install.defaultChoice`。
 - 使用 `openclaw.install.minHostVersion` 指定最低 OpenClaw 主機版本。
 - 請參閱[影響探索的 package.json 欄位](/zh-TW/plugins/manifest#packagejson-fields-that-affect-discovery)。
@@ -123,17 +116,17 @@ ClawHub 無法判斷應如何安裝或更新套件。
 套件未宣告其支援的 OpenClaw 外掛 API 範圍。
 
 - 將 `openclaw.compat.pluginApi` 新增至 `package.json`。
-- 使用你建置及測試所依據的 OpenClaw 外掛 API 版本或 semver 下限。
-- 將此值與套件版本分開。套件版本描述外掛版本；`openclaw.compat.pluginApi` 描述主機 API 合約。
+- 使用建置及測試時所依據的 OpenClaw 外掛 API 版本或 semver 最低版本。
+- 請將此項目與套件版本分開。套件版本描述外掛版本；`openclaw.compat.pluginApi` 描述主機 API 合約。
 - 請參閱[影響探索的 package.json 欄位](/zh-TW/plugins/manifest#packagejson-fields-that-affect-discovery)。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ### package-min-host-version-drift
 
-套件的最低主機版本與套件建置所依據的 OpenClaw 版本中繼資料不符。
+套件的最低主機版本與建置套件時所依據的 OpenClaw 版本中繼資料不符。
 
 - 檢查 `openclaw.install.minHostVersion`。
-- 檢查套件中的任何 OpenClaw 建置中繼資料，例如發布期間使用的 OpenClaw 版本。
+- 檢查套件中的所有 OpenClaw 建置中繼資料，例如發布時使用的 OpenClaw 版本。
 - 將最低主機版本與套件實際支援的主機版本範圍對齊。
 - 請參閱[影響探索的 package.json 欄位](/zh-TW/plugins/manifest#packagejson-fields-that-affect-discovery)。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
@@ -143,18 +136,18 @@ ClawHub 無法判斷應如何安裝或更新套件。
 套件版本與外掛資訊清單版本不一致。
 
 - 優先使用 `package.json#version` 作為套件發布版本。
-- 如果 `openclaw.plugin.json` 也有 `version`，請更新它以保持一致；若套件中繼資料是權威來源，則移除過時的資訊清單版本中繼資料。
+- 如果 `openclaw.plugin.json` 也有 `version`，請將其更新為相符版本；若套件中繼資料具權威性，則移除過時的資訊清單版本中繼資料。
 - 變更已發布的中繼資料後，發布新的套件版本。
 - 請參閱[外掛資訊清單](/zh-TW/plugins/manifest)。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ### package-openclaw-unsupported-metadata
 
-`package.json#openclaw` 區塊包含不受支援的 OpenClaw 套件中繼資料欄位。
+`package.json#openclaw` 區塊包含 OpenClaw 套件中繼資料不支援的欄位。
 
-- 移除 `openclaw.bundle` 等不支援的欄位。
+- 移除不支援的欄位，例如 `openclaw.bundle`。
 - 將原生外掛中繼資料保留在 `openclaw.plugin.json` 中。
-- 將套件進入點、相容性、安裝、設定及目錄中繼資料保留在支援的 `package.json#openclaw` 欄位中。
+- 將套件進入點、相容性、安裝、設定和目錄中繼資料保留在支援的 `package.json#openclaw` 欄位中。
 - 請參閱[影響探索的 package.json 欄位](/zh-TW/plugins/manifest#packagejson-fields-that-affect-discovery)。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
@@ -162,185 +155,185 @@ ClawHub 無法判斷應如何安裝或更新套件。
 
 ### package-npm-pack-unavailable
 
-套件無法封裝成 ClawHub 要檢查或發布的成品。
+套件無法封裝成 ClawHub 將檢查或發布的成品。
 
 - 從套件根目錄執行 `npm pack --dry-run`。
-- 修正會導致封裝失敗的無效套件中繼資料、損壞的生命週期指令碼或 files 項目。
-- 如果此套件預計公開發布，請移除 `private: true`。
+- 修正無效的套件中繼資料、損壞的生命週期指令碼，或造成封裝失敗的 files 項目。
+- 如果此套件預定公開發布，請移除 `private: true`。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ### package-npm-pack-entrypoint-missing
 
-套件可封裝，但封裝後的成品未包含 `package.json#openclaw` 中宣告的進入點檔案。
+套件可以封裝，但封裝成品未包含 `package.json#openclaw` 中宣告的進入點檔案。
 
 - 執行 `npm pack --dry-run`，並檢查將包含的檔案。
-- 封裝前先建置產生的進入點。
-- 更新 `files`、`.npmignore` 或建置輸出，以包含已宣告的進入點。
+- 在封裝前建置產生的進入點。
+- 更新 `files`、`.npmignore` 或建置輸出，以納入已宣告的進入點。
 - 請參閱[外掛進入點](/zh-TW/plugins/sdk-entrypoints)。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ### package-npm-pack-metadata-missing
 
-封裝後的成品缺少來源套件中存在的 OpenClaw 中繼資料。
+封裝成品缺少存在於來源套件中的 OpenClaw 中繼資料。
 
-- 執行 `npm pack --dry-run`，並檢查其中包含的中繼資料檔案。
-- 確保 `package.json` 在封裝成品中包含 `openclaw` 區塊。
-- 當套件是原生 OpenClaw 外掛時，確保包含 `openclaw.plugin.json`。
-- 更新 `files` 或 `.npmignore`，以免排除套件中繼資料。
+- 執行 `npm pack --dry-run` 並檢查其中包含的中繼資料檔案。
+- 確認 `package.json` 在封裝成品中包含 `openclaw` 區塊。
+- 當套件是原生 OpenClaw 外掛時，確認其中包含 `openclaw.plugin.json`。
+- 更新 `files` 或 `.npmignore`，以免套件中繼資料遭到排除。
 - 請參閱[建置外掛](/zh-TW/plugins/building-plugins)。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
-## 資訊清單中繼資料
+## 清單中繼資料
 
 ### manifest-name-missing
 
-原生外掛資訊清單未包含顯示名稱。
+原生外掛清單未包含顯示名稱。
 
 - 在 `openclaw.plugin.json` 中新增非空白的 `name` 欄位。
-- 讓 `name` 保持易於人類閱讀，並將 `id` 保持為穩定的機器 ID。
-- 請參閱[外掛資訊清單](/zh-TW/plugins/manifest)。
+- 讓 `name` 保持易於閱讀，並將 `id` 保持為穩定的機器 ID。
+- 請參閱[外掛清單](/zh-TW/plugins/manifest)。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ### manifest-unknown-fields
 
-外掛資訊清單含有 OpenClaw 不支援的頂層欄位。
+外掛清單含有 OpenClaw 不支援的頂層欄位。
 
-- 將每個頂層欄位與[資訊清單欄位參考](/zh-TW/plugins/manifest#top-level-field-reference)進行比較。
+- 將每個頂層欄位與[清單欄位參考](/zh-TW/plugins/manifest#top-level-field-reference)進行比較。
 - 從 `openclaw.plugin.json` 移除自訂欄位。
-- 將套件或安裝中繼資料移至支援的 `package.json#openclaw` 欄位，而非放在資訊清單中。
+- 將套件或安裝中繼資料移至受支援的 `package.json#openclaw` 欄位，而非放在清單中。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ### manifest-unknown-contracts
 
-資訊清單在 `contracts` 內宣告了不支援的鍵。
+清單在 `contracts` 中宣告了不受支援的鍵。
 
 - 將 `contracts` 下的每個鍵與[合約參考](/zh-TW/plugins/manifest#contracts-reference)進行比較。
-- 移除不支援的合約鍵。
-- 將執行階段行為移至外掛註冊程式碼，並將 `contracts` 限制為靜態功能所有權中繼資料。
+- 移除不受支援的合約鍵。
+- 將執行階段行為移至外掛註冊程式碼，並將 `contracts` 限定為靜態功能所有權中繼資料。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ## SDK 與相容性遷移
 
 ### legacy-root-sdk-import
 
-此外掛從已淘汰的根 SDK 彙總匯出項目匯入：
+外掛從已淘汰的根 SDK 彙總匯出模組匯入：
 `openclaw/plugin-sdk`。
 
-- 以聚焦的公開子路徑匯入取代根彙總匯出項目匯入。
+- 將根彙總匯出模組匯入替換為用途明確的公開子路徑匯入。
 - 針對 `definePluginEntry` 使用 `openclaw/plugin-sdk/plugin-entry`。
 - 針對頻道進入點輔助函式使用 `openclaw/plugin-sdk/channel-core`。
-- 使用[匯入慣例](/zh-TW/plugins/building-plugins#import-conventions)和[外掛 SDK 子路徑](/zh-TW/plugins/sdk-subpaths)找出範圍最小的匯入。
+- 使用[匯入慣例](/zh-TW/plugins/building-plugins#import-conventions)與[外掛 SDK 子路徑](/zh-TW/plugins/sdk-subpaths)尋找範圍最精確的匯入。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ### reserved-sdk-import
 
-此外掛匯入了保留給內建外掛或內部相容性使用的 SDK 路徑。
+外掛匯入了保留給隨附外掛或內部相容性用途的 SDK 路徑。
 
-- 以文件記載的公開 `openclaw/plugin-sdk/*` 子路徑取代保留的 OpenClaw 內部 SDK 匯入。
-- 如果該行為沒有公開 SDK，請將輔助函式保留在你的套件內，或要求提供公開的 OpenClaw API。
-- 使用[外掛 SDK 子路徑](/zh-TW/plugins/sdk-subpaths)和 [SDK 遷移](/zh-TW/plugins/sdk-migration)選擇支援的匯入。
+- 將保留的 OpenClaw 內部 SDK 匯入替換為文件記載的公開 `openclaw/plugin-sdk/*` 子路徑。
+- 如果該行為沒有公開 SDK，請將輔助函式保留在你的套件內，或要求新增公開的 OpenClaw API。
+- 使用[外掛 SDK 子路徑](/zh-TW/plugins/sdk-subpaths)與 [SDK 遷移](/zh-TW/plugins/sdk-migration)選擇受支援的匯入。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ### sdk-load-session-store
 
-此外掛仍在使用已淘汰的完整工作階段儲存區輔助函式 `loadSessionStore`。
+外掛仍在使用已淘汰的完整工作階段儲存區輔助函式 `loadSessionStore`。
 
 - 讀取工作階段狀態時，使用 `getSessionEntry(...)` 或 `listSessionEntries(...)`。
 - 寫入工作階段狀態時，使用 `patchSessionEntry(...)` 或 `upsertSessionEntry(...)`。
 - 避免載入、修改並儲存整個工作階段儲存區物件。
-- 僅在你宣告的相容性範圍仍支援需要 `loadSessionStore(...)` 的舊版 OpenClaw 時，才保留它。
-- 請參閱[執行階段 API](/zh-TW/plugins/sdk-runtime#agent-session-state) 和[外掛 SDK 子路徑](/zh-TW/plugins/sdk-subpaths)。
+- 只有在你宣告的相容性範圍仍支援需要 `loadSessionStore(...)` 的舊版 OpenClaw 時，才保留它。
+- 請參閱[執行階段 API](/zh-TW/plugins/sdk-runtime#agent-session-state) 與[外掛 SDK 子路徑](/zh-TW/plugins/sdk-subpaths)。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ### sdk-session-store-write
 
-此外掛仍在使用已淘汰的完整工作階段儲存區寫入輔助函式，例如 `saveSessionStore` 或 `updateSessionStore`。
+外掛仍在使用已淘汰的完整工作階段儲存區寫入輔助函式，例如 `saveSessionStore` 或 `updateSessionStore`。
 
 - 更新現有工作階段項目的欄位時，使用 `patchSessionEntry(...)`。
-- 取代或建立工作階段項目時，使用 `upsertSessionEntry(...)`。
+- 替換或建立工作階段項目時，使用 `upsertSessionEntry(...)`。
 - 避免載入、修改並儲存整個工作階段儲存區物件。
-- 僅在你宣告的相容性範圍仍支援需要完整儲存區寫入輔助函式的舊版 OpenClaw 時，才保留這些函式。
-- 請參閱[執行階段 API](/zh-TW/plugins/sdk-runtime#agent-session-state) 和[外掛 SDK 子路徑](/zh-TW/plugins/sdk-subpaths)。
+- 只有在你宣告的相容性範圍仍支援需要完整儲存區寫入輔助函式的舊版 OpenClaw 時，才保留這些函式。
+- 請參閱[執行階段 API](/zh-TW/plugins/sdk-runtime#agent-session-state) 與[外掛 SDK 子路徑](/zh-TW/plugins/sdk-subpaths)。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ### sdk-session-file-helper
 
-此外掛仍在使用已淘汰的工作階段檔案路徑輔助函式，例如 `resolveSessionFilePath` 或 `resolveAndPersistSessionFile`。
+外掛仍在使用已淘汰的工作階段檔案路徑輔助函式，例如 `resolveSessionFilePath` 或 `resolveAndPersistSessionFile`。
 
 - 使用 `getSessionEntry(...)`，依代理程式與工作階段身分讀取工作階段中繼資料。
 - 使用 `patchSessionEntry(...)` 或 `upsertSessionEntry(...)` 保存工作階段中繼資料。
-- 當程式碼準備執行逐字稿操作時，使用逐字稿身分或目標輔助函式。
-- 請勿保存或依賴舊版逐字稿檔案路徑。
-- 請參閱[執行階段 API](/zh-TW/plugins/sdk-runtime#agent-session-state) 和[外掛 SDK 子路徑](/zh-TW/plugins/sdk-subpaths)。
+- 當程式碼正在準備文字記錄操作時，使用文字記錄身分或目標輔助函式。
+- 不要保存或依賴舊版文字記錄檔案路徑。
+- 請參閱[執行階段 API](/zh-TW/plugins/sdk-runtime#agent-session-state) 與[外掛 SDK 子路徑](/zh-TW/plugins/sdk-subpaths)。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ### sdk-session-transcript-file-target
 
-此外掛仍在使用已淘汰的逐字稿檔案目標輔助函式 `resolveSessionTranscriptLegacyFileTarget`。
+外掛仍在使用已淘汰的文字記錄檔案目標輔助函式 `resolveSessionTranscriptLegacyFileTarget`。
 
 - 當程式碼只需要公開的工作階段身分時，使用 `resolveSessionTranscriptIdentity(...)`。
-- 當程式碼需要結構化的逐字稿操作目標時，使用 `resolveSessionTranscriptTarget(...)`。
-- 避免直接讀取或建構舊版逐字稿檔案目標。
-- 僅在你宣告的相容性範圍仍支援需要舊版輔助函式的舊版 OpenClaw 時，才保留該函式。
-- 請參閱[執行階段 API](/zh-TW/plugins/sdk-runtime#agent-session-state) 和[外掛 SDK 子路徑](/zh-TW/plugins/sdk-subpaths)。
+- 當程式碼需要結構化的文字記錄操作目標時，使用 `resolveSessionTranscriptTarget(...)`。
+- 避免直接讀取或建構舊版文字記錄檔案目標。
+- 只有在你宣告的相容性範圍仍支援需要此舊版輔助函式的舊版 OpenClaw 時，才保留它。
+- 請參閱[執行階段 API](/zh-TW/plugins/sdk-runtime#agent-session-state) 與[外掛 SDK 子路徑](/zh-TW/plugins/sdk-subpaths)。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ### sdk-session-transcript-low-level
 
-此外掛仍在使用已淘汰的低階逐字稿輔助函式，例如 `appendSessionTranscriptMessage` 或 `emitSessionTranscriptUpdate`。
+外掛仍在使用已淘汰的低階文字記錄輔助函式，例如 `appendSessionTranscriptMessage` 或 `emitSessionTranscriptUpdate`。
 
-- 使用 `appendSessionTranscriptMessageByIdentity(...)` 附加逐字稿。
-- 使用 `publishSessionTranscriptUpdateByIdentity(...)` 傳送逐字稿更新通知。
-- 優先使用結構化逐字稿執行階段介面，讓 OpenClaw 能套用正確的交易邊界與身分處理。
-- 僅在你宣告的相容性範圍仍支援需要低階逐字稿輔助函式的舊版 OpenClaw 時，才保留這些函式。
-- 請參閱[執行階段 API](/zh-TW/plugins/sdk-runtime#agent-session-state) 和[外掛 SDK 子路徑](/zh-TW/plugins/sdk-subpaths)。
+- 使用 `appendSessionTranscriptMessageByIdentity(...)` 附加文字記錄。
+- 使用 `publishSessionTranscriptUpdateByIdentity(...)` 傳送文字記錄更新通知。
+- 優先使用結構化的文字記錄執行階段介面，讓 OpenClaw 能套用正確的交易邊界與身分處理。
+- 只有在你宣告的相容性範圍仍支援需要低階文字記錄輔助函式的舊版 OpenClaw 時，才保留這些函式。
+- 請參閱[執行階段 API](/zh-TW/plugins/sdk-runtime#agent-session-state) 與[外掛 SDK 子路徑](/zh-TW/plugins/sdk-subpaths)。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ### legacy-before-agent-start
 
-此外掛仍在使用舊版 `before_agent_start` 掛鉤。
+外掛仍在使用舊版 `before_agent_start` 掛鉤。
 
-- 將模型或提供者覆寫工作移至 `before_model_resolve`。
+- 將模型或供應商覆寫工作移至 `before_model_resolve`。
 - 將提示詞或上下文修改工作移至 `before_prompt_build`。
-- 僅在你宣告的相容性範圍仍支援需要 `before_agent_start` 的舊版 OpenClaw 時，才保留它。
-- 請參閱[掛鉤](/zh-TW/plugins/hooks)和[外掛相容性](/zh-TW/plugins/compatibility)。
+- 只有在你宣告的相容性範圍仍支援需要 `before_agent_start` 的舊版 OpenClaw 時，才保留它。
+- 請參閱[掛鉤](/zh-TW/plugins/hooks)與[外掛相容性](/zh-TW/plugins/compatibility)。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ### provider-auth-env-vars
 
-資訊清單仍在使用舊版 `providerAuthEnvVars` 提供者驗證中繼資料。
+清單仍在使用舊版 `providerAuthEnvVars` 供應商驗證中繼資料。
 
-- 將提供者環境變數中繼資料同步至 `setup.providers[].envVars`。
-- 僅在你支援的 OpenClaw 版本範圍仍需要 `providerAuthEnvVars` 時，才將其保留為相容性中繼資料。
-- 請參閱[設定參考](/zh-TW/plugins/manifest#setup-reference)和 [SDK 遷移](/zh-TW/plugins/sdk-migration)。
+- 將供應商環境變數中繼資料同步至 `setup.providers[].envVars`。
+- 只有在你支援的 OpenClaw 版本範圍仍需要 `providerAuthEnvVars` 時，才將其保留為相容性中繼資料。
+- 請參閱[設定參考](/zh-TW/plugins/manifest#setup-reference)與 [SDK 遷移](/zh-TW/plugins/sdk-migration)。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ### channel-env-vars
 
-資訊清單使用舊版或較舊的頻道環境變數中繼資料，卻未包含 ClawHub 預期的目前設定或組態中繼資料。
+清單使用舊版或較早的頻道環境變數中繼資料，但缺少 ClawHub 所需的目前設定或組態中繼資料。
 
 - 讓頻道環境變數中繼資料保持宣告式，使 OpenClaw 無須載入頻道執行階段即可檢查設定狀態。
-- 將由環境變數驅動的頻道設定同步至你的外掛形態所使用的目前設定、頻道組態或套件頻道中繼資料。
-- 僅在仍受支援的舊版 OpenClaw 需要 `channelEnvVars` 時，才將其保留為相容性中繼資料。
-- 請參閱[外掛資訊清單](/zh-TW/plugins/manifest)和[頻道外掛](/zh-TW/plugins/sdk-channel-plugins)。
+- 將由環境變數驅動的頻道設定同步至你的外掛結構所使用的目前設定、頻道組態或套件頻道中繼資料。
+- 只有在支援的舊版 OpenClaw 仍需要 `channelEnvVars` 時，才將其保留為相容性中繼資料。
+- 請參閱[外掛清單](/zh-TW/plugins/manifest)與[頻道外掛](/zh-TW/plugins/sdk-channel-plugins)。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
-## 安全性資訊清單
+## 安全性清單
 
 ### security-manifest-schema-unavailable
 
-套件隨附 `openclaw.security.json`，其中的結構描述參照未被 ClawHub 識別為可用。
+套件隨附的 `openclaw.security.json` 含有 ClawHub 無法辨識為可用的結構描述參照。
 
 - 如果結構描述 URL 僅供參考，請將其移除。
-- 僅在 OpenClaw 發布版本化結構描述後，才使用有文件記載的版本化結構描述。
+- 只有在 OpenClaw 發布文件記載的版本化結構描述後，才使用該結構描述。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ### unrecognized-security-manifest
 
-套件隨附不支援的安全性資訊清單檔案。
+套件隨附不受支援的安全性清單檔案。
 
-- 在 OpenClaw 記載版本化安全性資訊清單結構描述與 ClawHub 行為之前，請移除 `openclaw.security.json`。
-- 在資訊清單合約建立之前，請繼續於公開套件文件或 README 中記載安全性敏感行為。
+- 在 OpenClaw 記載版本化的安全性清單結構描述與 ClawHub 行為之前，請移除 `openclaw.security.json`。
+- 在清單合約存在之前，請持續在套件的公開文件或 README 中記載安全性敏感行為。
 - 重新執行 `clawhub package validate <path-to-plugin>`。
 
 ## 相關內容
@@ -348,6 +341,6 @@ ClawHub 無法判斷應如何安裝或更新套件。
 - [ClawHub 命令列介面](/zh-TW/clawhub/cli)
 - [ClawHub 發布](/zh-TW/clawhub/publishing)
 - [建置外掛](/zh-TW/plugins/building-plugins)
-- [外掛資訊清單](/zh-TW/plugins/manifest)
+- [外掛清單](/zh-TW/plugins/manifest)
 - [外掛進入點](/zh-TW/plugins/sdk-entrypoints)
 - [外掛相容性](/zh-TW/plugins/compatibility)

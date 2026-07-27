@@ -1,10 +1,10 @@
 ---
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin توییچ هستید
-summary: Plugin کانال Twitch در OpenClaw برای گردش‌کارهای گفت‌وگو و نظارت.
+summary: Plugin کانال Twitch برای OpenClaw جهت جریان‌های کاری گفت‌وگو و مدیریت محتوا.
 title: Plugin توییچ
 x-i18n:
-    generated_at: "2026-07-16T17:30:39Z"
+    generated_at: "2026-07-27T14:25:35Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin Twitch
 
-Plugin کانال Twitch در OpenClaw برای گردش‌کارهای گپ و مدیریت محتوا.
+Plugin کانال Twitch برای OpenClaw جهت جریان‌های کاری چت و مدیریت محتوا.
 
 ## توزیع
 

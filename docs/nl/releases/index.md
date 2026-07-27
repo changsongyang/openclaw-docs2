@@ -1,9 +1,9 @@
 ---
 description: Browse polished OpenClaw release notes with highlights, reader-facing context, source links, and contributor credits.
-summary: Samengestelde OpenClaw-releaseopmerkingen voor mensen die het verhaal achter het product willen, niet de onbewerkte changelog.
+summary: Samengestelde OpenClaw-releaseopmerkingen voor mensen die het productverhaal willen, niet het onbewerkte wijzigingslogboek.
 title: Releaseopmerkingen
 x-i18n:
-    generated_at: "2026-07-16T16:27:50Z"
+    generated_at: "2026-07-27T06:12:50Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ zonder dat je eerst de onbewerkte changelog hoeft door te nemen.
 
 ## Releases
 
-- [v2026.7.1](/releases/2026.7.1) - Vernieuwingen van de Control UI en onboarding,
+- [v2026.7.1](/nl/releases/2026.7.1) - Vernieuwingen van de Control UI en onboarding,
   grote updates voor iOS en Android, uitgebreidere modelondersteuning en herstel van de Gateway.
 - [v2026.6.11](/nl/releases/2026.6.11) - Betrouwbaarheidsverbeteringen voor antwoorden, verzendingen,
   nieuwe verbindingen, modelconfiguratie en sessies, plus veiligere standaardinstellingen voor beheerders.
@@ -29,7 +29,7 @@ zonder dat je eerst de onbewerkte changelog hoeft door te nemen.
 ## Onbewerkte releasegeschiedenis
 
 Gebruik de samengestelde opmerkingen voor het productverhaal. Gebruik de onbewerkte geschiedenis wanneer
-je een beknopt beheerdersoverzicht nodig hebt:
+je een beknopt overzicht voor beheerders nodig hebt:
 
 - [GitHub-releases](https://github.com/openclaw/openclaw/releases)
 - [CHANGELOG.md](https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md)

@@ -5,7 +5,7 @@ read_when:
     - Publicación en ClawHub
 summary: 'Empieza a usar ClawHub: busca, instala, actualiza y publica Skills o plugins.'
 x-i18n:
-    generated_at: "2026-07-19T01:49:01Z"
+    generated_at: "2026-07-26T05:33:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,7 +17,7 @@ x-i18n:
 
 # Inicio rápido
 
-ClawHub es un registro de Skills y plugins de OpenClaw.
+ClawHub es un registro de Skills y plugins para OpenClaw.
 
 Use OpenClaw cuando instale elementos en OpenClaw. Use la CLI `clawhub`
 cuando inicie sesión, publique, gestione sus propios listados o utilice
@@ -43,8 +43,8 @@ Actualice las Skills instaladas:
 openclaw skills update --all
 ```
 
-OpenClaw registra la procedencia de la Skill para que las actualizaciones posteriores puedan seguir
-resolviéndose a través de ClawHub.
+OpenClaw registra de dónde procede la Skill para que las actualizaciones posteriores puedan seguir
+resolviéndose mediante ClawHub.
 
 ## Buscar e instalar un plugin
 
@@ -109,11 +109,11 @@ publican automáticamente la siguiente versión de parche. Use `--dry-run` para 
 `--version` para elegir una versión explícita.
 
 Antes de publicar, compruebe los metadatos de `SKILL.md`. Declare las
-variables de entorno, herramientas y permisos necesarios para que los usuarios puedan entender qué
-necesita la Skill antes de instalarla. Consulte [Formato de las Skills](/clawhub/skill-format).
+variables de entorno, herramientas y permisos necesarios para que los usuarios puedan saber qué
+necesita la Skill antes de instalarla. Consulte [Formato de las Skills](/es/clawhub/skill-format).
 
-En los repositorios que contienen varias Skills, el flujo de trabajo reutilizable de GitHub llama a
-`skill publish` para cada carpeta de Skill inmediata dentro de `skills/`:
+Para los repositorios que contienen varias Skills, el flujo de trabajo reutilizable de GitHub llama a
+`skill publish` para cada carpeta de Skill inmediata en `skills/`:
 
 ```yaml
 jobs:
@@ -133,7 +133,7 @@ clawhub package publish <source> --family code-plugin --dry-run
 clawhub package publish <source> --family code-plugin
 ```
 
-Use primero `--dry-run` para obtener una vista previa de los metadatos del paquete resuelto, los campos de
+Use primero `--dry-run` para obtener una vista previa de los metadatos resueltos del paquete, los campos de
 compatibilidad, la atribución de la fuente y el plan de carga sin publicar.
 
 Los plugins de código deben incluir metadatos de compatibilidad con OpenClaw en `package.json`,
@@ -142,7 +142,7 @@ incluidos `openclaw.compat.pluginApi` y `openclaw.build.openclawVersion`.
 ## Inspeccionar antes de instalar
 
 Antes de instalar, use la página web de ClawHub o los comandos de detalles de la CLI para inspeccionar
-los metadatos, los enlaces de origen, las versiones, los registros de cambios y el estado del análisis:
+los metadatos, enlaces de origen, versiones, registros de cambios y estado del análisis:
 
 ```bash
 clawhub inspect @openclaw/demo

@@ -4,7 +4,7 @@ read_when:
 summary: Voegt ondersteuning voor de Mistral-modelprovider toe aan OpenClaw.
 title: Mistral-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:06:48Z"
+    generated_at: "2026-07-27T06:00:07Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Voegt ondersteuning voor de Mistral-modelprovider toe aan OpenClaw.
 ## Distributie
 
 - Pakket: `@openclaw/mistral-provider`
-- Installatieroute: inbegrepen bij OpenClaw
+- Installatieroute: opgenomen in OpenClaw
 
 ## Oppervlak
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - openrouter Pluginをインストール、設定、または監査している場合
+    - openrouter Plugin のインストール、設定、または監査を行っています
 summary: OpenClaw に OpenRouter モデルプロバイダーのサポートを追加します。
 title: OpenRouter Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:56:30Z"
+    generated_at: "2026-07-26T10:12:59Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,9 +21,9 @@ OpenClaw に OpenRouter モデルプロバイダーのサポートを追加し�
 ## 配布
 
 - パッケージ: `@openclaw/openrouter-provider`
-- インストール方法: OpenClaw に同梱
+- インストール経路: OpenClaw に同梱
 
-## 提供範囲
+## 公開インターフェース
 
 プロバイダー: `openrouter`; コントラクト: `imageGenerationProviders`, `mediaUnderstandingProviders`, `musicGenerationProviders`, `speechProviders`, `usageProviders`, `videoGenerationProviders`
 

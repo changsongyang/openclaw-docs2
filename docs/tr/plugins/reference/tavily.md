@@ -1,10 +1,10 @@
 ---
 read_when:
     - tavily pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
-summary: Aracı tarafından çağrılabilen araçlar ekler. Web arama sağlayıcısı desteği ekler.
+summary: Ajan tarafından çağrılabilen araçlar ekler. Web arama sağlayıcısı desteği ekler.
 title: Tavily Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:32:16Z"
+    generated_at: "2026-07-27T00:12:31Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Tavily plugin
+# Tavily Plugin
 
-Aracı tarafından çağrılabilen araçlar ekler. Web arama sağlayıcısı desteği ekler.
+Ajanların çağırabildiği araçlar ekler. Web arama sağlayıcısı desteği ekler.
 
 ## Dağıtım
 

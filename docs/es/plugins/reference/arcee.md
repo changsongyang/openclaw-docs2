@@ -4,7 +4,7 @@ read_when:
 summary: Añade compatibilidad con el proveedor de modelos Arcee en OpenClaw.
 title: Plugin de Arcee
 x-i18n:
-    generated_at: "2026-07-16T11:46:20Z"
+    generated_at: "2026-07-26T04:50:49Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin Arcee
+# Plugin de Arcee
 
 Añade compatibilidad con el proveedor de modelos Arcee a OpenClaw.
 

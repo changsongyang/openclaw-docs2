@@ -1,11 +1,11 @@
 ---
 read_when:
     - Sie stoßen in älteren Dokumentationen oder Versionshinweisen auf `openclaw flows`
-    - Sie möchten eine Kurzübersicht zur TaskFlow-Inspektion
+    - Sie möchten eine Kurzübersicht zur TaskFlow-Inspektion.
 summary: 'Weiterleitung: Flow-Befehle befinden sich unter `openclaw tasks flow`'
 title: Abläufe (Weiterleitung)
 x-i18n:
-    generated_at: "2026-07-24T03:43:18Z"
+    generated_at: "2026-07-26T17:42:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -27,13 +27,13 @@ openclaw tasks flow show   <lookup> [--json]
 openclaw tasks flow cancel <lookup>
 ```
 
-| Unterbefehl | Beschreibung                    | Argumente / Optionen                                                                    |
-| ----------- | ------------------------------- | -------------------------------------------------------------------------------------- |
-| `list`     | Verfolgte TaskFlows auflisten.  | `--json` maschinenlesbare Ausgabe; `--status <name>` Filter (siehe Statuswerte unten). |
-| `show`     | Einen TaskFlow anzeigen.        | `<lookup>` Flow-ID oder Eigentümerschlüssel; `--json` maschinenlesbare Ausgabe. |
-| `cancel`   | Laufenden TaskFlow abbrechen.   | `<lookup>` Flow-ID oder Eigentümerschlüssel.                                    |
+| Unterbefehl | Beschreibung                    | Argumente / Optionen                                                                                         |
+| ----------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `list`     | Nachverfolgte TaskFlows auflisten. | `--json` maschinenlesbare Ausgabe; `--status <name>` Filter (siehe Statuswerte unten). |
+| `show`     | Einen TaskFlow anzeigen.            | `<lookup>` Flow-ID oder Eigentümerschlüssel; `--json` maschinenlesbare Ausgabe. |
+| `cancel`   | Einen laufenden TaskFlow abbrechen. | `<lookup>` Flow-ID oder Eigentümerschlüssel.                                             |
 
-`<lookup>` akzeptiert entweder eine Flow-ID (zurückgegeben von `list` / `show`) oder den Eigentümerschlüssel des Flows (die stabile Kennung, mit der das zuständige Subsystem den Flow verfolgt).
+`<lookup>` akzeptiert entweder eine Flow-ID (zurückgegeben von `list` / `show`) oder den Eigentümerschlüssel des Flows (die stabile Kennung, mit der das zuständige Subsystem den Flow nachverfolgt).
 
 ### Werte für den Statusfilter
 
@@ -50,7 +50,7 @@ openclaw tasks flow show flow_abc123 --json
 openclaw tasks flow cancel flow_abc123
 ```
 
-Informationen zu TaskFlow-Konzepten und zur Erstellung finden Sie unter [TaskFlow](/de/automation/taskflow). Informationen zum übergeordneten Befehl `tasks` finden Sie in der [CLI-Referenz zu tasks](/de/cli/tasks).
+Informationen zu TaskFlow-Konzepten und zur Erstellung finden Sie unter [TaskFlow](/de/automation/taskflow). Informationen zum übergeordneten Befehl `tasks` finden Sie in der [CLI-Referenz für tasks](/de/cli/tasks).
 
 ## Verwandte Themen
 

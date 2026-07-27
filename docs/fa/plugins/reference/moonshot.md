@@ -4,7 +4,7 @@ read_when:
 summary: پشتیبانی از ارائه‌دهنده مدل Moonshot را به OpenClaw اضافه می‌کند.
 title: Plugin مون‌شات
 x-i18n:
-    generated_at: "2026-07-16T17:28:52Z"
+    generated_at: "2026-07-27T16:51:19Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin Moonshot
+# Plugin ‏Moonshot
 
 پشتیبانی از ارائه‌دهنده مدل Moonshot را به OpenClaw اضافه می‌کند.
 
@@ -23,7 +23,7 @@ x-i18n:
 - بسته: `@openclaw/moonshot-provider`
 - مسیر نصب: npm؛ ClawHub: `clawhub:@openclaw/moonshot-provider`
 
-## سطح
+## سطوح
 
 ارائه‌دهندگان: `moonshot`؛ قراردادها: `mediaUnderstandingProviders`، `webSearchProviders`
 

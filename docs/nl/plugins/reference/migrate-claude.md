@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de migrate-claude-plugin
-summary: Importeert instructies voor Claude Code en Claude Desktop, MCP-servers, skills en veilige configuratie in OpenClaw.
+summary: Importeert instructies, MCP-servers, Skills en veilige configuratie van Claude Code en Claude Desktop in OpenClaw.
 title: Claude-plugin migreren
 x-i18n:
-    generated_at: "2026-07-16T16:06:49Z"
+    generated_at: "2026-07-27T05:16:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Importeert instructies, MCP-servers, Skills en veilige configuratie van Claude C
 ## Distributie
 
 - Pakket: `@openclaw/migrate-claude`
-- Installatieroute: inbegrepen bij OpenClaw
+- Installatieroute: opgenomen in OpenClaw
 
 ## Oppervlak
 

@@ -1,14 +1,14 @@
 ---
 read_when:
-    - Firecrawl destekli web içeriği ayıklama istiyorsunuz
+    - Firecrawl destekli web içeriği çıkarmak istiyorsunuz
     - Anahtarsız Firecrawl Search (Ücretsiz) veya anahtarsız web_fetch istiyorsunuz
     - Arama veya daha yüksek limitler için bir Firecrawl API anahtarına ihtiyacınız var
-    - web_search sağlayıcısı olarak Firecrawl kullanmak istiyorsunuz
+    - Web araması sağlayıcısı olarak Firecrawl kullanmak istiyorsunuz
     - web_fetch için bot karşıtı veri çıkarma istiyorsunuz
 summary: Firecrawl arama, kazıma ve web_fetch yedek mekanizması
 title: Firecrawl
 x-i18n:
-    generated_at: "2026-07-16T17:42:07Z"
+    generated_at: "2026-07-26T23:38:34Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,14 +21,14 @@ x-i18n:
 OpenClaw, **Firecrawl**'ı üç şekilde kullanabilir:
 
 - `web_search` sağlayıcısı olarak
-- açıkça belirtilen plugin araçları olarak: `firecrawl_search` ve `firecrawl_scrape`
-- `web_fetch` için yedek çıkarıcı olarak
+- açık Plugin araçları olarak: `firecrawl_search` ve `firecrawl_scrape`
+- `web_fetch` için yedek ayıklayıcı olarak
 
-Bot engellerini aşmayı ve önbelleğe almayı destekleyen, barındırılan bir çıkarma/arama hizmetidir; bu özellikler, yoğun JavaScript kullanan sitelerde veya düz HTTP getirme isteklerini engelleyen sayfalarda yardımcı olur.
+Bot engellerini aşmayı ve önbelleğe almayı destekleyen, barındırılan bir ayıklama/arama hizmetidir; bu özellikler yoğun JS kullanan sitelerde veya düz HTTP getirme isteklerini engelleyen sayfalarda yardımcı olur.
 
 ## Plugin'i yükleme
 
-Resmî plugin'i yükleyin, ardından Gateway'i yeniden başlatın:
+Resmî Plugin'i yükleyin, ardından Gateway'i yeniden başlatın:
 
 ```bash
 openclaw plugins install @openclaw/firecrawl-plugin
@@ -39,15 +39,15 @@ openclaw gateway restart
 
 Firecrawl iki `web_search` sağlayıcısı kaydeder:
 
-- **Firecrawl Arama** (`firecrawl`) — anahtarınızla barındırılan `/v2/search` API'sini
-  kullanır; bir anahtar mevcut olduğunda otomatik olarak algılanır.
+- **Firecrawl Arama** (`firecrawl`) — anahtarınızla barındırılan
+  `/v2/search` API'sini kullanır; bir anahtar mevcut olduğunda otomatik olarak algılanır.
 - **Firecrawl Arama (Ücretsiz)** (`firecrawl-free`) — barındırılan anahtarsız başlangıç
-  katmanını kullanır; API anahtarı gerekmez. Arama sorgularınızı Firecrawl'ın ücretsiz
-  katmanına gönderdiği için **yalnızca açıkça etkinleştirildiğinde** kullanılır ve hiçbir zaman otomatik olarak seçilmez.
+  katmanını kullanır; API anahtarı gerekmez. **Yalnızca açıkça etkinleştirilebilir** ve hiçbir zaman otomatik olarak seçilmez,
+  çünkü bunun seçilmesi arama sorgularınızı Firecrawl'ın ücretsiz katmanına gönderir.
 
-Açıkça seçilen Firecrawl `web_fetch` yedeği de anahtarsızdır. Açıkça kullanılan
+Açıkça seçilen Firecrawl `web_fetch` yedeği de anahtarsızdır. Açık
 `firecrawl_search` ve `firecrawl_scrape` araçları bir API anahtarı gerektirir. Daha yüksek
-sınırlar için Gateway ortamına `FIRECRAWL_API_KEY` ekleyin veya bunu yapılandırın.
+sınırlar için gateway ortamına `FIRECRAWL_API_KEY` ekleyin veya yapılandırın.
 
 ## Firecrawl aramasını yapılandırma
 
@@ -78,13 +78,13 @@ sınırlar için Gateway ortamına `FIRECRAWL_API_KEY` ekleyin veya bunu yapıla
 
 Notlar:
 
-- İlk kurulumda veya `openclaw configure --section web` içinde Firecrawl'ı seçmek, yüklü Firecrawl plugin'ini otomatik olarak etkinleştirir.
-- API anahtarı olmadan anahtarsız çalışmak için ilk kurulumda **Firecrawl Arama (Ücretsiz)** seçeneğini belirleyin (veya `provider: "firecrawl-free"` ayarlayın). Anahtarlı **Firecrawl Arama** sağlayıcısı `plugins.entries.firecrawl.config.webSearch.apiKey` veya `FIRECRAWL_API_KEY` gönderir.
-- Firecrawl ile `web_search`, `query` ve `count` seçeneklerini destekler.
+- İlk katılım sırasında veya `openclaw configure --section web` içinde Firecrawl'ı seçmek, yüklü Firecrawl Plugin'ini otomatik olarak etkinleştirir.
+- API anahtarı olmadan anahtarsız çalıştırmak için ilk katılım sırasında **Firecrawl Arama (Ücretsiz)** seçeneğini belirleyin (veya `provider: "firecrawl-free"` ayarlayın). Anahtarlı **Firecrawl Arama** sağlayıcısı `plugins.entries.firecrawl.config.webSearch.apiKey` veya `FIRECRAWL_API_KEY` gönderir.
+- Firecrawl ile `web_search`, `query` ve `count` destekler.
 - `sources`, `categories` veya sonuç kazıma gibi Firecrawl'a özgü denetimler için `firecrawl_search` kullanın.
-- `baseUrl`, varsayılan olarak `https://api.firecrawl.dev` adresindeki barındırılan Firecrawl'ı kullanır. Kendi sunucunuzda barındırmaya yönelik geçersiz kılmalara yalnızca özel/dahili uç noktalar için izin verilir; HTTP yalnızca bu özel hedefler için kabul edilir.
-- `FIRECRAWL_BASE_URL`, Firecrawl arama ve kazıma temel URL'leri için paylaşılan ortam değişkeni yedeğidir.
-- Firecrawl arama isteklerinin varsayılan zaman aşımı 30 saniyedir; `firecrawl_search` aracının `timeoutSeconds` parametresi, bunu her çağrı için geçersiz kılar.
+- `baseUrl`, varsayılan olarak `https://api.firecrawl.dev` adresindeki barındırılan Firecrawl'ı kullanır. Kendi kendine barındırılan geçersiz kılmalara yalnızca özel/dahili uç noktalar için izin verilir; HTTP yalnızca bu özel hedefler için kabul edilir.
+- `FIRECRAWL_BASE_URL`, Firecrawl arama ve kazıma temel URL'leri için paylaşılan ortam yedeğidir.
+- Firecrawl arama isteklerinin varsayılan zaman aşımı 30 saniyedir; `firecrawl_search` aracının `timeoutSeconds` parametresi bunu çağrı bazında geçersiz kılar.
 
 ## Firecrawl web_fetch yedeğini yapılandırma
 
@@ -118,25 +118,25 @@ Notlar:
 Notlar:
 
 - Açıkça seçilen Firecrawl `web_fetch` yedeği, API anahtarı olmadan çalışır. Yapılandırıldığında OpenClaw, daha yüksek sınırlar için `plugins.entries.firecrawl.config.webFetch.apiKey` veya `FIRECRAWL_API_KEY` gönderir.
-- İlk kurulum sırasında veya `openclaw configure --section web` içinde Firecrawl'ı seçmek, başka bir getirme sağlayıcısı zaten yapılandırılmamışsa plugin'i etkinleştirir ve `web_fetch` için Firecrawl'ı seçer.
+- İlk katılım sırasında veya `openclaw configure --section web` içinde Firecrawl'ı seçmek, başka bir getirme sağlayıcısı zaten yapılandırılmamışsa Plugin'i etkinleştirir ve `web_fetch` için Firecrawl'ı seçer.
 - `firecrawl_scrape` bir API anahtarı gerektirir.
-- `maxAgeMs`, önbelleğe alınmış sonuçların en fazla ne kadar eski olabileceğini (ms) denetler. Varsayılan değer 172.800.000 ms'dir (2 gün).
+- `maxAgeMs`, önbelleğe alınmış sonuçların ne kadar eski olabileceğini (ms) denetler. Varsayılan değer 172.800.000 ms'dir (2 gün).
 - `onlyMainContent` varsayılan olarak `true` değerini; `timeoutSeconds` ise varsayılan olarak 60 değerini kullanır.
 - Eski `tools.web.fetch.firecrawl.*` ve `tools.web.search.firecrawl.*` yapılandırması, `openclaw doctor --fix` tarafından otomatik olarak taşınır.
-- Firecrawl kazıma/temel URL geçersiz kılmaları, aramayla aynı barındırılan/özel kuralını izler: herkese açık barındırılan trafik `https://api.firecrawl.dev` kullanır; kendi sunucunuzda barındırmaya yönelik geçersiz kılmalar özel/dahili uç noktalara çözümlenmelidir.
-- `firecrawl_scrape`, açık Firecrawl kazıma çağrıları için `web_fetch` hedef güvenliği sözleşmesiyle uyumlu olarak, bariz özel, geri döngü, meta veri ve HTTP(S) dışındaki hedef URL'leri Firecrawl'a iletmeden önce reddeder.
+- Firecrawl kazıma/temel URL geçersiz kılmaları, aramayla aynı barındırılan/özel kuralını izler: herkese açık barındırılan trafik `https://api.firecrawl.dev` kullanır; kendi kendine barındırılan geçersiz kılmalar özel/dahili uç noktalara çözümlenmelidir.
+- `firecrawl_scrape`, açık Firecrawl kazıma çağrıları için `web_fetch` hedef güvenliği sözleşmesine uygun olarak, belirgin özel, geri döngü, meta veri ve HTTP(S) dışı hedef URL'lerini Firecrawl'a iletmeden önce reddeder.
 
-`firecrawl_scrape`, gerekli API anahtarı dâhil olmak üzere aynı `plugins.entries.firecrawl.config.webFetch.*` ayarlarını ve ortam değişkenlerini yeniden kullanır.
+`firecrawl_scrape`, gerekli API anahtarı da dahil olmak üzere aynı `plugins.entries.firecrawl.config.webFetch.*` ayarlarını ve ortam değişkenlerini yeniden kullanır.
 
-### Kendi sunucunuzda barındırılan Firecrawl
+### Kendi kendine barındırılan Firecrawl
 
 Firecrawl'ı kendiniz çalıştırdığınızda `plugins.entries.firecrawl.config.webSearch.baseUrl`, `plugins.entries.firecrawl.config.webFetch.baseUrl` veya `FIRECRAWL_BASE_URL` ayarlayın. OpenClaw, `http://` değerini yalnızca geri döngü, özel ağ, `.local`, `.internal` veya `.localhost` hedefleri için kabul eder. Firecrawl API anahtarlarının yanlışlıkla rastgele uç noktalara gönderilmemesi için herkese açık özel ana makineler reddedilir.
 
-## Firecrawl plugin araçları
+## Firecrawl Plugin araçları
 
 ### `firecrawl_search`
 
-Genel `web_search` yerine Firecrawl'a özgü arama denetimlerini kullanmak istediğinizde bunu kullanın. Bir API anahtarı gerektirir.
+Genel `web_search` yerine Firecrawl'a özgü arama denetimleri istediğinizde bunu kullanın. API anahtarı gerektirir.
 
 Parametreler:
 
@@ -152,7 +152,7 @@ Parametreler:
 
 ### `firecrawl_scrape`
 
-Düz `web_fetch` yönteminin yetersiz kaldığı, yoğun JavaScript kullanan veya bot korumalı sayfalar için bunu kullanın.
+Düz `web_fetch` yönteminin yetersiz kaldığı, yoğun JS kullanan veya bot korumalı sayfalar için bunu kullanın.
 
 Parametreler:
 
@@ -167,22 +167,22 @@ Parametreler:
 
 ## Gizli mod / bot engellerini aşma
 
-`firecrawl_scrape` ve `web_fetch` Firecrawl yedeği, çağıran taraf bu parametreleri geçersiz kılmadığı sürece varsayılan olarak `proxy: "auto"` ile birlikte `storeInCache: true` kullanır. `firecrawl_search` ve `web_search` Firecrawl sağlayıcısında `proxy`/`storeInCache` denetimleri yoktur; gizli proxy modu yalnızca kazıma/getirme isteklerine uygulanır.
+`firecrawl_scrape` ve `web_fetch` Firecrawl yedeği, çağıran bu parametreleri geçersiz kılmadığı sürece varsayılan olarak `proxy: "auto"` ile birlikte `storeInCache: true` kullanır. `firecrawl_search` ve `web_search` Firecrawl sağlayıcında `proxy`/`storeInCache` denetimleri yoktur; gizli proxy modu yalnızca kazıma/getirme isteklerine uygulanır.
 
-Firecrawl'ın `proxy` modu, bot engellerinin nasıl aşılacağını denetler (`basic`, `stealth` veya `auto`). `auto`, temel bir deneme başarısız olursa gizli proxy'lerle yeniden dener; bu, yalnızca temel kazımaya kıyasla daha fazla kredi kullanabilir.
+Firecrawl'ın `proxy` modu, bot engellerini aşmayı denetler (`basic`, `stealth` veya `auto`). `auto`, temel bir deneme başarısız olursa gizli proxy'lerle yeniden dener; bu, yalnızca temel kazımadan daha fazla kredi kullanabilir.
 
 ## `web_fetch`, Firecrawl'ı nasıl kullanır?
 
-`web_fetch` çıkarma sırası:
+`web_fetch` ayıklama sırası:
 
 1. Readability (yerel)
-2. Firecrawl gibi yapılandırılmış getirme sağlayıcısı (seçildiğinde veya yapılandırılmış kimlik bilgilerinden otomatik olarak algılandığında)
+2. Firecrawl gibi yapılandırılmış getirme sağlayıcısı (seçildiğinde veya yapılandırılmış kimlik bilgileri üzerinden otomatik algılandığında)
 3. Temel HTML temizleme (son yedek)
 
-Seçim ayarı `tools.web.fetch.provider` şeklindedir. Bunu belirtmezseniz OpenClaw, mevcut kimlik bilgilerinden kullanıma hazır ilk web getirme sağlayıcısını otomatik olarak algılar. Resmî Firecrawl plugin'i bu yedeği sağlar.
+Seçim ayarı `tools.web.fetch.provider` değeridir. Bunu belirtmezseniz OpenClaw, mevcut kimlik bilgilerinden hazır olan ilk web getirme sağlayıcısını otomatik olarak algılar. Resmî Firecrawl Plugin'i bu yedeği sağlar.
 
-## İlgili kaynaklar
+## İlgili
 
 - [Web Aramasına genel bakış](/tr/tools/web) -- tüm sağlayıcılar ve otomatik algılama
 - [Web Getirme](/tr/tools/web-fetch) -- Firecrawl yedeğine sahip web_fetch aracı
-- [Tavily](/tr/tools/tavily) -- arama + çıkarma araçları
+- [Tavily](/tr/tools/tavily) -- arama + ayıklama araçları

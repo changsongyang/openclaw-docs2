@@ -1,10 +1,10 @@
 ---
 read_when:
-    - xai Pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+    - xai pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a xAI model sağlayıcısı desteği ekler.
 title: xAI Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:47:27Z"
+    generated_at: "2026-07-27T00:12:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

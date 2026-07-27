@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin firecrawl
-summary: Añade herramientas que los agentes pueden invocar. Añade compatibilidad con proveedores de obtención de contenido web. Añade compatibilidad con proveedores de búsqueda web.
+summary: Añade herramientas invocables por agentes. Añade compatibilidad con proveedores de obtención web. Añade compatibilidad con proveedores de búsqueda web.
 title: Plugin de Firecrawl
 x-i18n:
-    generated_at: "2026-07-16T11:52:45Z"
+    generated_at: "2026-07-26T05:14:34Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Plugin Firecrawl
 
-Añade herramientas que pueden ser invocadas por agentes. Añade compatibilidad con el proveedor de obtención web. Añade compatibilidad con el proveedor de búsqueda web.
+Añade herramientas que puede invocar el agente. Añade compatibilidad con el proveedor de obtención web. Añade compatibilidad con el proveedor de búsqueda web.
 
 ## Distribución
 
 - Paquete: `@openclaw/firecrawl-plugin`
-- Vía de instalación: npm; ClawHub: `clawhub:@openclaw/firecrawl-plugin`
+- Ruta de instalación: npm; ClawHub: `clawhub:@openclaw/firecrawl-plugin`
 
 ## Superficie
 

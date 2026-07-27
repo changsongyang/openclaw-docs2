@@ -4,7 +4,7 @@ read_when:
 summary: Añade compatibilidad con los proveedores de modelos Tencent TokenHub y Tencent Tokenplan en OpenClaw.
 title: Plugin de Tencent
 x-i18n:
-    generated_at: "2026-07-16T11:54:44Z"
+    generated_at: "2026-07-26T04:52:45Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

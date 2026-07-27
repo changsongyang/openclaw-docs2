@@ -1,10 +1,10 @@
 ---
 read_when:
-    - zalo pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - Zalo pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: Bot ve webhook sohbetleri için OpenClaw Zalo kanal plugini.
 title: Zalo Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:47:36Z"
+    generated_at: "2026-07-26T23:34:10Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Zalo Plugin
+# Zalo plugin’i
 
-Bot ve Webhook sohbetleri için OpenClaw Zalo kanal Plugin'i.
+Bot ve Webhook sohbetleri için OpenClaw Zalo kanal plugin’i.
 
 ## Dağıtım
 
 - Paket: `@openclaw/zalo`
-- Kurulum yolu: npm; ClawHub
+- Yükleme yolu: npm; ClawHub
 
 ## Yüzey
 
@@ -29,4 +29,4 @@ kanallar: `zalo`
 
 ## İlgili belgeler
 
-- [Zalo](/tr/channels/zalo)
+- [zalo](/tr/channels/zalo)

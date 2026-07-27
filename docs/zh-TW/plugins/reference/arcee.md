@@ -4,7 +4,7 @@ read_when:
 summary: 新增 OpenClaw 對 Arcee 模型供應商的支援。
 title: Arcee 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:47:18Z"
+    generated_at: "2026-07-26T08:05:01Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,10 +18,10 @@ x-i18n:
 
 為 OpenClaw 新增 Arcee 模型供應商支援。
 
-## 發布方式
+## 發行
 
 - 套件：`@openclaw/arcee-provider`
-- 安裝方式：npm；ClawHub：`clawhub:@openclaw/arcee-provider`
+- 安裝途徑：npm；ClawHub：`clawhub:@openclaw/arcee-provider`
 
 ## 介面
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## 相關文件
 
-- [Arcee](/zh-TW/providers/arcee)
+- [arcee](/zh-TW/providers/arcee)

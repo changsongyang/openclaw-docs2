@@ -1,10 +1,10 @@
 ---
 read_when:
-    - migrate-hermes Pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
-summary: Hermes yapılandırmasını, belleklerini, Skills öğelerini ve desteklenen kimlik bilgilerini OpenClaw'a aktarır.
-title: Hermes eklentisini taşıma
+    - migrate-hermes Plugin'ini kuruyor, yapılandırıyor veya denetliyorsunuz
+summary: Hermes yapılandırmasını, anıları, becerileri ve desteklenen kimlik bilgilerini OpenClaw'a aktarır.
+title: Hermes pluginini taşı
 x-i18n:
-    generated_at: "2026-07-16T17:45:24Z"
+    generated_at: "2026-07-26T23:33:08Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Hermes Plugin'ini taşıma
+# Hermes Pluginini taşıma
 
-Hermes yapılandırmasını, belleklerini, becerilerini ve desteklenen kimlik bilgilerini OpenClaw'a aktarır.
+Hermes yapılandırmasını, belleklerini, Skills öğelerini ve desteklenen kimlik bilgilerini OpenClaw'a aktarır.
 
 ## Dağıtım
 

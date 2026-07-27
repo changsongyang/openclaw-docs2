@@ -1,12 +1,12 @@
 ---
 read_when:
-    - आप GCP पर OpenClaw को 24/7 चालू रखना चाहते हैं
-    - आप अपनी स्वयं की VM पर उत्पादन-स्तरीय, हमेशा चालू रहने वाला Gateway चाहते हैं
-    - आप स्थायित्व, बाइनरी और पुनः आरंभ के व्यवहार पर पूर्ण नियंत्रण चाहते हैं
-summary: टिकाऊ स्टेट के साथ GCP Compute Engine VM (Docker) पर OpenClaw Gateway को 24/7 चलाएँ
+    - आप चाहते हैं कि OpenClaw GCP पर 24/7 चलता रहे
+    - आप अपनी स्वयं की VM पर प्रोडक्शन-ग्रेड, हमेशा चालू रहने वाला Gateway चाहते हैं
+    - आप स्थायित्व, बाइनरी और पुनः आरंभ व्यवहार पर पूर्ण नियंत्रण चाहते हैं
+summary: टिकाऊ स्थिति के साथ GCP Compute Engine VM (Docker) पर OpenClaw Gateway को 24/7 चलाएँ
 title: GCP
 x-i18n:
-    generated_at: "2026-07-16T15:35:22Z"
+    generated_at: "2026-07-27T19:27:32Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,13 +16,13 @@ x-i18n:
     workflow: 16
 ---
 
-स्थायी स्थिति, पहले से शामिल बाइनरी और सुरक्षित रीस्टार्ट व्यवहार के साथ Docker का उपयोग करके GCP Compute Engine VM पर एक स्थायी OpenClaw Gateway चलाएँ।
+Docker का उपयोग करके GCP Compute Engine VM पर एक स्थायी OpenClaw Gateway चलाएँ, जिसमें टिकाऊ स्टेट, पहले से शामिल बाइनरी और सुरक्षित रीस्टार्ट व्यवहार हो।
 
-मूल्य मशीन प्रकार और क्षेत्र के अनुसार अलग-अलग होता है; अपने कार्यभार के लिए उपयुक्त सबसे छोटा VM चुनें और OOM होने पर उसका आकार बढ़ाएँ।
+मशीन के प्रकार और क्षेत्र के अनुसार कीमत अलग-अलग होती है; अपने कार्यभार के लिए उपयुक्त सबसे छोटा VM चुनें और OOM होने पर उसका आकार बढ़ाएँ।
 
-Gateway को आपके लैपटॉप से SSH पोर्ट फ़ॉरवर्डिंग के माध्यम से, या यदि आप फ़ायरवॉल और टोकन स्वयं प्रबंधित करते हैं तो सीधे पोर्ट एक्सपोज़र के माध्यम से एक्सेस किया जा सकता है।
+Gateway को आपके लैपटॉप से SSH पोर्ट फ़ॉरवर्डिंग के माध्यम से या, यदि आप फ़ायरवॉल और टोकन स्वयं प्रबंधित करते हैं, तो सीधे पोर्ट एक्सपोज़ करके एक्सेस किया जा सकता है।
 
-यह गाइड GCP Compute Engine पर Debian का उपयोग करती है। Ubuntu भी काम करता है; पैकेजों को उसके अनुसार मैप करें। सामान्य Docker प्रवाह के लिए, [Docker](/hi/install/docker) देखें।
+यह गाइड GCP Compute Engine पर Debian का उपयोग करती है। Ubuntu भी काम करता है; उसके अनुसार पैकेज मैप करें। सामान्य Docker प्रवाह के लिए, [Docker](/hi/install/docker) देखें।
 
 ## आपको क्या चाहिए
 
@@ -32,15 +32,15 @@ Gateway को आपके लैपटॉप से SSH पोर्ट फ़
 - Docker और Docker Compose
 - मॉडल प्रमाणीकरण क्रेडेंशियल
 - वैकल्पिक प्रदाता क्रेडेंशियल (WhatsApp QR, Telegram बॉट टोकन, Gmail OAuth)
-- लगभग 20-30 मिनट
+- ~20-30 मिनट
 
-## त्वरित तरीका
+## त्वरित प्रक्रिया
 
 1. एक GCP प्रोजेक्ट बनाएँ, बिलिंग और Compute Engine API सक्षम करें
 2. एक Compute Engine VM बनाएँ (`e2-small`, Debian 12, 20GB)
 3. VM में SSH करें, Docker इंस्टॉल करें
 4. OpenClaw रिपॉज़िटरी क्लोन करें
-5. स्थायी होस्ट डायरेक्टरियाँ बनाएँ
+5. स्थायी होस्ट डायरेक्टरी बनाएँ
 6. `.env` और `docker-compose.yml` कॉन्फ़िगर करें
 7. आवश्यक बाइनरी इमेज में शामिल करें, बिल्ड करें और लॉन्च करें
 
@@ -53,11 +53,11 @@ Gateway को आपके लैपटॉप से SSH पोर्ट फ़
     gcloud auth login
     ```
 
-    या इसके बजाय नीचे दिए गए सभी चरण [Cloud Console](https://console.cloud.google.com) वेब UI के माध्यम से पूरे करें।
+    या इसके बजाय नीचे दिए गए प्रत्येक चरण को [Cloud Console](https://console.cloud.google.com) वेब UI के माध्यम से पूरा करें।
 
   </Step>
 
-  <Step title="GCP प्रोजेक्ट बनाएँ">
+  <Step title="एक GCP प्रोजेक्ट बनाएँ">
     ```bash
     gcloud projects create my-openclaw-project --name="OpenClaw Gateway"
     gcloud config set project my-openclaw-project
@@ -71,11 +71,11 @@ Gateway को आपके लैपटॉप से SSH पोर्ट फ़
   </Step>
 
   <Step title="VM बनाएँ">
-    | प्रकार     | विनिर्देश                 | लागत               | टिप्पणियाँ                                      |
+    | प्रकार     | विनिर्देश                 | लागत                 | टिप्पणियाँ                                           |
     | --------- | ------------------------ | ------------------ | --------------------------------------------- |
-    | e2-medium | 2 vCPU, 4GB RAM          | ~$25/माह           | स्थानीय Docker बिल्ड के लिए सबसे विश्वसनीय      |
-    | e2-small  | 2 vCPU, 2GB RAM          | ~$12/माह           | Docker बिल्ड के लिए अनुशंसित न्यूनतम            |
-    | e2-micro  | 2 vCPU (साझा), 1GB RAM   | निःशुल्क टियर पात्र | Docker बिल्ड OOM (एग्ज़िट 137) के कारण अक्सर विफल |
+    | e2-medium | 2 vCPU, 4GB RAM          | ~$25/mo            | स्थानीय Docker बिल्ड के लिए सबसे विश्वसनीय           |
+    | e2-small  | 2 vCPU, 2GB RAM          | ~$12/mo            | Docker बिल्ड के लिए अनुशंसित न्यूनतम                 |
+    | e2-micro  | 2 vCPU (साझा), 1GB RAM   | निःशुल्क टियर के लिए पात्र | Docker बिल्ड OOM (exit 137) के कारण अक्सर विफल होता है |
 
     ```bash
     gcloud compute instances create openclaw-gateway \
@@ -93,9 +93,9 @@ Gateway को आपके लैपटॉप से SSH पोर्ट फ़
     gcloud compute ssh openclaw-gateway --zone=us-central1-a
     ```
 
-    Console: Compute Engine डैशबोर्ड में VM के आगे "SSH" पर क्लिक करें।
+    Console: Compute Engine डैशबोर्ड में VM के पास "SSH" पर क्लिक करें।
 
-    VM बनने के बाद SSH कुंजी के प्रसार में 1-2 मिनट लग सकते हैं; यदि कनेक्शन अस्वीकार हो जाए तो प्रतीक्षा करें और फिर से प्रयास करें।
+    VM बनने के बाद SSH कुंजी के प्रसार में 1-2 मिनट लग सकते हैं; कनेक्शन अस्वीकार होने पर प्रतीक्षा करें और पुनः प्रयास करें।
 
   </Step>
 
@@ -107,7 +107,7 @@ Gateway को आपके लैपटॉप से SSH पोर्ट फ़
     sudo usermod -aG docker $USER
     ```
 
-    समूह परिवर्तन प्रभावी करने के लिए लॉग आउट करके फिर से लॉग इन करें, फिर दोबारा SSH करें:
+    समूह परिवर्तन लागू करने के लिए लॉग आउट करके फिर से लॉग इन करें, उसके बाद दोबारा SSH करें:
 
     ```bash
     exit
@@ -132,12 +132,12 @@ Gateway को आपके लैपटॉप से SSH पोर्ट फ़
     cd openclaw
     ```
 
-    यह गाइड एक कस्टम इमेज बनाती है, ताकि उसमें शामिल की गई सभी बाइनरी रीस्टार्ट के बाद भी बनी रहें।
+    यह गाइड एक कस्टम इमेज बनाती है, ताकि आपके द्वारा उसमें शामिल की गई सभी बाइनरी रीस्टार्ट के बाद भी बनी रहें।
 
   </Step>
 
-  <Step title="स्थायी होस्ट डायरेक्टरियाँ बनाएँ">
-    Docker कंटेनर अस्थायी होते हैं; लंबे समय तक बनी रहने वाली सभी स्थिति होस्ट पर होनी चाहिए।
+  <Step title="स्थायी होस्ट डायरेक्टरी बनाएँ">
+    Docker कंटेनर अस्थायी होते हैं; लंबे समय तक बने रहने वाला पूरा स्टेट होस्ट पर होना चाहिए।
 
     ```bash
     mkdir -p ~/.openclaw
@@ -162,19 +162,16 @@ Gateway को आपके लैपटॉप से SSH पोर्ट फ़
     XDG_CONFIG_HOME=/home/node/.openclaw
     ```
 
-    स्थिर Gateway टोकन को `.env` के माध्यम से प्रबंधित करने के लिए
-    `OPENCLAW_GATEWAY_TOKEN` सेट करें; अन्यथा रीस्टार्ट के दौरान क्लाइंट पर निर्भर रहने से पहले
-    `gateway.auth.token` कॉन्फ़िगर करें। यदि दोनों में से कोई भी सेट नहीं है, तो OpenClaw
-    उस स्टार्टअप के लिए केवल रनटाइम टोकन का उपयोग करता है। `GOG_KEYRING_PASSWORD` के लिए
-    कीरिंग पासवर्ड जनरेट करें:
+    स्थायी Gateway टोकन को
+    `.env` के माध्यम से प्रबंधित करने के लिए `OPENCLAW_GATEWAY_TOKEN` सेट करें; अन्यथा रीस्टार्ट के बाद क्लाइंट पर निर्भर होने से पहले `gateway.auth.token` कॉन्फ़िगर करें। यदि दोनों में से कोई सेट नहीं है, तो OpenClaw उस स्टार्टअप के लिए केवल रनटाइम टोकन का उपयोग करता है। `GOG_KEYRING_PASSWORD` के लिए एक कीरिंग पासवर्ड बनाएँ:
 
     ```bash
     openssl rand -hex 32
     ```
 
-    **इस फ़ाइल को कमिट न करें।** इसमें `OPENCLAW_GATEWAY_TOKEN` जैसे कंटेनर/रनटाइम
-    एनवायरनमेंट वेरिएबल होते हैं। संग्रहीत प्रदाता OAuth/API-कुंजी प्रमाणीकरण
-    माउंट किए गए `~/.openclaw/agents/<agentId>/agent/auth-profiles.json` में रहता है।
+    **इस फ़ाइल को कमिट न करें।** इसमें
+    `OPENCLAW_GATEWAY_TOKEN` जैसे कंटेनर/रनटाइम एनवायरनमेंट वेरिएबल होते हैं। संग्रहीत प्रदाता OAuth/API-कुंजी प्रमाणीकरण माउंट की गई
+    `~/.openclaw/agents/<agentId>/agent/auth-profiles.json` में रहता है।
 
   </Step>
 
@@ -203,8 +200,8 @@ Gateway को आपके लैपटॉप से SSH पोर्ट फ़
           - ${OPENCLAW_CONFIG_DIR}:/home/node/.openclaw
           - ${OPENCLAW_WORKSPACE_DIR}:/home/node/.openclaw/workspace
         ports:
-          # अनुशंसित: VM पर Gateway को केवल लूपबैक तक सीमित रखें; SSH टनल के माध्यम से एक्सेस करें।
-          # इसे सार्वजनिक रूप से एक्सपोज़ करने के लिए, `127.0.0.1:` प्रीफ़िक्स हटाएँ और फ़ायरवॉल को उसके अनुसार कॉन्फ़िगर करें।
+          # अनुशंसित: VM पर Gateway को केवल लूपबैक तक सीमित रखें; SSH टनल से एक्सेस करें।
+          # इसे सार्वजनिक रूप से एक्सपोज़ करने के लिए, `127.0.0.1:` उपसर्ग हटाएँ और उसके अनुसार फ़ायरवॉल कॉन्फ़िगर करें।
           - "127.0.0.1:${OPENCLAW_GATEWAY_PORT}:18789"
         command:
           [
@@ -227,16 +224,16 @@ Gateway को आपके लैपटॉप से SSH पोर्ट फ़
     सामान्य Docker होस्ट प्रवाह के लिए साझा रनटाइम गाइड का पालन करें:
 
     - [आवश्यक बाइनरी इमेज में शामिल करें](/hi/install/docker-vm-runtime#bake-required-binaries-into-the-image)
-    - [बिल्ड और लॉन्च करें](/hi/install/docker-vm-runtime#build-and-launch)
-    - [क्या कहाँ स्थायी रहता है](/hi/install/docker-vm-runtime#what-persists-where)
+    - [बिल्ड करें और लॉन्च करें](/hi/install/docker-vm-runtime#build-and-launch)
+    - [क्या कहाँ बना रहता है](/hi/install/docker-vm-runtime#what-persists-where)
     - [अपडेट](/hi/install/docker-vm-runtime#updates)
 
   </Step>
 
-  <Step title="GCP-विशिष्ट लॉन्च टिप्पणियाँ">
-    यदि `pnpm install --frozen-lockfile` के दौरान बिल्ड `Killed` या `exit code 137` के साथ विफल हो जाता है, तो VM की मेमोरी समाप्त हो गई है। कम-से-कम `e2-small` का उपयोग करें, या अधिक विश्वसनीय पहले बिल्ड के लिए `e2-medium` का उपयोग करें।
+  <Step title="GCP-विशिष्ट लॉन्च संबंधी टिप्पणियाँ">
+    यदि `pnpm install --frozen-lockfile` के दौरान बिल्ड `Killed` या `exit code 137` के साथ विफल होता है, तो VM की मेमोरी समाप्त हो गई है। कम-से-कम `e2-small` या अधिक विश्वसनीय पहले बिल्ड के लिए `e2-medium` का उपयोग करें।
 
-    LAN (`OPENCLAW_GATEWAY_BIND=lan`) से बाइंड करते समय, आगे बढ़ने से पहले एक विश्वसनीय ब्राउज़र ओरिजिन कॉन्फ़िगर करें:
+    LAN (`OPENCLAW_GATEWAY_BIND=lan`) से बाइंड करते समय, आगे बढ़ने से पहले कोई विश्वसनीय ब्राउज़र ओरिजिन कॉन्फ़िगर करें:
 
     ```bash
     docker compose run --rm openclaw-cli config set gateway.controlUi.allowedOrigins '["http://127.0.0.1:18789"]' --strict-json
@@ -247,7 +244,7 @@ Gateway को आपके लैपटॉप से SSH पोर्ट फ़
   </Step>
 
   <Step title="अपने लैपटॉप से एक्सेस करें">
-    Gateway पोर्ट फ़ॉरवर्ड करने के लिए SSH टनल बनाएँ:
+    Gateway पोर्ट फ़ॉरवर्ड करने के लिए एक SSH टनल बनाएँ:
 
     ```bash
     gcloud compute ssh openclaw-gateway --zone=us-central1-a -- -L 18789:127.0.0.1:18789
@@ -255,18 +252,17 @@ Gateway को आपके लैपटॉप से SSH पोर्ट फ़
 
     अपने ब्राउज़र में `http://127.0.0.1:18789/` खोलें।
 
-    साफ़ डैशबोर्ड लिंक फिर से प्रिंट करें:
+    एक साफ़ डैशबोर्ड लिंक फिर से प्रिंट करें:
 
     ```bash
     docker compose run --rm openclaw-cli dashboard --no-open
     ```
 
     यदि UI साझा-सीक्रेट प्रमाणीकरण माँगता है, तो कॉन्फ़िगर किया गया टोकन या
-    पासवर्ड Control UI सेटिंग में पेस्ट करें (यह Docker प्रवाह डिफ़ॉल्ट रूप से
-    टोकन लिखता है; यदि आपने पासवर्ड प्रमाणीकरण अपनाया है, तो इसके बजाय अपना
-    कॉन्फ़िगर किया गया पासवर्ड उपयोग करें)।
+    पासवर्ड Control UI सेटिंग में पेस्ट करें (यह Docker प्रवाह डिफ़ॉल्ट रूप से टोकन लिखता है; यदि आपने पासवर्ड
+    प्रमाणीकरण अपनाया है, तो इसके बजाय अपना कॉन्फ़िगर किया गया पासवर्ड उपयोग करें)।
 
-    यदि Control UI `unauthorized` या `disconnected (1008): pairing required` दिखाता है, तो ब्राउज़र डिवाइस को स्वीकृति दें:
+    यदि Control UI में `unauthorized` या `disconnected (1008): pairing required` दिखाई देता है, तो ब्राउज़र डिवाइस को स्वीकृति दें:
 
     ```bash
     docker compose run --rm openclaw-cli devices list
@@ -282,7 +278,7 @@ Gateway को आपके लैपटॉप से SSH पोर्ट फ़
 
 **SSH कनेक्शन अस्वीकृत**
 
-VM बनने के बाद SSH कुंजी के प्रसार में 1-2 मिनट लग सकते हैं। प्रतीक्षा करें और फिर से प्रयास करें।
+VM बनने के बाद SSH कुंजी के प्रसार में 1-2 मिनट लग सकते हैं। प्रतीक्षा करें और पुनः प्रयास करें।
 
 **OS Login संबंधी समस्याएँ**
 
@@ -292,7 +288,7 @@ VM बनने के बाद SSH कुंजी के प्रसार �
 gcloud compute os-login describe-profile
 ```
 
-सुनिश्चित करें कि आपके खाते के पास आवश्यक IAM अनुमतियाँ (Compute OS Login या Compute OS Admin Login) हैं।
+सुनिश्चित करें कि आपके खाते में आवश्यक IAM अनुमतियाँ (Compute OS Login या Compute OS Admin Login) हैं।
 
 **मेमोरी समाप्त (OOM)**
 
@@ -302,7 +298,7 @@ gcloud compute os-login describe-profile
 # पहले VM रोकें
 gcloud compute instances stop openclaw-gateway --zone=us-central1-a
 
-# मशीन प्रकार बदलें
+# मशीन का प्रकार बदलें
 gcloud compute instances set-machine-type openclaw-gateway \
   --zone=us-central1-a \
   --machine-type=e2-small
@@ -311,9 +307,9 @@ gcloud compute instances set-machine-type openclaw-gateway \
 gcloud compute instances start openclaw-gateway --zone=us-central1-a
 ```
 
-## सेवा खाते (सुरक्षा की सर्वोत्तम प्रथा)
+## सेवा खाते (सुरक्षा का सर्वोत्तम अभ्यास)
 
-व्यक्तिगत उपयोग के लिए, आपका डिफ़ॉल्ट उपयोगकर्ता खाता ठीक काम करता है। ऑटोमेशन या CI/CD के लिए, न्यूनतम अनुमतियों वाला एक समर्पित सेवा खाता बनाएँ:
+व्यक्तिगत उपयोग के लिए, आपका डिफ़ॉल्ट उपयोगकर्ता खाता ठीक काम करता है। स्वचालन या CI/CD के लिए, न्यूनतम अनुमतियों वाला एक समर्पित सेवा खाता बनाएँ:
 
 ```bash
 gcloud iam service-accounts create openclaw-deploy \
@@ -324,16 +320,16 @@ gcloud projects add-iam-policy-binding my-openclaw-project \
   --role="roles/compute.instanceAdmin.v1"
 ```
 
-ऑटोमेशन के लिए Owner भूमिका से बचें; काम करने वाली सबसे सीमित भूमिका का उपयोग करें। [भूमिकाओं को समझना](https://cloud.google.com/iam/docs/understanding-roles) देखें।
+स्वचालन के लिए Owner भूमिका से बचें; काम करने वाली सबसे सीमित भूमिका का उपयोग करें। [भूमिकाओं को समझना](https://cloud.google.com/iam/docs/understanding-roles) देखें।
 
 ## अगले चरण
 
 - मैसेजिंग चैनल सेट अप करें: [चैनल](/hi/channels)
-- स्थानीय डिवाइसों को Node के रूप में पेयर करें: [Node](/hi/nodes)
+- स्थानीय डिवाइस को Node के रूप में पेयर करें: [Node](/hi/nodes)
 - Gateway कॉन्फ़िगर करें: [Gateway कॉन्फ़िगरेशन](/hi/gateway/configuration)
 
 ## संबंधित
 
-- [इंस्टॉलेशन अवलोकन](/hi/install)
+- [इंस्टॉलेशन का अवलोकन](/hi/install)
 - [Azure](/hi/install/azure)
 - [VPS होस्टिंग](/hi/vps)

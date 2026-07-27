@@ -1,13 +1,13 @@
 ---
 read_when:
     - Verstehen, was beim ersten Agentenlauf geschieht
-    - Erklärung, wo sich die Bootstrapping-Dateien befinden
+    - Erläuterung, wo sich Bootstrapping-Dateien befinden
     - Fehlerbehebung bei der Identitätseinrichtung während des Onboardings
 sidebarTitle: Bootstrapping
-summary: Agent-Bootstrapping-Ritual, das die Workspace- und Identitätsdateien initialisiert
+summary: Ritual zur Agent-Initialisierung, das die Arbeitsbereichs- und Identitätsdateien anlegt
 title: Agent-Bootstrapping
 x-i18n:
-    generated_at: "2026-07-24T05:17:42Z"
+    generated_at: "2026-07-26T18:47:07Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -17,48 +17,48 @@ x-i18n:
     workflow: 16
 ---
 
-Bootstrapping ist das Ritual beim ersten Start, das einen neuen Agenten-Arbeitsbereich mit Ausgangsdaten befüllt und
-den Agenten durch die Auswahl einer Identität führt. Es wird einmal ausgeführt, direkt nach
-dem Onboarding, beim ersten echten Durchlauf des Agenten.
+Bootstrapping ist das Ritual beim ersten Start, das einen neuen Agent-Arbeitsbereich initialisiert und
+den Agenten durch die Auswahl einer Identität führt. Es wird einmal ausgeführt, unmittelbar nach dem
+Onboarding, beim ersten echten Durchlauf des Agenten.
 
 ## Was geschieht
 
 Beim ersten Durchlauf mit einem brandneuen Arbeitsbereich (Standard: `~/.openclaw/workspace`)
-führt OpenClaw folgende Schritte aus:
+führt OpenClaw Folgendes aus:
 
-- Legt `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `IDENTITY.md`, `USER.md`, `HEARTBEAT.md` und `BOOTSTRAP.md` an.
-- Lässt den Agenten eine auf drei Schritte begrenzte Entstehungssequenz durchlaufen: Er fragt, wie Sie ihn
-  nennen möchten, teilt einen kurzen Satz zu Persönlichkeit und Grundstimmung mit und fragt, ob Sie
-  die minimale empfohlene Plugin-Auswahl oder maximalen Komfort wünschen.
-- Speichert die vereinbarte Identität zweimal: in `IDENTITY.md` und `SOUL.md` (was der
+- Initialisiert `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `IDENTITY.md`, `USER.md`, `HEARTBEAT.md` und `BOOTSTRAP.md`.
+- Lässt den Agenten eine auf drei Schritte begrenzte Entstehungssequenz durchlaufen: Er fragt, wie Sie
+  ihn nennen möchten, gibt eine kurze Zeile zu seinem Wesen und seiner Ausstrahlung wieder und fragt, ob Sie
+  das minimal empfohlene Plugin-Set oder maximalen Komfort wünschen.
+- Speichert die vereinbarte Identität doppelt: in `IDENTITY.md` und `SOUL.md` (was der
   Agent über sich selbst liest) sowie über `openclaw agents set-identity` (was Kanäle
   und die Benutzeroberfläche anzeigen).
-- Liest die bereits während des Onboardings gespeicherten App-Empfehlungen, ohne erneut zu prüfen.
-  Offizielle Plugins verwenden `openclaw plugins install <id>`; Skills von Drittanbietern aus ClawHub
+- Liest die bereits während des Onboardings gespeicherten App-Empfehlungen, ohne erneut zu suchen.
+  Offizielle Plugins verwenden `openclaw plugins install <id>`; Skills von ClawHub-Drittanbietern
   müssen weiterhin ausdrücklich aktiviert werden. Nachdem die Auswahl verarbeitet wurde, bestätigt der Agent
-  das gespeicherte Angebot, damit er nie wieder danach fragt.
+  das gespeicherte Angebot, sodass er nie wieder danach fragt.
 - Löscht `BOOTSTRAP.md`, sobald der Arbeitsbereich konfiguriert erscheint, sodass das Ritual nur einmal ausgeführt wird.
 
 Ein Arbeitsbereich gilt als konfiguriert, sobald `SOUL.md`, `IDENTITY.md` oder `USER.md`
-von seiner jeweiligen Ausgangsvorlage abweicht oder ein Ordner namens `memory/` vorhanden ist.
+von der jeweiligen Ausgangsvorlage abweicht oder ein Ordner namens `memory/` vorhanden ist.
 
 <Note>
-`BOOTSTRAP.md` umfasst das vollständige Identitätsgespräch. Den Inhalt finden Sie unter
+`BOOTSTRAP.md` deckt das vollständige Identitätsgespräch ab. Den Inhalt finden Sie unter
 [BOOTSTRAP.md-Vorlage](/de/reference/templates/BOOTSTRAP).
 </Note>
 
-## Eingebettete und lokale Modellläufe
+## Ausführungen mit eingebetteten und lokalen Modellen
 
-Bei eingebetteten oder lokalen Modellläufen hält OpenClaw `BOOTSTRAP.md` aus dem
+Bei Ausführungen mit eingebetteten oder lokalen Modellen hält OpenClaw `BOOTSTRAP.md` aus dem
 privilegierten Systemkontext heraus. Beim ersten primären interaktiven Durchlauf
-übergibt OpenClaw den Dateiinhalt dennoch über den Benutzer-Prompt, sodass Modelle, die
-das Tool `read` nicht zuverlässig aufrufen, das Ritual trotzdem abschließen können. Wenn der aktuelle
-Durchlauf nicht sicher auf den Arbeitsbereich zugreifen kann, erhält der Agent statt
-einer allgemeinen Begrüßung einen kurzen Hinweis auf ein eingeschränktes Bootstrapping.
+übergibt OpenClaw den Dateiinhalt dennoch über die Benutzereingabe, sodass Modelle, die das
+Tool `read` nicht zuverlässig aufrufen, das Ritual trotzdem abschließen können. Wenn der aktuelle
+Durchlauf nicht sicher auf den Arbeitsbereich zugreifen kann, erhält der Agent statt einer allgemeinen Begrüßung
+einen kurzen Hinweis zu einem eingeschränkten Bootstrapping.
 
 ## Bootstrapping überspringen
 
-Um diesen Vorgang in einem vorab befüllten Arbeitsbereich zu überspringen, führen Sie Folgendes aus:
+Um diesen Vorgang bei einem vorab initialisierten Arbeitsbereich zu überspringen, führen Sie Folgendes aus:
 
 ```bash
 openclaw onboard --skip-bootstrap
@@ -66,17 +66,17 @@ openclaw onboard --skip-bootstrap
 
 ## Ausführungsort
 
-Das Bootstrapping wird immer auf dem Gateway-Host ausgeführt. Wenn die macOS-App eine Verbindung zu einem
-entfernten Gateway herstellt, befinden sich der Arbeitsbereich und seine Bootstrapping-Dateien auf diesem entfernten
-Rechner und nicht auf dem Mac.
+Das Bootstrapping wird immer auf dem Gateway-Host ausgeführt. Wenn sich die macOS-App mit einem
+entfernten Gateway verbindet, befinden sich der Arbeitsbereich und seine Bootstrap-Dateien auf diesem entfernten
+Rechner, nicht auf dem Mac.
 
 <Note>
-Wenn das Gateway auf einem anderen Rechner ausgeführt wird, bearbeiten Sie die Arbeitsbereichsdateien auf dem Gateway-
+Wenn der Gateway auf einem anderen Rechner ausgeführt wird, bearbeiten Sie die Dateien des Arbeitsbereichs auf dem Gateway-
 Host (zum Beispiel `user@gateway-host:~/.openclaw/workspace`).
 </Note>
 
-## Zugehörige Dokumentation
+## Weiterführende Dokumentation
 
 - Onboarding der macOS-App: [Onboarding](/de/start/onboarding)
-- Aufbau des Arbeitsbereichs: [Agenten-Arbeitsbereich](/de/concepts/agent-workspace)
+- Struktur des Arbeitsbereichs: [Agent-Arbeitsbereich](/de/concepts/agent-workspace)
 - Vorlageninhalt: [BOOTSTRAP.md-Vorlage](/de/reference/templates/BOOTSTRAP)

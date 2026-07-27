@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin ‏cloudflare-ai-gateway هستید
+    - شما در حال نصب، پیکربندی یا ممیزی Plugin ‏cloudflare-ai-gateway هستید
 summary: پشتیبانی از ارائه‌دهنده مدل Cloudflare AI Gateway را به OpenClaw اضافه می‌کند.
-title: Plugin درگاه هوش مصنوعی Cloudflare
+title: Plugin مربوط به Cloudflare AI Gateway
 x-i18n:
-    generated_at: "2026-07-16T16:54:37Z"
+    generated_at: "2026-07-27T14:23:12Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin درگاه هوش مصنوعی Cloudflare
+# Plugin مربوط به Cloudflare AI Gateway
 
-پشتیبانی از ارائه‌دهنده مدل درگاه هوش مصنوعی Cloudflare را به OpenClaw اضافه می‌کند.
+پشتیبانی از ارائه‌دهنده مدل Cloudflare AI Gateway را به OpenClaw اضافه می‌کند.
 
 ## توزیع
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## مستندات مرتبط
 
-- [درگاه هوش مصنوعی Cloudflare](/fa/providers/cloudflare-ai-gateway)
+- [cloudflare-ai-gateway](/fa/providers/cloudflare-ai-gateway)

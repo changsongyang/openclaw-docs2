@@ -4,7 +4,7 @@ read_when:
 summary: Claude Code और Claude Desktop के निर्देशों, MCP सर्वरों, Skills और सुरक्षित कॉन्फ़िगरेशन को OpenClaw में आयात करता है।
 title: Claude Plugin माइग्रेट करें
 x-i18n:
-    generated_at: "2026-07-16T16:16:37Z"
+    generated_at: "2026-07-27T18:18:53Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Claude Code और Claude Desktop के निर्देशों, MCP सर
 ## वितरण
 
 - पैकेज: `@openclaw/migrate-claude`
-- इंस्टॉल मार्ग: OpenClaw में शामिल
+- इंस्टॉल करने का मार्ग: OpenClaw में शामिल
 
 ## सतह
 

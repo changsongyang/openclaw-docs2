@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی افزونه senseaudio هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin senseaudio هستید
 summary: پشتیبانی از ارائه‌دهندهٔ درک رسانه را اضافه می‌کند.
-title: Plugin سنس‌اودیو
+title: Plugin Senseaudio
 x-i18n:
-    generated_at: "2026-07-16T17:30:08Z"
+    generated_at: "2026-07-27T16:51:45Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

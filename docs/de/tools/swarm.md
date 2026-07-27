@@ -1,14 +1,14 @@
 ---
 read_when:
     - Sie möchten mit einem Code-Mode-Skript die Arbeit auf mehrere Agenten verteilen
-    - Sie benötigen strukturierte untergeordnete Ergebnisse, Entscheidungsschranken oder Pipelines, bei denen der erste Abschluss zählt
+    - Sie benötigen strukturierte Ergebnisse untergeordneter Prozesse, Entscheidungspunkte oder Pipelines, die beim ersten Abschluss fortfahren.
     - Sie aktivieren oder optimieren die Grenzwerte für tools.swarm
     - Sie möchten untergeordnete Collector-Prozesse im Sitzungs-Dashboard beobachten
 sidebarTitle: Swarm
-summary: Orchestrieren Sie nebenläufige Sub-Agenten aus Code-Mode-Skripten mit strukturierten Ergebnissen, begrenzter Auffächerung und Live-Fortschritt
+summary: Orchestrieren Sie parallele Sub-Agents aus Code-Mode-Skripten mit strukturierten Ergebnissen, begrenztem Fan-out und Live-Fortschritt
 title: Schwarm
 x-i18n:
-    generated_at: "2026-07-24T05:24:38Z"
+    generated_at: "2026-07-26T19:17:31Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,14 +18,14 @@ x-i18n:
     workflow: 16
 ---
 
-Swarm ist eine experimentelle, optional aktivierbare Möglichkeit, viele Unteragenten aus einem
-[Code-Modus](/tools/code-mode)-Skript zu orchestrieren. Verwenden Sie normale JavaScript- oder TypeScript-
-Kontrollflüsse wie `Promise.all`, `while` und `if`, um Arbeit aufzufächern, Ergebnisse zu sammeln
+Swarm ist eine experimentelle Opt-in-Möglichkeit, zahlreiche Sub-Agenten aus einem
+[Code-Mode](/de/tools/code-mode)-Skript zu orchestrieren. Verwenden Sie normalen JavaScript- oder TypeScript-
+Kontrollfluss wie `Promise.all`, `while` und `if`, um Arbeit aufzufächern, Ergebnisse zu sammeln
 und Entscheidungen zu treffen.
 
 Es gibt weder eine Graph-DSL noch ein separates Workflow-Format. Das Programm ist die
 Orchestrierung. Swarm ergänzt dieses Programm um erwartbare Collector-Kinder, strukturierte Ergebnisse,
-begrenzte Nebenläufigkeit und Fortschrittsberichte.
+begrenzte Nebenläufigkeit und Fortschrittsmeldungen.
 
 ## Swarm aktivieren
 
@@ -61,14 +61,14 @@ ihre Standardwerte behalten:
 }
 ```
 
-| Feld                    | Standardwert | Beschreibung                                                                                                                    |
-| ----------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| `enabled`               | `false` | Stellt Spawn-Optionen für den Collector-Modus, `agents_wait` und die Gast-API `agents.*` des Code-Modus bereit.                  |
+| Feld                    | Standardwert | Beschreibung                                                                                                                  |
+| ----------------------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| `enabled`               | `false` | Stellt Spawn-Optionen für den Collector-Modus, `agents_wait` und die `agents.*`-Gast-API des Code-Modus bereit.                 |
 | `maxConcurrent`         | `8`     | Maximale Anzahl gleichzeitig ausgeführter Collector-Kinder in einer Swarm-Gruppe. Weitere angenommene Kinder werden in FIFO-Reihenfolge eingereiht. |
-| `maxChildrenPerGroup`   | `50`    | Maximale Anzahl aktiver Collector-Kinder in einer Gruppe.                                                                       |
-| `maxTotalPerGroup`      | `200`   | Maximale Anzahl von Collector-Kindern, die eine Gruppe während ihrer Lebensdauer erzeugen darf. Dies ist die letzte Absicherung gegen unkontrolliertes Erzeugen. |
-| `waitTimeoutSecondsMax` | `600`   | Maximales Timeout, das ein einzelner `agents_wait`-Aufruf akzeptiert. Der Standardwert des Aufrufs beträgt 30 Sekunden.          |
-| `defaultAgentId`        | `""`    | Zielagent, der verwendet wird, wenn beim Erzeugen `agentId` fehlt. Bei einem leeren Wert wird der anfragende Agent verwendet. Bestehende Positivlisten für Unteragenten gelten weiterhin. |
+| `maxChildrenPerGroup`   | `50`    | Maximale Anzahl aktiver Collector-Kinder in einer Gruppe.                                                                     |
+| `maxTotalPerGroup`      | `200`   | Maximale Anzahl von Collector-Kindern, die eine Gruppe während ihrer Lebensdauer starten darf. Dies ist die letzte Absicherung gegen unkontrolliertes Spawning. |
+| `waitTimeoutSecondsMax` | `600`   | Maximales Timeout, das von einem `agents_wait`-Aufruf akzeptiert wird. Der Standardwert des Aufrufs beträgt 30 Sekunden.       |
+| `defaultAgentId`        | `""`    | Ziel-Agent, der verwendet wird, wenn bei einem Spawn `agentId` fehlt. Bei einem leeren Wert wird der anfordernde Agent verwendet. Bestehende Positivlisten für Sub-Agenten gelten weiterhin. |
 
 Numerische Werte müssen positive Ganzzahlen sein. OpenClaw begrenzt
 `maxConcurrent` auf `1`–`1000`, `maxChildrenPerGroup` auf `1`–`10000`,
@@ -76,8 +76,8 @@ Numerische Werte müssen positive Ganzzahlen sein. OpenClaw begrenzt
 `1`–`86400`.
 
 Sie können Swarm für einen einzelnen konfigurierten Agenten mit
-`agents.entries.*.tools.swarm` überschreiben. Das agentenspezifische Objekt wird über das übergeordnete
-`tools.swarm`-Objekt gelegt.
+`agents.entries.*.tools.swarm` überschreiben. Das agentenspezifische Objekt wird über das
+`tools.swarm`-Objekt der obersten Ebene gelegt.
 
 ## Voraussetzungen
 
@@ -94,14 +94,14 @@ OpenClaw-Code-Modus:
 ```
 
 Der Code-Modus muss außerdem effektiven Zugriff auf `sessions_spawn` haben. Tool-Profile,
-Zulassungs-/Verweigerungsrichtlinien, Provider-Regeln und Sandbox-Richtlinien können dieses Tool entfernen.
-Siehe [Aktivierung des Code-Modus](/tools/code-mode#activation) und
-[Unteragenten](/de/tools/subagents), wenn ein Skript meldet, dass `sessions_spawn`
+Zulassungs-/Ablehnungsrichtlinien, Provider-Regeln und Sandbox-Richtlinien können dieses Tool entfernen.
+Weitere Informationen finden Sie unter [Aktivierung des Code-Modus](/de/tools/code-mode#activation) und
+[Sub-Agenten](/de/tools/subagents), wenn ein Skript meldet, dass `sessions_spawn`
 nicht verfügbar ist.
 
-`defaultAgentId` und die laufbezogenen `agentId`-Werte müssen ein konfiguriertes Ziel benennen,
-das durch die `subagents.allowAgents`-Richtlinie des Anfragenden zulässig ist. OpenClaw lehnt
-ein unbekanntes oder unzulässiges Ziel ab, anstatt auf einen anderen Agenten zurückzugreifen.
+`defaultAgentId` und die Werte von `agentId` pro Ausführung müssen ein konfiguriertes Ziel
+benennen, das gemäß der `subagents.allowAgents`-Richtlinie des Anfordernden zulässig ist. OpenClaw lehnt
+ein unbekanntes oder unzulässiges Ziel ab, statt auf einen anderen Agenten zurückzugreifen.
 
 ## Ein Swarm-Skript schreiben
 
@@ -124,23 +124,23 @@ phase(title: string): void;
 log(message: string): void;
 ```
 
-Ohne `schema` wird `agents.run()` zum abschließenden Text des Kindes aufgelöst. Mit einem
+Ohne `schema` wird `agents.run()` zum endgültigen Text des Kindes aufgelöst. Mit einem
 JSON-Schema wird es zu dem Wert aufgelöst, der über das `structured_output`-Tool des Kindes
-übermittelt wurde. Bei einem fehlgeschlagenen, beendeten, zeitüberschrittenen oder schemaungültigen Kind
-wird das Promise mit einem `SwarmAgentError` zurückgewiesen. Lesen Sie die exakten generierten
-Deklarationen und kurzen Orchestrierungsmuster aus `API.read("agents.d.ts")`
-im Code-Modus.
+übermittelt wurde. Bei einem fehlgeschlagenen, beendeten, abgelaufenen oder schemaungültigen Kind
+wird das Promise mit einem `SwarmAgentError` abgelehnt. Die genauen generierten
+Deklarationen und kurzen Orchestrierungsmuster finden Sie in `API.read("agents.d.ts")`
+innerhalb des Code-Modus.
 
 Verwenden Sie `label` für einen leicht erkennbaren Namen des Kindes im Dashboard und in der Seitenleiste. Verwenden Sie
 `phase` in den Optionen, um unmittelbar vor dem Start dieses Kindes eine Phase zu veröffentlichen,
 oder rufen Sie `phase()` auf, wenn mehrere Kinder zur selben Phase gehören.
-`log()` veröffentlicht eine kurze Fortschrittsmeldung. Fortschrittsaufrufe werden ohne Warten ausgelöst;
+`log()` veröffentlicht eine kurze Fortschrittsmeldung. Fortschrittsaufrufe werden ohne Abwarten ausgeführt;
 sie verzögern das Skript nicht, wenn die UI nicht verfügbar ist.
 
-### Parallel auffächern und strukturierte Ergebnisse zusammenführen
+### Paralleles Auffächern mit strukturierten Ergebnissen
 
-Dieses Beispiel startet einen Recherche-Agenten pro Thema, wartet auf alle und
-beauftragt anschließend ein letztes Kind, deren strukturierte Berichte zusammenzuführen:
+Dieses Beispiel startet pro Thema einen Recherche-Agenten, wartet auf alle und
+fordert anschließend ein letztes Kind auf, ihre strukturierten Berichte zusammenzuführen:
 
 ```javascript
 const reportSchema = {
@@ -154,12 +154,12 @@ const reportSchema = {
   additionalProperties: false,
 };
 
-const topics = ["Authentifizierung", "Speicherung", "Wiederherstellung"];
+const topics = ["Authentifizierung", "Speicher", "Wiederherstellung"];
 phase("Unabhängige Prüfung");
 
 const reports = await Promise.all(
   topics.map((topic) =>
-    agents.run(`Prüfen Sie den Pfad ${topic}. Geben Sie einen Befund mit Belegen zurück.`, {
+    agents.run(`Prüfen Sie den Pfad ${topic}. Geben Sie einen Befund mit Nachweisen zurück.`, {
       label: `review-${topic}`,
       thinking: "high",
       fastMode: "auto",
@@ -172,22 +172,22 @@ phase("Zusammenführung");
 log(`${reports.length} unabhängige Berichte gesammelt.`);
 
 return await agents.run(
-  `Gleichen Sie diese Berichte ab und erläutern Sie Unstimmigkeiten:\n${JSON.stringify(reports)}`,
+  `Gleichen Sie diese Berichte ab und erläutern Sie Abweichungen:\n${JSON.stringify(reports)}`,
   { label: "synthesis" },
 );
 ```
 
 `Promise.all` ist die Grenze für Auffächerung und Zusammenführung. OpenClaw startet bis zu
-`maxConcurrent` Kinder für die Gruppe und reiht die übrigen in der Reihenfolge ihrer Übermittlung
+`maxConcurrent` Kinder für die Gruppe und reiht den Rest in der Reihenfolge der Übermittlung
 ein.
 
-Der Code-Modus begrenzt gleichzeitig ausgeführte Gast-Bridge-Aufrufe separat mit
+Der Code-Modus begrenzt gleichzeitig ausgeführte Gast-Bridge-Aufrufe separat durch
 `tools.codeMode.maxPendingToolCalls` (Standardwert `16`, Maximum `128`). Starten Sie bei sehr
 großen Gruppen begrenzte Batches unterhalb dieses Limits und lassen Sie Spielraum für
 `phase()`, `log()` und Übergänge beim Warten auf Kinder. `maxConcurrent` begrenzt laufende
 Kinder; es erhöht nicht das Limit für Gast-Bridge-Aufrufe.
 
-### Eine Entscheidungsschranke wiederholt prüfen
+### Schleife an einem Entscheidungsgate
 
 Verwenden Sie eine begrenzte `while`-Schleife, wenn jeder Durchlauf entscheidet, ob ein weiterer Durchlauf
 erforderlich ist:
@@ -221,40 +221,40 @@ while (!decision.ready && pass < 4) {
 }
 
 if (!decision.ready) {
-  throw new Error(`Schranke nach ${pass} Durchläufen weiterhin geschlossen: ${decision.nextAction}`);
+  throw new Error(`Gate nach ${pass} Durchläufen weiterhin geschlossen: ${decision.nextAction}`);
 }
 
 return decision;
 ```
 
 Begrenzen Sie Entscheidungsschleifen immer. `maxTotalPerGroup` ist die letzte Sicherheitsabsicherung,
-kein Ersatz für eine eindeutige Abbruchbedingung.
+kein Ersatz für eine klare Abbruchbedingung.
 
-### Das zuerst fertiggestellte Kind verarbeiten
+### Das zuerst abgeschlossene Kind verarbeiten
 
 `agents.run()` gibt ein gewöhnliches Promise zurück, sodass `Promise.race` auf das
-erste Kind des Code-Modus reagieren kann. Für Testumgebungen, die die untergeordneten Tools aufrufen,
+erste Kind des Code-Modus reagieren kann. Für Testumgebungen, die die Tools der unteren Ebene aufrufen,
 stellt `agents_wait` dieselbe Grenze für den ersten Abschluss bereit: Der Aufruf kehrt zurück, sobald
-mindestens einer der angeforderten Läufe abgeschlossen ist oder das begrenzte Timeout abläuft.
+mindestens eine angeforderte Ausführung abgeschlossen ist oder das begrenzte Timeout abläuft.
 Die vollständige Drain-Schleife finden Sie unter [Swarm aus anderen Testumgebungen verwenden](#use-swarm-from-other-harnesses).
 
 ## Verhalten von Collector-Kindern
 
-Collector-Kinder sind gewöhnliche isolierte Unteragentensitzungen mit einem anderen
-Abschlusspfad. Sie schreiben ein dauerhaftes Collector-Ergebnis, auf das das übergeordnete Element
-wartet, anstatt eine Antwort anzukündigen oder zurück in die übergeordnete Sitzung zu leiten.
+Collector-Kinder sind gewöhnliche isolierte Sub-Agent-Sitzungen mit einem anderen
+Abschlussweg. Sie schreiben ein dauerhaftes Collector-Ergebnis, auf das das übergeordnete Element
+wartet, statt eine Antwort anzukündigen oder zurück in die übergeordnete Sitzung zu lenken.
 
-Der Zielagent wird in dieser Reihenfolge bestimmt:
+Der Ziel-Agent wird in dieser Reihenfolge ermittelt:
 
 1. `agentId` beim Spawn- oder `agents.run()`-Aufruf.
 2. `tools.swarm.defaultAgentId`.
-3. Der anfragende Agent.
+3. Der anfordernde Agent.
 
-Ein dedizierter, schlanker Arbeitsagent ist nützlich, wenn Swarm-Kinder eine kleinere
-Tool-Oberfläche, ein günstigeres Modell oder eine strengere Sandbox-Richtlinie benötigen. OpenClaw liefert
-keine integrierte Agenten-ID `worker` aus; konfigurieren Sie eine solche ID, bevor Sie sie als Standardwert festlegen.
-Härten Sie diesen Arbeitsagenten mit `tools.swarm: false` in seiner agentenspezifischen Konfiguration ab, sodass
-er erzeugt werden kann, aber aus seinen eigenen übergeordneten Sitzungen keine Swarms starten kann:
+Ein dedizierter, schlanker Worker-Agent ist nützlich, wenn Swarm-Kinder eine kleinere
+Tool-Oberfläche, ein kostengünstigeres Modell oder eine strengere Sandbox-Richtlinie benötigen. OpenClaw liefert
+keine integrierte Agent-ID `worker` aus; konfigurieren Sie eine, bevor Sie sie als Standardwert festlegen.
+Härten Sie diesen Worker mit `tools.swarm: false` in seiner agentenspezifischen Konfiguration, damit
+er gestartet werden kann, aber aus seinen eigenen Sitzungen der obersten Ebene keine Swarms starten kann:
 
 ```json5
 {
@@ -272,23 +272,24 @@ er erzeugt werden kann, aber aus seinen eigenen übergeordneten Sitzungen keine 
 }
 ```
 
-Collector-Genehmigungen werden im Zweifel verweigert. Ein Kind öffnet niemals eine Genehmigungsaufforderung
-für Bedienende. Eine Tool-Aktion, die eine Genehmigung erfordern würde, wird verweigert, und das Kind kann
-diese Verweigerung in seinem Ergebnis melden, damit das Skript über das weitere Vorgehen entscheiden kann.
+Collector-Genehmigungen schlagen standardmäßig geschlossen fehl. Ein Kind öffnet niemals eine
+Genehmigungsaufforderung für Bedienende. Eine Tool-Aktion, die eine Genehmigung erfordern würde,
+wird abgelehnt, und das Kind kann diese Ablehnung in seinem Ergebnis melden, damit das Skript
+über das weitere Vorgehen entscheiden kann.
 
 Für strukturierte Ausgaben fügt OpenClaw dem Kind ein synthetisches `structured_output`-Tool hinzu
-und validiert dessen Nutzdaten anhand des bereitgestellten JSON-Schemas. Bei ungültigen oder fehlenden Nutzdaten
-erfolgt eine einmalige Korrekturaufforderung. Wenn auch der erneute Versuch die Validierung nicht besteht,
-behält der Collector-Abschluss den Rohtext des Kindes bei, lässt `structured` ungesetzt
-und enthält `schemaError`. Das untergeordnete `agents_wait`-
-Ergebnis stellt diese Felder für eine explizite Wiederherstellungslogik bereit.
+und validiert dessen Nutzdaten anhand des bereitgestellten JSON-Schemas. Bei ungültigen oder fehlenden
+Nutzdaten erfolgt ein korrigierender Hinweis. Wenn auch der erneute Versuch nicht validiert werden kann,
+behält der Collector-Abschluss den Rohtext des Kindes bei, lässt `structured`
+nicht gesetzt und enthält `schemaError`. Das Ergebnis `agents_wait` der unteren Ebene
+stellt diese Felder für eine explizite Wiederherstellungslogik bereit.
 
 ### Kinder sind Blätter
 
 Swarm-Kinder sind standardmäßig Blätter. Die universelle
-`agents.defaults.subagents.maxSpawnDepth`-Sperre verhindert, dass ein Kind
-bei der Standardtiefe `1` eigene Kinder erzeugt. Das übliche Orchestrierungsmuster besteht darin,
-Arbeit an das übergeordnete Element zurückzugeben, statt von einem Kind aus weitere Arbeit zu erzeugen:
+`agents.defaults.subagents.maxSpawnDepth`-Schutzvorrichtung verhindert, dass ein Kind
+bei der Standardtiefe `1` eigene Kinder startet. Das übliche Orchestrierungsmuster besteht darin,
+Arbeit an das übergeordnete Element zurückzugeben, statt weitere Arbeit von einem Kind aus zu starten:
 
 ```javascript
 const plan = await agents.run("Planen Sie diesen Auftrag als unabhängige Aufgaben.", {
@@ -302,40 +303,40 @@ const plan = await agents.run("Planen Sie diesen Auftrag als unabhängige Aufgab
 return await Promise.all(plan.tasks.map((task) => agents.run(task)));
 ```
 
-Verschachtelte Unteragenten können durch Bedienende über
-`agents.defaults.subagents.maxSpawnDepth` optional aktiviert werden und werden für Swarm nicht empfohlen.
+Verschachtelte Sub-Agenten sind eine Opt-in-Funktion für Bedienende über
+`agents.defaults.subagents.maxSpawnDepth` und werden für Swarm nicht empfohlen.
 Gruppenlimits, Budgets und Beobachtbarkeit setzen flache Collector-Gruppen voraus.
 
-Jedes Kind hat genau einen Verantwortlichen für die Zulassung. Ankündigungs- und interaktive Kinder verwenden
+Jedes Kind hat genau einen Verantwortlichen für die Zulassung. Ankündigende und interaktive Kinder verwenden
 `agents.defaults.subagents.maxChildrenPerAgent` (Standardwert `5`) und zählen
 Collector-Kinder nicht mit. Collector-Kinder verwenden ausschließlich `maxChildrenPerGroup` und
-`maxTotalPerGroup`; sie verbrauchen nicht das sitzungsbezogene Kinderbudget. Die Begrenzung der Spawn-
+`maxTotalPerGroup`; sie verbrauchen nicht das sitzungsspezifische Kinderbudget. Die Schutzvorrichtung für die Spawn-
 Tiefe gilt weiterhin für beide Modi.
 
 Nach der Zulassung werden Kinder oberhalb von `maxConcurrent` innerhalb ihrer Swarm-
-Gruppe in FIFO-Reihenfolge eingereiht, verschachtelt in der globalen Unteragentenspur. Diese Nebenläufigkeitsebenen reihen
-Arbeit ein, statt sie abzulehnen. Ein Collector-Spawn, der eines der Gruppenlimits überschreitet,
-wird mit dem entsprechenden Konfigurationsschlüssel in der Fehlermeldung abgelehnt.
+Gruppe in FIFO-Reihenfolge eingereiht, verschachtelt innerhalb der globalen Sub-Agent-Spur. Diese Nebenläufigkeitsebenen reihen
+Arbeit ein, statt sie abzulehnen. Ein Collector-Spawn, der eines der Gruppenlimits
+überschreitet, wird mit dem entsprechenden Konfigurationsschlüssel in der Fehlermeldung abgelehnt.
 
 ## Einen Swarm beobachten
 
 Öffnen Sie das Dashboard der übergeordneten Sitzung in der Control UI, während ein Swarm aktiv ist.
-Das Swarm-Widget stellt jede aktive Collector-Gruppe mit einem Punkt pro Kind und dem
-Status „in Warteschlange“, „läuft“, „abgeschlossen“ oder „fehlgeschlagen“ dar. Labels werden in den Tooltips der Punkte angezeigt, sodass kurze,
-stabile Labels größere Swarms leichter lesbar machen.
+Das Swarm-Widget stellt jede aktive Collector-Gruppe als einen Punkt pro Kind mit dem
+Status „eingereiht“, „laufend“, „abgeschlossen“ oder „fehlgeschlagen“ dar. Beschriftungen erscheinen in den Tooltips der Punkte, sodass kurze,
+stabile Beschriftungen größere Swarms leichter lesbar machen.
 
-Die Sitzungsseitenleiste behält die normale Baumstruktur aus übergeordneten Elementen und Kindern bei. Erweitern Sie die Zeile des übergeordneten Elements,
-um ein Collector-Kind zu untersuchen oder dessen Transkript zu öffnen, ohne die Swarm-
+Die Sitzungsseitenleiste behält die normale Hierarchie aus übergeordneten und untergeordneten Elementen bei. Erweitern Sie die Zeile des übergeordneten Elements,
+um ein Collector-Kind zu prüfen oder sein Transkript zu öffnen, ohne die Swarm-
 Hierarchie zu verlieren.
 
-Collector-Ergebnisse bleiben abrufbar, bis ihre Gruppe archiviert wird. Nachdem jedes
-Mitglied seine Aufbewahrungsfrist erreicht hat, archiviert OpenClaw die untergeordneten Elemente der Gruppe
-als Batch, damit abgeschlossene Schwarme nicht im aktiven Sitzungsbaum verbleiben.
+Sammlerergebnisse bleiben abrufbar, bis ihre Gruppe archiviert wird. Nachdem jedes
+Mitglied seine Aufbewahrungsfrist erreicht hat, archiviert OpenClaw die untergeordneten Elemente
+der Gruppe als Stapel, damit abgeschlossene Swarms nicht im aktiven Sitzungsbaum verbleiben.
 
-## Swarm mit anderen Harnesses verwenden
+## Swarm aus anderen Harnesses verwenden
 
 Sie können Swarm ohne den OpenClaw Code Mode verwenden. Seine Kernwerkzeuge sind
-Harness-unabhängig: Starten Sie untergeordnete Collector-Prozesse mit
+Harness-unabhängig: Starten Sie untergeordnete Sammler mit
 `sessions_spawn({ collect: true })` und rufen Sie deren Ergebnisse mit begrenzten `agents_wait`-Aufrufen
 ab.
 
@@ -344,11 +345,11 @@ Der Codex Code Mode stellt geeignete dynamische OpenClaw-Werkzeuge automatisch u
 `tools.codeMode`, aber `tools.swarm` muss weiterhin aktiviert sein. `agents_wait`-Aufrufe
 des Codex-Harness unterstützen das vollständige Zeitlimit von 600 Sekunden.
 
-Mit der derzeit unterstützten Codex-Laufzeit erreichen Ergebnisse dynamischer OpenClaw-Werkzeuge
-den Code Mode als JSON-Text. Parsen Sie jedes Ergebnis, bevor Sie Felder auslesen. Codex
+Mit der derzeit unterstützten Codex-Runtime erreichen Ergebnisse dynamischer OpenClaw-Werkzeuge den
+Code Mode als JSON-Text. Parsen Sie jedes Ergebnis, bevor Sie Felder auslesen. Codex
 serialisiert außerdem dynamische Werkzeugaufrufe, sodass `Promise.all` nicht mehrere
-`sessions_spawn`-Aufrufe gleichzeitig übermittelt. Starten Sie Collectors in einer begrenzten Schleife;
-bereits angenommene untergeordnete Prozesse können weiterlaufen, während spätere Starts übermittelt werden.
+`sessions_spawn`-Aufrufe gleichzeitig übermittelt. Starten Sie Sammler in einer begrenzten Schleife;
+bereits akzeptierte untergeordnete Prozesse können weiter ausgeführt werden, während spätere Starts übermittelt werden.
 
 ```javascript
 function parseToolResult(value) {
@@ -372,7 +373,7 @@ for (const [index, task] of tasks.entries()) {
     }),
   );
   if (launch.status !== "accepted") {
-    throw new Error(launch.error ?? "Der Collector-Start wurde nicht angenommen.");
+    throw new Error(launch.error ?? "Der Start des Sammlers wurde nicht akzeptiert.");
   }
   launches.push(launch);
 }
@@ -433,28 +434,28 @@ type AgentsWaitResult = {
 };
 ```
 
-Der Aufruf kehrt sofort zurück, wenn ein angeforderter untergeordneter Prozess bereits abgeschlossen ist,
-wenn mindestens ein ausstehender untergeordneter Prozess abgeschlossen wird, wenn keine gültigen ausstehenden IDs mehr vorhanden sind
-oder wenn sein Zeitlimit abläuft. Abgeschlossene Datensätze sind idempotent, sodass die Übergabe einer
-bereits abgeschlossenen Ausführungs-ID deren Ergebnis erneut zurückgibt. Nur die startende Sitzung
-oder ihre autorisierte übergeordnete Kette kann auf einen Collector warten.
+Der Aufruf wird sofort zurückgegeben, wenn ein angeforderter untergeordneter Prozess bereits abgeschlossen ist,
+wenn mindestens ein ausstehender untergeordneter Prozess abgeschlossen wird, wenn keine gültigen ausstehenden IDs verbleiben
+oder wenn sein Zeitlimit abläuft. Abgeschlossene Datensätze sind idempotent; wird eine
+bereits abgeschlossene Ausführungs-ID übergeben, wird ihr Ergebnis erneut zurückgegeben. Nur die startende Sitzung
+oder ihre autorisierte übergeordnete Kette kann auf einen Sammler warten.
 
-Dies ist begrenztes Long Polling und keine aktive Statusschleife. Übergeben Sie weiterhin nur die
-verbleibenden Ausführungs-IDs, bis `pending` leer ist. Der Collector-Modus unterstützt native
-OpenClaw-Unteragenten; er unterstützt weder die ACP-Laufzeit noch Thread-Bindung, sichtbare
+Dies ist begrenztes Long Polling, keine aktive Statusschleife. Übergeben Sie weiterhin nur die
+verbleibenden Ausführungs-IDs, bis `pending` leer ist. Der Sammlermodus unterstützt native
+OpenClaw-Unteragenten; er unterstützt weder die ACP-Runtime noch Thread-Bindung, sichtbare
 Sitzungen oder den persistenten Sitzungsmodus.
 
-## Grenzen und Roadmap
+## Beschränkungen und Roadmap
 
-Swarm v1 führt einmalig ausgeführte untergeordnete Collector-Prozesse aus; die geplante `agents.session()`-API
-wird zustandsbehaftete Worker mit mehreren Dialogrunden hinzufügen. Untergeordnete Prozesse werden derzeit in der
-Unteragenten-Lane des lokalen Gateway ausgeführt; die Cloud-Platzierung ist als explizite Startoption
-geplant. Gespeicherte Workflow-Definitionen und eine Graph-DSL gehören nicht zur aktuellen Ausrichtung
-von Swarm.
+Swarm v1 führt einmalig ausgeführte untergeordnete Sammler aus; die geplante `agents.session()`-API
+wird zustandsbehaftete Worker mit mehreren Interaktionsrunden hinzufügen. Untergeordnete Prozesse werden derzeit in der
+Unteragenten-Lane des lokalen Gateway ausgeführt; die Platzierung in der Cloud ist als explizite Startoption
+geplant. Gespeicherte Workflow-Definitionen und eine Graph-DSL gehören nicht zur
+aktuellen Ausrichtung von Swarm.
 
 ## Verwandte Themen
 
-- [Code Mode](/tools/code-mode) für die QuickJS-Gastlaufzeit und Aktivierungsregeln
+- [Code Mode](/de/tools/code-mode) für die QuickJS-Gast-Runtime und Aktivierungsregeln
 - [Unteragenten](/de/tools/subagents) für Richtlinien, Isolation und Sitzungsverhalten untergeordneter Prozesse
-- [Multi-Agent-Sandbox-Werkzeuge](/de/tools/multi-agent-sandbox-tools) für agentenspezifische Einschränkungen
+- [Multi-Agent-Sandbox-Werkzeuge](/de/tools/multi-agent-sandbox-tools) für Einschränkungen pro Agent
 - [Werkzeugübersicht](/de/tools) für Werkzeugprofile und Richtlinienrouting

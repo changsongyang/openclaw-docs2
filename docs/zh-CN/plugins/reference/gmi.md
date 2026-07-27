@@ -1,10 +1,10 @@
 ---
 read_when:
-    - 你正在安装、配置或审计 gmi 插件
+    - 你正在安装、配置或审核 gmi 插件
 summary: OpenClaw GMI Cloud 提供商插件。
 title: Gmi 插件
 x-i18n:
-    generated_at: "2026-07-16T11:50:13Z"
+    generated_at: "2026-07-26T06:57:13Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप Fireworks Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: OpenClaw में Fireworks मॉडल प्रदाता का समर्थन जोड़ता है।
+summary: OpenClaw में Fireworks मॉडल प्रदाता के लिए समर्थन जोड़ता है।
 title: Fireworks Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:29:44Z"
+    generated_at: "2026-07-27T20:13:55Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # Fireworks Plugin
 
-OpenClaw में Fireworks मॉडल प्रदाता के लिए समर्थन जोड़ता है।
+OpenClaw में Fireworks मॉडल प्रदाता का समर्थन जोड़ता है।
 
 ## वितरण
 
 - पैकेज: `@openclaw/fireworks-provider`
 - इंस्टॉल मार्ग: npm; ClawHub: `clawhub:@openclaw/fireworks-provider`
 
-## सतह
+## उपलब्ध सतह
 
 प्रदाता: `fireworks`
 

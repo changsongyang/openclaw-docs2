@@ -1,10 +1,10 @@
 ---
 read_when:
-    - googlechat pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+    - googlechat pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: Alanlar ve doğrudan mesajlar için OpenClaw Google Chat kanal plugini.
-title: Google Chat eklentisi
+title: Google Chat Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:44:11Z"
+    generated_at: "2026-07-26T23:32:45Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Alanlar ve doğrudan mesajlar için OpenClaw Google Chat kanal plugin'i.
 ## Dağıtım
 
 - Paket: `@openclaw/googlechat`
-- Yükleme yolu: npm; ClawHub
+- Kurulum yolu: npm; ClawHub
 
 ## Yüzey
 

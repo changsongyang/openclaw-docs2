@@ -4,7 +4,7 @@ read_when:
 summary: टेक्स्ट-टू-स्पीच प्रदाता के लिए समर्थन जोड़ता है।
 title: TTS स्थानीय CLI Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:18:19Z"
+    generated_at: "2026-07-27T21:31:28Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# TTS स्थानीय CLI Plugin
+# TTS लोकल CLI Plugin
 
 टेक्स्ट-टू-स्पीच प्रदाता समर्थन जोड़ता है।
 

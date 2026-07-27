@@ -2,9 +2,9 @@
 read_when:
     - आप memory-lancedb Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
 summary: स्वतः-स्मरण, स्वतः-कैप्चर और वेक्टर खोज वाला OpenClaw का LanceDB-समर्थित दीर्घकालिक मेमोरी Plugin।
-title: Memory Lancedb Plugin
+title: मेमोरी Lancedb Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:31:03Z"
+    generated_at: "2026-07-27T19:39:41Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Memory Lancedb Plugin
 
-ऑटो-रिकॉल, ऑटो-कैप्चर और वेक्टर खोज वाला OpenClaw का LanceDB-समर्थित दीर्घकालिक मेमोरी Plugin।
+स्वतः-स्मरण, स्वतः-कैप्चर और वेक्टर खोज वाला OpenClaw LanceDB-समर्थित दीर्घकालिक मेमोरी Plugin।
 
 ## वितरण
 
 - पैकेज: `@openclaw/memory-lancedb`
-- इंस्टॉल करने का माध्यम: npm; ClawHub
+- इंस्टॉल मार्ग: npm; ClawHub
 
 ## सतह
 

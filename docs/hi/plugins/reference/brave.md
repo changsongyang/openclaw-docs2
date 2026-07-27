@@ -4,7 +4,7 @@ read_when:
 summary: वेब खोज के लिए OpenClaw Brave Search प्रदाता Plugin।
 title: Brave Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:13:01Z"
+    generated_at: "2026-07-27T21:28:42Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## वितरण
 
 - पैकेज: `@openclaw/brave-plugin`
-- इंस्टॉल करने का माध्यम: npm; ClawHub
+- इंस्टॉल मार्ग: npm; ClawHub
 
 ## सतह
 

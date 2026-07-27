@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de clawrouter-plugin
 summary: Voegt ondersteuning voor de ClawRouter-modelprovider toe aan OpenClaw.
-title: ClawRouter-plugin
+title: ClawRouter-Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:13:30Z"
+    generated_at: "2026-07-27T06:02:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# ClawRouter-Plugin
+# ClawRouter-plugin
 
 Voegt ondersteuning voor de ClawRouter-modelprovider toe aan OpenClaw.
 
 ## Distributie
 
 - Pakket: `@openclaw/clawrouter`
-- Installatieroute: opgenomen in OpenClaw
+- Installatieroute: inbegrepen bij OpenClaw
 
 ## Oppervlak
 

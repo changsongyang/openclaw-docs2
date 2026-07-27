@@ -1,10 +1,10 @@
 ---
 read_when:
-    - llm-task Plugin'ini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: İş akışlarından çağrılabilen yapılandırılmış görevler için yalnızca JSON kullanan genel amaçlı LLM aracı.
+    - llm-task Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+summary: İş akışlarından çağrılabilen yapılandırılmış görevler için yalnızca JSON kullanan genel LLM aracı.
 title: LLM Görevi Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:30:48Z"
+    generated_at: "2026-07-26T23:32:58Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# LLM Görevi plugini
+# LLM Görev Plugin'i
 
-İş akışlarından çağrılabilen yapılandırılmış görevler için yalnızca JSON kullanan genel LLM aracı.
+İş akışlarından çağrılabilen yapılandırılmış görevler için yalnızca JSON kullanan genel amaçlı LLM aracı.
 
 ## Dağıtım
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Feishu pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
-summary: Sohbetler ve iş yeri araçları için OpenClaw Feishu/Lark kanal plugini (topluluk tarafından @m1heng liderliğinde sürdürülmektedir).
+    - feishu pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+summary: Sohbetler ve iş yeri araçları için OpenClaw Feishu/Lark kanal plugini (topluluk tarafından @m1heng'in bakımında).
 title: Feishu Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:25:07Z"
+    generated_at: "2026-07-26T22:55:20Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Feishu plugin'i
+# Feishu Plugin
 
-Sohbetler ve iş yeri araçları için OpenClaw Feishu/Lark kanal plugin'i (@m1heng tarafından topluluk desteğiyle sürdürülmektedir).
+Sohbetler ve iş yeri araçları için OpenClaw Feishu/Lark kanal Plugin'i (topluluk tarafından @m1heng tarafından sürdürülmektedir).
 
 ## Dağıtım
 

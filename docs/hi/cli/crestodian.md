@@ -3,9 +3,9 @@ read_when:
     - आपने Crestodian के पुराने दस्तावेज़ीकरण लिंक का अनुसरण किया है
 redirect: /cli/openclaw
 summary: OpenClaw सिस्टम-एजेंट संदर्भ पर रीडायरेक्ट करें
-title: Crestodian (पुनर्निर्देशन)
+title: Crestodian (रीडायरेक्ट)
 x-i18n:
-    generated_at: "2026-07-16T13:52:09Z"
+    generated_at: "2026-07-27T20:38:19Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,4 +15,4 @@ x-i18n:
     workflow: 16
 ---
 
-यह पृष्ठ [OpenClaw सेटअप और मरम्मत](/cli/openclaw) पर स्थानांतरित हो गया है।
+यह पृष्ठ [OpenClaw सेटअप और मरम्मत](/hi/cli/openclaw) पर स्थानांतरित हो गया है।

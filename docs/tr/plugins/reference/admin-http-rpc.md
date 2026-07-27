@@ -1,10 +1,10 @@
 ---
 read_when:
-    - admin-http-rpc pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+    - admin-http-rpc pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw yönetici HTTP RPC uç noktası.
 title: Yönetici HTTP RPC Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:23:13Z"
+    generated_at: "2026-07-26T23:27:08Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Yönetici Http Rpc plugin'i
+# Yönetici Http Rpc Plugin'i
 
 OpenClaw yönetici HTTP RPC uç noktası.
 

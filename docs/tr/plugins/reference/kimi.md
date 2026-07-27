@@ -2,9 +2,9 @@
 read_when:
     - kimi pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a Kimi ve Kimi Coding model sağlayıcısı desteği ekler.
-title: Kimi Plugin'i
+title: Kimi plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:30:39Z"
+    generated_at: "2026-07-26T23:28:27Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

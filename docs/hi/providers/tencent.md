@@ -5,7 +5,7 @@ read_when:
 summary: hy3 के लिए Tencent Cloud TokenHub और TokenPlan सेटअप
 title: Tencent Cloud (TokenHub / TokenPlan)
 x-i18n:
-    generated_at: "2026-07-19T09:34:06Z"
+    generated_at: "2026-07-27T19:53:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,11 +15,11 @@ x-i18n:
     workflow: 16
 ---
 
-OpenAI-संगत API का उपयोग करके दो एंडपॉइंट — TokenHub (`tencent-tokenhub`) और TokenPlan (`tencent-tokenplan`) — के माध्यम से Tencent Hy3 तक पहुँचने के लिए आधिकारिक Tencent Cloud प्रदाता Plugin इंस्टॉल करें।
+OpenAI-संगत API का उपयोग करके दो एंडपॉइंट—TokenHub (`tencent-tokenhub`) और TokenPlan (`tencent-tokenplan`)—के माध्यम से Tencent Hy3 तक पहुँचने के लिए आधिकारिक Tencent Cloud प्रोवाइडर Plugin इंस्टॉल करें।
 
 | प्रॉपर्टी                  | मान                                                 |
 | ------------------------- | ----------------------------------------------------- |
-| प्रदाता आईडी              | `tencent-tokenhub`, `tencent-tokenplan`               |
+| प्रोवाइडर आईडी              | `tencent-tokenhub`, `tencent-tokenplan`               |
 | पैकेज                   | `@openclaw/tencent-provider`                          |
 | TokenHub प्रमाणीकरण एनवायरनमेंट वेरिएबल     | `TOKENHUB_API_KEY`                                    |
 | TokenPlan प्रमाणीकरण एनवायरनमेंट वेरिएबल    | `TOKENPLAN_API_KEY`                                   |
@@ -28,16 +28,16 @@ OpenAI-संगत API का उपयोग करके दो एंडप�
 | TokenHub प्रत्यक्ष CLI फ़्लैग  | `--tokenhub-api-key <key>`                            |
 | TokenPlan प्रत्यक्ष CLI फ़्लैग | `--tokenplan-api-key <key>`                           |
 | API                       | OpenAI-संगत (`openai-completions`)              |
-| TokenHub आधार URL         | `https://tokenhub.tencentmaas.com/v1`                 |
-| TokenHub वैश्विक आधार URL  | `https://tokenhub-intl.tencentmaas.com/v1` (ओवरराइड) |
-| TokenPlan आधार URL        | `https://api.lkeap.cloud.tencent.com/plan/v3`         |
+| TokenHub बेस URL         | `https://tokenhub.tencentmaas.com/v1`                 |
+| TokenHub ग्लोबल बेस URL  | `https://tokenhub-intl.tencentmaas.com/v1` (ओवरराइड) |
+| TokenPlan बेस URL        | `https://api.lkeap.cloud.tencent.com/plan/v3`         |
 | डिफ़ॉल्ट मॉडल             | `tencent-tokenhub/hy3`                                |
 
 ## त्वरित शुरुआत
 
 <Steps>
   <Step title="Tencent API कुंजी बनाएँ">
-    Tencent Cloud TokenHub और TokenPlan के लिए एक API कुंजी बनाएँ। यदि आप कुंजी के लिए सीमित पहुँच का दायरा चुनते हैं, तो अनुमत मॉडलों में **hy3** (और यदि आप इसे TokenHub पर उपयोग करने की योजना बनाते हैं, तो **hy3 preview**) शामिल करें।
+    Tencent Cloud TokenHub और TokenPlan के लिए एक API कुंजी बनाएँ। यदि आप कुंजी के लिए सीमित पहुँच दायरा चुनते हैं, तो अनुमत मॉडलों में **hy3** (और यदि आप इसे TokenHub पर उपयोग करने की योजना बनाते हैं, तो **hy3 preview** भी) शामिल करें।
   </Step>
   <Step title="ऑनबोर्डिंग चलाएँ">
     <CodeGroup>
@@ -99,28 +99,28 @@ openclaw onboard --non-interactive \
 ```
 
 <Note>
-`--accept-risk` के साथ `--non-interactive` आवश्यक है।
+`--non-interactive` के साथ `--accept-risk` आवश्यक है।
 </Note>
 
-## बिल्ट-इन कैटलॉग
+## अंतर्निहित कैटलॉग
 
-| मॉडल संदर्भ                      | नाम                   | इनपुट | कॉन्टेक्स्ट | अधिकतम आउटपुट | टिप्पणियाँ             |
+| मॉडल रेफ़रेंस                      | नाम                   | इनपुट | कॉन्टेक्स्ट | अधिकतम आउटपुट | टिप्पणियाँ             |
 | ------------------------------ | ---------------------- | ----- | ------- | ---------- | ----------------- |
 | `tencent-tokenhub/hy3-preview` | hy3 preview (TokenHub) | टेक्स्ट  | 256,000 | 64,000     | रीजनिंग-सक्षम |
 | `tencent-tokenhub/hy3`         | hy3 (TokenHub)         | टेक्स्ट  | 256,000 | 64,000     | रीजनिंग-सक्षम |
 | `tencent-tokenplan/hy3`        | hy3 (TokenPlan)        | टेक्स्ट  | 256,000 | 64,000     | रीजनिंग-सक्षम |
 
-hy3 रीजनिंग, लंबे कॉन्टेक्स्ट वाले निर्देशों का पालन, कोड और एजेंट कार्यप्रवाहों के लिए Tencent Hunyuan का बड़ा MoE भाषा मॉडल है। Tencent के OpenAI-संगत उदाहरण मॉडल आईडी के रूप में `hy3` का उपयोग करते हैं और मानक चैट-कम्प्लीशन्स टूल कॉलिंग के साथ `reasoning_effort` का समर्थन करते हैं।
+hy3, रीजनिंग, लंबे-कॉन्टेक्स्ट वाले निर्देशों का पालन करने, कोड और एजेंट वर्कफ़्लो के लिए Tencent Hunyuan का बड़ा MoE भाषा मॉडल है। Tencent के OpenAI-संगत उदाहरण मॉडल आईडी के रूप में `hy3` का उपयोग करते हैं और मानक चैट-कम्प्लीशन्स टूल कॉलिंग के साथ `reasoning_effort` का समर्थन करते हैं।
 
 <Tip>
-  मॉडल आईडी `hy3` है। इसे Tencent के `HY-3D-*` मॉडलों से भ्रमित न करें, जो 3D जनरेशन API हैं और इस प्रदाता द्वारा कॉन्फ़िगर किया गया OpenClaw चैट मॉडल नहीं हैं।
+  मॉडल आईडी `hy3` है। इसे Tencent के `HY-3D-*` मॉडलों से भ्रमित न करें, जो 3D जनरेशन API हैं और इस प्रोवाइडर द्वारा कॉन्फ़िगर किया गया OpenClaw चैट मॉडल नहीं हैं।
 </Tip>
 
 ## उन्नत कॉन्फ़िगरेशन
 
 <AccordionGroup>
   <Accordion title="एंडपॉइंट ओवरराइड">
-    OpenClaw का बिल्ट-इन कैटलॉग Tencent Cloud के `https://tokenhub.tencentmaas.com/v1` एंडपॉइंट का उपयोग करता है। इसे केवल तभी ओवरराइड करें, जब आपके TokenHub खाते या क्षेत्र के लिए किसी दूसरे एंडपॉइंट की आवश्यकता हो:
+    OpenClaw का अंतर्निहित कैटलॉग Tencent Cloud के `https://tokenhub.tencentmaas.com/v1` एंडपॉइंट का उपयोग करता है। इसे केवल तभी ओवरराइड करें, जब आपके TokenHub खाते या क्षेत्र के लिए किसी अन्य एंडपॉइंट की आवश्यकता हो:
 
     ```bash
     openclaw config set models.providers.tencent-tokenhub.baseUrl "https://your-endpoint/v1"
@@ -132,7 +132,7 @@ hy3 रीजनिंग, लंबे कॉन्टेक्स्ट वा
     यदि Gateway एक प्रबंधित सेवा (launchd, systemd, Docker) के रूप में चलता है, तो `TOKENHUB_API_KEY` और `TOKENPLAN_API_KEY` उस प्रोसेस को दिखाई देने चाहिए। उन्हें `~/.openclaw/.env` में या `env.shellEnv` के माध्यम से सेट करें, ताकि launchd, systemd या Docker exec एनवायरनमेंट उन्हें पढ़ सकें।
 
     <Warning>
-      केवल इंटरैक्टिव शेल में एक्सपोर्ट की गई कुंजियाँ प्रबंधित Gateway प्रोसेस को दिखाई नहीं देती हैं। स्थायी उपलब्धता के लिए एनवायरनमेंट फ़ाइल या कॉन्फ़िगरेशन सीम का उपयोग करें।
+      केवल इंटरैक्टिव शेल में एक्सपोर्ट की गई कुंजियाँ प्रबंधित Gateway प्रोसेस को दिखाई नहीं देतीं। स्थायी उपलब्धता के लिए एनवायरनमेंट फ़ाइल या कॉन्फ़िगरेशन सीम का उपयोग करें।
     </Warning>
 
   </Accordion>
@@ -141,11 +141,11 @@ hy3 रीजनिंग, लंबे कॉन्टेक्स्ट वा
 ## संबंधित
 
 <CardGroup cols={2}>
-  <Card title="मॉडल प्रदाता" href="/hi/concepts/model-providers" icon="layers">
-    प्रदाताओं, मॉडल संदर्भों और फ़ेलओवर व्यवहार का चयन।
+  <Card title="मॉडल प्रोवाइडर" href="/hi/concepts/model-providers" icon="layers">
+    प्रोवाइडर, मॉडल रेफ़रेंस और फ़ेलओवर व्यवहार चुनना।
   </Card>
-  <Card title="कॉन्फ़िगरेशन संदर्भ" href="/hi/gateway/configuration-reference" icon="gear">
-    प्रदाता सेटिंग सहित संपूर्ण कॉन्फ़िगरेशन स्कीमा।
+  <Card title="कॉन्फ़िगरेशन रेफ़रेंस" href="/hi/gateway/configuration-reference" icon="gear">
+    प्रोवाइडर सेटिंग सहित संपूर्ण कॉन्फ़िगरेशन स्कीमा।
   </Card>
   <Card title="Tencent TokenHub" href="https://cloud.tencent.com/product/tokenhub" icon="arrow-up-right-from-square">
     Tencent Cloud का TokenHub उत्पाद पृष्ठ।

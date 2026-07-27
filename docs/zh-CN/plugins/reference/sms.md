@@ -4,7 +4,7 @@ read_when:
 summary: 用于 OpenClaw 文本消息的 Twilio SMS 渠道插件。
 title: SMS 插件
 x-i18n:
-    generated_at: "2026-07-16T11:51:54Z"
+    generated_at: "2026-07-26T06:27:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

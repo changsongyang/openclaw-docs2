@@ -4,7 +4,7 @@ read_when:
 summary: Plugin del canal de WhatsApp de OpenClaw para chats de WhatsApp Web.
 title: Plugin de WhatsApp
 x-i18n:
-    generated_at: "2026-07-16T11:54:52Z"
+    generated_at: "2026-07-26T05:22:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Plugin del canal de WhatsApp de OpenClaw para chats de WhatsApp Web.
 ## Distribución
 
 - Paquete: `@openclaw/whatsapp`
-- Vía de instalación: ClawHub: `clawhub:@openclaw/whatsapp`; npm
+- Método de instalación: ClawHub: `clawhub:@openclaw/whatsapp`; npm
 
 ## Superficie
 

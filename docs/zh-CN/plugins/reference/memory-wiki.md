@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安装、配置或审计 Memory Wiki 插件
-summary: OpenClaw 的持久化 wiki 编译器和 Obsidian 友好型知识库。
+summary: 面向 OpenClaw 的持久化 wiki 编译器和兼容 Obsidian 的知识库。
 title: Memory Wiki 插件
 x-i18n:
-    generated_at: "2026-07-16T11:50:51Z"
+    generated_at: "2026-07-26T06:52:26Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Memory Wiki 插件
 
-面向 OpenClaw 的持久化 wiki 编译器和 Obsidian 友好的知识库。
+面向 OpenClaw 的持久化 wiki 编译器和 Obsidian 友好型知识库。
 
 ## 分发
 

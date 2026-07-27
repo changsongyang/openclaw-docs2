@@ -5,7 +5,7 @@ read_when:
 summary: Configuración de la API de Brave Search para web_search
 title: Búsqueda de Brave
 x-i18n:
-    generated_at: "2026-07-20T00:55:55Z"
+    generated_at: "2026-07-26T05:32:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -34,7 +34,7 @@ OpenClaw admite la API de Brave Search como proveedor de `web_search`.
           webSearch: {
             apiKey: "BRAVE_API_KEY_HERE",
             mode: "web", // o "llm-context"
-            baseUrl: "https://api.search.brave.com", // sobrescritura opcional del proxy o de la URL base
+            baseUrl: "https://api.search.brave.com", // sustitución opcional de la URL base o del proxy
           },
         },
       },
@@ -56,14 +56,14 @@ La configuración de búsqueda específica del proveedor Brave se encuentra en `
 
 `webSearch.mode` controla el transporte de Brave:
 
-- `web` (predeterminado): búsqueda web normal de Brave con títulos, URL y fragmentos
-- `llm-context`: API LLM Context de Brave con fragmentos de texto extraídos previamente y fuentes para fundamentación
+- `web` (valor predeterminado): búsqueda web normal de Brave con títulos, URL y fragmentos
+- `llm-context`: API de contexto para LLM de Brave con fragmentos de texto extraídos previamente y fuentes para el respaldo factual
 
-`webSearch.baseUrl` puede dirigir las solicitudes de Brave a un proxy compatible con Brave de confianza
-o a un gateway. OpenClaw añade `/res/v1/web/search` o `/res/v1/llm/context` a
-la URL base configurada y conserva la URL base en la clave de caché. Los
-endpoints públicos deben usar `https://`; `http://` solo se acepta para hosts proxy de confianza
-en la interfaz de bucle invertido o en una red privada.
+`webSearch.baseUrl` puede dirigir las solicitudes de Brave a un proxy compatible con Brave
+o a un gateway de confianza. OpenClaw añade `/res/v1/web/search` o `/res/v1/llm/context` a
+la URL base configurada y conserva la URL base en la clave de caché. Los endpoints
+públicos deben usar `https://`; `http://` solo se acepta para hosts proxy de confianza
+en bucle local o en redes privadas.
 
 ## Parámetros de la herramienta
 
@@ -92,7 +92,7 @@ Código de idioma ISO para los elementos de la interfaz de usuario.
 </ParamField>
 
 <ParamField path="freshness" type="'day' | 'week' | 'month' | 'year'">
-Filtro temporal: `day` equivale a 24 horas.
+Filtro de tiempo: `day` equivale a 24 horas.
 </ParamField>
 
 <ParamField path="date_after" type="string">
@@ -115,7 +115,7 @@ await web_search({
 
 // Resultados recientes (última semana)
 await web_search({
-  query: "noticias de IA",
+  query: "noticias sobre IA",
   freshness: "week",
 });
 
@@ -129,19 +129,19 @@ await web_search({
 
 ## Notas
 
-- OpenClaw utiliza el plan **Search** de Brave. Si tiene una suscripción heredada (p. ej., el plan Free original con 2.000 consultas/mes), esta sigue siendo válida, pero no incluye funciones más recientes como LLM Context ni límites de solicitudes más altos.
-- Cada plan de Brave incluye **\$5/mes de crédito gratuito** (renovable). El plan Search cuesta \$5 por cada 1.000 solicitudes, por lo que el crédito cubre 1.000 consultas/mes. Establezca su límite de uso en el panel de Brave para evitar cargos inesperados. Consulte el [portal de la API de Brave](https://brave.com/search/api/) para conocer los planes actuales.
-- El plan Search incluye el endpoint LLM Context y derechos de inferencia de IA. Para almacenar resultados con el fin de entrenar o ajustar modelos, se requiere un plan con derechos explícitos de almacenamiento. Consulte los [Términos de servicio](https://api-dashboard.search.brave.com/terms-of-service) de Brave.
-- El modo `llm-context` devuelve entradas de fuentes fundamentadas en lugar de la estructura normal de fragmentos de búsqueda web.
-- El modo `llm-context` admite `freshness` e intervalos delimitados de `date_after` + `date_before`. No admite `ui_lang`; `date_before` sin `date_after` se rechaza porque Brave exige que los intervalos de actualización personalizados incluyan tanto la fecha inicial como la final.
+- OpenClaw utiliza el plan **Search** de Brave. Si tiene una suscripción heredada (p. ej., el plan Free original con 2.000 consultas al mes), seguirá siendo válida, pero no incluirá funciones más recientes, como LLM Context o límites de solicitudes más altos.
+- Cada plan de Brave incluye **\$5 al mes de crédito gratuito** (renovable). El plan Search cuesta \$5 por cada 1.000 solicitudes, por lo que el crédito cubre 1.000 consultas al mes. Establezca el límite de uso en el panel de Brave para evitar cargos inesperados. Consulte los planes actuales en el [portal de la API de Brave](https://brave.com/search/api/).
+- El plan Search incluye el endpoint LLM Context y derechos de inferencia de IA. Para almacenar resultados con el fin de entrenar o ajustar modelos, se requiere un plan con derechos explícitos de almacenamiento. Consulte los [Términos del servicio](https://api-dashboard.search.brave.com/terms-of-service) de Brave.
+- El modo `llm-context` devuelve entradas de fuentes con respaldo factual en lugar del formato normal de fragmentos de búsqueda web.
+- El modo `llm-context` admite `freshness` e intervalos delimitados de `date_after` + `date_before`. No admite `ui_lang`; se rechaza `date_before` sin `date_after` porque Brave exige que los intervalos de actualidad personalizados incluyan tanto la fecha inicial como la final.
 - `ui_lang` debe incluir una subetiqueta de región como `en-US`.
 - Los resultados se almacenan en caché durante 15 minutos de forma predeterminada (configurable mediante `cacheTtlMinutes`).
-- Los valores personalizados de `webSearch.baseUrl` se incluyen en la identidad de caché de Brave, por lo que
-  las respuestas específicas del proxy no entran en conflicto.
-- Active la marca de diagnóstico `brave.http` para registrar las URL y los parámetros de consulta de las solicitudes de Brave, el estado y la duración de las respuestas, así como los eventos de acierto, fallo y escritura de la caché de búsqueda durante la resolución de problemas. La marca nunca registra la clave de API ni los cuerpos de las respuestas, pero las consultas de búsqueda pueden contener información confidencial.
+- Los valores personalizados de `webSearch.baseUrl` se incluyen en la identidad de caché de Brave, de modo que
+  las respuestas específicas del proxy no entren en conflicto.
+- Active la marca de diagnóstico `brave.http` para registrar las URL y los parámetros de consulta de las solicitudes de Brave, el estado y la duración de las respuestas, y los eventos de acierto, fallo y escritura de la caché de búsqueda durante la resolución de problemas. La marca nunca registra la clave de API ni el cuerpo de las respuestas, pero las consultas de búsqueda pueden ser confidenciales.
 
 ## Contenido relacionado
 
-- [Descripción general de la búsqueda web](/es/tools/web) -- todos los proveedores y detección automática
+- [Descripción general de la búsqueda web](/es/tools/web) -- todos los proveedores y la detección automática
 - [Búsqueda de Perplexity](/es/tools/perplexity-search) -- resultados estructurados con filtrado por dominio
 - [Búsqueda de Exa](/es/tools/exa-search) -- búsqueda neuronal con extracción de contenido

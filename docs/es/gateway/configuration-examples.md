@@ -3,10 +3,10 @@ read_when:
     - Aprender a configurar OpenClaw
     - Buscando ejemplos de configuración
     - Configurar OpenClaw por primera vez
-summary: Ejemplos de configuración que se ajustan al esquema para configuraciones comunes de OpenClaw
+summary: Ejemplos de configuración conformes al esquema para configuraciones habituales de OpenClaw
 title: Ejemplos de configuración
 x-i18n:
-    generated_at: "2026-07-22T10:33:53Z"
+    generated_at: "2026-07-26T04:37:08Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
     workflow: 16
 ---
 
-Los ejemplos siguientes se ajustan al esquema de configuración actual. Para consultar la referencia exhaustiva y las notas de cada campo, véase [Configuración](/es/gateway/configuration).
+Los ejemplos siguientes están alineados con el esquema de configuración actual. Para consultar la referencia exhaustiva y las notas de cada campo, véase [Configuración](/es/gateway/configuration).
 
 ## Inicio rápido
 
@@ -44,7 +44,7 @@ Guárdelo en `~/.openclaw/openclaw.json` y podrá enviar mensajes directos al bo
       main: {
         identity: {
           name: "Clawd",
-          theme: "asistente útil",
+          theme: "asistente servicial",
           emoji: "🦞",
         },
       },
@@ -59,7 +59,7 @@ Guárdelo en `~/.openclaw/openclaw.json` y podrá enviar mensajes directos al bo
   messages: {
     visibleReplies: "automatic",
     groupChat: {
-      visibleReplies: "message_tool", // activación explícita; la salida visible requiere message(action=send)
+      visibleReplies: "message_tool", // activación voluntaria; la salida visible requiere message(action=send)
       unmentionedInbound: "room_event",
     },
   },
@@ -68,11 +68,11 @@ Guárdelo en `~/.openclaw/openclaw.json` y podrá enviar mensajes directos al bo
 
 ## Ejemplo ampliado (opciones principales)
 
-> JSON5 permite usar comentarios y comas finales. El formato JSON normal también funciona.
+> JSON5 permite usar comentarios y comas finales. También funciona JSON normal.
 
 ```json5
 {
-  // Entorno y shell
+  // Entorno + shell
   env: {
     OPENROUTER_API_KEY: "sk-or-...",
     vars: {
@@ -98,7 +98,7 @@ Guárdelo en `~/.openclaw/openclaw.json` y podrá enviar mensajes directos al bo
     },
   },
 
-  // La identidad se configura por agente; establézcala en agents.entries.<id>.identity a continuación.
+  // La identidad se define por agente; configúrela en agents.entries.<id>.identity a continuación.
 
   // Registro
   logging: {
@@ -117,7 +117,7 @@ Guárdelo en `~/.openclaw/openclaw.json` y podrá enviar mensajes directos al bo
     ackReactionScope: "group-mentions",
     groupChat: {
       historyLimit: 50,
-      visibleReplies: "message_tool", // activación explícita para salas compartidas con modelos fiables en el uso de herramientas
+      visibleReplies: "message_tool", // activación voluntaria para salas compartidas con modelos fiables en el uso de herramientas
       unmentionedInbound: "room_event",
     },
     queue: {
@@ -139,7 +139,7 @@ Guárdelo en `~/.openclaw/openclaw.json` y podrá enviar mensajes directos al bo
   // Comportamiento de las sesiones
   session: {
     scope: "per-sender",
-    dmScope: "per-channel-peer", // recomendado para bandejas de entrada con varios usuarios
+    dmScope: "per-channel-peer", // recomendado para bandejas de entrada multiusuario
     reset: {
       mode: "daily",
       atHour: 4,
@@ -218,7 +218,7 @@ Guárdelo en `~/.openclaw/openclaw.json` y podrá enviar mensajes directos al bo
     },
   },
 
-  // Entorno de ejecución del agente
+  // Entorno de ejecución de los agentes
   agents: {
     defaults: {
       workspace: "~/.openclaw/workspace",
@@ -269,7 +269,7 @@ Guárdelo en `~/.openclaw/openclaw.json` y podrá enviar mensajes directos al bo
       },
       sandbox: {
         mode: "non-main",
-        scope: "session", // preferible frente al valor heredado perSession: true
+        scope: "session", // se prefiere frente al antiguo perSession: true
         workspaceRoot: "~/.openclaw/sandboxes",
         docker: {
           image: "openclaw-sandbox:bookworm-slim",
@@ -289,20 +289,20 @@ Guárdelo en `~/.openclaw/openclaw.json` y podrá enviar mensajes directos al bo
         default: true,
         identity: {
           name: "Samantha",
-          theme: "perezoso útil",
+          theme: "perezoso servicial",
           emoji: "🦥",
         },
         // hereda defaults.skills -> github, weather
         groupChat: {
           mentionPatterns: ["@openclaw", "openclaw"],
         },
-        thinkingDefault: "high", // sustitución del nivel de pensamiento por agente
+        thinkingDefault: "high", // anulación del nivel de pensamiento por agente
         reasoningDefault: "on", // visibilidad del razonamiento por agente
         fastModeDefault: false, // modo rápido por agente
       },
       quick: {
-        skills: [], // sin Skills para este agente
-        fastModeDefault: true, // este agente siempre funciona en modo rápido
+        skills: [], // este agente no tiene Skills
+        fastModeDefault: true, // este agente siempre se ejecuta rápidamente
         thinkingDefault: "off",
       },
     },
@@ -375,7 +375,7 @@ Guárdelo en `~/.openclaw/openclaw.json` y podrá enviar mensajes directos al bo
     },
   },
 
-  // Tareas de Cron
+  // Trabajos Cron
   cron: {
     enabled: true,
     store: "~/.openclaw/cron/jobs.json",
@@ -425,7 +425,7 @@ Guárdelo en `~/.openclaw/openclaw.json` y podrá enviar mensajes directos al bo
     },
   },
 
-  // Gateway y redes
+  // Gateway + redes
   gateway: {
     mode: "local",
     port: 18789,
@@ -464,9 +464,9 @@ Guárdelo en `~/.openclaw/openclaw.json` y podrá enviar mensajes directos al bo
 }
 ```
 
-### Repositorio de Skills hermano enlazado simbólicamente
+### Repositorio hermano de Skills enlazado simbólicamente
 
-Utilice esta configuración cuando la raíz de una Skill integrada contenga un enlace simbólico a un repositorio hermano, por
+Úselo cuando la raíz de una Skill integrada contenga un enlace simbólico a un repositorio hermano, por
 ejemplo `~/.agents/skills/manager -> ~/Projects/manager/skills`.
 
 ```json5
@@ -480,15 +480,15 @@ ejemplo `~/.agents/skills/manager -> ~/Projects/manager/skills`.
 }
 ```
 
-- `extraDirs` analiza el repositorio hermano como una raíz explícita de Skills.
+- `extraDirs` analiza el repositorio hermano como una raíz de Skills explícita.
 - `allowSymlinkTargets` permite que las carpetas de Skills enlazadas simbólicamente se resuelvan en esa raíz
   de destino real de confianza sin permitir escapes arbitrarios mediante enlaces simbólicos.
-- Para permitir que Skill Workshop escriba mediante el mismo destino de confianza del enlace simbólico,
-  establezca `skills.workshop.allowSymlinkTargetWrites: true`.
+- Para permitir que Skill Workshop escriba a través del mismo destino de confianza del enlace simbólico,
+  configure `skills.workshop.allowSymlinkTargetWrites: true`.
 
 ## Patrones comunes
 
-### Base compartida de Skills con una anulación
+### Base compartida de Skills con una excepción
 
 ```json5
 {
@@ -507,7 +507,7 @@ ejemplo `~/.agents/skills/manager -> ~/Projects/manager/skills`.
 
 - `agents.defaults.skills` es la base compartida.
 - `agents.entries.*.skills` sustituye esa base para un agente.
-- Use `skills: []` cuando un agente no deba ver ninguna Skills.
+- Use `skills: []` cuando un agente no deba ver ninguna Skill.
 
 ### Configuración multiplataforma
 
@@ -530,11 +530,11 @@ ejemplo `~/.agents/skills/manager -> ~/Projects/manager/skills`.
 }
 ```
 
-### Aprobación automática en una red de Node de confianza
+### Aprobación automática en una red de Nodes de confianza
 
-Mantenga manual el emparejamiento de dispositivos, a menos que controle la ruta de red. Para una
-subred dedicada de laboratorio o de tailnet, puede habilitar la aprobación automática
-del dispositivo Node durante el primer emparejamiento mediante CIDR o direcciones IP exactos:
+Mantenga manual el emparejamiento de dispositivos a menos que controle la ruta de red. Para un
+laboratorio dedicado o una subred de tailnet, puede habilitar la aprobación automática inicial
+de dispositivos Node con CIDR o IP exactos:
 
 ```json5
 {
@@ -548,7 +548,7 @@ del dispositivo Node durante el primer emparejamiento mediante CIDR o direccione
 }
 ```
 
-Esta opción permanece desactivada si no se establece. Solo se aplica al emparejamiento inicial de `role: node`
+Esta opción permanece desactivada si no se configura. Solo se aplica al emparejamiento nuevo de `role: node`
 sin ámbitos solicitados. Los clientes de operador/navegador y las actualizaciones de rol, ámbito, metadatos o
 clave pública siguen requiriendo aprobación manual.
 
@@ -579,9 +579,9 @@ Si más de una persona puede enviar mensajes directos al bot (varias entradas en
 ```
 
 Para Discord/Google Chat/IRC/Mattermost/Microsoft Teams/Slack, la autorización del remitente se basa primero en el ID de forma predeterminada.
-Habilite la coincidencia directa mediante nombres, correos electrónicos o alias modificables con `dangerouslyAllowNameMatching: true` de cada canal únicamente si acepta explícitamente ese riesgo.
+Habilite la coincidencia directa mediante nombres/correos electrónicos/apodos modificables con `dangerouslyAllowNameMatching: true` de cada canal solo si acepta explícitamente ese riesgo.
 
-### Clave de API de Anthropic y MiniMax como alternativa
+### Clave de API de Anthropic + alternativa MiniMax
 
 ```json5
 {
@@ -684,10 +684,10 @@ Habilite la coincidencia directa mediante nombres, correos electrónicos o alias
 
 ## Consejos
 
-- Si establece `dmPolicy: "open"`, la lista `allowFrom` correspondiente debe incluir `"*"`.
-- Los ID de los proveedores son distintos (números de teléfono, ID de usuario, ID de canal). Consulte la documentación del proveedor para confirmar el formato.
-- Secciones opcionales que pueden añadirse más adelante: `web`, `browser`, `ui`, `discovery`, `plugins`, `talk`, `signal`, `imessage`.
-- Consulte [Proveedores](/es/providers) y [Solución de problemas](/es/gateway/troubleshooting) para obtener notas más detalladas sobre la configuración.
+- Si configura `dmPolicy: "open"`, la lista `allowFrom` correspondiente debe incluir `"*"`.
+- Los ID de proveedor varían (números de teléfono, ID de usuario e ID de canal). Consulte la documentación del proveedor para confirmar el formato.
+- Secciones opcionales que puede añadir más adelante: `web`, `browser`, `ui`, `discovery`, `plugins`, `talk`, `signal`, `imessage`.
+- Consulte [Proveedores](/es/providers) y [Solución de problemas](/es/gateway/troubleshooting) para obtener notas de configuración más detalladas.
 
 ## Contenido relacionado
 

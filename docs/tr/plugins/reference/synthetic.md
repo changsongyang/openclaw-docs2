@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Synthetic pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - Synthetic pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a Synthetic model sağlayıcısı desteği ekler.
-title: Synthetic plugin
+title: Synthetic plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:27:15Z"
+    generated_at: "2026-07-27T00:09:10Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Synthetic plugin’i
+# Synthetic plugin
 
-OpenClaw’a Synthetic model sağlayıcısı desteği ekler.
+OpenClaw'a Synthetic model sağlayıcısı desteği ekler.
 
 ## Dağıtım
 
 - Paket: `@openclaw/synthetic-provider`
-- Kurulum yolu: OpenClaw’a dahildir
+- Kurulum yolu: OpenClaw'a dahildir
 
 ## Yüzey
 

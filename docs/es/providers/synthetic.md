@@ -1,11 +1,11 @@
 ---
 read_when:
     - Quiere usar Synthetic como proveedor de modelos
-    - Se necesita una clave de API o una configuración de URL base de Synthetic
-summary: Usa la API compatible con Anthropic de Synthetic en OpenClaw
+    - Necesita configurar una clave de API o una URL base de Synthetic.
+summary: Usar la API compatible con Anthropic de Synthetic en OpenClaw
 title: Synthetic
 x-i18n:
-    generated_at: "2026-07-19T02:10:42Z"
+    generated_at: "2026-07-26T04:56:30Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 ---
 
 [Synthetic](https://synthetic.new) expone endpoints compatibles con Anthropic.
-OpenClaw lo incluye como el proveedor `synthetic` y utiliza la API de
-mensajes de Anthropic.
+OpenClaw lo incluye como el proveedor `synthetic` y utiliza la API
+Messages de Anthropic.
 
 | Propiedad | Valor                                 |
 | -------- | ------------------------------------- |
 | Proveedor | `synthetic`                           |
 | Autenticación     | `SYNTHETIC_API_KEY`                   |
-| API      | Mensajes de Anthropic                    |
+| API      | Anthropic Messages                    |
 | URL base | `https://api.synthetic.new/anthropic` |
 
 ## Primeros pasos
@@ -39,7 +39,7 @@ mensajes de Anthropic.
     ```
   </Step>
   <Step title="Verificar el modelo predeterminado">
-    El proceso de incorporación establece el modelo predeterminado en:
+    El proceso de incorporación establece el siguiente modelo predeterminado:
     ```text
     synthetic/hf:MiniMaxAI/MiniMax-M3
     ```
@@ -47,9 +47,9 @@ mensajes de Anthropic.
 </Steps>
 
 <Warning>
-El cliente de Anthropic de OpenClaw añade `/v1` automáticamente a la URL base, por lo que debe utilizar
+El cliente Anthropic de OpenClaw añade `/v1` automáticamente a la URL base, por lo que debe utilizar
 `https://api.synthetic.new/anthropic` (no `/anthropic/v1`). Si Synthetic
-cambia su URL base, reemplace `models.providers.synthetic.baseUrl`.
+cambia su URL base, sustituya `models.providers.synthetic.baseUrl`.
 </Warning>
 
 ## Ejemplo de configuración
@@ -89,8 +89,8 @@ cambia su URL base, reemplace `models.providers.synthetic.baseUrl`.
 
 ## Catálogo integrado
 
-Todos los modelos de Synthetic tienen un coste de `0` (entrada/salida/caché). Consulte la
-[lista actual de modelos](https://dev.synthetic.new/docs/api/models) de Synthetic para conocer la disponibilidad del servicio.
+Todos los modelos de Synthetic tienen un coste `0` (entrada/salida/caché). Consulte la
+[lista de modelos actual](https://dev.synthetic.new/docs/api/models) de Synthetic para conocer la disponibilidad del servicio.
 
 | ID del modelo                                            | Ventana de contexto | Máximo de tokens | Razonamiento | Entrada        |
 | --------------------------------------------------- | -------------- | ---------- | --------- | ------------ |
@@ -115,8 +115,8 @@ cuenta.
     al agente.
   </Accordion>
 
-  <Accordion title="Reemplazo de la URL base">
-    Si Synthetic cambia su endpoint de API, reemplace la URL base:
+  <Accordion title="Sustitución de la URL base">
+    Si Synthetic cambia su endpoint de API, sustituya la URL base:
 
     ```json5
     {
@@ -130,7 +130,7 @@ cuenta.
     }
     ```
 
-    OpenClaw seguirá añadiendo `/v1` automáticamente.
+    OpenClaw sigue añadiendo `/v1` automáticamente.
 
   </Accordion>
 </AccordionGroup>

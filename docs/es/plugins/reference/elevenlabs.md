@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin elevenlabs
-summary: Añade compatibilidad con proveedores de comprensión de contenido multimedia. Añade compatibilidad con proveedores de transcripción en tiempo real. Añade compatibilidad con proveedores de conversión de texto a voz.
-title: Plugin de Elevenlabs
+    - Se está instalando, configurando o auditando el plugin elevenlabs
+summary: Añade compatibilidad con proveedores de comprensión multimedia. Añade compatibilidad con proveedores de transcripción en tiempo real. Añade compatibilidad con proveedores de conversión de texto a voz.
+title: Plugin de ElevenLabs
 x-i18n:
-    generated_at: "2026-07-16T11:52:26Z"
+    generated_at: "2026-07-26T05:21:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin de ElevenLabs
+# Plugin de Elevenlabs
 
-Añade compatibilidad con proveedores de comprensión multimedia. Añade compatibilidad con proveedores de transcripción en tiempo real. Añade compatibilidad con proveedores de texto a voz.
+Añade compatibilidad con el proveedor de comprensión multimedia. Añade compatibilidad con el proveedor de transcripción en tiempo real. Añade compatibilidad con el proveedor de texto a voz.
 
 ## Distribución
 
 - Paquete: `@openclaw/elevenlabs-speech`
-- Método de instalación: incluido en OpenClaw
+- Ruta de instalación: incluida en OpenClaw
 
 ## Superficie
 

@@ -4,7 +4,7 @@ read_when:
 summary: 添加 Web 搜索提供商支持。
 title: SearXNG 插件
 x-i18n:
-    generated_at: "2026-07-16T11:47:23Z"
+    generated_at: "2026-07-26T06:52:56Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

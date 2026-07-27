@@ -2,9 +2,9 @@
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin together هستید
 summary: پشتیبانی از ارائه‌دهنده مدل Together را به OpenClaw اضافه می‌کند.
-title: Plugin ‏Together
+title: Plugin تی‌گدر
 x-i18n:
-    generated_at: "2026-07-16T17:30:38Z"
+    generated_at: "2026-07-27T15:57:42Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin ‏Together
+# Plugin Together
 
 پشتیبانی از ارائه‌دهنده مدل Together را به OpenClaw اضافه می‌کند.
 

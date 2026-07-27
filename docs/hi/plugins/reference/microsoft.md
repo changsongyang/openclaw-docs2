@@ -1,10 +1,10 @@
 ---
 read_when:
-    - आप microsoft Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: टेक्स्ट-टू-स्पीच प्रदाता के लिए समर्थन जोड़ता है।
+    - आप microsoft Plugin इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
+summary: टेक्स्ट-टू-स्पीच प्रदाता समर्थन जोड़ता है।
 title: Microsoft Plugin
 x-i18n:
-    generated_at: "2026-07-19T09:18:01Z"
+    generated_at: "2026-07-27T18:19:52Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## वितरण
 
 - पैकेज: `@openclaw/microsoft-speech`
-- इंस्टॉल मार्ग: OpenClaw में शामिल
+- इंस्टॉल मार्ग: OpenClaw में शामिल है
 
 ## सतह
 

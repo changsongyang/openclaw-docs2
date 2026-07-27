@@ -1,15 +1,15 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin تابلوی کار هستید
+    - شما در حال نصب، پیکربندی یا ممیزی Plugin تابلوی کار هستید
 summary: داشبورد کار برای مسائل و نشست‌های تحت مالکیت عامل.
-title: Plugin ورک‌بورد
+title: Plugin تابلوی کار
 x-i18n:
-    generated_at: "2026-07-16T17:04:50Z"
+    generated_at: "2026-07-27T16:52:16Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 7011f95388aafcc6bd2d4af0fc71296976b05f57d9314bbb4fa341b8de717fa2
+    source_hash: 4be96893d46c009a127ed3dca5047f8ee4c33fe3c243f8e6867d64976b50b783
     source_path: plugins/reference/workboard.md
     workflow: 16
 ---
@@ -21,11 +21,11 @@ x-i18n:
 ## توزیع
 
 - بسته: `@openclaw/workboard`
-- مسیر نصب: همراه OpenClaw ارائه می‌شود
+- مسیر نصب: در OpenClaw گنجانده شده است
 
 ## سطح
 
-قراردادها: `tools`
+قراردادها: `tools`؛ اتصال‌های دادهٔ داشبورد: `workboard.cards.list`، `workboard.stats`، `workboard.boards.list`؛ افعال کنش داشبورد: `workboard.dispatch`
 
 ## مستندات مرتبط
 

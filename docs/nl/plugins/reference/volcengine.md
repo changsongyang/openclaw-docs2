@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de volcengine-plugin
-summary: Voegt ondersteuning voor de modelproviders Volcengine en Volcengine Plan toe aan OpenClaw.
-title: Volcengine-Plugin
+summary: Voegt ondersteuning voor de Volcengine- en Volcengine Plan-modelproviders toe aan OpenClaw.
+title: Volcengine-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:08:04Z"
+    generated_at: "2026-07-27T06:28:46Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Voegt ondersteuning voor de Volcengine- en Volcengine Plan-modelproviders toe aa
 ## Distributie
 
 - Pakket: `@openclaw/volcengine-provider`
-- Installatieroute: inbegrepen in OpenClaw
+- Installatieroute: opgenomen in OpenClaw
 
 ## Oppervlak
 
@@ -29,4 +29,4 @@ providers: `volcengine`, `volcengine-plan`; contracten: `speechProviders`
 
 ## Gerelateerde documentatie
 
-- [Volcengine](/nl/providers/volcengine)
+- [volcengine](/nl/providers/volcengine)

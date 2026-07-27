@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder überprüfen das Plugin tts-local-cli.
+    - Sie installieren, konfigurieren oder prüfen das Plugin tts-local-cli.
 summary: Fügt Unterstützung für Text-to-Speech-Provider hinzu.
 title: TTS-Plugin für die lokale CLI
 x-i18n:
-    generated_at: "2026-07-24T05:16:18Z"
+    generated_at: "2026-07-26T19:10:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

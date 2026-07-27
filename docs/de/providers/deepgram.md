@@ -1,12 +1,12 @@
 ---
 read_when:
-    - Sie möchten Deepgram-Spracherkennung für Audioanhänge verwenden
-    - Sie möchten die Deepgram-Streaming-Transkription für Sprachanrufe verwenden
+    - Sie möchten Deepgram Speech-to-Text für Audioanhänge verwenden
+    - Sie möchten Deepgram-Streaming-Transkription für Voice Call verwenden
     - Sie benötigen ein kurzes Deepgram-Konfigurationsbeispiel
 summary: Deepgram-Transkription für eingehende Sprachnachrichten
 title: Deepgram
 x-i18n:
-    generated_at: "2026-07-24T04:06:16Z"
+    generated_at: "2026-07-26T18:05:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,10 +21,10 @@ eingehender Audio- und Sprachnachrichten über `tools.media.audio` sowie für da
 von Voice Call über `plugins.entries.voice-call.config.streaming`.
 
 Bei der Batch-Transkription wird die vollständige Audiodatei zu Deepgram hochgeladen und
-das Transkript in die Antwort-Pipeline eingefügt (`{{Transcript}}`- + `[Audio]`-Block).
-Beim Voice-Call-Streaming werden G.711-u-law-Frames in Echtzeit über den
-WebSocket-Endpunkt `listen` von Deepgram weitergeleitet und vorläufige bzw. endgültige
-Transkripte ausgegeben, sobald Deepgram sie zurückgibt.
+das Transkript in die Antwort-Pipeline eingefügt (`{{Transcript}}`- und `[Audio]`-Block).
+Das Voice-Call-Streaming leitet G.711-u-law-Frames in Echtzeit über den WebSocket-Endpunkt
+`listen` von Deepgram weiter und gibt vorläufige sowie endgültige Transkripte aus,
+sobald Deepgram sie zurückgibt.
 
 | Detail        | Wert                                                       |
 | ------------- | ---------------------------------------------------------- |
@@ -70,7 +70,7 @@ Transkripte ausgegeben, sobald Deepgram sie zurückgibt.
 
 `providerOptions.deepgram` führt zusätzliche Abfrageparameter direkt mit der
 Deepgram-Anfrage `/listen` zusammen, sodass jeder von Deepgram unterstützte Parametername
-verwendet werden kann (zum Beispiel `detect_language`, `punctuate`, `smart_format`):
+funktioniert (zum Beispiel `detect_language`, `punctuate`, `smart_format`):
 
 <Tabs>
   <Tab title="Mit Sprachhinweis">
@@ -110,21 +110,21 @@ verwendet werden kann (zum Beispiel `detect_language`, `punctuate`, `smart_forma
   </Tab>
 </Tabs>
 
-## Streaming-STT für Voice Call
+## Voice-Call-Streaming-STT
 
 Das mitgelieferte Plugin `deepgram` registriert außerdem einen Provider für
 Echtzeittranskription für das Voice-Call-Plugin.
 
-| Einstellung       | Konfigurationspfad                                                      | Standard                                     |
-| ----------------- | ----------------------------------------------------------------------- | -------------------------------------------- |
-| API-Schlüssel     | `plugins.entries.voice-call.config.streaming.providers.deepgram.apiKey` | Fällt auf `DEEPGRAM_API_KEY` zurück          |
-| Basis-URL         | `...deepgram.baseUrl`                                                   | `DEEPGRAM_BASE_URL` oder die öffentliche API von Deepgram |
-| Modell            | `...deepgram.model`                                                     | `nova-3`                           |
-| Sprache           | `...deepgram.language`                                                  | (nicht festgelegt)                           |
-| Kodierung         | `...deepgram.encoding`                                                  | `mulaw`                           |
-| Abtastrate        | `...deepgram.sampleRate`                                                | `8000`                           |
-| Endpunkterkennung | `...deepgram.endpointingMs`                                             | `800`                           |
-| Zwischenergebnisse | `...deepgram.interimResults`                                            | `true`                           |
+| Einstellung     | Konfigurationspfad                                                       | Standard                                     |
+| --------------- | ----------------------------------------------------------------------- | -------------------------------------------- |
+| API-Schlüssel   | `plugins.entries.voice-call.config.streaming.providers.deepgram.apiKey` | Fällt auf `DEEPGRAM_API_KEY` zurück          |
+| Basis-URL       | `...deepgram.baseUrl`                                                   | `DEEPGRAM_BASE_URL` oder die öffentliche API von Deepgram |
+| Modell          | `...deepgram.model`                                                     | `nova-3`                            |
+| Sprache         | `...deepgram.language`                                                  | (nicht festgelegt)                            |
+| Codierung       | `...deepgram.encoding`                                                  | `mulaw`                            |
+| Abtastrate      | `...deepgram.sampleRate`                                                | `8000`                             |
+| Endpunkterkennung | `...deepgram.endpointingMs`                                           | `800`                             |
+| Zwischenergebnisse | `...deepgram.interimResults`                                          | `true`                             |
 
 ```json5
 {
@@ -152,14 +152,15 @@ Echtzeittranskription für das Voice-Call-Plugin.
 ```
 
 Legen Sie für einen [benutzerdefinierten Deepgram-Endpunkt](https://developers.deepgram.com/reference/custom-endpoints)
-`baseUrl` auf den Stamm des Endpunkts fest, einschließlich eines etwaigen Basispfads, jedoch ohne `/listen`.
-Echtzeitendpunkte akzeptieren `http://`, `https://`, `ws://` und `wss://`. HTTP
-wird WS, HTTPS wird WSS zugeordnet und explizite WebSocket-Schemata bleiben unverändert.
-Fehlerhafte URLs und andere Schemata führen beim Einrichten der Sitzung zu einem Fehler.
+`baseUrl` auf den Endpunktstamm einschließlich eines etwaigen Basispfads, jedoch ohne
+`/listen`, fest. Echtzeitendpunkte akzeptieren `http://`, `https://`,
+`ws://` und `wss://`. HTTP wird WS zugeordnet, HTTPS wird WSS zugeordnet,
+und explizite WebSocket-Schemata bleiben unverändert. Fehlerhafte URLs und andere Schemata
+führen während der Sitzungseinrichtung zu einem Fehler.
 
 <Note>
-Voice Call empfängt Telefonie-Audio als 8-kHz-G.711-u-law. Der Deepgram-
-Streaming-Provider verwendet standardmäßig `encoding: "mulaw"` und `sampleRate: 8000`, sodass
+Voice Call empfängt Telefonie-Audio als G.711 u-law mit 8 kHz. Der Deepgram-Streaming-Provider
+verwendet standardmäßig `encoding: "mulaw"` und `sampleRate: 8000`, sodass
 Twilio-Medienframes direkt weitergeleitet werden können.
 </Note>
 
@@ -167,15 +168,16 @@ Twilio-Medienframes direkt weitergeleitet werden können.
 
 <AccordionGroup>
   <Accordion title="Authentifizierung">
-    Die Authentifizierung folgt der standardmäßigen Authentifizierungsreihenfolge für Provider. `DEEPGRAM_API_KEY`
-    ist der einfachste Weg.
+    Die Authentifizierung folgt der standardmäßigen Authentifizierungsreihenfolge für Provider.
+    `DEEPGRAM_API_KEY` ist der einfachste Weg.
   </Accordion>
   <Accordion title="Proxy und benutzerdefinierte Endpunkte">
-    Überschreiben Sie bei Verwendung eines Proxys die Endpunkte oder Header im Deepgram-Eintrag `tools.media.models[]`.
+    Überschreiben Sie bei Verwendung eines Proxys die Endpunkte oder Header im
+    Deepgram-Eintrag `tools.media.models[]`.
   </Accordion>
   <Accordion title="Ausgabeverhalten">
-    Für die Ausgabe gelten dieselben Audioregeln wie bei anderen Providern (Größenbeschränkungen,
-    Zeitüberschreitungen, Einfügen des Transkripts).
+    Die Ausgabe folgt denselben Audioregeln wie bei anderen Providern
+    (Größenbeschränkungen, Zeitüberschreitungen, Einfügen des Transkripts).
   </Accordion>
 </AccordionGroup>
 
@@ -183,7 +185,7 @@ Twilio-Medienframes direkt weitergeleitet werden können.
 
 <CardGroup cols={2}>
   <Card title="Medienwerkzeuge" href="/de/tools/media-overview" icon="photo-film">
-    Übersicht über die Pipeline zur Verarbeitung von Audio, Bildern und Videos.
+    Überblick über die Pipeline zur Verarbeitung von Audio, Bildern und Videos.
   </Card>
   <Card title="Konfiguration" href="/de/gateway/configuration" icon="gear">
     Vollständige Konfigurationsreferenz einschließlich der Einstellungen für Medienwerkzeuge.

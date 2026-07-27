@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das Google-Chat-Plugin.
+    - Sie installieren, konfigurieren oder überprüfen das googlechat-Plugin
 summary: OpenClaw-Google-Chat-Kanal-Plugin für Spaces und Direktnachrichten.
 title: Google Chat-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:03:57Z"
+    generated_at: "2026-07-26T18:02:24Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Google Chat-Plugin
+# Google-Chat-Plugin
 
-OpenClaw Google Chat-Kanal-Plugin für Gruppenbereiche und Direktnachrichten.
+OpenClaw Google-Chat-Kanal-Plugin für Bereiche und Direktnachrichten.
 
 ## Distribution
 

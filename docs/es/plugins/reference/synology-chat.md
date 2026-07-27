@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin synology-chat
-summary: Plugin del canal Synology Chat para canales y mensajes directos de OpenClaw.
+    - Se está instalando, configurando o auditando el plugin synology-chat
+summary: Plugin de canal de Synology Chat para canales y mensajes directos de OpenClaw.
 title: Plugin de Synology Chat
 x-i18n:
-    generated_at: "2026-07-16T11:54:16Z"
+    generated_at: "2026-07-26T05:22:18Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,12 +16,12 @@ x-i18n:
 
 # Plugin de Synology Chat
 
-Plugin del canal Synology Chat para canales y mensajes directos de OpenClaw.
+Plugin de canal de Synology Chat para canales y mensajes directos de OpenClaw.
 
 ## Distribución
 
 - Paquete: `@openclaw/synology-chat`
-- Ruta de instalación: npm; ClawHub
+- Vía de instalación: npm; ClawHub
 
 ## Superficie
 

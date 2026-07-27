@@ -4,7 +4,7 @@ read_when:
 summary: پشتیبانی از ارائه‌دهندهٔ جست‌وجوی وب را اضافه می‌کند.
 title: Plugin پرپلکسیتی
 x-i18n:
-    generated_at: "2026-07-16T17:03:32Z"
+    generated_at: "2026-07-27T14:25:05Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

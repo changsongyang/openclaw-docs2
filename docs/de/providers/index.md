@@ -1,11 +1,11 @@
 ---
 read_when:
     - Sie möchten einen Modell-Provider auswählen
-    - Sie benötigen einen schnellen Überblick über unterstützte LLM-Backends
+    - Sie benötigen einen schnellen Überblick über die unterstützten LLM-Backends
 summary: Von OpenClaw unterstützte Modell-Provider (LLMs)
 title: Provider-Verzeichnis
 x-i18n:
-    generated_at: "2026-07-24T04:06:48Z"
+    generated_at: "2026-07-26T18:06:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,14 +15,14 @@ x-i18n:
     workflow: 16
 ---
 
-OpenClaw kann viele LLM-Provider verwenden. Wählen Sie einen Provider aus, authentifizieren Sie sich und legen Sie anschließend das
+OpenClaw kann zahlreiche LLM-Provider verwenden. Wählen Sie einen Provider aus, authentifizieren Sie sich und legen Sie anschließend das
 Standardmodell als `provider/model` fest.
 
-Suchen Sie nach der Dokumentation für Chat-Kanäle (WhatsApp/Telegram/Discord/Slack/Mattermost (Plugin)/usw.)? Siehe [Kanäle](/de/channels).
+Suchen Sie nach Dokumentation zu Chat-Kanälen (WhatsApp/Telegram/Discord/Slack/Mattermost (Plugin)/usw.)? Siehe [Kanäle](/de/channels).
 
 ## Schnellstart
 
-1. Authentifizieren Sie sich beim Provider (üblicherweise über `openclaw onboard`).
+1. Authentifizieren Sie sich beim Provider (normalerweise über `openclaw onboard`).
 2. Legen Sie das Standardmodell fest:
 
 ```json5
@@ -39,8 +39,8 @@ Suchen Sie nach der Dokumentation für Chat-Kanäle (WhatsApp/Telegram/Discord/S
 - [Anthropic (API + Claude CLI)](/de/providers/anthropic)
 - [Arcee AI (Trinity-Modelle)](/de/providers/arcee)
 - [Azure Speech](/de/providers/azure-speech)
-- [Baseten (Inkling + Modell-APIs)](/providers/baseten)
-- [BytePlus (international)](/de/concepts/model-providers#byteplus-international)
+- [Baseten (Inkling + Modell-APIs)](/de/providers/baseten)
+- [BytePlus (International)](/de/concepts/model-providers#byteplus-international)
 - [Cerebras](/de/providers/cerebras)
 - [Chutes](/de/providers/chutes)
 - [ClawRouter (verwaltetes Routing über mehrere Provider)](/de/providers/clawrouter)
@@ -61,7 +61,7 @@ Suchen Sie nach der Dokumentation für Chat-Kanäle (WhatsApp/Telegram/Discord/S
 - [Hugging Face (Inferenz)](/de/providers/huggingface)
 - [inferrs (lokale Modelle)](/de/providers/inferrs)
 - [Kilocode](/de/providers/kilocode)
-- [LiteLLM (vereinheitlichtes Gateway)](/de/providers/litellm)
+- [LiteLLM (einheitliches Gateway)](/de/providers/litellm)
 - [LM Studio (lokale Modelle)](/de/providers/lmstudio)
 - [LongCat](/de/providers/longcat)
 - [MiniMax](/de/providers/minimax)
@@ -85,7 +85,7 @@ Suchen Sie nach der Dokumentation für Chat-Kanäle (WhatsApp/Telegram/Discord/S
 - [Synthetic](/de/providers/synthetic)
 - [Tencent Cloud (TokenHub / TokenPlan)](/de/providers/tencent)
 - [Together AI](/de/providers/together)
-- [Venice (Venice AI, mit Schwerpunkt auf Datenschutz)](/de/providers/venice)
+- [Venice (Venice AI, datenschutzorientiert)](/de/providers/venice)
 - [Vercel AI Gateway](/de/providers/vercel-ai-gateway)
 - [vLLM (lokale Modelle)](/de/providers/vllm)
 - [Volcengine (Doubao)](/de/providers/volcengine)
@@ -112,7 +112,7 @@ Suchen Sie nach der Dokumentation für Chat-Kanäle (WhatsApp/Telegram/Discord/S
 
 ## Community-Tools
 
-- [Claude Max API Proxy](/de/providers/claude-max-api-proxy) - Community-Proxy für Claude-Abonnement-Anmeldedaten (prüfen Sie vor der Verwendung die Richtlinien/Nutzungsbedingungen von Anthropic)
+- [Claude Max API Proxy](/de/providers/claude-max-api-proxy) - Community-Proxy für Claude-Abonnementzugangsdaten (prüfen Sie vor der Verwendung die Richtlinien/Nutzungsbedingungen von Anthropic)
 
-Den vollständigen Provider-Katalog (xAI, Groq, Mistral usw.) und Informationen zur erweiterten Konfiguration
+Den vollständigen Provider-Katalog (xAI, Groq, Mistral usw.) und die erweiterte Konfiguration
 finden Sie unter [Modell-Provider](/de/concepts/model-providers).

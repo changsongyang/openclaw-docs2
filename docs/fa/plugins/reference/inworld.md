@@ -1,10 +1,10 @@
 ---
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin ‏inworld هستید
-summary: تبدیل متن به گفتار جریانی Inworld (MP3، OGG_OPUS، PCM تلفنی).
+summary: تبدیل متن به گفتار جریانی Inworld ‏(MP3، OGG_OPUS، PCM تلفنی).
 title: Plugin این‌ورلد
 x-i18n:
-    generated_at: "2026-07-16T16:55:36Z"
+    generated_at: "2026-07-27T14:24:22Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin Inworld
 
-تبدیل متن به گفتار جریانی Inworld (MP3، OGG_OPUS، تلفن PCM).
+تبدیل متن به گفتار جریانی Inworld (MP3، OGG_OPUS، PCM تلفنی).
 
 ## توزیع
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## مستندات مرتبط
 
-- [Inworld](/fa/providers/inworld)
+- [inworld](/fa/providers/inworld)

@@ -6,7 +6,7 @@ read_when:
 summary: OpenClaw auf Hostinger hosten
 title: Hostinger
 x-i18n:
-    generated_at: "2026-07-24T05:02:07Z"
+    generated_at: "2026-07-26T18:33:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
     workflow: 16
 ---
 
-Führen Sie ein dauerhaftes OpenClaw Gateway auf [Hostinger](https://www.hostinger.com/openclaw) aus, entweder als verwaltete **1-Click**-Bereitstellung oder als selbst administrierte **VPS**-Installation.
+Führen Sie einen persistenten OpenClaw Gateway auf [Hostinger](https://www.hostinger.com/openclaw) aus, entweder als verwaltete **1-Click**-Bereitstellung oder als selbst administrierte **VPS**-Installation.
 
 ## Voraussetzungen
 
@@ -25,14 +25,14 @@ Führen Sie ein dauerhaftes OpenClaw Gateway auf [Hostinger](https://www.hosting
 
 ## Option A: OpenClaw mit 1-Click
 
-Hostinger übernimmt die Infrastruktur, Docker und automatische Updates. Dies ist der schnellste Weg zu einer laufenden Instanz.
+Hostinger übernimmt Infrastruktur, Docker und automatische Updates. Dies ist der schnellste Weg zu einer laufenden Instanz.
 
 <Steps>
   <Step title="Kaufen und starten">
-    1. Wählen Sie auf der [Hostinger-OpenClaw-Seite](https://www.hostinger.com/openclaw) einen Managed-OpenClaw-Tarif aus und schließen Sie den Kauf ab.
+    1. Wählen Sie auf der [Hostinger-Seite für OpenClaw](https://www.hostinger.com/openclaw) einen Managed-OpenClaw-Tarif aus und schließen Sie den Kauf ab.
 
     <Note>
-    Während des Bezahlvorgangs können Sie vorab erworbene **Ready-to-Use AI**-Guthaben auswählen, die sofort in OpenClaw integriert werden – externe Konten oder API-Schlüssel anderer Provider sind nicht erforderlich. Sie können sofort mit dem Chatten beginnen. Alternativ können Sie während der Einrichtung einen eigenen Schlüssel von Anthropic, OpenAI, Google Gemini oder xAI angeben.
+    Während des Bezahlvorgangs können Sie **Ready-to-Use AI**-Guthaben auswählen, das im Voraus erworben und sofort in OpenClaw integriert wird – externe Konten oder API-Schlüssel anderer Provider sind nicht erforderlich. Sie können sofort mit dem Chatten beginnen. Alternativ können Sie während der Einrichtung Ihren eigenen Schlüssel von Anthropic, OpenAI, Google Gemini oder xAI angeben.
     </Note>
 
   </Step>
@@ -57,31 +57,31 @@ Diese Option bietet mehr Kontrolle über den Server. Hostinger stellt OpenClaw �
 
 <Steps>
   <Step title="VPS kaufen">
-    1. Wählen Sie auf der [Hostinger-OpenClaw-Seite](https://www.hostinger.com/openclaw) einen OpenClaw-on-VPS-Tarif aus und schließen Sie den Kauf ab.
+    1. Wählen Sie auf der [Hostinger-Seite für OpenClaw](https://www.hostinger.com/openclaw) einen Tarif für OpenClaw auf einem VPS aus und schließen Sie den Kauf ab.
 
     <Note>
-    Während des Bezahlvorgangs können Sie **Ready-to-Use AI**-Guthaben auswählen. Diese werden vorab erworben und sofort in OpenClaw integriert, sodass Sie ohne externe Konten oder API-Schlüssel anderer Provider mit dem Chatten beginnen können.
+    Während des Bezahlvorgangs können Sie **Ready-to-Use AI**-Guthaben auswählen. Dieses wird im Voraus erworben und sofort in OpenClaw integriert, sodass Sie ohne externe Konten oder API-Schlüssel anderer Provider mit dem Chatten beginnen können.
     </Note>
 
   </Step>
 
   <Step title="OpenClaw konfigurieren">
-    Sobald der VPS bereitgestellt ist, füllen Sie die Konfigurationsfelder aus:
+    Sobald der VPS bereitgestellt wurde, füllen Sie die Konfigurationsfelder aus:
 
-    - **Gateway token** – wird automatisch generiert; speichern Sie ihn zur späteren Verwendung.
+    - **Gateway token** – wird automatisch generiert; speichern Sie es zur späteren Verwendung.
     - **WhatsApp number** – Ihre Nummer mit Ländervorwahl (optional).
     - **Telegram bot token** – von [BotFather](https://t.me/BotFather) (optional).
-    - **API keys** – nur erforderlich, wenn Sie während des Bezahlvorgangs keine Ready-to-Use AI-Guthaben ausgewählt haben.
+    - **API keys** – nur erforderlich, wenn Sie während des Bezahlvorgangs kein Ready-to-Use-AI-Guthaben ausgewählt haben.
 
   </Step>
 
   <Step title="OpenClaw starten">
-    Klicken Sie auf **Deploy**. Sobald OpenClaw ausgeführt wird, öffnen Sie das OpenClaw-Dashboard in hPanel, indem Sie auf **Open** klicken.
+    Klicken Sie auf **Deploy**. Sobald OpenClaw ausgeführt wird, öffnen Sie das OpenClaw-Dashboard über hPanel, indem Sie auf **Open** klicken.
   </Step>
 
 </Steps>
 
-Protokolle, Neustarts und Updates werden über die Docker-Manager-Oberfläche in hPanel verwaltet. Drücken Sie zum Aktualisieren im Docker Manager auf **Update**, um das neueste Image abzurufen.
+Protokolle, Neustarts und Updates werden über die Docker-Manager-Oberfläche in hPanel ausgeführt. Um ein Update durchzuführen, klicken Sie im Docker Manager auf **Update**, damit das neueste Image abgerufen wird.
 
 ## Einrichtung überprüfen
 
@@ -89,11 +89,11 @@ Senden Sie Ihrem Assistenten über den verbundenen Kanal „Hallo“. OpenClaw a
 
 ## Fehlerbehebung
 
-**Dashboard wird nicht geladen** – warten Sie einige Minuten, bis die Bereitstellung des Containers abgeschlossen ist, und prüfen Sie dann die Docker-Manager-Protokolle in hPanel.
+**Dashboard wird nicht geladen** – warten Sie einige Minuten, bis die Bereitstellung des Containers abgeschlossen ist, und prüfen Sie anschließend die Docker-Manager-Protokolle in hPanel.
 
 **Docker-Container wird ständig neu gestartet** – öffnen Sie die Docker-Manager-Protokolle und suchen Sie nach Konfigurationsfehlern (fehlende Tokens, ungültige API-Schlüssel).
 
-**Telegram-Bot antwortet nicht** – wenn eine DM-Kopplung erforderlich ist, erhält ein unbekannter Absender statt einer Antwort einen kurzen Kopplungscode. Genehmigen Sie ihn im Chat des OpenClaw-Dashboards oder mit `openclaw pairing approve telegram <CODE>`, falls Sie Shell-Zugriff auf den Container haben. Siehe [Kopplung](/de/channels/pairing).
+**Telegram-Bot antwortet nicht** – wenn eine DM-Kopplung erforderlich ist, erhält ein unbekannter Absender anstelle einer Antwort einen kurzen Kopplungscode. Genehmigen Sie ihn im Dashboard-Chat von OpenClaw oder mit `openclaw pairing approve telegram <CODE>`, wenn Sie Shell-Zugriff auf den Container haben. Siehe [Kopplung](/de/channels/pairing).
 
 ## Nächste Schritte
 

@@ -4,7 +4,7 @@ read_when:
 summary: پشتیبانی از ارائه‌دهندهٔ تبدیل متن به گفتار را اضافه می‌کند.
 title: Plugin گرادیوم
 x-i18n:
-    generated_at: "2026-07-16T17:02:02Z"
+    generated_at: "2026-07-27T15:31:17Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin Gradium
+# Plugin ‏Gradium
 
 پشتیبانی از ارائه‌دهندهٔ تبدیل متن به گفتار را اضافه می‌کند.
 

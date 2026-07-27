@@ -1,32 +1,32 @@
 ---
 read_when:
     - Workboard pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: Aracı tarafından yönetilen sorunlar ve oturumlar için pano çalışma tahtası.
-title: Workboard Plugin'i
+summary: Temsilcinin sahip olduğu sorunlar ve oturumlar için pano çalışma tahtası.
+title: Workboard plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:27:38Z"
+    generated_at: "2026-07-27T00:09:22Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 7011f95388aafcc6bd2d4af0fc71296976b05f57d9314bbb4fa341b8de717fa2
+    source_hash: 4be96893d46c009a127ed3dca5047f8ee4c33fe3c243f8e6867d64976b50b783
     source_path: plugins/reference/workboard.md
     workflow: 16
 ---
 
-# Workboard plugini
+# Workboard plugin’i
 
-Aracının sahip olduğu sorunlar ve oturumlar için pano çalışma panosu.
+Aracıların sahip olduğu sorunlar ve oturumlar için gösterge paneli çalışma panosu.
 
 ## Dağıtım
 
 - Paket: `@openclaw/workboard`
-- Kurulum yolu: OpenClaw'a dahildir
+- Kurulum yolu: OpenClaw’a dahildir
 
 ## Yüzey
 
-sözleşmeler: `tools`
+sözleşmeler: `tools`; gösterge paneli veri bağlamaları: `workboard.cards.list`, `workboard.stats`, `workboard.boards.list`; gösterge paneli eylem fiilleri: `workboard.dispatch`
 
 ## İlgili belgeler
 
-- [workboard](/tr/plugins/workboard)
+- [çalışma panosu](/tr/plugins/workboard)

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Matrix Plugin のインストール、設定、または監査を行っている場合
-summary: ルームとダイレクトメッセージ向けのOpenClaw MatrixチャンネルPlugin。
+    - Matrix Plugin をインストール、設定、または監査している場合
+summary: ルームとダイレクトメッセージ向けの OpenClaw Matrix チャンネル Plugin。
 title: Matrix Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:55:33Z"
+    generated_at: "2026-07-26T09:13:08Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,16 +16,16 @@ x-i18n:
 
 # Matrix Plugin
 
-ルームおよびダイレクトメッセージ用の OpenClaw Matrix チャネル Plugin。
+ルームとダイレクトメッセージに対応する OpenClaw Matrix チャンネル Plugin。
 
 ## 配布
 
 - パッケージ: `@openclaw/matrix`
-- インストール方法: ClawHub: `clawhub:@openclaw/matrix`; npm
+- インストール経路: ClawHub: `clawhub:@openclaw/matrix`; npm
 
-## 提供機能
+## サーフェス
 
-チャネル: `matrix`
+チャンネル: `matrix`
 
 ## 関連ドキュメント
 

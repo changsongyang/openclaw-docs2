@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安装、配置或审计 Discord 插件
-summary: 用于渠道、私信、命令和应用事件的 OpenClaw Discord 渠道插件。
+summary: 用于频道、私信、命令和应用事件的 OpenClaw Discord 渠道插件。
 title: Discord 插件
 x-i18n:
-    generated_at: "2026-07-16T11:49:52Z"
+    generated_at: "2026-07-26T06:17:43Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

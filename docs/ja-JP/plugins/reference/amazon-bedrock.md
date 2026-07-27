@@ -4,7 +4,7 @@ read_when:
 summary: モデル検出、埋め込み、ガードレールをサポートする OpenClaw Amazon Bedrock プロバイダー Plugin。
 title: Amazon Bedrock Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:02:58Z"
+    generated_at: "2026-07-26T10:24:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -29,4 +29,4 @@ x-i18n:
 
 ## 関連ドキュメント
 
-- [Amazon Bedrock](/ja-JP/providers/bedrock)
+- [amazon-bedrock](/ja-JP/providers/bedrock)

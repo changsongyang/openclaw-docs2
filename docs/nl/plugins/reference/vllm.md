@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de vllm-plugin
 summary: Voegt ondersteuning voor de vLLM-modelprovider toe aan OpenClaw.
-title: vLLM-Plugin
+title: vLLM-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:17:46Z"
+    generated_at: "2026-07-27T06:00:59Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Voegt ondersteuning voor de vLLM-modelprovider toe aan OpenClaw.
 ## Distributie
 
 - Pakket: `@openclaw/vllm-provider`
-- Installatieroute: inbegrepen bij OpenClaw
+- Installatieroute: opgenomen in OpenClaw
 
 ## Oppervlak
 

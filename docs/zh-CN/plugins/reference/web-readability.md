@@ -1,10 +1,10 @@
 ---
 read_when:
-    - 你正在安装、配置或审核 web-readability 插件
+    - 你正在安装、配置或审计 web-readability 插件
 summary: 从本地 HTML 网页抓取响应中提取可读的文章内容。
 title: Web 可读性插件
 x-i18n:
-    generated_at: "2026-07-16T11:48:18Z"
+    generated_at: "2026-07-26T06:27:53Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Web 可读性插件
 
-从本地 HTML 网页抓取响应中提取易读的文章内容。
+从本地 HTML 网页获取响应中提取易于阅读的文章内容。
 
 ## 分发
 

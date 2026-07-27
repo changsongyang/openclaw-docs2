@@ -1,10 +1,10 @@
 ---
 read_when:
-    - discord pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - Discord Pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
 summary: Kanallar, DM'ler, komutlar ve uygulama etkinlikleri için OpenClaw Discord kanal plugini.
-title: Discord Plugin'i
+title: Discord plugini
 x-i18n:
-    generated_at: "2026-07-16T17:43:28Z"
+    generated_at: "2026-07-26T22:55:10Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -25,7 +25,7 @@ Kanallar, DM'ler, komutlar ve uygulama etkinlikleri için OpenClaw Discord kanal
 
 ## Yüzey
 
-kanallar: `discord`; sözleşmeler: `tools`, `transcriptSourceProviders`; beceriler
+kanallar: `discord`; sözleşmeler: `tools`, `transcriptSourceProviders`; Skills
 
 ## İlgili belgeler
 

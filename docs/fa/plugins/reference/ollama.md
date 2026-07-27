@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin ollama هستید
-summary: پشتیبانی از ارائه‌دهندگان مدل Ollama و Ollama Cloud را به OpenClaw اضافه می‌کند.
-title: Plugin Ollama
+    - شما در حال نصب، پیکربندی یا ممیزی Plugin ollama هستید
+summary: پشتیبانی از ارائه‌دهنده مدل Ollama و Ollama Cloud را به OpenClaw اضافه می‌کند.
+title: Plugin ‏Ollama
 x-i18n:
-    generated_at: "2026-07-16T17:03:19Z"
+    generated_at: "2026-07-27T16:59:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin ‏Ollama
+# Plugin Ollama
 
 پشتیبانی از ارائه‌دهنده مدل Ollama و Ollama Cloud را به OpenClaw اضافه می‌کند.
 

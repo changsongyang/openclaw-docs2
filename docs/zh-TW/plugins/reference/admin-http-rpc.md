@@ -1,10 +1,10 @@
 ---
 read_when:
     - 你正在安裝、設定或稽核 admin-http-rpc 外掛
-summary: OpenClaw 管理 HTTP RPC 端點。
-title: 管理 Http Rpc 外掛
+summary: OpenClaw 管理員 HTTP RPC 端點。
+title: 管理員 HTTP RPC 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:47:03Z"
+    generated_at: "2026-07-26T07:57:51Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# 管理 HTTP RPC 外掛
+# 管理員 HTTP RPC 外掛
 
-OpenClaw 管理 HTTP RPC 端點。
+OpenClaw 管理員 HTTP RPC 端點。
 
-## 發佈
+## 發行方式
 
 - 套件：`@openclaw/admin-http-rpc`
-- 安裝方式：隨附於 OpenClaw
+- 安裝方式：隨 OpenClaw 內附
 
 ## 介面
 
@@ -29,4 +29,4 @@ OpenClaw 管理 HTTP RPC 端點。
 
 ## 相關文件
 
-- [admin-http-rpc](/zh-TW/plugins/admin-http-rpc)
+- [管理員 HTTP RPC](/zh-TW/plugins/admin-http-rpc)

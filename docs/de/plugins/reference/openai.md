@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder überprüfen das openai-Plugin.
+    - Sie installieren, konfigurieren oder prüfen das openai-Plugin
 summary: Fügt OpenClaw Unterstützung für den OpenAI-Modell-Provider hinzu.
 title: OpenAI-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:04:34Z"
+    generated_at: "2026-07-26T18:02:57Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Falla la CLI de ClawHub o los comandos del registro de OpenClaw
+    - Fallan los comandos de la CLI de ClawHub o del registro de OpenClaw
     - No se puede instalar, publicar ni actualizar un paquete
 summary: Solución de problemas de inicio de sesión, instalación, publicación, actualización y API de ClawHub.
 x-i18n:
-    generated_at: "2026-07-19T01:52:34Z"
+    generated_at: "2026-07-26T05:05:06Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Solución de problemas
 
-## `clawhub login` abre un navegador, pero nunca se completa
+## `clawhub login` abre un navegador, pero nunca finaliza
 
 La CLI inicia un servidor local de devolución de llamada de corta duración durante el inicio de sesión mediante el navegador.
 
@@ -31,8 +31,8 @@ clawhub login --token clh_...
 ## `whoami` o `publish` devuelve `Unauthorized` (401)
 
 - Vuelva a iniciar sesión con `clawhub login`.
-- Si utiliza una ruta de configuración personalizada, confirme que `CLAWHUB_CONFIG_PATH` apunta al
-  archivo que contiene el token actual.
+- Si utiliza una ruta de configuración personalizada, confirme que `CLAWHUB_CONFIG_PATH` apunte al
+  archivo que contiene su token actual.
 - Si utiliza un token de API, confirme que no se haya revocado en la interfaz web.
 
 ## La búsqueda o la instalación devuelve `Rate limit exceeded` (429)
@@ -40,13 +40,13 @@ clawhub login --token clh_...
 Consulte la información sobre reintentos en la respuesta:
 
 - `Retry-After`: segundos que se deben esperar antes de volver a intentarlo.
-- `RateLimit-Limit`: el límite aplicado a esta solicitud.
-- `RateLimit-Remaining`: el presupuesto restante exacto cuando el encabezado está presente. En `429`, es `0`.
+- `RateLimit-Limit`: límite aplicado a esta solicitud.
+- `RateLimit-Remaining`: presupuesto restante exacto cuando el encabezado está presente. En `429`, es `0`.
 - `RateLimit-Reset` o `X-RateLimit-Reset`: momento del restablecimiento.
 
-Si muchos usuarios comparten una misma IP de salida, se pueden alcanzar los límites de IP anónimas aunque cada
-persona solo envíe unas pocas solicitudes. Inicie sesión cuando sea posible y vuelva a intentarlo después de la
-demora indicada.
+Si muchos usuarios comparten una misma IP de salida, se pueden alcanzar los límites de IP anónima aunque cada
+persona solo envíe unas pocas solicitudes. Inicie sesión cuando sea posible y vuelva a intentarlo tras el
+retraso indicado.
 
 ## La búsqueda o la instalación falla detrás de un proxy
 
@@ -57,14 +57,14 @@ export HTTPS_PROXY=http://proxy.example.com:3128
 clawhub search "my query"
 ```
 
-Los nombres compatibles incluyen `HTTPS_PROXY`, `HTTP_PROXY`, `https_proxy` y
+Los nombres admitidos incluyen `HTTPS_PROXY`, `HTTP_PROXY`, `https_proxy` y
 `http_proxy`.
 
-## Una skill no aparece en la búsqueda
+## Una habilidad no aparece en la búsqueda
 
 - Compruebe el slug exacto o la página del propietario si los conoce.
-- Confirme que la versión sea pública y no esté retenida por un análisis o por moderación.
-- Si la skill le pertenece, inicie sesión e inspecciónela:
+- Confirme que la versión sea pública y que no esté retenida por el análisis o la moderación.
+- Si la habilidad le pertenece, inicie sesión e inspecciónela:
 
 ```bash
 clawhub inspect @openclaw/demo
@@ -74,34 +74,33 @@ Los diagnósticos visibles para el propietario pueden explicar el estado del an�
 
 ## La publicación falla porque faltan metadatos obligatorios
 
-Para las skills, compruebe el frontmatter de `SKILL.md`. Las variables de entorno y
-herramientas obligatorias deben declararse para que los usuarios y los analizadores puedan comprender el paquete.
+Para las habilidades, compruebe el frontmatter de `SKILL.md`. Se deben declarar las variables de entorno y
+las herramientas obligatorias para que los usuarios y los analizadores puedan comprender el paquete.
 
-Para los plugins, compruebe los metadatos de compatibilidad de `package.json`. Las publicaciones de
-plugins de código necesitan campos de compatibilidad con OpenClaw, como `openclaw.compat.pluginApi` y
+Para los plugins, compruebe los metadatos de compatibilidad de `package.json`. Las publicaciones de plugins
+de código necesitan campos de compatibilidad con OpenClaw como `openclaw.compat.pluginApi` y
 `openclaw.build.openclawVersion`.
 
-Previsualice primero la carga útil de publicación:
+Obtenga primero una vista previa de la carga útil de publicación:
 
 ```bash
 clawhub package publish <source> --family code-plugin --dry-run
 ```
 
-## La publicación falla debido a un error del propietario o del origen de GitHub
+## La publicación falla con un error del propietario o del origen de GitHub
 
-ClawHub utiliza la identidad de GitHub y la atribución del origen para vincular los paquetes con sus
-publicadores.
+ClawHub utiliza la identidad de GitHub y la atribución del origen para vincular los paquetes con quienes
+los publican.
 
-- Asegúrese de haber iniciado sesión con la cuenta de GitHub que posee el paquete o puede
-  publicarlo.
+- Asegúrese de haber iniciado sesión con la cuenta de GitHub propietaria del paquete o que pueda publicarlo.
 - Compruebe que la URL de origen sea pública o accesible para ClawHub.
 - Para orígenes de GitHub, utilice `owner/repo`, `owner/repo@ref` o una URL completa de GitHub.
 
-## La publicación falla porque se ha reclamado o reservado un espacio de nombres
+## La publicación falla porque un espacio de nombres está reclamado o reservado
 
-Si una publicación falla porque el identificador del propietario, el espacio de nombres de la organización, el ámbito del paquete, el slug de la skill
-o el nombre del paquete ya se ha reclamado o reservado, primero confirme que está
-publicando con el propietario que coincide con el espacio de nombres. Para los paquetes de plugins,
+Si una publicación falla porque el identificador del propietario, el espacio de nombres de la organización, el ámbito del paquete, el slug de la habilidad
+o el nombre del paquete ya está reclamado o reservado, confirme primero que está
+publicando con el propietario correspondiente al espacio de nombres. Para los paquetes de plugins,
 los nombres con ámbito como `@example-org/example-plugin` deben publicarse con el
 propietario `example-org` correspondiente.
 
@@ -110,9 +109,9 @@ no puede gestionar el propietario actual de ClawHub, abra una
 [incidencia de reclamación de organización o espacio de nombres](https://github.com/openclaw/clawhub/issues/new?template=org-namespace-claim.yml)
 con pruebas públicas y no confidenciales. Consulte
 [Reclamaciones de organizaciones y espacios de nombres](/es/clawhub/namespace-claims) para obtener orientación sobre las pruebas y saber qué
-debe excluir de las incidencias públicas.
+no se debe incluir en incidencias públicas.
 
-## `sync` indica que no se encontraron skills
+## `sync` indica que no se encontraron habilidades
 
 `sync` busca carpetas que contengan `SKILL.md` o `skill.md`.
 
@@ -122,7 +121,7 @@ Indique las raíces que desea analizar:
 clawhub sync --root /path/to/skills
 ```
 
-Previsualice primero si no sabe con certeza qué se publicará:
+Obtenga primero una vista previa si no sabe con certeza qué se publicará:
 
 ```bash
 clawhub sync --all --dry-run --no-input
@@ -139,7 +138,7 @@ Los archivos locales no coinciden con ninguna versión conocida por ClawHub. Eli
 clawhub update @openclaw/demo --force
 ```
 
-- Publique la copia modificada con un nuevo slug o como fork.
+- Publique la copia modificada como un slug nuevo o una bifurcación.
 
 ## La instalación de un plugin falla en OpenClaw
 
@@ -149,17 +148,17 @@ clawhub update @openclaw/demo --force
 openclaw plugins install clawhub:<package>
 ```
 
-- Compruebe la página de detalles del paquete para conocer el estado del análisis y los metadatos de compatibilidad.
-- Confirme que la versión de OpenClaw cumpla el intervalo de compatibilidad anunciado
-  por el paquete.
-- Si el paquete está oculto, retenido o bloqueado, es posible que no pueda instalarse hasta que
+- Compruebe en la página de detalles del paquete el estado del análisis y los metadatos de compatibilidad.
+- Confirme que su versión de OpenClaw satisfaga el intervalo de compatibilidad
+  anunciado por el paquete.
+- Si el paquete está oculto, retenido o bloqueado, es posible que no se pueda instalar hasta que
   el propietario resuelva el problema.
 
 ## Las solicitudes a la API pública fallan
 
 - Respete los encabezados de reintento de `429` y almacene en caché las respuestas públicas de listado y búsqueda.
-- Remita a los usuarios al listado canónico de ClawHub.
+- Dirija a los usuarios al listado canónico de ClawHub.
 - No replique contenido oculto, privado, retenido o bloqueado por moderación fuera de la
   superficie de la API pública.
 
-Consulte [API HTTP](/clawhub/http-api) para obtener información detallada sobre los endpoints.
+Consulte [API HTTP](/es/clawhub/http-api) para obtener detalles de los endpoints.

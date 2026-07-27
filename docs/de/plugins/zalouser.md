@@ -2,10 +2,10 @@
 read_when:
     - Sie möchten Unterstützung für Zalo Personal (inoffiziell) in OpenClaw
     - Sie konfigurieren oder entwickeln das zalouser-Plugin
-summary: 'Zalo-Personal-Plugin: QR-Anmeldung + Nachrichtenversand über natives zca-js (Plugin-Installation + Kanalkonfiguration + Tool)'
+summary: 'Zalo-Personal-Plugin: QR-Anmeldung + Nachrichtenübermittlung über natives zca-js (Plugin-Installation + Kanalkonfiguration + Tool)'
 title: Zalo-Plugin für persönliche Konten
 x-i18n:
-    generated_at: "2026-07-24T05:18:24Z"
+    generated_at: "2026-07-26T19:11:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,7 +15,7 @@ x-i18n:
     workflow: 16
 ---
 
-Zalo-Personal-Unterstützung für OpenClaw über ein Plugin, das natives `zca-js` verwendet, um
+Zalo-Personal-Unterstützung für OpenClaw über ein Plugin, das native `zca-js` verwendet, um
 ein normales Zalo-Benutzerkonto zu automatisieren. Es ist keine externe `zca`/`openzca`-CLI-Binärdatei
 erforderlich.
 
@@ -25,26 +25,26 @@ Inoffizielle Automatisierung kann zur Sperrung oder zum Ausschluss des Kontos f�
 
 ## Benennung
 
-Die Kanal-ID lautet `zalouser`, um ausdrücklich darauf hinzuweisen, dass hiermit ein **persönliches Zalo-
-Benutzerkonto** automatisiert wird (inoffiziell). Die separate Kanal-ID `zalo` bezeichnet die offizielle,
-mitgelieferte Zalo-Bot-/Webhook-Integration – siehe [Zalo](/de/channels/zalo).
+Die Kanal-ID lautet `zalouser`, um ausdrücklich zu kennzeichnen, dass damit ein **persönliches Zalo-
+Benutzerkonto** (inoffiziell) automatisiert wird. Die separate Kanal-ID `zalo` bezeichnet die offizielle,
+gebündelte Zalo-Bot-/Webhook-Integration – siehe [Zalo](/de/channels/zalo).
 
 ## Ausführungsort
 
 Dieses Plugin wird **innerhalb des Gateway-Prozesses** ausgeführt. Bei einem entfernten Gateway
-müssen Sie es auf diesem Host installieren und konfigurieren und anschließend das Gateway neu starten.
+installieren und konfigurieren Sie es auf diesem Host und starten Sie anschließend das Gateway neu.
 
 ## Installation
 
-### Von npm
+### Über npm
 
 ```bash
 openclaw plugins install @openclaw/zalouser
 ```
 
-Verwenden Sie das Paket ohne Versionsangabe, um dem aktuellen offiziellen Release-Tag zu folgen; fixieren Sie nur dann eine exakte
-Version, wenn Sie eine reproduzierbare Installation benötigen. Starten Sie das Gateway
-anschließend neu.
+Verwenden Sie das Paket ohne Versionsangabe, um dem aktuellen offiziellen Release-Tag zu folgen; legen Sie nur dann eine exakte
+Version fest, wenn Sie eine reproduzierbare Installation benötigen. Starten Sie anschließend das Gateway
+neu.
 
 ### Aus einem lokalen Ordner (Entwicklung)
 
@@ -54,7 +54,7 @@ openclaw plugins install "$PLUGIN_SRC"
 cd "$PLUGIN_SRC" && pnpm install
 ```
 
-Starten Sie das Gateway anschließend neu.
+Starten Sie anschließend das Gateway neu.
 
 ## Konfiguration
 
@@ -88,17 +88,18 @@ openclaw directory groups list --channel zalouser --query "name"
 openclaw directory groups members --channel zalouser --group-id <id>
 ```
 
-## Agenten-Tool
+## Agentenwerkzeug
 
-Tool-Name: `zalouser`
+Werkzeugname: `zalouser`
 
 Aktionen: `send`, `image`, `link`, `friends`, `groups`, `me`, `status`
 
-Kanalnachrichtenaktionen (nicht das Agenten-Tool) unterstützen außerdem `react` für Nachrichtenreaktionen.
+Kanalnachrichtenaktionen (nicht das Agentenwerkzeug) unterstützen außerdem `react` für
+Nachrichtenreaktionen.
 
 ## Verwandte Themen
 
 - [Konfiguration des persönlichen Zalo-Kanals](/de/channels/zalouser)
 - [Zalo (offizieller Bot-/Webhook-Kanal)](/de/channels/zalo)
-- [Plugins erstellen](/de/plugins/building-plugins)
-- [ClawHub](/clawhub)
+- [Plugins entwickeln](/de/plugins/building-plugins)
+- [ClawHub](/de/clawhub)

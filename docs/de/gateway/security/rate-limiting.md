@@ -2,12 +2,12 @@
 read_when:
     - Ein Client sieht `rate limit exceeded for <method>`, `AUTH_RATE_LIMITED` oder Sperrfehler
     - Sie möchten `gateway.auth.rateLimit` optimieren
-    - Sie befassen sich mit dem Schutz vor Brute-Force-Angriffen auf einen öffentlich zugänglichen Gateway
-    - Sie müssen wissen, welche Gateway-Oberflächen gedrosselt werden und welche Limits gelten.
-summary: 'Referenz für sämtliche Gateway-Ratenbegrenzungen: Sperren vor der Authentifizierung, Browser- und Webhook-Drosselungen, die Absicherung für Schreibvorgänge auf der Steuerungsebene, ACP-Sitzungslimits und die Abklingzeit für Neustarts'
+    - Sie befassen sich mit dem Schutz vor Brute-Force-Angriffen auf einen öffentlich erreichbaren Gateway
+    - Sie müssen wissen, welche Gateway-Schnittstellen gedrosselt werden und welche Limits gelten.
+summary: 'Referenz für alle Gateway-Ratenbegrenzungen: Sperren vor der Authentifizierung, Drosselung für Browser und Webhooks, die Absicherung für Schreibvorgänge auf der Steuerungsebene, ACP-Sitzungslimits und die Abklingzeit für Neustarts'
 title: Ratenbegrenzung
 x-i18n:
-    generated_at: "2026-07-24T03:53:28Z"
+    generated_at: "2026-07-26T17:51:24Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,37 +18,37 @@ x-i18n:
 ---
 
 Der Gateway erzwingt mehrere unabhängige Ratenbegrenzungen. Sie schützen unterschiedliche
-Grenzen, verwenden unterschiedliche Identitäten als Schlüssel und schlagen mit unterschiedlichen Fehlerformaten fehl.
+Grenzen, verwenden unterschiedliche Identitäten als Schlüssel und schlagen mit unterschiedlichen Fehlerstrukturen fehl.
 Diese Seite dient als Referenz für alle diese Begrenzungen.
 
 Auf einen Blick:
 
-| Oberfläche                          | Begrenzung (Standard)             | Schlüssel                         | Konfigurierbar          |
-| ----------------------------------- | --------------------------------- | --------------------------------- | ----------------------- |
-| Fehlgeschlagene Authentifizierung (Token/Passwort/Gerät) | 10 Fehlschläge / 60s, 5 min Sperre | IP + Anmeldedatenbereich          | `gateway.auth.rateLimit` |
-| Browser-Origin-WS-Authentifizierungsfehler | identisch, Loopback **nicht** ausgenommen | IP oder Seiten-Origin bei Loopback | `gateway.auth.rateLimit` |
-| Webhook-Authentifizierungsfehler (`/hooks`) | 20 Fehlschläge / 60s, 60s Sperre | IP                                | nein                    |
-| Schreibende Control-Plane-RPCs      | 30 Anfragen / 60s pro Methode     | Methode + Gerät + IP              | nein                    |
-| ACP-Sitzungserstellung              | 120 Sitzungen / 10s               | Übersetzerinstanz                 | intern                  |
-| Gateway-Neustartzyklen              | 30s Abklingzeit zwischen Neustarts | Prozess                           | nein                    |
+| Oberfläche                          | Begrenzung (Standard)             | Schlüssel                         | Konfigurierbar           |
+| ----------------------------------- | --------------------------------- | --------------------------------- | ------------------------ |
+| Fehlgeschlagene Authentifizierung (Token/Passwort/Gerät) | 10 Fehlschläge / 60 s, 5 Min. Sperre | IP + Anmeldedatenbereich          | `gateway.auth.rateLimit` |
+| WS-Authentifizierungsfehler mit Browserursprung | identisch, Loopback **nicht** ausgenommen | IP oder Seitenursprung bei Loopback | `gateway.auth.rateLimit` |
+| Authentifizierungsfehler bei Webhook (`/hooks`) | 20 Fehlschläge / 60 s, 60 s Sperre | IP                                | nein                     |
+| Schreibende RPCs der Steuerungsebene | 30 Anfragen / 60 s pro Methode    | Methode + Gerät + IP              | nein                     |
+| ACP-Sitzungserstellung              | 120 Sitzungen / 10 s              | Übersetzerinstanz                 | intern                   |
+| Gateway-Neustartzyklen              | 30 s Abklingzeit zwischen Neustarts | Prozess                           | nein                     |
 
 ## Authentifizierungsversuche (vor der Authentifizierung)
 
 Fehlgeschlagene Authentifizierungsversuche werden pro Client-IP gedrosselt, bevor eine
-Anfrage verarbeitet wird. Dies ist der Brute-Force-Schutz für exponierte Gateways.
+Anfrage verarbeitet wird. Dies ist der Brute-Force-Schutz für öffentlich erreichbare Gateways.
 
 - Nur _falsche_ Anmeldedaten werden gezählt. Fehlende Anmeldedaten (ein Client, der nie
   ein Token gesendet hat) und erfolgreiche Authentifizierungen verbrauchen kein Kontingent; eine
   erfolgreiche Authentifizierung setzt den Zähler für diese IP zurück.
-- Standardwerte: 10 Fehlschläge pro 60 Sekunden, anschließend eine 5-minütige Sperre für diese IP.
+- Standardwerte: 10 Fehlschläge pro 60 Sekunden, danach eine 5-minütige Sperre für diese IP.
 - Loopback (`127.0.0.1` / `::1`) ist standardmäßig ausgenommen, damit lokale CLI-Sitzungen
   nicht ausgesperrt werden können.
-- Zähler gelten jeweils für eine Anmeldedatenklasse, sodass eine Flut gegen eine Oberfläche
-  die andere nicht verdrängt. Zu den Bereichen gehören das gemeinsame Gateway-
+- Zähler sind nach Anmeldedatenklasse getrennt, sodass eine Flut gegen eine Oberfläche
+  keine andere verdrängt. Zu den Bereichen gehören das gemeinsam genutzte Gateway-
   Token/Passwort, Gerätetoken, Node-Kopplung, erneute Genehmigung gekoppelter Nodes,
-  Geräte-Bootstrap-Token und die Ausgabe von watchOS-Challenges.
+  Bootstrap-Token für Geräte und die Ausstellung von watchOS-Challenges.
 
-Während der Sperre schlagen Verbindungsversuche wie folgt fehl:
+Während einer Sperre schlagen Verbindungsversuche wie folgt fehl:
 
 ```json
 {
@@ -64,7 +64,7 @@ Während der Sperre schlagen Verbindungsversuche wie folgt fehl:
 }
 ```
 
-Versuche von anderen IPs (einschließlich Loopback) bleiben während einer Sperre unbeeinträchtigt.
+Versuche von anderen IPs (einschließlich Loopback) sind während einer Sperre nicht betroffen.
 
 Passen Sie die Einstellung unter `gateway.auth.rateLimit` in `openclaw.json` an:
 
@@ -84,39 +84,39 @@ Passen Sie die Einstellung unter `gateway.auth.rateLimit` in `openclaw.json` an:
 ```
 
 Wiederholte `AUTH_RATE_LIMITED`-Einträge im Gateway-Protokoll bedeuten, dass jemand
-Anmeldedaten errät; siehe das [Runbook für Exposition](/de/gateway/security/exposure-runbook).
+Anmeldedaten zu erraten versucht; siehe das [Runbook zur Exposition](/de/gateway/security/exposure-runbook).
 
-### Verbindungen mit Browser-Origin
+### Verbindungen mit Browserursprung
 
 WebSocket-Verbindungen, die einen Browser-Header `Origin` enthalten, verwenden dieselben
-Begrenzungen, jedoch ist die Loopback-Ausnahme **immer deaktiviert** — eine schädliche Seite in
-einem lokalen Browser ist weiterhin ein nicht vertrauenswürdiger Client, daher erhält localhost auf
-diesem Pfad keine Sonderbehandlung. Wenn eine solche Verbindung _von_ einer Loopback-Adresse eingeht, werden ihre
-Fehlschläge anhand des normalisierten Seiten-Origins (zum Beispiel
-`browser-origin:https://evil.example`) statt anhand der gemeinsamen Loopback-IP erfasst,
-sodass jeder Origin einen eigenen Bucket erhält; bei Nicht-Loopback-Adressen bleibt
+Begrenzungen, jedoch ist die Loopback-Ausnahme **immer deaktiviert** – eine schädliche Seite in
+einem lokalen Browser ist weiterhin ein nicht vertrauenswürdiger Client, daher erhält localhost
+auf diesem Pfad keine Sonderbehandlung. Wenn eine solche Verbindung _von_ einer Loopback-Adresse eingeht, werden ihre
+Fehlschläge anhand des normalisierten Seitenursprungs (zum Beispiel
+`browser-origin:https://evil.example`) statt anhand der gemeinsam genutzten Loopback-IP erfasst,
+sodass jeder Ursprung ein eigenes Kontingent erhält; bei Nicht-Loopback-Adressen bleibt
 die Client-IP der Schlüssel. Dies ist nicht konfigurierbar.
 
 ### Webhooks
 
 Der HTTP-Eingang `/hooks` verfügt über eine eigene Begrenzung für Fehlschläge: 20 fehlgeschlagene
-Authentifizierungen pro 60 Sekunden und Client-IP, anschließend eine 60-sekündige Sperre.
+Authentifizierungen pro 60 Sekunden und Client-IP, danach eine 60-sekündige Sperre.
 Loopback ist nicht ausgenommen. Eine erfolgreiche Hook-Authentifizierung setzt den Zähler zurück. Gedrosselte
-Anfragen erhalten eine einfache HTTP-Antwort `429 Too Many Requests` mit einem Header `Retry-After`
-(Sekunden). Die Begrenzungen sind fest vorgegeben; wenn eine legitime Integration sie auslöst,
+Anfragen erhalten eine einfache HTTP-Antwort `429 Too Many Requests` mit einem `Retry-After`-
+Header (Sekunden). Die Begrenzungen sind fest vorgegeben; wenn eine legitime Integration sie auslöst,
 korrigieren Sie deren Anmeldedaten, statt die Wiederholungsversuche zu intensivieren.
 
-## Schreibvorgänge auf der Control Plane (Sicherungsmechanismus nach der Authentifizierung)
+## Schreibvorgänge der Steuerungsebene (nachgelagerte Absicherung nach der Authentifizierung)
 
-Schreibende Administrator-RPCs (`config.apply`, `config.patch`, `plugins.install`,
+Schreibende administrative RPCs (`config.apply`, `config.patch`, `plugins.install`,
 `plugins.setEnabled`, `plugins.uninstall`, `update.run`, `worktrees.*`,
 `gateway.restart.request`, ...) werden zusätzlich **nach**
-der Autorisierung begrenzt: 30 Anfragen pro 60 Sekunden, pro Methode und pro
+der Autorisierung ratenbegrenzt: 30 Anfragen pro 60 Sekunden, pro Methode, pro
 `deviceId+clientIp`.
 
-Dies ist keine Sicherheitsgrenze — Aufrufer verfügen bereits über `operator.admin` —, sondern
-ein Sicherungsmechanismus, der unkontrollierte Client- oder Agentenschleifen begrenzt, die kostspielige
-Operationen übermäßig aufrufen. Bei interaktiver Nutzung wird die Begrenzung nie erreicht; jede Methode hat ihren eigenen Bucket, sodass
+Dies ist keine Sicherheitsgrenze – Aufrufer verfügen bereits über `operator.admin` –, sondern
+eine Absicherung, die außer Kontrolle geratene Client- oder Agent-Schleifen begrenzt, die aufwendige
+Vorgänge übermäßig häufig aufrufen. Bei interaktiver Nutzung wird die Begrenzung nie erreicht; jede Methode verfügt über ein eigenes Kontingent, sodass
 das Umschalten eines Plugins nicht das Kontingent für Konfigurationsschreibvorgänge verbraucht.
 
 Bei Überschreitung schlägt die Anfrage mit einem wiederholbaren Fehler fehl:
@@ -132,45 +132,45 @@ Bei Überschreitung schlägt die Anfrage mit einem wiederholbaren Fehler fehl:
 ```
 
 Clients sollten `retryAfterMs` beachten. Die Begrenzung ist fest vorgegeben (nicht konfigurierbar);
-Buckets laufen selbstständig ab und werden bei der Gateway-Wartung bereinigt.
+Kontingente laufen selbstständig ab und werden durch die Gateway-Wartung bereinigt.
 
 ## ACP-Sitzungserstellung
 
 Der ACP-Übersetzer begrenzt die Sitzungserstellung auf 120 neue Sitzungen pro 10-Sekunden-
-Zeitfenster und Übersetzerinstanz. Bei Überschreitung schlägt die Anfrage mit einem Fehler fehl,
+Fenster und Übersetzerinstanz. Bei Überschreitung schlägt die Anfrage mit einem Fehler fehl,
 dessen Meldung die Wartezeit enthält (auf diesem Pfad gibt es kein strukturiertes Feld `retryAfterMs`):
 
 ```
-Ratenbegrenzung für die ACP-Sitzungserstellung für <method> überschritten; erneuter Versuch nach <n>s.
+Ratenbegrenzung für die ACP-Sitzungserstellung für <method> überschritten; erneuter Versuch nach <n> s.
 ```
 
-Dies begrenzt unkontrollierte Clients, die in einer Schleife Sitzungen erstellen; die normale Nutzung durch IDEs und
-Agenten bleibt weit darunter.
+Dies begrenzt außer Kontrolle geratene Clients, die Sitzungen in einer Schleife erstellen; die normale Nutzung durch IDEs und
+Agents bleibt weit darunter.
 
 ## Abklingzeit für Neustarts
 
-Gateway-Neustartanfragen werden zusammengeführt und erzwingen anschließend eine Abklingzeit von 30 Sekunden zwischen
+Gateway-Neustartanfragen werden zusammengefasst und erzwingen anschließend eine Abklingzeit von 30 Sekunden zwischen
 Neustartzyklen. Ein während der Abklingzeit angeforderter Neustart wird nach deren
-Ablauf eingeplant, statt abgelehnt zu werden. Dies ist von der obigen Control-Plane-Begrenzung
-getrennt: `gateway.restart.request` verbraucht einen Control-Plane-Kontingentplatz _und_
+Ablauf eingeplant, statt abgelehnt zu werden. Dies ist unabhängig von der Begrenzung der Steuerungsebene
+oben: `gateway.restart.request` verbraucht einen Kontingentplatz der Steuerungsebene _und_
 der daraus resultierende Neustart unterliegt der Abklingzeit.
 
 ## Betriebshinweise
 
-- Alle Begrenzer befinden sich im Arbeitsspeicher und gelten pro Prozess; mehrere Gateways
-  teilen keinen Zustand. Das Ersetzen des Gateway-Prozesses löscht die vom Gateway verwalteten
-  Zähler (Authentifizierungssperren, Webhook-Drosselung, Control-Plane-Buckets). Die
-  Abklingzeit für Neustarts bleibt bewusst über prozessinterne Neustartzyklen hinweg bestehen — genau
-  diese drosselt sie — und wird erst mit dem Prozess zurückgesetzt. Die ACP-Sitzungsbegrenzung
-  gehört zur jeweiligen Übersetzerinstanz und wird zurückgesetzt, wenn diese Instanz
+- Alle Begrenzer befinden sich im Arbeitsspeicher und gelten pro Prozess; mehrere Gateways teilen
+  keinen Zustand. Durch das Ersetzen des Gateway-Prozesses werden die Gateway-eigenen
+  Zähler zurückgesetzt (Authentifizierungssperren, Webhook-Drosselung, Kontingente der Steuerungsebene). Die
+  Abklingzeit für Neustarts bleibt bewusst über prozessinterne Neustartzyklen hinweg bestehen – genau diese
+  drosselt sie – und wird erst mit dem Prozess zurückgesetzt. Die ACP-Sitzungsbegrenzung
+  gehört zu ihrer Übersetzerinstanz und wird zurückgesetzt, wenn diese Instanz
   neu erstellt wird, nicht bei einem Gateway-Neustart.
-- Bucket-Maps sind begrenzt (feste Obergrenzen für Einträge plus regelmäßige Bereinigung), sodass
-  Fluten eindeutiger Schlüssel den Speicher nicht unbegrenzt anwachsen lassen können.
+- Kontingentzuordnungen sind begrenzt (feste Obergrenzen für Einträge sowie regelmäßige Bereinigung), sodass
+  eine Flut eindeutiger Schlüssel den Speicher nicht unbegrenzt anwachsen lassen kann.
 - Wenn sich ein Client hinter einem Reverse-Proxy befindet, ist die effektive IP die aufgelöste
   Client-IP; unter [Authentifizierung über vertrauenswürdige Proxys](/de/gateway/trusted-proxy-auth) erfahren Sie, wie
   Proxy-Header validiert werden, bevor sie diese beeinflussen können.
-- Die Signalisierung für Wiederholungsversuche unterscheidet sich je nach Oberfläche: Gateway-RPC-Begrenzer geben
-  `retryable: true` plus `retryAfterMs` zurück, der Webhook-Eingang verwendet HTTP 429
-  mit einem Header `Retry-After`, und ACP bettet die Wartezeit in die Fehlermeldung ein.
-  Warten Sie in jedem Fall die angegebene Dauer, statt den Versuch
+- Die Signalisierung für Wiederholungsversuche variiert je nach Oberfläche: Gateway-RPC-Begrenzer geben
+  `retryable: true` sowie `retryAfterMs` zurück, der Webhook-Eingang verwendet HTTP 429
+  mit einem `Retry-After`-Header und ACP bettet die Wartezeit in die Fehlermeldung ein.
+  Warten Sie in jedem Fall für die angegebene Dauer, statt den Vorgang
   sofort zu wiederholen.

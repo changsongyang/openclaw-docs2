@@ -1,10 +1,10 @@
 ---
 read_when:
-    - 你正在安裝、設定或稽核 Google Chat 外掛
-summary: 適用於聊天室和私人訊息的 OpenClaw Google Chat 頻道外掛。
+    - 你正在安裝、設定或稽核 googlechat 外掛
+summary: 適用於聊天室與私人訊息的 OpenClaw Google Chat 頻道外掛。
 title: Google Chat 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:54:06Z"
+    generated_at: "2026-07-26T08:05:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,10 +18,10 @@ x-i18n:
 
 適用於聊天室和私人訊息的 OpenClaw Google Chat 頻道外掛。
 
-## 發佈
+## 發行
 
 - 套件：`@openclaw/googlechat`
-- 安裝途徑：npm；ClawHub
+- 安裝管道：npm；ClawHub
 
 ## 介面
 

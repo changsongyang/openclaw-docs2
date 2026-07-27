@@ -5,12 +5,12 @@ read_when:
 summary: '`openclaw security` için CLI başvurusu (yaygın güvenlik tuzaklarını denetleme ve düzeltme)'
 title: Güvenlik
 x-i18n:
-    generated_at: "2026-07-16T16:51:34Z"
+    generated_at: "2026-07-26T22:42:01Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
     provider: openai
-    source_hash: 613d1afa63e46a7dc3474d0b175cf2389703a86b00f861b4140d64e11c28ece5
+    source_hash: 6b5f9ea5cb746bfd29ff4d096062e81595abe99a883fc3b1113b45a3527d42d9
     source_path: cli/security.md
     workflow: 16
 ---
@@ -31,67 +31,67 @@ openclaw security audit --json
 
 ## Denetim modları
 
-Normal `security audit`, soğuk yapılandırma/dosya sistemi/salt okunur yolunda kalır: Plugin çalışma zamanı güvenlik toplayıcılarını keşfetmez; böylece rutin denetimler, kurulu her Plugin çalışma zamanını yüklemez. `--deep`, elden gelen en iyi şekilde canlı Gateway yoklamaları ve Plugin'e ait güvenlik denetimi toplayıcıları ekler (açıkça belirtilen dahili çağıranlar da uygun bir çalışma zamanı kapsamına zaten sahip olduklarında bu toplayıcıları kullanmayı seçebilir).
+Düz `security audit`, soğuk yapılandırma/dosya sistemi/salt okunur yolunda kalır: Plugin çalışma zamanı güvenlik toplayıcılarını keşfetmez; böylece rutin denetimler, kurulu her Plugin çalışma zamanını yüklemez. `--deep`, mümkün olduğunca canlı Gateway yoklamaları ve Plugin'e ait güvenlik denetimi toplayıcıları ekler (uygun bir çalışma zamanı kapsamına zaten sahip olan açıkça belirtilmiş dahili çağıranlar da bu toplayıcıları etkinleştirebilir).
 
 Gateway parola kimlik doğrulaması yalnızca başlangıçta sağlanıyorsa denetimin bunu `hooks.token` ile karşılaştırabilmesi için aynı değeri `--auth password --password <password>` ile iletin.
 
-## Neleri denetler?
+## Neleri denetler
 
 **DM/güven modeli**
 
-- Birden fazla DM göndericisi ana oturumu paylaştığında uyarır ve paylaşılan gelen kutuları için güvenli DM modunu önerir: `session.dmScope="per-channel-peer"` (veya çok hesaplı kanallar için `per-account-channel-peer`). Bu, birbirine güvenmeyen operatörler için yalıtım değil, iş birliğine dayalı/paylaşılan gelen kutusu sağlamlaştırmasıdır; bunun için güven sınırlarını ayrı Gateway'lerle (veya ayrı işletim sistemi kullanıcıları/ana makineleriyle) ayırın.
-- Yapılandırma, muhtemel paylaşılan kullanıcı girişine işaret ettiğinde (örneğin açık DM/grup politikası, yapılandırılmış grup hedefleri veya joker karakterli gönderici kuralları) `security.trust_model.multi_user_heuristic` üretir. OpenClaw'ın varsayılan güven modeli kişisel asistandır (tek operatör); saldırgan çok kiracılı yalıtım değildir. Kasıtlı paylaşılan kullanıcı kurulumlarında: tüm oturumları korumalı alanda çalıştırın, dosya sistemi erişimini çalışma alanıyla sınırlı tutun ve kişisel/özel kimlikleri ya da kimlik bilgilerini bu çalışma zamanından uzak tutun.
+- Birden fazla DM göndericisi ana oturumu paylaştığında uyarır ve paylaşılan gelen kutuları için güvenli DM modunu önerir: `session.dmScope="per-channel-peer"` (veya çok hesaplı kanallar için `per-account-channel-peer`). Bu, karşılıklı olarak güvenilmeyen operatörler arasında yalıtım değil, iş birliğine dayalı/paylaşılan gelen kutusu sağlamlaştırmasıdır; böyle durumlarda güven sınırlarını ayrı Gateway'lerle (veya ayrı işletim sistemi kullanıcıları/ana makineleriyle) ayırın.
+- Yapılandırma olası paylaşılan kullanıcı girişine işaret ettiğinde (örneğin açık DM/grup politikası, yapılandırılmış grup hedefleri veya joker karakterli gönderici kuralları) `security.trust_model.multi_user_heuristic` üretir — OpenClaw'ın varsayılan güven modeli kişisel asistandır (tek operatör); düşmanca çok kiracılı yalıtım değildir. Bilinçli paylaşılan kullanıcı kurulumlarında: tüm oturumları korumalı alanda çalıştırın, dosya sistemi erişimini çalışma alanıyla sınırlı tutun ve kişisel/özel kimlikleri veya kimlik bilgilerini bu çalışma zamanından uzak tutun.
 - Küçük modeller (`<=300B` parametre) korumalı alan olmadan ve web/tarayıcı araçları etkin şekilde kullanıldığında uyarır.
 
-**Webhook/kancalar**
+**Webhook/hook'lar**
 
-Başlangıçta önemli olmayan bir güvenlik uyarısı günlüğe kaydedilir ve denetim, etkin Gateway paylaşılan gizli anahtar kimlik doğrulama değerlerinin (`gateway.auth.token` / `OPENCLAW_GATEWAY_TOKEN`, `gateway.auth.password` / `OPENCLAW_GATEWAY_PASSWORD`) `hooks.token` yeniden kullanımını işaretler. Ayrıca şu durumlarda uyarır:
+Başlangıçta ölümcül olmayan bir güvenlik uyarısı günlüğe kaydedilir ve denetim, etkin Gateway paylaşılan gizli anahtar kimlik doğrulama değerlerinin (`gateway.auth.token` / `OPENCLAW_GATEWAY_TOKEN`, `gateway.auth.password` / `OPENCLAW_GATEWAY_PASSWORD`) `hooks.token` tarafından yeniden kullanılmasını işaretler. Ayrıca şu durumlarda uyarır:
 
-- `hooks.token` kısa
+- `hooks.token` kısa olduğunda
 - `hooks.path="/"`
-- `hooks.defaultSessionKey` ayarlanmamış
-- `hooks.allowedAgentIds` sınırsız
-- istek `sessionKey` geçersiz kılmaları etkin
-- geçersiz kılmalar `hooks.allowedSessionKeyPrefixes` olmadan etkin
+- `hooks.defaultSessionKey` ayarlanmadığında
+- `hooks.allowedAgentIds` sınırsız olduğunda
+- istek `sessionKey` geçersiz kılmaları etkinleştirildiğinde
+- geçersiz kılmalar `hooks.allowedSessionKeyPrefixes` olmadan etkinleştirildiğinde
 
-Kalıcı olarak kaydedilmiş ve yeniden kullanılan bir `hooks.token` değerini yenilemek için `openclaw doctor --fix` komutunu çalıştırın, ardından harici kanca göndericilerini yeni belirteci kullanacak şekilde güncelleyin.
+Kalıcı olarak saklanan ve yeniden kullanılan bir `hooks.token` değerini yenilemek için `openclaw doctor --fix` komutunu çalıştırın, ardından harici hook göndericilerini yeni token'ı kullanacak şekilde güncelleyin.
 
 **Korumalı alan/araçlar**
 
 - Korumalı alan modu kapalıyken korumalı alan Docker ayarları yapılandırılmışsa uyarır.
-- `gateway.nodes.denyCommands` etkisiz, kalıp benzeri/bilinmeyen girdiler kullandığında uyarır (eşleştirme yalnızca tam Node komut adıyla yapılır, kabuk metni filtrelenmez).
-- `gateway.nodes.allowCommands` tehlikeli Node komutlarını açıkça etkinleştirdiğinde uyarır.
-- Genel `tools.profile="minimal"` değeri aracı profilleri tarafından geçersiz kılındığında uyarır.
-- Yazma/düzenleme araçları devre dışı bırakılmışken `exec` kısıtlayıcı bir korumalı alan dosya sistemi sınırı olmadan hâlâ kullanılabiliyorsa uyarır.
+- `gateway.nodes.commands.deny` etkisiz desen benzeri/bilinmeyen girdiler kullandığında uyarır (eşleştirme yalnızca tam Node komut adına göre yapılır, kabuk metni filtrelemesi değildir).
+- `gateway.nodes.commands.allow` tehlikeli Node komutlarını açıkça etkinleştirdiğinde uyarır.
+- Genel `tools.profile="minimal"` değeri, aracı profilleri tarafından geçersiz kılındığında uyarır.
+- Yazma/düzenleme araçları devre dışı olduğu hâlde `exec` sınırlayıcı bir korumalı alan dosya sistemi sınırı olmadan hâlâ kullanılabiliyorsa uyarır.
 - Açık DM'ler veya gruplar, çalışma zamanı/dosya sistemi araçlarını korumalı alan/çalışma alanı korumaları olmadan erişime açtığında uyarır.
-- Kurulu Plugin araçlarına izin verici araç politikası kapsamında erişilebiliyorsa uyarır.
+- Kurulu Plugin araçlarına izin verici araç politikası kapsamında erişilebileceğinde uyarır.
 
 **Korumalı alan tarayıcısı**
 
 - Korumalı alan tarayıcısı, `sandbox.browser.cdpSourceRange` olmadan Docker `bridge` ağını kullandığında uyarır.
-- `host` ve `container:*` ad alanı birleştirmeleri dâhil olmak üzere tehlikeli korumalı alan Docker ağ modlarını işaretler.
-- Mevcut korumalı alan tarayıcısı Docker kapsayıcılarında eksik/eski karma etiketleri bulunduğunda (örneğin `openclaw.browserConfigEpoch` bulunmayan geçiş öncesi kapsayıcılar) uyarır ve `openclaw sandbox recreate --browser --all` komutunu önerir.
+- `host` ve `container:*` ad alanı katılımları dâhil olmak üzere tehlikeli korumalı alan Docker ağ modlarını işaretler.
+- Mevcut korumalı alan tarayıcısı Docker konteynerlerinde eksik/eski hash etiketleri olduğunda (örneğin `openclaw.browserConfigEpoch` bulunmayan geçiş öncesi konteynerler) uyarır ve `openclaw sandbox recreate --browser --all` önerir.
 
 **Ağ/keşif**
 
-- `gateway.allowRealIpFallback=true` seçeneğini işaretler (proxy'ler yanlış yapılandırılmışsa üstbilgi sahteciliği riski).
-- `discovery.mdns.mode="full"` seçeneğini işaretler (mDNS TXT kayıtları üzerinden meta veri sızıntısı).
+- `gateway.allowRealIpFallback=true` değerini işaretler (proxy'ler yanlış yapılandırılırsa üstbilgi sahteciliği riski).
+- `discovery.mdns.mode="full"` değerini işaretler (mDNS TXT kayıtları üzerinden meta veri sızıntısı).
 - `gateway.auth.mode="none"`, Gateway HTTP API'lerini paylaşılan bir gizli anahtar olmadan erişilebilir bıraktığında (`/tools/invoke` ve etkinleştirilmiş herhangi bir `/v1/*` uç noktası) uyarır.
 
 **Plugin'ler/kanallar**
 
-- npm tabanlı Plugin/kanca kurulum kayıtları belirli bir sürüme sabitlenmemişse, bütünlük meta verileri eksikse veya o anda kurulu paket sürümlerinden sapmışsa uyarır.
-- Kanal izin listeleri kararlı kimlikler yerine değiştirilebilir adlara/e-postalara/etiketlere dayandığında (uygun olduğu durumlarda Discord, Slack, Google Chat, Microsoft Teams, Mattermost ve IRC kapsamları) uyarır.
+- npm tabanlı Plugin/hook kurulum kayıtları belirli bir sürüme sabitlenmemişse, bütünlük meta verileri eksikse veya şu anda kurulu paket sürümlerinden sapmışsa uyarır.
+- Kanal izin listeleri kararlı kimlikler yerine değiştirilebilir adlara/e-postalara/etiketlere dayanıyorsa uyarır (uygun olduğu yerlerde Discord, Slack, Google Chat, Microsoft Teams, Mattermost ve IRC kapsamları).
 
-`dangerous`/`dangerously` önekiyle başlayan ayarlar, acil durumda kullanılmak üzere açık operatör geçersiz kılmalarıdır; bunlardan birini etkinleştirmek tek başına bir güvenlik açığı raporu değildir. Tehlikeli parametrelerin eksiksiz listesi için [Güvenlik](/tr/gateway/security) bölümündeki "Güvensiz veya tehlikeli bayrakların özeti" başlığına bakın.
+`dangerous`/`dangerously` önekli ayarlar, operatörlerin acil durumlarda kullandığı açık geçersiz kılmalardır; bunlardan birini etkinleştirmek tek başına bir güvenlik açığı bildirimi değildir. Tehlikeli parametrelerin tam envanteri için [Güvenlik](/tr/gateway/security) bölümündeki "Güvenli olmayan veya tehlikeli bayrakların özeti" başlığına bakın.
 
 ## SecretRef davranışı
 
-`security audit`, hedeflediği yollar için desteklenen SecretRef'leri salt okunur modda çözümler. Bir SecretRef mevcut komut yolunda kullanılamıyorsa denetim çökmek yerine devam eder ve `secretDiagnostics` bildirir. `--token` ve `--password`, yalnızca o komut çağrısının derin yoklama kimlik doğrulamasını geçersiz kılar; yapılandırmayı veya SecretRef eşlemelerini yeniden yazmaz.
+`security audit`, hedeflenen yolları için desteklenen SecretRef'leri salt okunur modda çözümler. Bir SecretRef mevcut komut yolunda kullanılamıyorsa denetim çökmek yerine devam eder ve `secretDiagnostics` bildirir. `--token` ve `--password`, derin yoklama kimlik doğrulamasını yalnızca ilgili komut çağrısı için geçersiz kılar; yapılandırmayı veya SecretRef eşlemelerini yeniden yazmaz.
 
-## Engellemeler
+## Gizlemeler
 
-Kasıtlı kalıcı bulguları `security.audit.suppressions` ile kabul edin. Her engelleme tam bir `checkId` ile eşleşir ve büyük/küçük harfe duyarsız `titleIncludes` ve/veya `detailIncludes` alt dizeleriyle daraltılabilir:
+Bilinçli olarak sürdürülen bulguları `security.audit.suppressions` ile kabul edin. Her gizleme tam bir `checkId` ile eşleşir ve büyük/küçük harfe duyarsız `titleIncludes` ve/veya `detailIncludes` alt dizeleriyle daraltılabilir:
 
 ```json
 {
@@ -100,8 +100,8 @@ Kasıtlı kalıcı bulguları `security.audit.suppressions` ile kabul edin. Her 
       "suppressions": [
         {
           "checkId": "plugins.tools_reachable_permissive_policy",
-          "detailIncludes": "Enabled extension plugins: gbrain",
-          "reason": "trusted local operator plugin"
+          "detailIncludes": "Etkin uzantı Plugin'leri: gbrain",
+          "reason": "güvenilir yerel operatör Plugin'i"
         }
       ]
     }
@@ -109,9 +109,9 @@ Kasıtlı kalıcı bulguları `security.audit.suppressions` ile kabul edin. Her 
 }
 ```
 
-Engellenen bulgular etkin `summary` ve `findings` listesinden kaldırılır. JSON çıktısı, denetlenebilirlik için bunları `suppressedFindings` altında tutar. Engellemeler yapılandırıldığında etkin çıktı, okuyucuların denetimin filtrelendiğini anlayabilmesi için engellenemeyen bir `security.audit.suppressions.active` bilgi bulgusunu da korur. Tehlikeli yapılandırma bayrakları, bulgu başına bir bayrak olacak şekilde üretilir; dolayısıyla bir tehlikeli bayrağı kabul etmek, aynı `config.insecure_or_dangerous_flags` checkId değerini paylaşan diğer etkin bayrakları gizlemez.
+Gizlenen bulgular etkin `summary` ve `findings` listesinden kaldırılır. JSON çıktısı, denetlenebilirlik için bunları `suppressedFindings` altında tutar. Gizlemeler yapılandırıldığında etkin çıktı, okuyucuların denetimin filtrelendiğini anlayabilmesi için gizlenemeyen bir `security.audit.suppressions.active` bilgi bulgusunu da tutar. Tehlikeli yapılandırma bayrakları bulgu başına bir bayrak olarak üretilir; böylece bir tehlikeli bayrağın kabul edilmesi, aynı `config.insecure_or_dangerous_flags` checkId değerini paylaşan diğer etkin bayrakları gizlemez.
 
-Engellemeler kalıcı riskleri gizleyebileceğinden, bunların aracı tarafından çalıştırılan kabuk komutlarıyla eklenmesi veya kaldırılması, exec zaten güvenilen yerel otomasyon için `security="full"` ve `ask="off"` ile çalışmıyorsa exec onayı gerektirir.
+Gizlemeler süregelen riskleri saklayabildiğinden, exec zaten güvenilir yerel otomasyon için `security="full"` ve `ask="off"` ile çalışmıyorsa bunları aracı tarafından çalıştırılan kabuk komutlarıyla eklemek veya kaldırmak exec onayı gerektirir.
 
 ## JSON çıktısı
 
@@ -120,26 +120,26 @@ openclaw security audit --json | jq '.summary'
 openclaw security audit --deep --json | jq '.findings[] | select(.severity=="critical") | .checkId'
 ```
 
-`--fix --json` kullanıldığında çıktı hem düzeltme eylemlerini hem de nihai raporu içerir:
+`--fix --json` ile çıktı hem düzeltme eylemlerini hem de son raporu içerir:
 
 ```bash
 openclaw security audit --fix --json | jq '{fix: .fix.ok, summary: .report.summary}'
 ```
 
-## `--fix` neleri değiştirir?
+## `--fix` neleri değiştirir
 
-Güvenli ve belirlenimci düzeltmeleri uygular:
+Güvenli ve deterministik düzeltmeleri uygular:
 
-- yaygın `groupPolicy="open"` değerini `groupPolicy="allowlist"` olarak değiştirir (desteklenen kanallardaki hesap değişkenleri dâhil)
-- WhatsApp grup politikası `allowlist` olarak değiştiğinde, bu liste varsa ve yapılandırma henüz `allowFrom` tanımlamıyorsa `groupAllowFrom` değerini depolanan `allowFrom` dosyasından doldurur
+- yaygın `groupPolicy="open"` değerlerini `groupPolicy="allowlist"` olarak değiştirir (desteklenen kanallardaki hesap çeşitleri dâhil)
+- WhatsApp grup politikası `allowlist` olarak değiştiğinde, bu liste mevcutsa ve yapılandırma henüz `allowFrom` tanımlamıyorsa `groupAllowFrom` değerini saklanan `allowFrom` dosyasından doldurur
 - `logging.redactSensitive` değerini `"off"` yerine `"tools"` olarak ayarlar
 - durum/yapılandırma ve yaygın hassas dosyaların (`credentials/*.json`, `auth-profiles.json`, `openclaw-agent.sqlite` ve eski oturum yapıtları) izinlerini sıkılaştırır
-- ayrıca `openclaw.json` üzerinden başvurulan yapılandırma ekleme dosyalarının izinlerini sıkılaştırır
+- ayrıca `openclaw.json` içinden başvurulan yapılandırma içerme dosyalarının izinlerini sıkılaştırır
 - POSIX ana makinelerinde `chmod`, Windows'ta ise `icacls` sıfırlamalarını kullanır
 
 `--fix` şunları **yapmaz**:
 
-- belirteçleri/parolaları/API anahtarlarını yenilemez
+- token'ları/parolaları/API anahtarlarını yenilemez
 - araçları (`gateway`, `cron`, `exec` vb.) devre dışı bırakmaz
 - Gateway bağlama/kimlik doğrulama/ağ erişimi tercihlerini değiştirmez
 - Plugin'leri/Skills'i kaldırmaz veya yeniden yazmaz

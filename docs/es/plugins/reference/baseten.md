@@ -1,10 +1,10 @@
 ---
 read_when:
     - Está instalando, configurando o auditando el plugin baseten
-summary: Plugin del proveedor Baseten de OpenClaw.
+summary: Plugin de proveedor Baseten para OpenClaw.
 title: Plugin de Baseten
 x-i18n:
-    generated_at: "2026-07-19T02:01:37Z"
+    generated_at: "2026-07-26T05:20:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin de Baseten
 
-Plugin del proveedor Baseten para OpenClaw.
+Plugin de proveedor de Baseten para OpenClaw.
 
 ## Distribución
 

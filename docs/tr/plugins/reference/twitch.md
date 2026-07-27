@@ -1,10 +1,10 @@
 ---
 read_when:
-    - twitch pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
-summary: Sohbet ve moderasyon iş akışları için OpenClaw Twitch kanal Plugin'i.
+    - twitch Pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
+summary: Sohbet ve moderasyon iş akışları için OpenClaw Twitch kanal plugini.
 title: Twitch Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:47:00Z"
+    generated_at: "2026-07-26T22:56:27Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Twitch plugin
 
-Sohbet ve moderasyon iş akışları için OpenClaw Twitch kanal plugini.
+Sohbet ve moderasyon iş akışları için OpenClaw Twitch kanal plugin'i.
 
 ## Dağıtım
 

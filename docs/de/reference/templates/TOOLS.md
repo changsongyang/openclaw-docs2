@@ -4,7 +4,7 @@ read_when:
 summary: Arbeitsbereichsvorlage für TOOLS.md
 title: TOOLS.md-Vorlage
 x-i18n:
-    generated_at: "2026-07-24T04:41:55Z"
+    generated_at: "2026-07-26T18:38:02Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# TOOLS.md – Lokale Notizen
+# TOOLS.md - Lokale Notizen
 
-Skills definieren, _wie_ Tools funktionieren. Diese Datei ist für _Ihre_ spezifischen Angaben bestimmt – alles, was für Ihre Einrichtung einzigartig ist: Kameranamen und -standorte, SSH-Hosts und -Aliasse, bevorzugte TTS-Stimmen, Lautsprecher-/Raumnamen, Gerätenamen und alles Umgebungsspezifische.
+Skills definieren, _wie_ Tools funktionieren. Diese Datei ist für _Ihre_ Besonderheiten bestimmt — also alles, was für Ihre Einrichtung spezifisch ist: Kameranamen und -standorte, SSH-Hosts und -Aliasse, bevorzugte TTS-Stimmen, Lautsprecher-/Raumnamen, Gerätenamen und alles andere Umgebungsspezifische.
 
 ## Beispiele
 
@@ -38,7 +38,7 @@ Skills definieren, _wie_ Tools funktionieren. Diese Datei ist für _Ihre_ spezif
 
 ## Warum getrennt?
 
-Skills werden gemeinsam genutzt. Ihre Einrichtung gehört Ihnen. Durch die Trennung können Sie Skills aktualisieren, ohne Ihre Notizen zu verlieren, und Skills teilen, ohne Informationen über Ihre Infrastruktur preiszugeben.
+Skills werden gemeinsam genutzt. Ihre Einrichtung gehört Ihnen. Wenn Sie beides getrennt halten, können Sie Skills aktualisieren, ohne Ihre Notizen zu verlieren, und Skills teilen, ohne Informationen über Ihre Infrastruktur preiszugeben.
 
 ---
 

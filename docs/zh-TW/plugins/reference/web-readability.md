@@ -4,7 +4,7 @@ read_when:
 summary: 從本機 HTML 網頁擷取回應中擷取可讀的文章內容。
 title: 網頁可讀性外掛
 x-i18n:
-    generated_at: "2026-07-16T11:51:31Z"
+    generated_at: "2026-07-26T08:07:14Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# 網頁可讀性外掛
+# Web 可讀性外掛
 
 從本機 HTML 網頁擷取回應中擷取易於閱讀的文章內容。
 
-## 發布
+## 發行方式
 
 - 套件：`@openclaw/web-readability-plugin`
-- 安裝方式：內含於 OpenClaw
+- 安裝途徑：隨附於 OpenClaw
 
 ## 介面
 

@@ -1,10 +1,10 @@
 ---
 read_when:
     - در حال نصب، پیکربندی یا ممیزی Plugin گوگل هستید
-summary: پشتیبانی از ارائه‌دهندگان مدل Google، Google Gemini CLI و Google Vertex را به OpenClaw اضافه می‌کند.
+summary: پشتیبانی از ارائه‌دهندگان مدل Google،‏ Google Gemini CLI و Google Vertex را به OpenClaw اضافه می‌کند.
 title: Plugin گوگل
 x-i18n:
-    generated_at: "2026-07-16T16:55:27Z"
+    generated_at: "2026-07-27T14:28:23Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

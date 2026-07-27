@@ -1,10 +1,10 @@
 ---
 read_when:
     - msteams pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
-summary: Bot konuşmaları için OpenClaw Microsoft Teams kanal Plugin’i.
-title: Microsoft Teams plugini
+summary: Bot konuşmaları için OpenClaw Microsoft Teams kanal plugin'i.
+title: Microsoft Teams Plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:26:14Z"
+    generated_at: "2026-07-27T00:11:55Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Microsoft Teams plugin
+# Microsoft Teams plugin'i
 
-Bot konuşmaları için OpenClaw Microsoft Teams kanal plugini.
+Bot konuşmaları için OpenClaw Microsoft Teams kanal plugin'i.
 
 ## Dağıtım
 

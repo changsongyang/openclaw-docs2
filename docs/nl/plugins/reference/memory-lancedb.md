@@ -1,10 +1,10 @@
 ---
 read_when:
     - Je installeert, configureert of controleert de memory-lancedb-plugin
-summary: OpenClaw-plugin voor langetermijngeheugen op basis van LanceDB, met automatisch terughalen, automatisch vastleggen en vectorzoekopdrachten.
+summary: OpenClaw-plugin voor langetermijngeheugen op basis van LanceDB, met automatisch ophalen, automatisch vastleggen en vectorzoekopdrachten.
 title: Geheugen-LanceDB-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:15:39Z"
+    generated_at: "2026-07-27T05:42:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,9 +14,9 @@ x-i18n:
     workflow: 16
 ---
 
-# Memory Lancedb-Plugin
+# Memory Lancedb-plugin
 
-OpenClaw-Plugin voor langetermijngeheugen op basis van LanceDB, met automatisch herinneren, automatisch vastleggen en vectorzoekopdrachten.
+OpenClaw-plugin voor langetermijngeheugen op basis van LanceDB, met automatisch terughalen, automatisch vastleggen en vectorzoekfunctie.
 
 ## Distributie
 

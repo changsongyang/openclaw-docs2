@@ -4,7 +4,7 @@ read_when:
 summary: پشتیبانی از ارائه‌دهنده مدل OpenAI را به OpenClaw اضافه می‌کند.
 title: Plugin ‏OpenAI
 x-i18n:
-    generated_at: "2026-07-16T17:29:24Z"
+    generated_at: "2026-07-27T15:44:33Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## توزیع
 
 - بسته: `@openclaw/openai-provider`
-- مسیر نصب: در OpenClaw گنجانده شده است
+- مسیر نصب: همراه OpenClaw ارائه می‌شود
 
 ## سطح
 

@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw-providerplugin voor PixVerse-videogeneratie.
 title: PixVerse-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:07:21Z"
+    generated_at: "2026-07-27T05:16:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # PixVerse-plugin
 
-OpenClaw-providerplugin voor PixVerse-videogeneratie.
+Plugin voor de OpenClaw PixVerse-provider voor het genereren van video's.
 
 ## Distributie
 

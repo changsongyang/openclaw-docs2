@@ -1,12 +1,13 @@
 ---
 read_when:
-    - پیوند قدیمی به ابزارهای عامل
-summary: به «ساخت Pluginها» (بخش ثبت ابزارها) هدایت می‌شود
+    - پیوند قدیمی به agent-tools
+summary: به ساخت Pluginها (بخش ثبت ابزارها) هدایت می‌شود
 title: ثبت ابزارها
 x-i18n:
-    generated_at: "2026-07-12T10:20:20Z"
+    generated_at: "2026-07-27T16:45:08Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
+    prompt_version: 32
     provider: openai
     source_hash: e73137487a9394454dd037d449bc2a0896725cddc7d0f174eda41f5fdc451982
     source_path: plugins/agent-tools.md

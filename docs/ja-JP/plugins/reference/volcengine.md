@@ -1,10 +1,10 @@
 ---
 read_when:
-    - volcengine Pluginをインストール、設定、または監査しています
+    - volcengine Plugin のインストール、設定、または監査を行っている場合
 summary: OpenClaw に Volcengine および Volcengine Plan モデルプロバイダーのサポートを追加します。
 title: Volcengine Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:07:24Z"
+    generated_at: "2026-07-26T10:25:54Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -25,8 +25,8 @@ OpenClaw に Volcengine および Volcengine Plan モデルプロバイダーの
 
 ## 提供機能
 
-プロバイダー: `volcengine`、`volcengine-plan`; コントラクト: `speechProviders`
+プロバイダー: `volcengine`、`volcengine-plan`、コントラクト: `speechProviders`
 
 ## 関連ドキュメント
 
-- [volcengine](/ja-JP/providers/volcengine)
+- [Volcengine](/ja-JP/providers/volcengine)

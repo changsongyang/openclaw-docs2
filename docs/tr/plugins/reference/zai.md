@@ -1,10 +1,10 @@
 ---
 read_when:
-    - zai pluginini kuruyor, yapılandırıyor veya denetliyorsunuz
+    - zai pluginini yüklüyor, yapılandırıyor veya denetliyorsunuz
 summary: OpenClaw'a Z.AI model sağlayıcısı desteği ekler.
-title: Z.AI Plugin'i
+title: Z.AI plugin'i
 x-i18n:
-    generated_at: "2026-07-16T17:32:53Z"
+    generated_at: "2026-07-26T22:56:45Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Z.AI plugin'i
+# Z.AI plugini
 
 OpenClaw'a Z.AI model sağlayıcısı desteği ekler.
 

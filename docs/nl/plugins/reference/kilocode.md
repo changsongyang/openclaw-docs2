@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de kilocode-plugin
 summary: Voegt ondersteuning voor de Kilocode-modelprovider toe aan OpenClaw.
-title: Kilocode-Plugin
+title: Kilocode-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:18:57Z"
+    generated_at: "2026-07-27T05:26:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,7 +14,7 @@ x-i18n:
     workflow: 16
 ---
 
-# Kilocode-Plugin
+# Kilocode-plugin
 
 Voegt ondersteuning voor de Kilocode-modelprovider toe aan OpenClaw.
 
@@ -29,4 +29,4 @@ providers: `kilocode`
 
 ## Gerelateerde documentatie
 
-- [kilocode](/nl/providers/kilocode)
+- [Kilocode](/nl/providers/kilocode)

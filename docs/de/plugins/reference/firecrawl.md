@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Sie installieren, konfigurieren oder prüfen das firecrawl-Plugin.
-summary: Fügt vom Agenten aufrufbare Tools hinzu. Fügt Unterstützung für Webabruf-Provider hinzu. Fügt Unterstützung für Websuch-Provider hinzu.
+    - Sie installieren, konfigurieren oder überprüfen das firecrawl-Plugin
+summary: Fügt durch Agenten aufrufbare Tools hinzu. Fügt Unterstützung für Web-Fetch-Provider hinzu. Fügt Unterstützung für Web-Such-Provider hinzu.
 title: Firecrawl-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:33:16Z"
+    generated_at: "2026-07-26T18:30:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -29,4 +29,4 @@ Verträge: `tools`, `webFetchProviders`, `webSearchProviders`
 
 ## Zugehörige Dokumentation
 
-- [Firecrawl](/de/tools/firecrawl)
+- [firecrawl](/de/tools/firecrawl)

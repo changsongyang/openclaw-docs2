@@ -4,7 +4,7 @@ read_when:
 summary: Plugin ارائه‌دهنده تولید ویدئوی PixVerse برای OpenClaw.
 title: Plugin PixVerse
 x-i18n:
-    generated_at: "2026-07-16T16:56:45Z"
+    generated_at: "2026-07-27T14:30:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin ‏PixVerse
+# Plugin PixVerse
 
-Plugin ارائه‌دهنده تولید ویدیوی PixVerse برای OpenClaw.
+Plugin ارائه‌دهندهٔ تولید ویدئوی PixVerse برای OpenClaw.
 
 ## توزیع
 
 - بسته: `@openclaw/pixverse-provider`
-- روش نصب: npm؛ ClawHub: `clawhub:@openclaw/pixverse-provider`
+- مسیر نصب: npm؛ ClawHub: `clawhub:@openclaw/pixverse-provider`
 
 ## سطح
 
@@ -29,4 +29,4 @@ Plugin ارائه‌دهنده تولید ویدیوی PixVerse برای OpenCla
 
 ## مستندات مرتبط
 
-- [PixVerse](/fa/providers/pixverse)
+- [pixverse](/fa/providers/pixverse)

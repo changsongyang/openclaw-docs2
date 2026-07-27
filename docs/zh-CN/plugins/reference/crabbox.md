@@ -4,7 +4,7 @@ read_when:
 summary: 由 Crabbox CLI 支持的云端工作节点提供商。
 title: Crabbox 插件
 x-i18n:
-    generated_at: "2026-07-16T11:44:37Z"
+    generated_at: "2026-07-26T06:56:59Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## 分发
 
 - 包：`@openclaw/crabbox-provider`
-- 安装方式：内置于 OpenClaw
+- 安装方式：随 OpenClaw 提供
 
 ## 接口
 

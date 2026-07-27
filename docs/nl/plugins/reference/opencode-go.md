@@ -4,7 +4,7 @@ read_when:
 summary: Voegt ondersteuning voor de OpenCode Go-modelprovider toe aan OpenClaw.
 title: OpenCode Go-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:20:04Z"
+    generated_at: "2026-07-27T05:42:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ Voegt ondersteuning voor de OpenCode Go-modelprovider toe aan OpenClaw.
 ## Distributie
 
 - Pakket: `@openclaw/opencode-go-provider`
-- Installatieroute: inbegrepen bij OpenClaw
+- Installatieroute: opgenomen in OpenClaw
 
 ## Oppervlak
 

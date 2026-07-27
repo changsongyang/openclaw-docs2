@@ -1,10 +1,10 @@
 ---
 read_when:
     - आप zai Plugin को इंस्टॉल, कॉन्फ़िगर या ऑडिट कर रहे हैं
-summary: OpenClaw में Z.AI मॉडल प्रदाता का समर्थन जोड़ता है।
+summary: OpenClaw में Z.AI मॉडल प्रदाता के लिए समर्थन जोड़ता है।
 title: Z.AI Plugin
 x-i18n:
-    generated_at: "2026-07-16T16:35:11Z"
+    generated_at: "2026-07-27T18:19:46Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

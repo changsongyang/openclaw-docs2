@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Arbeit an Telemetrie-/Datenschutzkontrollen
-    - Fragen dazu, welche Daten erfasst werden
-summary: Von der ClawHub-CLI erfasste Installationstelemetrie und wie Sie diese deaktivieren.
+    - Arbeiten an Telemetrie-/Datenschutzkontrollen
+    - Fragen dazu, welche Daten erhoben werden
+summary: Vom ClawHub-CLI erfasste Installationstelemetrie und wie Sie deren Erfassung deaktivieren.
 x-i18n:
-    generated_at: "2026-07-24T04:17:06Z"
+    generated_at: "2026-07-26T18:16:19Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -27,12 +27,12 @@ Telemetrie wird nur gesendet, wenn:
   `openclaw plugins install clawhub:<package>` abschließen.
 - Telemetrie **nicht deaktiviert** ist (siehe „Deaktivieren der Telemetrie“ weiter unten).
 
-Wenn Sie nicht angemeldet sind, werden keine Daten übermittelt.
+Wenn Sie nicht angemeldet sind, werden keine Daten gemeldet.
 
 ## Welche Daten wir erfassen
 
-Nachdem ein Skill oder Plugin installiert und der zugehörige lokale Installationsdatensatz gespeichert wurde, sendet die CLI
-nach Möglichkeit ein einzelnes Installationsereignis.
+Nachdem ein Skill oder Plugin installiert und der lokale Installationsdatensatz gespeichert wurde, sendet die CLI
+nach dem Best-Effort-Prinzip ein einzelnes Installationsereignis.
 
 Das Ereignis enthält:
 
@@ -41,9 +41,9 @@ Das Ereignis enthält:
 
 ### Welche Daten wir _nicht_ erfassen
 
-- Keine Ordnerpfade oder aus Ordnern abgeleiteten Bezeichner.
+- Keine Ordnerpfade oder aus Ordnern abgeleiteten Kennungen.
 - Keine Dateiinhalte.
-- Keine Protokolle einzelner Ausführungen, Prompts oder sonstigen CLI-Ausgaben.
+- Keine laufbezogenen Protokolle, Prompts oder sonstigen CLI-Ausgaben.
 
 ## Installationszahlen
 
@@ -53,16 +53,16 @@ Für Skills verwaltet ClawHub:
 - `installsCurrent`: eindeutige Benutzer, die eine Installation gemeldet und ihre
   Telemetriedaten nicht gelöscht haben.
 
-Für Plugins zählt ClawHub die erste erfolgreiche Installation, die von jedem Benutzer für jedes Paket gemeldet wird.
-Wiederholte Installationen und Aktualisierungen aktualisieren die aufgezeichnete Version, ohne die aggregierte
+Bei Plugins zählt ClawHub die erste erfolgreiche Installation, die von jedem Benutzer für jedes Paket gemeldet wird.
+Wiederholte Installationen und Aktualisierungen aktualisieren die erfasste Version, ohne die aggregierte
 Installationszahl zu erhöhen.
 
 ## Transparenz und Benutzerkontrollen
 
-Für alle sind nur **aggregierte Installationszähler** sichtbar.
+Alle sehen nur **aggregierte Installationszähler**.
 
-Beim Löschen Ihres Kontos werden auch Ihre Telemetriedaten gelöscht und ihr Beitrag aus den
-Installationszählern entfernt.
+Wenn Sie Ihr Konto löschen, werden auch Ihre Telemetriedaten gelöscht und ihr Beitrag zu den Installationszählern
+entfernt.
 
 ## Deaktivieren der Telemetrie
 

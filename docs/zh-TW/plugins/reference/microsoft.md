@@ -4,7 +4,7 @@ read_when:
 summary: 新增文字轉語音供應商支援。
 title: Microsoft 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:54:57Z"
+    generated_at: "2026-07-26T07:28:42Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## 發布方式
 
 - 套件：`@openclaw/microsoft-speech`
-- 安裝方式：隨附於 OpenClaw
+- 安裝途徑：隨附於 OpenClaw
 
 ## 介面
 

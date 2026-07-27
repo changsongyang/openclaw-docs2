@@ -1,10 +1,10 @@
 ---
 read_when:
-    - azure-speech Pluginをインストール、設定、または監査しています
-summary: Azure AI Speech のテキスト読み上げ（MP3、ネイティブ Ogg/Opus 音声メモ、PCM テレフォニー）。
+    - azure-speech Plugin のインストール、設定、または監査を行っている場合
+summary: Azure AI Speech によるテキスト読み上げ（MP3、ネイティブ Ogg/Opus ボイスメモ、PCM テレフォニー）。
 title: Azure Speech Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:53:17Z"
+    generated_at: "2026-07-26T09:42:34Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,14 +16,14 @@ x-i18n:
 
 # Azure Speech Plugin
 
-Azure AI Speechのテキスト読み上げ（MP3、ネイティブOgg/Opus音声メモ、PCMテレフォニー）。
+Azure AI Speech のテキスト読み上げ（MP3、ネイティブ Ogg/Opus ボイスノート、PCM テレフォニー）。
 
 ## 配布
 
 - パッケージ: `@openclaw/azure-speech`
-- インストール方法: OpenClawに同梱
+- インストール経路: OpenClaw に同梱
 
-## 提供範囲
+## サーフェス
 
 コントラクト: `speechProviders`
 

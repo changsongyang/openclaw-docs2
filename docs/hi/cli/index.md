@@ -1,11 +1,11 @@
 ---
 read_when:
     - सही `openclaw` उपकमांड ढूँढना
-    - वैश्विक फ़्लैग या आउटपुट शैली-निर्धारण नियम खोजना
+    - वैश्विक फ़्लैग या आउटपुट शैली के नियम खोजना
 summary: 'OpenClaw CLI अनुक्रमणिका: कमांड सूची, वैश्विक फ़्लैग और प्रत्येक कमांड के पृष्ठों के लिंक'
 title: CLI संदर्भ
 x-i18n:
-    generated_at: "2026-07-21T16:32:50Z"
+    generated_at: "2026-07-27T20:38:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,15 +16,15 @@ x-i18n:
 ---
 
 `openclaw` मुख्य CLI प्रवेश बिंदु है। प्रत्येक मुख्य कमांड का एक समर्पित
-संदर्भ पृष्ठ है या उसे उस कमांड के साथ प्रलेखित किया गया है जिसका वह उपनाम है; यह अनुक्रमणिका
-पूरे CLI पर लागू होने वाले कमांड, वैश्विक फ़्लैग और आउटपुट शैली के नियम सूचीबद्ध करती है।
+संदर्भ पृष्ठ है या उसे उस कमांड के साथ दस्तावेज़ित किया गया है जिसका वह उपनाम है; यह अनुक्रमणिका
+उन कमांड, वैश्विक फ़्लैग और आउटपुट शैली नियमों को सूचीबद्ध करती है जो पूरे CLI पर लागू होते हैं।
 
 उद्देश्य के अनुसार सेटअप कमांड:
 
-- `openclaw setup` और `openclaw onboard` पहले इन्फ़रेंस सत्यापित करते हैं, फिर Gateway, कार्यक्षेत्र, चैनल, Skills और स्वास्थ्य सेटअप के लिए OpenClaw शुरू करते हैं।
-- `openclaw setup --baseline` निर्देशित ऑनबोर्डिंग प्रवाह से गुज़रे बिना आधारभूत कॉन्फ़िगरेशन और कार्यक्षेत्र बनाता है।
-- `openclaw configure` मौजूदा सेटअप के लक्षित हिस्सों को बदलता है: मॉडल प्रमाणीकरण, Gateway, चैनल, Plugins या Skills।
-- `openclaw channels add` आधारभूत सेटअप मौजूद होने के बाद चैनल खाते कॉन्फ़िगर करता है; केवल चैनल चयन निर्देशित सेटअप का उपयोग करता है, जबकि खाता, क्रेडेंशियल या चैनल-कॉन्फ़िगरेशन फ़्लैग स्क्रिप्ट के लिए सीधे पथ का उपयोग करते हैं।
+- `openclaw setup` और `openclaw onboard` पहले अनुमान का सत्यापन करते हैं, फिर Gateway, कार्यस्थान, चैनल, Skills और स्वास्थ्य सेटअप के लिए OpenClaw प्रारंभ करते हैं।
+- `openclaw setup --baseline` निर्देशित ऑनबोर्डिंग प्रवाह से गुज़रे बिना आधारभूत कॉन्फ़िगरेशन और कार्यस्थान बनाता है।
+- `openclaw configure` मौजूदा सेटअप के लक्षित भागों को बदलता है: मॉडल प्रमाणीकरण, Gateway, चैनल, Plugins या Skills।
+- `openclaw channels add` आधारभूत सेटअप मौजूद होने के बाद चैनल खाते कॉन्फ़िगर करता है; केवल चैनल चयन निर्देशित सेटअप का उपयोग करता है, जबकि खाता, क्रेडेंशियल या चैनल-कॉन्फ़िग फ़्लैग स्क्रिप्ट के लिए सीधे पथ का उपयोग करते हैं।
 
 ## कमांड पृष्ठ
 
@@ -35,35 +35,35 @@ x-i18n:
 | संदेश और एजेंट         | [`message`](/hi/cli/message) · [`agent`](/hi/cli/agent) · [`agents`](/hi/cli/agents) · [`attach`](/hi/cli/attach) · [`acp`](/hi/cli/acp) · [`mcp`](/hi/cli/mcp)                                                                                         |
 | स्वास्थ्य और सत्र          | [`status`](/hi/cli/status) · [`health`](/hi/cli/health) · [`sessions`](/hi/cli/sessions) · [`audit`](/hi/cli/audit)                                                                                                                               |
 | Gateway और लॉग             | [`gateway`](/hi/cli/gateway) · [`logs`](/hi/cli/logs) · [`system`](/hi/cli/system)                                                                                                                                                             |
-| मॉडल और इन्फ़रेंस         | [`models`](/hi/cli/models) · [`promos`](/hi/cli/promos) · [`infer`](/hi/cli/infer) · `capability` ([`infer`](/hi/cli/infer) का उपनाम) · [`memory`](/hi/cli/memory) · [`commitments`](/hi/cli/commitments) · [`wiki`](/hi/cli/wiki)                        |
-| नेटवर्क और Node            | [`directory`](/hi/cli/directory) · [`nodes`](/hi/cli/nodes) · [`devices`](/hi/cli/devices) · [`node`](/hi/cli/node) · [`worker`](/hi/cli/worker)                                                                                                     |
+| मॉडल और अनुमान         | [`models`](/hi/cli/models) · [`promos`](/hi/cli/promos) · [`infer`](/hi/cli/infer) · `capability` ([`infer`](/hi/cli/infer) का उपनाम) · [`memory`](/hi/cli/memory) · [`commitments`](/hi/cli/commitments) · [`wiki`](/hi/cli/wiki)                        |
+| नेटवर्क और Nodes            | [`directory`](/hi/cli/directory) · [`nodes`](/hi/cli/nodes) · [`devices`](/hi/cli/devices) · [`node`](/hi/cli/node) · [`worker`](/hi/cli/worker)                                                                                                     |
 | रनटाइम और सैंडबॉक्स          | [`approvals`](/hi/cli/approvals) · `exec-policy` ([`approvals`](/hi/cli/approvals) देखें) · [`sandbox`](/hi/cli/sandbox) · [`tui`](/hi/cli/tui) · `chat`/`terminal` ([`tui --local`](/hi/cli/tui) के उपनाम) · [`browser`](/hi/cli/browser)             |
 | स्वचालन                   | [`cron`](/hi/cli/cron) · [`tasks`](/hi/cli/tasks) · [`hooks`](/hi/cli/hooks) · [`webhooks`](/hi/cli/webhooks) · [`transcripts`](/hi/cli/transcripts)                                                                                                 |
 | खोज और दस्तावेज़           | [`dns`](/hi/cli/dns) · [`docs`](/hi/cli/docs)                                                                                                                                                                                               |
 | पेयरिंग और चैनल         | [`pairing`](/hi/cli/pairing) · [`qr`](/hi/cli/qr) · [`channels`](/hi/cli/channels)                                                                                                                                                             |
 | सुरक्षा और Plugins         | [`security`](/hi/cli/security) · [`secrets`](/hi/cli/secrets) · [`skills`](/hi/cli/skills) · [`plugins`](/hi/cli/plugins) · [`proxy`](/hi/cli/proxy)                                                                                                 |
-| पुराने उपनाम               | [`daemon`](/hi/cli/daemon) (Gateway सेवा) · [`clawbot`](/hi/cli/clawbot) (नेमस्पेस)                                                                                                                                                     |
-| Plugins (वैकल्पिक)           | [`path`](/hi/cli/path) · [`policy`](/hi/cli/policy) · [`voicecall`](/hi/cli/voicecall) · [`workboard`](/hi/cli/workboard) (यदि इंस्टॉल किया गया हो)                                                                                                          |
+| पुराने उपनाम               | [`daemon`](/hi/cli/daemon) (Gateway सेवा) · [`clawbot`](/hi/cli/clawbot) (नामस्थान)                                                                                                                                                     |
+| Plugins (वैकल्पिक)           | [`path`](/hi/cli/path) · [`policy`](/hi/cli/policy) · [`voicecall`](/hi/cli/voicecall) · [`workboard`](/hi/cli/workboard) (यदि इंस्टॉल हो)                                                                                                          |
 
 ## वैश्विक फ़्लैग
 
 | फ़्लैग                    | उद्देश्य                                                                                                 |
 | ----------------------- | ------------------------------------------------------------------------------------------------------- |
-| `--dev`                 | स्थिति को `~/.openclaw-dev` के अंतर्गत अलग रखता है, डिफ़ॉल्ट Gateway पोर्ट 19001 निर्धारित करता है और व्युत्पन्न पोर्ट स्थानांतरित करता है              |
-| `--profile <name>`      | स्थिति को `~/.openclaw-<name>` (`OPENCLAW_STATE_DIR`/`OPENCLAW_CONFIG_PATH`) के अंतर्गत अलग रखता है                  |
-| `--container <name>`    | `<name>` नामक चल रहे Podman/Docker कंटेनर के भीतर CLI चलाता है (डिफ़ॉल्ट: env `OPENCLAW_CONTAINER`) |
-| `--log-level <level>`   | फ़ाइल + कंसोल आउटपुट के लिए वैश्विक लॉग स्तर को ओवरराइड करता है                                                 |
-| `--no-color`            | ANSI रंग अक्षम करता है (`NO_COLOR=1` का भी पालन किया जाता है)                                                    |
-| `--update`              | [`openclaw update`](/hi/cli/update) का संक्षिप्त रूप; स्रोत चेकआउट और पैकेज इंस्टॉल, दोनों के लिए काम करता है    |
-| `-V`, `--version`, `-v` | संस्करण प्रिंट करके बाहर निकलता है                                                                                  |
+| `--dev`                 | स्थिति को `~/.openclaw-dev` के अंतर्गत अलग रखें, डिफ़ॉल्ट Gateway पोर्ट 19001 रखें और व्युत्पन्न पोर्ट स्थानांतरित करें              |
+| `--profile <name>`      | स्थिति को `~/.openclaw-<name>` (`OPENCLAW_STATE_DIR`/`OPENCLAW_CONFIG_PATH`) के अंतर्गत अलग रखें                  |
+| `--container <name>`    | CLI को `<name>` नामक चल रहे Podman/Docker कंटेनर के भीतर चलाएँ (डिफ़ॉल्ट: env `OPENCLAW_CONTAINER`) |
+| `--log-level <level>`   | फ़ाइल + कंसोल आउटपुट के लिए वैश्विक लॉग स्तर को ओवरराइड करें                                                 |
+| `--no-color`            | ANSI रंग अक्षम करें (`NO_COLOR=1` का भी सम्मान किया जाता है)                                                    |
+| `--update`              | [`openclaw update`](/hi/cli/update) का संक्षिप्त रूप; स्रोत चेकआउट और पैकेज इंस्टॉलेशन, दोनों के लिए काम करता है    |
+| `-V`, `--version`, `-v` | संस्करण प्रिंट करें और बाहर निकलें                                                                                  |
 
 ## आउटपुट मोड
 
 - ANSI रंग और प्रगति संकेतक केवल TTY सत्रों में रेंडर होते हैं।
 - OSC-8 हाइपरलिंक समर्थित स्थानों पर क्लिक करने योग्य लिंक के रूप में रेंडर होते हैं; अन्यथा
-  CLI सादे URL का उपयोग करता है।
-- `--json` (और समर्थित स्थानों पर `--plain`) साफ़ आउटपुट के लिए शैली अक्षम करता है।
-- लंबे समय तक चलने वाले कमांड एक प्रगति संकेतक दिखाते हैं (समर्थित होने पर OSC 9;4)।
+  CLI सामान्य URL का उपयोग करता है।
+- `--json` (और जहाँ समर्थित हो वहाँ `--plain`) साफ़ आउटपुट के लिए शैली अक्षम करता है।
+- लंबे समय तक चलने वाले कमांड प्रगति संकेतक दिखाते हैं (समर्थित होने पर OSC 9;4)।
 
 ## रंग पैलेट
 
@@ -72,7 +72,7 @@ OpenClaw CLI आउटपुट के लिए लॉब्स्टर पै
 | टोकन          | हेक्स       | इसके लिए उपयोग                             |
 | -------------- | --------- | ------------------------------------ |
 | `accent`       | `#FF5A2D` | शीर्षक, लेबल, प्राथमिक हाइलाइट |
-| `accentBright` | `#FF7A3D` | कमांड के नाम, बलाघात              |
+| `accentBright` | `#FF7A3D` | कमांड नाम, बलाघात              |
 | `accentDim`    | `#D14A22` | द्वितीयक हाइलाइट पाठ             |
 | `info`         | `#FF8A5B` | सूचनात्मक मान                 |
 | `success`      | `#2FBF71` | सफलता की स्थितियाँ                       |
@@ -82,11 +82,11 @@ OpenClaw CLI आउटपुट के लिए लॉब्स्टर पै
 
 पैलेट का प्रामाणिक स्रोत: `packages/terminal-core/src/palette.ts`।
 
-## कमांड ट्री
+## कमांड वृक्ष
 
-<Accordion title="पूर्ण कमांड ट्री">
+<Accordion title="पूरा कमांड वृक्ष">
 
-यह मानचित्र मुख्य कमांड और उनके प्राथमिक उपकमांड को समाहित करता है। Plugin द्वारा जोड़े गए
+यह मानचित्र मुख्य कमांड और उनके प्राथमिक उपकमांड को शामिल करता है। Plugin द्वारा जोड़े गए
 उपकमांड (उदाहरण के लिए `skills`, `plugins`, और `wiki` के अंतर्गत) स्वतंत्र रूप से
 विकसित होते हैं; प्रामाणिक, वर्तमान सूची के लिए `<command> --help` चलाएँ।
 
@@ -435,15 +435,15 @@ Plugins अतिरिक्त शीर्ष-स्तरीय कमां
 मुख्य विशेषताएँ:
 
 - `/status` - त्वरित निदान।
-- `/trace` - सत्र के दायरे वाली Plugin ट्रेस/डीबग पंक्तियाँ।
+- `/trace` - सत्र-सीमित Plugin ट्रेस/डीबग पंक्तियाँ।
 - `/config` - स्थायी कॉन्फ़िगरेशन परिवर्तन।
 - `/debug` - केवल रनटाइम कॉन्फ़िगरेशन ओवरराइड (मेमोरी में, डिस्क पर नहीं; `commands.debug: true` आवश्यक है)।
 
 ## उपयोग ट्रैकिंग
 
-OAuth/API क्रेडेंशियल उपलब्ध होने पर `openclaw status --usage` और कंट्रोल UI, प्रोवाइडर के उपयोग/कोटा को प्रदर्शित करते हैं। डेटा सीधे प्रोवाइडर के उपयोग
-एंडपॉइंट से आता है और उसे `X% left` में सामान्यीकृत किया जाता है। वर्तमान उपयोग
-विंडो वाले प्रोवाइडर: Anthropic, Gemini CLI, GitHub Copilot, MiniMax, OpenAI Codex,
+OAuth/API क्रेडेंशियल उपलब्ध होने पर `openclaw status --usage` और Control UI, प्रदाता का उपयोग/कोटा दिखाते हैं। डेटा सीधे प्रदाता के उपयोग
+एंडपॉइंट से आता है और `X% left` में सामान्यीकृत किया जाता है। वर्तमान उपयोग
+विंडो वाले प्रदाता: Anthropic, Gemini CLI, GitHub Copilot, MiniMax, OpenAI Codex,
 Xiaomi और z.ai।
 
 विवरण के लिए [उपयोग ट्रैकिंग](/hi/concepts/usage-tracking) देखें।

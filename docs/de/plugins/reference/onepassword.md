@@ -4,7 +4,7 @@ read_when:
 summary: Kuratierter 1Password-Secrets-Broker mit Genehmigungsrichtlinie und SQLite-Auditverlauf.
 title: Onepassword-Plugin
 x-i18n:
-    generated_at: "2026-07-24T04:01:17Z"
+    generated_at: "2026-07-26T17:59:44Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Onepassword-Plugin
 
-Kuratierter Broker für 1Password-Secrets mit Genehmigungsrichtlinie und SQLite-Auditverlauf.
+Kuratierter Broker für 1Password-Geheimnisse mit Genehmigungsrichtlinie und SQLite-Auditverlauf.
 
 ## Distribution
 
@@ -27,6 +27,6 @@ Kuratierter Broker für 1Password-Secrets mit Genehmigungsrichtlinie und SQLite-
 
 Verträge: `tools`
 
-## Zugehörige Dokumentation
+## Verwandte Dokumentation
 
-- [onepassword](/plugins/onepassword)
+- [onepassword](/de/plugins/onepassword)

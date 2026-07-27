@@ -4,7 +4,7 @@ read_when:
 summary: OpenClaw Cohere 提供者外掛。
 title: Cohere 外掛
 x-i18n:
-    generated_at: "2026-07-16T11:47:45Z"
+    generated_at: "2026-07-26T08:05:25Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,10 +18,10 @@ x-i18n:
 
 OpenClaw Cohere 供應商外掛。
 
-## 發布
+## 發佈
 
 - 套件：`@openclaw/cohere-provider`
-- 安裝管道：隨附於 OpenClaw；npm；ClawHub：`clawhub:@openclaw/cohere-provider`
+- 安裝方式：隨附於 OpenClaw；npm；ClawHub：`clawhub:@openclaw/cohere-provider`
 
 ## 介面
 
@@ -29,4 +29,4 @@ OpenClaw Cohere 供應商外掛。
 
 ## 相關文件
 
-- [cohere](/zh-TW/providers/cohere)
+- [Cohere](/zh-TW/providers/cohere)

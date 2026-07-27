@@ -1,10 +1,10 @@
 ---
 read_when:
-    - opencode Plugin のインストール、設定、または監査を行っています
+    - opencode Plugin のインストール、設定、または監査を行っている場合
 summary: OpenClaw に OpenCode モデルプロバイダーのサポートを追加します。
 title: OpenCode Plugin
 x-i18n:
-    generated_at: "2026-07-16T12:05:58Z"
+    generated_at: "2026-07-26T09:53:59Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,9 +21,9 @@ OpenClaw に OpenCode モデルプロバイダーのサポートを追加しま�
 ## 配布
 
 - パッケージ: `@openclaw/opencode-provider`
-- インストール方法: OpenClaw に同梱
+- インストール経路: OpenClaw に同梱
 
-## 提供機能
+## サーフェス
 
 プロバイダー: `opencode`; コントラクト: `mediaUnderstandingProviders`
 
@@ -31,15 +31,15 @@ OpenClaw に OpenCode モデルプロバイダーのサポートを追加しま�
 
 ## ネイティブセッション
 
-OpenClaw は、Gateway およびペアリング済み Node 上の `opencode` CLI を自動検出します。保存された
+OpenClaw は、Gateway およびペアリングされた Node 上の `opencode` CLI を自動検出します。保存された
 セッションは **OpenCode** セッションサイドバーグループに表示され、公式の `opencode --pure db ... --format json`
-および `opencode --pure export` コマンドを通じて、読み取り専用で
+および `opencode --pure export` コマンドを使用して、読み取り専用で
 トランスクリプトを閲覧できます。制限された環境と `--pure`
 モードにより、カタログの閲覧時にプロジェクトの plugin が読み込まれたり、無関係な
-Gateway の認証情報が継承されたりすることを防ぎます。
+Gateway の認証情報が継承されたりするのを防ぎます。
 
-検出を無効にするには、**Config > Plugins > OpenCode** で **OpenCode Session Catalog** をオフにします。
-デフォルトでは有効です。
+検出を無効にするには、**Config > Plugins > OpenCode** にある **OpenCode Session Catalog** を
+オフにします。デフォルトでは有効です。
 
 <!-- openclaw-plugin-reference:manual-end -->
 

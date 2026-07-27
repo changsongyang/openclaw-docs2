@@ -4,7 +4,7 @@ read_when:
 summary: Plugin del canal de Google Chat de OpenClaw para espacios y mensajes directos.
 title: Plugin de Google Chat
 x-i18n:
-    generated_at: "2026-07-16T11:52:59Z"
+    generated_at: "2026-07-26T04:51:48Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin de Google Chat
 
-Plugin del canal de Google Chat de OpenClaw para espacios y mensajes directos.
+Plugin del canal de Google Chat para OpenClaw, destinado a espacios y mensajes directos.
 
 ## Distribución
 

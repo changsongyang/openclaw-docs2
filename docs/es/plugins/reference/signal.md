@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Está instalando, configurando o auditando el plugin de Signal.
+    - Está instalando, configurando o auditando el plugin de Signal
 summary: Añade la interfaz del canal Signal para enviar y recibir mensajes de OpenClaw.
 title: Plugin de Signal
 x-i18n:
-    generated_at: "2026-07-16T11:49:59Z"
+    generated_at: "2026-07-26T04:49:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,7 +16,7 @@ x-i18n:
 
 # Plugin de Signal
 
-Añade la superficie del canal Signal para enviar y recibir mensajes de OpenClaw.
+Añade la superficie del canal de Signal para enviar y recibir mensajes de OpenClaw.
 
 ## Distribución
 

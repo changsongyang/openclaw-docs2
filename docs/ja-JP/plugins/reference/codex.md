@@ -1,10 +1,10 @@
 ---
 read_when:
-    - codex Plugin のインストール、設定、または監査を行っています
+    - codex Plugin をインストール、設定、または監査しています
 summary: Codex app-server ハーネスとネイティブセッションカタログ。
 title: Codex Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:57:21Z"
+    generated_at: "2026-07-26T09:10:55Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -16,16 +16,16 @@ x-i18n:
 
 # Codex plugin
 
-Codex app-server ハーネスとネイティブセッションカタログ。
+Codex app-server ハーネスおよびネイティブセッションカタログ。
 
 ## 配布
 
 - パッケージ: `@openclaw/codex`
-- インストール経路: npm、ClawHub
+- インストール経路: npm; ClawHub
 
 ## サーフェス
 
-コントラクト: `mediaUnderstandingProviders`、`migrationProviders`、`tools`、`webSearchProviders`
+コントラクト: `mediaUnderstandingProviders`, `migrationProviders`, `tools`, `webSearchProviders`
 
 ## 関連ドキュメント
 

@@ -1,10 +1,10 @@
 ---
 read_when:
-    - elevenlabs Pluginをインストール、設定、または監査している場合
+    - elevenlabs Plugin をインストール、設定、または監査しています
 summary: メディア理解プロバイダーのサポートを追加します。リアルタイム文字起こしプロバイダーのサポートを追加します。テキスト読み上げプロバイダーのサポートを追加します。
 title: Elevenlabs Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:57:51Z"
+    generated_at: "2026-07-26T09:52:47Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,9 +21,9 @@ x-i18n:
 ## 配布
 
 - パッケージ: `@openclaw/elevenlabs-speech`
-- インストール経路: OpenClaw に同梱
+- インストール方法: OpenClaw に同梱
 
-## 提供機能
+## サーフェス
 
 コントラクト: `mediaUnderstandingProviders`、`realtimeTranscriptionProviders`、`speechProviders`
 

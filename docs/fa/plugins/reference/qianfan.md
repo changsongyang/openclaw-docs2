@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin qianfan هستید
+    - در حال نصب، پیکربندی یا ممیزی Plugin ‏qianfan هستید
 summary: پشتیبانی از ارائه‌دهنده مدل Qianfan را به OpenClaw اضافه می‌کند.
 title: Plugin کیان‌فان
 x-i18n:
-    generated_at: "2026-07-16T16:57:11Z"
+    generated_at: "2026-07-27T16:51:42Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -29,4 +29,4 @@ x-i18n:
 
 ## مستندات مرتبط
 
-- [qianfan](/fa/providers/qianfan)
+- [Qianfan](/fa/providers/qianfan)

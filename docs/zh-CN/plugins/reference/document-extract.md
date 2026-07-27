@@ -4,7 +4,7 @@ read_when:
 summary: 从本地文档附件中提取文本和备用页面图像。
 title: 文档提取插件
 x-i18n:
-    generated_at: "2026-07-16T11:44:51Z"
+    generated_at: "2026-07-26T06:26:21Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -20,7 +20,7 @@ x-i18n:
 
 ## 分发
 
-- 软件包：`@openclaw/document-extract-plugin`
+- 包：`@openclaw/document-extract-plugin`
 - 安装方式：OpenClaw 内置
 
 ## 接口

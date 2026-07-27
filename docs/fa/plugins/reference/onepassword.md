@@ -1,10 +1,10 @@
 ---
 read_when:
-    - در حال نصب، پیکربندی یا ممیزی Plugin ‏onepassword هستید
-summary: واسط گزینش‌شدهٔ اسرار 1Password با سیاست تأیید و تاریخچهٔ ممیزی SQLite.
+    - در حال نصب، پیکربندی یا ممیزی Plugin وان‌پسورد هستید
+summary: واسط گزینش‌شده اسرار 1Password با خط‌مشی تأیید و تاریخچه ممیزی SQLite.
 title: Plugin وان‌پسورد
 x-i18n:
-    generated_at: "2026-07-16T16:56:42Z"
+    generated_at: "2026-07-27T14:25:00Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin وان‌پسورد
+# Plugin مربوط به Onepassword
 
-واسط گزینش‌شدهٔ اسرار 1Password با سیاست تأیید و تاریخچهٔ ممیزی SQLite.
+واسط مدیریت گزینش‌شدهٔ اسرار 1Password با سیاست تأیید و تاریخچهٔ ممیزی SQLite.
 
 ## توزیع
 
 - بسته: `@openclaw/onepassword`
-- روش نصب: همراه OpenClaw ارائه می‌شود
+- مسیر نصب: در OpenClaw گنجانده شده است
 
 ## سطح
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## مستندات مرتبط
 
-- [وان‌پسورد](/plugins/onepassword)
+- [onepassword](/plugins/onepassword)

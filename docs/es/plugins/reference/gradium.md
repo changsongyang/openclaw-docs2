@@ -4,7 +4,7 @@ read_when:
 summary: Añade compatibilidad con proveedores de texto a voz.
 title: Plugin de Gradium
 x-i18n:
-    generated_at: "2026-07-16T11:47:50Z"
+    generated_at: "2026-07-26T05:14:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,14 +14,14 @@ x-i18n:
     workflow: 16
 ---
 
-# Plugin de Gradium
+# Plugin Gradium
 
-Añade compatibilidad con el proveedor de texto a voz.
+Añade compatibilidad con un proveedor de texto a voz.
 
 ## Distribución
 
 - Paquete: `@openclaw/gradium-speech`
-- Método de instalación: npm; ClawHub: `clawhub:@openclaw/gradium-speech`
+- Ruta de instalación: npm; ClawHub: `clawhub:@openclaw/gradium-speech`
 
 ## Superficie
 

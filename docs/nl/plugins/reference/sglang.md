@@ -2,9 +2,9 @@
 read_when:
     - Je installeert, configureert of controleert de sglang-plugin
 summary: Voegt ondersteuning voor de SGLang-modelprovider toe aan OpenClaw.
-title: SGLang-Plugin
+title: SGLang-plugin
 x-i18n:
-    generated_at: "2026-07-16T16:20:33Z"
+    generated_at: "2026-07-27T06:28:35Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32

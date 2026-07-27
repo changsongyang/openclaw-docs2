@@ -1,10 +1,10 @@
 ---
 read_when:
-    - nvidia Plugin のインストール、設定、または監査を行う場合
+    - nvidia Pluginをインストール、設定、または監査している場合
 summary: OpenClaw に NVIDIA モデルプロバイダーのサポートを追加します。
 title: NVIDIA Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:56:18Z"
+    generated_at: "2026-07-26T09:53:49Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -23,7 +23,7 @@ OpenClaw に NVIDIA モデルプロバイダーのサポートを追加します
 - パッケージ: `@openclaw/nvidia-provider`
 - インストール経路: OpenClaw に同梱
 
-## 対応範囲
+## 提供機能
 
 プロバイダー: `nvidia`
 

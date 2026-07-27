@@ -1,10 +1,10 @@
 ---
 read_when:
-    - Runway Plugin のインストール、設定、または監査を行っている場合
+    - Runway Plugin をインストール、設定、または監査している場合
 summary: 動画生成プロバイダーのサポートを追加します。
 title: Runway Plugin
 x-i18n:
-    generated_at: "2026-07-16T11:59:45Z"
+    generated_at: "2026-07-26T09:44:34Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -14,16 +14,16 @@ x-i18n:
     workflow: 16
 ---
 
-# Runway Plugin
+# Runway plugin
 
 動画生成プロバイダーのサポートを追加します。
 
 ## 配布
 
 - パッケージ: `@openclaw/runway-provider`
-- インストール方法: OpenClaw に同梱
+- インストール経路: OpenClaw に同梱
 
-## サーフェス
+## 提供機能
 
 コントラクト: `videoGenerationProviders`
 

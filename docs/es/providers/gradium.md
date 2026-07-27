@@ -1,11 +1,11 @@
 ---
 read_when:
-    - Quieres usar Gradium para la conversión de texto a voz
-    - Se necesita una clave de API de Gradium, una voz o la configuración de un token de directiva
+    - Quieres Gradium para la conversión de texto a voz
+    - Se necesita configurar la clave de API, la voz o el token de directiva de Gradium
 summary: Usar la conversión de texto a voz de Gradium en OpenClaw
 title: Gradium
 x-i18n:
-    generated_at: "2026-07-22T10:47:14Z"
+    generated_at: "2026-07-26T05:53:36Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -15,18 +15,18 @@ x-i18n:
     workflow: 16
 ---
 
-[Gradium](https://gradium.ai) es un proveedor de texto a voz para OpenClaw. Genera respuestas de audio estándar (WAV), salida Opus compatible con notas de voz y audio u-law de 8 kHz para interfaces de telefonía.
+[Gradium](https://gradium.ai) es un proveedor de conversión de texto a voz para OpenClaw. Genera respuestas de audio estándar (WAV), salida Opus compatible con notas de voz y audio u-law de 8 kHz para interfaces de telefonía.
 
-| Propiedad     | Valor                                |
-| ------------- | ------------------------------------ |
+| Propiedad       | Valor                                |
+| --------------- | ------------------------------------ |
 | Id. del proveedor | `gradium`                            |
-| Autenticación | `GRADIUM_API_KEY` o configuración `apiKey` |
-| URL base      | `https://api.gradium.ai` (predeterminada)   |
+| Autenticación   | `GRADIUM_API_KEY` o configuración `apiKey` |
+| URL base        | `https://api.gradium.ai` (predeterminada)   |
 | Voz predeterminada | `Emma` (`YTpq7expH9539ERJ`)          |
 
 ## Instalar el plugin
 
-Gradium es un plugin externo oficial. Instálelo y, a continuación, reinicie el Gateway:
+Gradium es un plugin externo oficial. Instálelo y, a continuación, reinicie Gateway:
 
 ```bash
 openclaw plugins install @openclaw/gradium-speech
@@ -81,9 +81,9 @@ Cree una clave de API de Gradium y expóngala mediante una variable de entorno o
 
 | Clave                                  | Tipo   | Descripción                                                                                             |
 | -------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------- |
-| `tts.providers.gradium.apiKey`         | string | Clave de API resuelta. Admite `${ENV}` y referencias a secretos.                                                    |
-| `tts.providers.gradium.baseUrl`        | string | URL HTTPS de la API de Gradium en `api.gradium.ai`. Se eliminan las barras diagonales finales. Valor predeterminado: `https://api.gradium.ai`. |
-| `tts.providers.gradium.speakerVoiceId` | string | Id. de voz predeterminado que se utiliza cuando no hay ninguna anulación mediante directiva.                                            |
+| `tts.providers.gradium.apiKey`         | cadena | Clave de API resuelta. Admite `${ENV}` y referencias a secretos.                                                    |
+| `tts.providers.gradium.baseUrl`        | cadena | URL HTTPS de la API de Gradium en `api.gradium.ai`. Se eliminan las barras finales. Valor predeterminado: `https://api.gradium.ai`. |
+| `tts.providers.gradium.speakerVoiceId` | cadena | Id. de voz predeterminado que se utiliza cuando no hay ninguna sustitución mediante directiva.                                            |
 
 El formato de salida se elige automáticamente según la interfaz de destino (consulte [Salida](#output)) y no se puede configurar en `openclaw.json`.
 
@@ -99,9 +99,9 @@ El formato de salida se elige automáticamente según la interfaz de destino (co
 | Sydney             | `jtEKaLYNn6iif5PR` |
 | Tiffany            | `Eu9iL_CYe8N-Gkx_` |
 
-### Anulación de la voz por mensaje
+### Sustitución de voz por mensaje
 
-Cuando la política de voz activa permita anular la voz, cámbiela en línea mediante un token de directiva (todas estas opciones son equivalentes y aceptan un id. de voz nativo del proveedor):
+Cuando la política de voz activa permite sustituir la voz, cámbiela en línea mediante un token de directiva (todas estas formas son equivalentes y aceptan un id. de voz nativo del proveedor):
 
 ```text
 /voice:LFZvm12tW_z0xfGo
@@ -111,23 +111,23 @@ Cuando la política de voz activa permita anular la voz, cámbiela en línea med
 /gradiumvoice:LFZvm12tW_z0xfGo
 ```
 
-Si la política de voz desactiva las anulaciones de voz, la directiva se consume, pero se ignora.
+Si la política de voz deshabilita la sustitución de voz, la directiva se consume, pero se ignora.
 
 ## Salida
 
 El formato de salida se selecciona según la interfaz de destino; el proveedor no sintetiza otros formatos.
 
 | Destino        | Formato     | Extensión de archivo | Frecuencia de muestreo | Indicador de compatibilidad con voz |
-| -------------- | ----------- | -------- | ----------- | --------------------- |
-| Audio estándar | `wav`       | `.wav`   | proveedor    | no                    |
-| Nota de voz    | `opus`      | `.opus`  | proveedor    | sí                   |
-| Telefonía      | `ulaw_8000` | n/a      | 8 kHz       | n/a                   |
+| -------------- | ----------- | -------------------- | ----------------------- | ----------------------------------- |
+| Audio estándar | `wav`       | `.wav`   | proveedor               | no                                  |
+| Nota de voz    | `opus`      | `.opus`  | proveedor               | sí                                  |
+| Telefonía      | `ulaw_8000` | n/d                  | 8 kHz                   | n/d                                 |
 
 ## Orden de selección automática
 
-Entre los proveedores de TTS configurados, el orden de selección automática de Gradium es `30`. Consulte [Texto a voz](/es/tools/tts) para saber cómo OpenClaw elige el proveedor activo cuando `tts.provider` no está fijado.
+Entre los proveedores de TTS configurados, el orden de selección automática de Gradium es `30`. Consulte [Conversión de texto a voz](/es/tools/tts) para saber cómo OpenClaw elige el proveedor activo cuando `tts.provider` no está fijado.
 
-## Contenido relacionado
+## Temas relacionados
 
-- [Texto a voz](/es/tools/tts)
-- [Descripción general de los medios](/es/tools/media-overview)
+- [Conversión de texto a voz](/es/tools/tts)
+- [Descripción general de medios](/es/tools/media-overview)

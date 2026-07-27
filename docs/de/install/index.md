@@ -1,12 +1,12 @@
 ---
 read_when:
-    - Sie benötigen eine andere Installationsmethode als den Schnellstart „Erste Schritte“
+    - Sie benötigen eine andere Installationsmethode als den Schnellstart unter „Erste Schritte“
     - Sie möchten die Bereitstellung auf einer Cloud-Plattform durchführen
     - Sie müssen aktualisieren, migrieren oder deinstallieren
 summary: OpenClaw installieren – Installationsskript, npm/pnpm/bun, aus dem Quellcode, Docker und mehr
 title: Installieren
 x-i18n:
-    generated_at: "2026-07-24T05:07:10Z"
+    generated_at: "2026-07-26T19:01:37Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -18,13 +18,13 @@ x-i18n:
 
 ## Systemanforderungen
 
-- **Node 22.22.3+, 24.15+ oder 25.9+** – Node 24 ist das Standardziel; das Installationsskript übernimmt dies automatisch.
+- **Node 22.22.3+, 24.15+ oder 25.9+** – Node 24 ist das standardmäßige Ziel; das Installationsskript übernimmt dies automatisch.
 - **macOS, Linux oder Windows** – Windows-Benutzer können mit der nativen Windows-Hub-App, dem PowerShell-CLI-Installationsprogramm oder einem WSL2-Gateway beginnen. Siehe [Windows](/de/platforms/windows).
 - `pnpm` wird nur benötigt, wenn Sie aus dem Quellcode erstellen.
 
 ## Empfohlen: Installationsskript
 
-Die schnellste Installationsmethode. Das Skript erkennt Ihr Betriebssystem, installiert bei Bedarf Node, installiert OpenClaw und startet das Onboarding.
+Die schnellste Installationsmethode. Sie erkennt Ihr Betriebssystem, installiert bei Bedarf Node, installiert OpenClaw und startet das Onboarding.
 
 <Note>
 Benutzer der Windows-Desktopversion können auch die native Begleit-App [Windows Hub](/de/platforms/windows#recommended-windows-hub) installieren, die Einrichtung, Taskleistenstatus, Chat, Node-Modus und lokalen MCP-Modus umfasst.
@@ -65,14 +65,14 @@ Alle Flags und Optionen für CI/Automatisierung finden Sie unter [Interna des In
 ### Installationsprogramm mit lokalem Präfix (`install-cli.sh`)
 
 Verwenden Sie diese Methode, wenn OpenClaw und Node unter einem lokalen Präfix wie
-`~/.openclaw` gespeichert werden sollen, ohne von einer systemweiten Node-Installation abhängig zu sein:
+`~/.openclaw` verbleiben sollen, ohne von einer systemweiten Node-Installation abhängig zu sein:
 
 ```bash
 curl -fsSL https://openclaw.ai/install-cli.sh | bash
 ```
 
-Standardmäßig werden npm-Installationen sowie Installationen aus einem Git-Checkout mit demselben
-Präfixablauf unterstützt. Vollständige Referenz: [Interna des Installationsprogramms](/de/install/installer#install-clish).
+Standardmäßig werden npm-Installationen unterstützt, zusätzlich zu Installationen aus einem Git-Checkout im selben
+Präfixablauf. Vollständige Referenz: [Interna des Installationsprogramms](/de/install/installer#install-clish).
 
 Bereits installiert? Wechseln Sie mit
 `openclaw update --channel dev` und `openclaw update --channel stable` zwischen Paket- und Git-Installationen. Siehe
@@ -115,7 +115,7 @@ Wenn Sie Node bereits selbst verwalten:
     ```
 
     <Note>
-    Bun kann das globale Paket installieren, die daraus resultierende ausführbare Datei `openclaw` benötigt jedoch eine unterstützte Node-Laufzeit, da der OpenClaw-Zustand `node:sqlite` verwendet.
+    Bun kann das globale Paket installieren, die resultierende ausführbare Datei `openclaw` benötigt jedoch eine unterstützte Node-Laufzeit, da der OpenClaw-Zustand `node:sqlite` verwendet.
     </Note>
 
   </Tab>
@@ -148,7 +148,7 @@ curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash -s -
     Containerisierte oder monitorlose Bereitstellungen.
   </Card>
   <Card title="Podman" href="/de/install/podman" icon="container">
-    Rootlose Containeralternative zu Docker.
+    Rootless-Containeralternative zu Docker.
   </Card>
   <Card title="Nix" href="/de/install/nix" icon="snowflake">
     Deklarative Installation über Nix-Flake.
@@ -164,7 +164,7 @@ curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash -s -
 ## Installation überprüfen
 
 ```bash
-openclaw --version      # Verfügbarkeit der CLI bestätigen
+openclaw --version      # bestätigen, dass die CLI verfügbar ist
 openclaw doctor         # auf Konfigurationsprobleme prüfen
 openclaw gateway status # überprüfen, ob das Gateway ausgeführt wird
 ```
@@ -173,14 +173,14 @@ Wenn Sie nach der Installation einen verwalteten Start wünschen:
 
 - macOS: LaunchAgent über `openclaw onboard --install-daemon` oder `openclaw gateway install`
 - Linux/WSL2: systemd-Benutzerdienst über dieselben Befehle
-- Natives Windows: zunächst eine geplante Aufgabe, mit einem benutzerspezifischen Anmeldeelement im Autostartordner als Ausweichlösung, wenn die Aufgabenerstellung verweigert wird
+- Natives Windows: zunächst eine geplante Aufgabe, mit einem benutzerspezifischen Anmeldeelement im Autostartordner als Ausweichlösung, falls das Erstellen der Aufgabe verweigert wird
 
 ## Hosting und Bereitstellung
 
 Stellen Sie OpenClaw auf einem Cloud-Server oder VPS bereit. Unter [Linux-Server](/de/vps) finden Sie die vollständige
 Provider-Auswahl (DigitalOcean, Hetzner, Hostinger, Fly.io, GCP, Azure, Railway,
-Northflank, Oracle Cloud, Raspberry Pi und weitere). Alternativ können Sie OpenClaw deklarativ auf
-[Render](/de/install/render) bereitstellen.
+Northflank, Oracle Cloud, Raspberry Pi und weitere), oder führen Sie die Bereitstellung deklarativ auf
+[Render](/de/install/render) durch.
 
 <CardGroup cols={3}>
   <Card title="VPS" href="/de/vps">
@@ -197,20 +197,20 @@ Northflank, Oracle Cloud, Raspberry Pi und weitere). Alternativ können Sie Open
 ## Aktualisieren, migrieren oder deinstallieren
 
 <CardGroup cols={3}>
-  <Card title="Aktualisieren" href="/de/install/updating" icon="refresh-cw">
+  <Card title="Aktualisierung" href="/de/install/updating" icon="refresh-cw">
     Halten Sie OpenClaw auf dem neuesten Stand.
   </Card>
-  <Card title="Migrieren" href="/de/install/migrating" icon="arrow-right">
+  <Card title="Migration" href="/de/install/migrating" icon="arrow-right">
     Wechseln Sie auf einen neuen Computer.
   </Card>
-  <Card title="Deinstallieren" href="/de/install/uninstall" icon="trash-2">
+  <Card title="Deinstallation" href="/de/install/uninstall" icon="trash-2">
     Entfernen Sie OpenClaw vollständig.
   </Card>
 </CardGroup>
 
 ## Fehlerbehebung: `openclaw` nicht gefunden
 
-Fast immer handelt es sich um ein PATH-Problem: Das globale Binärverzeichnis von npm befindet sich nicht im `PATH` Ihrer Shell. Die vollständige Lösung einschließlich des Windows-Pfads finden Sie unter [Fehlerbehebung für Node.js](/de/install/node#troubleshooting).
+Fast immer handelt es sich um ein PATH-Problem: Das globale Binärverzeichnis von npm befindet sich nicht im `PATH` Ihrer Shell. Unter [Fehlerbehebung für Node.js](/de/install/node#troubleshooting) finden Sie die vollständige Lösung einschließlich des Windows-Pfads.
 
 ```bash
 node -v           # Node installiert?

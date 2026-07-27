@@ -4,7 +4,7 @@ read_when:
 summary: 为 OpenClaw 添加 Volcengine 和 Volcengine Plan 模型提供商支持。
 title: 火山引擎插件
 x-i18n:
-    generated_at: "2026-07-16T11:48:15Z"
+    generated_at: "2026-07-26T06:58:07Z"
     model: gpt-5.6
     postprocess_version: locale-links-v1
     prompt_version: 32
@@ -21,7 +21,7 @@ x-i18n:
 ## 分发
 
 - 软件包：`@openclaw/volcengine-provider`
-- 安装方式：已内置于 OpenClaw
+- 安装方式：OpenClaw 内置
 
 ## 接口
 
@@ -29,4 +29,4 @@ x-i18n:
 
 ## 相关文档
 
-- [Volcengine](/zh-CN/providers/volcengine)
+- [volcengine](/zh-CN/providers/volcengine)
