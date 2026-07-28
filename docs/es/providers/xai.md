@@ -603,6 +603,7 @@ los metadatos de contexto obsoletos en las filas 4.20 activas. No fija los alias
     - OpenClaw no expone actualmente la familia de modelos multiagente de xAI. xAI ofrece estos modelos mediante la API Responses, pero no aceptan las herramientas del cliente ni las herramientas personalizadas que utiliza el bucle de agente compartido de OpenClaw. Consulte las [limitaciones multiagente de xAI](https://docs.x.ai/developers/model-capabilities/text/multi-agent#limitations).
     - Actualmente, la voz en tiempo real de xAI solo expone el transporte Talk mediante retransmisión del Gateway. Las sesiones WebSocket del proveedor controladas por el navegador todavía no están conectadas en la interfaz de control.
     - La imagen `quality`, la imagen `mask` y las relaciones de aspecto adicionales exclusivas de la implementación nativa no se exponen hasta que la herramienta compartida `image_generate` disponga de los controles correspondientes entre proveedores.
+
   </Accordion>
 
   <Accordion title="Notas avanzadas">
@@ -613,6 +614,7 @@ los metadatos de contexto obsoletos en las filas 4.20 activas. No fija los alias
     - Grok `web_search` lee `plugins.entries.xai.config.webSearch.baseUrl`. `x_search` lee `plugins.entries.xai.config.xSearch.baseUrl` y, a continuación, recurre a la URL base de búsqueda web de Grok.
     - `x_search` y `code_execution` pertenecen al plugin de xAI incluido, en lugar de estar codificados directamente en el entorno de ejecución central de modelos.
     - `code_execution` es una ejecución remota en el entorno aislado de xAI, no una ejecución local mediante [`exec`](/es/tools/exec).
+
   </Accordion>
 </AccordionGroup>
 

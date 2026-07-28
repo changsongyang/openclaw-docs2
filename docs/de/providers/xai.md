@@ -610,6 +610,7 @@ Aliasse vom Typ `beta-latest` werden dabei nicht auf einen datierten Snapshot fe
     - xAI Realtime Voice stellt derzeit nur den Gateway-Relay-Transport für Talk bereit.
       Vom Browser verwaltete Provider-WebSocket-Sitzungen sind noch nicht in die Control UI integriert.
     - xAI-Bild-`quality`, Bild-`mask` und zusätzliche ausschließlich native Seitenverhältnisse werden erst bereitgestellt, wenn das gemeinsame Tool `image_generate` über entsprechende Provider-übergreifende Steuerelemente verfügt.
+
   </Accordion>
 
   <Accordion title="Erweiterte Hinweise">

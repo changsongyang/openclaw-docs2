@@ -53,6 +53,10 @@
   },
   "redirects": [
     {
+      "source": "/gateway/security/shrinkwrap",
+      "destination": "/gateway/security/dependency-locking"
+    },
+    {
       "source": "/cli/crestodian",
       "destination": "/cli/openclaw"
     },
@@ -1312,6 +1316,7 @@
                   "plugins/workboard",
                   "plugins/webhooks",
                   "plugins/admin-http-rpc",
+                  "plugins/beam",
                   "plugins/voice-call",
                   "plugins/vault",
                   "plugins/onepassword",
@@ -1674,7 +1679,7 @@
                       "gateway/security/index",
                       "gateway/security/exposure-runbook",
                       "gateway/security/secure-file-operations",
-                      "gateway/security/shrinkwrap",
+                      "gateway/security/dependency-locking",
                       "gateway/security/audit-checks",
                       "gateway/security/rate-limiting",
                       "gateway/operator-scopes",
@@ -1758,6 +1763,7 @@
                 "pages": [
                   "web/index",
                   "web/control-ui",
+                  "web/urls",
                   "web/dashboard",
                   "web/dashboards",
                   "web/dashboard-architecture",
@@ -1941,7 +1947,6 @@
                   "reference/templates/HEARTBEAT",
                   "reference/templates/IDENTITY",
                   "reference/templates/SOUL",
-                  "reference/templates/TOOLS",
                   "reference/templates/USER"
                 ]
               },
@@ -2959,6 +2964,7 @@
                   "zh-TW/plugins/workboard",
                   "zh-TW/plugins/webhooks",
                   "zh-TW/plugins/admin-http-rpc",
+                  "zh-TW/plugins/beam",
                   "zh-TW/plugins/voice-call",
                   "zh-TW/plugins/vault",
                   "zh-TW/plugins/onepassword",
@@ -3287,7 +3293,7 @@
                       "zh-TW/gateway/security/index",
                       "zh-TW/gateway/security/exposure-runbook",
                       "zh-TW/gateway/security/secure-file-operations",
-                      "zh-TW/gateway/security/shrinkwrap",
+                      "zh-TW/gateway/security/dependency-locking",
                       "zh-TW/gateway/security/audit-checks",
                       "zh-TW/gateway/security/rate-limiting",
                       "zh-TW/gateway/operator-scopes",
@@ -3371,6 +3377,7 @@
                 "pages": [
                   "zh-TW/web/index",
                   "zh-TW/web/control-ui",
+                  "zh-TW/web/urls",
                   "zh-TW/web/dashboard",
                   "zh-TW/web/dashboards",
                   "zh-TW/web/dashboard-architecture",
@@ -3554,7 +3561,6 @@
                   "zh-TW/reference/templates/HEARTBEAT",
                   "zh-TW/reference/templates/IDENTITY",
                   "zh-TW/reference/templates/SOUL",
-                  "zh-TW/reference/templates/TOOLS",
                   "zh-TW/reference/templates/USER"
                 ]
               },
@@ -3949,6 +3955,7 @@
                   "ja-JP/plugins/workboard",
                   "ja-JP/plugins/webhooks",
                   "ja-JP/plugins/admin-http-rpc",
+                  "ja-JP/plugins/beam",
                   "ja-JP/plugins/voice-call",
                   "ja-JP/plugins/vault",
                   "ja-JP/plugins/onepassword",
@@ -4277,7 +4284,7 @@
                       "ja-JP/gateway/security/index",
                       "ja-JP/gateway/security/exposure-runbook",
                       "ja-JP/gateway/security/secure-file-operations",
-                      "ja-JP/gateway/security/shrinkwrap",
+                      "ja-JP/gateway/security/dependency-locking",
                       "ja-JP/gateway/security/audit-checks",
                       "ja-JP/gateway/security/rate-limiting",
                       "ja-JP/gateway/operator-scopes",
@@ -4361,6 +4368,7 @@
                 "pages": [
                   "ja-JP/web/index",
                   "ja-JP/web/control-ui",
+                  "ja-JP/web/urls",
                   "ja-JP/web/dashboard",
                   "ja-JP/web/dashboards",
                   "ja-JP/web/dashboard-architecture",
@@ -4544,7 +4552,6 @@
                   "ja-JP/reference/templates/HEARTBEAT",
                   "ja-JP/reference/templates/IDENTITY",
                   "ja-JP/reference/templates/SOUL",
-                  "ja-JP/reference/templates/TOOLS",
                   "ja-JP/reference/templates/USER"
                 ]
               },
@@ -4939,6 +4946,7 @@
                   "es/plugins/workboard",
                   "es/plugins/webhooks",
                   "es/plugins/admin-http-rpc",
+                  "es/plugins/beam",
                   "es/plugins/voice-call",
                   "es/plugins/vault",
                   "es/plugins/onepassword",
@@ -5267,7 +5275,7 @@
                       "es/gateway/security/index",
                       "es/gateway/security/exposure-runbook",
                       "es/gateway/security/secure-file-operations",
-                      "es/gateway/security/shrinkwrap",
+                      "es/gateway/security/dependency-locking",
                       "es/gateway/security/audit-checks",
                       "es/gateway/security/rate-limiting",
                       "es/gateway/operator-scopes",
@@ -5351,6 +5359,7 @@
                 "pages": [
                   "es/web/index",
                   "es/web/control-ui",
+                  "es/web/urls",
                   "es/web/dashboard",
                   "es/web/dashboards",
                   "es/web/dashboard-architecture",
@@ -5534,7 +5543,6 @@
                   "es/reference/templates/HEARTBEAT",
                   "es/reference/templates/IDENTITY",
                   "es/reference/templates/SOUL",
-                  "es/reference/templates/TOOLS",
                   "es/reference/templates/USER"
                 ]
               },
@@ -5929,6 +5937,7 @@
                   "pt-BR/plugins/workboard",
                   "pt-BR/plugins/webhooks",
                   "pt-BR/plugins/admin-http-rpc",
+                  "pt-BR/plugins/beam",
                   "pt-BR/plugins/voice-call",
                   "pt-BR/plugins/vault",
                   "pt-BR/plugins/onepassword",
@@ -6257,7 +6266,7 @@
                       "pt-BR/gateway/security/index",
                       "pt-BR/gateway/security/exposure-runbook",
                       "pt-BR/gateway/security/secure-file-operations",
-                      "pt-BR/gateway/security/shrinkwrap",
+                      "pt-BR/gateway/security/dependency-locking",
                       "pt-BR/gateway/security/audit-checks",
                       "pt-BR/gateway/security/rate-limiting",
                       "pt-BR/gateway/operator-scopes",
@@ -6341,6 +6350,7 @@
                 "pages": [
                   "pt-BR/web/index",
                   "pt-BR/web/control-ui",
+                  "pt-BR/web/urls",
                   "pt-BR/web/dashboard",
                   "pt-BR/web/dashboards",
                   "pt-BR/web/dashboard-architecture",
@@ -6524,7 +6534,6 @@
                   "pt-BR/reference/templates/HEARTBEAT",
                   "pt-BR/reference/templates/IDENTITY",
                   "pt-BR/reference/templates/SOUL",
-                  "pt-BR/reference/templates/TOOLS",
                   "pt-BR/reference/templates/USER"
                 ]
               },
@@ -6919,6 +6928,7 @@
                   "ko/plugins/workboard",
                   "ko/plugins/webhooks",
                   "ko/plugins/admin-http-rpc",
+                  "ko/plugins/beam",
                   "ko/plugins/voice-call",
                   "ko/plugins/vault",
                   "ko/plugins/onepassword",
@@ -7247,7 +7257,7 @@
                       "ko/gateway/security/index",
                       "ko/gateway/security/exposure-runbook",
                       "ko/gateway/security/secure-file-operations",
-                      "ko/gateway/security/shrinkwrap",
+                      "ko/gateway/security/dependency-locking",
                       "ko/gateway/security/audit-checks",
                       "ko/gateway/security/rate-limiting",
                       "ko/gateway/operator-scopes",
@@ -7331,6 +7341,7 @@
                 "pages": [
                   "ko/web/index",
                   "ko/web/control-ui",
+                  "ko/web/urls",
                   "ko/web/dashboard",
                   "ko/web/dashboards",
                   "ko/web/dashboard-architecture",
@@ -7514,7 +7525,6 @@
                   "ko/reference/templates/HEARTBEAT",
                   "ko/reference/templates/IDENTITY",
                   "ko/reference/templates/SOUL",
-                  "ko/reference/templates/TOOLS",
                   "ko/reference/templates/USER"
                 ]
               },
@@ -7909,6 +7919,7 @@
                   "de/plugins/workboard",
                   "de/plugins/webhooks",
                   "de/plugins/admin-http-rpc",
+                  "de/plugins/beam",
                   "de/plugins/voice-call",
                   "de/plugins/vault",
                   "de/plugins/onepassword",
@@ -8237,7 +8248,7 @@
                       "de/gateway/security/index",
                       "de/gateway/security/exposure-runbook",
                       "de/gateway/security/secure-file-operations",
-                      "de/gateway/security/shrinkwrap",
+                      "de/gateway/security/dependency-locking",
                       "de/gateway/security/audit-checks",
                       "de/gateway/security/rate-limiting",
                       "de/gateway/operator-scopes",
@@ -8321,6 +8332,7 @@
                 "pages": [
                   "de/web/index",
                   "de/web/control-ui",
+                  "de/web/urls",
                   "de/web/dashboard",
                   "de/web/dashboards",
                   "de/web/dashboard-architecture",
@@ -8504,7 +8516,6 @@
                   "de/reference/templates/HEARTBEAT",
                   "de/reference/templates/IDENTITY",
                   "de/reference/templates/SOUL",
-                  "de/reference/templates/TOOLS",
                   "de/reference/templates/USER"
                 ]
               },
@@ -8899,6 +8910,7 @@
                   "fr/plugins/workboard",
                   "fr/plugins/webhooks",
                   "fr/plugins/admin-http-rpc",
+                  "fr/plugins/beam",
                   "fr/plugins/voice-call",
                   "fr/plugins/vault",
                   "fr/plugins/onepassword",
@@ -9227,7 +9239,7 @@
                       "fr/gateway/security/index",
                       "fr/gateway/security/exposure-runbook",
                       "fr/gateway/security/secure-file-operations",
-                      "fr/gateway/security/shrinkwrap",
+                      "fr/gateway/security/dependency-locking",
                       "fr/gateway/security/audit-checks",
                       "fr/gateway/security/rate-limiting",
                       "fr/gateway/operator-scopes",
@@ -9311,6 +9323,7 @@
                 "pages": [
                   "fr/web/index",
                   "fr/web/control-ui",
+                  "fr/web/urls",
                   "fr/web/dashboard",
                   "fr/web/dashboards",
                   "fr/web/dashboard-architecture",
@@ -9494,7 +9507,6 @@
                   "fr/reference/templates/HEARTBEAT",
                   "fr/reference/templates/IDENTITY",
                   "fr/reference/templates/SOUL",
-                  "fr/reference/templates/TOOLS",
                   "fr/reference/templates/USER"
                 ]
               },
@@ -9889,6 +9901,7 @@
                   "hi/plugins/workboard",
                   "hi/plugins/webhooks",
                   "hi/plugins/admin-http-rpc",
+                  "hi/plugins/beam",
                   "hi/plugins/voice-call",
                   "hi/plugins/vault",
                   "hi/plugins/onepassword",
@@ -10217,7 +10230,7 @@
                       "hi/gateway/security/index",
                       "hi/gateway/security/exposure-runbook",
                       "hi/gateway/security/secure-file-operations",
-                      "hi/gateway/security/shrinkwrap",
+                      "hi/gateway/security/dependency-locking",
                       "hi/gateway/security/audit-checks",
                       "hi/gateway/security/rate-limiting",
                       "hi/gateway/operator-scopes",
@@ -10301,6 +10314,7 @@
                 "pages": [
                   "hi/web/index",
                   "hi/web/control-ui",
+                  "hi/web/urls",
                   "hi/web/dashboard",
                   "hi/web/dashboards",
                   "hi/web/dashboard-architecture",
@@ -10484,7 +10498,6 @@
                   "hi/reference/templates/HEARTBEAT",
                   "hi/reference/templates/IDENTITY",
                   "hi/reference/templates/SOUL",
-                  "hi/reference/templates/TOOLS",
                   "hi/reference/templates/USER"
                 ]
               },
@@ -10879,6 +10892,7 @@
                   "ar/plugins/workboard",
                   "ar/plugins/webhooks",
                   "ar/plugins/admin-http-rpc",
+                  "ar/plugins/beam",
                   "ar/plugins/voice-call",
                   "ar/plugins/vault",
                   "ar/plugins/onepassword",
@@ -11207,7 +11221,7 @@
                       "ar/gateway/security/index",
                       "ar/gateway/security/exposure-runbook",
                       "ar/gateway/security/secure-file-operations",
-                      "ar/gateway/security/shrinkwrap",
+                      "ar/gateway/security/dependency-locking",
                       "ar/gateway/security/audit-checks",
                       "ar/gateway/security/rate-limiting",
                       "ar/gateway/operator-scopes",
@@ -11291,6 +11305,7 @@
                 "pages": [
                   "ar/web/index",
                   "ar/web/control-ui",
+                  "ar/web/urls",
                   "ar/web/dashboard",
                   "ar/web/dashboards",
                   "ar/web/dashboard-architecture",
@@ -11474,7 +11489,6 @@
                   "ar/reference/templates/HEARTBEAT",
                   "ar/reference/templates/IDENTITY",
                   "ar/reference/templates/SOUL",
-                  "ar/reference/templates/TOOLS",
                   "ar/reference/templates/USER"
                 ]
               },
@@ -11869,6 +11883,7 @@
                   "it/plugins/workboard",
                   "it/plugins/webhooks",
                   "it/plugins/admin-http-rpc",
+                  "it/plugins/beam",
                   "it/plugins/voice-call",
                   "it/plugins/vault",
                   "it/plugins/onepassword",
@@ -12197,7 +12212,7 @@
                       "it/gateway/security/index",
                       "it/gateway/security/exposure-runbook",
                       "it/gateway/security/secure-file-operations",
-                      "it/gateway/security/shrinkwrap",
+                      "it/gateway/security/dependency-locking",
                       "it/gateway/security/audit-checks",
                       "it/gateway/security/rate-limiting",
                       "it/gateway/operator-scopes",
@@ -12281,6 +12296,7 @@
                 "pages": [
                   "it/web/index",
                   "it/web/control-ui",
+                  "it/web/urls",
                   "it/web/dashboard",
                   "it/web/dashboards",
                   "it/web/dashboard-architecture",
@@ -12464,7 +12480,6 @@
                   "it/reference/templates/HEARTBEAT",
                   "it/reference/templates/IDENTITY",
                   "it/reference/templates/SOUL",
-                  "it/reference/templates/TOOLS",
                   "it/reference/templates/USER"
                 ]
               },
@@ -12859,6 +12874,7 @@
                   "vi/plugins/workboard",
                   "vi/plugins/webhooks",
                   "vi/plugins/admin-http-rpc",
+                  "vi/plugins/beam",
                   "vi/plugins/voice-call",
                   "vi/plugins/vault",
                   "vi/plugins/onepassword",
@@ -13187,7 +13203,7 @@
                       "vi/gateway/security/index",
                       "vi/gateway/security/exposure-runbook",
                       "vi/gateway/security/secure-file-operations",
-                      "vi/gateway/security/shrinkwrap",
+                      "vi/gateway/security/dependency-locking",
                       "vi/gateway/security/audit-checks",
                       "vi/gateway/security/rate-limiting",
                       "vi/gateway/operator-scopes",
@@ -13271,6 +13287,7 @@
                 "pages": [
                   "vi/web/index",
                   "vi/web/control-ui",
+                  "vi/web/urls",
                   "vi/web/dashboard",
                   "vi/web/dashboards",
                   "vi/web/dashboard-architecture",
@@ -13454,7 +13471,6 @@
                   "vi/reference/templates/HEARTBEAT",
                   "vi/reference/templates/IDENTITY",
                   "vi/reference/templates/SOUL",
-                  "vi/reference/templates/TOOLS",
                   "vi/reference/templates/USER"
                 ]
               },
@@ -13849,6 +13865,7 @@
                   "nl/plugins/workboard",
                   "nl/plugins/webhooks",
                   "nl/plugins/admin-http-rpc",
+                  "nl/plugins/beam",
                   "nl/plugins/voice-call",
                   "nl/plugins/vault",
                   "nl/plugins/onepassword",
@@ -14177,7 +14194,7 @@
                       "nl/gateway/security/index",
                       "nl/gateway/security/exposure-runbook",
                       "nl/gateway/security/secure-file-operations",
-                      "nl/gateway/security/shrinkwrap",
+                      "nl/gateway/security/dependency-locking",
                       "nl/gateway/security/audit-checks",
                       "nl/gateway/security/rate-limiting",
                       "nl/gateway/operator-scopes",
@@ -14261,6 +14278,7 @@
                 "pages": [
                   "nl/web/index",
                   "nl/web/control-ui",
+                  "nl/web/urls",
                   "nl/web/dashboard",
                   "nl/web/dashboards",
                   "nl/web/dashboard-architecture",
@@ -14444,7 +14462,6 @@
                   "nl/reference/templates/HEARTBEAT",
                   "nl/reference/templates/IDENTITY",
                   "nl/reference/templates/SOUL",
-                  "nl/reference/templates/TOOLS",
                   "nl/reference/templates/USER"
                 ]
               },
@@ -14839,6 +14856,7 @@
                   "tr/plugins/workboard",
                   "tr/plugins/webhooks",
                   "tr/plugins/admin-http-rpc",
+                  "tr/plugins/beam",
                   "tr/plugins/voice-call",
                   "tr/plugins/vault",
                   "tr/plugins/onepassword",
@@ -15167,7 +15185,7 @@
                       "tr/gateway/security/index",
                       "tr/gateway/security/exposure-runbook",
                       "tr/gateway/security/secure-file-operations",
-                      "tr/gateway/security/shrinkwrap",
+                      "tr/gateway/security/dependency-locking",
                       "tr/gateway/security/audit-checks",
                       "tr/gateway/security/rate-limiting",
                       "tr/gateway/operator-scopes",
@@ -15251,6 +15269,7 @@
                 "pages": [
                   "tr/web/index",
                   "tr/web/control-ui",
+                  "tr/web/urls",
                   "tr/web/dashboard",
                   "tr/web/dashboards",
                   "tr/web/dashboard-architecture",
@@ -15434,7 +15453,6 @@
                   "tr/reference/templates/HEARTBEAT",
                   "tr/reference/templates/IDENTITY",
                   "tr/reference/templates/SOUL",
-                  "tr/reference/templates/TOOLS",
                   "tr/reference/templates/USER"
                 ]
               },
@@ -15829,6 +15847,7 @@
                   "uk/plugins/workboard",
                   "uk/plugins/webhooks",
                   "uk/plugins/admin-http-rpc",
+                  "uk/plugins/beam",
                   "uk/plugins/voice-call",
                   "uk/plugins/vault",
                   "uk/plugins/onepassword",
@@ -16157,7 +16176,7 @@
                       "uk/gateway/security/index",
                       "uk/gateway/security/exposure-runbook",
                       "uk/gateway/security/secure-file-operations",
-                      "uk/gateway/security/shrinkwrap",
+                      "uk/gateway/security/dependency-locking",
                       "uk/gateway/security/audit-checks",
                       "uk/gateway/security/rate-limiting",
                       "uk/gateway/operator-scopes",
@@ -16241,6 +16260,7 @@
                 "pages": [
                   "uk/web/index",
                   "uk/web/control-ui",
+                  "uk/web/urls",
                   "uk/web/dashboard",
                   "uk/web/dashboards",
                   "uk/web/dashboard-architecture",
@@ -16424,7 +16444,6 @@
                   "uk/reference/templates/HEARTBEAT",
                   "uk/reference/templates/IDENTITY",
                   "uk/reference/templates/SOUL",
-                  "uk/reference/templates/TOOLS",
                   "uk/reference/templates/USER"
                 ]
               },
@@ -16819,6 +16838,7 @@
                   "id/plugins/workboard",
                   "id/plugins/webhooks",
                   "id/plugins/admin-http-rpc",
+                  "id/plugins/beam",
                   "id/plugins/voice-call",
                   "id/plugins/vault",
                   "id/plugins/onepassword",
@@ -17147,7 +17167,7 @@
                       "id/gateway/security/index",
                       "id/gateway/security/exposure-runbook",
                       "id/gateway/security/secure-file-operations",
-                      "id/gateway/security/shrinkwrap",
+                      "id/gateway/security/dependency-locking",
                       "id/gateway/security/audit-checks",
                       "id/gateway/security/rate-limiting",
                       "id/gateway/operator-scopes",
@@ -17231,6 +17251,7 @@
                 "pages": [
                   "id/web/index",
                   "id/web/control-ui",
+                  "id/web/urls",
                   "id/web/dashboard",
                   "id/web/dashboards",
                   "id/web/dashboard-architecture",
@@ -17414,7 +17435,6 @@
                   "id/reference/templates/HEARTBEAT",
                   "id/reference/templates/IDENTITY",
                   "id/reference/templates/SOUL",
-                  "id/reference/templates/TOOLS",
                   "id/reference/templates/USER"
                 ]
               },
@@ -17809,6 +17829,7 @@
                   "pl/plugins/workboard",
                   "pl/plugins/webhooks",
                   "pl/plugins/admin-http-rpc",
+                  "pl/plugins/beam",
                   "pl/plugins/voice-call",
                   "pl/plugins/vault",
                   "pl/plugins/onepassword",
@@ -18137,7 +18158,7 @@
                       "pl/gateway/security/index",
                       "pl/gateway/security/exposure-runbook",
                       "pl/gateway/security/secure-file-operations",
-                      "pl/gateway/security/shrinkwrap",
+                      "pl/gateway/security/dependency-locking",
                       "pl/gateway/security/audit-checks",
                       "pl/gateway/security/rate-limiting",
                       "pl/gateway/operator-scopes",
@@ -18221,6 +18242,7 @@
                 "pages": [
                   "pl/web/index",
                   "pl/web/control-ui",
+                  "pl/web/urls",
                   "pl/web/dashboard",
                   "pl/web/dashboards",
                   "pl/web/dashboard-architecture",
@@ -18404,7 +18426,6 @@
                   "pl/reference/templates/HEARTBEAT",
                   "pl/reference/templates/IDENTITY",
                   "pl/reference/templates/SOUL",
-                  "pl/reference/templates/TOOLS",
                   "pl/reference/templates/USER"
                 ]
               },
@@ -18799,6 +18820,7 @@
                   "ru/plugins/workboard",
                   "ru/plugins/webhooks",
                   "ru/plugins/admin-http-rpc",
+                  "ru/plugins/beam",
                   "ru/plugins/voice-call",
                   "ru/plugins/vault",
                   "ru/plugins/onepassword",
@@ -19127,7 +19149,7 @@
                       "ru/gateway/security/index",
                       "ru/gateway/security/exposure-runbook",
                       "ru/gateway/security/secure-file-operations",
-                      "ru/gateway/security/shrinkwrap",
+                      "ru/gateway/security/dependency-locking",
                       "ru/gateway/security/audit-checks",
                       "ru/gateway/security/rate-limiting",
                       "ru/gateway/operator-scopes",
@@ -19211,6 +19233,7 @@
                 "pages": [
                   "ru/web/index",
                   "ru/web/control-ui",
+                  "ru/web/urls",
                   "ru/web/dashboard",
                   "ru/web/dashboards",
                   "ru/web/dashboard-architecture",
@@ -19394,7 +19417,6 @@
                   "ru/reference/templates/HEARTBEAT",
                   "ru/reference/templates/IDENTITY",
                   "ru/reference/templates/SOUL",
-                  "ru/reference/templates/TOOLS",
                   "ru/reference/templates/USER"
                 ]
               },

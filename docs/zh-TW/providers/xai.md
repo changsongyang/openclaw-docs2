@@ -595,6 +595,7 @@ xAI 已停用下列確切 ID。OpenClaw 會將其保留為已發布設定的隱�
       [xAI 多代理限制](https://docs.x.ai/developers/model-capabilities/text/multi-agent#limitations)。
     - xAI Realtime 語音目前僅開放閘道轉送的 Talk 傳輸。Control UI 尚未接上由瀏覽器持有的提供者 WebSocket 工作階段。
     - 在共用 `image_generate` 工具具備對應的跨提供者控制項之前，不會開放 xAI 圖片 `quality`、圖片 `mask`，以及額外的僅原生長寬比。
+
   </Accordion>
 
   <Accordion title="進階說明">

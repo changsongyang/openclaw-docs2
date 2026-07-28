@@ -604,6 +604,7 @@ aliassen voor `beta-latest` niet vast op een gedateerde momentopname.
       [beperkingen van xAI voor meerdere agents](https://docs.x.ai/developers/model-capabilities/text/multi-agent#limitations).
     - xAI Realtime-spraak biedt momenteel alleen het Talk-transport via een Gateway-relay. WebSocket-sessies van providers die door de browser worden beheerd, zijn nog niet gekoppeld in de Control UI.
     - xAI-afbeelding `quality`, afbeelding `mask` en aanvullende uitsluitend native beschikbare beeldverhoudingen worden pas beschikbaar gesteld wanneer de gedeelde tool `image_generate` overeenkomstige provideroverschrijdende bedieningselementen heeft.
+
   </Accordion>
 
   <Accordion title="Geavanceerde opmerkingen">
