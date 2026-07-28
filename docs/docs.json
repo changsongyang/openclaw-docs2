@@ -2072,18 +2072,8 @@
               {
                 "group": "首页",
                 "pages": [
-                  "zh-CN/index"
-                ]
-              },
-              {
-                "group": "概览",
-                "pages": [
-                  "zh-CN/start/showcase"
-                ]
-              },
-              {
-                "group": "核心概念",
-                "pages": [
+                  "zh-CN/index",
+                  "zh-CN/start/showcase",
                   "zh-CN/concepts/features"
                 ]
               },
@@ -2091,6 +2081,7 @@
                 "group": "第一步",
                 "pages": [
                   "zh-CN/start/getting-started",
+                  "zh-CN/start/onboarding-overview",
                   "zh-CN/start/wizard",
                   "zh-CN/start/onboarding"
                 ]
@@ -2098,7 +2089,9 @@
               {
                 "group": "指南",
                 "pages": [
-                  "zh-CN/start/openclaw"
+                  "zh-CN/start/openclaw",
+                  "zh-CN/start/wizard-cli-reference",
+                  "zh-CN/start/wizard-cli-automation"
                 ]
               }
             ]
@@ -2110,44 +2103,64 @@
                 "group": "安装概览",
                 "pages": [
                   "zh-CN/install/index",
-                  "zh-CN/install/installer"
-                ]
-              },
-              {
-                "group": "安装方式",
-                "pages": [
-                  "zh-CN/install/docker",
-                  "zh-CN/install/nix",
-                  "zh-CN/install/ansible",
-                  "zh-CN/install/bun"
+                  "zh-CN/install/installer",
+                  "zh-CN/install/node"
                 ]
               },
               {
                 "group": "维护",
                 "pages": [
                   "zh-CN/install/updating",
-                  "zh-CN/install/migrating",
-                  "zh-CN/install/uninstall"
+                  {
+                    "group": "Migrating",
+                    "pages": [
+                      "zh-CN/install/migrating",
+                      "zh-CN/install/migrating-claude",
+                      "zh-CN/install/migrating-hermes"
+                    ]
+                  },
+                  "zh-CN/install/uninstall",
+                  "zh-CN/install/development-channels"
+                ]
+              },
+              {
+                "group": "安装方式",
+                "pages": [
+                  "zh-CN/install/ansible",
+                  "zh-CN/install/bun",
+                  "zh-CN/install/clawdock",
+                  "zh-CN/install/docker",
+                  "zh-CN/install/nix",
+                  "zh-CN/install/podman"
                 ]
               },
               {
                 "group": "托管与部署",
                 "pages": [
-                  "zh-CN/vps",
-                  "zh-CN/install/fly",
-                  "zh-CN/install/hetzner",
-                  "zh-CN/install/gcp",
-                  "zh-CN/install/macos-vm",
+                  "zh-CN/install/azure",
+                  "zh-CN/install/digitalocean",
+                  "zh-CN/install/docker-vm-runtime",
                   "zh-CN/install/exe-dev",
+                  "zh-CN/install/fly",
+                  "zh-CN/install/gcp",
+                  "zh-CN/install/hetzner",
+                  "zh-CN/install/hostinger",
+                  "zh-CN/install/kubernetes",
+                  "zh-CN/vps",
+                  "zh-CN/install/macos-vm",
+                  "zh-CN/install/northflank",
+                  "zh-CN/install/oracle",
                   "zh-CN/install/railway",
+                  "zh-CN/install/raspberry-pi",
                   "zh-CN/install/render",
-                  "zh-CN/install/northflank"
+                  "zh-CN/install/upstash"
                 ]
               },
               {
-                "group": "高级",
+                "group": "Advanced setup",
                 "pages": [
-                  "zh-CN/install/development-channels"
+                  "zh-CN/start/setup",
+                  "zh-CN/openclaw-agent-runtime"
                 ]
               }
             ]
@@ -2158,30 +2171,53 @@
               {
                 "group": "概览",
                 "pages": [
-                  "zh-CN/channels/index"
+                  "zh-CN/channels/index",
+                  "zh-CN/announcements/bluebubbles-imessage"
                 ]
               },
               {
                 "group": "消息平台",
                 "pages": [
                   "zh-CN/channels/discord",
-                  "zh-CN/channels/feishu",
-                  "zh-CN/channels/grammy",
-                  "zh-CN/channels/googlechat",
-                  "zh-CN/channels/imessage",
-                  "zh-CN/channels/line",
-                  "zh-CN/channels/matrix",
-                  "zh-CN/channels/mattermost",
-                  "zh-CN/channels/msteams",
-                  "zh-CN/channels/nextcloud-talk",
-                  "zh-CN/channels/nostr",
-                  "zh-CN/channels/signal",
+                  "zh-CN/channels/discord-activities",
                   "zh-CN/channels/slack",
                   "zh-CN/channels/telegram",
-                  "zh-CN/channels/tlon",
-                  "zh-CN/channels/twitch",
                   "zh-CN/channels/whatsapp",
+                  "zh-CN/channels/signal",
+                  "zh-CN/channels/msteams",
+                  "zh-CN/channels/googlechat",
+                  "zh-CN/channels/imessage",
+                  "zh-CN/channels/imessage-from-bluebubbles",
+                  "zh-CN/channels/matrix",
+                  "zh-CN/channels/matrix-migration",
+                  "zh-CN/channels/matrix-presentation",
+                  "zh-CN/channels/matrix-push-rules"
+                ]
+              },
+              {
+                "group": "Developer and self-hosted",
+                "pages": [
+                  "zh-CN/channels/irc",
+                  "zh-CN/channels/mattermost",
+                  "zh-CN/channels/nextcloud-talk",
+                  "zh-CN/channels/nostr",
+                  "zh-CN/channels/reef",
+                  "zh-CN/channels/raft",
+                  "zh-CN/channels/tlon",
+                  "zh-CN/channels/synology-chat",
+                  "zh-CN/channels/twitch"
+                ]
+              },
+              {
+                "group": "Regional platforms",
+                "pages": [
+                  "zh-CN/channels/line",
+                  "zh-CN/channels/wechat",
+                  "zh-CN/channels/qqbot",
+                  "zh-CN/channels/feishu",
+                  "zh-CN/channels/yuanbao",
                   "zh-CN/channels/zalo",
+                  "zh-CN/channels/zaloclawbot",
                   "zh-CN/channels/zalouser"
                 ]
               },
@@ -2189,12 +2225,15 @@
                 "group": "配置",
                 "pages": [
                   "zh-CN/channels/pairing",
+                  "zh-CN/channels/access-groups",
                   "zh-CN/channels/group-messages",
                   "zh-CN/channels/groups",
+                  "zh-CN/channels/ambient-room-events",
                   "zh-CN/channels/broadcast-groups",
                   "zh-CN/channels/channel-routing",
                   "zh-CN/channels/location",
-                  "zh-CN/channels/troubleshooting"
+                  "zh-CN/channels/troubleshooting",
+                  "zh-CN/channels/qa-channel"
                 ]
               }
             ]
@@ -2205,37 +2244,47 @@
               {
                 "group": "基础",
                 "pages": [
-                  "zh-CN/pi",
                   "zh-CN/concepts/architecture",
                   "zh-CN/concepts/agent",
                   "zh-CN/concepts/agent-loop",
+                  "zh-CN/concepts/agent-runtimes",
                   "zh-CN/concepts/system-prompt",
                   "zh-CN/concepts/context",
+                  "zh-CN/concepts/context-engine",
                   "zh-CN/concepts/agent-workspace",
-                  "zh-CN/concepts/oauth"
-                ]
-              },
-              {
-                "group": "引导",
-                "pages": [
-                  "zh-CN/start/bootstrapping"
+                  "zh-CN/concepts/managed-worktrees",
+                  "zh-CN/concepts/soul",
+                  "zh-CN/concepts/oauth",
+                  "zh-CN/start/bootstrapping",
+                  "zh-CN/concepts/experimental-features",
+                  "zh-CN/concepts/qa-e2e-automation",
+                  "zh-CN/concepts/personal-agent-benchmark-pack"
                 ]
               },
               {
                 "group": "会话与记忆",
                 "pages": [
+                  "zh-CN/concepts/main-session",
+                  "zh-CN/concepts/multi-user",
                   "zh-CN/concepts/session",
+                  "zh-CN/concepts/session-search",
+                  "zh-CN/concepts/channel-docking",
                   "zh-CN/concepts/session-pruning",
+                  "zh-CN/concepts/session-state",
                   "zh-CN/concepts/session-tool",
                   {
-                    "group": "记忆",
+                    "group": "Memory",
                     "pages": [
                       "zh-CN/concepts/memory",
+                      "zh-CN/concepts/memory-architecture",
+                      "zh-CN/concepts/user-model",
+                      "zh-CN/concepts/standing-intents",
                       "zh-CN/concepts/memory-builtin",
                       "zh-CN/concepts/memory-qmd",
                       "zh-CN/concepts/memory-honcho",
                       "zh-CN/concepts/memory-search",
                       "zh-CN/concepts/active-memory",
+                      "zh-CN/concepts/commitments",
                       "zh-CN/concepts/dreaming"
                     ]
                   },
@@ -2246,16 +2295,21 @@
                 "group": "多代理",
                 "pages": [
                   "zh-CN/concepts/multi-agent",
-                  "zh-CN/concepts/presence"
+                  "zh-CN/concepts/parallel-specialist-lanes",
+                  "zh-CN/concepts/presence",
+                  "zh-CN/concepts/delegate-architecture"
                 ]
               },
               {
                 "group": "消息与投递",
                 "pages": [
                   "zh-CN/concepts/messages",
+                  "zh-CN/concepts/message-lifecycle-refactor",
                   "zh-CN/concepts/streaming",
+                  "zh-CN/concepts/progress-drafts",
                   "zh-CN/concepts/retry",
-                  "zh-CN/concepts/queue"
+                  "zh-CN/concepts/queue",
+                  "zh-CN/concepts/queue-steering"
                 ]
               }
             ]
@@ -2270,78 +2324,150 @@
                 ]
               },
               {
-                "group": "内置工具",
+                "group": "Plugins",
                 "pages": [
-                  "zh-CN/tools/apply-patch",
-                  "zh-CN/brave-search",
-                  "zh-CN/tools/elevated",
-                  "zh-CN/tools/exec",
-                  "zh-CN/tools/exec-approvals",
-                  "zh-CN/tools/firecrawl",
-                  "zh-CN/tools/llm-task",
-                  "zh-CN/tools/lobster",
-                  "zh-CN/perplexity",
-                  "zh-CN/tools/reactions",
-                  "zh-CN/tools/thinking",
-                  "zh-CN/tools/web"
-                ]
-              },
-              {
-                "group": "浏览器",
-                "pages": [
-                  "zh-CN/tools/browser",
-                  "zh-CN/tools/browser-login",
-                  "zh-CN/tools/browser-linux-troubleshooting"
-                ]
-              },
-              {
-                "group": "代理协作",
-                "pages": [
-                  "zh-CN/tools/agent-send",
-                  "zh-CN/tools/subagents",
-                  "zh-CN/tools/multi-agent-sandbox-tools"
-                ]
-              },
-              {
-                "group": "技能",
-                "pages": [
-                  "zh-CN/tools/creating-skills",
-                  "zh-CN/tools/slash-commands",
-                  "zh-CN/tools/skills",
-                  "zh-CN/tools/skills-config",
-                  "zh-CN/tools/plugin"
+                  "zh-CN/tools/plugin",
+                  "zh-CN/plugins/manage-plugins",
+                  "zh-CN/plugins/community",
+                  "zh-CN/plugins/bundles"
                 ]
               },
               {
                 "group": "扩展",
                 "pages": [
+                  "zh-CN/plugins/codex-harness",
+                  "zh-CN/plugins/codex-supervision",
+                  "zh-CN/plugins/codex-native-plugins",
+                  "zh-CN/plugins/codex-computer-use",
+                  "zh-CN/plugins/logbook",
+                  "zh-CN/plugins/meeting-plugins",
+                  "zh-CN/plugins/google-meet",
+                  "zh-CN/plugins/teams-meetings",
+                  "zh-CN/plugins/zoom-meetings",
+                  "zh-CN/plugins/workboard",
+                  "zh-CN/plugins/webhooks",
+                  "zh-CN/plugins/admin-http-rpc",
+                  "zh-CN/plugins/beam",
                   "zh-CN/plugins/voice-call",
-                  "zh-CN/plugins/zalouser",
-                  "zh-CN/plugins/manifest",
-                  "zh-CN/plugins/agent-tools",
+                  "zh-CN/plugins/vault",
+                  "zh-CN/plugins/onepassword",
+                  "zh-CN/plugins/memory-wiki",
+                  "zh-CN/plugins/llama-cpp",
+                  "zh-CN/plugins/memory-lancedb",
+                  "zh-CN/plugins/oc-path",
+                  "zh-CN/plugins/zalouser"
+                ]
+              },
+              {
+                "group": "Building plugins",
+                "pages": [
+                  "zh-CN/plugins/building-plugins",
+                  "zh-CN/plugins/tool-plugins",
+                  "zh-CN/plugins/sdk-channel-plugins",
+                  "zh-CN/plugins/sdk-provider-plugins",
+                  "zh-CN/plugins/cli-backend-plugins",
+                  "zh-CN/plugins/hooks",
+                  "zh-CN/plugins/plugin-permission-requests",
+                  "zh-CN/plugins/adding-capabilities"
+                ]
+              },
+              {
+                "group": "技能",
+                "pages": [
+                  "zh-CN/tools/skills",
+                  "zh-CN/tools/skill-workshop",
+                  "zh-CN/tools/self-learning",
+                  "zh-CN/tools/creating-skills",
+                  "zh-CN/tools/skills-config",
+                  "zh-CN/tools/slash-commands",
                   "zh-CN/prose"
                 ]
               },
               {
                 "group": "自动化与任务",
                 "pages": [
-                  "zh-CN/automation/hooks",
-                  "zh-CN/automation/cron-jobs"
+                  "zh-CN/automation/index",
+                  "zh-CN/automation/cron-jobs",
+                  "zh-CN/automation/tasks",
+                  "zh-CN/automation/taskflow",
+                  "zh-CN/automation/standing-orders",
+                  "zh-CN/automation/hooks"
                 ]
               },
               {
-                "group": "媒体与设备",
+                "group": "内置工具",
                 "pages": [
-                  "zh-CN/nodes/index",
-                  "zh-CN/nodes/troubleshooting",
-                  "zh-CN/nodes/media-understanding",
-                  "zh-CN/nodes/images",
-                  "zh-CN/nodes/audio",
-                  "zh-CN/nodes/camera",
-                  "zh-CN/nodes/talk",
-                  "zh-CN/nodes/voicewake",
-                  "zh-CN/nodes/location-command",
-                  "zh-CN/tts"
+                  "zh-CN/tools/apply-patch",
+                  "zh-CN/tools/ask-user",
+                  "zh-CN/tools/btw",
+                  "zh-CN/tools/code-execution",
+                  "zh-CN/tools/code-mode",
+                  "zh-CN/tools/diffs",
+                  "zh-CN/tools/screen",
+                  "zh-CN/tools/show-widget",
+                  "zh-CN/tools/elevated",
+                  "zh-CN/tools/permission-modes",
+                  "zh-CN/tools/exec-approvals",
+                  "zh-CN/tools/exec-approvals-advanced",
+                  "zh-CN/tools/exec",
+                  "zh-CN/tools/image-generation",
+                  "zh-CN/tools/llm-task",
+                  "zh-CN/tools/lobster",
+                  "zh-CN/tools/media-overview",
+                  "zh-CN/tools/music-generation",
+                  "zh-CN/tools/pdf",
+                  "zh-CN/tools/reactions",
+                  "zh-CN/tools/thinking",
+                  "zh-CN/tools/tokenjuice",
+                  "zh-CN/tools/tool-search",
+                  "zh-CN/tools/loop-detection",
+                  "zh-CN/tools/trajectory",
+                  "zh-CN/tools/tts",
+                  "zh-CN/tools/video-generation",
+                  {
+                    "group": "Web browser",
+                    "pages": [
+                      "zh-CN/tools/browser",
+                      "zh-CN/tools/chrome-extension",
+                      "zh-CN/tools/browser-control",
+                      "zh-CN/tools/browser-login",
+                      "zh-CN/tools/browser-linux-troubleshooting",
+                      "zh-CN/tools/browser-wsl2-windows-remote-cdp-troubleshooting"
+                    ]
+                  },
+                  {
+                    "group": "Web tools",
+                    "pages": [
+                      "zh-CN/tools/web-fetch",
+                      "zh-CN/tools/web",
+                      "zh-CN/tools/brave-search",
+                      "zh-CN/tools/duckduckgo-search",
+                      "zh-CN/tools/exa-search",
+                      "zh-CN/tools/firecrawl",
+                      "zh-CN/tools/gemini-search",
+                      "zh-CN/tools/grok-search",
+                      "zh-CN/tools/kimi-search",
+                      "zh-CN/tools/minimax-search",
+                      "zh-CN/tools/ollama-search",
+                      "zh-CN/tools/parallel-search",
+                      "zh-CN/tools/perplexity-search",
+                      "zh-CN/tools/searxng-search",
+                      "zh-CN/tools/tavily"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "代理协作",
+                "pages": [
+                  "zh-CN/tools/agent-send",
+                  "zh-CN/tools/goal",
+                  "zh-CN/tools/steer",
+                  "zh-CN/tools/subagents",
+                  "zh-CN/tools/swarm",
+                  "zh-CN/tools/acp-agents",
+                  "zh-CN/tools/acp-agents-setup",
+                  "zh-CN/tools/multi-agent-sandbox-tools"
                 ]
               }
             ]
@@ -2359,12 +2485,7 @@
               {
                 "group": "模型概念",
                 "pages": [
-                  "zh-CN/concepts/models"
-                ]
-              },
-              {
-                "group": "配置",
-                "pages": [
+                  "zh-CN/concepts/models",
                   "zh-CN/concepts/model-providers",
                   "zh-CN/concepts/model-failover"
                 ]
@@ -2372,22 +2493,68 @@
               {
                 "group": "提供商",
                 "pages": [
-                  "zh-CN/providers/anthropic",
+                  "zh-CN/providers/alibaba",
                   "zh-CN/providers/bedrock",
+                  "zh-CN/providers/bedrock-mantle",
+                  "zh-CN/providers/anthropic",
+                  "zh-CN/providers/arcee",
+                  "zh-CN/providers/azure-speech",
+                  "zh-CN/providers/cerebras",
+                  "zh-CN/providers/chutes",
+                  "zh-CN/providers/clawrouter",
+                  "zh-CN/providers/cohere",
                   "zh-CN/providers/claude-max-api-proxy",
+                  "zh-CN/providers/cloudflare-ai-gateway",
+                  "zh-CN/providers/comfy",
                   "zh-CN/providers/deepgram",
+                  "zh-CN/providers/deepinfra",
+                  "zh-CN/providers/deepseek",
+                  "zh-CN/providers/ds4",
+                  "zh-CN/providers/elevenlabs",
+                  "zh-CN/providers/fal",
+                  "zh-CN/providers/featherless",
+                  "zh-CN/providers/fireworks",
                   "zh-CN/providers/github-copilot",
-                  "zh-CN/providers/moonshot",
+                  "zh-CN/providers/gmi",
+                  "zh-CN/providers/google",
+                  "zh-CN/providers/gradium",
+                  "zh-CN/providers/groq",
+                  "zh-CN/providers/huggingface",
+                  "zh-CN/providers/inferrs",
+                  "zh-CN/providers/inworld",
+                  "zh-CN/providers/kilocode",
+                  "zh-CN/providers/litellm",
+                  "zh-CN/providers/lmstudio",
+                  "zh-CN/providers/longcat",
+                  "zh-CN/providers/meta",
                   "zh-CN/providers/minimax",
-                  "zh-CN/providers/opencode",
+                  "zh-CN/providers/mistral",
+                  "zh-CN/providers/moonshot",
+                  "zh-CN/providers/novita",
+                  "zh-CN/providers/nvidia",
                   "zh-CN/providers/ollama",
+                  "zh-CN/providers/ollama-cloud",
                   "zh-CN/providers/openai",
+                  "zh-CN/providers/opencode",
+                  "zh-CN/providers/opencode-go",
                   "zh-CN/providers/openrouter",
+                  "zh-CN/providers/perplexity-provider",
+                  "zh-CN/providers/pixverse",
                   "zh-CN/providers/qianfan",
                   "zh-CN/providers/qwen",
+                  "zh-CN/providers/runway",
+                  "zh-CN/providers/senseaudio",
+                  "zh-CN/providers/sglang",
+                  "zh-CN/providers/stepfun",
                   "zh-CN/providers/synthetic",
+                  "zh-CN/providers/tencent",
+                  "zh-CN/providers/together",
                   "zh-CN/providers/venice",
                   "zh-CN/providers/vercel-ai-gateway",
+                  "zh-CN/providers/vllm",
+                  "zh-CN/providers/volcengine",
+                  "zh-CN/providers/vydra",
+                  "zh-CN/providers/xai",
                   "zh-CN/providers/xiaomi",
                   "zh-CN/providers/zai"
                 ]
@@ -2406,31 +2573,45 @@
                   "zh-CN/platforms/windows",
                   "zh-CN/platforms/android",
                   "zh-CN/platforms/ios",
-                  "zh-CN/platforms/digitalocean",
-                  "zh-CN/platforms/oracle",
-                  "zh-CN/platforms/raspberry-pi"
+                  "zh-CN/platforms/ios-healthkit",
+                  "zh-CN/platforms/easyrunner"
                 ]
               },
               {
                 "group": "macOS 配套应用",
                 "pages": [
-                  "zh-CN/platforms/mac/dev-setup",
-                  "zh-CN/platforms/mac/menu-bar",
-                  "zh-CN/platforms/mac/voicewake",
-                  "zh-CN/platforms/mac/voice-overlay",
-                  "zh-CN/platforms/mac/webchat",
-                  "zh-CN/platforms/mac/canvas",
-                  "zh-CN/platforms/mac/child-process",
-                  "zh-CN/platforms/mac/health",
-                  "zh-CN/platforms/mac/icon",
-                  "zh-CN/platforms/mac/logging",
-                  "zh-CN/platforms/mac/permissions",
-                  "zh-CN/platforms/mac/remote",
-                  "zh-CN/platforms/mac/signing",
-                  "zh-CN/platforms/mac/bundled-gateway",
-                  "zh-CN/platforms/mac/xpc",
-                  "zh-CN/platforms/mac/skills",
-                  "zh-CN/platforms/mac/peekaboo"
+                  {
+                    "group": "Setup",
+                    "pages": [
+                      "zh-CN/platforms/mac/dev-setup",
+                      "zh-CN/platforms/mac/menu-bar",
+                      "zh-CN/platforms/mac/icon",
+                      "zh-CN/platforms/mac/permissions",
+                      "zh-CN/platforms/mac/signing"
+                    ]
+                  },
+                  {
+                    "group": "Runtime",
+                    "pages": [
+                      "zh-CN/platforms/mac/bundled-gateway",
+                      "zh-CN/platforms/mac/child-process",
+                      "zh-CN/platforms/mac/health",
+                      "zh-CN/platforms/mac/logging",
+                      "zh-CN/platforms/mac/remote",
+                      "zh-CN/platforms/mac/xpc"
+                    ]
+                  },
+                  {
+                    "group": "Features",
+                    "pages": [
+                      "zh-CN/platforms/mac/voicewake",
+                      "zh-CN/platforms/mac/voice-overlay",
+                      "zh-CN/platforms/mac/webchat",
+                      "zh-CN/platforms/mac/canvas",
+                      "zh-CN/platforms/mac/skills",
+                      "zh-CN/platforms/mac/peekaboo"
+                    ]
+                  }
                 ]
               }
             ]
@@ -2443,45 +2624,86 @@
                 "pages": [
                   "zh-CN/gateway/index",
                   {
-                    "group": "配置与运维",
+                    "group": "Configuration",
                     "pages": [
                       "zh-CN/gateway/configuration",
-                      "zh-CN/gateway/configuration-examples",
+                      "zh-CN/gateway/configuration-reference",
+                      "zh-CN/gateway/config-agents",
+                      "zh-CN/gateway/config-channels",
+                      "zh-CN/gateway/config-tools",
+                      "zh-CN/gateway/configuration-examples"
+                    ]
+                  },
+                  {
+                    "group": "Authentication and secrets",
+                    "pages": [
                       "zh-CN/gateway/authentication",
+                      "zh-CN/auth-credential-semantics",
+                      "zh-CN/gateway/secrets",
+                      "zh-CN/gateway/1password",
+                      "zh-CN/gateway/secrets-plan-contract",
+                      "zh-CN/gateway/trusted-proxy-auth"
+                    ]
+                  },
+                  {
+                    "group": "Health and diagnostics",
+                    "pages": [
                       "zh-CN/gateway/health",
                       "zh-CN/gateway/heartbeat",
                       "zh-CN/gateway/doctor",
+                      "zh-CN/gateway/audit",
+                      "zh-CN/logging",
+                      "zh-CN/gateway/opentelemetry",
+                      "zh-CN/gateway/prometheus",
                       "zh-CN/gateway/logging",
-                      "zh-CN/gateway/gateway-lock",
-                      "zh-CN/gateway/background-process",
-                      "zh-CN/gateway/multiple-gateways",
+                      "zh-CN/gateway/diagnostics",
                       "zh-CN/gateway/troubleshooting"
                     ]
                   },
                   {
-                    "group": "安全与沙箱",
+                    "group": "Scaling and operations",
+                    "pages": [
+                      "zh-CN/gateway/gateway-lock",
+                      "zh-CN/gateway/background-process",
+                      "zh-CN/gateway/restart-recovery",
+                      "zh-CN/gateway/multiple-gateways",
+                      "zh-CN/gateway/multi-tenant-hosting"
+                    ]
+                  },
+                  {
+                    "group": "Security and sandboxing",
                     "pages": [
                       "zh-CN/gateway/security/index",
+                      "zh-CN/gateway/security/exposure-runbook",
+                      "zh-CN/gateway/security/secure-file-operations",
+                      "zh-CN/gateway/security/dependency-locking",
+                      "zh-CN/gateway/security/audit-checks",
+                      "zh-CN/gateway/security/rate-limiting",
+                      "zh-CN/gateway/operator-scopes",
                       "zh-CN/gateway/sandboxing",
+                      "zh-CN/gateway/openshell",
                       "zh-CN/gateway/sandbox-vs-tool-policy-vs-elevated"
                     ]
                   },
                   {
-                    "group": "协议与 API",
+                    "group": "Protocols and APIs",
                     "pages": [
                       "zh-CN/gateway/protocol",
+                      "zh-CN/gateway/clients",
+                      "zh-CN/gateway/embedding",
                       "zh-CN/gateway/bridge-protocol",
                       "zh-CN/gateway/openai-http-api",
                       "zh-CN/gateway/openresponses-http-api",
                       "zh-CN/gateway/tools-invoke-http-api",
                       "zh-CN/gateway/cli-backends",
-                      "zh-CN/gateway/local-models"
+                      "zh-CN/gateway/local-models",
+                      "zh-CN/gateway/local-model-services"
                     ]
                   },
                   {
-                    "group": "网络与发现",
+                    "group": "Networking and discovery",
                     "pages": [
-                      "zh-CN/gateway/network-model",
+                      "zh-CN/network",
                       "zh-CN/gateway/pairing",
                       "zh-CN/gateway/discovery",
                       "zh-CN/gateway/bonjour"
@@ -2498,16 +2720,39 @@
                 ]
               },
               {
-                "group": "运维专题",
+                "group": "安全",
                 "pages": [
-                  "zh-CN/network",
-                  "zh-CN/logging"
+                  "zh-CN/security/network-proxy",
+                  "zh-CN/security/formal-verification",
+                  "zh-CN/security/THREAT-MODEL-ATLAS",
+                  "zh-CN/security/CONTRIBUTING-THREAT-MODEL"
                 ]
               },
               {
-                "group": "安全",
+                "group": "Nodes and media",
                 "pages": [
-                  "zh-CN/security/formal-verification"
+                  "zh-CN/nodes/index",
+                  "zh-CN/nodes/presence",
+                  "zh-CN/nodes/troubleshooting",
+                  {
+                    "group": "Media capabilities",
+                    "pages": [
+                      "zh-CN/nodes/media-understanding",
+                      "zh-CN/nodes/images",
+                      "zh-CN/nodes/audio",
+                      "zh-CN/nodes/camera",
+                      "zh-CN/tools/tts"
+                    ]
+                  },
+                  {
+                    "group": "Node features",
+                    "pages": [
+                      "zh-CN/nodes/computer-use",
+                      "zh-CN/nodes/talk",
+                      "zh-CN/nodes/voicewake",
+                      "zh-CN/nodes/location-command"
+                    ]
+                  }
                 ]
               },
               {
@@ -2515,9 +2760,13 @@
                 "pages": [
                   "zh-CN/web/index",
                   "zh-CN/web/control-ui",
+                  "zh-CN/web/urls",
                   "zh-CN/web/dashboard",
+                  "zh-CN/web/dashboards",
+                  "zh-CN/web/dashboard-architecture",
                   "zh-CN/web/webchat",
-                  "zh-CN/web/tui"
+                  "zh-CN/web/tui",
+                  "zh-CN/web/lobster"
                 ]
               }
             ]
@@ -2529,53 +2778,160 @@
                 "group": "CLI 命令",
                 "pages": [
                   "zh-CN/cli/index",
-                  "zh-CN/cli/acp",
-                  "zh-CN/cli/agent",
-                  "zh-CN/cli/agents",
-                  "zh-CN/cli/approvals",
-                  "zh-CN/cli/browser",
-                  "zh-CN/cli/channels",
-                  "zh-CN/cli/config",
-                  "zh-CN/cli/configure",
-                  "zh-CN/cli/cron",
-                  "zh-CN/cli/dashboard",
-                  "zh-CN/cli/devices",
-                  "zh-CN/cli/directory",
-                  "zh-CN/cli/dns",
-                  "zh-CN/cli/docs",
-                  "zh-CN/cli/doctor",
-                  "zh-CN/cli/gateway",
-                  "zh-CN/cli/health",
-                  "zh-CN/cli/hooks",
-                  "zh-CN/cli/logs",
-                  "zh-CN/cli/memory",
-                  "zh-CN/cli/message",
-                  "zh-CN/cli/models",
-                  "zh-CN/cli/node",
-                  "zh-CN/cli/nodes",
-                  "zh-CN/cli/onboard",
-                  "zh-CN/cli/pairing",
-                  "zh-CN/cli/plugins",
-                  "zh-CN/cli/reset",
-                  "zh-CN/cli/sandbox",
-                  "zh-CN/cli/security",
-                  "zh-CN/cli/sessions",
-                  "zh-CN/cli/setup",
-                  "zh-CN/cli/skills",
-                  "zh-CN/cli/status",
-                  "zh-CN/cli/system",
-                  "zh-CN/cli/tui",
-                  "zh-CN/cli/uninstall",
-                  "zh-CN/cli/update",
-                  "zh-CN/cli/voicecall",
-                  "zh-CN/cli/webhooks"
+                  {
+                    "group": "Gateway and service",
+                    "pages": [
+                      "zh-CN/cli/backup",
+                      "zh-CN/cli/openclaw",
+                      "zh-CN/cli/daemon",
+                      "zh-CN/cli/doctor",
+                      "zh-CN/cli/fleet",
+                      "zh-CN/cli/gateway",
+                      "zh-CN/cli/health",
+                      "zh-CN/cli/logs",
+                      "zh-CN/cli/migrate",
+                      "zh-CN/cli/onboard",
+                      "zh-CN/cli/reset",
+                      "zh-CN/cli/secrets",
+                      "zh-CN/cli/security",
+                      "zh-CN/cli/setup",
+                      "zh-CN/cli/status",
+                      "zh-CN/cli/uninstall",
+                      "zh-CN/cli/update"
+                    ]
+                  },
+                  {
+                    "group": "Agents and sessions",
+                    "pages": [
+                      "zh-CN/cli/agent",
+                      "zh-CN/cli/agents",
+                      "zh-CN/cli/claws",
+                      "zh-CN/cli/audit",
+                      "zh-CN/cli/hooks",
+                      "zh-CN/cli/infer",
+                      "zh-CN/cli/memory",
+                      "zh-CN/cli/commitments",
+                      "zh-CN/cli/message",
+                      "zh-CN/cli/models",
+                      "zh-CN/cli/promos",
+                      "zh-CN/cli/sessions",
+                      "zh-CN/cli/system",
+                      "zh-CN/cli/tasks"
+                    ]
+                  },
+                  {
+                    "group": "Channels and messaging",
+                    "pages": [
+                      "zh-CN/cli/channels",
+                      "zh-CN/cli/devices",
+                      "zh-CN/cli/directory",
+                      "zh-CN/cli/pairing",
+                      "zh-CN/cli/qr",
+                      "zh-CN/cli/voicecall"
+                    ]
+                  },
+                  {
+                    "group": "Tools and execution",
+                    "pages": [
+                      "zh-CN/cli/approvals",
+                      "zh-CN/cli/browser",
+                      "zh-CN/cli/cron",
+                      "zh-CN/cli/flows",
+                      "zh-CN/cli/node",
+                      "zh-CN/cli/nodes",
+                      "zh-CN/cli/sandbox",
+                      "zh-CN/cli/worker"
+                    ]
+                  },
+                  {
+                    "group": "Configuration",
+                    "pages": [
+                      "zh-CN/cli/config",
+                      "zh-CN/cli/configure",
+                      "zh-CN/cli/webhooks"
+                    ]
+                  },
+                  {
+                    "group": "Plugins and skills",
+                    "pages": [
+                      "zh-CN/cli/plugins",
+                      "zh-CN/cli/path",
+                      "zh-CN/cli/policy",
+                      "zh-CN/cli/skills",
+                      "zh-CN/cli/workboard"
+                    ]
+                  },
+                  {
+                    "group": "Interfaces",
+                    "pages": [
+                      "zh-CN/cli/attach",
+                      "zh-CN/cli/dashboard",
+                      "zh-CN/cli/tui"
+                    ]
+                  },
+                  {
+                    "group": "Utility",
+                    "pages": [
+                      "zh-CN/cli/acp",
+                      "zh-CN/cli/clawbot",
+                      "zh-CN/cli/completion",
+                      "zh-CN/cli/dns",
+                      "zh-CN/cli/docs",
+                      "zh-CN/cli/mcp",
+                      "zh-CN/cli/proxy",
+                      "zh-CN/cli/wiki"
+                    ]
+                  }
                 ]
               },
               {
                 "group": "RPC 与 API",
                 "pages": [
                   "zh-CN/reference/rpc",
+                  "zh-CN/gateway/external-apps",
                   "zh-CN/reference/device-models"
+                ]
+              },
+              {
+                "group": "Codex harness",
+                "pages": [
+                  "zh-CN/plugins/codex-harness-reference",
+                  "zh-CN/plugins/codex-harness-runtime"
+                ]
+              },
+              {
+                "group": "Plugin reference",
+                "pages": [
+                  "zh-CN/plugins/plugin-inventory",
+                  "zh-CN/plugins/reference",
+                  "zh-CN/plugins/dependency-resolution",
+                  "zh-CN/plugins/install-overrides"
+                ]
+              },
+              {
+                "group": "Plugin SDK reference",
+                "pages": [
+                  "zh-CN/plugins/sdk-overview",
+                  "zh-CN/plugins/sdk-subpaths",
+                  "zh-CN/plugins/sdk-entrypoints",
+                  "zh-CN/plugins/sdk-runtime",
+                  "zh-CN/plugins/sdk-agent-harness",
+                  "zh-CN/plugins/sdk-setup",
+                  "zh-CN/plugins/sdk-testing",
+                  "zh-CN/plugins/manifest"
+                ]
+              },
+              {
+                "group": "Plugin maintainer reference",
+                "pages": [
+                  "zh-CN/plugins/architecture",
+                  "zh-CN/plugins/architecture-internals",
+                  "zh-CN/plugins/sdk-migration",
+                  "zh-CN/plugins/compatibility",
+                  "zh-CN/plugins/sdk-channel-outbound",
+                  "zh-CN/plugins/sdk-channel-inbound",
+                  "zh-CN/plugins/sdk-channel-ingress",
+                  "zh-CN/plugins/message-presentation"
                 ]
               },
               {
@@ -2588,17 +2944,24 @@
                   "zh-CN/reference/templates/HEARTBEAT",
                   "zh-CN/reference/templates/IDENTITY",
                   "zh-CN/reference/templates/SOUL",
-                  "zh-CN/reference/templates/TOOLS",
                   "zh-CN/reference/templates/USER"
                 ]
               },
               {
                 "group": "技术参考",
                 "pages": [
+                  "zh-CN/agent-runtime-architecture",
                   "zh-CN/reference/wizard",
                   "zh-CN/reference/token-use",
+                  "zh-CN/reference/secretref-credential-surface",
+                  "zh-CN/reference/openclaw-ai",
+                  "zh-CN/reference/prompt-caching",
                   "zh-CN/reference/api-usage-costs",
                   "zh-CN/reference/transcript-hygiene",
+                  "zh-CN/reference/database-schemas",
+                  "zh-CN/reference/memory-config",
+                  "zh-CN/reference/rich-output-protocol",
+                  "zh-CN/reference/session-management-compaction",
                   "zh-CN/date-time"
                 ]
               },
@@ -2619,10 +2982,30 @@
                 ]
               },
               {
+                "group": "Contributing",
+                "pages": [
+                  "zh-CN/reference/pull-request-review-flow"
+                ]
+              },
+              {
                 "group": "发布策略",
                 "pages": [
+                  {
+                    "group": "Release notes",
+                    "pages": [
+                      "zh-CN/releases/index",
+                      "zh-CN/releases/2026.7.1",
+                      "zh-CN/releases/2026.6.11"
+                    ]
+                  },
+                  "zh-CN/maturity/scorecard",
+                  "zh-CN/maturity/taxonomy",
                   "zh-CN/reference/RELEASING",
-                  "zh-CN/reference/test"
+                  "zh-CN/reference/full-release-validation",
+                  "zh-CN/reference/release-performance-sweep",
+                  "zh-CN/reference/test",
+                  "zh-CN/ci",
+                  "zh-CN/help/scripts"
                 ]
               }
             ]
@@ -2635,51 +3018,39 @@
                 "pages": [
                   "zh-CN/help/index",
                   "zh-CN/help/troubleshooting",
-                  "zh-CN/help/faq"
+                  "zh-CN/help/debugging"
                 ]
               },
               {
-                "group": "社区",
+                "group": "FAQ",
                 "pages": [
-                  "zh-CN/start/lore"
+                  "zh-CN/help/faq",
+                  "zh-CN/help/faq-first-run",
+                  "zh-CN/help/faq-models"
+                ]
+              },
+              {
+                "group": "Testing",
+                "pages": [
+                  "zh-CN/help/testing",
+                  "zh-CN/help/testing-updates-plugins",
+                  "zh-CN/help/testing-live"
                 ]
               },
               {
                 "group": "环境与调试",
                 "pages": [
                   "zh-CN/help/environment",
-                  "zh-CN/help/debugging",
-                  "zh-CN/help/testing",
-                  "zh-CN/help/scripts",
-                  "zh-CN/debug/node-issue",
-                  "zh-CN/diagnostics/flags"
+                  "zh-CN/diagnostics/flags",
+                  "zh-CN/debug/node-issue"
                 ]
               },
               {
-                "group": "Node 运行时",
+                "group": "社区",
                 "pages": [
-                  "zh-CN/install/node"
-                ]
-              },
-              {
-                "group": "压缩机制内部参考",
-                "pages": [
-                  "zh-CN/reference/session-management-compaction"
-                ]
-              },
-              {
-                "group": "开发者设置",
-                "pages": [
-                  "zh-CN/start/setup",
-                  "zh-CN/pi-dev"
-                ]
-              },
-              {
-                "group": "文档元信息",
-                "pages": [
+                  "zh-CN/start/lore",
                   "zh-CN/start/hubs",
-                  "zh-CN/start/docs-directory",
-                  "zh-CN/AGENTS"
+                  "zh-CN/start/docs-directory"
                 ]
               }
             ]
@@ -3684,10 +4055,10 @@
         "language": "ja",
         "tabs": [
           {
-            "tab": "Get started",
+            "tab": "はじめに",
             "groups": [
               {
-                "group": "Overview",
+                "group": "概要",
                 "pages": [
                   "ja-JP/index",
                   "ja-JP/start/showcase",
@@ -3695,7 +4066,7 @@
                 ]
               },
               {
-                "group": "First steps",
+                "group": "初回セットアップ",
                 "pages": [
                   "ja-JP/start/getting-started",
                   "ja-JP/start/onboarding-overview",
@@ -4678,10 +5049,10 @@
         "language": "es",
         "tabs": [
           {
-            "tab": "Get started",
+            "tab": "Comenzar",
             "groups": [
               {
-                "group": "Overview",
+                "group": "Resumen",
                 "pages": [
                   "es/index",
                   "es/start/showcase",
@@ -4689,7 +5060,7 @@
                 ]
               },
               {
-                "group": "First steps",
+                "group": "Primeros pasos",
                 "pages": [
                   "es/start/getting-started",
                   "es/start/onboarding-overview",
@@ -5672,10 +6043,10 @@
         "language": "pt-BR",
         "tabs": [
           {
-            "tab": "Get started",
+            "tab": "Começar",
             "groups": [
               {
-                "group": "Overview",
+                "group": "Visão geral",
                 "pages": [
                   "pt-BR/index",
                   "pt-BR/start/showcase",
@@ -5683,7 +6054,7 @@
                 ]
               },
               {
-                "group": "First steps",
+                "group": "Primeiros passos",
                 "pages": [
                   "pt-BR/start/getting-started",
                   "pt-BR/start/onboarding-overview",
@@ -6666,10 +7037,10 @@
         "language": "ko",
         "tabs": [
           {
-            "tab": "Get started",
+            "tab": "시작하기",
             "groups": [
               {
-                "group": "Overview",
+                "group": "개요",
                 "pages": [
                   "ko/index",
                   "ko/start/showcase",
@@ -6677,7 +7048,7 @@
                 ]
               },
               {
-                "group": "First steps",
+                "group": "첫 단계",
                 "pages": [
                   "ko/start/getting-started",
                   "ko/start/onboarding-overview",
@@ -7660,10 +8031,10 @@
         "language": "de",
         "tabs": [
           {
-            "tab": "Get started",
+            "tab": "Loslegen",
             "groups": [
               {
-                "group": "Overview",
+                "group": "Überblick",
                 "pages": [
                   "de/index",
                   "de/start/showcase",
@@ -7671,7 +8042,7 @@
                 ]
               },
               {
-                "group": "First steps",
+                "group": "Erste Schritte",
                 "pages": [
                   "de/start/getting-started",
                   "de/start/onboarding-overview",
@@ -8654,10 +9025,10 @@
         "language": "fr",
         "tabs": [
           {
-            "tab": "Get started",
+            "tab": "Commencer",
             "groups": [
               {
-                "group": "Overview",
+                "group": "Vue d'ensemble",
                 "pages": [
                   "fr/index",
                   "fr/start/showcase",
@@ -8665,7 +9036,7 @@
                 ]
               },
               {
-                "group": "First steps",
+                "group": "Premiers pas",
                 "pages": [
                   "fr/start/getting-started",
                   "fr/start/onboarding-overview",
@@ -10642,10 +11013,10 @@
         "language": "ar",
         "tabs": [
           {
-            "tab": "Get started",
+            "tab": "ابدأ",
             "groups": [
               {
-                "group": "Overview",
+                "group": "نظرة عامة",
                 "pages": [
                   "ar/index",
                   "ar/start/showcase",
@@ -10653,7 +11024,7 @@
                 ]
               },
               {
-                "group": "First steps",
+                "group": "الخطوات الأولى",
                 "pages": [
                   "ar/start/getting-started",
                   "ar/start/onboarding-overview",
@@ -11636,10 +12007,10 @@
         "language": "it",
         "tabs": [
           {
-            "tab": "Get started",
+            "tab": "Inizia",
             "groups": [
               {
-                "group": "Overview",
+                "group": "Panoramica",
                 "pages": [
                   "it/index",
                   "it/start/showcase",
@@ -11647,7 +12018,7 @@
                 ]
               },
               {
-                "group": "First steps",
+                "group": "Primi passi",
                 "pages": [
                   "it/start/getting-started",
                   "it/start/onboarding-overview",
@@ -14618,10 +14989,10 @@
         "language": "tr",
         "tabs": [
           {
-            "tab": "Get started",
+            "tab": "Baslangic",
             "groups": [
               {
-                "group": "Overview",
+                "group": "Genel bakis",
                 "pages": [
                   "tr/index",
                   "tr/start/showcase",
@@ -14629,7 +15000,7 @@
                 ]
               },
               {
-                "group": "First steps",
+                "group": "Ilk adimlar",
                 "pages": [
                   "tr/start/getting-started",
                   "tr/start/onboarding-overview",
@@ -16606,10 +16977,10 @@
         "language": "id",
         "tabs": [
           {
-            "tab": "Get started",
+            "tab": "Mulai",
             "groups": [
               {
-                "group": "Overview",
+                "group": "Ringkasan",
                 "pages": [
                   "id/index",
                   "id/start/showcase",
@@ -16617,7 +16988,7 @@
                 ]
               },
               {
-                "group": "First steps",
+                "group": "Langkah pertama",
                 "pages": [
                   "id/start/getting-started",
                   "id/start/onboarding-overview",
@@ -17600,10 +17971,10 @@
         "language": "pl",
         "tabs": [
           {
-            "tab": "Get started",
+            "tab": "Start",
             "groups": [
               {
-                "group": "Overview",
+                "group": "Przeglad",
                 "pages": [
                   "pl/index",
                   "pl/start/showcase",
@@ -17611,7 +17982,7 @@
                 ]
               },
               {
-                "group": "First steps",
+                "group": "Pierwsze kroki",
                 "pages": [
                   "pl/start/getting-started",
                   "pl/start/onboarding-overview",
