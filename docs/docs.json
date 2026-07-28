@@ -1248,6 +1248,9 @@
                     "group": "Memory",
                     "pages": [
                       "concepts/memory",
+                      "concepts/memory-architecture",
+                      "concepts/user-model",
+                      "concepts/standing-intents",
                       "concepts/memory-builtin",
                       "concepts/memory-qmd",
                       "concepts/memory-honcho",
@@ -2896,6 +2899,9 @@
                     "group": "Memory",
                     "pages": [
                       "zh-TW/concepts/memory",
+                      "zh-TW/concepts/memory-architecture",
+                      "zh-TW/concepts/user-model",
+                      "zh-TW/concepts/standing-intents",
                       "zh-TW/concepts/memory-builtin",
                       "zh-TW/concepts/memory-qmd",
                       "zh-TW/concepts/memory-honcho",
@@ -3887,6 +3893,9 @@
                     "group": "Memory",
                     "pages": [
                       "ja-JP/concepts/memory",
+                      "ja-JP/concepts/memory-architecture",
+                      "ja-JP/concepts/user-model",
+                      "ja-JP/concepts/standing-intents",
                       "ja-JP/concepts/memory-builtin",
                       "ja-JP/concepts/memory-qmd",
                       "ja-JP/concepts/memory-honcho",
@@ -4878,6 +4887,9 @@
                     "group": "Memory",
                     "pages": [
                       "es/concepts/memory",
+                      "es/concepts/memory-architecture",
+                      "es/concepts/user-model",
+                      "es/concepts/standing-intents",
                       "es/concepts/memory-builtin",
                       "es/concepts/memory-qmd",
                       "es/concepts/memory-honcho",
@@ -5869,6 +5881,9 @@
                     "group": "Memory",
                     "pages": [
                       "pt-BR/concepts/memory",
+                      "pt-BR/concepts/memory-architecture",
+                      "pt-BR/concepts/user-model",
+                      "pt-BR/concepts/standing-intents",
                       "pt-BR/concepts/memory-builtin",
                       "pt-BR/concepts/memory-qmd",
                       "pt-BR/concepts/memory-honcho",
@@ -6860,6 +6875,9 @@
                     "group": "Memory",
                     "pages": [
                       "ko/concepts/memory",
+                      "ko/concepts/memory-architecture",
+                      "ko/concepts/user-model",
+                      "ko/concepts/standing-intents",
                       "ko/concepts/memory-builtin",
                       "ko/concepts/memory-qmd",
                       "ko/concepts/memory-honcho",
@@ -7851,6 +7869,9 @@
                     "group": "Memory",
                     "pages": [
                       "de/concepts/memory",
+                      "de/concepts/memory-architecture",
+                      "de/concepts/user-model",
+                      "de/concepts/standing-intents",
                       "de/concepts/memory-builtin",
                       "de/concepts/memory-qmd",
                       "de/concepts/memory-honcho",
@@ -8842,6 +8863,9 @@
                     "group": "Memory",
                     "pages": [
                       "fr/concepts/memory",
+                      "fr/concepts/memory-architecture",
+                      "fr/concepts/user-model",
+                      "fr/concepts/standing-intents",
                       "fr/concepts/memory-builtin",
                       "fr/concepts/memory-qmd",
                       "fr/concepts/memory-honcho",
@@ -9833,6 +9857,9 @@
                     "group": "Memory",
                     "pages": [
                       "hi/concepts/memory",
+                      "hi/concepts/memory-architecture",
+                      "hi/concepts/user-model",
+                      "hi/concepts/standing-intents",
                       "hi/concepts/memory-builtin",
                       "hi/concepts/memory-qmd",
                       "hi/concepts/memory-honcho",
@@ -10824,6 +10851,9 @@
                     "group": "Memory",
                     "pages": [
                       "ar/concepts/memory",
+                      "ar/concepts/memory-architecture",
+                      "ar/concepts/user-model",
+                      "ar/concepts/standing-intents",
                       "ar/concepts/memory-builtin",
                       "ar/concepts/memory-qmd",
                       "ar/concepts/memory-honcho",
@@ -11815,6 +11845,9 @@
                     "group": "Memory",
                     "pages": [
                       "it/concepts/memory",
+                      "it/concepts/memory-architecture",
+                      "it/concepts/user-model",
+                      "it/concepts/standing-intents",
                       "it/concepts/memory-builtin",
                       "it/concepts/memory-qmd",
                       "it/concepts/memory-honcho",
@@ -12806,6 +12839,9 @@
                     "group": "Memory",
                     "pages": [
                       "vi/concepts/memory",
+                      "vi/concepts/memory-architecture",
+                      "vi/concepts/user-model",
+                      "vi/concepts/standing-intents",
                       "vi/concepts/memory-builtin",
                       "vi/concepts/memory-qmd",
                       "vi/concepts/memory-honcho",
@@ -13797,6 +13833,9 @@
                     "group": "Memory",
                     "pages": [
                       "nl/concepts/memory",
+                      "nl/concepts/memory-architecture",
+                      "nl/concepts/user-model",
+                      "nl/concepts/standing-intents",
                       "nl/concepts/memory-builtin",
                       "nl/concepts/memory-qmd",
                       "nl/concepts/memory-honcho",
@@ -14788,6 +14827,9 @@
                     "group": "Memory",
                     "pages": [
                       "tr/concepts/memory",
+                      "tr/concepts/memory-architecture",
+                      "tr/concepts/user-model",
+                      "tr/concepts/standing-intents",
                       "tr/concepts/memory-builtin",
                       "tr/concepts/memory-qmd",
                       "tr/concepts/memory-honcho",
@@ -15779,6 +15821,9 @@
                     "group": "Memory",
                     "pages": [
                       "uk/concepts/memory",
+                      "uk/concepts/memory-architecture",
+                      "uk/concepts/user-model",
+                      "uk/concepts/standing-intents",
                       "uk/concepts/memory-builtin",
                       "uk/concepts/memory-qmd",
                       "uk/concepts/memory-honcho",
@@ -16770,6 +16815,9 @@
                     "group": "Memory",
                     "pages": [
                       "id/concepts/memory",
+                      "id/concepts/memory-architecture",
+                      "id/concepts/user-model",
+                      "id/concepts/standing-intents",
                       "id/concepts/memory-builtin",
                       "id/concepts/memory-qmd",
                       "id/concepts/memory-honcho",
@@ -17761,6 +17809,9 @@
                     "group": "Memory",
                     "pages": [
                       "pl/concepts/memory",
+                      "pl/concepts/memory-architecture",
+                      "pl/concepts/user-model",
+                      "pl/concepts/standing-intents",
                       "pl/concepts/memory-builtin",
                       "pl/concepts/memory-qmd",
                       "pl/concepts/memory-honcho",
@@ -18752,6 +18803,9 @@
                     "group": "Memory",
                     "pages": [
                       "ru/concepts/memory",
+                      "ru/concepts/memory-architecture",
+                      "ru/concepts/user-model",
+                      "ru/concepts/standing-intents",
                       "ru/concepts/memory-builtin",
                       "ru/concepts/memory-qmd",
                       "ru/concepts/memory-honcho",
