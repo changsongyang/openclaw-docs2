@@ -107,6 +107,10 @@ Stores your API token + cached registry URL.
 - Output includes the skill slug, owner handle, display name, and relevance score.
 - Search favors exact slug/name token matches before download popularity. A standalone slug token such as `map` matches `personal-map` more strongly than the substring inside `amap`.
 - Popularity is a small ranking prior, not a guarantee of top placement.
+- `--prefix`: lists a deterministic page of matching slugs through `/api/v1/skills`; pass the printed `--cursor` to continue until no cursor remains.
+- `--exact`: restricts relevance search to exact slug matches.
+- `--prefix` and `--exact` are mutually exclusive.
+- `--cursor` is valid only with `--prefix`.
 - If a skill should appear but does not, run `clawhub inspect @owner/slug` while logged in to check owner-visible moderation diagnostics before renaming metadata.
 
 ### `explore`
@@ -270,7 +274,7 @@ clawhub scan download @scope/demo --version 2.0.0 --kind plugin --output report.
 #### GitHub Actions
 
 ClawHub ships an official reusable workflow at
-[`/.github/workflows/skill-publish.yml`](https://github.com/openclaw/clawhub/blob/2448414b44c669b3d3930e6a46f4c09aca9a6e70/.github/workflows/skill-publish.yml)
+[`/.github/workflows/skill-publish.yml`](https://github.com/openclaw/clawhub/blob/9bceec249e5cb905fc48c080c0efd568ed3481b2/.github/workflows/skill-publish.yml)
 for skill repos and catalog repos.
 
 Typical catalog setup:
@@ -717,7 +721,7 @@ Notes:
 #### GitHub Actions
 
 ClawHub also ships an official reusable workflow at
-[`/.github/workflows/package-publish.yml`](https://github.com/openclaw/clawhub/blob/2448414b44c669b3d3930e6a46f4c09aca9a6e70/.github/workflows/package-publish.yml)
+[`/.github/workflows/package-publish.yml`](https://github.com/openclaw/clawhub/blob/9bceec249e5cb905fc48c080c0efd568ed3481b2/.github/workflows/package-publish.yml)
 for plugin repos.
 
 Typical caller setup:

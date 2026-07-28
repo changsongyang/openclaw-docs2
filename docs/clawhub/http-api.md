@@ -101,9 +101,16 @@ Query params:
 
 - `q` (required): query string
 - `limit` (optional): integer
+- `mode` (optional): `exact` for deterministic exact-slug matches
 - `highlightedOnly` (optional): `true` to filter to highlighted skills
 - `nonSuspiciousOnly` (optional): `true` to hide suspicious (`flagged.suspicious`) skills
 - `nonSuspicious` (optional): legacy alias for `nonSuspiciousOnly`
+
+Search modes:
+
+- Omit `mode` for the default relevance-ranked skill search.
+- `mode=exact` treats `q` as an exact skill slug and bypasses native semantic/vector recall.
+- Invalid `mode` values return `400 Invalid search mode`.
 
 Response:
 
@@ -149,7 +156,8 @@ Query params:
 
 - `limit` (optional): integer (1–200)
 - `cursor` (optional): pagination cursor for any non-`trending` sort
-- `sort` (optional): `updated` (default), `recommended` (alias: `default`), `createdAt` (alias: `newest`), `downloads`, `stars` (alias: `rating`), legacy install aliases `installsCurrent`/`installs`/`installsAllTime` map to `downloads`, `trending`
+- `sort` (optional): `updated` (default), `recommended` (alias: `default`), `createdAt` (alias: `newest`), `downloads`, `stars` (alias: `rating`), `name`, legacy install aliases `installsCurrent`/`installs`/`installsAllTime` map to `downloads`, `trending`
+- `prefix` (optional): literal skill-slug prefix; results use ascending slug order and require `sort=name` when `sort` is supplied
 - `nonSuspiciousOnly` (optional): `true` to hide suspicious (`flagged.suspicious`) skills
 - `nonSuspicious` (optional): legacy alias for `nonSuspiciousOnly`
 
@@ -160,6 +168,7 @@ Notes:
 - `recommended` uses engagement and recency signals.
 - `trending` ranks by installs in the last 7 days (telemetry-based).
 - `createdAt` is stable for new-skill crawls; `updated` changes when existing skills are republished.
+- Prefix listing is complete across pages: keep following `nextCursor` until it is `null`.
 - When `nonSuspiciousOnly=true`, cursor-based sorts may return fewer than `limit` items on a page because suspicious skills are filtered after page retrieval.
 - Use `nextCursor` to continue pagination when present. A short page does not by itself mean end-of-results.
 
