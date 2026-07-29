@@ -1267,6 +1267,7 @@
                 "group": "Multi-agent",
                 "pages": [
                   "concepts/multi-agent",
+                  "concepts/agent-bindings",
                   "concepts/parallel-specialist-lanes",
                   "concepts/presence",
                   "concepts/delegate-architecture"
@@ -1386,6 +1387,7 @@
                   "tools/llm-task",
                   "tools/lobster",
                   "tools/media-overview",
+                  "tools/mcp",
                   "tools/music-generation",
                   "tools/pdf",
                   "tools/reactions",
@@ -1766,6 +1768,7 @@
                 "pages": [
                   "web/index",
                   "web/control-ui",
+                  "web/notifications",
                   "web/urls",
                   "web/dashboard",
                   "web/dashboards",
@@ -2295,6 +2298,7 @@
                 "group": "多代理",
                 "pages": [
                   "zh-CN/concepts/multi-agent",
+                  "zh-CN/concepts/agent-bindings",
                   "zh-CN/concepts/parallel-specialist-lanes",
                   "zh-CN/concepts/presence",
                   "zh-CN/concepts/delegate-architecture"
@@ -2414,6 +2418,7 @@
                   "zh-CN/tools/llm-task",
                   "zh-CN/tools/lobster",
                   "zh-CN/tools/media-overview",
+                  "zh-CN/tools/mcp",
                   "zh-CN/tools/music-generation",
                   "zh-CN/tools/pdf",
                   "zh-CN/tools/reactions",
@@ -2760,6 +2765,7 @@
                 "pages": [
                   "zh-CN/web/index",
                   "zh-CN/web/control-ui",
+                  "zh-CN/web/notifications",
                   "zh-CN/web/urls",
                   "zh-CN/web/dashboard",
                   "zh-CN/web/dashboards",
@@ -3289,6 +3295,7 @@
                 "group": "Multi-agent",
                 "pages": [
                   "zh-TW/concepts/multi-agent",
+                  "zh-TW/concepts/agent-bindings",
                   "zh-TW/concepts/parallel-specialist-lanes",
                   "zh-TW/concepts/presence",
                   "zh-TW/concepts/delegate-architecture"
@@ -3408,6 +3415,7 @@
                   "zh-TW/tools/llm-task",
                   "zh-TW/tools/lobster",
                   "zh-TW/tools/media-overview",
+                  "zh-TW/tools/mcp",
                   "zh-TW/tools/music-generation",
                   "zh-TW/tools/pdf",
                   "zh-TW/tools/reactions",
@@ -3754,6 +3762,7 @@
                 "pages": [
                   "zh-TW/web/index",
                   "zh-TW/web/control-ui",
+                  "zh-TW/web/notifications",
                   "zh-TW/web/urls",
                   "zh-TW/web/dashboard",
                   "zh-TW/web/dashboards",
@@ -4283,6 +4292,7 @@
                 "group": "Multi-agent",
                 "pages": [
                   "ja-JP/concepts/multi-agent",
+                  "ja-JP/concepts/agent-bindings",
                   "ja-JP/concepts/parallel-specialist-lanes",
                   "ja-JP/concepts/presence",
                   "ja-JP/concepts/delegate-architecture"
@@ -4402,6 +4412,7 @@
                   "ja-JP/tools/llm-task",
                   "ja-JP/tools/lobster",
                   "ja-JP/tools/media-overview",
+                  "ja-JP/tools/mcp",
                   "ja-JP/tools/music-generation",
                   "ja-JP/tools/pdf",
                   "ja-JP/tools/reactions",
@@ -4748,6 +4759,7 @@
                 "pages": [
                   "ja-JP/web/index",
                   "ja-JP/web/control-ui",
+                  "ja-JP/web/notifications",
                   "ja-JP/web/urls",
                   "ja-JP/web/dashboard",
                   "ja-JP/web/dashboards",
@@ -5277,6 +5289,7 @@
                 "group": "Multi-agent",
                 "pages": [
                   "es/concepts/multi-agent",
+                  "es/concepts/agent-bindings",
                   "es/concepts/parallel-specialist-lanes",
                   "es/concepts/presence",
                   "es/concepts/delegate-architecture"
@@ -5396,6 +5409,7 @@
                   "es/tools/llm-task",
                   "es/tools/lobster",
                   "es/tools/media-overview",
+                  "es/tools/mcp",
                   "es/tools/music-generation",
                   "es/tools/pdf",
                   "es/tools/reactions",
@@ -5742,6 +5756,7 @@
                 "pages": [
                   "es/web/index",
                   "es/web/control-ui",
+                  "es/web/notifications",
                   "es/web/urls",
                   "es/web/dashboard",
                   "es/web/dashboards",
@@ -6271,6 +6286,7 @@
                 "group": "Multi-agent",
                 "pages": [
                   "pt-BR/concepts/multi-agent",
+                  "pt-BR/concepts/agent-bindings",
                   "pt-BR/concepts/parallel-specialist-lanes",
                   "pt-BR/concepts/presence",
                   "pt-BR/concepts/delegate-architecture"
@@ -6390,6 +6406,7 @@
                   "pt-BR/tools/llm-task",
                   "pt-BR/tools/lobster",
                   "pt-BR/tools/media-overview",
+                  "pt-BR/tools/mcp",
                   "pt-BR/tools/music-generation",
                   "pt-BR/tools/pdf",
                   "pt-BR/tools/reactions",
@@ -6736,6 +6753,7 @@
                 "pages": [
                   "pt-BR/web/index",
                   "pt-BR/web/control-ui",
+                  "pt-BR/web/notifications",
                   "pt-BR/web/urls",
                   "pt-BR/web/dashboard",
                   "pt-BR/web/dashboards",
@@ -7265,6 +7283,7 @@
                 "group": "Multi-agent",
                 "pages": [
                   "ko/concepts/multi-agent",
+                  "ko/concepts/agent-bindings",
                   "ko/concepts/parallel-specialist-lanes",
                   "ko/concepts/presence",
                   "ko/concepts/delegate-architecture"
@@ -7384,6 +7403,7 @@
                   "ko/tools/llm-task",
                   "ko/tools/lobster",
                   "ko/tools/media-overview",
+                  "ko/tools/mcp",
                   "ko/tools/music-generation",
                   "ko/tools/pdf",
                   "ko/tools/reactions",
@@ -7730,6 +7750,7 @@
                 "pages": [
                   "ko/web/index",
                   "ko/web/control-ui",
+                  "ko/web/notifications",
                   "ko/web/urls",
                   "ko/web/dashboard",
                   "ko/web/dashboards",
@@ -8259,6 +8280,7 @@
                 "group": "Multi-agent",
                 "pages": [
                   "de/concepts/multi-agent",
+                  "de/concepts/agent-bindings",
                   "de/concepts/parallel-specialist-lanes",
                   "de/concepts/presence",
                   "de/concepts/delegate-architecture"
@@ -8378,6 +8400,7 @@
                   "de/tools/llm-task",
                   "de/tools/lobster",
                   "de/tools/media-overview",
+                  "de/tools/mcp",
                   "de/tools/music-generation",
                   "de/tools/pdf",
                   "de/tools/reactions",
@@ -8724,6 +8747,7 @@
                 "pages": [
                   "de/web/index",
                   "de/web/control-ui",
+                  "de/web/notifications",
                   "de/web/urls",
                   "de/web/dashboard",
                   "de/web/dashboards",
@@ -9253,6 +9277,7 @@
                 "group": "Multi-agent",
                 "pages": [
                   "fr/concepts/multi-agent",
+                  "fr/concepts/agent-bindings",
                   "fr/concepts/parallel-specialist-lanes",
                   "fr/concepts/presence",
                   "fr/concepts/delegate-architecture"
@@ -9372,6 +9397,7 @@
                   "fr/tools/llm-task",
                   "fr/tools/lobster",
                   "fr/tools/media-overview",
+                  "fr/tools/mcp",
                   "fr/tools/music-generation",
                   "fr/tools/pdf",
                   "fr/tools/reactions",
@@ -9718,6 +9744,7 @@
                 "pages": [
                   "fr/web/index",
                   "fr/web/control-ui",
+                  "fr/web/notifications",
                   "fr/web/urls",
                   "fr/web/dashboard",
                   "fr/web/dashboards",
@@ -10247,6 +10274,7 @@
                 "group": "Multi-agent",
                 "pages": [
                   "hi/concepts/multi-agent",
+                  "hi/concepts/agent-bindings",
                   "hi/concepts/parallel-specialist-lanes",
                   "hi/concepts/presence",
                   "hi/concepts/delegate-architecture"
@@ -10366,6 +10394,7 @@
                   "hi/tools/llm-task",
                   "hi/tools/lobster",
                   "hi/tools/media-overview",
+                  "hi/tools/mcp",
                   "hi/tools/music-generation",
                   "hi/tools/pdf",
                   "hi/tools/reactions",
@@ -10712,6 +10741,7 @@
                 "pages": [
                   "hi/web/index",
                   "hi/web/control-ui",
+                  "hi/web/notifications",
                   "hi/web/urls",
                   "hi/web/dashboard",
                   "hi/web/dashboards",
@@ -11241,6 +11271,7 @@
                 "group": "Multi-agent",
                 "pages": [
                   "ar/concepts/multi-agent",
+                  "ar/concepts/agent-bindings",
                   "ar/concepts/parallel-specialist-lanes",
                   "ar/concepts/presence",
                   "ar/concepts/delegate-architecture"
@@ -11360,6 +11391,7 @@
                   "ar/tools/llm-task",
                   "ar/tools/lobster",
                   "ar/tools/media-overview",
+                  "ar/tools/mcp",
                   "ar/tools/music-generation",
                   "ar/tools/pdf",
                   "ar/tools/reactions",
@@ -11706,6 +11738,7 @@
                 "pages": [
                   "ar/web/index",
                   "ar/web/control-ui",
+                  "ar/web/notifications",
                   "ar/web/urls",
                   "ar/web/dashboard",
                   "ar/web/dashboards",
@@ -12235,6 +12268,7 @@
                 "group": "Multi-agent",
                 "pages": [
                   "it/concepts/multi-agent",
+                  "it/concepts/agent-bindings",
                   "it/concepts/parallel-specialist-lanes",
                   "it/concepts/presence",
                   "it/concepts/delegate-architecture"
@@ -12354,6 +12388,7 @@
                   "it/tools/llm-task",
                   "it/tools/lobster",
                   "it/tools/media-overview",
+                  "it/tools/mcp",
                   "it/tools/music-generation",
                   "it/tools/pdf",
                   "it/tools/reactions",
@@ -12700,6 +12735,7 @@
                 "pages": [
                   "it/web/index",
                   "it/web/control-ui",
+                  "it/web/notifications",
                   "it/web/urls",
                   "it/web/dashboard",
                   "it/web/dashboards",
@@ -13229,6 +13265,7 @@
                 "group": "Multi-agent",
                 "pages": [
                   "vi/concepts/multi-agent",
+                  "vi/concepts/agent-bindings",
                   "vi/concepts/parallel-specialist-lanes",
                   "vi/concepts/presence",
                   "vi/concepts/delegate-architecture"
@@ -13348,6 +13385,7 @@
                   "vi/tools/llm-task",
                   "vi/tools/lobster",
                   "vi/tools/media-overview",
+                  "vi/tools/mcp",
                   "vi/tools/music-generation",
                   "vi/tools/pdf",
                   "vi/tools/reactions",
@@ -13694,6 +13732,7 @@
                 "pages": [
                   "vi/web/index",
                   "vi/web/control-ui",
+                  "vi/web/notifications",
                   "vi/web/urls",
                   "vi/web/dashboard",
                   "vi/web/dashboards",
@@ -14223,6 +14262,7 @@
                 "group": "Multi-agent",
                 "pages": [
                   "nl/concepts/multi-agent",
+                  "nl/concepts/agent-bindings",
                   "nl/concepts/parallel-specialist-lanes",
                   "nl/concepts/presence",
                   "nl/concepts/delegate-architecture"
@@ -14342,6 +14382,7 @@
                   "nl/tools/llm-task",
                   "nl/tools/lobster",
                   "nl/tools/media-overview",
+                  "nl/tools/mcp",
                   "nl/tools/music-generation",
                   "nl/tools/pdf",
                   "nl/tools/reactions",
@@ -14688,6 +14729,7 @@
                 "pages": [
                   "nl/web/index",
                   "nl/web/control-ui",
+                  "nl/web/notifications",
                   "nl/web/urls",
                   "nl/web/dashboard",
                   "nl/web/dashboards",
@@ -15217,6 +15259,7 @@
                 "group": "Multi-agent",
                 "pages": [
                   "tr/concepts/multi-agent",
+                  "tr/concepts/agent-bindings",
                   "tr/concepts/parallel-specialist-lanes",
                   "tr/concepts/presence",
                   "tr/concepts/delegate-architecture"
@@ -15336,6 +15379,7 @@
                   "tr/tools/llm-task",
                   "tr/tools/lobster",
                   "tr/tools/media-overview",
+                  "tr/tools/mcp",
                   "tr/tools/music-generation",
                   "tr/tools/pdf",
                   "tr/tools/reactions",
@@ -15682,6 +15726,7 @@
                 "pages": [
                   "tr/web/index",
                   "tr/web/control-ui",
+                  "tr/web/notifications",
                   "tr/web/urls",
                   "tr/web/dashboard",
                   "tr/web/dashboards",
@@ -16211,6 +16256,7 @@
                 "group": "Multi-agent",
                 "pages": [
                   "uk/concepts/multi-agent",
+                  "uk/concepts/agent-bindings",
                   "uk/concepts/parallel-specialist-lanes",
                   "uk/concepts/presence",
                   "uk/concepts/delegate-architecture"
@@ -16330,6 +16376,7 @@
                   "uk/tools/llm-task",
                   "uk/tools/lobster",
                   "uk/tools/media-overview",
+                  "uk/tools/mcp",
                   "uk/tools/music-generation",
                   "uk/tools/pdf",
                   "uk/tools/reactions",
@@ -16676,6 +16723,7 @@
                 "pages": [
                   "uk/web/index",
                   "uk/web/control-ui",
+                  "uk/web/notifications",
                   "uk/web/urls",
                   "uk/web/dashboard",
                   "uk/web/dashboards",
@@ -17205,6 +17253,7 @@
                 "group": "Multi-agent",
                 "pages": [
                   "id/concepts/multi-agent",
+                  "id/concepts/agent-bindings",
                   "id/concepts/parallel-specialist-lanes",
                   "id/concepts/presence",
                   "id/concepts/delegate-architecture"
@@ -17324,6 +17373,7 @@
                   "id/tools/llm-task",
                   "id/tools/lobster",
                   "id/tools/media-overview",
+                  "id/tools/mcp",
                   "id/tools/music-generation",
                   "id/tools/pdf",
                   "id/tools/reactions",
@@ -17670,6 +17720,7 @@
                 "pages": [
                   "id/web/index",
                   "id/web/control-ui",
+                  "id/web/notifications",
                   "id/web/urls",
                   "id/web/dashboard",
                   "id/web/dashboards",
@@ -18199,6 +18250,7 @@
                 "group": "Multi-agent",
                 "pages": [
                   "pl/concepts/multi-agent",
+                  "pl/concepts/agent-bindings",
                   "pl/concepts/parallel-specialist-lanes",
                   "pl/concepts/presence",
                   "pl/concepts/delegate-architecture"
@@ -18318,6 +18370,7 @@
                   "pl/tools/llm-task",
                   "pl/tools/lobster",
                   "pl/tools/media-overview",
+                  "pl/tools/mcp",
                   "pl/tools/music-generation",
                   "pl/tools/pdf",
                   "pl/tools/reactions",
@@ -18664,6 +18717,7 @@
                 "pages": [
                   "pl/web/index",
                   "pl/web/control-ui",
+                  "pl/web/notifications",
                   "pl/web/urls",
                   "pl/web/dashboard",
                   "pl/web/dashboards",
@@ -19193,6 +19247,7 @@
                 "group": "Multi-agent",
                 "pages": [
                   "ru/concepts/multi-agent",
+                  "ru/concepts/agent-bindings",
                   "ru/concepts/parallel-specialist-lanes",
                   "ru/concepts/presence",
                   "ru/concepts/delegate-architecture"
@@ -19312,6 +19367,7 @@
                   "ru/tools/llm-task",
                   "ru/tools/lobster",
                   "ru/tools/media-overview",
+                  "ru/tools/mcp",
                   "ru/tools/music-generation",
                   "ru/tools/pdf",
                   "ru/tools/reactions",
@@ -19658,6 +19714,7 @@
                 "pages": [
                   "ru/web/index",
                   "ru/web/control-ui",
+                  "ru/web/notifications",
                   "ru/web/urls",
                   "ru/web/dashboard",
                   "ru/web/dashboards",
