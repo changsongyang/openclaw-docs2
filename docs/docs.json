@@ -1747,6 +1747,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "nodes/media-understanding",
+                      "nodes/media-playback",
                       "nodes/images",
                       "nodes/audio",
                       "nodes/camera",
@@ -2745,6 +2746,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "zh-CN/nodes/media-understanding",
+                      "zh-CN/nodes/media-playback",
                       "zh-CN/nodes/images",
                       "zh-CN/nodes/audio",
                       "zh-CN/nodes/camera",
@@ -3743,6 +3745,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "zh-TW/nodes/media-understanding",
+                      "zh-TW/nodes/media-playback",
                       "zh-TW/nodes/images",
                       "zh-TW/nodes/audio",
                       "zh-TW/nodes/camera",
@@ -4741,6 +4744,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "ja-JP/nodes/media-understanding",
+                      "ja-JP/nodes/media-playback",
                       "ja-JP/nodes/images",
                       "ja-JP/nodes/audio",
                       "ja-JP/nodes/camera",
@@ -5739,6 +5743,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "es/nodes/media-understanding",
+                      "es/nodes/media-playback",
                       "es/nodes/images",
                       "es/nodes/audio",
                       "es/nodes/camera",
@@ -6737,6 +6742,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "pt-BR/nodes/media-understanding",
+                      "pt-BR/nodes/media-playback",
                       "pt-BR/nodes/images",
                       "pt-BR/nodes/audio",
                       "pt-BR/nodes/camera",
@@ -7735,6 +7741,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "ko/nodes/media-understanding",
+                      "ko/nodes/media-playback",
                       "ko/nodes/images",
                       "ko/nodes/audio",
                       "ko/nodes/camera",
@@ -8733,6 +8740,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "de/nodes/media-understanding",
+                      "de/nodes/media-playback",
                       "de/nodes/images",
                       "de/nodes/audio",
                       "de/nodes/camera",
@@ -9731,6 +9739,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "fr/nodes/media-understanding",
+                      "fr/nodes/media-playback",
                       "fr/nodes/images",
                       "fr/nodes/audio",
                       "fr/nodes/camera",
@@ -10729,6 +10738,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "hi/nodes/media-understanding",
+                      "hi/nodes/media-playback",
                       "hi/nodes/images",
                       "hi/nodes/audio",
                       "hi/nodes/camera",
@@ -11727,6 +11737,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "ar/nodes/media-understanding",
+                      "ar/nodes/media-playback",
                       "ar/nodes/images",
                       "ar/nodes/audio",
                       "ar/nodes/camera",
@@ -12725,6 +12736,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "it/nodes/media-understanding",
+                      "it/nodes/media-playback",
                       "it/nodes/images",
                       "it/nodes/audio",
                       "it/nodes/camera",
@@ -13723,6 +13735,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "vi/nodes/media-understanding",
+                      "vi/nodes/media-playback",
                       "vi/nodes/images",
                       "vi/nodes/audio",
                       "vi/nodes/camera",
@@ -14721,6 +14734,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "nl/nodes/media-understanding",
+                      "nl/nodes/media-playback",
                       "nl/nodes/images",
                       "nl/nodes/audio",
                       "nl/nodes/camera",
@@ -15719,6 +15733,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "tr/nodes/media-understanding",
+                      "tr/nodes/media-playback",
                       "tr/nodes/images",
                       "tr/nodes/audio",
                       "tr/nodes/camera",
@@ -16717,6 +16732,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "uk/nodes/media-understanding",
+                      "uk/nodes/media-playback",
                       "uk/nodes/images",
                       "uk/nodes/audio",
                       "uk/nodes/camera",
@@ -17715,6 +17731,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "id/nodes/media-understanding",
+                      "id/nodes/media-playback",
                       "id/nodes/images",
                       "id/nodes/audio",
                       "id/nodes/camera",
@@ -18713,6 +18730,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "pl/nodes/media-understanding",
+                      "pl/nodes/media-playback",
                       "pl/nodes/images",
                       "pl/nodes/audio",
                       "pl/nodes/camera",
@@ -19711,6 +19729,7 @@
                     "group": "Media capabilities",
                     "pages": [
                       "ru/nodes/media-understanding",
+                      "ru/nodes/media-playback",
                       "ru/nodes/images",
                       "ru/nodes/audio",
                       "ru/nodes/camera",
