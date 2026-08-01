@@ -1428,6 +1428,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Options
   - H2: Examples
   - H2: Output
+  - H3: Dismissal output
   - H2: Related
 
 ## cli/completion.md
