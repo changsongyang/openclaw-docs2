@@ -1642,6 +1642,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Run the Gateway
   - H3: Options
+  - H2: Reveal the configured token
   - H2: Restart the Gateway
   - H3: Install identity
   - H3: External supervisors
