@@ -7825,7 +7825,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: openclaw.channel
   - H3: Channel-owned setup fields
   - H3: openclaw.install
-  - H3: Deferred full load
+  - H3: Setup-time gateway methods
   - H2: Plugin manifest
   - H2: ClawHub publishing
   - H2: Setup entry
