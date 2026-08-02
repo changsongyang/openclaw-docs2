@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "43 4 * * *"
   workflow_dispatch:
+    inputs:
+      debug_only:
+        description: Run without changing issues or pull requests
+        type: boolean
+        default: false
 
 permissions: {}
 
@@ -15,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Mark stale unassigned issues and pull requests
-        uses: actions/stale@v10.4.0
+        uses: actions/stale@v11.0.0
         with:
           days-before-issue-stale: 14
           days-before-issue-close: 7
@@ -26,6 +31,7 @@ jobs:
           exempt-issue-labels: enhancement,maintainer,pinned,security,no-stale
           exempt-pr-labels: maintainer,no-stale
           operations-per-run: 1000
+          debug-only: ${{ inputs.debug_only || false }}
           ascending: true
           exempt-all-assignees: true
           remove-stale-when-updated: true
@@ -44,7 +50,7 @@ jobs:
             If this PR should be revived, reopen it with current context and validation.
 
       - name: Mark stale assigned issues
-        uses: actions/stale@v10.4.0
+        uses: actions/stale@v11.0.0
         with:
           days-before-issue-stale: 30
           days-before-issue-close: 10
@@ -53,6 +59,7 @@ jobs:
           stale-issue-label: stale
           exempt-issue-labels: enhancement,maintainer,pinned,security,no-stale
           operations-per-run: 1000
+          debug-only: ${{ inputs.debug_only || false }}
           ascending: true
           include-only-assigned: true
           remove-stale-when-updated: true
@@ -65,7 +72,7 @@ jobs:
           close-issue-reason: not_planned
 
       - name: Mark stale assigned pull requests
-        uses: actions/stale@v10.4.0
+        uses: actions/stale@v11.0.0
         with:
           days-before-issue-stale: -1
           days-before-issue-close: -1
@@ -74,6 +81,7 @@ jobs:
           stale-pr-label: stale
           exempt-pr-labels: maintainer,no-stale
           operations-per-run: 1000
+          debug-only: ${{ inputs.debug_only || false }}
           ascending: true
           include-only-assigned: true
           ignore-pr-updates: true
