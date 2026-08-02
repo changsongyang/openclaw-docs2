@@ -7767,7 +7767,6 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Migration reference
   - H2: Talk and realtime voice migration
   - H2: Removal timeline
-  - H2: Suppressing the warnings temporarily
   - H2: Related
 
 ## plugins/sdk-overview.md
