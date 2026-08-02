@@ -7712,6 +7712,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H4: Transport classes and retention
   - H4: At-least-once side effects
   - H4: Account-scoped restart contract
+  - H3: Runtime lifecycle status
   - H3: Typing indicators
   - H3: Media source params
   - H3: Native payload shaping
