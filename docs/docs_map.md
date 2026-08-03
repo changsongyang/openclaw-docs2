@@ -974,6 +974,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Access control
   - H2: Sending SMS
   - H3: Sending MMS
+  - H3: Delivery status
   - H2: Verify Setup
   - H3: End-to-end test from macOS iMessage/SMS
   - H2: Webhook security
