@@ -4218,6 +4218,28 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: What native acceleration adds
   - H2: Plugin and core guidance
 
+## gateway/stable-https-url.md
+
+- Route: /gateway/stable-https-url
+- Headings:
+  - H2: Before you begin
+  - H2: 1. Enable Serve while keeping loopback bind
+  - H3: Optional identity-header auth
+  - H2: 2. Allow HTTPS in your tailnet policy
+  - H3: Modern grants policy
+  - H3: Older ACL policy
+  - H2: 3. Verify the route and loopback boundary
+  - H2: 4. Use the URL from clients
+  - H3: macOS app
+  - H3: iOS and Android companion apps
+  - H2: Optional stable vanity name
+  - H2: Troubleshooting
+  - H3: The URL times out from other devices
+  - H3: The certificate is not issued or the first request is slow
+  - H3: The serve command is unavailable
+  - H3: Tailscale identity headers are not accepted
+  - H2: Related
+
 ## gateway/tailscale.md
 
 - Route: /gateway/tailscale

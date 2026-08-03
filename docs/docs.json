@@ -1725,6 +1725,7 @@
                 "pages": [
                   "gateway/remote",
                   "gateway/remote-gateway-readme",
+                  "gateway/stable-https-url",
                   "gateway/tailscale"
                 ]
               },
@@ -2724,6 +2725,7 @@
                 "pages": [
                   "zh-CN/gateway/remote",
                   "zh-CN/gateway/remote-gateway-readme",
+                  "zh-CN/gateway/stable-https-url",
                   "zh-CN/gateway/tailscale"
                 ]
               },
@@ -3723,6 +3725,7 @@
                 "pages": [
                   "zh-TW/gateway/remote",
                   "zh-TW/gateway/remote-gateway-readme",
+                  "zh-TW/gateway/stable-https-url",
                   "zh-TW/gateway/tailscale"
                 ]
               },
@@ -4722,6 +4725,7 @@
                 "pages": [
                   "ja-JP/gateway/remote",
                   "ja-JP/gateway/remote-gateway-readme",
+                  "ja-JP/gateway/stable-https-url",
                   "ja-JP/gateway/tailscale"
                 ]
               },
@@ -5721,6 +5725,7 @@
                 "pages": [
                   "es/gateway/remote",
                   "es/gateway/remote-gateway-readme",
+                  "es/gateway/stable-https-url",
                   "es/gateway/tailscale"
                 ]
               },
@@ -6720,6 +6725,7 @@
                 "pages": [
                   "pt-BR/gateway/remote",
                   "pt-BR/gateway/remote-gateway-readme",
+                  "pt-BR/gateway/stable-https-url",
                   "pt-BR/gateway/tailscale"
                 ]
               },
@@ -7719,6 +7725,7 @@
                 "pages": [
                   "ko/gateway/remote",
                   "ko/gateway/remote-gateway-readme",
+                  "ko/gateway/stable-https-url",
                   "ko/gateway/tailscale"
                 ]
               },
@@ -8718,6 +8725,7 @@
                 "pages": [
                   "de/gateway/remote",
                   "de/gateway/remote-gateway-readme",
+                  "de/gateway/stable-https-url",
                   "de/gateway/tailscale"
                 ]
               },
@@ -9717,6 +9725,7 @@
                 "pages": [
                   "fr/gateway/remote",
                   "fr/gateway/remote-gateway-readme",
+                  "fr/gateway/stable-https-url",
                   "fr/gateway/tailscale"
                 ]
               },
@@ -10716,6 +10725,7 @@
                 "pages": [
                   "hi/gateway/remote",
                   "hi/gateway/remote-gateway-readme",
+                  "hi/gateway/stable-https-url",
                   "hi/gateway/tailscale"
                 ]
               },
@@ -11715,6 +11725,7 @@
                 "pages": [
                   "ar/gateway/remote",
                   "ar/gateway/remote-gateway-readme",
+                  "ar/gateway/stable-https-url",
                   "ar/gateway/tailscale"
                 ]
               },
@@ -12714,6 +12725,7 @@
                 "pages": [
                   "it/gateway/remote",
                   "it/gateway/remote-gateway-readme",
+                  "it/gateway/stable-https-url",
                   "it/gateway/tailscale"
                 ]
               },
@@ -13713,6 +13725,7 @@
                 "pages": [
                   "vi/gateway/remote",
                   "vi/gateway/remote-gateway-readme",
+                  "vi/gateway/stable-https-url",
                   "vi/gateway/tailscale"
                 ]
               },
@@ -14712,6 +14725,7 @@
                 "pages": [
                   "nl/gateway/remote",
                   "nl/gateway/remote-gateway-readme",
+                  "nl/gateway/stable-https-url",
                   "nl/gateway/tailscale"
                 ]
               },
@@ -15711,6 +15725,7 @@
                 "pages": [
                   "tr/gateway/remote",
                   "tr/gateway/remote-gateway-readme",
+                  "tr/gateway/stable-https-url",
                   "tr/gateway/tailscale"
                 ]
               },
@@ -16710,6 +16725,7 @@
                 "pages": [
                   "uk/gateway/remote",
                   "uk/gateway/remote-gateway-readme",
+                  "uk/gateway/stable-https-url",
                   "uk/gateway/tailscale"
                 ]
               },
@@ -17709,6 +17725,7 @@
                 "pages": [
                   "id/gateway/remote",
                   "id/gateway/remote-gateway-readme",
+                  "id/gateway/stable-https-url",
                   "id/gateway/tailscale"
                 ]
               },
@@ -18708,6 +18725,7 @@
                 "pages": [
                   "pl/gateway/remote",
                   "pl/gateway/remote-gateway-readme",
+                  "pl/gateway/stable-https-url",
                   "pl/gateway/tailscale"
                 ]
               },
@@ -19707,6 +19725,7 @@
                 "pages": [
                   "ru/gateway/remote",
                   "ru/gateway/remote-gateway-readme",
+                  "ru/gateway/stable-https-url",
                   "ru/gateway/tailscale"
                 ]
               },
