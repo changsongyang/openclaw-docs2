@@ -550,6 +550,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /channels
 - Headings:
   - H2: Supported channels
+  - H3: Related communication plugins
   - H2: Delivery notes
   - H2: Notes
 
@@ -1092,6 +1093,13 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Sidecar process
   - H2: Troubleshooting
   - H2: Related docs
+
+## channels/wecom.md
+
+- Route: /channels/wecom
+- Headings:
+  - H2: Install
+  - H2: Configure
 
 ## channels/whatsapp.md
 

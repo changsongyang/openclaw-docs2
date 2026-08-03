@@ -1154,6 +1154,7 @@
                   "channels/discord",
                   "channels/discord-activities",
                   "channels/slack",
+                  "channels/sms",
                   "channels/telegram",
                   "channels/whatsapp",
                   "channels/signal",
@@ -1170,6 +1171,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "channels/buzz",
+                  "channels/clickclack",
                   "channels/irc",
                   "channels/mattermost",
                   "channels/nextcloud-talk",
@@ -1186,6 +1189,7 @@
                 "pages": [
                   "channels/line",
                   "channels/wechat",
+                  "channels/wecom",
                   "channels/qqbot",
                   "channels/feishu",
                   "channels/yuanbao",
@@ -1205,8 +1209,7 @@
                   "channels/broadcast-groups",
                   "channels/channel-routing",
                   "channels/location",
-                  "channels/troubleshooting",
-                  "channels/qa-channel"
+                  "channels/troubleshooting"
                 ]
               }
             ]
@@ -2189,6 +2192,7 @@
                   "zh-CN/channels/discord",
                   "zh-CN/channels/discord-activities",
                   "zh-CN/channels/slack",
+                  "zh-CN/channels/sms",
                   "zh-CN/channels/telegram",
                   "zh-CN/channels/whatsapp",
                   "zh-CN/channels/signal",
@@ -2205,6 +2209,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "zh-CN/channels/buzz",
+                  "zh-CN/channels/clickclack",
                   "zh-CN/channels/irc",
                   "zh-CN/channels/mattermost",
                   "zh-CN/channels/nextcloud-talk",
@@ -2221,6 +2227,7 @@
                 "pages": [
                   "zh-CN/channels/line",
                   "zh-CN/channels/wechat",
+                  "zh-CN/channels/wecom",
                   "zh-CN/channels/qqbot",
                   "zh-CN/channels/feishu",
                   "zh-CN/channels/yuanbao",
@@ -2240,8 +2247,7 @@
                   "zh-CN/channels/broadcast-groups",
                   "zh-CN/channels/channel-routing",
                   "zh-CN/channels/location",
-                  "zh-CN/channels/troubleshooting",
-                  "zh-CN/channels/qa-channel"
+                  "zh-CN/channels/troubleshooting"
                 ]
               }
             ]
@@ -3190,6 +3196,7 @@
                   "zh-TW/channels/discord",
                   "zh-TW/channels/discord-activities",
                   "zh-TW/channels/slack",
+                  "zh-TW/channels/sms",
                   "zh-TW/channels/telegram",
                   "zh-TW/channels/whatsapp",
                   "zh-TW/channels/signal",
@@ -3206,6 +3213,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "zh-TW/channels/buzz",
+                  "zh-TW/channels/clickclack",
                   "zh-TW/channels/irc",
                   "zh-TW/channels/mattermost",
                   "zh-TW/channels/nextcloud-talk",
@@ -3222,6 +3231,7 @@
                 "pages": [
                   "zh-TW/channels/line",
                   "zh-TW/channels/wechat",
+                  "zh-TW/channels/wecom",
                   "zh-TW/channels/qqbot",
                   "zh-TW/channels/feishu",
                   "zh-TW/channels/yuanbao",
@@ -3241,8 +3251,7 @@
                   "zh-TW/channels/broadcast-groups",
                   "zh-TW/channels/channel-routing",
                   "zh-TW/channels/location",
-                  "zh-TW/channels/troubleshooting",
-                  "zh-TW/channels/qa-channel"
+                  "zh-TW/channels/troubleshooting"
                 ]
               }
             ]
@@ -4191,6 +4200,7 @@
                   "ja-JP/channels/discord",
                   "ja-JP/channels/discord-activities",
                   "ja-JP/channels/slack",
+                  "ja-JP/channels/sms",
                   "ja-JP/channels/telegram",
                   "ja-JP/channels/whatsapp",
                   "ja-JP/channels/signal",
@@ -4207,6 +4217,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "ja-JP/channels/buzz",
+                  "ja-JP/channels/clickclack",
                   "ja-JP/channels/irc",
                   "ja-JP/channels/mattermost",
                   "ja-JP/channels/nextcloud-talk",
@@ -4223,6 +4235,7 @@
                 "pages": [
                   "ja-JP/channels/line",
                   "ja-JP/channels/wechat",
+                  "ja-JP/channels/wecom",
                   "ja-JP/channels/qqbot",
                   "ja-JP/channels/feishu",
                   "ja-JP/channels/yuanbao",
@@ -4242,8 +4255,7 @@
                   "ja-JP/channels/broadcast-groups",
                   "ja-JP/channels/channel-routing",
                   "ja-JP/channels/location",
-                  "ja-JP/channels/troubleshooting",
-                  "ja-JP/channels/qa-channel"
+                  "ja-JP/channels/troubleshooting"
                 ]
               }
             ]
@@ -5192,6 +5204,7 @@
                   "es/channels/discord",
                   "es/channels/discord-activities",
                   "es/channels/slack",
+                  "es/channels/sms",
                   "es/channels/telegram",
                   "es/channels/whatsapp",
                   "es/channels/signal",
@@ -5208,6 +5221,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "es/channels/buzz",
+                  "es/channels/clickclack",
                   "es/channels/irc",
                   "es/channels/mattermost",
                   "es/channels/nextcloud-talk",
@@ -5224,6 +5239,7 @@
                 "pages": [
                   "es/channels/line",
                   "es/channels/wechat",
+                  "es/channels/wecom",
                   "es/channels/qqbot",
                   "es/channels/feishu",
                   "es/channels/yuanbao",
@@ -5243,8 +5259,7 @@
                   "es/channels/broadcast-groups",
                   "es/channels/channel-routing",
                   "es/channels/location",
-                  "es/channels/troubleshooting",
-                  "es/channels/qa-channel"
+                  "es/channels/troubleshooting"
                 ]
               }
             ]
@@ -6193,6 +6208,7 @@
                   "pt-BR/channels/discord",
                   "pt-BR/channels/discord-activities",
                   "pt-BR/channels/slack",
+                  "pt-BR/channels/sms",
                   "pt-BR/channels/telegram",
                   "pt-BR/channels/whatsapp",
                   "pt-BR/channels/signal",
@@ -6209,6 +6225,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "pt-BR/channels/buzz",
+                  "pt-BR/channels/clickclack",
                   "pt-BR/channels/irc",
                   "pt-BR/channels/mattermost",
                   "pt-BR/channels/nextcloud-talk",
@@ -6225,6 +6243,7 @@
                 "pages": [
                   "pt-BR/channels/line",
                   "pt-BR/channels/wechat",
+                  "pt-BR/channels/wecom",
                   "pt-BR/channels/qqbot",
                   "pt-BR/channels/feishu",
                   "pt-BR/channels/yuanbao",
@@ -6244,8 +6263,7 @@
                   "pt-BR/channels/broadcast-groups",
                   "pt-BR/channels/channel-routing",
                   "pt-BR/channels/location",
-                  "pt-BR/channels/troubleshooting",
-                  "pt-BR/channels/qa-channel"
+                  "pt-BR/channels/troubleshooting"
                 ]
               }
             ]
@@ -7194,6 +7212,7 @@
                   "ko/channels/discord",
                   "ko/channels/discord-activities",
                   "ko/channels/slack",
+                  "ko/channels/sms",
                   "ko/channels/telegram",
                   "ko/channels/whatsapp",
                   "ko/channels/signal",
@@ -7210,6 +7229,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "ko/channels/buzz",
+                  "ko/channels/clickclack",
                   "ko/channels/irc",
                   "ko/channels/mattermost",
                   "ko/channels/nextcloud-talk",
@@ -7226,6 +7247,7 @@
                 "pages": [
                   "ko/channels/line",
                   "ko/channels/wechat",
+                  "ko/channels/wecom",
                   "ko/channels/qqbot",
                   "ko/channels/feishu",
                   "ko/channels/yuanbao",
@@ -7245,8 +7267,7 @@
                   "ko/channels/broadcast-groups",
                   "ko/channels/channel-routing",
                   "ko/channels/location",
-                  "ko/channels/troubleshooting",
-                  "ko/channels/qa-channel"
+                  "ko/channels/troubleshooting"
                 ]
               }
             ]
@@ -8195,6 +8216,7 @@
                   "de/channels/discord",
                   "de/channels/discord-activities",
                   "de/channels/slack",
+                  "de/channels/sms",
                   "de/channels/telegram",
                   "de/channels/whatsapp",
                   "de/channels/signal",
@@ -8211,6 +8233,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "de/channels/buzz",
+                  "de/channels/clickclack",
                   "de/channels/irc",
                   "de/channels/mattermost",
                   "de/channels/nextcloud-talk",
@@ -8227,6 +8251,7 @@
                 "pages": [
                   "de/channels/line",
                   "de/channels/wechat",
+                  "de/channels/wecom",
                   "de/channels/qqbot",
                   "de/channels/feishu",
                   "de/channels/yuanbao",
@@ -8246,8 +8271,7 @@
                   "de/channels/broadcast-groups",
                   "de/channels/channel-routing",
                   "de/channels/location",
-                  "de/channels/troubleshooting",
-                  "de/channels/qa-channel"
+                  "de/channels/troubleshooting"
                 ]
               }
             ]
@@ -9196,6 +9220,7 @@
                   "fr/channels/discord",
                   "fr/channels/discord-activities",
                   "fr/channels/slack",
+                  "fr/channels/sms",
                   "fr/channels/telegram",
                   "fr/channels/whatsapp",
                   "fr/channels/signal",
@@ -9212,6 +9237,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "fr/channels/buzz",
+                  "fr/channels/clickclack",
                   "fr/channels/irc",
                   "fr/channels/mattermost",
                   "fr/channels/nextcloud-talk",
@@ -9228,6 +9255,7 @@
                 "pages": [
                   "fr/channels/line",
                   "fr/channels/wechat",
+                  "fr/channels/wecom",
                   "fr/channels/qqbot",
                   "fr/channels/feishu",
                   "fr/channels/yuanbao",
@@ -9247,8 +9275,7 @@
                   "fr/channels/broadcast-groups",
                   "fr/channels/channel-routing",
                   "fr/channels/location",
-                  "fr/channels/troubleshooting",
-                  "fr/channels/qa-channel"
+                  "fr/channels/troubleshooting"
                 ]
               }
             ]
@@ -10197,6 +10224,7 @@
                   "hi/channels/discord",
                   "hi/channels/discord-activities",
                   "hi/channels/slack",
+                  "hi/channels/sms",
                   "hi/channels/telegram",
                   "hi/channels/whatsapp",
                   "hi/channels/signal",
@@ -10213,6 +10241,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "hi/channels/buzz",
+                  "hi/channels/clickclack",
                   "hi/channels/irc",
                   "hi/channels/mattermost",
                   "hi/channels/nextcloud-talk",
@@ -10229,6 +10259,7 @@
                 "pages": [
                   "hi/channels/line",
                   "hi/channels/wechat",
+                  "hi/channels/wecom",
                   "hi/channels/qqbot",
                   "hi/channels/feishu",
                   "hi/channels/yuanbao",
@@ -10248,8 +10279,7 @@
                   "hi/channels/broadcast-groups",
                   "hi/channels/channel-routing",
                   "hi/channels/location",
-                  "hi/channels/troubleshooting",
-                  "hi/channels/qa-channel"
+                  "hi/channels/troubleshooting"
                 ]
               }
             ]
@@ -11198,6 +11228,7 @@
                   "ar/channels/discord",
                   "ar/channels/discord-activities",
                   "ar/channels/slack",
+                  "ar/channels/sms",
                   "ar/channels/telegram",
                   "ar/channels/whatsapp",
                   "ar/channels/signal",
@@ -11214,6 +11245,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "ar/channels/buzz",
+                  "ar/channels/clickclack",
                   "ar/channels/irc",
                   "ar/channels/mattermost",
                   "ar/channels/nextcloud-talk",
@@ -11230,6 +11263,7 @@
                 "pages": [
                   "ar/channels/line",
                   "ar/channels/wechat",
+                  "ar/channels/wecom",
                   "ar/channels/qqbot",
                   "ar/channels/feishu",
                   "ar/channels/yuanbao",
@@ -11249,8 +11283,7 @@
                   "ar/channels/broadcast-groups",
                   "ar/channels/channel-routing",
                   "ar/channels/location",
-                  "ar/channels/troubleshooting",
-                  "ar/channels/qa-channel"
+                  "ar/channels/troubleshooting"
                 ]
               }
             ]
@@ -12199,6 +12232,7 @@
                   "it/channels/discord",
                   "it/channels/discord-activities",
                   "it/channels/slack",
+                  "it/channels/sms",
                   "it/channels/telegram",
                   "it/channels/whatsapp",
                   "it/channels/signal",
@@ -12215,6 +12249,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "it/channels/buzz",
+                  "it/channels/clickclack",
                   "it/channels/irc",
                   "it/channels/mattermost",
                   "it/channels/nextcloud-talk",
@@ -12231,6 +12267,7 @@
                 "pages": [
                   "it/channels/line",
                   "it/channels/wechat",
+                  "it/channels/wecom",
                   "it/channels/qqbot",
                   "it/channels/feishu",
                   "it/channels/yuanbao",
@@ -12250,8 +12287,7 @@
                   "it/channels/broadcast-groups",
                   "it/channels/channel-routing",
                   "it/channels/location",
-                  "it/channels/troubleshooting",
-                  "it/channels/qa-channel"
+                  "it/channels/troubleshooting"
                 ]
               }
             ]
@@ -13200,6 +13236,7 @@
                   "vi/channels/discord",
                   "vi/channels/discord-activities",
                   "vi/channels/slack",
+                  "vi/channels/sms",
                   "vi/channels/telegram",
                   "vi/channels/whatsapp",
                   "vi/channels/signal",
@@ -13216,6 +13253,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "vi/channels/buzz",
+                  "vi/channels/clickclack",
                   "vi/channels/irc",
                   "vi/channels/mattermost",
                   "vi/channels/nextcloud-talk",
@@ -13232,6 +13271,7 @@
                 "pages": [
                   "vi/channels/line",
                   "vi/channels/wechat",
+                  "vi/channels/wecom",
                   "vi/channels/qqbot",
                   "vi/channels/feishu",
                   "vi/channels/yuanbao",
@@ -13251,8 +13291,7 @@
                   "vi/channels/broadcast-groups",
                   "vi/channels/channel-routing",
                   "vi/channels/location",
-                  "vi/channels/troubleshooting",
-                  "vi/channels/qa-channel"
+                  "vi/channels/troubleshooting"
                 ]
               }
             ]
@@ -14201,6 +14240,7 @@
                   "nl/channels/discord",
                   "nl/channels/discord-activities",
                   "nl/channels/slack",
+                  "nl/channels/sms",
                   "nl/channels/telegram",
                   "nl/channels/whatsapp",
                   "nl/channels/signal",
@@ -14217,6 +14257,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "nl/channels/buzz",
+                  "nl/channels/clickclack",
                   "nl/channels/irc",
                   "nl/channels/mattermost",
                   "nl/channels/nextcloud-talk",
@@ -14233,6 +14275,7 @@
                 "pages": [
                   "nl/channels/line",
                   "nl/channels/wechat",
+                  "nl/channels/wecom",
                   "nl/channels/qqbot",
                   "nl/channels/feishu",
                   "nl/channels/yuanbao",
@@ -14252,8 +14295,7 @@
                   "nl/channels/broadcast-groups",
                   "nl/channels/channel-routing",
                   "nl/channels/location",
-                  "nl/channels/troubleshooting",
-                  "nl/channels/qa-channel"
+                  "nl/channels/troubleshooting"
                 ]
               }
             ]
@@ -15202,6 +15244,7 @@
                   "tr/channels/discord",
                   "tr/channels/discord-activities",
                   "tr/channels/slack",
+                  "tr/channels/sms",
                   "tr/channels/telegram",
                   "tr/channels/whatsapp",
                   "tr/channels/signal",
@@ -15218,6 +15261,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "tr/channels/buzz",
+                  "tr/channels/clickclack",
                   "tr/channels/irc",
                   "tr/channels/mattermost",
                   "tr/channels/nextcloud-talk",
@@ -15234,6 +15279,7 @@
                 "pages": [
                   "tr/channels/line",
                   "tr/channels/wechat",
+                  "tr/channels/wecom",
                   "tr/channels/qqbot",
                   "tr/channels/feishu",
                   "tr/channels/yuanbao",
@@ -15253,8 +15299,7 @@
                   "tr/channels/broadcast-groups",
                   "tr/channels/channel-routing",
                   "tr/channels/location",
-                  "tr/channels/troubleshooting",
-                  "tr/channels/qa-channel"
+                  "tr/channels/troubleshooting"
                 ]
               }
             ]
@@ -16203,6 +16248,7 @@
                   "uk/channels/discord",
                   "uk/channels/discord-activities",
                   "uk/channels/slack",
+                  "uk/channels/sms",
                   "uk/channels/telegram",
                   "uk/channels/whatsapp",
                   "uk/channels/signal",
@@ -16219,6 +16265,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "uk/channels/buzz",
+                  "uk/channels/clickclack",
                   "uk/channels/irc",
                   "uk/channels/mattermost",
                   "uk/channels/nextcloud-talk",
@@ -16235,6 +16283,7 @@
                 "pages": [
                   "uk/channels/line",
                   "uk/channels/wechat",
+                  "uk/channels/wecom",
                   "uk/channels/qqbot",
                   "uk/channels/feishu",
                   "uk/channels/yuanbao",
@@ -16254,8 +16303,7 @@
                   "uk/channels/broadcast-groups",
                   "uk/channels/channel-routing",
                   "uk/channels/location",
-                  "uk/channels/troubleshooting",
-                  "uk/channels/qa-channel"
+                  "uk/channels/troubleshooting"
                 ]
               }
             ]
@@ -17204,6 +17252,7 @@
                   "id/channels/discord",
                   "id/channels/discord-activities",
                   "id/channels/slack",
+                  "id/channels/sms",
                   "id/channels/telegram",
                   "id/channels/whatsapp",
                   "id/channels/signal",
@@ -17220,6 +17269,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "id/channels/buzz",
+                  "id/channels/clickclack",
                   "id/channels/irc",
                   "id/channels/mattermost",
                   "id/channels/nextcloud-talk",
@@ -17236,6 +17287,7 @@
                 "pages": [
                   "id/channels/line",
                   "id/channels/wechat",
+                  "id/channels/wecom",
                   "id/channels/qqbot",
                   "id/channels/feishu",
                   "id/channels/yuanbao",
@@ -17255,8 +17307,7 @@
                   "id/channels/broadcast-groups",
                   "id/channels/channel-routing",
                   "id/channels/location",
-                  "id/channels/troubleshooting",
-                  "id/channels/qa-channel"
+                  "id/channels/troubleshooting"
                 ]
               }
             ]
@@ -18205,6 +18256,7 @@
                   "pl/channels/discord",
                   "pl/channels/discord-activities",
                   "pl/channels/slack",
+                  "pl/channels/sms",
                   "pl/channels/telegram",
                   "pl/channels/whatsapp",
                   "pl/channels/signal",
@@ -18221,6 +18273,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "pl/channels/buzz",
+                  "pl/channels/clickclack",
                   "pl/channels/irc",
                   "pl/channels/mattermost",
                   "pl/channels/nextcloud-talk",
@@ -18237,6 +18291,7 @@
                 "pages": [
                   "pl/channels/line",
                   "pl/channels/wechat",
+                  "pl/channels/wecom",
                   "pl/channels/qqbot",
                   "pl/channels/feishu",
                   "pl/channels/yuanbao",
@@ -18256,8 +18311,7 @@
                   "pl/channels/broadcast-groups",
                   "pl/channels/channel-routing",
                   "pl/channels/location",
-                  "pl/channels/troubleshooting",
-                  "pl/channels/qa-channel"
+                  "pl/channels/troubleshooting"
                 ]
               }
             ]
@@ -19206,6 +19260,7 @@
                   "ru/channels/discord",
                   "ru/channels/discord-activities",
                   "ru/channels/slack",
+                  "ru/channels/sms",
                   "ru/channels/telegram",
                   "ru/channels/whatsapp",
                   "ru/channels/signal",
@@ -19222,6 +19277,8 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "ru/channels/buzz",
+                  "ru/channels/clickclack",
                   "ru/channels/irc",
                   "ru/channels/mattermost",
                   "ru/channels/nextcloud-talk",
@@ -19238,6 +19295,7 @@
                 "pages": [
                   "ru/channels/line",
                   "ru/channels/wechat",
+                  "ru/channels/wecom",
                   "ru/channels/qqbot",
                   "ru/channels/feishu",
                   "ru/channels/yuanbao",
@@ -19257,8 +19315,7 @@
                   "ru/channels/broadcast-groups",
                   "ru/channels/channel-routing",
                   "ru/channels/location",
-                  "ru/channels/troubleshooting",
-                  "ru/channels/qa-channel"
+                  "ru/channels/troubleshooting"
                 ]
               }
             ]
