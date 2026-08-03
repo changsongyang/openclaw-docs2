@@ -2141,6 +2141,8 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: show
   - H3: notify
   - H3: cancel
+  - H3: retry
+  - H3: dismiss
   - H3: audit
   - H3: maintenance
   - H3: flow
