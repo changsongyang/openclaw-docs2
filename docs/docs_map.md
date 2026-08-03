@@ -4580,6 +4580,34 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Config and secrets
   - H2: Related
 
+## install/daytona.md
+
+- Route: /install/daytona
+- Headings:
+  - H2: What you need
+  - H2: Install the Daytona CLI
+  - H2: Authenticate
+  - H2: Create a sandbox
+  - H2: Connect via SSH
+  - H2: Run onboarding
+  - H2: Allow the preview URL origin
+  - H2: Start the Gateway
+  - H2: Open the dashboard
+  - H3: Approve your device
+  - H2: Security
+  - H2: Channel setup
+  - H3: Telegram
+  - H3: WhatsApp
+  - H2: Updating
+  - H2: Stop and resume the sandbox
+  - H2: Troubleshooting
+  - H3: Gateway not running after sandbox restart
+  - H3: Preview URL expired
+  - H3: Sandbox auto-stopped
+  - H3: Gateway port not reachable
+  - H2: Notes
+  - H2: Related
+
 ## install/development-channels.md
 
 - Route: /install/development-channels
