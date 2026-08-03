@@ -1261,6 +1261,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H1: ClawHub CLI
   - H2: Discover and install
   - H3: Release trust
+  - H2: Remove an installed skill
   - H2: Publish and maintain
   - H2: Related
 
@@ -2114,6 +2115,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H1: openclaw skills
   - H2: Commands
+  - H2: Remove a ClawHub skill
   - H2: Skill Workshop
   - H2: Related
 
