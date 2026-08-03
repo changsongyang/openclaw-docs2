@@ -964,6 +964,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /channels/sms
 - Headings:
   - H2: Before you begin
+  - H2: US A2P / 10DLC delivery
   - H2: Quick Setup
   - H2: Configuration Examples
   - H3: Config file
@@ -983,6 +984,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Twilio returns 403 or OpenClaw rejects the webhook
   - H3: No pairing request appears
   - H3: Outbound sends fail
+  - H3: Twilio accepts the send but delivery later fails
   - H3: Messages arrive but the agent does not answer
 
 ## channels/synology-chat.md
