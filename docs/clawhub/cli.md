@@ -192,6 +192,12 @@ Stores your API token + cached registry URL.
   actor has publisher access.
 - `--migrate-owner` moves an existing skill to `--owner` while publishing a new
   version. Requires admin/owner access on both publishers.
+- `--categories <slugs>` and `--topics <topics>` take comma-separated values and
+  set where the skill appears in browse filters. A skill first published without
+  `--categories` is stored as `other`; a later publish that omits the flag keeps
+  whatever is already stored. Valid category slugs, the limits, and the reserved
+  topic names are listed in
+  [Skill catalog metadata](/clawhub/publishing#skill-catalog-metadata).
 - Owner and review behavior is explained in `docs/publishing.md`.
 - Publishing a skill means it is released under `MIT-0` on ClawHub.
 - Published skills are free to use, modify, and redistribute without attribution.
@@ -215,6 +221,9 @@ same automatic patch-version behavior.
 Set `dry_run: true` to preview without a token. Real publishes require the
 `clawhub_token` secret.
 
+The workflow has no `categories` or `topics` input, so skills first published
+through it are stored as `other`, the same as `sync`.
+
 ### `sync`
 
 - Scans the current workdir, the configured skills directory, and any
@@ -233,6 +242,9 @@ Set `dry_run: true` to preview without a token. Real publishes require the
   actor has publisher access.
 - `sync` is one-way publish only. It does not install, update, download, or
   report install/download telemetry.
+- `sync` has no `--categories` or `--topics`. Skills first published through
+  `sync` are stored as `other` until someone sets
+  [skill catalog metadata](/clawhub/publishing#skill-catalog-metadata) on them.
 
 ```bash
 clawhub sync --all --dry-run
@@ -274,7 +286,7 @@ clawhub scan download @scope/demo --version 2.0.0 --kind plugin --output report.
 #### GitHub Actions
 
 ClawHub ships an official reusable workflow at
-[`/.github/workflows/skill-publish.yml`](https://github.com/openclaw/clawhub/blob/6381d789ab1883011639ca8e2aaec53202f0aad5/.github/workflows/skill-publish.yml)
+[`/.github/workflows/skill-publish.yml`](https://github.com/openclaw/clawhub/blob/fd3bef4ae758e3de7091aa782860de53eac5347b/.github/workflows/skill-publish.yml)
 for skill repos and catalog repos.
 
 Typical catalog setup:
@@ -669,6 +681,15 @@ clawhub publisher create opik --display-name "Opik"
   release is published or reaches a terminal failure state.
 - `--wait-timeout <seconds>` sets the `--wait` deadline (default: 1800).
 - `--owner <handle>` publishes under a user or org publisher handle when the actor has publisher access.
+- `--categories <slugs>` and `--topics <topics>` behave as they do for
+  `skill publish`, but code-plugin and bundle-plugin categories are matched
+  against the plugin list, not the skill one: `channels`, `models`, `memory`,
+  `context`, `voice`, `media`, `web`, `tools`, `runtime`, `gateway`,
+  `security`, `other`. Experimental [`--family claw`](/clawhub/claws) publishes
+  skip that category check and store the passed slugs as-is. The topic rules
+  in [Skill catalog metadata](/clawhub/publishing#skill-catalog-metadata) —
+  limits, reserved names, republish behavior — apply to every family,
+  including `claw`.
 - Scoped package names must match the selected owner. See `docs/publishing.md`.
 - Existing flags (`--family`, `--name`, `--version`, `--source-repo`, `--source-commit`, `--source-ref`, `--source-path`) still work as overrides.
 - Private GitHub repos require `GITHUB_TOKEN`.
@@ -742,7 +763,7 @@ Notes:
 #### GitHub Actions
 
 ClawHub also ships an official reusable workflow at
-[`/.github/workflows/package-publish.yml`](https://github.com/openclaw/clawhub/blob/6381d789ab1883011639ca8e2aaec53202f0aad5/.github/workflows/package-publish.yml)
+[`/.github/workflows/package-publish.yml`](https://github.com/openclaw/clawhub/blob/fd3bef4ae758e3de7091aa782860de53eac5347b/.github/workflows/package-publish.yml)
 for plugin repos.
 
 Typical caller setup:
