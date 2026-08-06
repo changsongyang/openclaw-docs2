@@ -551,6 +551,21 @@ async function checkMobile() {
   if (!mobileCardColumns.length || mobileCardColumns.some((columns) => columns !== 1)) {
     throw new Error(`mobile card grids should collapse to one column: ${JSON.stringify(mobileCardColumns)}`);
   }
+  await page.evaluate(() => {
+    for (const selector of [".tabs", ".mobile-tabs"]) {
+      const container = document.querySelector(selector);
+      const links = [...container?.querySelectorAll("a") ?? []];
+      if (links.some((link) => link.textContent?.trim() === "Release & CI")) continue;
+      const help = links.find((link) => link.textContent?.trim() === "Help");
+      const release = help?.cloneNode();
+      if (!help || !(release instanceof HTMLAnchorElement)) throw new Error(`missing ${selector} Help fixture`);
+      release.href = "/releases";
+      release.textContent = "Release & CI";
+      release.removeAttribute("aria-current");
+      release.classList.remove("active");
+      help.before(release);
+    }
+  });
   await page.click("[data-nav-toggle]");
   await page.locator(".sidebar.open").waitFor({ state: "visible" });
   await page.waitForFunction(() => Math.abs(document.querySelector(".sidebar")?.getBoundingClientRect().left ?? -999) < 1);
@@ -605,6 +620,7 @@ async function checkMobile() {
       open: document.querySelector(".mobile-section-switcher")?.hasAttribute("open"),
       mobileTabCount: links.length,
       desktopTabCount: document.querySelectorAll(".tab-link").length,
+      labels: links.map((link) => link.textContent?.trim()),
       activeCount: document.querySelectorAll('.mobile-tab-link[aria-current="location"]').length,
       linksVisible: rects.every((rect) => rect.width > 0 && rect.height > 0),
       linksInViewport: rects.every((rect) => rect.left >= 0 && rect.right <= innerWidth),
@@ -612,13 +628,34 @@ async function checkMobile() {
     };
   });
   if (!sections.open
+    || sections.mobileTabCount !== 12
     || sections.mobileTabCount !== sections.desktopTabCount
+    || sections.labels.slice(-4).join("|") !== "Gateway & Ops|Reference|Release & CI|Help"
     || sections.activeCount !== 1
     || !sections.linksVisible
     || !sections.linksInViewport
     || !sections.lastLinkVisible) {
     throw new Error(`mobile docs section switcher failed: ${JSON.stringify(sections)}`);
   }
+  await page.setViewportSize({ width: 390, height: 700 });
+  const shortViewport = await page.evaluate(() => {
+    const container = document.querySelector(".mobile-tabs");
+    return {
+      clientHeight: container?.clientHeight ?? 0,
+      scrollHeight: container?.scrollHeight ?? 0,
+    };
+  });
+  if (shortViewport.scrollHeight <= shortViewport.clientHeight) {
+    throw new Error(`short mobile section switcher should remain scrollable: ${JSON.stringify(shortViewport)}`);
+  }
+  await page.locator(".mobile-tab-link").last().scrollIntoViewIfNeeded();
+  const lastLinkReachable = await page.evaluate(() => {
+    const container = document.querySelector(".mobile-tabs")?.getBoundingClientRect();
+    const lastLink = [...document.querySelectorAll(".mobile-tab-link")].at(-1)?.getBoundingClientRect();
+    return Boolean(container && lastLink && lastLink.top >= container.top - 1 && lastLink.bottom <= container.bottom + 1);
+  });
+  if (!lastLinkReachable) throw new Error("short mobile section switcher did not expose its final link");
+  await page.setViewportSize({ width: 390, height: 980 });
   await page.keyboard.press("Escape");
   const closed = await page.evaluate(() => ({
     bodyOpen: document.body.classList.contains("nav-open"),
