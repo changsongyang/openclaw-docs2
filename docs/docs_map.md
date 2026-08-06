@@ -10638,9 +10638,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /tools/self-learning
 - Headings:
-  - H2: Capture paths
-  - H3: Deterministic correction capture
-  - H3: Experience review
+  - H2: Experience review
   - H2: Mode policy
   - H2: Why auto is safe to default
   - H2: Runtime support
@@ -10680,7 +10678,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Proposal content
   - H2: Support files
   - H2: Agent tool
-  - H2: Suggested skills
+  - H2: Self-learning
   - H3: Scan past sessions
   - H2: Approval and autonomy
   - H2: Gateway methods
