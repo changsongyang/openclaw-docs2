@@ -3902,6 +3902,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Quick start
   - H2: Signals exported
   - H2: Which processes export
+  - H2: Exporter health
   - H2: Configuration reference
   - H3: Environment variables
   - H2: Continue an upstream WebSocket trace
@@ -6835,11 +6836,11 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Surface
   - H2: Related docs
 
-## plugins/reference/fish-audio.md
+## plugins/reference/fish-audio-speech.md
 
-- Route: /plugins/reference/fish-audio
+- Route: /plugins/reference/fish-audio-speech
 - Headings:
-  - H1: Fish Audio plugin
+  - H1: Fish Audio Speech plugin
   - H2: Distribution
   - H2: Surface
   - H2: Related docs
