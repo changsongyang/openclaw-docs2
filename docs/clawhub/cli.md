@@ -286,7 +286,7 @@ clawhub scan download @scope/demo --version 2.0.0 --kind plugin --output report.
 #### GitHub Actions
 
 ClawHub ships an official reusable workflow at
-[`/.github/workflows/skill-publish.yml`](https://github.com/openclaw/clawhub/blob/31729d314c9752d6ab6b790782ceb32e9998c1b9/.github/workflows/skill-publish.yml)
+[`/.github/workflows/skill-publish.yml`](https://github.com/openclaw/clawhub/blob/6d935f05957b28555279412bf2ea54916fa4e486/.github/workflows/skill-publish.yml)
 for skill repos and catalog repos.
 
 Typical catalog setup:
@@ -763,7 +763,7 @@ Notes:
 #### GitHub Actions
 
 ClawHub also ships an official reusable workflow at
-[`/.github/workflows/package-publish.yml`](https://github.com/openclaw/clawhub/blob/31729d314c9752d6ab6b790782ceb32e9998c1b9/.github/workflows/package-publish.yml)
+[`/.github/workflows/package-publish.yml`](https://github.com/openclaw/clawhub/blob/6d935f05957b28555279412bf2ea54916fa4e486/.github/workflows/package-publish.yml)
 for plugin repos.
 
 Typical caller setup:
@@ -797,11 +797,29 @@ jobs:
       clawhub_token: ${{ secrets.CLAWHUB_TOKEN }}
 ```
 
+To attach release and catalog metadata, add the matching CLI values to the
+job's existing `with` block. Keep `dry_run: true` on pull-request jobs; use
+`dry_run: false` only on the trusted publish job shown above.
+
+```yaml
+with:
+  changelog: "Describe the changes in this release."
+  categories: "tools"
+  topics: "automation,productivity"
+```
+
 Notes:
 
 - The reusable workflow defaults `source` to the caller repo.
 - For monorepos, pass `source_path` so the workflow publishes the plugin
   package folder, for example `source_path: extensions/codex`.
+- `changelog`, `categories`, and `topics` are optional. When present, the
+  workflow forwards them to the matching package publish CLI flags. Categories
+  and topics use comma-separated values; omitting them preserves the existing
+  workflow behavior.
+- To remove previously declared metadata, set `clear_categories: true` or
+  `clear_topics: true`. A clear input cannot be combined with its matching
+  value input.
 - Pin the reusable workflow to a stable tag or full commit SHA. Do not run release publishing from `@main`.
 - `pull_request` should use `dry_run: true` so CI stays non-polluting.
 - Real publishes should be limited to trusted events such as `workflow_dispatch` or tag pushes.
