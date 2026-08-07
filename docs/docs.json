@@ -2007,7 +2007,12 @@
                 "pages": [
                   "reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "Release & CI",
+            "groups": [
               {
                 "group": "Release and CI",
                 "pages": [
@@ -3012,7 +3017,12 @@
                 "pages": [
                   "zh-CN/reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "发布与 CI",
+            "groups": [
               {
                 "group": "发布策略",
                 "pages": [
@@ -4017,7 +4027,12 @@
                 "pages": [
                   "zh-TW/reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "Release & CI",
+            "groups": [
               {
                 "group": "Release and CI",
                 "pages": [
@@ -5022,7 +5037,12 @@
                 "pages": [
                   "ja-JP/reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "Release & CI",
+            "groups": [
               {
                 "group": "Release and CI",
                 "pages": [
@@ -6027,7 +6047,12 @@
                 "pages": [
                   "es/reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "Release & CI",
+            "groups": [
               {
                 "group": "Release and CI",
                 "pages": [
@@ -7032,7 +7057,12 @@
                 "pages": [
                   "pt-BR/reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "Release & CI",
+            "groups": [
               {
                 "group": "Release and CI",
                 "pages": [
@@ -8037,7 +8067,12 @@
                 "pages": [
                   "ko/reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "Release & CI",
+            "groups": [
               {
                 "group": "Release and CI",
                 "pages": [
@@ -9042,7 +9077,12 @@
                 "pages": [
                   "de/reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "Release & CI",
+            "groups": [
               {
                 "group": "Release and CI",
                 "pages": [
@@ -10047,7 +10087,12 @@
                 "pages": [
                   "fr/reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "Release & CI",
+            "groups": [
               {
                 "group": "Release and CI",
                 "pages": [
@@ -11052,7 +11097,12 @@
                 "pages": [
                   "hi/reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "Release & CI",
+            "groups": [
               {
                 "group": "Release and CI",
                 "pages": [
@@ -12057,7 +12107,12 @@
                 "pages": [
                   "ar/reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "Release & CI",
+            "groups": [
               {
                 "group": "Release and CI",
                 "pages": [
@@ -13062,7 +13117,12 @@
                 "pages": [
                   "it/reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "Release & CI",
+            "groups": [
               {
                 "group": "Release and CI",
                 "pages": [
@@ -14067,7 +14127,12 @@
                 "pages": [
                   "vi/reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "Release & CI",
+            "groups": [
               {
                 "group": "Release and CI",
                 "pages": [
@@ -15072,7 +15137,12 @@
                 "pages": [
                   "nl/reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "Release & CI",
+            "groups": [
               {
                 "group": "Release and CI",
                 "pages": [
@@ -16077,7 +16147,12 @@
                 "pages": [
                   "tr/reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "Release & CI",
+            "groups": [
               {
                 "group": "Release and CI",
                 "pages": [
@@ -17082,7 +17157,12 @@
                 "pages": [
                   "uk/reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "Release & CI",
+            "groups": [
               {
                 "group": "Release and CI",
                 "pages": [
@@ -18087,7 +18167,12 @@
                 "pages": [
                   "id/reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "Release & CI",
+            "groups": [
               {
                 "group": "Release and CI",
                 "pages": [
@@ -19092,7 +19177,12 @@
                 "pages": [
                   "pl/reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "Release & CI",
+            "groups": [
               {
                 "group": "Release and CI",
                 "pages": [
@@ -20097,7 +20187,12 @@
                 "pages": [
                   "ru/reference/pull-request-review-flow"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "tab": "Release & CI",
+            "groups": [
               {
                 "group": "Release and CI",
                 "pages": [
