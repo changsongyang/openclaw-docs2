@@ -1126,6 +1126,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Reaction level
   - H2: Acknowledgment reactions
   - H2: Lifecycle status reactions
+  - H2: Active-turn typing
   - H2: Multi-account and credentials
   - H2: Tools, actions, and config writes
   - H2: Troubleshooting
