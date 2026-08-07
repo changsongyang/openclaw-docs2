@@ -5297,6 +5297,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /nodes/troubleshooting
 - Headings:
+  - H2: Node goes offline after SSH logout (Linux)
   - H2: Command ladder
   - H2: Foreground requirements
   - H2: Permissions matrix
