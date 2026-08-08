@@ -5148,6 +5148,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: macOS app
   - H3: macOS user setting
   - H3: CLI helper (node invoke)
+  - H3: macOS physical PTZ
   - H2: Linux node host
   - H2: Safety + practical limits
   - H2: macOS screen video (OS-level)
