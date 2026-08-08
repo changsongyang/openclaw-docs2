@@ -3005,7 +3005,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /concepts/queue-steering
 - Headings:
   - H2: Runtime boundary
-  - H2: Why steering waits for the current batch
+  - H2: Tool launch boundaries
   - H2: Modes
   - H2: Burst example
   - H2: Scope
