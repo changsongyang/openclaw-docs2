@@ -5023,6 +5023,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Alternative: manual npm, pnpm, or bun
   - H3: Advanced npm install topics
   - H2: Auto-updater
+  - H3: Update campaigns
   - H2: After updating
   - H3: Run doctor
   - H3: Restart the gateway
