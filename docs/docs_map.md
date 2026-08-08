@@ -5375,6 +5375,25 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Patch points
   - H2: Focused tests
 
+## plan/runners.md
+
+- Route: /plan/runners
+- Headings:
+  - H2: Status
+  - H2: Problem
+  - H2: Model and vocabulary
+  - H2: What the adversarial reviews killed (now non-goals)
+  - H2: Components
+  - H3: 1. Session continuation ergonomics (independent, ships first)
+  - H3: 2. One-paste device pairing (independent)
+  - H3: 3. Device runners (the core)
+  - H3: 3b. Projects (derived read model)
+  - H3: 4. UI convergence
+  - H3: 5. Deletions and dedup (each gated on its replacement)
+  - H2: Prior art (what we copy, what we skip)
+  - H2: Milestones
+  - H2: Open questions
+
 ## plan/swarms.md
 
 - Route: /plan/swarms
