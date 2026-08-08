@@ -6065,6 +6065,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Fail-closed Codex deployment
   - H2: App-server policy
   - H2: Commands and diagnostics
+  - H3: Shared Fast mode and Codex fast mode
   - H3: Inspect Codex threads locally
   - H3: Auth order
   - H3: Environment isolation
