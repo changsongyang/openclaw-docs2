@@ -1684,6 +1684,7 @@
                       "gateway/gateway-lock",
                       "gateway/background-process",
                       "gateway/restart-recovery",
+                      "gateway/cloud-workers",
                       "gateway/multiple-gateways",
                       "gateway/multi-tenant-hosting"
                     ]
@@ -2704,6 +2705,7 @@
                       "zh-CN/gateway/gateway-lock",
                       "zh-CN/gateway/background-process",
                       "zh-CN/gateway/restart-recovery",
+                      "zh-CN/gateway/cloud-workers",
                       "zh-CN/gateway/multiple-gateways",
                       "zh-CN/gateway/multi-tenant-hosting"
                     ]
@@ -3724,6 +3726,7 @@
                       "zh-TW/gateway/gateway-lock",
                       "zh-TW/gateway/background-process",
                       "zh-TW/gateway/restart-recovery",
+                      "zh-TW/gateway/cloud-workers",
                       "zh-TW/gateway/multiple-gateways",
                       "zh-TW/gateway/multi-tenant-hosting"
                     ]
@@ -4744,6 +4747,7 @@
                       "ja-JP/gateway/gateway-lock",
                       "ja-JP/gateway/background-process",
                       "ja-JP/gateway/restart-recovery",
+                      "ja-JP/gateway/cloud-workers",
                       "ja-JP/gateway/multiple-gateways",
                       "ja-JP/gateway/multi-tenant-hosting"
                     ]
@@ -5764,6 +5768,7 @@
                       "es/gateway/gateway-lock",
                       "es/gateway/background-process",
                       "es/gateway/restart-recovery",
+                      "es/gateway/cloud-workers",
                       "es/gateway/multiple-gateways",
                       "es/gateway/multi-tenant-hosting"
                     ]
@@ -6784,6 +6789,7 @@
                       "pt-BR/gateway/gateway-lock",
                       "pt-BR/gateway/background-process",
                       "pt-BR/gateway/restart-recovery",
+                      "pt-BR/gateway/cloud-workers",
                       "pt-BR/gateway/multiple-gateways",
                       "pt-BR/gateway/multi-tenant-hosting"
                     ]
@@ -7804,6 +7810,7 @@
                       "ko/gateway/gateway-lock",
                       "ko/gateway/background-process",
                       "ko/gateway/restart-recovery",
+                      "ko/gateway/cloud-workers",
                       "ko/gateway/multiple-gateways",
                       "ko/gateway/multi-tenant-hosting"
                     ]
@@ -8824,6 +8831,7 @@
                       "de/gateway/gateway-lock",
                       "de/gateway/background-process",
                       "de/gateway/restart-recovery",
+                      "de/gateway/cloud-workers",
                       "de/gateway/multiple-gateways",
                       "de/gateway/multi-tenant-hosting"
                     ]
@@ -9844,6 +9852,7 @@
                       "fr/gateway/gateway-lock",
                       "fr/gateway/background-process",
                       "fr/gateway/restart-recovery",
+                      "fr/gateway/cloud-workers",
                       "fr/gateway/multiple-gateways",
                       "fr/gateway/multi-tenant-hosting"
                     ]
@@ -10864,6 +10873,7 @@
                       "hi/gateway/gateway-lock",
                       "hi/gateway/background-process",
                       "hi/gateway/restart-recovery",
+                      "hi/gateway/cloud-workers",
                       "hi/gateway/multiple-gateways",
                       "hi/gateway/multi-tenant-hosting"
                     ]
@@ -11884,6 +11894,7 @@
                       "ar/gateway/gateway-lock",
                       "ar/gateway/background-process",
                       "ar/gateway/restart-recovery",
+                      "ar/gateway/cloud-workers",
                       "ar/gateway/multiple-gateways",
                       "ar/gateway/multi-tenant-hosting"
                     ]
@@ -12904,6 +12915,7 @@
                       "it/gateway/gateway-lock",
                       "it/gateway/background-process",
                       "it/gateway/restart-recovery",
+                      "it/gateway/cloud-workers",
                       "it/gateway/multiple-gateways",
                       "it/gateway/multi-tenant-hosting"
                     ]
@@ -13924,6 +13936,7 @@
                       "vi/gateway/gateway-lock",
                       "vi/gateway/background-process",
                       "vi/gateway/restart-recovery",
+                      "vi/gateway/cloud-workers",
                       "vi/gateway/multiple-gateways",
                       "vi/gateway/multi-tenant-hosting"
                     ]
@@ -14944,6 +14957,7 @@
                       "nl/gateway/gateway-lock",
                       "nl/gateway/background-process",
                       "nl/gateway/restart-recovery",
+                      "nl/gateway/cloud-workers",
                       "nl/gateway/multiple-gateways",
                       "nl/gateway/multi-tenant-hosting"
                     ]
@@ -15964,6 +15978,7 @@
                       "tr/gateway/gateway-lock",
                       "tr/gateway/background-process",
                       "tr/gateway/restart-recovery",
+                      "tr/gateway/cloud-workers",
                       "tr/gateway/multiple-gateways",
                       "tr/gateway/multi-tenant-hosting"
                     ]
@@ -16984,6 +16999,7 @@
                       "uk/gateway/gateway-lock",
                       "uk/gateway/background-process",
                       "uk/gateway/restart-recovery",
+                      "uk/gateway/cloud-workers",
                       "uk/gateway/multiple-gateways",
                       "uk/gateway/multi-tenant-hosting"
                     ]
@@ -18004,6 +18020,7 @@
                       "id/gateway/gateway-lock",
                       "id/gateway/background-process",
                       "id/gateway/restart-recovery",
+                      "id/gateway/cloud-workers",
                       "id/gateway/multiple-gateways",
                       "id/gateway/multi-tenant-hosting"
                     ]
@@ -19024,6 +19041,7 @@
                       "pl/gateway/gateway-lock",
                       "pl/gateway/background-process",
                       "pl/gateway/restart-recovery",
+                      "pl/gateway/cloud-workers",
                       "pl/gateway/multiple-gateways",
                       "pl/gateway/multi-tenant-hosting"
                     ]
@@ -20044,6 +20062,7 @@
                       "ru/gateway/gateway-lock",
                       "ru/gateway/background-process",
                       "ru/gateway/restart-recovery",
+                      "ru/gateway/cloud-workers",
                       "ru/gateway/multiple-gateways",
                       "ru/gateway/multi-tenant-hosting"
                     ]

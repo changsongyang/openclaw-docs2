@@ -3420,9 +3420,11 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: What runs where
   - H2: Requirements
+  - H3: Coordinator-backed Crabbox
   - H2: Configuration
   - H3: The setup command
   - H3: Install channels
+  - H3: Verify the profile
   - H2: Dispatching a session
   - H2: Security model
   - H2: Troubleshooting
