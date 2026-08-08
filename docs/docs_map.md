@@ -1391,6 +1391,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Lifecycle
   - H2: If the command is missing
   - H2: Profiles
+  - H2: Chrome extension relay
   - H2: Tabs
   - H2: Snapshot / screenshot / actions
   - H2: State and storage
@@ -10102,6 +10103,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Install and pair
   - H2: Use it
   - H3: Authenticated external CDP clients
+  - H2: Migrate relay authentication
   - H3: Tab copilot side panel
   - H2: Send a page to OpenClaw
   - H2: Remote / cross-machine
