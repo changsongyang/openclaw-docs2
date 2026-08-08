@@ -10101,7 +10101,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: How it works
   - H2: Install and pair
   - H2: Use it
-  - H3: External CDP clients (chrome-devtools-mcp, Puppeteer)
+  - H3: Authenticated external CDP clients
   - H3: Tab copilot side panel
   - H2: Send a page to OpenClaw
   - H2: Remote / cross-machine
