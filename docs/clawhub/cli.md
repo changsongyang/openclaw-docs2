@@ -286,7 +286,7 @@ clawhub scan download @scope/demo --version 2.0.0 --kind plugin --output report.
 #### GitHub Actions
 
 ClawHub ships an official reusable workflow at
-[`/.github/workflows/skill-publish.yml`](https://github.com/openclaw/clawhub/blob/348851eeb9bacb85d99a529f6ec43fb3e9228c46/.github/workflows/skill-publish.yml)
+[`/.github/workflows/skill-publish.yml`](https://github.com/openclaw/clawhub/blob/82313c2bb17fb8401c41c8ed2b0144d42b461ae7/.github/workflows/skill-publish.yml)
 for skill repos and catalog repos.
 
 Typical catalog setup:
@@ -667,6 +667,10 @@ clawhub publisher create opik --display-name "Opik"
 - `.tgz` sources are treated as ClawPack. The CLI uploads the exact npm-pack
   bytes and uses the extracted `package/` contents only for validation and
   metadata prefill.
+- Experimental Claws must be published from an already-built `.tgz`. Claw
+  source folders and GitHub sources are rejected; use `openclaw claws build`
+  first. The publish request binds the local SHA-256, and ClawHub returns that
+  digest after accepting the exact bytes.
 - Code-plugin folders are packed into a ClawPack npm tarball before upload so
   OpenClaw installs can verify the exact artifact. Bundle-plugin folders still
   use the extracted-file publish path.
@@ -712,7 +716,7 @@ clawhub package publish ./my-plugin-1.2.3.tgz --family code-plugin --wait
 #### Local folder flow
 
 For code plugins, folder publish builds and uploads a ClawPack artifact from
-the package folder:
+the package folder. This convenience does not apply to Claws:
 
 ```bash
 clawhub package publish ./my-plugin --family code-plugin --dry-run
@@ -763,7 +767,7 @@ Notes:
 #### GitHub Actions
 
 ClawHub also ships an official reusable workflow at
-[`/.github/workflows/package-publish.yml`](https://github.com/openclaw/clawhub/blob/348851eeb9bacb85d99a529f6ec43fb3e9228c46/.github/workflows/package-publish.yml)
+[`/.github/workflows/package-publish.yml`](https://github.com/openclaw/clawhub/blob/82313c2bb17fb8401c41c8ed2b0144d42b461ae7/.github/workflows/package-publish.yml)
 for plugin repos.
 
 Typical caller setup:
