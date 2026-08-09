@@ -7748,6 +7748,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: When to use a harness
   - H2: What core still owns
+  - H3: Native tool-policy enforcement
   - H3: Harness-owned auth bootstrap
   - H3: Verified setup runtime artifacts
   - H3: Request-transport contract
