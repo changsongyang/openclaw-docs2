@@ -2197,6 +2197,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H1: openclaw tui
   - H2: Options
   - H2: Notes
+  - H2: Session target errors
   - H2: Examples
   - H2: Config repair loop
   - H2: Related
