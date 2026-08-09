@@ -357,6 +357,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Native progress and agent activity rows
   - H2: Group mention gating
   - H3: Mention detection
+  - H3: Bot-to-bot messages
   - H3: Configuration example
   - H3: Migration warning
   - H2: Targets
