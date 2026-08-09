@@ -8704,6 +8704,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Getting started
   - H2: Config example
   - H2: Catalog
+  - H2: Privacy
   - H2: Advanced configuration
   - H2: Related
 
