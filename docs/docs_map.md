@@ -8950,24 +8950,18 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /refactor/acp
 - Headings:
-  - H2: Goals
-  - H2: Non-goals
-  - H2: Target Model
-  - H3: Gateway Instance Identity
-  - H3: ACP Session Ownership
-  - H3: ACPX Process Leases
-  - H2: Lifecycle Controller
-  - H2: Wrapper Contract
-  - H2: Session Visibility Contract
-  - H2: Migration Plan
-  - H3: Phase 1: Add Identity And Leases
-  - H3: Phase 2: Lease-First Cleanup
-  - H3: Phase 3: Lease-First Startup Reaping
-  - H3: Phase 4: Session Ownership Rows
-  - H3: Phase 5: Remove Legacy Heuristics
-  - H2: Tests
-  - H2: Compatibility Notes
-  - H2: Success Criteria
+  - H2: Invariants
+  - H2: Current ownership model
+  - H2: Startup recovery
+  - H2: Session visibility
+  - H2: Migration status
+  - H2: Remaining blockers
+  - H3: Upstream launch ownership
+  - H3: Stable descendant identity
+  - H3: Windows cleanup
+  - H2: Compatibility
+  - H2: Proof expectations
+  - H2: Completion criteria
 
 ## refactor/canvas.md
 
@@ -10122,6 +10116,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: How it works
   - H2: Install and pair
   - H2: Use it
+  - H3: Choose tab access
   - H3: Authenticated external CDP clients
   - H2: Migrate relay authentication
   - H3: Tab copilot side panel
