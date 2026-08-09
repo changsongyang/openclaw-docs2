@@ -2050,6 +2050,15 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Notes
   - H2: Related
 
+## cli/resume.md
+
+- Route: /cli/resume
+- Headings:
+  - H1: openclaw resume
+  - H2: Options
+  - H2: Examples
+  - H2: Related
+
 ## cli/sandbox.md
 
 - Route: /cli/sandbox

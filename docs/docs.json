@@ -1888,6 +1888,7 @@
                     "pages": [
                       "cli/attach",
                       "cli/dashboard",
+                      "cli/resume",
                       "cli/tui"
                     ]
                   },
@@ -2909,6 +2910,7 @@
                     "pages": [
                       "zh-CN/cli/attach",
                       "zh-CN/cli/dashboard",
+                      "zh-CN/cli/resume",
                       "zh-CN/cli/tui"
                     ]
                   },
@@ -3930,6 +3932,7 @@
                     "pages": [
                       "zh-TW/cli/attach",
                       "zh-TW/cli/dashboard",
+                      "zh-TW/cli/resume",
                       "zh-TW/cli/tui"
                     ]
                   },
@@ -4951,6 +4954,7 @@
                     "pages": [
                       "ja-JP/cli/attach",
                       "ja-JP/cli/dashboard",
+                      "ja-JP/cli/resume",
                       "ja-JP/cli/tui"
                     ]
                   },
@@ -5972,6 +5976,7 @@
                     "pages": [
                       "es/cli/attach",
                       "es/cli/dashboard",
+                      "es/cli/resume",
                       "es/cli/tui"
                     ]
                   },
@@ -6993,6 +6998,7 @@
                     "pages": [
                       "pt-BR/cli/attach",
                       "pt-BR/cli/dashboard",
+                      "pt-BR/cli/resume",
                       "pt-BR/cli/tui"
                     ]
                   },
@@ -8014,6 +8020,7 @@
                     "pages": [
                       "ko/cli/attach",
                       "ko/cli/dashboard",
+                      "ko/cli/resume",
                       "ko/cli/tui"
                     ]
                   },
@@ -9035,6 +9042,7 @@
                     "pages": [
                       "de/cli/attach",
                       "de/cli/dashboard",
+                      "de/cli/resume",
                       "de/cli/tui"
                     ]
                   },
@@ -10056,6 +10064,7 @@
                     "pages": [
                       "fr/cli/attach",
                       "fr/cli/dashboard",
+                      "fr/cli/resume",
                       "fr/cli/tui"
                     ]
                   },
@@ -11077,6 +11086,7 @@
                     "pages": [
                       "hi/cli/attach",
                       "hi/cli/dashboard",
+                      "hi/cli/resume",
                       "hi/cli/tui"
                     ]
                   },
@@ -12098,6 +12108,7 @@
                     "pages": [
                       "ar/cli/attach",
                       "ar/cli/dashboard",
+                      "ar/cli/resume",
                       "ar/cli/tui"
                     ]
                   },
@@ -13119,6 +13130,7 @@
                     "pages": [
                       "it/cli/attach",
                       "it/cli/dashboard",
+                      "it/cli/resume",
                       "it/cli/tui"
                     ]
                   },
@@ -14140,6 +14152,7 @@
                     "pages": [
                       "vi/cli/attach",
                       "vi/cli/dashboard",
+                      "vi/cli/resume",
                       "vi/cli/tui"
                     ]
                   },
@@ -15161,6 +15174,7 @@
                     "pages": [
                       "nl/cli/attach",
                       "nl/cli/dashboard",
+                      "nl/cli/resume",
                       "nl/cli/tui"
                     ]
                   },
@@ -16182,6 +16196,7 @@
                     "pages": [
                       "tr/cli/attach",
                       "tr/cli/dashboard",
+                      "tr/cli/resume",
                       "tr/cli/tui"
                     ]
                   },
@@ -17203,6 +17218,7 @@
                     "pages": [
                       "uk/cli/attach",
                       "uk/cli/dashboard",
+                      "uk/cli/resume",
                       "uk/cli/tui"
                     ]
                   },
@@ -18224,6 +18240,7 @@
                     "pages": [
                       "id/cli/attach",
                       "id/cli/dashboard",
+                      "id/cli/resume",
                       "id/cli/tui"
                     ]
                   },
@@ -19245,6 +19262,7 @@
                     "pages": [
                       "pl/cli/attach",
                       "pl/cli/dashboard",
+                      "pl/cli/resume",
                       "pl/cli/tui"
                     ]
                   },
@@ -20266,6 +20284,7 @@
                     "pages": [
                       "ru/cli/attach",
                       "ru/cli/dashboard",
+                      "ru/cli/resume",
                       "ru/cli/tui"
                     ]
                   },
