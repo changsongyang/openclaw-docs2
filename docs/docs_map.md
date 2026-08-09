@@ -3976,6 +3976,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: npm packages
   - H2: Transport and framing
+  - H2: Gateway-controlled WebRTC Talk
   - H2: Handshake
   - H3: Worker role and closed protocol
   - H3: Client capabilities
