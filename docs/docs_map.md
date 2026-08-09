@@ -9126,6 +9126,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Database layout
   - H2: Versioning contract
+  - H2: Preflight a target release
   - H2: Agent schema history
   - H2: State schema history
   - H2: Integrity checks
