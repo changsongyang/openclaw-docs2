@@ -7871,6 +7871,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: What changed
   - H3: Why
   - H2: Compatibility policy
+  - H3: Channel state migration declarations
   - H3: AuthStorage SQLite migration
   - H3: Published channel setup compatibility
   - H3: Channel setup input field compatibility
