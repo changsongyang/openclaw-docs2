@@ -2713,21 +2713,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /concepts/memory-qmd
 - Headings:
-  - H2: What it adds over builtin
-  - H2: Getting started
-  - H3: Prerequisites
-  - H3: Enable
-  - H2: How the sidecar works
-  - H2: Search performance and compatibility
-  - H2: Model overrides
-  - H2: Indexing extra paths
-  - H2: Indexing session transcripts
-  - H2: Search scope
-  - H2: Citations
-  - H2: When to use
-  - H2: Troubleshooting
-  - H2: Configuration
-  - H2: Related
+  - H1: QMD memory backend removal
 
 ## concepts/memory-search.md
 
@@ -2756,7 +2742,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Retired inferred commitments
   - H2: Memory tools
   - H2: Memory search
-  - H2: Memory backends
+  - H2: Memory engines
   - H2: Knowledge wiki layer
   - H2: Automatic memory flush
   - H2: Dreaming
@@ -2882,7 +2868,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Quick start
   - H2: Multiple agents, multiple personas
   - H2: Per-agent Memory Wiki vaults
-  - H2: Cross-agent QMD memory search
+  - H2: Cross-agent memory search
   - H2: One WhatsApp number, multiple people (DM split)
   - H2: Routing rules
   - H2: Multiple accounts / phone numbers
@@ -6378,7 +6364,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Prompt and context behavior
   - H2: Configuration
   - H3: Per-agent vaults
-  - H3: Example: QMD + bridge mode
+  - H3: Example: builtin memory + bridge mode
   - H2: CLI
   - H2: Obsidian support
   - H2: Recommended workflow
@@ -9192,8 +9178,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Session memory search
   - H2: SQLite vector acceleration (sqlite-vec)
   - H2: Index storage
-  - H2: QMD backend config
-  - H3: Full QMD example
+  - H2: Citations
   - H2: Dreaming
   - H3: User settings
   - H3: Example
