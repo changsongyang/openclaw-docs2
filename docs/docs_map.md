@@ -3930,6 +3930,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Roles
   - H2: Scope levels
+  - H2: Identity scope grants
   - H2: Method scope is only the first gate
   - H2: Device pairing approvals
   - H2: Node pairing approvals
@@ -4328,6 +4329,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: How it works
   - H2: Configuration
   - H3: Configuration reference
+  - H2: Per-identity scope grants
   - H2: Automatic device approval
   - H2: Control UI pairing behavior
   - H2: Operator scopes header
