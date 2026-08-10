@@ -5560,6 +5560,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Automatic setup
   - H2: Manual recovery
   - H2: Launchd (Gateway as LaunchAgent)
+  - H3: Attach-only development
   - H2: Version compatibility
   - H2: State directory on macOS
   - H2: Debug app connectivity
@@ -5582,13 +5583,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 ## platforms/mac/child-process.md
 
 - Route: /platforms/mac/child-process
-- Headings:
-  - H2: Default behavior (launchd)
-  - H2: Unsigned dev builds
-  - H2: Attach-only mode
-  - H2: Remote mode
-  - H2: Why we prefer launchd
-  - H2: Related
+- Headings: none
 
 ## platforms/mac/dev-setup.md
 
