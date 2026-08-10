@@ -3456,7 +3456,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: agents.defaults.model
   - H3: Runtime policy
   - H3: CLI backend selection
-  - H3: GPT-5 prompt overlay
+  - H3: OpenAI GPT-5 personality
   - H3: agents.defaults.heartbeat
   - H3: agents.defaults.systemAgent
   - H3: agents.defaults.compaction
