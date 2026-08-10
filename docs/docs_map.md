@@ -5306,6 +5306,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /nodes/talk
 - Headings:
+  - H2: Choose a Talk voice from chat
   - H2: Behavior (macOS)
   - H2: Voice directives in replies
   - H2: Config (`~/.openclaw/openclaw.json`)
@@ -6472,6 +6473,14 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Pi native sessions
   - H2: Related docs
 
+## plugins/reference/active-memory.md
+
+- Route: /plugins/reference/active-memory
+- Headings:
+  - H1: Active Memory plugin
+  - H2: Distribution
+  - H2: Surface
+
 ## plugins/reference/admin-http-rpc.md
 
 - Route: /plugins/reference/admin-http-rpc
@@ -6746,6 +6755,14 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Distribution
   - H2: Surface
   - H2: Related docs
+
+## plugins/reference/device-pair.md
+
+- Route: /plugins/reference/device-pair
+- Headings:
+  - H1: Device Pair plugin
+  - H2: Distribution
+  - H2: Surface
 
 ## plugins/reference/diagnostics-otel.md
 
@@ -7518,6 +7535,15 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Distribution
   - H2: Surface
   - H2: Related docs
+
+## plugins/reference/talk-voice.md
+
+- Route: /plugins/reference/talk-voice
+- Headings:
+  - H1: Talk Voice plugin
+  - H2: Distribution
+  - H2: Surface
+  - H2: Configure a Talk voice from chat
 
 ## plugins/reference/tavily.md
 
