@@ -3041,6 +3041,20 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Notes
   - H2: Related
 
+## concepts/session-attachment.md
+
+- Route: /concepts/session-attachment
+- Headings:
+  - H2: One Gateway, many clients
+  - H2: Session URLs and short links
+  - H3: Current and older Gateways
+  - H2: Choose how to continue
+  - H3: Continue in the terminal
+  - H3: Attach a coding harness
+  - H2: Pair once per Gateway origin
+  - H2: Failure taxonomy
+  - H2: Related pages
+
 ## concepts/session-pruning.md
 
 - Route: /concepts/session-pruning
