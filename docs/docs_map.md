@@ -3457,7 +3457,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: agents.defaults.bootstrapMaxChars
   - H3: agents.defaults.bootstrapTotalMaxChars
   - H3: Per-agent bootstrap profile overrides
-  - H3: agents.defaults.bootstrapPromptTruncationWarning
+  - H3: Bootstrap truncation notice
   - H3: Context budget ownership map
   - H4: agents.defaults.startupContext
   - H4: agents.defaults.contextLimits
@@ -3470,7 +3470,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: agents.defaults.model
   - H3: Runtime policy
   - H3: CLI backend selection
-  - H3: agents.defaults.promptOverlays
+  - H3: GPT-5 prompt overlay
   - H3: agents.defaults.heartbeat
   - H3: agents.defaults.systemAgent
   - H3: agents.defaults.compaction
@@ -5383,16 +5383,6 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Milestones
   - H2: Open questions
 
-## plan/path3-sqlite-session-artifact-family.md
-
-- Route: /plan/path3-sqlite-session-artifact-family
-- Headings:
-  - H1: Path 3 SQLite Session Artifact Family
-  - H2: Authoritative family
-  - H2: Non-family artifacts after the flip
-  - H2: Patch points
-  - H2: Focused tests
-
 ## plan/runners.md
 
 - Route: /plan/runners
@@ -5411,30 +5401,6 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Prior art (what we copy, what we skip)
   - H2: Milestones
   - H2: Open questions
-
-## plan/swarms.md
-
-- Route: /plan/swarms
-- Headings:
-  - H1: Swarms — agent fan-out and orchestration in code mode
-  - H2: 1. What and why
-  - H2: 2. Decisions (maintainer, 2026-07-17)
-  - H2: 3. Architecture overview
-  - H2: 4. Config gate (v1)
-  - H2: 5. Core: collector-mode spawn + `agents_wait` (v1)
-  - H3: 5.1 `sessions_spawn` additions (all gated on swarm enabled)
-  - H3: 5.2 Approvals fail-closed
-  - H3: 5.3 `agents_wait` tool (new, gated)
-  - H3: 5.4 Caps enforcement
-  - H2: 6. Testing contract (v1, lane A)
-  - H2: 7. QuickJS guest surface (lane B, after core)
-  - H2: 8. Codex harness projection (later lane)
-  - H2: 9. Persistence and retention
-  - H2: 10. Progress surface ("the dots") — later lane
-  - H2: 11. Labs page (Control UI, independent lane)
-  - H2: 12. Placement (later)
-  - H2: 13. Non-goals
-  - H2: 14. Build phases / PR slicing
 
 ## plan/ui-channels.md
 
@@ -9233,19 +9199,6 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Quick start
   - H2: Design contract
   - H2: Subpath exports
-
-## reference/path3-live-sqlite-e2e-harness.md
-
-- Route: /reference/path3-live-sqlite-e2e-harness
-- Headings:
-  - H2: Command shape
-  - H2: Isolated built-CLI proof
-  - H2: Preflight
-  - H2: Agent-driven scenario
-  - H2: Per-step assertions
-  - H2: Evidence artifact
-  - H2: Safety rules
-  - H2: Passing result
 
 ## reference/prompt-caching.md
 
