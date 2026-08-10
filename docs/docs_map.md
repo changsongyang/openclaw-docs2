@@ -2069,6 +2069,11 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /cli/secrets
 - Headings:
   - H1: openclaw secrets
+  - H2: Shared secret store
+  - H3: Set values safely
+  - H3: Read values
+  - H3: Remove values
+  - H3: Import dotenv files
   - H2: Reload runtime snapshot
   - H2: Audit
   - H2: Configure (interactive helper)
@@ -4113,6 +4118,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Onboarding reference preflight
   - H2: SecretRef contract
   - H2: Provider config
+  - H2: Shared secret store
   - H2: File-backed API keys
   - H2: Exec integration examples
   - H2: MCP server environment variables
