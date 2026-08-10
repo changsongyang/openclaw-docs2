@@ -1439,17 +1439,6 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Command reference
   - H2: See also
 
-## cli/commitments.md
-
-- Route: /cli/commitments
-- Headings:
-  - H2: Usage
-  - H2: Options
-  - H2: Examples
-  - H2: Output
-  - H3: Dismissal output
-  - H2: Related
-
 ## cli/completion.md
 
 - Route: /cli/completion
@@ -2462,13 +2451,6 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: What does not change
   - H2: Troubleshooting
 
-## concepts/commitments.md
-
-- Route: /concepts/commitments
-- Headings:
-  - H2: Existing records
-  - H2: Related
-
 ## concepts/compaction.md
 
 - Route: /concepts/compaction
@@ -2742,7 +2724,6 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: What goes where
   - H2: Import from coding assistants
   - H2: Action-sensitive memories
-  - H2: Retired inferred commitments
   - H2: Memory tools
   - H2: Memory search
   - H2: Memory engines
