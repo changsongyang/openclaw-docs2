@@ -10098,17 +10098,18 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /tools/chrome-extension
 - Headings:
   - H1: Chrome extension
-  - H2: How it works
-  - H2: Install and pair
+  - H2: Requirements
+  - H2: Install
   - H2: Use it
   - H3: Choose tab access
-  - H3: Authenticated external CDP clients
-  - H2: Migrate relay authentication
-  - H3: Tab copilot side panel
-  - H2: Send a page to OpenClaw
-  - H2: Remote / cross-machine
-  - H2: Diagnostics
-  - H2: Security model
+  - H2: Automatic setup controls
+  - H3: Upgrades from the retired tab copilot
+  - H2: Status and removal
+  - H2: Advanced manual pairing
+  - H2: External CDP clients
+  - H2: Permissions
+  - H2: Native bootstrap security
+  - H2: Troubleshooting
 
 ## tools/clawhub.md
 
