@@ -2875,6 +2875,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Trust boundary
   - H2: Ownership and presence
+  - H2: Identity-scoped convenience state
   - H2: Drafts
   - H2: Turn attribution
   - H2: Related
@@ -11027,6 +11028,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Quick open (local)
   - H2: Device pairing (first connection)
   - H2: Pair a mobile device
+  - H2: New-session preferences and recents
   - H2: Personal identity (browser-local)
   - H2: Runtime config endpoint
   - H2: Gateway host status
