@@ -77,6 +77,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Command payloads
   - H3: Script payloads
   - H2: Execution styles
+  - H3: Codex apps in scheduled automations
   - H2: Delivery and output
   - H3: Failure notifications
   - H3: Output language
@@ -6053,6 +6054,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Requirements
   - H2: Quickstart
+  - H2: Scheduled automations
   - H2: Manage plugins from chat
   - H2: How native plugin setup works
   - H2: V1 support boundary
@@ -9127,7 +9129,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: The Gateway refuses to start with a newer schema version error
   - H3: A database is quarantined after integrity verification failed
   - H2: Downgrades are unsupported
-  - H3: Example: agent schema 11 to 9
+  - H3: Example: agent schema 17 to 16
 
 ## reference/device-models.md
 
