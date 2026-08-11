@@ -4587,6 +4587,20 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Next steps
   - H2: Related
 
+## install/backups.md
+
+- Route: /install/backups
+- Headings:
+  - H1: Backups
+  - H2: Choose a path
+  - H2: Full archives
+  - H2: Per-database snapshots
+  - H2: Schedule backups
+  - H2: Copy backups offsite
+  - H2: Continuous replication with Litestream
+  - H2: Restore
+  - H2: Related
+
 ## install/bun.md
 
 - Route: /install/bun

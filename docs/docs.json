@@ -1086,6 +1086,7 @@
               {
                 "group": "Maintenance",
                 "pages": [
+                  "install/backups",
                   "install/updating",
                   {
                     "group": "Migrating",
@@ -2139,6 +2140,7 @@
               {
                 "group": "维护",
                 "pages": [
+                  "zh-CN/install/backups",
                   "zh-CN/install/updating",
                   {
                     "group": "Migrating",
@@ -3158,6 +3160,7 @@
               {
                 "group": "Maintenance",
                 "pages": [
+                  "zh-TW/install/backups",
                   "zh-TW/install/updating",
                   {
                     "group": "Migrating",
@@ -4177,6 +4180,7 @@
               {
                 "group": "Maintenance",
                 "pages": [
+                  "ja-JP/install/backups",
                   "ja-JP/install/updating",
                   {
                     "group": "Migrating",
@@ -5196,6 +5200,7 @@
               {
                 "group": "Maintenance",
                 "pages": [
+                  "es/install/backups",
                   "es/install/updating",
                   {
                     "group": "Migrating",
@@ -6215,6 +6220,7 @@
               {
                 "group": "Maintenance",
                 "pages": [
+                  "pt-BR/install/backups",
                   "pt-BR/install/updating",
                   {
                     "group": "Migrating",
@@ -7234,6 +7240,7 @@
               {
                 "group": "Maintenance",
                 "pages": [
+                  "ko/install/backups",
                   "ko/install/updating",
                   {
                     "group": "Migrating",
@@ -8253,6 +8260,7 @@
               {
                 "group": "Maintenance",
                 "pages": [
+                  "de/install/backups",
                   "de/install/updating",
                   {
                     "group": "Migrating",
@@ -9272,6 +9280,7 @@
               {
                 "group": "Maintenance",
                 "pages": [
+                  "fr/install/backups",
                   "fr/install/updating",
                   {
                     "group": "Migrating",
@@ -10291,6 +10300,7 @@
               {
                 "group": "Maintenance",
                 "pages": [
+                  "hi/install/backups",
                   "hi/install/updating",
                   {
                     "group": "Migrating",
@@ -11310,6 +11320,7 @@
               {
                 "group": "Maintenance",
                 "pages": [
+                  "ar/install/backups",
                   "ar/install/updating",
                   {
                     "group": "Migrating",
@@ -12329,6 +12340,7 @@
               {
                 "group": "Maintenance",
                 "pages": [
+                  "it/install/backups",
                   "it/install/updating",
                   {
                     "group": "Migrating",
@@ -13348,6 +13360,7 @@
               {
                 "group": "Maintenance",
                 "pages": [
+                  "vi/install/backups",
                   "vi/install/updating",
                   {
                     "group": "Migrating",
@@ -14367,6 +14380,7 @@
               {
                 "group": "Maintenance",
                 "pages": [
+                  "nl/install/backups",
                   "nl/install/updating",
                   {
                     "group": "Migrating",
@@ -15386,6 +15400,7 @@
               {
                 "group": "Maintenance",
                 "pages": [
+                  "tr/install/backups",
                   "tr/install/updating",
                   {
                     "group": "Migrating",
@@ -16405,6 +16420,7 @@
               {
                 "group": "Maintenance",
                 "pages": [
+                  "uk/install/backups",
                   "uk/install/updating",
                   {
                     "group": "Migrating",
@@ -17424,6 +17440,7 @@
               {
                 "group": "Maintenance",
                 "pages": [
+                  "id/install/backups",
                   "id/install/updating",
                   {
                     "group": "Migrating",
@@ -18443,6 +18460,7 @@
               {
                 "group": "Maintenance",
                 "pages": [
+                  "pl/install/backups",
                   "pl/install/updating",
                   {
                     "group": "Migrating",
@@ -19462,6 +19480,7 @@
               {
                 "group": "Maintenance",
                 "pages": [
+                  "ru/install/backups",
                   "ru/install/updating",
                   {
                     "group": "Migrating",
