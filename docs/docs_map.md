@@ -2679,6 +2679,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Getting started
   - H2: Supported embedding providers
   - H2: How indexing works
+  - H2: Migrating from QMD
   - H2: When to use
   - H2: Troubleshooting
   - H2: Configuration
