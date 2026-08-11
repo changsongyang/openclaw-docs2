@@ -4132,7 +4132,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Audit and configure workflow
   - H2: One-way safety policy
   - H2: Legacy auth compatibility notes
-  - H2: Web UI note
+  - H2: Control UI
   - H2: Related
 
 ## gateway/security/audit-checks.md
