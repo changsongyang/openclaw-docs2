@@ -3590,6 +3590,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Browser
   - H2: UI
   - H2: Desktop
+  - H3: Paired node desktops
   - H2: Gateway
   - H3: OpenAI-compatible endpoints
   - H3: Multi-instance isolation
