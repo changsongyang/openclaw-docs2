@@ -1664,6 +1664,8 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: gateway probe
   - H4: Remote over SSH (Mac app parity)
   - H3: gateway call &lt;method&gt;
+  - H3: gateway suspend
+  - H3: gateway resume &lt;suspensionId&gt;
   - H2: Manage the Gateway service
   - H3: Install with a wrapper
   - H2: Discover gateways (Bonjour)
