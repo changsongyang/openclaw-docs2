@@ -9189,6 +9189,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: The Gateway refuses to start with a newer schema version error
   - H3: A database is quarantined after integrity verification failed
   - H2: Downgrades are unsupported
+  - H3: Example: state schema 7 to 6
   - H3: Example: agent schema 17 to 16
 
 ## reference/device-models.md
