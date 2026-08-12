@@ -1484,6 +1484,18 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Other notes
   - H2: Related
 
+## cli/connect.md
+
+- Route: /cli/connect
+- Headings:
+  - H1: openclaw connect
+  - H2: Create a join command
+  - H2: Connect in the foreground
+  - H2: Install as a service
+  - H2: Accepted targets
+  - H2: Revocation behavior
+  - H2: Troubleshooting
+
 ## cli/crestodian.md
 
 - Route: /cli/crestodian
