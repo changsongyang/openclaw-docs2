@@ -1377,6 +1377,9 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Notes
   - H2: SQLite snapshots
   - H3: Verify and restore
+  - H2: Versioned Git backups
+  - H2: Schedule backups
+  - H2: Recorded runs and freshness
   - H2: What gets backed up
   - H2: Invalid config behavior
   - H2: Size and performance
@@ -4066,6 +4069,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: What survives a restart
   - H2: Graceful restarts drain first
+  - H2: Host sleep and process freezes
   - H2: How interrupted work is detected
   - H2: Automatic resume
   - H3: Subagents
@@ -4616,6 +4620,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Per-database snapshots
   - H2: Schedule backups
   - H2: Copy backups offsite
+  - H2: Versioned backups to a Git repository
   - H2: Continuous replication with Litestream
   - H2: Restore
   - H3: Restore a full archive
