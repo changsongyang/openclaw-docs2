@@ -7921,6 +7921,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Import path reference
   - H2: Removed compatibility surfaces
   - H3: Process-global API-provider publication
+  - H3: Deactivate hook alias
   - H3: Private testing barrel
   - H2: Migration reference
   - H2: Talk and realtime voice migration
