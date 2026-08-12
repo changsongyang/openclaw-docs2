@@ -5407,6 +5407,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Trust model (operator-decided, v1)
   - H3: Onboarding (milestone 3)
   - H3: Bundle and updates (milestone 7)
+  - H3: Projects read model (milestone 4 foundation)
   - H3: UI (milestone 4)
   - H3: Cloud convergence (milestone 10)
   - H2: What the adversarial reviews killed or reshaped
