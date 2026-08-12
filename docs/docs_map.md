@@ -4653,6 +4653,18 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Config and secrets
   - H2: Related
 
+## install/cloudflare.md
+
+- Route: /install/cloudflare
+- Headings:
+  - H2: What you need
+  - H2: How it works
+  - H2: Deploy
+  - H2: Choose the lifecycle mode
+  - H2: Limits and recovery
+  - H2: Update
+  - H2: Related
+
 ## install/daytona.md
 
 - Route: /install/daytona

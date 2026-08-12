@@ -1115,6 +1115,7 @@
                 "group": "Hosting",
                 "pages": [
                   "install/azure",
+                  "install/cloudflare",
                   "install/daytona",
                   "install/digitalocean",
                   "install/docker-vm-runtime",
@@ -2170,6 +2171,7 @@
                 "group": "托管与部署",
                 "pages": [
                   "zh-CN/install/azure",
+                  "zh-CN/install/cloudflare",
                   "zh-CN/install/daytona",
                   "zh-CN/install/digitalocean",
                   "zh-CN/install/docker-vm-runtime",
@@ -3191,6 +3193,7 @@
                 "group": "Hosting",
                 "pages": [
                   "zh-TW/install/azure",
+                  "zh-TW/install/cloudflare",
                   "zh-TW/install/daytona",
                   "zh-TW/install/digitalocean",
                   "zh-TW/install/docker-vm-runtime",
@@ -4212,6 +4215,7 @@
                 "group": "Hosting",
                 "pages": [
                   "ja-JP/install/azure",
+                  "ja-JP/install/cloudflare",
                   "ja-JP/install/daytona",
                   "ja-JP/install/digitalocean",
                   "ja-JP/install/docker-vm-runtime",
@@ -5233,6 +5237,7 @@
                 "group": "Hosting",
                 "pages": [
                   "es/install/azure",
+                  "es/install/cloudflare",
                   "es/install/daytona",
                   "es/install/digitalocean",
                   "es/install/docker-vm-runtime",
@@ -6254,6 +6259,7 @@
                 "group": "Hosting",
                 "pages": [
                   "pt-BR/install/azure",
+                  "pt-BR/install/cloudflare",
                   "pt-BR/install/daytona",
                   "pt-BR/install/digitalocean",
                   "pt-BR/install/docker-vm-runtime",
@@ -7275,6 +7281,7 @@
                 "group": "Hosting",
                 "pages": [
                   "ko/install/azure",
+                  "ko/install/cloudflare",
                   "ko/install/daytona",
                   "ko/install/digitalocean",
                   "ko/install/docker-vm-runtime",
@@ -8296,6 +8303,7 @@
                 "group": "Hosting",
                 "pages": [
                   "de/install/azure",
+                  "de/install/cloudflare",
                   "de/install/daytona",
                   "de/install/digitalocean",
                   "de/install/docker-vm-runtime",
@@ -9317,6 +9325,7 @@
                 "group": "Hosting",
                 "pages": [
                   "fr/install/azure",
+                  "fr/install/cloudflare",
                   "fr/install/daytona",
                   "fr/install/digitalocean",
                   "fr/install/docker-vm-runtime",
@@ -10338,6 +10347,7 @@
                 "group": "Hosting",
                 "pages": [
                   "hi/install/azure",
+                  "hi/install/cloudflare",
                   "hi/install/daytona",
                   "hi/install/digitalocean",
                   "hi/install/docker-vm-runtime",
@@ -11359,6 +11369,7 @@
                 "group": "Hosting",
                 "pages": [
                   "ar/install/azure",
+                  "ar/install/cloudflare",
                   "ar/install/daytona",
                   "ar/install/digitalocean",
                   "ar/install/docker-vm-runtime",
@@ -12380,6 +12391,7 @@
                 "group": "Hosting",
                 "pages": [
                   "it/install/azure",
+                  "it/install/cloudflare",
                   "it/install/daytona",
                   "it/install/digitalocean",
                   "it/install/docker-vm-runtime",
@@ -13401,6 +13413,7 @@
                 "group": "Hosting",
                 "pages": [
                   "vi/install/azure",
+                  "vi/install/cloudflare",
                   "vi/install/daytona",
                   "vi/install/digitalocean",
                   "vi/install/docker-vm-runtime",
@@ -14422,6 +14435,7 @@
                 "group": "Hosting",
                 "pages": [
                   "nl/install/azure",
+                  "nl/install/cloudflare",
                   "nl/install/daytona",
                   "nl/install/digitalocean",
                   "nl/install/docker-vm-runtime",
@@ -15443,6 +15457,7 @@
                 "group": "Hosting",
                 "pages": [
                   "tr/install/azure",
+                  "tr/install/cloudflare",
                   "tr/install/daytona",
                   "tr/install/digitalocean",
                   "tr/install/docker-vm-runtime",
@@ -16464,6 +16479,7 @@
                 "group": "Hosting",
                 "pages": [
                   "uk/install/azure",
+                  "uk/install/cloudflare",
                   "uk/install/daytona",
                   "uk/install/digitalocean",
                   "uk/install/docker-vm-runtime",
@@ -17485,6 +17501,7 @@
                 "group": "Hosting",
                 "pages": [
                   "id/install/azure",
+                  "id/install/cloudflare",
                   "id/install/daytona",
                   "id/install/digitalocean",
                   "id/install/docker-vm-runtime",
@@ -18506,6 +18523,7 @@
                 "group": "Hosting",
                 "pages": [
                   "pl/install/azure",
+                  "pl/install/cloudflare",
                   "pl/install/daytona",
                   "pl/install/digitalocean",
                   "pl/install/docker-vm-runtime",
@@ -19527,6 +19545,7 @@
                 "group": "Hosting",
                 "pages": [
                   "ru/install/azure",
+                  "ru/install/cloudflare",
                   "ru/install/daytona",
                   "ru/install/digitalocean",
                   "ru/install/docker-vm-runtime",
