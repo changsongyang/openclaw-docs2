@@ -5399,14 +5399,16 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Status
   - H2: Problem
   - H2: Model and vocabulary
-  - H2: What the adversarial reviews killed (now non-goals)
-  - H2: Components
-  - H3: 1. Session continuation ergonomics (independent, ships first)
-  - H3: 2. One-paste device pairing (independent)
-  - H3: 3. Device runners (the core)
-  - H3: 3b. Projects (derived read model)
-  - H3: 4. UI convergence
-  - H3: 5. Deletions and dedup (each gated on its replacement)
+  - H2: Architecture
+  - H3: The two-connection shape
+  - H3: Worker ingress on the public endpoint (milestone 5)
+  - H3: Node worker provider (milestone 6)
+  - H3: Trust model (operator-decided, v1)
+  - H3: Onboarding (milestone 3)
+  - H3: Bundle and updates (milestone 7)
+  - H3: UI (milestone 4)
+  - H3: Cloud convergence (milestone 10)
+  - H2: What the adversarial reviews killed or reshaped
   - H2: Prior art (what we copy, what we skip)
   - H2: Milestones
   - H2: Open questions
