@@ -3953,6 +3953,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /gateway/pairing
 - Headings:
   - H2: How capability approval works
+  - H2: One-paste node pairing
   - H2: CLI workflow (headless friendly)
   - H2: API surface (gateway protocol)
   - H2: Node command gating (2026.3.31+)
