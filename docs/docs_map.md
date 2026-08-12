@@ -4605,6 +4605,8 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Copy backups offsite
   - H2: Continuous replication with Litestream
   - H2: Restore
+  - H3: Restore a full archive
+  - H3: Restore a database
   - H2: Related
 
 ## install/bun.md
