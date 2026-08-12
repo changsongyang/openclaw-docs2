@@ -4720,6 +4720,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Prerequisites
   - H2: Containerized gateway
+  - H3: Headless bootstrap
   - H3: Manual flow
   - H3: Upgrading container images
   - H3: Environment variables
