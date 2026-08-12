@@ -5579,6 +5579,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /platforms/linux
 - Headings:
   - H2: Desktop companion
+  - H3: Host sleep
   - H3: Media codecs
   - H3: Quick Chat
   - H3: Canvas
