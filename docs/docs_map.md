@@ -3995,6 +3995,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Quick start
   - H2: Declare development servers
   - H2: Application contract
+  - H2: Availability and configuration
   - H2: Security model
   - H2: Limitations
   - H2: Troubleshooting
