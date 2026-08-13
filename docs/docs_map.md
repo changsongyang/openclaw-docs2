@@ -3733,6 +3733,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Monitoring service setup examples
   - H2: When something fails
   - H2: Dedicated "health" command
+  - H3: Queue warnings
   - H2: Related
 
 ## gateway/heartbeat.md
