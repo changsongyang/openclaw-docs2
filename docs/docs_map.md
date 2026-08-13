@@ -4768,6 +4768,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Bonjour / mDNS
   - H3: Storage and persistence
   - H3: Shell helpers (optional)
+  - H3: Image contents and security scanning
   - H3: Running on a VPS?
   - H2: Agent sandbox
   - H3: Quick enable
