@@ -4844,7 +4844,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Containers and package managers
   - H2: Verify the install
   - H2: Hosting and deployment
-  - H2: Update, migrate, or uninstall
+  - H2: Back up, update, migrate, or uninstall
   - H2: Troubleshooting: openclaw not found
 
 ## install/installer.md
