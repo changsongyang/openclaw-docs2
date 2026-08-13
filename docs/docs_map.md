@@ -2066,6 +2066,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H1: openclaw resume
   - H2: Options
+  - H2: Continue from the Control UI
   - H2: Examples
   - H2: Related
 
