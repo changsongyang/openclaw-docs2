@@ -3988,6 +3988,20 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Transport behavior
   - H2: Related
 
+## gateway/portals.md
+
+- Route: /gateway/portals
+- Headings:
+  - H2: Quick start
+  - H2: Declare development servers
+  - H2: Application contract
+  - H2: Security model
+  - H2: Limitations
+  - H2: Troubleshooting
+  - H3: The portal shows a 502 waiting page
+  - H3: The portal is not reachable from this browser
+  - H3: Close a portal
+
 ## gateway/prometheus.md
 
 - Route: /gateway/prometheus

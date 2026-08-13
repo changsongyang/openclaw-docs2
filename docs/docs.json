@@ -1725,6 +1725,7 @@
                       "network",
                       "gateway/pairing",
                       "gateway/discovery",
+                      "gateway/portals",
                       "gateway/bonjour"
                     ]
                   }
@@ -2747,6 +2748,7 @@
                       "zh-CN/network",
                       "zh-CN/gateway/pairing",
                       "zh-CN/gateway/discovery",
+                      "zh-CN/gateway/portals",
                       "zh-CN/gateway/bonjour"
                     ]
                   }
@@ -3769,6 +3771,7 @@
                       "zh-TW/network",
                       "zh-TW/gateway/pairing",
                       "zh-TW/gateway/discovery",
+                      "zh-TW/gateway/portals",
                       "zh-TW/gateway/bonjour"
                     ]
                   }
@@ -4791,6 +4794,7 @@
                       "ja-JP/network",
                       "ja-JP/gateway/pairing",
                       "ja-JP/gateway/discovery",
+                      "ja-JP/gateway/portals",
                       "ja-JP/gateway/bonjour"
                     ]
                   }
@@ -5813,6 +5817,7 @@
                       "es/network",
                       "es/gateway/pairing",
                       "es/gateway/discovery",
+                      "es/gateway/portals",
                       "es/gateway/bonjour"
                     ]
                   }
@@ -6835,6 +6840,7 @@
                       "pt-BR/network",
                       "pt-BR/gateway/pairing",
                       "pt-BR/gateway/discovery",
+                      "pt-BR/gateway/portals",
                       "pt-BR/gateway/bonjour"
                     ]
                   }
@@ -7857,6 +7863,7 @@
                       "ko/network",
                       "ko/gateway/pairing",
                       "ko/gateway/discovery",
+                      "ko/gateway/portals",
                       "ko/gateway/bonjour"
                     ]
                   }
@@ -8879,6 +8886,7 @@
                       "de/network",
                       "de/gateway/pairing",
                       "de/gateway/discovery",
+                      "de/gateway/portals",
                       "de/gateway/bonjour"
                     ]
                   }
@@ -9901,6 +9909,7 @@
                       "fr/network",
                       "fr/gateway/pairing",
                       "fr/gateway/discovery",
+                      "fr/gateway/portals",
                       "fr/gateway/bonjour"
                     ]
                   }
@@ -10923,6 +10932,7 @@
                       "hi/network",
                       "hi/gateway/pairing",
                       "hi/gateway/discovery",
+                      "hi/gateway/portals",
                       "hi/gateway/bonjour"
                     ]
                   }
@@ -11945,6 +11955,7 @@
                       "ar/network",
                       "ar/gateway/pairing",
                       "ar/gateway/discovery",
+                      "ar/gateway/portals",
                       "ar/gateway/bonjour"
                     ]
                   }
@@ -12967,6 +12978,7 @@
                       "it/network",
                       "it/gateway/pairing",
                       "it/gateway/discovery",
+                      "it/gateway/portals",
                       "it/gateway/bonjour"
                     ]
                   }
@@ -13989,6 +14001,7 @@
                       "vi/network",
                       "vi/gateway/pairing",
                       "vi/gateway/discovery",
+                      "vi/gateway/portals",
                       "vi/gateway/bonjour"
                     ]
                   }
@@ -15011,6 +15024,7 @@
                       "nl/network",
                       "nl/gateway/pairing",
                       "nl/gateway/discovery",
+                      "nl/gateway/portals",
                       "nl/gateway/bonjour"
                     ]
                   }
@@ -16033,6 +16047,7 @@
                       "tr/network",
                       "tr/gateway/pairing",
                       "tr/gateway/discovery",
+                      "tr/gateway/portals",
                       "tr/gateway/bonjour"
                     ]
                   }
@@ -17055,6 +17070,7 @@
                       "uk/network",
                       "uk/gateway/pairing",
                       "uk/gateway/discovery",
+                      "uk/gateway/portals",
                       "uk/gateway/bonjour"
                     ]
                   }
@@ -18077,6 +18093,7 @@
                       "id/network",
                       "id/gateway/pairing",
                       "id/gateway/discovery",
+                      "id/gateway/portals",
                       "id/gateway/bonjour"
                     ]
                   }
@@ -19099,6 +19116,7 @@
                       "pl/network",
                       "pl/gateway/pairing",
                       "pl/gateway/discovery",
+                      "pl/gateway/portals",
                       "pl/gateway/bonjour"
                     ]
                   }
@@ -20121,6 +20139,7 @@
                       "ru/network",
                       "ru/gateway/pairing",
                       "ru/gateway/discovery",
+                      "ru/gateway/portals",
                       "ru/gateway/bonjour"
                     ]
                   }
