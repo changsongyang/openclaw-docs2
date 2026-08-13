@@ -5282,6 +5282,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Local model inference
   - H3: Codex sessions and transcripts
   - H3: Claude sessions and transcripts
+  - H3: Host OpenClaw sessions
   - H3: OpenCode and Pi sessions
   - H3: Terminal file uploads
   - H2: Invoking commands
