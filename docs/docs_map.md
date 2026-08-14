@@ -3610,6 +3610,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: env (inline env vars)
   - H3: Env var substitution
   - H2: Secrets
+  - H3: secrets.egressProxy
   - H3: SecretRef
   - H3: Supported credential surface
   - H3: Secret providers config
@@ -4164,6 +4165,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: SecretRef contract
   - H2: Provider config
   - H2: Shared secret store
+  - H2: Secret egress proxy
   - H2: File-backed API keys
   - H2: Exec integration examples
   - H2: MCP server environment variables
