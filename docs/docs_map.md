@@ -3447,6 +3447,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Install channels
   - H3: Verify the profile
   - H2: Dispatching a session
+  - H3: Runtime support
   - H2: What survives a dead machine
   - H2: Desktop (interactive)
   - H2: Security model
