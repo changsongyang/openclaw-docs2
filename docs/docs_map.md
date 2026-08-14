@@ -1553,17 +1553,6 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Machine-readable output
   - H2: Related
 
-## cli/delivery.md
-
-- Route: /cli/delivery
-- Headings:
-  - H1: openclaw delivery failures
-  - H2: List failure metadata
-  - H2: Preview or apply retention cleanup
-  - H2: Safely resubmit one failure
-  - H2: Backups and retained bytes
-  - H2: Related
-
 ## cli/devices.md
 
 - Route: /cli/devices
