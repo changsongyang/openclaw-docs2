@@ -3793,6 +3793,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /gateway/local-model-services
 - Headings:
   - H2: How it works
+  - H2: Managed llama.cpp
   - H2: Config shape
   - H2: Fields
   - H2: Inferrs example
@@ -6287,11 +6288,12 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /plugins/llama-cpp
 - Headings:
-  - H2: Local text inference
-  - H3: Use another GGUF model
-  - H2: Memory embedding configuration
-  - H2: Native runtime
-  - H2: Memory runtime diagnostics
+  - H2: Guided setup
+  - H2: How requests run
+  - H2: Use another GGUF model
+  - H2: Local memory embeddings
+  - H2: Diagnostics
+  - H2: Platform requirements
   - H2: Troubleshooting
 
 ## plugins/logbook.md
