@@ -7903,6 +7903,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: What your plugin owns
   - H2: Message adapter
   - H3: Progress visibility acceptance
+  - H3: Commentary delivery ownership
   - H3: TTS voice delivery
   - H3: Inbound ingress (experimental)
   - H3: Durable ingress and replay dedupe
