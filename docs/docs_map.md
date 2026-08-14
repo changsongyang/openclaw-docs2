@@ -5460,6 +5460,20 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Milestones
   - H2: Open questions
 
+## plan/computer-use.md
+
+- Route: /plan/computer-use
+- Headings:
+  - H2: Status
+  - H2: Problem
+  - H2: Goals
+  - H2: Non-goals
+  - H2: Decisions (owner rulings, 2026-08-13)
+  - H2: Architecture
+  - H2: Workstreams and tracker
+  - H2: Live testing matrix
+  - H2: Risks
+
 ## plan/runners.md
 
 - Route: /plan/runners
