@@ -5674,6 +5674,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: 3. Install the CLI and Gateway
   - H2: Troubleshooting
   - H3: Build fails: toolchain or SDK mismatch
+  - H3: Build fails: MLX voice helper Metal shaders
   - H3: App crashes on permission grant
   - H3: Gateway "Starting..." indefinitely
   - H2: Related
