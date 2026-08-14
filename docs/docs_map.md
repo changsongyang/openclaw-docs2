@@ -1398,6 +1398,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Lifecycle
   - H2: If the command is missing
   - H2: Profiles
+  - H3: Cookie sync to a remote Gateway
   - H2: Chrome extension relay
   - H2: Tabs
   - H2: Snapshot / screenshot / actions
