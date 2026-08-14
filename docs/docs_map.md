@@ -7950,6 +7950,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Package entries
   - H2: defineToolPlugin
   - H2: definePluginEntry
+  - H3: Computer Use providers
   - H2: defineChannelPluginEntry
   - H2: defineSetupPluginEntry
   - H2: Registration mode
