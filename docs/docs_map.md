@@ -5251,7 +5251,10 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Requirements
   - H2: The computer agent tool
-  - H2: Windows and Linux (experimental, via CUA Driver SDK)
+  - H2: CUA Driver provider
+  - H3: macOS app-owned daemon
+  - H4: Trust model
+  - H3: Windows and Linux (experimental, direct SDK)
   - H3: Troubleshooting
   - H2: The computer.act node command
   - H2: Authorization
