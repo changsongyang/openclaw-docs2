@@ -5257,6 +5257,8 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H4: Trust model
   - H4: Browser profiles
   - H3: Maintainer live-proof rig
+  - H4: macOS
+  - H4: Linux X11 through Crabbox
   - H3: Windows and Linux (experimental, direct SDK)
   - H3: Troubleshooting
   - H2: The computer.act node command
