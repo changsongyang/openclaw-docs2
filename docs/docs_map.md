@@ -5255,6 +5255,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: CUA Driver provider
   - H3: macOS app-owned daemon
   - H4: Trust model
+  - H4: Browser profiles
   - H3: Windows and Linux (experimental, direct SDK)
   - H3: Troubleshooting
   - H2: The computer.act node command
