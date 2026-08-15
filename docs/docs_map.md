@@ -11138,6 +11138,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Manage plugins
   - H2: Apps and extensions
   - H2: Sidebar navigation
+  - H3: Session icons
   - H2: New session page
   - H2: What it can do (today)
   - H2: Import assistant memory
