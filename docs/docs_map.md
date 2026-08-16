@@ -6207,8 +6207,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Deprecation policy
   - H2: Current compatibility areas
   - H3: Channel prompt-context identifier aliases
-  - H3: WhatsApp inbound callback flat aliases
-  - H3: WhatsApp inbound admission fields
+  - H3: WhatsApp inbound callback retirement
   - H2: Plugin inspector package
   - H3: Maintainer acceptance lane
   - H2: Release notes
@@ -8013,7 +8012,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: CLI registration metadata
   - H3: CLI backend registration
   - H3: Exclusive slots
-  - H3: Deprecated memory embedding adapters
+  - H3: Memory embedding adapters
   - H3: Events and lifecycle
   - H3: Hook decision semantics
   - H3: API object fields
