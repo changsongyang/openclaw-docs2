@@ -6371,6 +6371,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Generation provider metadata reference
   - H2: Tool metadata reference
   - H2: providerAuthChoices reference
+  - H2: cliCommands reference
   - H2: commandAliases reference
   - H2: activation reference
   - H2: qaRunners reference
