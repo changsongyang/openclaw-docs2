@@ -1722,6 +1722,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Command pages
   - H2: Global flags
   - H2: Output modes
+  - H3: JSON failures
   - H2: Color palette
   - H2: Command tree
   - H2: Chat slash commands
