@@ -9239,12 +9239,14 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Preflight a target release
   - H2: Agent schema history
   - H2: State schema history
+  - H3: State schema 9
   - H2: Integrity checks
   - H2: Troubleshooting
   - H3: Why you cannot go back after updating to 2026.7.2
   - H3: The Gateway refuses to start with a newer schema version error
   - H3: A database is quarantined after integrity verification failed
   - H2: Downgrades are unsupported
+  - H3: Example: state schema 9 to 8
   - H3: Example: state schema 7 to 6
   - H3: Example: agent schema 17 to 16
 
