@@ -2879,6 +2879,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Paths
   - H3: Single-agent mode (default)
   - H2: Agent helper
+  - H3: Agent provenance
   - H2: Quick start
   - H2: Multiple agents, multiple personas
   - H2: Per-agent Memory Wiki vaults
