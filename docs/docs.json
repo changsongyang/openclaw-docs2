@@ -1701,7 +1701,8 @@
                       "gateway/operator-scopes",
                       "gateway/sandboxing",
                       "gateway/openshell",
-                      "gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "gateway/permission-modes"
                     ]
                   },
                   {
@@ -2724,7 +2725,8 @@
                       "zh-CN/gateway/operator-scopes",
                       "zh-CN/gateway/sandboxing",
                       "zh-CN/gateway/openshell",
-                      "zh-CN/gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "zh-CN/gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "zh-CN/gateway/permission-modes"
                     ]
                   },
                   {
@@ -3747,7 +3749,8 @@
                       "zh-TW/gateway/operator-scopes",
                       "zh-TW/gateway/sandboxing",
                       "zh-TW/gateway/openshell",
-                      "zh-TW/gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "zh-TW/gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "zh-TW/gateway/permission-modes"
                     ]
                   },
                   {
@@ -4770,7 +4773,8 @@
                       "ja-JP/gateway/operator-scopes",
                       "ja-JP/gateway/sandboxing",
                       "ja-JP/gateway/openshell",
-                      "ja-JP/gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "ja-JP/gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "ja-JP/gateway/permission-modes"
                     ]
                   },
                   {
@@ -5793,7 +5797,8 @@
                       "es/gateway/operator-scopes",
                       "es/gateway/sandboxing",
                       "es/gateway/openshell",
-                      "es/gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "es/gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "es/gateway/permission-modes"
                     ]
                   },
                   {
@@ -6816,7 +6821,8 @@
                       "pt-BR/gateway/operator-scopes",
                       "pt-BR/gateway/sandboxing",
                       "pt-BR/gateway/openshell",
-                      "pt-BR/gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "pt-BR/gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "pt-BR/gateway/permission-modes"
                     ]
                   },
                   {
@@ -7839,7 +7845,8 @@
                       "ko/gateway/operator-scopes",
                       "ko/gateway/sandboxing",
                       "ko/gateway/openshell",
-                      "ko/gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "ko/gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "ko/gateway/permission-modes"
                     ]
                   },
                   {
@@ -8862,7 +8869,8 @@
                       "de/gateway/operator-scopes",
                       "de/gateway/sandboxing",
                       "de/gateway/openshell",
-                      "de/gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "de/gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "de/gateway/permission-modes"
                     ]
                   },
                   {
@@ -9885,7 +9893,8 @@
                       "fr/gateway/operator-scopes",
                       "fr/gateway/sandboxing",
                       "fr/gateway/openshell",
-                      "fr/gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "fr/gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "fr/gateway/permission-modes"
                     ]
                   },
                   {
@@ -10908,7 +10917,8 @@
                       "hi/gateway/operator-scopes",
                       "hi/gateway/sandboxing",
                       "hi/gateway/openshell",
-                      "hi/gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "hi/gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "hi/gateway/permission-modes"
                     ]
                   },
                   {
@@ -11931,7 +11941,8 @@
                       "ar/gateway/operator-scopes",
                       "ar/gateway/sandboxing",
                       "ar/gateway/openshell",
-                      "ar/gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "ar/gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "ar/gateway/permission-modes"
                     ]
                   },
                   {
@@ -12954,7 +12965,8 @@
                       "it/gateway/operator-scopes",
                       "it/gateway/sandboxing",
                       "it/gateway/openshell",
-                      "it/gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "it/gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "it/gateway/permission-modes"
                     ]
                   },
                   {
@@ -13977,7 +13989,8 @@
                       "vi/gateway/operator-scopes",
                       "vi/gateway/sandboxing",
                       "vi/gateway/openshell",
-                      "vi/gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "vi/gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "vi/gateway/permission-modes"
                     ]
                   },
                   {
@@ -15000,7 +15013,8 @@
                       "nl/gateway/operator-scopes",
                       "nl/gateway/sandboxing",
                       "nl/gateway/openshell",
-                      "nl/gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "nl/gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "nl/gateway/permission-modes"
                     ]
                   },
                   {
@@ -16023,7 +16037,8 @@
                       "tr/gateway/operator-scopes",
                       "tr/gateway/sandboxing",
                       "tr/gateway/openshell",
-                      "tr/gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "tr/gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "tr/gateway/permission-modes"
                     ]
                   },
                   {
@@ -17046,7 +17061,8 @@
                       "uk/gateway/operator-scopes",
                       "uk/gateway/sandboxing",
                       "uk/gateway/openshell",
-                      "uk/gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "uk/gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "uk/gateway/permission-modes"
                     ]
                   },
                   {
@@ -18069,7 +18085,8 @@
                       "id/gateway/operator-scopes",
                       "id/gateway/sandboxing",
                       "id/gateway/openshell",
-                      "id/gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "id/gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "id/gateway/permission-modes"
                     ]
                   },
                   {
@@ -19092,7 +19109,8 @@
                       "pl/gateway/operator-scopes",
                       "pl/gateway/sandboxing",
                       "pl/gateway/openshell",
-                      "pl/gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "pl/gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "pl/gateway/permission-modes"
                     ]
                   },
                   {
@@ -20115,7 +20133,8 @@
                       "ru/gateway/operator-scopes",
                       "ru/gateway/sandboxing",
                       "ru/gateway/openshell",
-                      "ru/gateway/sandbox-vs-tool-policy-vs-elevated"
+                      "ru/gateway/sandbox-vs-tool-policy-vs-elevated",
+                      "ru/gateway/permission-modes"
                     ]
                   },
                   {

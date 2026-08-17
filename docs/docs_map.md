@@ -4000,6 +4000,13 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Transport behavior
   - H2: Related
 
+## gateway/permission-modes.md
+
+- Route: /gateway/permission-modes
+- Headings:
+  - H2: Session root and defaults
+  - H2: Policy precedence and clamping
+
 ## gateway/portals.md
 
 - Route: /gateway/portals
