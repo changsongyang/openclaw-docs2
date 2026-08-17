@@ -3124,6 +3124,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: How messages are routed
   - H2: DM isolation
   - H3: Dock linked channels
+  - H2: Group and room routing
   - H2: Incognito sessions
   - H2: Remember across conversations
   - H2: Session lifecycle
