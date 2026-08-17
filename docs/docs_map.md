@@ -2899,7 +2899,11 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /concepts/multi-user
 - Headings:
   - H2: Trust boundary
-  - H2: Ownership and presence
+  - H2: The three ownership layers
+  - H2: Assigning an owner
+  - H2: Finding sessions by owner
+  - H2: Reading the avatars
+  - H2: Agent-spawned sessions
   - H2: Identity-scoped convenience state
   - H2: Drafts
   - H2: Turn attribution
