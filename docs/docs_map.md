@@ -6158,6 +6158,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Environment isolation
   - H3: Dynamic tools and web search
   - H3: Config fields
+  - H3: Image loader ownership
   - H3: Dynamic tool call timeouts
   - H3: Local testing env overrides
   - H2: Native Codex plugins
