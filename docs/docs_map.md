@@ -3555,6 +3555,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: tools.byProvider
   - H3: tools.toolsBySender
   - H3: tools.elevated
+  - H3: tools.github
   - H3: tools.exec
   - H3: tools.loopDetection
   - H3: tools.web
