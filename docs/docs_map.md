@@ -10755,6 +10755,16 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Slow plugin tool setup
   - H2: Related
 
+## tools/progress-card.md
+
+- Route: /tools/progress-card
+- Headings:
+  - H2: Update a card
+  - H2: Format the note
+  - H2: Limits
+  - H2: Clear a card
+  - H2: Where the card appears
+
 ## tools/reactions.md
 
 - Route: /tools/reactions
