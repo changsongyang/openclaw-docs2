@@ -4286,6 +4286,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Authentication attempts (pre-auth)
   - H3: Browser-origin connections
+  - H3: Unconfigured same-host reverse proxies
   - H3: Webhooks
   - H2: Control-plane writes (post-auth backstop)
   - H2: ACP session creation
@@ -4315,7 +4316,6 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: 4. Use the URL from clients
   - H3: macOS app
   - H3: iOS and Android companion apps
-  - H2: Optional stable vanity name
   - H2: Troubleshooting
   - H3: The URL times out from other devices
   - H3: The certificate is not issued or the first request is slow
