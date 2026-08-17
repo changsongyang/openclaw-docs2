@@ -9407,6 +9407,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Supported credentials
   - H3: openclaw.json targets (secrets configure + secrets apply + secrets audit)
   - H3: auth-profiles.json targets (secrets configure + secrets apply + secrets audit)
+  - H3: Node-host connection targets
   - H2: Unsupported credentials
   - H2: Related
 
