@@ -10016,7 +10016,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Locale
   - H2: Guided default
-  - H2: Classic wizard: QuickStart vs Advanced
+  - H2: Classic wizard setup modes
   - H2: What classic onboarding configures
   - H2: Add another agent
   - H2: Full reference
