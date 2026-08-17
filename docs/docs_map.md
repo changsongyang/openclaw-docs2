@@ -2865,6 +2865,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Quick model policy
   - H2: Onboarding
   - H2: "Model is not allowed" (and why replies stop)
+  - H2: Choose a model for a session
   - H2: /model in chat
   - H2: CLI
   - H2: Models registry (models.json)
@@ -9314,6 +9315,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /reference/prompt-caching
 - Headings:
+  - H2: Keep model settings stable
   - H2: Primary knobs
   - H3: cacheRetention
   - H3: contextPruning.mode: "cache-ttl"
