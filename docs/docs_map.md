@@ -4348,6 +4348,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: CLI examples
   - H2: Auth
   - H3: Tailscale identity headers (Serve only)
+  - H3: Externally managed Serve and Funnel
   - H2: Notes
   - H3: Tailscale prerequisites and limits
   - H2: Browser control (remote Gateway + local browser)
