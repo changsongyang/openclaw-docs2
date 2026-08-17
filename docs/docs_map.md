@@ -1497,6 +1497,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H1: openclaw connect
   - H2: Create a join command
   - H2: Connect in the foreground
+  - H2: Environment-managed cloud nodes
   - H2: Install as a service
   - H2: Accepted targets
   - H2: Revocation behavior
@@ -3453,13 +3454,13 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Coordinator-backed Crabbox
   - H2: Configuration
   - H3: The setup command
-  - H3: Install channels
+  - H3: Bundle installation
   - H3: Verify the profile
   - H2: Dispatching a session
   - H3: Runtime support
   - H3: Choose a machine class per session
   - H2: What survives a dead machine
-  - H2: Desktop (interactive)
+  - H2: Desktop
   - H2: Security model
   - H2: Troubleshooting
   - H2: Related
