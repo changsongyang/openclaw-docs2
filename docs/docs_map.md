@@ -5293,6 +5293,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Pairing + status
   - H2: Version skew and upgrade order
   - H2: Remote node host (system.run)
+  - H3: Gateway deployments that cannot host nodes
   - H3: Start a node host (foreground)
   - H3: Remote gateway via SSH tunnel (loopback bind)
   - H3: Start a node host (service)
