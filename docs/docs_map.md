@@ -10838,6 +10838,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: How widgets work
   - H2: Design system
   - H2: Use the tool
+  - H2: Show on a device
   - H2: Interactive widgets
   - H2: Dashboard capabilities
   - H2: Security and storage
