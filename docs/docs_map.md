@@ -6194,6 +6194,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Mixed provider deployment
   - H3: Fail-closed Codex deployment
   - H2: App-server policy
+  - H3: Native approval audit evidence
   - H2: Commands and diagnostics
   - H3: Shared Fast mode and Codex fast mode
   - H3: Inspect Codex threads locally
