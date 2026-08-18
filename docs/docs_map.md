@@ -8177,6 +8177,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Config reference
   - H2: Session scope
   - H2: Realtime voice conversations
+  - H3: Hangup detection
   - H3: Tool policy
   - H3: Agent voice context
   - H3: Realtime provider examples
