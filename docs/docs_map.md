@@ -4092,6 +4092,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Command flow (what runs where)
   - H2: SSH tunnel (CLI + tools)
   - H2: CLI remote defaults
+  - H2: Gateway behind an identity-aware proxy
   - H2: Credential precedence
   - H2: Chat UI remote access
   - H2: macOS app remote mode
