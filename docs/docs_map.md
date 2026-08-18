@@ -11260,6 +11260,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: The board
   - H2: What widgets are allowed to do
   - H2: MCP apps on the board
+  - H2: A2UI widgets
   - H2: Good to know
 
 ## web/index.md
