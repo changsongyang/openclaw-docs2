@@ -3261,6 +3261,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /concepts/user-model
 - Headings:
+  - H2: Gateway profile and GitHub credit
   - H2: Write directives, not observations
   - H2: Supersede in place
   - H2: Choose the right file
@@ -11181,7 +11182,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Device pairing (first connection)
   - H2: Pair a mobile device
   - H2: New-session preferences and recents
-  - H2: Personal identity (browser-local)
+  - H2: Personal identity
   - H2: Runtime config endpoint
   - H2: Gateway host status
   - H2: Language support
