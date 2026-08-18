@@ -5123,6 +5123,16 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Source checkout (git clone)
   - H2: Related
 
+## install/update-troubleshooting.md
+
+- Route: /install/update-troubleshooting
+- Headings:
+  - H2: Recover in the Control UI
+  - H2: Reason codes
+  - H2: CLI fallback
+  - H2: Rollback boundary
+  - H2: Support diagnostics
+
 ## install/updating.md
 
 - Route: /install/updating

@@ -1088,6 +1088,7 @@
                 "pages": [
                   "install/backups",
                   "install/updating",
+                  "install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
@@ -2147,6 +2148,7 @@
                 "pages": [
                   "zh-CN/install/backups",
                   "zh-CN/install/updating",
+                  "zh-CN/install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
@@ -3172,6 +3174,7 @@
                 "pages": [
                   "zh-TW/install/backups",
                   "zh-TW/install/updating",
+                  "zh-TW/install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
@@ -4197,6 +4200,7 @@
                 "pages": [
                   "ja-JP/install/backups",
                   "ja-JP/install/updating",
+                  "ja-JP/install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
@@ -5222,6 +5226,7 @@
                 "pages": [
                   "es/install/backups",
                   "es/install/updating",
+                  "es/install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
@@ -6247,6 +6252,7 @@
                 "pages": [
                   "pt-BR/install/backups",
                   "pt-BR/install/updating",
+                  "pt-BR/install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
@@ -7272,6 +7278,7 @@
                 "pages": [
                   "ko/install/backups",
                   "ko/install/updating",
+                  "ko/install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
@@ -8297,6 +8304,7 @@
                 "pages": [
                   "de/install/backups",
                   "de/install/updating",
+                  "de/install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
@@ -9322,6 +9330,7 @@
                 "pages": [
                   "fr/install/backups",
                   "fr/install/updating",
+                  "fr/install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
@@ -10347,6 +10356,7 @@
                 "pages": [
                   "hi/install/backups",
                   "hi/install/updating",
+                  "hi/install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
@@ -11372,6 +11382,7 @@
                 "pages": [
                   "ar/install/backups",
                   "ar/install/updating",
+                  "ar/install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
@@ -12397,6 +12408,7 @@
                 "pages": [
                   "it/install/backups",
                   "it/install/updating",
+                  "it/install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
@@ -13422,6 +13434,7 @@
                 "pages": [
                   "vi/install/backups",
                   "vi/install/updating",
+                  "vi/install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
@@ -14447,6 +14460,7 @@
                 "pages": [
                   "nl/install/backups",
                   "nl/install/updating",
+                  "nl/install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
@@ -15472,6 +15486,7 @@
                 "pages": [
                   "tr/install/backups",
                   "tr/install/updating",
+                  "tr/install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
@@ -16497,6 +16512,7 @@
                 "pages": [
                   "uk/install/backups",
                   "uk/install/updating",
+                  "uk/install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
@@ -17522,6 +17538,7 @@
                 "pages": [
                   "id/install/backups",
                   "id/install/updating",
+                  "id/install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
@@ -18547,6 +18564,7 @@
                 "pages": [
                   "pl/install/backups",
                   "pl/install/updating",
+                  "pl/install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
@@ -19572,6 +19590,7 @@
                 "pages": [
                   "ru/install/backups",
                   "ru/install/updating",
+                  "ru/install/update-troubleshooting",
                   {
                     "group": "Migrating",
                     "pages": [
