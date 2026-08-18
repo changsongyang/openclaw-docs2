@@ -5473,7 +5473,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Components
   - H3: 1. Environment state machine + provider contract
   - H3: 2. Worker bootstrap: install OpenClaw on the box
-  - H3: 3. Transport: everything over SSH
+  - H3: 3. Historical transport proposal: everything over SSH
   - H3: 4. Worker protocol (dedicated; not the node protocol)
   - H3: 5. Session backend RPCs
   - H3: 6. Workspace sync
