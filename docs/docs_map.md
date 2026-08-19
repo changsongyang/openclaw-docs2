@@ -2652,6 +2652,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: run
   - H3: desktop-browser-smoke
   - H3: slack-desktop-smoke
+  - H3: Telegram Desktop recorder
   - H3: telegram-desktop-builder
   - H2: Evidence manifest
   - H2: GitHub automation
