@@ -3456,6 +3456,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Requirements
   - H3: Coordinator-backed Crabbox
   - H2: Configuration
+  - H3: Per-project default profiles
   - H3: The setup command
   - H3: Bundle installation
   - H3: Verify the profile
