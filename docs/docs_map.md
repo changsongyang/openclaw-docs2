@@ -6373,14 +6373,15 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /plugins/llama-cpp
 - Headings:
-  - H2: Choose a server
-  - H2: Managed server setup
-  - H2: How requests run
-  - H2: Use another GGUF model
-  - H2: Local memory embeddings
-  - H2: Diagnostics
-  - H2: Platform requirements
+  - H2: Choose server ownership
+  - H2: Managed local server
+  - H3: Use another managed GGUF
+  - H2: Existing llama-server
+  - H3: Authentication and endpoint replacement
+  - H3: Manual configuration
+  - H2: Requests and local embeddings
   - H2: Troubleshooting
+  - H2: Related
 
 ## plugins/logbook.md
 
@@ -8687,24 +8688,6 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Configuration
   - H2: Image generation
   - H2: Advanced
-  - H2: Related
-
-## providers/llama-server.md
-
-- Route: /providers/llama-server
-- Headings:
-  - H2: Quick start
-  - H2: Managed and external providers
-  - H2: Discovery
-  - H2: Authentication
-  - H2: Non-interactive setup
-  - H2: Manual configuration
-  - H2: Troubleshooting
-  - H3: Server is unavailable
-  - H3: Tools are disabled
-  - H3: Router discovery loaded a model
-  - H3: Authentication fails during inference
-  - H3: Structured output fails
   - H2: Related
 
 ## providers/lmstudio.md
