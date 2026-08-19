@@ -4786,10 +4786,13 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /install/docker-vm-runtime
 - Headings:
+  - H2: Before you begin
+  - H2: Prepare persistent host state
+  - H2: Run the maintained Docker setup
   - H2: Bake required binaries into the image
-  - H2: Build and launch
+  - H2: Verify and administer the Gateway
   - H2: What persists where
-  - H2: Updates
+  - H2: Update OpenClaw
   - H2: Related
 
 ## install/docker.md
@@ -4864,9 +4867,14 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /install/gcp
 - Headings:
   - H2: What you need
-  - H2: Quick path
+  - H2: Provision the VM
+  - H2: Configure the Docker runtime
+  - H2: Access the Control UI
   - H2: Troubleshooting
-  - H2: Service accounts (security best practice)
+  - H3: SSH connection refused
+  - H3: OS Login issues
+  - H3: Resize after an out-of-memory build
+  - H2: Use a deployment service account
   - H2: Next steps
   - H2: Related
 
@@ -4875,8 +4883,10 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /install/hetzner
 - Headings:
   - H2: What you need
-  - H2: Quick path
-  - H2: Infrastructure as Code (Terraform)
+  - H2: Provision and secure the VPS
+  - H2: Configure the Docker runtime
+  - H2: Access the Control UI
+  - H2: Infrastructure as code
   - H2: Next steps
   - H2: Related
 
@@ -6459,6 +6469,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Choose a plugin
   - H2: Choose a mode
+  - H2: Configure Teams or Zoom
   - H2: Prepare Chrome and audio
   - H2: Install or disable plugins
   - H2: Verify and join
@@ -8153,10 +8164,8 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /plugins/teams-meetings
 - Headings:
-  - H2: Setup
-  - H2: Modes
-  - H2: Guest join limits
-  - H2: Tool and gateway surface
+  - H2: Handle Teams policy and manual actions
+  - H2: Tool and Gateway surface
   - H2: Related
 
 ## plugins/tool-plugins.md
@@ -8288,10 +8297,8 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /plugins/zoom-meetings
 - Headings:
-  - H2: Setup
-  - H2: Modes
-  - H2: Guest join limits
-  - H2: Tool and gateway surface
+  - H2: Handle Zoom policy and manual actions
+  - H2: Tool and Gateway surface
   - H2: Related
 
 ## prose.md
@@ -9643,13 +9650,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /reference/wizard
 - Headings:
-  - H2: Flow details (local mode)
-  - H2: Non-interactive mode
-  - H3: Add agent (non-interactive)
-  - H2: Gateway wizard RPC
-  - H2: Signal setup (signal-cli)
-  - H2: What the wizard writes
-  - H2: Related docs
+  - H2: Related
 
 ## releases/2026.6.11.md
 

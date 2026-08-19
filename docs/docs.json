@@ -89,6 +89,10 @@
       "destination": "/gateway/external-apps"
     },
     {
+      "source": "/reference/wizard",
+      "destination": "/start/wizard-cli-reference"
+    },
+    {
       "source": "/reference/maturity-scorecard",
       "destination": "/maturity/scorecard"
     },
@@ -1979,7 +1983,6 @@
                 "group": "Technical reference",
                 "pages": [
                   "agent-runtime-architecture",
-                  "reference/wizard",
                   "reference/token-use",
                   "reference/secretref-credential-surface",
                   "reference/openclaw-ai",
@@ -3006,7 +3009,6 @@
                 "group": "技术参考",
                 "pages": [
                   "zh-CN/agent-runtime-architecture",
-                  "zh-CN/reference/wizard",
                   "zh-CN/reference/token-use",
                   "zh-CN/reference/secretref-credential-surface",
                   "zh-CN/reference/openclaw-ai",
@@ -4033,7 +4035,6 @@
                 "group": "Technical reference",
                 "pages": [
                   "zh-TW/agent-runtime-architecture",
-                  "zh-TW/reference/wizard",
                   "zh-TW/reference/token-use",
                   "zh-TW/reference/secretref-credential-surface",
                   "zh-TW/reference/openclaw-ai",
@@ -5060,7 +5061,6 @@
                 "group": "Technical reference",
                 "pages": [
                   "ja-JP/agent-runtime-architecture",
-                  "ja-JP/reference/wizard",
                   "ja-JP/reference/token-use",
                   "ja-JP/reference/secretref-credential-surface",
                   "ja-JP/reference/openclaw-ai",
@@ -6087,7 +6087,6 @@
                 "group": "Technical reference",
                 "pages": [
                   "es/agent-runtime-architecture",
-                  "es/reference/wizard",
                   "es/reference/token-use",
                   "es/reference/secretref-credential-surface",
                   "es/reference/openclaw-ai",
@@ -7114,7 +7113,6 @@
                 "group": "Technical reference",
                 "pages": [
                   "pt-BR/agent-runtime-architecture",
-                  "pt-BR/reference/wizard",
                   "pt-BR/reference/token-use",
                   "pt-BR/reference/secretref-credential-surface",
                   "pt-BR/reference/openclaw-ai",
@@ -8141,7 +8139,6 @@
                 "group": "Technical reference",
                 "pages": [
                   "ko/agent-runtime-architecture",
-                  "ko/reference/wizard",
                   "ko/reference/token-use",
                   "ko/reference/secretref-credential-surface",
                   "ko/reference/openclaw-ai",
@@ -9168,7 +9165,6 @@
                 "group": "Technical reference",
                 "pages": [
                   "de/agent-runtime-architecture",
-                  "de/reference/wizard",
                   "de/reference/token-use",
                   "de/reference/secretref-credential-surface",
                   "de/reference/openclaw-ai",
@@ -10195,7 +10191,6 @@
                 "group": "Technical reference",
                 "pages": [
                   "fr/agent-runtime-architecture",
-                  "fr/reference/wizard",
                   "fr/reference/token-use",
                   "fr/reference/secretref-credential-surface",
                   "fr/reference/openclaw-ai",
@@ -11222,7 +11217,6 @@
                 "group": "Technical reference",
                 "pages": [
                   "hi/agent-runtime-architecture",
-                  "hi/reference/wizard",
                   "hi/reference/token-use",
                   "hi/reference/secretref-credential-surface",
                   "hi/reference/openclaw-ai",
@@ -12249,7 +12243,6 @@
                 "group": "Technical reference",
                 "pages": [
                   "ar/agent-runtime-architecture",
-                  "ar/reference/wizard",
                   "ar/reference/token-use",
                   "ar/reference/secretref-credential-surface",
                   "ar/reference/openclaw-ai",
@@ -13276,7 +13269,6 @@
                 "group": "Technical reference",
                 "pages": [
                   "it/agent-runtime-architecture",
-                  "it/reference/wizard",
                   "it/reference/token-use",
                   "it/reference/secretref-credential-surface",
                   "it/reference/openclaw-ai",
@@ -14303,7 +14295,6 @@
                 "group": "Technical reference",
                 "pages": [
                   "vi/agent-runtime-architecture",
-                  "vi/reference/wizard",
                   "vi/reference/token-use",
                   "vi/reference/secretref-credential-surface",
                   "vi/reference/openclaw-ai",
@@ -15330,7 +15321,6 @@
                 "group": "Technical reference",
                 "pages": [
                   "nl/agent-runtime-architecture",
-                  "nl/reference/wizard",
                   "nl/reference/token-use",
                   "nl/reference/secretref-credential-surface",
                   "nl/reference/openclaw-ai",
@@ -16357,7 +16347,6 @@
                 "group": "Technical reference",
                 "pages": [
                   "tr/agent-runtime-architecture",
-                  "tr/reference/wizard",
                   "tr/reference/token-use",
                   "tr/reference/secretref-credential-surface",
                   "tr/reference/openclaw-ai",
@@ -17384,7 +17373,6 @@
                 "group": "Technical reference",
                 "pages": [
                   "uk/agent-runtime-architecture",
-                  "uk/reference/wizard",
                   "uk/reference/token-use",
                   "uk/reference/secretref-credential-surface",
                   "uk/reference/openclaw-ai",
@@ -18411,7 +18399,6 @@
                 "group": "Technical reference",
                 "pages": [
                   "id/agent-runtime-architecture",
-                  "id/reference/wizard",
                   "id/reference/token-use",
                   "id/reference/secretref-credential-surface",
                   "id/reference/openclaw-ai",
@@ -19438,7 +19425,6 @@
                 "group": "Technical reference",
                 "pages": [
                   "pl/agent-runtime-architecture",
-                  "pl/reference/wizard",
                   "pl/reference/token-use",
                   "pl/reference/secretref-credential-surface",
                   "pl/reference/openclaw-ai",
@@ -20465,7 +20451,6 @@
                 "group": "Technical reference",
                 "pages": [
                   "ru/agent-runtime-architecture",
-                  "ru/reference/wizard",
                   "ru/reference/token-use",
                   "ru/reference/secretref-credential-surface",
                   "ru/reference/openclaw-ai",
