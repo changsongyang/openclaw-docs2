@@ -3637,7 +3637,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Static SSH development profile
   - H2: Hooks
   - H3: Gmail integration
-  - H2: Canvas plugin host
+  - H2: Canvas widget presenter
   - H2: Discovery
   - H3: mDNS (Bonjour)
   - H3: Wide-area (DNS-SD)
@@ -5368,9 +5368,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Invoking commands
   - H2: Command policy
   - H2: Config (openclaw.json)
-  - H2: Screenshots (canvas snapshots)
-  - H3: Canvas controls
-  - H3: A2UI (Canvas)
+  - H2: macOS widget panel
   - H2: Photos + videos (node camera)
   - H2: Screen recordings (nodes)
   - H2: Location (nodes)
@@ -5606,8 +5604,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: 4. Approve pairing (CLI)
   - H3: 5. Verify the node is connected
   - H3: 6. Chat + history
-  - H3: 7. Canvas + camera
-  - H4: Gateway Canvas Host (recommended for web content)
+  - H3: 7. Camera
   - H3: 8. Voice + expanded Android command surface
   - H3: 9. Workspace files (read-only)
   - H2: Review command approvals
@@ -5693,9 +5690,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Tailnet (cross-network)
   - H3: Manual host/port
   - H2: Multiple gateways
-  - H2: Canvas + A2UI
   - H2: Computer Use relationship
-  - H3: Canvas eval / snapshot
   - H2: Voice wake + talk mode
   - H2: Common errors
   - H2: Related docs
@@ -5708,7 +5703,6 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Host sleep
   - H3: Media codecs
   - H3: Quick Chat
-  - H3: Canvas
   - H2: CLI and SSH alternative
   - H2: Node capabilities
   - H2: Install
@@ -5734,13 +5728,10 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /platforms/mac/canvas
 - Headings:
-  - H2: Where Canvas lives
   - H2: Panel behavior
-  - H2: Agent API surface
-  - H2: A2UI in Canvas
-  - H3: A2UI commands (v0.8)
-  - H2: Triggering agent runs from Canvas
-  - H2: Security notes
+  - H2: Agent path
+  - H2: Node commands
+  - H2: A2UI belongs on session dashboards
   - H2: Related
 
 ## platforms/mac/child-process.md
@@ -7163,14 +7154,6 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Distribution
   - H2: Surface
   - H2: Related docs
-
-## plugins/reference/linux-canvas.md
-
-- Route: /plugins/reference/linux-canvas
-- Headings:
-  - H1: Linux Canvas plugin
-  - H2: Distribution
-  - H2: Surface
 
 ## plugins/reference/linux-node.md
 
@@ -9162,19 +9145,6 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Compatibility
   - H2: Proof expectations
   - H2: Completion criteria
-
-## refactor/canvas.md
-
-- Route: /refactor/canvas
-- Headings:
-  - H1: Canvas plugin refactor
-  - H2: Goal
-  - H2: Non-goals
-  - H2: Current branch state
-  - H2: Target shape
-  - H2: Migration steps
-  - H2: Audit checklist
-  - H2: Verification commands
 
 ## refactor/database-first.md
 
