@@ -3465,7 +3465,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Runtime support
   - H3: Choose a machine class per session
   - H2: What survives a dead machine
-  - H2: Desktop
+  - H2: Desktop (interactive)
   - H2: Security model
   - H2: Troubleshooting
   - H2: Related
