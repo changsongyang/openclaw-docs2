@@ -10364,6 +10364,18 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Best practices
   - H2: Related
 
+## tools/custodian-skills.md
+
+- Route: /tools/custodian-skills
+- Headings:
+  - H2: Workflow contract
+  - H2: First wave
+  - H2: Roadmap catalog
+  - H3: Tier 2: common operations
+  - H3: Tier 3: advanced operations
+  - H2: Add an operator skill
+  - H2: Related
+
 ## tools/diffs.md
 
 - Route: /tools/diffs

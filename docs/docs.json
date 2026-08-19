@@ -1362,6 +1362,7 @@
                 "group": "Skills",
                 "pages": [
                   "tools/skills",
+                  "tools/custodian-skills",
                   "tools/skill-workshop",
                   "tools/self-learning",
                   "tools/creating-skills",
@@ -2422,6 +2423,7 @@
                 "group": "技能",
                 "pages": [
                   "zh-CN/tools/skills",
+                  "zh-CN/tools/custodian-skills",
                   "zh-CN/tools/skill-workshop",
                   "zh-CN/tools/self-learning",
                   "zh-CN/tools/creating-skills",
@@ -3448,6 +3450,7 @@
                 "group": "Skills",
                 "pages": [
                   "zh-TW/tools/skills",
+                  "zh-TW/tools/custodian-skills",
                   "zh-TW/tools/skill-workshop",
                   "zh-TW/tools/self-learning",
                   "zh-TW/tools/creating-skills",
@@ -4474,6 +4477,7 @@
                 "group": "Skills",
                 "pages": [
                   "ja-JP/tools/skills",
+                  "ja-JP/tools/custodian-skills",
                   "ja-JP/tools/skill-workshop",
                   "ja-JP/tools/self-learning",
                   "ja-JP/tools/creating-skills",
@@ -5500,6 +5504,7 @@
                 "group": "Skills",
                 "pages": [
                   "es/tools/skills",
+                  "es/tools/custodian-skills",
                   "es/tools/skill-workshop",
                   "es/tools/self-learning",
                   "es/tools/creating-skills",
@@ -6526,6 +6531,7 @@
                 "group": "Skills",
                 "pages": [
                   "pt-BR/tools/skills",
+                  "pt-BR/tools/custodian-skills",
                   "pt-BR/tools/skill-workshop",
                   "pt-BR/tools/self-learning",
                   "pt-BR/tools/creating-skills",
@@ -7552,6 +7558,7 @@
                 "group": "Skills",
                 "pages": [
                   "ko/tools/skills",
+                  "ko/tools/custodian-skills",
                   "ko/tools/skill-workshop",
                   "ko/tools/self-learning",
                   "ko/tools/creating-skills",
@@ -8578,6 +8585,7 @@
                 "group": "Skills",
                 "pages": [
                   "de/tools/skills",
+                  "de/tools/custodian-skills",
                   "de/tools/skill-workshop",
                   "de/tools/self-learning",
                   "de/tools/creating-skills",
@@ -9604,6 +9612,7 @@
                 "group": "Skills",
                 "pages": [
                   "fr/tools/skills",
+                  "fr/tools/custodian-skills",
                   "fr/tools/skill-workshop",
                   "fr/tools/self-learning",
                   "fr/tools/creating-skills",
@@ -10630,6 +10639,7 @@
                 "group": "Skills",
                 "pages": [
                   "hi/tools/skills",
+                  "hi/tools/custodian-skills",
                   "hi/tools/skill-workshop",
                   "hi/tools/self-learning",
                   "hi/tools/creating-skills",
@@ -11656,6 +11666,7 @@
                 "group": "Skills",
                 "pages": [
                   "ar/tools/skills",
+                  "ar/tools/custodian-skills",
                   "ar/tools/skill-workshop",
                   "ar/tools/self-learning",
                   "ar/tools/creating-skills",
@@ -12682,6 +12693,7 @@
                 "group": "Skills",
                 "pages": [
                   "it/tools/skills",
+                  "it/tools/custodian-skills",
                   "it/tools/skill-workshop",
                   "it/tools/self-learning",
                   "it/tools/creating-skills",
@@ -13708,6 +13720,7 @@
                 "group": "Skills",
                 "pages": [
                   "vi/tools/skills",
+                  "vi/tools/custodian-skills",
                   "vi/tools/skill-workshop",
                   "vi/tools/self-learning",
                   "vi/tools/creating-skills",
@@ -14734,6 +14747,7 @@
                 "group": "Skills",
                 "pages": [
                   "nl/tools/skills",
+                  "nl/tools/custodian-skills",
                   "nl/tools/skill-workshop",
                   "nl/tools/self-learning",
                   "nl/tools/creating-skills",
@@ -15760,6 +15774,7 @@
                 "group": "Skills",
                 "pages": [
                   "tr/tools/skills",
+                  "tr/tools/custodian-skills",
                   "tr/tools/skill-workshop",
                   "tr/tools/self-learning",
                   "tr/tools/creating-skills",
@@ -16786,6 +16801,7 @@
                 "group": "Skills",
                 "pages": [
                   "uk/tools/skills",
+                  "uk/tools/custodian-skills",
                   "uk/tools/skill-workshop",
                   "uk/tools/self-learning",
                   "uk/tools/creating-skills",
@@ -17812,6 +17828,7 @@
                 "group": "Skills",
                 "pages": [
                   "id/tools/skills",
+                  "id/tools/custodian-skills",
                   "id/tools/skill-workshop",
                   "id/tools/self-learning",
                   "id/tools/creating-skills",
@@ -18838,6 +18855,7 @@
                 "group": "Skills",
                 "pages": [
                   "pl/tools/skills",
+                  "pl/tools/custodian-skills",
                   "pl/tools/skill-workshop",
                   "pl/tools/self-learning",
                   "pl/tools/creating-skills",
@@ -19864,6 +19882,7 @@
                 "group": "Skills",
                 "pages": [
                   "ru/tools/skills",
+                  "ru/tools/custodian-skills",
                   "ru/tools/skill-workshop",
                   "ru/tools/self-learning",
                   "ru/tools/creating-skills",
