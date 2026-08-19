@@ -11365,8 +11365,9 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Session and dashboard URLs
   - H3: Stability contract
+  - H2: Focus presentation routes
   - H2: Route table
-  - H2: Special documents and startup modes
+  - H2: Other special documents and startup modes
   - H2: Remote Gateway handoff
   - H2: Related
 
