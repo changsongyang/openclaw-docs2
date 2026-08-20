@@ -5783,6 +5783,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H1: Logging (macOS)
   - H2: Rolling diagnostics file log (Debug pane)
+  - H2: Export unified logs as JSON
   - H2: Unified logging private data on macOS
   - H2: Enable for OpenClaw (ai.openclaw)
   - H2: Disable after debugging
