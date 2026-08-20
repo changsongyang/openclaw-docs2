@@ -6353,6 +6353,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Exec environment hook
   - H3: Tool result persistence
   - H2: Prompt and model hooks
+  - H3: Authorized prompt enrichment
   - H3: Session extensions and next-turn injections
   - H2: Message hooks
   - H2: Install hooks
