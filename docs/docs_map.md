@@ -7995,6 +7995,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Media source params
   - H3: Native payload shaping
   - H3: Session conversation grammar
+  - H3: Conversation route ownership
   - H3: Account-scoped conversation binding support
   - H2: Approvals and channel capabilities
   - H3: Approval auth
