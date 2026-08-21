@@ -6159,6 +6159,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Dynamic tools
   - H2: Timeouts
   - H2: Model discovery
+  - H2: Restricted turns
   - H2: Workspace bootstrap files
   - H2: Environment overrides
   - H2: Related
@@ -6190,6 +6191,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Share threads with Codex Desktop and CLI
   - H2: Supervise Codex sessions
   - H2: Configuration
+  - H3: Restricted turns and ring zero
   - H3: Project instructions
   - H3: Compaction
   - H3: Direct API long context
