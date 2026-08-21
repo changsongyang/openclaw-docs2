@@ -1255,7 +1255,6 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Critical Quality categories
   - H2: Maintenance workflows
   - H3: Docs Agent
-  - H3: Test Performance Agent
   - H3: Duplicate PRs After Merge
   - H2: Local check gates and changed routing
   - H3: Config baseline count ratchet
