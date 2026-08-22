@@ -11194,6 +11194,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /web/control-ui
 - Headings:
+  - H2: Environment identity
   - H2: Quick open (local)
   - H2: Device pairing (first connection)
   - H2: Pair a mobile device
