@@ -10298,6 +10298,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Quickstart
   - H3: Defaults and overrides
   - H3: What the model does
+  - H3: Recover from tool errors
   - H3: Verify the active surface
   - H2: Use Swarm for agent fan-out
   - H2: Technical tour
