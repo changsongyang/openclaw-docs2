@@ -3998,8 +3998,9 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /gateway/operator-scopes
 - Headings:
-  - H2: Roles
+  - H2: Connection roles
   - H2: Scope levels
+  - H2: Named operator roles
   - H2: Identity scope grants
   - H2: Method scope is only the first gate
   - H2: Device pairing approvals
