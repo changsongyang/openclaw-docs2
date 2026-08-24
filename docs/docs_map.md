@@ -3653,6 +3653,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Audit
   - H2: Logging
   - H2: Diagnostics
+  - H2: Telemetry
   - H2: Update
   - H2: ACP
   - H2: Wizard
@@ -4376,6 +4377,17 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Browser control (remote Gateway + local browser)
   - H2: Learn more
   - H2: Related
+
+## gateway/telemetry.md
+
+- Route: /gateway/telemetry
+- Headings:
+  - H2: Inspect what is sent
+  - H2: Daily update check
+  - H2: Optional anonymous feature statistics
+  - H3: What is never collected
+  - H2: Turn feature statistics on or off
+  - H2: Disable every automatic update request
 
 ## gateway/tools-invoke-http-api.md
 
