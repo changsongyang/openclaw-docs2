@@ -6321,6 +6321,19 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Bundled plugins
   - H2: Legacy cleanup
 
+## plugins/geolocation.md
+
+- Route: /plugins/geolocation
+- Headings:
+  - H2: Quickstart
+  - H2: Why some clients never show a location
+  - H2: Configuration
+  - H3: Using a different database
+  - H2: Data license
+  - H2: How the database is managed
+  - H2: Troubleshooting
+  - H2: Related
+
 ## plugins/google-meet.md
 
 - Route: /plugins/google-meet
@@ -7047,6 +7060,15 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /plugins/reference/fish-audio-speech
 - Headings:
   - H1: Fish Audio Speech plugin
+  - H2: Distribution
+  - H2: Surface
+  - H2: Related docs
+
+## plugins/reference/geolocation.md
+
+- Route: /plugins/reference/geolocation
+- Headings:
+  - H1: Geolocation plugin
   - H2: Distribution
   - H2: Surface
   - H2: Related docs
