@@ -4924,6 +4924,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /install
 - Headings:
   - H2: System requirements
+  - H2: Download the desktop app
   - H2: Recommended: installer script
   - H2: Alternative install methods
   - H3: Local prefix installer (install-cli.sh)
