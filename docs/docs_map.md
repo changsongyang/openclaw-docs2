@@ -7441,14 +7441,6 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Surface
   - H2: Related docs
 
-## plugins/reference/open-prose.md
-
-- Route: /plugins/reference/open-prose
-- Headings:
-  - H1: Open Prose plugin
-  - H2: Distribution
-  - H2: Surface
-
 ## plugins/reference/openai.md
 
 - Route: /plugins/reference/openai
@@ -8315,14 +8307,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /prose
 - Headings:
-  - H2: Install
-  - H2: Slash command
-  - H2: What it can do
-  - H2: Example: parallel research and synthesis
-  - H2: OpenClaw runtime mapping
-  - H2: File locations
-  - H2: State backends
-  - H2: Security
+  - H2: Migrate
   - H2: Related
 
 ## providers/alibaba.md
@@ -10630,7 +10615,6 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Managed Task Flow mode
   - H2: Output envelope
   - H2: Approvals
-  - H2: OpenProse
   - H2: Safety
   - H2: Troubleshooting
   - H2: Learn more
