@@ -3066,7 +3066,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: One Gateway, many clients
   - H2: Session URLs and short links
-  - H3: Current and older Gateways
+  - H3: Gateway version requirement
   - H2: Choose how to continue
   - H3: Continue in the terminal
   - H3: Attach a coding harness
