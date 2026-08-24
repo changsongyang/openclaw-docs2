@@ -5286,6 +5286,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: What it does
   - H2: Auto-detection (default)
+  - H2: OpenAI transcription alongside ChatGPT/Codex OAuth
   - H2: Config examples
   - H3: Provider + CLI fallback (OpenAI + Whisper CLI)
   - H3: Provider-only (Deepgram)
@@ -9304,6 +9305,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Database layout
   - H2: Versioning contract
+  - H2: Review checkpoint for material changes
   - H2: Preflight a target release
   - H2: Agent schema history
   - H2: State schema history
