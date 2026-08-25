@@ -6304,7 +6304,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Auth
   - H2: Configuration surface
   - H2: Compaction
-  - H2: Transcript mirroring
+  - H2: Transcript persistence
   - H2: Side questions (/btw)
   - H2: Doctor
   - H2: Limitations
