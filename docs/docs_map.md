@@ -4398,6 +4398,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Optional anonymous feature statistics
   - H3: What is never collected
   - H2: Turn feature statistics on or off
+  - H2: Automated environments
   - H2: Disable every automatic update request
 
 ## gateway/tools-invoke-http-api.md
