@@ -9520,7 +9520,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Safety defaults
   - H2: Existing solutions preflight
   - H2: Daily memory (recommended)
-  - H2: Heartbeats (optional)
+  - H2: Automations (optional)
   - H2: Tools
   - H2: Customize
   - H2: C-3PO Origin Memory
