@@ -1830,6 +1830,7 @@
                       "cli/security",
                       "cli/setup",
                       "cli/status",
+                      "cli/triage",
                       "cli/uninstall",
                       "cli/update"
                     ]
@@ -2859,6 +2860,7 @@
                       "zh-CN/cli/security",
                       "zh-CN/cli/setup",
                       "zh-CN/cli/status",
+                      "zh-CN/cli/triage",
                       "zh-CN/cli/uninstall",
                       "zh-CN/cli/update"
                     ]
@@ -3888,6 +3890,7 @@
                       "zh-TW/cli/security",
                       "zh-TW/cli/setup",
                       "zh-TW/cli/status",
+                      "zh-TW/cli/triage",
                       "zh-TW/cli/uninstall",
                       "zh-TW/cli/update"
                     ]
@@ -4917,6 +4920,7 @@
                       "ja-JP/cli/security",
                       "ja-JP/cli/setup",
                       "ja-JP/cli/status",
+                      "ja-JP/cli/triage",
                       "ja-JP/cli/uninstall",
                       "ja-JP/cli/update"
                     ]
@@ -5946,6 +5950,7 @@
                       "es/cli/security",
                       "es/cli/setup",
                       "es/cli/status",
+                      "es/cli/triage",
                       "es/cli/uninstall",
                       "es/cli/update"
                     ]
@@ -6975,6 +6980,7 @@
                       "pt-BR/cli/security",
                       "pt-BR/cli/setup",
                       "pt-BR/cli/status",
+                      "pt-BR/cli/triage",
                       "pt-BR/cli/uninstall",
                       "pt-BR/cli/update"
                     ]
@@ -8004,6 +8010,7 @@
                       "ko/cli/security",
                       "ko/cli/setup",
                       "ko/cli/status",
+                      "ko/cli/triage",
                       "ko/cli/uninstall",
                       "ko/cli/update"
                     ]
@@ -9033,6 +9040,7 @@
                       "de/cli/security",
                       "de/cli/setup",
                       "de/cli/status",
+                      "de/cli/triage",
                       "de/cli/uninstall",
                       "de/cli/update"
                     ]
@@ -10062,6 +10070,7 @@
                       "fr/cli/security",
                       "fr/cli/setup",
                       "fr/cli/status",
+                      "fr/cli/triage",
                       "fr/cli/uninstall",
                       "fr/cli/update"
                     ]
@@ -11091,6 +11100,7 @@
                       "hi/cli/security",
                       "hi/cli/setup",
                       "hi/cli/status",
+                      "hi/cli/triage",
                       "hi/cli/uninstall",
                       "hi/cli/update"
                     ]
@@ -12120,6 +12130,7 @@
                       "ar/cli/security",
                       "ar/cli/setup",
                       "ar/cli/status",
+                      "ar/cli/triage",
                       "ar/cli/uninstall",
                       "ar/cli/update"
                     ]
@@ -13149,6 +13160,7 @@
                       "it/cli/security",
                       "it/cli/setup",
                       "it/cli/status",
+                      "it/cli/triage",
                       "it/cli/uninstall",
                       "it/cli/update"
                     ]
@@ -14178,6 +14190,7 @@
                       "vi/cli/security",
                       "vi/cli/setup",
                       "vi/cli/status",
+                      "vi/cli/triage",
                       "vi/cli/uninstall",
                       "vi/cli/update"
                     ]
@@ -15207,6 +15220,7 @@
                       "nl/cli/security",
                       "nl/cli/setup",
                       "nl/cli/status",
+                      "nl/cli/triage",
                       "nl/cli/uninstall",
                       "nl/cli/update"
                     ]
@@ -16236,6 +16250,7 @@
                       "tr/cli/security",
                       "tr/cli/setup",
                       "tr/cli/status",
+                      "tr/cli/triage",
                       "tr/cli/uninstall",
                       "tr/cli/update"
                     ]
@@ -17265,6 +17280,7 @@
                       "uk/cli/security",
                       "uk/cli/setup",
                       "uk/cli/status",
+                      "uk/cli/triage",
                       "uk/cli/uninstall",
                       "uk/cli/update"
                     ]
@@ -18294,6 +18310,7 @@
                       "id/cli/security",
                       "id/cli/setup",
                       "id/cli/status",
+                      "id/cli/triage",
                       "id/cli/uninstall",
                       "id/cli/update"
                     ]
@@ -19323,6 +19340,7 @@
                       "pl/cli/security",
                       "pl/cli/setup",
                       "pl/cli/status",
+                      "pl/cli/triage",
                       "pl/cli/uninstall",
                       "pl/cli/update"
                     ]
@@ -20352,6 +20370,7 @@
                       "ru/cli/security",
                       "ru/cli/setup",
                       "ru/cli/status",
+                      "ru/cli/triage",
                       "ru/cli/uninstall",
                       "ru/cli/update"
                     ]

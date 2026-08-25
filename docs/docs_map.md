@@ -2208,6 +2208,15 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Upgrading the legacy file store
   - H2: Configuration
 
+## cli/triage.md
+
+- Route: /cli/triage
+- Headings:
+  - H1: openclaw triage
+  - H2: Agent handoff
+  - H2: Output and exit codes
+  - H2: Options
+
 ## cli/tui.md
 
 - Route: /cli/tui
@@ -3463,6 +3472,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Dispatching a session
   - H3: Runtime support
   - H3: Codex on a paired device
+  - H3: Codex or OpenClaw on a cloud profile
   - H3: Choose a machine class per session
   - H2: What survives a dead machine
   - H2: Desktop (interactive)
@@ -6207,6 +6217,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Requirements
   - H2: Quickstart
   - H2: Run Codex on a paired device
+  - H2: Run Codex on a cloud worker
   - H2: Share threads with Codex Desktop and CLI
   - H2: Supervise Codex sessions
   - H2: Configuration
@@ -9905,6 +9916,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: What you need
   - H2: Quick setup
+  - H2: If setup does not work
   - H2: What to do next
   - H2: Related
 
