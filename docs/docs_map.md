@@ -10501,6 +10501,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Session-only shortcut
   - H2: Allowlist (per agent)
   - H3: Restricting arguments with argPattern
+  - H2: Cron standing grants
   - H2: Auto-allow skill CLIs
   - H2: Safe bins and approval forwarding
   - H2: Control UI editing
