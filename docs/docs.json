@@ -1182,6 +1182,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "channels/a2a",
                   "channels/buzz",
                   "channels/clickclack",
                   "channels/irc",
@@ -1408,6 +1409,7 @@
                   "tools/music-generation",
                   "tools/pdf",
                   "tools/reactions",
+                  "tools/secrets",
                   "tools/thinking",
                   "tools/tokenjuice",
                   "tools/tool-search",
@@ -2246,6 +2248,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "zh-CN/channels/a2a",
                   "zh-CN/channels/buzz",
                   "zh-CN/channels/clickclack",
                   "zh-CN/channels/irc",
@@ -2472,6 +2475,7 @@
                   "zh-CN/tools/music-generation",
                   "zh-CN/tools/pdf",
                   "zh-CN/tools/reactions",
+                  "zh-CN/tools/secrets",
                   "zh-CN/tools/thinking",
                   "zh-CN/tools/tokenjuice",
                   "zh-CN/tools/tool-search",
@@ -3276,6 +3280,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "zh-TW/channels/a2a",
                   "zh-TW/channels/buzz",
                   "zh-TW/channels/clickclack",
                   "zh-TW/channels/irc",
@@ -3502,6 +3507,7 @@
                   "zh-TW/tools/music-generation",
                   "zh-TW/tools/pdf",
                   "zh-TW/tools/reactions",
+                  "zh-TW/tools/secrets",
                   "zh-TW/tools/thinking",
                   "zh-TW/tools/tokenjuice",
                   "zh-TW/tools/tool-search",
@@ -4306,6 +4312,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "ja-JP/channels/a2a",
                   "ja-JP/channels/buzz",
                   "ja-JP/channels/clickclack",
                   "ja-JP/channels/irc",
@@ -4532,6 +4539,7 @@
                   "ja-JP/tools/music-generation",
                   "ja-JP/tools/pdf",
                   "ja-JP/tools/reactions",
+                  "ja-JP/tools/secrets",
                   "ja-JP/tools/thinking",
                   "ja-JP/tools/tokenjuice",
                   "ja-JP/tools/tool-search",
@@ -5336,6 +5344,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "es/channels/a2a",
                   "es/channels/buzz",
                   "es/channels/clickclack",
                   "es/channels/irc",
@@ -5562,6 +5571,7 @@
                   "es/tools/music-generation",
                   "es/tools/pdf",
                   "es/tools/reactions",
+                  "es/tools/secrets",
                   "es/tools/thinking",
                   "es/tools/tokenjuice",
                   "es/tools/tool-search",
@@ -6366,6 +6376,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "pt-BR/channels/a2a",
                   "pt-BR/channels/buzz",
                   "pt-BR/channels/clickclack",
                   "pt-BR/channels/irc",
@@ -6592,6 +6603,7 @@
                   "pt-BR/tools/music-generation",
                   "pt-BR/tools/pdf",
                   "pt-BR/tools/reactions",
+                  "pt-BR/tools/secrets",
                   "pt-BR/tools/thinking",
                   "pt-BR/tools/tokenjuice",
                   "pt-BR/tools/tool-search",
@@ -7396,6 +7408,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "ko/channels/a2a",
                   "ko/channels/buzz",
                   "ko/channels/clickclack",
                   "ko/channels/irc",
@@ -7622,6 +7635,7 @@
                   "ko/tools/music-generation",
                   "ko/tools/pdf",
                   "ko/tools/reactions",
+                  "ko/tools/secrets",
                   "ko/tools/thinking",
                   "ko/tools/tokenjuice",
                   "ko/tools/tool-search",
@@ -8426,6 +8440,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "de/channels/a2a",
                   "de/channels/buzz",
                   "de/channels/clickclack",
                   "de/channels/irc",
@@ -8652,6 +8667,7 @@
                   "de/tools/music-generation",
                   "de/tools/pdf",
                   "de/tools/reactions",
+                  "de/tools/secrets",
                   "de/tools/thinking",
                   "de/tools/tokenjuice",
                   "de/tools/tool-search",
@@ -9456,6 +9472,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "fr/channels/a2a",
                   "fr/channels/buzz",
                   "fr/channels/clickclack",
                   "fr/channels/irc",
@@ -9682,6 +9699,7 @@
                   "fr/tools/music-generation",
                   "fr/tools/pdf",
                   "fr/tools/reactions",
+                  "fr/tools/secrets",
                   "fr/tools/thinking",
                   "fr/tools/tokenjuice",
                   "fr/tools/tool-search",
@@ -10486,6 +10504,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "hi/channels/a2a",
                   "hi/channels/buzz",
                   "hi/channels/clickclack",
                   "hi/channels/irc",
@@ -10712,6 +10731,7 @@
                   "hi/tools/music-generation",
                   "hi/tools/pdf",
                   "hi/tools/reactions",
+                  "hi/tools/secrets",
                   "hi/tools/thinking",
                   "hi/tools/tokenjuice",
                   "hi/tools/tool-search",
@@ -11516,6 +11536,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "ar/channels/a2a",
                   "ar/channels/buzz",
                   "ar/channels/clickclack",
                   "ar/channels/irc",
@@ -11742,6 +11763,7 @@
                   "ar/tools/music-generation",
                   "ar/tools/pdf",
                   "ar/tools/reactions",
+                  "ar/tools/secrets",
                   "ar/tools/thinking",
                   "ar/tools/tokenjuice",
                   "ar/tools/tool-search",
@@ -12546,6 +12568,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "it/channels/a2a",
                   "it/channels/buzz",
                   "it/channels/clickclack",
                   "it/channels/irc",
@@ -12772,6 +12795,7 @@
                   "it/tools/music-generation",
                   "it/tools/pdf",
                   "it/tools/reactions",
+                  "it/tools/secrets",
                   "it/tools/thinking",
                   "it/tools/tokenjuice",
                   "it/tools/tool-search",
@@ -13576,6 +13600,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "vi/channels/a2a",
                   "vi/channels/buzz",
                   "vi/channels/clickclack",
                   "vi/channels/irc",
@@ -13802,6 +13827,7 @@
                   "vi/tools/music-generation",
                   "vi/tools/pdf",
                   "vi/tools/reactions",
+                  "vi/tools/secrets",
                   "vi/tools/thinking",
                   "vi/tools/tokenjuice",
                   "vi/tools/tool-search",
@@ -14606,6 +14632,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "nl/channels/a2a",
                   "nl/channels/buzz",
                   "nl/channels/clickclack",
                   "nl/channels/irc",
@@ -14832,6 +14859,7 @@
                   "nl/tools/music-generation",
                   "nl/tools/pdf",
                   "nl/tools/reactions",
+                  "nl/tools/secrets",
                   "nl/tools/thinking",
                   "nl/tools/tokenjuice",
                   "nl/tools/tool-search",
@@ -15636,6 +15664,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "tr/channels/a2a",
                   "tr/channels/buzz",
                   "tr/channels/clickclack",
                   "tr/channels/irc",
@@ -15862,6 +15891,7 @@
                   "tr/tools/music-generation",
                   "tr/tools/pdf",
                   "tr/tools/reactions",
+                  "tr/tools/secrets",
                   "tr/tools/thinking",
                   "tr/tools/tokenjuice",
                   "tr/tools/tool-search",
@@ -16666,6 +16696,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "uk/channels/a2a",
                   "uk/channels/buzz",
                   "uk/channels/clickclack",
                   "uk/channels/irc",
@@ -16892,6 +16923,7 @@
                   "uk/tools/music-generation",
                   "uk/tools/pdf",
                   "uk/tools/reactions",
+                  "uk/tools/secrets",
                   "uk/tools/thinking",
                   "uk/tools/tokenjuice",
                   "uk/tools/tool-search",
@@ -17696,6 +17728,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "id/channels/a2a",
                   "id/channels/buzz",
                   "id/channels/clickclack",
                   "id/channels/irc",
@@ -17922,6 +17955,7 @@
                   "id/tools/music-generation",
                   "id/tools/pdf",
                   "id/tools/reactions",
+                  "id/tools/secrets",
                   "id/tools/thinking",
                   "id/tools/tokenjuice",
                   "id/tools/tool-search",
@@ -18726,6 +18760,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "pl/channels/a2a",
                   "pl/channels/buzz",
                   "pl/channels/clickclack",
                   "pl/channels/irc",
@@ -18952,6 +18987,7 @@
                   "pl/tools/music-generation",
                   "pl/tools/pdf",
                   "pl/tools/reactions",
+                  "pl/tools/secrets",
                   "pl/tools/thinking",
                   "pl/tools/tokenjuice",
                   "pl/tools/tool-search",
@@ -19756,6 +19792,7 @@
               {
                 "group": "Developer and self-hosted",
                 "pages": [
+                  "ru/channels/a2a",
                   "ru/channels/buzz",
                   "ru/channels/clickclack",
                   "ru/channels/irc",
@@ -19982,6 +20019,7 @@
                   "ru/tools/music-generation",
                   "ru/tools/pdf",
                   "ru/tools/reactions",
+                  "ru/tools/secrets",
                   "ru/tools/thinking",
                   "ru/tools/tokenjuice",
                   "ru/tools/tool-search",

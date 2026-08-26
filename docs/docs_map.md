@@ -236,6 +236,21 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Related
 
+## channels/a2a.md
+
+- Route: /channels/a2a
+- Headings:
+  - H2: Quick setup
+  - H2: Discover the Agent Card
+  - H2: Send a task
+  - H2: Poll a task
+  - H2: Configure outbound peers
+  - H2: Configuration reference
+  - H2: Session isolation
+  - H2: Security
+  - H2: A2A 1.0 limitations
+  - H2: Related
+
 ## channels/access-groups.md
 
 - Route: /channels/access-groups
@@ -6664,6 +6679,15 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H1: Plugin reference
 
+## plugins/reference/a2a.md
+
+- Route: /plugins/reference/a2a
+- Headings:
+  - H1: A2a plugin
+  - H2: Distribution
+  - H2: Surface
+  - H2: Related docs
+
 ## plugins/reference/acpx.md
 
 - Route: /plugins/reference/acpx
@@ -10898,6 +10922,14 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Plugin config reference
   - H2: Notes
   - H2: Related
+
+## tools/secrets.md
+
+- Route: /tools/secrets
+- Headings:
+  - H2: Actions
+  - H2: Answering a request
+  - H2: Using a stored credential
 
 ## tools/self-learning.md
 
