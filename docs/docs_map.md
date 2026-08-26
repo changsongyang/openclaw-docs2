@@ -3574,6 +3574,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: agents.defaults.imageQuality
   - H3: agents.defaults.userTimezone
   - H3: agents.defaults.model
+  - H3: agents.defaults.modelSelectionScope
   - H3: Runtime policy
   - H3: CLI backend selection
   - H3: OpenAI GPT-5 personality
@@ -4144,6 +4145,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Node background alive event
   - H2: Broadcast event scoping
   - H2: RPC method families
+  - H3: Session list bootstrap
   - H3: Common event families
   - H3: Node helper methods
   - H2: Audit ledger RPC
