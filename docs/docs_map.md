@@ -72,6 +72,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: /loop chat shortcut
   - H3: Day-of-month and day-of-week use OR logic
   - H2: Event triggers (condition watchers)
+  - H2: Promoting a repeated job into an automation
   - H2: Payloads
   - H3: Agent-turn options
   - H3: Command payloads
