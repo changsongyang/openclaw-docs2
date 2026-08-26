@@ -477,6 +477,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Supported message types
   - H3: Receive
   - H3: Send
+  - H3: Sticker replies
   - H3: Threads and replies
   - H2: Related
 
