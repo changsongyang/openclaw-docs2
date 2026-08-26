@@ -3970,6 +3970,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Security hardening
   - H2: Custom image contract
   - H2: Current limitations
+  - H2: Troubleshooting
   - H2: How it works
   - H2: Related
 
