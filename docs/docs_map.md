@@ -5569,6 +5569,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Non-goals
   - H2: Decisions (owner rulings, 2026-08-13)
   - H2: Architecture
+  - H2: Status update 2026-08-25/26
   - H2: Workstreams and tracker
   - H2: Live testing matrix
   - H2: Risks
