@@ -1817,6 +1817,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: memory status
   - H2: memory index
   - H2: memory search
+  - H2: memory forget
   - H2: memory promote
   - H2: memory promote-explain
   - H2: memory rem-harness
@@ -5589,6 +5590,20 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Workstreams and tracker
   - H2: Live testing matrix
   - H2: Risks
+
+## plan/memory-provenance.md
+
+- Route: /plan/memory-provenance
+- Headings:
+  - H2: Status
+  - H2: Problem
+  - H2: Design
+  - H3: Invariants
+  - H3: 1. Admission policy (no schema change)
+  - H3: 2. Entry origins and forgotten sessions (additive schema, same version)
+  - H3: 3. memory forget (purge command)
+  - H2: Non-goals
+  - H2: Proof
 
 ## plan/runners.md
 
@@ -9430,6 +9445,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: SQLite vector acceleration (sqlite-vec)
   - H2: Index storage
   - H2: Citations
+  - H2: Memory admission policy
   - H2: Dreaming
   - H3: User settings
   - H3: Example
