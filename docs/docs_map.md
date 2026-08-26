@@ -7262,6 +7262,15 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Surface
   - H2: Related docs
 
+## plugins/reference/imap.md
+
+- Route: /plugins/reference/imap
+- Headings:
+  - H1: Imap plugin
+  - H2: Distribution
+  - H2: Surface
+  - H2: Related docs
+
 ## plugins/reference/imessage.md
 
 - Route: /plugins/reference/imessage
@@ -9432,6 +9441,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: The Gateway refuses to start with a newer schema version error
   - H3: A database is quarantined after integrity verification failed
   - H2: Downgrades are unsupported
+  - H3: Example: state schema 12 to 11
   - H3: Example: state schema 11 to 10
   - H3: Example: state schema 10 to 9
   - H3: Example: state schema 9 to 8
