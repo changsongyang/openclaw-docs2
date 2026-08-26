@@ -3319,6 +3319,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /concepts/user-model
 - Headings:
   - H2: Gateway profile and GitHub credit
+  - H2: Profile appearance preferences
   - H2: Write directives, not observations
   - H2: Supersede in place
   - H2: Choose the right file
