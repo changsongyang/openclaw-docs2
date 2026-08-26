@@ -9325,6 +9325,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Preflight a target release
   - H2: Agent schema history
   - H2: State schema history
+  - H3: State schema 11
   - H3: State schema 9
   - H2: Integrity checks
   - H2: Troubleshooting
@@ -9332,6 +9333,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: The Gateway refuses to start with a newer schema version error
   - H3: A database is quarantined after integrity verification failed
   - H2: Downgrades are unsupported
+  - H3: Example: state schema 11 to 10
   - H3: Example: state schema 10 to 9
   - H3: Example: state schema 9 to 8
   - H3: Example: state schema 7 to 6
