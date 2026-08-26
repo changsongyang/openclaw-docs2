@@ -5612,6 +5612,25 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Open questions
   - H2: Related
 
+## plan/worker-hibernation.md
+
+- Route: /plan/worker-hibernation
+- Headings:
+  - H2: Status
+  - H2: Problem
+  - H2: Current behavior — evidence map
+  - H2: Dependency contract — Crabbox (inspected at ../crabbox)
+  - H2: Directions evaluated
+  - H3: (a) Dormant cloud lease (stop-with-disk) — defer, with a named trigger
+  - H3: (b) Checkpoint on teardown + warm-start fork — chosen
+  - H3: (c) Daytona/Modal serverless backend — validation track, not new code
+  - H2: Design
+  - H3: Phase 1 — profile warm images, plugin-only (no core, SDK, schema, or protocol changes)
+  - H3: Phase 2 — per-session hibernation (needs maintainer acceptance; SDK + additive store)
+  - H3: Phase 3 — dormant leases / platform sleep (reserved, gated on the trigger above)
+  - H2: Validation plan (phase 1)
+  - H2: Open questions for the maintainer
+
 ## platforms/android.md
 
 - Route: /platforms/android
