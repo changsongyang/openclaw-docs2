@@ -1266,6 +1266,7 @@
                     "pages": [
                       "concepts/memory",
                       "concepts/memory-architecture",
+                      "concepts/memory-provenance",
                       "concepts/user-model",
                       "concepts/standing-intents",
                       "concepts/memory-builtin",
@@ -2332,6 +2333,7 @@
                     "pages": [
                       "zh-CN/concepts/memory",
                       "zh-CN/concepts/memory-architecture",
+                      "zh-CN/concepts/memory-provenance",
                       "zh-CN/concepts/user-model",
                       "zh-CN/concepts/standing-intents",
                       "zh-CN/concepts/memory-builtin",
@@ -3364,6 +3366,7 @@
                     "pages": [
                       "zh-TW/concepts/memory",
                       "zh-TW/concepts/memory-architecture",
+                      "zh-TW/concepts/memory-provenance",
                       "zh-TW/concepts/user-model",
                       "zh-TW/concepts/standing-intents",
                       "zh-TW/concepts/memory-builtin",
@@ -4396,6 +4399,7 @@
                     "pages": [
                       "ja-JP/concepts/memory",
                       "ja-JP/concepts/memory-architecture",
+                      "ja-JP/concepts/memory-provenance",
                       "ja-JP/concepts/user-model",
                       "ja-JP/concepts/standing-intents",
                       "ja-JP/concepts/memory-builtin",
@@ -5428,6 +5432,7 @@
                     "pages": [
                       "es/concepts/memory",
                       "es/concepts/memory-architecture",
+                      "es/concepts/memory-provenance",
                       "es/concepts/user-model",
                       "es/concepts/standing-intents",
                       "es/concepts/memory-builtin",
@@ -6460,6 +6465,7 @@
                     "pages": [
                       "pt-BR/concepts/memory",
                       "pt-BR/concepts/memory-architecture",
+                      "pt-BR/concepts/memory-provenance",
                       "pt-BR/concepts/user-model",
                       "pt-BR/concepts/standing-intents",
                       "pt-BR/concepts/memory-builtin",
@@ -7492,6 +7498,7 @@
                     "pages": [
                       "ko/concepts/memory",
                       "ko/concepts/memory-architecture",
+                      "ko/concepts/memory-provenance",
                       "ko/concepts/user-model",
                       "ko/concepts/standing-intents",
                       "ko/concepts/memory-builtin",
@@ -8524,6 +8531,7 @@
                     "pages": [
                       "de/concepts/memory",
                       "de/concepts/memory-architecture",
+                      "de/concepts/memory-provenance",
                       "de/concepts/user-model",
                       "de/concepts/standing-intents",
                       "de/concepts/memory-builtin",
@@ -9556,6 +9564,7 @@
                     "pages": [
                       "fr/concepts/memory",
                       "fr/concepts/memory-architecture",
+                      "fr/concepts/memory-provenance",
                       "fr/concepts/user-model",
                       "fr/concepts/standing-intents",
                       "fr/concepts/memory-builtin",
@@ -10588,6 +10597,7 @@
                     "pages": [
                       "hi/concepts/memory",
                       "hi/concepts/memory-architecture",
+                      "hi/concepts/memory-provenance",
                       "hi/concepts/user-model",
                       "hi/concepts/standing-intents",
                       "hi/concepts/memory-builtin",
@@ -11620,6 +11630,7 @@
                     "pages": [
                       "ar/concepts/memory",
                       "ar/concepts/memory-architecture",
+                      "ar/concepts/memory-provenance",
                       "ar/concepts/user-model",
                       "ar/concepts/standing-intents",
                       "ar/concepts/memory-builtin",
@@ -12652,6 +12663,7 @@
                     "pages": [
                       "it/concepts/memory",
                       "it/concepts/memory-architecture",
+                      "it/concepts/memory-provenance",
                       "it/concepts/user-model",
                       "it/concepts/standing-intents",
                       "it/concepts/memory-builtin",
@@ -13684,6 +13696,7 @@
                     "pages": [
                       "vi/concepts/memory",
                       "vi/concepts/memory-architecture",
+                      "vi/concepts/memory-provenance",
                       "vi/concepts/user-model",
                       "vi/concepts/standing-intents",
                       "vi/concepts/memory-builtin",
@@ -14716,6 +14729,7 @@
                     "pages": [
                       "nl/concepts/memory",
                       "nl/concepts/memory-architecture",
+                      "nl/concepts/memory-provenance",
                       "nl/concepts/user-model",
                       "nl/concepts/standing-intents",
                       "nl/concepts/memory-builtin",
@@ -15748,6 +15762,7 @@
                     "pages": [
                       "tr/concepts/memory",
                       "tr/concepts/memory-architecture",
+                      "tr/concepts/memory-provenance",
                       "tr/concepts/user-model",
                       "tr/concepts/standing-intents",
                       "tr/concepts/memory-builtin",
@@ -16780,6 +16795,7 @@
                     "pages": [
                       "uk/concepts/memory",
                       "uk/concepts/memory-architecture",
+                      "uk/concepts/memory-provenance",
                       "uk/concepts/user-model",
                       "uk/concepts/standing-intents",
                       "uk/concepts/memory-builtin",
@@ -17812,6 +17828,7 @@
                     "pages": [
                       "id/concepts/memory",
                       "id/concepts/memory-architecture",
+                      "id/concepts/memory-provenance",
                       "id/concepts/user-model",
                       "id/concepts/standing-intents",
                       "id/concepts/memory-builtin",
@@ -18844,6 +18861,7 @@
                     "pages": [
                       "pl/concepts/memory",
                       "pl/concepts/memory-architecture",
+                      "pl/concepts/memory-provenance",
                       "pl/concepts/user-model",
                       "pl/concepts/standing-intents",
                       "pl/concepts/memory-builtin",
@@ -19876,6 +19894,7 @@
                     "pages": [
                       "ru/concepts/memory",
                       "ru/concepts/memory-architecture",
+                      "ru/concepts/memory-provenance",
                       "ru/concepts/user-model",
                       "ru/concepts/standing-intents",
                       "ru/concepts/memory-builtin",

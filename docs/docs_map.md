@@ -2752,6 +2752,19 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Further reading
   - H2: Related
 
+## concepts/memory-provenance.md
+
+- Route: /concepts/memory-provenance
+- Headings:
+  - H2: What lineage is recorded
+  - H2: Admission: keeping sources out of memory
+  - H3: The admission boundary
+  - H2: Deletion: purging what a session produced
+  - H3: Purged sessions stay purged
+  - H3: What deletion does not cover
+  - H2: Purging a person or a source end to end
+  - H2: Related
+
 ## concepts/memory-qmd.md
 
 - Route: /concepts/memory-qmd
@@ -3482,6 +3495,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: What runs where
   - H2: Requirements
   - H3: Coordinator-backed Crabbox
+  - H3: Daytona
   - H2: Configuration
   - H3: Per-project default profiles
   - H3: The setup command
