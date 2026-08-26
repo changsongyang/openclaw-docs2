@@ -10755,6 +10755,8 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /tools/ollama-search
 - Headings:
   - H2: Setup
+  - H3: Local Ollama
+  - H3: Hosted Ollama
   - H2: Config
   - H2: Auth and request routing
   - H2: Related
