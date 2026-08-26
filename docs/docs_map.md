@@ -766,6 +766,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Sharing behavior
   - H3: Fallback behavior
   - H3: Files stored location
+  - H2: Native approval cards
   - H2: Polls (Adaptive Cards)
   - H2: Presentation cards
   - H2: Target formats
