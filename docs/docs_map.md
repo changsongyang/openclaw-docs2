@@ -1829,6 +1829,10 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: memory index
   - H2: memory search
   - H2: memory forget
+  - H3: Session selection
+  - H3: Read the report
+  - H3: Artifacts removed
+  - H3: Readmission and retained data
   - H2: memory promote
   - H2: memory promote-explain
   - H2: memory rem-harness
@@ -2767,12 +2771,13 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /concepts/memory-provenance
 - Headings:
+  - H2: Preview and forget a session
   - H2: What lineage is recorded
   - H2: Admission: keeping sources out of memory
   - H3: The admission boundary
   - H2: Deletion: purging what a session produced
   - H3: Purged sessions stay purged
-  - H3: What deletion does not cover
+  - H2: What deletion does not cover
   - H2: Purging a person or a source end to end
   - H2: Related
 
