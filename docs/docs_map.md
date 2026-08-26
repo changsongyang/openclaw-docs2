@@ -5731,6 +5731,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /platforms/linux
 - Headings:
   - H2: Desktop companion
+  - H3: First-run setup
   - H3: Host sleep
   - H3: Media codecs
   - H3: Quick Chat
@@ -9976,6 +9977,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: What onboarding configures
   - H2: CLI onboarding
   - H2: macOS app onboarding
+  - H2: Linux app onboarding
   - H2: Custom or unlisted providers
   - H2: Related
 
