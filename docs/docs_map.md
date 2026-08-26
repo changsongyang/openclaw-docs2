@@ -7101,6 +7101,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H1: File Transfer plugin
   - H2: Distribution
   - H2: Surface
+  - H2: Migrate existing permissions
 
 ## plugins/reference/firecrawl.md
 
