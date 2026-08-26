@@ -141,6 +141,16 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Hook not executing
   - H2: Related
 
+## automation/imap.md
+
+- Route: /automation/imap
+- Headings:
+  - H2: Configure a restricted reader
+  - H2: Sender authentication
+  - H2: Verify the security boundary
+  - H2: Troubleshooting
+  - H2: Related
+
 ## automation/index.md
 
 - Route: /automation
@@ -3488,6 +3498,17 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Track protocol versions
   - H2: Related
 
+## gateway/cloud-sessions.md
+
+- Route: /gateway/cloud-sessions
+- Headings:
+  - H2: Paired devices: your own hardware as session hosts
+  - H2: Cloud workers: rented machines through Crabbox
+  - H2: Automatic load balancing across devices
+  - H2: Sleeping and waking: idle suspension and warm images
+  - H2: What stays with the Gateway
+  - H2: Related
+
 ## gateway/cloud-workers.md
 
 - Route: /gateway/cloud-workers
@@ -6696,6 +6717,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Choose the right gate
   - H2: Request approval before a tool call
+  - H2: Declare approval scope
   - H2: Decision behavior
   - H2: Route approval prompts
   - H2: Codex native permissions
@@ -10592,6 +10614,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Safe bins and approval forwarding
   - H2: Control UI editing
   - H2: Approval flow
+  - H2: Approval scope summaries
   - H2: System events and denials
   - H2: Implications
   - H2: Related

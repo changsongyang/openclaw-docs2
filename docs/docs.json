@@ -1379,6 +1379,7 @@
                 "pages": [
                   "automation/index",
                   "automation/cron-jobs",
+                  "automation/imap",
                   "automation/tasks",
                   "automation/taskflow",
                   "automation/standing-orders",
@@ -1696,6 +1697,7 @@
                       "gateway/gateway-lock",
                       "gateway/background-process",
                       "gateway/restart-recovery",
+                      "gateway/cloud-sessions",
                       "gateway/cloud-workers",
                       "gateway/multiple-gateways",
                       "gateway/multi-tenant-hosting"
@@ -2446,6 +2448,7 @@
                 "pages": [
                   "zh-CN/automation/index",
                   "zh-CN/automation/cron-jobs",
+                  "zh-CN/automation/imap",
                   "zh-CN/automation/tasks",
                   "zh-CN/automation/taskflow",
                   "zh-CN/automation/standing-orders",
@@ -2729,6 +2732,7 @@
                       "zh-CN/gateway/gateway-lock",
                       "zh-CN/gateway/background-process",
                       "zh-CN/gateway/restart-recovery",
+                      "zh-CN/gateway/cloud-sessions",
                       "zh-CN/gateway/cloud-workers",
                       "zh-CN/gateway/multiple-gateways",
                       "zh-CN/gateway/multi-tenant-hosting"
@@ -3479,6 +3483,7 @@
                 "pages": [
                   "zh-TW/automation/index",
                   "zh-TW/automation/cron-jobs",
+                  "zh-TW/automation/imap",
                   "zh-TW/automation/tasks",
                   "zh-TW/automation/taskflow",
                   "zh-TW/automation/standing-orders",
@@ -3762,6 +3767,7 @@
                       "zh-TW/gateway/gateway-lock",
                       "zh-TW/gateway/background-process",
                       "zh-TW/gateway/restart-recovery",
+                      "zh-TW/gateway/cloud-sessions",
                       "zh-TW/gateway/cloud-workers",
                       "zh-TW/gateway/multiple-gateways",
                       "zh-TW/gateway/multi-tenant-hosting"
@@ -4512,6 +4518,7 @@
                 "pages": [
                   "ja-JP/automation/index",
                   "ja-JP/automation/cron-jobs",
+                  "ja-JP/automation/imap",
                   "ja-JP/automation/tasks",
                   "ja-JP/automation/taskflow",
                   "ja-JP/automation/standing-orders",
@@ -4795,6 +4802,7 @@
                       "ja-JP/gateway/gateway-lock",
                       "ja-JP/gateway/background-process",
                       "ja-JP/gateway/restart-recovery",
+                      "ja-JP/gateway/cloud-sessions",
                       "ja-JP/gateway/cloud-workers",
                       "ja-JP/gateway/multiple-gateways",
                       "ja-JP/gateway/multi-tenant-hosting"
@@ -5545,6 +5553,7 @@
                 "pages": [
                   "es/automation/index",
                   "es/automation/cron-jobs",
+                  "es/automation/imap",
                   "es/automation/tasks",
                   "es/automation/taskflow",
                   "es/automation/standing-orders",
@@ -5828,6 +5837,7 @@
                       "es/gateway/gateway-lock",
                       "es/gateway/background-process",
                       "es/gateway/restart-recovery",
+                      "es/gateway/cloud-sessions",
                       "es/gateway/cloud-workers",
                       "es/gateway/multiple-gateways",
                       "es/gateway/multi-tenant-hosting"
@@ -6578,6 +6588,7 @@
                 "pages": [
                   "pt-BR/automation/index",
                   "pt-BR/automation/cron-jobs",
+                  "pt-BR/automation/imap",
                   "pt-BR/automation/tasks",
                   "pt-BR/automation/taskflow",
                   "pt-BR/automation/standing-orders",
@@ -6861,6 +6872,7 @@
                       "pt-BR/gateway/gateway-lock",
                       "pt-BR/gateway/background-process",
                       "pt-BR/gateway/restart-recovery",
+                      "pt-BR/gateway/cloud-sessions",
                       "pt-BR/gateway/cloud-workers",
                       "pt-BR/gateway/multiple-gateways",
                       "pt-BR/gateway/multi-tenant-hosting"
@@ -7611,6 +7623,7 @@
                 "pages": [
                   "ko/automation/index",
                   "ko/automation/cron-jobs",
+                  "ko/automation/imap",
                   "ko/automation/tasks",
                   "ko/automation/taskflow",
                   "ko/automation/standing-orders",
@@ -7894,6 +7907,7 @@
                       "ko/gateway/gateway-lock",
                       "ko/gateway/background-process",
                       "ko/gateway/restart-recovery",
+                      "ko/gateway/cloud-sessions",
                       "ko/gateway/cloud-workers",
                       "ko/gateway/multiple-gateways",
                       "ko/gateway/multi-tenant-hosting"
@@ -8644,6 +8658,7 @@
                 "pages": [
                   "de/automation/index",
                   "de/automation/cron-jobs",
+                  "de/automation/imap",
                   "de/automation/tasks",
                   "de/automation/taskflow",
                   "de/automation/standing-orders",
@@ -8927,6 +8942,7 @@
                       "de/gateway/gateway-lock",
                       "de/gateway/background-process",
                       "de/gateway/restart-recovery",
+                      "de/gateway/cloud-sessions",
                       "de/gateway/cloud-workers",
                       "de/gateway/multiple-gateways",
                       "de/gateway/multi-tenant-hosting"
@@ -9677,6 +9693,7 @@
                 "pages": [
                   "fr/automation/index",
                   "fr/automation/cron-jobs",
+                  "fr/automation/imap",
                   "fr/automation/tasks",
                   "fr/automation/taskflow",
                   "fr/automation/standing-orders",
@@ -9960,6 +9977,7 @@
                       "fr/gateway/gateway-lock",
                       "fr/gateway/background-process",
                       "fr/gateway/restart-recovery",
+                      "fr/gateway/cloud-sessions",
                       "fr/gateway/cloud-workers",
                       "fr/gateway/multiple-gateways",
                       "fr/gateway/multi-tenant-hosting"
@@ -10710,6 +10728,7 @@
                 "pages": [
                   "hi/automation/index",
                   "hi/automation/cron-jobs",
+                  "hi/automation/imap",
                   "hi/automation/tasks",
                   "hi/automation/taskflow",
                   "hi/automation/standing-orders",
@@ -10993,6 +11012,7 @@
                       "hi/gateway/gateway-lock",
                       "hi/gateway/background-process",
                       "hi/gateway/restart-recovery",
+                      "hi/gateway/cloud-sessions",
                       "hi/gateway/cloud-workers",
                       "hi/gateway/multiple-gateways",
                       "hi/gateway/multi-tenant-hosting"
@@ -11743,6 +11763,7 @@
                 "pages": [
                   "ar/automation/index",
                   "ar/automation/cron-jobs",
+                  "ar/automation/imap",
                   "ar/automation/tasks",
                   "ar/automation/taskflow",
                   "ar/automation/standing-orders",
@@ -12026,6 +12047,7 @@
                       "ar/gateway/gateway-lock",
                       "ar/gateway/background-process",
                       "ar/gateway/restart-recovery",
+                      "ar/gateway/cloud-sessions",
                       "ar/gateway/cloud-workers",
                       "ar/gateway/multiple-gateways",
                       "ar/gateway/multi-tenant-hosting"
@@ -12776,6 +12798,7 @@
                 "pages": [
                   "it/automation/index",
                   "it/automation/cron-jobs",
+                  "it/automation/imap",
                   "it/automation/tasks",
                   "it/automation/taskflow",
                   "it/automation/standing-orders",
@@ -13059,6 +13082,7 @@
                       "it/gateway/gateway-lock",
                       "it/gateway/background-process",
                       "it/gateway/restart-recovery",
+                      "it/gateway/cloud-sessions",
                       "it/gateway/cloud-workers",
                       "it/gateway/multiple-gateways",
                       "it/gateway/multi-tenant-hosting"
@@ -13809,6 +13833,7 @@
                 "pages": [
                   "vi/automation/index",
                   "vi/automation/cron-jobs",
+                  "vi/automation/imap",
                   "vi/automation/tasks",
                   "vi/automation/taskflow",
                   "vi/automation/standing-orders",
@@ -14092,6 +14117,7 @@
                       "vi/gateway/gateway-lock",
                       "vi/gateway/background-process",
                       "vi/gateway/restart-recovery",
+                      "vi/gateway/cloud-sessions",
                       "vi/gateway/cloud-workers",
                       "vi/gateway/multiple-gateways",
                       "vi/gateway/multi-tenant-hosting"
@@ -14842,6 +14868,7 @@
                 "pages": [
                   "nl/automation/index",
                   "nl/automation/cron-jobs",
+                  "nl/automation/imap",
                   "nl/automation/tasks",
                   "nl/automation/taskflow",
                   "nl/automation/standing-orders",
@@ -15125,6 +15152,7 @@
                       "nl/gateway/gateway-lock",
                       "nl/gateway/background-process",
                       "nl/gateway/restart-recovery",
+                      "nl/gateway/cloud-sessions",
                       "nl/gateway/cloud-workers",
                       "nl/gateway/multiple-gateways",
                       "nl/gateway/multi-tenant-hosting"
@@ -15875,6 +15903,7 @@
                 "pages": [
                   "tr/automation/index",
                   "tr/automation/cron-jobs",
+                  "tr/automation/imap",
                   "tr/automation/tasks",
                   "tr/automation/taskflow",
                   "tr/automation/standing-orders",
@@ -16158,6 +16187,7 @@
                       "tr/gateway/gateway-lock",
                       "tr/gateway/background-process",
                       "tr/gateway/restart-recovery",
+                      "tr/gateway/cloud-sessions",
                       "tr/gateway/cloud-workers",
                       "tr/gateway/multiple-gateways",
                       "tr/gateway/multi-tenant-hosting"
@@ -16908,6 +16938,7 @@
                 "pages": [
                   "uk/automation/index",
                   "uk/automation/cron-jobs",
+                  "uk/automation/imap",
                   "uk/automation/tasks",
                   "uk/automation/taskflow",
                   "uk/automation/standing-orders",
@@ -17191,6 +17222,7 @@
                       "uk/gateway/gateway-lock",
                       "uk/gateway/background-process",
                       "uk/gateway/restart-recovery",
+                      "uk/gateway/cloud-sessions",
                       "uk/gateway/cloud-workers",
                       "uk/gateway/multiple-gateways",
                       "uk/gateway/multi-tenant-hosting"
@@ -17941,6 +17973,7 @@
                 "pages": [
                   "id/automation/index",
                   "id/automation/cron-jobs",
+                  "id/automation/imap",
                   "id/automation/tasks",
                   "id/automation/taskflow",
                   "id/automation/standing-orders",
@@ -18224,6 +18257,7 @@
                       "id/gateway/gateway-lock",
                       "id/gateway/background-process",
                       "id/gateway/restart-recovery",
+                      "id/gateway/cloud-sessions",
                       "id/gateway/cloud-workers",
                       "id/gateway/multiple-gateways",
                       "id/gateway/multi-tenant-hosting"
@@ -18974,6 +19008,7 @@
                 "pages": [
                   "pl/automation/index",
                   "pl/automation/cron-jobs",
+                  "pl/automation/imap",
                   "pl/automation/tasks",
                   "pl/automation/taskflow",
                   "pl/automation/standing-orders",
@@ -19257,6 +19292,7 @@
                       "pl/gateway/gateway-lock",
                       "pl/gateway/background-process",
                       "pl/gateway/restart-recovery",
+                      "pl/gateway/cloud-sessions",
                       "pl/gateway/cloud-workers",
                       "pl/gateway/multiple-gateways",
                       "pl/gateway/multi-tenant-hosting"
@@ -20007,6 +20043,7 @@
                 "pages": [
                   "ru/automation/index",
                   "ru/automation/cron-jobs",
+                  "ru/automation/imap",
                   "ru/automation/tasks",
                   "ru/automation/taskflow",
                   "ru/automation/standing-orders",
@@ -20290,6 +20327,7 @@
                       "ru/gateway/gateway-lock",
                       "ru/gateway/background-process",
                       "ru/gateway/restart-recovery",
+                      "ru/gateway/cloud-sessions",
                       "ru/gateway/cloud-workers",
                       "ru/gateway/multiple-gateways",
                       "ru/gateway/multi-tenant-hosting"
