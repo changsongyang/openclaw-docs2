@@ -1120,6 +1120,8 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Multi-account support
   - H2: Access control
   - H2: Troubleshooting
+  - H3: Execution identity audit
+  - H3: Connection and replies
   - H2: Config
   - H3: Account config
   - H3: Provider options
