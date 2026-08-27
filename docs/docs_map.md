@@ -3757,6 +3757,20 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Full reference
   - H2: Related
 
+## gateway/daytona.md
+
+- Route: /gateway/daytona
+- Headings:
+  - H2: Prerequisites
+  - H2: Quick start
+  - H2: How execution works
+  - H2: Workspace model
+  - H2: Configuration reference
+  - H2: Lifecycle management
+  - H2: Cost controls
+  - H2: Current limitations
+  - H2: Related
+
 ## gateway/diagnostics.md
 
 - Route: /gateway/diagnostics
@@ -4248,6 +4262,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Podman backend
   - H2: SSH backend
   - H2: OpenShell backend
+  - H2: Daytona backend
   - H2: Workspace access
   - H2: Multiple folders for one agent
   - H3: Other bind behavior
@@ -7016,6 +7031,14 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /plugins/reference/cua-computer
 - Headings:
   - H1: Cua Computer plugin
+  - H2: Distribution
+  - H2: Surface
+
+## plugins/reference/daytona.md
+
+- Route: /plugins/reference/daytona
+- Headings:
+  - H1: Daytona plugin
   - H2: Distribution
   - H2: Surface
 
