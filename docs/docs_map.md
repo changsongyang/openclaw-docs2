@@ -8794,6 +8794,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Three ways to use Copilot in OpenClaw
   - H2: GitHub Enterprise (data residency)
+  - H3: Tenant request identity
   - H2: Optional flags
   - H2: Non-interactive onboarding
   - H2: Memory search embeddings
