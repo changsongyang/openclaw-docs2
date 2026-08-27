@@ -5955,6 +5955,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /platforms/mac/permissions
 - Headings:
   - H2: Requirements for stable permissions
+  - H2: Screen Recording still appears missing after granting access
   - H2: Accessibility grants for Node and CLI runtimes
   - H2: Separate Computer Control grants
   - H2: Recovery checklist when prompts disappear
