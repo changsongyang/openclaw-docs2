@@ -1524,6 +1524,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H1: openclaw configure
   - H2: Options
+  - H2: Gateway section
   - H2: Model section
   - H2: Web section
   - H2: Other notes
@@ -4556,6 +4557,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: How it works
   - H2: Configuration
   - H3: Configuration reference
+  - H3: Configure with the wizard
   - H2: Per-identity scope grants
   - H2: Automatic device approval
   - H2: Control UI pairing behavior
@@ -5904,6 +5906,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Agent path
   - H2: Node commands
   - H2: A2UI belongs on session dashboards
+  - H2: Migrating documents from a custom root
   - H2: Related
 
 ## platforms/mac/child-process.md
