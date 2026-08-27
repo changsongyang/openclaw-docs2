@@ -3026,13 +3026,14 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /concepts/presence
 - Headings:
   - H2: Presence fields (what shows up)
+  - H3: Watched session references
   - H2: Producers (where presence comes from)
   - H3: 1) Gateway self entry
   - H3: 2) WebSocket connect
   - H4: Why ephemeral control-plane connections do not show up
   - H3: 3) system-event beacons
   - H3: 4) Node connects (role: node)
-  - H2: Merge + dedupe rules (why instanceId matters)
+  - H2: Connection rows and beacon deduplication
   - H2: TTL and bounded size
   - H2: Remote/tunnel caveat (loopback IPs)
   - H2: Consumers
