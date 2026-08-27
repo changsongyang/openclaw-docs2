@@ -1853,6 +1853,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: memory forget
   - H3: Session selection
   - H3: Read the report
+  - H3: If deletion fails
   - H3: Artifacts removed
   - H3: Readmission and retained data
   - H2: memory promote
