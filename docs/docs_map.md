@@ -9671,7 +9671,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Supported credentials
   - H3: openclaw.json targets (secrets configure + secrets apply + secrets audit)
-  - H3: auth-profiles.json targets (secrets configure + secrets apply + secrets audit)
+  - H3: SQLite auth-profile targets (secrets configure + secrets apply + secrets audit)
   - H3: Node-host connection targets
   - H2: Unsupported credentials
   - H2: Related
@@ -10287,6 +10287,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Local flow details
   - H2: Remote mode details
   - H2: Auth and model options
+  - H2: Headless and server setup
   - H2: Outputs and internals
   - H3: Installed app recommendations
   - H2: Non-interactive setup
