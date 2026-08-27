@@ -622,6 +622,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Setup
   - H2: Configure
   - H2: Access control
+  - H2: Group join introductions
   - H2: Message behavior
   - H2: Structured rich messages
   - H2: ACP support
@@ -682,6 +683,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Interactive setup
   - H3: Minimal config
   - H3: Auto-join
+  - H3: Group join introductions
   - H3: Allowlist target formats
   - H3: Account ID normalization
   - H3: Cached credentials
@@ -3646,6 +3648,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Mattermost
   - H3: Signal
   - H3: iMessage
+  - H3: LINE
   - H3: Matrix
   - H3: Microsoft Teams
   - H3: IRC
