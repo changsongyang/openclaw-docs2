@@ -2979,6 +2979,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Assigning an owner
   - H2: Finding sessions by owner
   - H2: Reading the avatars
+  - H2: People cards
   - H2: Agent-spawned sessions
   - H2: Identity-scoped convenience state
   - H2: Drafts
@@ -3026,7 +3027,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /concepts/presence
 - Headings:
   - H2: Presence fields (what shows up)
-  - H3: Watched session references
+  - H2: Who can see presence
   - H2: Producers (where presence comes from)
   - H3: 1) Gateway self entry
   - H3: 2) WebSocket connect
