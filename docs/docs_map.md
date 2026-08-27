@@ -3545,6 +3545,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Configuration
   - H3: Per-project default profiles
   - H3: The setup command
+  - H3: Build a complete custom node package
   - H3: Bundle installation
   - H3: Verify the profile
   - H2: Dispatching a session
