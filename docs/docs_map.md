@@ -3441,6 +3441,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: exec tool
   - H3: Env overrides
   - H3: Config (preferred over env overrides)
+  - H2: Worker environments
   - H2: Child process bridging
   - H2: process tool
   - H2: Examples
