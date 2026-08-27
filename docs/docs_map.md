@@ -584,6 +584,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Supported channels
   - H3: Related communication plugins
+  - H2: Group join introductions
   - H2: Delivery notes
   - H2: Notes
 
