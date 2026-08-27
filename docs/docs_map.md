@@ -85,7 +85,9 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: CLI examples
   - H2: Managing jobs
   - H2: Webhooks
+  - H3: Enable and test an agent hook
   - H3: Authentication
+  - H3: Verify and troubleshoot hook requests
   - H2: Gmail PubSub integration
   - H3: Configure a restricted Gmail reader (recommended)
   - H3: Authenticate the reader model
@@ -115,26 +117,31 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /automation/hooks
 - Headings:
+  - H1: Hooks
   - H2: Choose the right surface
   - H2: Quick start
-  - H2: Event types
+  - H3: Eligible, enabled, and loaded
+  - H3: Local, remote, and agent scope
   - H2: Writing hooks
   - H3: Hook structure
-  - H3: HOOK.md format
   - H3: Handler implementation
-  - H3: Event context highlights
+  - H3: Reply delivery
+  - H3: HOOK.md format
+  - H2: Configuration
   - H2: Hook discovery
   - H3: Hook packs
   - H2: Bundled hooks
-  - H3: session-memory details
+  - H3: boot-md details
   - H3: bootstrap-extra-files config
   - H3: command-logger details
   - H3: compaction-notifier details
-  - H3: boot-md details
+  - H3: session-memory details
+  - H2: Event types
+  - H3: Event context highlights
+  - H4: Message context
   - H2: Plugin hooks
-  - H2: Configuration
-  - H2: CLI reference
   - H2: Best practices
+  - H2: CLI reference
   - H2: Troubleshooting
   - H3: Hook not discovered
   - H3: Hook not eligible
@@ -1737,12 +1744,17 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /cli/hooks
 - Headings:
   - H1: openclaw hooks
+  - H2: Target and scope
   - H2: List hooks
+  - H3: List JSON
   - H2: Get hook info
   - H2: Check eligibility
   - H2: Enable a hook
   - H2: Disable a hook
   - H2: Install and update hook packs
+  - H3: Install options and trust
+  - H3: Update behavior
+  - H3: Deprecated aliases
   - H2: Bundled hooks
   - H3: command-logger log file
   - H2: Notes
@@ -2330,10 +2342,11 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Required
   - H3: Pub/Sub options
   - H3: OpenClaw delivery options
-  - H3: gog watch serve options
+  - H3: gog gmail watch serve options
   - H3: Tailscale exposure
   - H3: Output
   - H2: webhooks gmail run
+  - H2: Verify forwarding
   - H2: Related
 
 ## cli/wiki.md
@@ -3712,6 +3725,11 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Crabbox profile
   - H3: Static SSH development profile
   - H2: Hooks
+  - H3: Hook HTTP contract
+  - H3: Hook agent payload
+  - H3: Hook session and agent policy
+  - H3: Mapping details
+  - H3: Hook retries and fan-out
   - H3: Gmail integration
   - H2: Canvas widget presenter
   - H2: Discovery
@@ -6513,6 +6531,9 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /plugins/hooks
 - Headings:
   - H2: Quick start
+  - H3: Permissions and scope
+  - H3: Choose a hook
+  - H2: Registration and execution
   - H2: Hook catalog
   - H3: Skill lifecycle and evaluation
   - H3: Channel pairing requests
@@ -6528,6 +6549,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Install hooks
   - H2: Gateway lifecycle
   - H3: Safe external cron projection
+  - H2: Troubleshooting
   - H2: Upcoming deprecations
   - H2: Related
 
@@ -8445,7 +8467,10 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Supported actions
   - H3: `create_flow`
   - H3: `run_task`
+  - H3: Waiting and completion
+  - H3: Cancellation
   - H2: Response shape
+  - H3: Errors and troubleshooting
   - H2: Related
 
 ## plugins/workboard.md
@@ -10214,6 +10239,26 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Community projects
   - H2: Submit your project
   - H2: Related
+
+## start/why-openclaw.md
+
+- Route: /start/why-openclaw
+- Headings:
+  - H2: What an enterprise harness has to prove
+  - H2: How OpenClaw answers
+  - H3: The trust boundary
+  - H3: Policy as code
+  - H3: Identity and roles
+  - H3: Secrets
+  - H3: Versioned state, guarded upgrades
+  - H3: Provenance
+  - H2: The vendor's harness, as a plugin
+  - H2: Open standards
+  - H2: Working together
+  - H2: Governance
+  - H2: What we do not claim
+  - H2: OpenClaw and Hermes Agent
+  - H2: The hardened setup
 
 ## start/wizard-cli-automation.md
 
