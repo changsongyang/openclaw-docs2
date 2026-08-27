@@ -339,6 +339,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Directory and sender labels
   - H3: Route rooms to different agents
   - H2: Access control
+  - H3: Bot conversations
   - H2: Manual configuration
   - H3: Reply prefix
   - H3: Bot key storage
