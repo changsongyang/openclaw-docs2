@@ -5446,6 +5446,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Goals
   - H2: CLI Surface
+  - H2: Message tool attachment metadata
   - H2: WhatsApp Web channel behavior
   - H2: Auto-Reply Pipeline
   - H2: Inbound Media To Commands
