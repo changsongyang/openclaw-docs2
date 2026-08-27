@@ -479,6 +479,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Receive
   - H3: Send
   - H3: Sticker replies
+  - H3: Sticker keyword search
   - H3: Threads and replies
   - H2: Related
 
