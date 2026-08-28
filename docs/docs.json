@@ -1071,6 +1071,7 @@
                 "group": "Guides",
                 "pages": [
                   "start/openclaw",
+                  "start/teams",
                   "start/wizard-cli-reference",
                   "start/wizard-cli-automation"
                 ]
@@ -2141,6 +2142,7 @@
                 "group": "指南",
                 "pages": [
                   "zh-CN/start/openclaw",
+                  "zh-CN/start/teams",
                   "zh-CN/start/wizard-cli-reference",
                   "zh-CN/start/wizard-cli-automation"
                 ]
@@ -3177,6 +3179,7 @@
                 "group": "Guides",
                 "pages": [
                   "zh-TW/start/openclaw",
+                  "zh-TW/start/teams",
                   "zh-TW/start/wizard-cli-reference",
                   "zh-TW/start/wizard-cli-automation"
                 ]
@@ -4213,6 +4216,7 @@
                 "group": "Guides",
                 "pages": [
                   "ja-JP/start/openclaw",
+                  "ja-JP/start/teams",
                   "ja-JP/start/wizard-cli-reference",
                   "ja-JP/start/wizard-cli-automation"
                 ]
@@ -5249,6 +5253,7 @@
                 "group": "Guides",
                 "pages": [
                   "es/start/openclaw",
+                  "es/start/teams",
                   "es/start/wizard-cli-reference",
                   "es/start/wizard-cli-automation"
                 ]
@@ -6285,6 +6290,7 @@
                 "group": "Guides",
                 "pages": [
                   "pt-BR/start/openclaw",
+                  "pt-BR/start/teams",
                   "pt-BR/start/wizard-cli-reference",
                   "pt-BR/start/wizard-cli-automation"
                 ]
@@ -7321,6 +7327,7 @@
                 "group": "Guides",
                 "pages": [
                   "ko/start/openclaw",
+                  "ko/start/teams",
                   "ko/start/wizard-cli-reference",
                   "ko/start/wizard-cli-automation"
                 ]
@@ -8357,6 +8364,7 @@
                 "group": "Guides",
                 "pages": [
                   "de/start/openclaw",
+                  "de/start/teams",
                   "de/start/wizard-cli-reference",
                   "de/start/wizard-cli-automation"
                 ]
@@ -9393,6 +9401,7 @@
                 "group": "Guides",
                 "pages": [
                   "fr/start/openclaw",
+                  "fr/start/teams",
                   "fr/start/wizard-cli-reference",
                   "fr/start/wizard-cli-automation"
                 ]
@@ -10429,6 +10438,7 @@
                 "group": "Guides",
                 "pages": [
                   "hi/start/openclaw",
+                  "hi/start/teams",
                   "hi/start/wizard-cli-reference",
                   "hi/start/wizard-cli-automation"
                 ]
@@ -11465,6 +11475,7 @@
                 "group": "Guides",
                 "pages": [
                   "ar/start/openclaw",
+                  "ar/start/teams",
                   "ar/start/wizard-cli-reference",
                   "ar/start/wizard-cli-automation"
                 ]
@@ -12501,6 +12512,7 @@
                 "group": "Guides",
                 "pages": [
                   "it/start/openclaw",
+                  "it/start/teams",
                   "it/start/wizard-cli-reference",
                   "it/start/wizard-cli-automation"
                 ]
@@ -13537,6 +13549,7 @@
                 "group": "Guides",
                 "pages": [
                   "vi/start/openclaw",
+                  "vi/start/teams",
                   "vi/start/wizard-cli-reference",
                   "vi/start/wizard-cli-automation"
                 ]
@@ -14573,6 +14586,7 @@
                 "group": "Guides",
                 "pages": [
                   "nl/start/openclaw",
+                  "nl/start/teams",
                   "nl/start/wizard-cli-reference",
                   "nl/start/wizard-cli-automation"
                 ]
@@ -15609,6 +15623,7 @@
                 "group": "Guides",
                 "pages": [
                   "tr/start/openclaw",
+                  "tr/start/teams",
                   "tr/start/wizard-cli-reference",
                   "tr/start/wizard-cli-automation"
                 ]
@@ -16645,6 +16660,7 @@
                 "group": "Guides",
                 "pages": [
                   "uk/start/openclaw",
+                  "uk/start/teams",
                   "uk/start/wizard-cli-reference",
                   "uk/start/wizard-cli-automation"
                 ]
@@ -17681,6 +17697,7 @@
                 "group": "Guides",
                 "pages": [
                   "id/start/openclaw",
+                  "id/start/teams",
                   "id/start/wizard-cli-reference",
                   "id/start/wizard-cli-automation"
                 ]
@@ -18717,6 +18734,7 @@
                 "group": "Guides",
                 "pages": [
                   "pl/start/openclaw",
+                  "pl/start/teams",
                   "pl/start/wizard-cli-reference",
                   "pl/start/wizard-cli-automation"
                 ]
@@ -19753,6 +19771,7 @@
                 "group": "Guides",
                 "pages": [
                   "ru/start/openclaw",
+                  "ru/start/teams",
                   "ru/start/wizard-cli-reference",
                   "ru/start/wizard-cli-automation"
                 ]

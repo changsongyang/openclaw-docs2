@@ -348,6 +348,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Access control
   - H3: Bot conversations
   - H3: Passive room context
+  - H3: Reply placement
   - H2: Manual configuration
   - H3: Reply prefix
   - H3: Bot key storage
@@ -4377,7 +4378,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /gateway/security
 - Headings:
-  - H2: Scope: personal assistant security model
+  - H2: Scope: one trust boundary per gateway
   - H2: openclaw security audit
   - H3: What the audit checks (high level)
   - H3: Priority order when triaging findings
@@ -10254,6 +10255,21 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Home and hardware
   - H2: Community projects
   - H2: Submit your project
+  - H2: Related
+
+## start/teams.md
+
+- Route: /start/teams
+- Headings:
+  - H2: Before you begin
+  - H2: One trust boundary
+  - H2: Step 1: Give the team access to the Gateway
+  - H2: Step 2: Connect the team chat
+  - H2: Step 3: Sign the team in to the Control UI
+  - H2: Step 4: Work in shared sessions
+  - H2: Step 5: Bound what each person can do
+  - H2: Verify
+  - H2: When to split things up
   - H2: Related
 
 ## start/why-openclaw.md
