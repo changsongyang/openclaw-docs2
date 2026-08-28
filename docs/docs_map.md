@@ -10205,7 +10205,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /start/openclaw
 - Headings:
-  - H2: Safety first
+  - H2: Good defaults first
   - H2: Prerequisites
   - H2: The two-phone setup (recommended)
   - H2: 5-minute quick start
