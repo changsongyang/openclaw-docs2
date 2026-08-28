@@ -9034,7 +9034,8 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Getting started
   - H2: Config example
-  - H2: Featured catalog
+  - H2: Live model catalog
+  - H2: Nemotron 3.5 Lightning
   - H2: Nemotron 3 Ultra
   - H2: Bundled fallback catalog
   - H2: Advanced configuration
@@ -9229,7 +9230,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Getting started
   - H2: Config example
-  - H2: Built-in catalog
+  - H2: Model discovery
   - H2: Related
 
 ## providers/tencent.md
