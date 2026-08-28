@@ -3144,6 +3144,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Telegram
   - H2: Configuration
   - H2: Notes
+  - H3: Durable outbound delivery
   - H2: Related
 
 ## concepts/session-attachment.md
