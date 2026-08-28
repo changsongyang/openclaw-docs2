@@ -8166,6 +8166,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Route: /plugins/sdk-channel-ingress
 - Headings:
   - H2: Runtime resolver
+  - H3: Product participant identity
   - H2: Result
   - H2: Identifier authentication
   - H3: Bundled channel declarations
@@ -9501,6 +9502,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Review checkpoint for material changes
   - H2: Preflight a target release
   - H2: Agent schema history
+  - H3: Participant identity migration
   - H2: State schema history
   - H3: State schema 13
   - H3: State schema 11
