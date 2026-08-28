@@ -4568,6 +4568,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Rollout guidance
   - H2: Proxy setup examples
   - H2: Mixed token configuration
+  - H2: Restrict a separate Gateway to one owner
   - H2: Security checklist
   - H2: Security audit
   - H2: Troubleshooting
@@ -8149,6 +8150,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Agent-end side effects
   - H3: User input and tool surfaces
   - H3: Paired-device execution
+  - H3: Native model inventory
   - H3: Native MCP inventory
   - H3: Native Codex harness mode
   - H2: Runtime strictness
