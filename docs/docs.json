@@ -1715,7 +1715,6 @@
                       "gateway/security/rate-limiting",
                       "gateway/operator-scopes",
                       "gateway/sandboxing",
-                      "gateway/daytona",
                       "gateway/openshell",
                       "gateway/sandbox-vs-tool-policy-vs-elevated",
                       "gateway/permission-modes"
@@ -2752,7 +2751,6 @@
                       "zh-CN/gateway/security/rate-limiting",
                       "zh-CN/gateway/operator-scopes",
                       "zh-CN/gateway/sandboxing",
-                      "zh-CN/gateway/daytona",
                       "zh-CN/gateway/openshell",
                       "zh-CN/gateway/sandbox-vs-tool-policy-vs-elevated",
                       "zh-CN/gateway/permission-modes"
@@ -3789,7 +3787,6 @@
                       "zh-TW/gateway/security/rate-limiting",
                       "zh-TW/gateway/operator-scopes",
                       "zh-TW/gateway/sandboxing",
-                      "zh-TW/gateway/daytona",
                       "zh-TW/gateway/openshell",
                       "zh-TW/gateway/sandbox-vs-tool-policy-vs-elevated",
                       "zh-TW/gateway/permission-modes"
@@ -4826,7 +4823,6 @@
                       "ja-JP/gateway/security/rate-limiting",
                       "ja-JP/gateway/operator-scopes",
                       "ja-JP/gateway/sandboxing",
-                      "ja-JP/gateway/daytona",
                       "ja-JP/gateway/openshell",
                       "ja-JP/gateway/sandbox-vs-tool-policy-vs-elevated",
                       "ja-JP/gateway/permission-modes"
@@ -5863,7 +5859,6 @@
                       "es/gateway/security/rate-limiting",
                       "es/gateway/operator-scopes",
                       "es/gateway/sandboxing",
-                      "es/gateway/daytona",
                       "es/gateway/openshell",
                       "es/gateway/sandbox-vs-tool-policy-vs-elevated",
                       "es/gateway/permission-modes"
@@ -6900,7 +6895,6 @@
                       "pt-BR/gateway/security/rate-limiting",
                       "pt-BR/gateway/operator-scopes",
                       "pt-BR/gateway/sandboxing",
-                      "pt-BR/gateway/daytona",
                       "pt-BR/gateway/openshell",
                       "pt-BR/gateway/sandbox-vs-tool-policy-vs-elevated",
                       "pt-BR/gateway/permission-modes"
@@ -7937,7 +7931,6 @@
                       "ko/gateway/security/rate-limiting",
                       "ko/gateway/operator-scopes",
                       "ko/gateway/sandboxing",
-                      "ko/gateway/daytona",
                       "ko/gateway/openshell",
                       "ko/gateway/sandbox-vs-tool-policy-vs-elevated",
                       "ko/gateway/permission-modes"
@@ -8974,7 +8967,6 @@
                       "de/gateway/security/rate-limiting",
                       "de/gateway/operator-scopes",
                       "de/gateway/sandboxing",
-                      "de/gateway/daytona",
                       "de/gateway/openshell",
                       "de/gateway/sandbox-vs-tool-policy-vs-elevated",
                       "de/gateway/permission-modes"
@@ -10011,7 +10003,6 @@
                       "fr/gateway/security/rate-limiting",
                       "fr/gateway/operator-scopes",
                       "fr/gateway/sandboxing",
-                      "fr/gateway/daytona",
                       "fr/gateway/openshell",
                       "fr/gateway/sandbox-vs-tool-policy-vs-elevated",
                       "fr/gateway/permission-modes"
@@ -11048,7 +11039,6 @@
                       "hi/gateway/security/rate-limiting",
                       "hi/gateway/operator-scopes",
                       "hi/gateway/sandboxing",
-                      "hi/gateway/daytona",
                       "hi/gateway/openshell",
                       "hi/gateway/sandbox-vs-tool-policy-vs-elevated",
                       "hi/gateway/permission-modes"
@@ -12085,7 +12075,6 @@
                       "ar/gateway/security/rate-limiting",
                       "ar/gateway/operator-scopes",
                       "ar/gateway/sandboxing",
-                      "ar/gateway/daytona",
                       "ar/gateway/openshell",
                       "ar/gateway/sandbox-vs-tool-policy-vs-elevated",
                       "ar/gateway/permission-modes"
@@ -13122,7 +13111,6 @@
                       "it/gateway/security/rate-limiting",
                       "it/gateway/operator-scopes",
                       "it/gateway/sandboxing",
-                      "it/gateway/daytona",
                       "it/gateway/openshell",
                       "it/gateway/sandbox-vs-tool-policy-vs-elevated",
                       "it/gateway/permission-modes"
@@ -14159,7 +14147,6 @@
                       "vi/gateway/security/rate-limiting",
                       "vi/gateway/operator-scopes",
                       "vi/gateway/sandboxing",
-                      "vi/gateway/daytona",
                       "vi/gateway/openshell",
                       "vi/gateway/sandbox-vs-tool-policy-vs-elevated",
                       "vi/gateway/permission-modes"
@@ -15196,7 +15183,6 @@
                       "nl/gateway/security/rate-limiting",
                       "nl/gateway/operator-scopes",
                       "nl/gateway/sandboxing",
-                      "nl/gateway/daytona",
                       "nl/gateway/openshell",
                       "nl/gateway/sandbox-vs-tool-policy-vs-elevated",
                       "nl/gateway/permission-modes"
@@ -16233,7 +16219,6 @@
                       "tr/gateway/security/rate-limiting",
                       "tr/gateway/operator-scopes",
                       "tr/gateway/sandboxing",
-                      "tr/gateway/daytona",
                       "tr/gateway/openshell",
                       "tr/gateway/sandbox-vs-tool-policy-vs-elevated",
                       "tr/gateway/permission-modes"
@@ -17270,7 +17255,6 @@
                       "uk/gateway/security/rate-limiting",
                       "uk/gateway/operator-scopes",
                       "uk/gateway/sandboxing",
-                      "uk/gateway/daytona",
                       "uk/gateway/openshell",
                       "uk/gateway/sandbox-vs-tool-policy-vs-elevated",
                       "uk/gateway/permission-modes"
@@ -18307,7 +18291,6 @@
                       "id/gateway/security/rate-limiting",
                       "id/gateway/operator-scopes",
                       "id/gateway/sandboxing",
-                      "id/gateway/daytona",
                       "id/gateway/openshell",
                       "id/gateway/sandbox-vs-tool-policy-vs-elevated",
                       "id/gateway/permission-modes"
@@ -19344,7 +19327,6 @@
                       "pl/gateway/security/rate-limiting",
                       "pl/gateway/operator-scopes",
                       "pl/gateway/sandboxing",
-                      "pl/gateway/daytona",
                       "pl/gateway/openshell",
                       "pl/gateway/sandbox-vs-tool-policy-vs-elevated",
                       "pl/gateway/permission-modes"
@@ -20381,7 +20363,6 @@
                       "ru/gateway/security/rate-limiting",
                       "ru/gateway/operator-scopes",
                       "ru/gateway/sandboxing",
-                      "ru/gateway/daytona",
                       "ru/gateway/openshell",
                       "ru/gateway/sandbox-vs-tool-policy-vs-elevated",
                       "ru/gateway/permission-modes"
