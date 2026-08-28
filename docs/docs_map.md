@@ -6477,6 +6477,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Local plugins
   - H2: Startup and reload
   - H2: Bundled plugins
+  - H3: Native imports from a standalone source build
   - H2: Legacy cleanup
 
 ## plugins/geolocation.md
