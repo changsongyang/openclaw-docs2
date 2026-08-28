@@ -6039,6 +6039,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 - Headings:
   - H2: Data source
   - H2: Install actions
+  - H2: Browse ClawHub
   - H2: Env/API keys
   - H2: Remote mode
   - H2: Related
