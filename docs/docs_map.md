@@ -9530,6 +9530,8 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /reference/full-release-validation
 - Headings:
+  - H2: Continue failed child jobs
+  - H3: Post-merge continuation proof
   - H2: Extended-stable exception
   - H2: Top-level stages
   - H2: Release checks stages
