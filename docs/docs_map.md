@@ -3559,6 +3559,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Coordinator-backed Crabbox
   - H3: Daytona
   - H2: Configuration
+  - H3: Warm images
   - H3: Per-project default profiles
   - H3: The setup command
   - H3: Build a complete custom node package
