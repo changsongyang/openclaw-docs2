@@ -1391,6 +1391,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: openclaw exec-policy
   - H2: Common commands
   - H2: Pending approvals
+  - H2: Standing grants
   - H2: Replace approvals from a file
   - H2: "Never prompt" / YOLO example
   - H2: Allowlist helpers
@@ -10711,7 +10712,10 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Session-only shortcut
   - H2: Allowlist (per agent)
   - H3: Restricting arguments with argPattern
-  - H2: Cron standing grants
+  - H2: Standing grants for automations
+  - H3: What a grant covers, and when it stops
+  - H3: Grant lifetime
+  - H3: Listing and revoking
   - H2: Auto-allow skill CLIs
   - H2: Safe bins and approval forwarding
   - H2: Control UI editing
