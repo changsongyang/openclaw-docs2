@@ -8143,6 +8143,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H3: Terminal outcome classification
   - H3: Agent-end side effects
   - H3: User input and tool surfaces
+  - H3: Paired-device execution
   - H3: Native MCP inventory
   - H3: Native Codex harness mode
   - H2: Runtime strictness
