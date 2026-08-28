@@ -1960,6 +1960,8 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Reset
   - H2: Locale
   - H2: Non-interactive setup
+  - H3: Required external plugins
+  - H3: Provider setup examples
   - H3: Gateway auth (non-interactive)
   - H3: Local gateway health
   - H3: Interactive ref mode
@@ -10266,6 +10268,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
 
 - Route: /start/wizard-cli-automation
 - Headings:
+  - H2: Review required plugins
   - H2: Baseline non-interactive example
   - H2: Provider-specific examples
   - H2: Add another agent
