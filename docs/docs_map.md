@@ -9824,6 +9824,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Agent default
   - H2: Routine local order
   - H2: Core commands
+  - H2: Linux shell integrations
   - H2: Shared test state and process helpers
   - H2: Control UI, TUI, and extension lanes
   - H2: Gateway and E2E
