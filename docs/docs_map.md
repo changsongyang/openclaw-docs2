@@ -10562,6 +10562,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Activation
   - H2: Model-visible tools
   - H2: exec
+  - H3: Source in session history
   - H2: wait
   - H2: Guest runtime API
   - H2: Declared output contracts
