@@ -5927,6 +5927,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: 1. Install dependencies
   - H2: 2. Build and package the app
   - H2: 3. Install the CLI and Gateway
+  - H2: Run native tests safely
   - H2: Troubleshooting
   - H3: Build fails: toolchain or SDK mismatch
   - H3: Build fails: MLX voice helper Metal shaders
