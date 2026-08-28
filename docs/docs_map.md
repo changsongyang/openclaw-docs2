@@ -5938,7 +5938,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H1: Health checks on macOS
   - H2: Menu bar
   - H2: Settings
-  - H2: How the probe works
+  - H2: How health refresh works
   - H2: When in doubt
   - H2: Related
 
