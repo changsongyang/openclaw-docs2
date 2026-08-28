@@ -3218,6 +3218,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Incognito sessions
   - H2: Remember across conversations
   - H2: Session lifecycle
+  - H2: Gateway restart recovery
   - H2: Where state lives
   - H2: Session maintenance
   - H2: Inspecting sessions
