@@ -2263,6 +2263,8 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H1: openclaw transcripts
   - H2: Commands
   - H2: Output
+  - H2: Tool selectors
+  - H2: JSON output
   - H2: Many sessions per day
   - H2: Missing summaries
   - H2: Upgrading the legacy file store
