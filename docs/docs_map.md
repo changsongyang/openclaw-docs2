@@ -10496,6 +10496,7 @@ Do not edit it by hand; run `pnpm docs:map:gen`.
   - H2: Agent guidance
   - H2: Missing browser command or tool
   - H2: Profiles: openclaw, user, chrome
+  - H3: Browser panel in the Control UI
   - H2: Configuration
   - H3: Tab cleanup ownership
   - H3: Screenshot vision (text-only model support)
